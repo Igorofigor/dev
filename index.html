@@ -3,18 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Башня — Лист персонажа</title>
+
+  <title>Башня — интерактивный лист</title>
 
   <style>
     :root {
       --bg: #16010b;
       --card: #320216;
-      --card-2: #230111;
+      --card-dark: #230111;
       --text: #ffffff;
       --muted: #ffffffaa;
       --line: #ffffff33;
-      --accent: #ffffff;
-      --accent-text: #320216;
+      --line-strong: #ffffff66;
+      --button: #ffffff;
+      --button-text: #320216;
     }
 
     * {
@@ -30,56 +32,57 @@
     }
 
     .app {
-      max-width: 980px;
+      max-width: 1040px;
       margin: 0 auto 80px;
     }
 
     h1 {
       margin: 0 0 8px;
-      font-size: 28px;
+      font-size: 30px;
       line-height: 1.1;
     }
 
     h2 {
       margin: 0 0 12px;
-      font-size: 21px;
+      font-size: 22px;
     }
 
     h3 {
-      margin: 18px 0 8px;
+      margin: 20px 0 8px;
       font-size: 17px;
       color: var(--muted);
     }
 
     p {
+      margin-top: 0;
       color: var(--muted);
       line-height: 1.45;
     }
 
     .card {
+      margin-bottom: 16px;
+      padding: 16px;
       border: 1px solid var(--line);
       border-radius: 18px;
-      padding: 16px;
-      margin-bottom: 16px;
       background: var(--card);
       box-shadow: 0 10px 30px #00000033;
     }
 
     .subcard {
+      margin-top: 12px;
+      padding: 12px;
       border: 1px solid var(--line);
       border-radius: 14px;
-      padding: 12px;
-      margin-top: 12px;
-      background: var(--card-2);
+      background: var(--card-dark);
     }
 
     label {
       display: block;
       margin-top: 10px;
       margin-bottom: 5px;
-      font-weight: 700;
-      color: var(--muted);
       font-size: 14px;
+      font-weight: 800;
+      color: var(--muted);
     }
 
     input,
@@ -87,8 +90,8 @@
     select,
     button {
       width: 100%;
+      border: 1px solid var(--line-strong);
       border-radius: 11px;
-      border: 1px solid #ffffff66;
       padding: 10px;
       font: inherit;
       background: var(--bg);
@@ -96,22 +99,22 @@
     }
 
     textarea {
-      min-height: 80px;
+      min-height: 82px;
       resize: vertical;
     }
 
     button {
-      background: var(--accent);
-      color: var(--accent-text);
-      font-weight: 800;
-      cursor: pointer;
       border: none;
+      background: var(--button);
+      color: var(--button-text);
+      font-weight: 900;
+      cursor: pointer;
     }
 
     button.secondary {
+      border: 1px solid var(--line-strong);
       background: transparent;
       color: var(--text);
-      border: 1px solid #ffffff77;
     }
 
     .grid-2 {
@@ -132,14 +135,27 @@
       gap: 12px;
     }
 
+    .grid-5 {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
     .dice-row {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 8px;
     }
 
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      border-radius: 12px;
+    }
+
     .table {
       width: 100%;
+      min-width: 760px;
       border-collapse: collapse;
       margin-top: 8px;
       overflow: hidden;
@@ -158,6 +174,7 @@
       color: var(--muted);
       font-size: 13px;
       background: #00000022;
+      white-space: nowrap;
     }
 
     .table input,
@@ -168,7 +185,7 @@
     }
 
     .table textarea {
-      min-height: 54px;
+      min-height: 58px;
     }
 
     .check-cell {
@@ -179,6 +196,10 @@
     .check-cell input {
       width: 24px;
       height: 24px;
+    }
+
+    .counter-row {
+      margin: 6px 0 12px;
     }
 
     .counter {
@@ -192,17 +213,18 @@
       background: #00000022;
       color: var(--muted);
       font-size: 14px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .log {
-      min-height: 100px;
+      min-height: 110px;
       white-space: pre-wrap;
       background: var(--bg);
       border-radius: 12px;
       padding: 10px;
       border: 1px solid var(--line);
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 14px;
     }
 
     .toolbar {
@@ -211,21 +233,26 @@
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       gap: 8px;
-      background: linear-gradient(to top, var(--bg), #16010bdd);
-      padding: 12px 0 0;
       margin-top: 20px;
+      padding: 12px 0 0;
+      background: linear-gradient(to top, var(--bg), #16010bdd);
     }
 
     .hint {
+      margin-top: -4px;
       font-size: 13px;
       color: var(--muted);
-      margin-top: 8px;
     }
 
-    @media (max-width: 720px) {
+    @media (max-width: 760px) {
+      body {
+        padding: 12px;
+      }
+
       .grid-2,
       .grid-3,
-      .grid-4 {
+      .grid-4,
+      .grid-5 {
         grid-template-columns: 1fr;
       }
 
@@ -233,13 +260,8 @@
         grid-template-columns: repeat(3, 1fr);
       }
 
-      .table {
-        font-size: 14px;
-      }
-
-      .table th,
-      .table td {
-        padding: 6px;
+      .toolbar {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -248,7 +270,11 @@
 <body>
   <main class="app">
     <h1>Башня — интерактивный лист</h1>
-    <p>Прототип листа персонажа: характеристики, стресс, защиты, навыки, тактики, ресурсы, снаряжение, последствия, способности и броски костей.</p>
+    <p>
+      Лист персонажа для игры: классы, стресс, сопротивления, навыки, области,
+      мастерство, группы тактик, снаряжение, ресурсы, броня, контакты,
+      последствия, способности и броски костей.
+    </p>
 
     <section class="card">
       <h2>Персонаж</h2>
@@ -265,52 +291,58 @@
             <option></option>
             <option>Страж Врат</option>
             <option>Светоносец</option>
-            <option>Раствор души</option>
+            <option>Раствор Души</option>
             <option>Экономант</option>
-            <option>Паратехник</option>
-            <option>Подкодыш</option>
-            <option>Росоход</option>
             <option>Неболом</option>
+            <option>Росоход</option>
+            <option>Подкодыш</option>
+            <option>Паратехник</option>
             <option>Красный Рукав</option>
           </select>
         </div>
 
-        
-
         <div>
-          <label>Народ </label>
-          <input id="origin" placeholder="Родная культура персонажа" />
+          <label>Народ / происхождение</label>
+          <input id="origin" placeholder="Народ, фракция, родина..." />
         </div>
 
         <div>
-          <label>Род войск</label>
-          <input id="goal" placeholder="Где служил персонаж?" />
+          <label>Цель</label>
+          <input id="goal" placeholder="Зачем персонаж идёт в Башню?" />
         </div>
       </div>
 
       <label>Описание</label>
-      <textarea id="description" placeholder="Внешность, манеры, важные детали, личная странность..."></textarea>
+      <textarea id="description" placeholder="Внешность, манеры, важные детали, странности, связи..."></textarea>
     </section>
 
     <section class="card">
       <h2>Стресс</h2>
 
-      <div class="grid-4">
+      <div class="grid-5">
         <div>
-          <label>Пули</label>
+          <label>ПУЛИ</label>
           <input id="stressBullets" type="number" min="0" value="0" />
         </div>
+
         <div>
-          <label>Тело</label>
-          <input id="stressBody" type="number" min="0" value="0" />
-        </div>
-        <div>
-          <label>Разум</label>
+          <label>РАЗУМ</label>
           <input id="stressMind" type="number" min="0" value="0" />
         </div>
+
         <div>
-          <label>Дух</label>
+          <label>ДУХ</label>
           <input id="stressSpirit" type="number" min="0" value="0" />
+        </div>
+
+        <div>
+          <label>СУДЬБА</label>
+          <input id="stressFate" type="number" min="0" value="0" />
+        </div>
+
+        <div>
+          <label>РЕСУРСЫ</label>
+          <input id="stressResources" type="number" min="0" value="0" />
         </div>
       </div>
     </section>
@@ -318,26 +350,30 @@
     <section class="card">
       <h2>Сопротивления и защита</h2>
 
-      <div class="grid-4">
+      <div class="grid-5">
         <div>
           <label>ПУЛИ</label>
           <input id="resBullets" type="number" value="0" />
         </div>
+
         <div>
           <label>РАЗУМ</label>
           <input id="resMind" type="number" value="0" />
         </div>
+
         <div>
           <label>ДУХ</label>
           <input id="resSpirit" type="number" value="0" />
         </div>
-         <div>
+
+        <div>
           <label>СУДЬБА</label>
           <input id="resFate" type="number" value="0" />
         </div>
-         <div>
+
+        <div>
           <label>РЕСУРСЫ</label>
-          <input id="resResource" type="number" value="0" />
+          <input id="resResources" type="number" value="0" />
         </div>
       </div>
 
@@ -346,108 +382,126 @@
           <label>Общая защита</label>
           <input id="protection" type="number" value="0" />
         </div>
+
         <div>
           <label>Особая защита / барьер</label>
-          <input id="specialProtection" placeholder="Например: броня, дух, купол..." />
+          <input id="specialProtection" placeholder="Броня, дух, купол, контракт, устройство..." />
         </div>
       </div>
     </section>
 
     <section class="card">
-      <h2>Дружба</h2>
-      <p class="hint">Шкалы сопротивлений дружбы. Отмечайте в них стресс для получения особых эффектов.</p>
+      <h2>Другие персонажи игроков</h2>
+      <p class="hint">Быстрый учёт союзников: имя, стресс, защита и состояние.</p>
 
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Имя</th>
-            <th>Стресс</th>
-            <th>Защита</th>
-            <th>Заметка</th>
-          </tr>
-        </thead>
-        <tbody id="partyRows"></tbody>
-      </table>
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Имя</th>
+              <th>Стресс</th>
+              <th>Защита</th>
+              <th>Заметка</th>
+            </tr>
+          </thead>
+          <tbody id="partyRows"></tbody>
+        </table>
+      </div>
     </section>
 
     <section class="card">
       <h2>Навыки, области и мастерство</h2>
-      <p class="hint">Отмечайте, что у персонажа есть: обычный навык, доступ к области или мастерство.</p>
+      <p class="hint">
+        Отмечай, что есть у персонажа: сам навык, область или мастерство.
+      </p>
 
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Название</th>
-            <th>Навык</th>
-            <th>Область</th>
-            <th>Мастерство</th>
-            <th>Заметка</th>
-          </tr>
-        </thead>
-        <tbody id="skillRows"></tbody>
-      </table>
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Навык</th>
+              <th>Описание</th>
+              <th>Навык</th>
+              <th>Область</th>
+              <th>Мастерство</th>
+              <th>Заметка</th>
+            </tr>
+          </thead>
+          <tbody id="skillRows"></tbody>
+        </table>
+      </div>
     </section>
 
     <section class="card">
       <h2>Группы тактик</h2>
 
-      <div id="tacticCounters"></div>
+      <div id="tacticCounters" class="counter-row"></div>
 
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Группа тактик</th>
-            <th>Связанный навык</th>
-            <th>Тактики / заметки</th>
-          </tr>
-        </thead>
-        <tbody id="tacticRows"></tbody>
-      </table>
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Группа тактик</th>
+              <th>Связанный навык</th>
+              <th>Тактики / заметки</th>
+            </tr>
+          </thead>
+          <tbody id="tacticRows"></tbody>
+        </table>
+      </div>
     </section>
 
     <section class="card">
       <h2>Снаряжение</h2>
 
       <h3>4 слота снаряжения</h3>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Слот</th>
-            <th>Предмет</th>
-            <th>Свойства / заметки</th>
-          </tr>
-        </thead>
-        <tbody id="gearRows"></tbody>
-      </table>
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Слот</th>
+              <th>Предмет</th>
+              <th>Свойства / заметки</th>
+            </tr>
+          </thead>
+          <tbody id="gearRows"></tbody>
+        </table>
+      </div>
 
       <h3>10 слотов ресурсов</h3>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>№</th>
-            <th>Ресурс</th>
-            <th>Свойства / цена / применение</th>
-          </tr>
-        </thead>
-        <tbody id="resourceRows"></tbody>
-      </table>
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>№</th>
+              <th>Ресурс</th>
+              <th>Свойства / цена / применение</th>
+            </tr>
+          </thead>
+          <tbody id="resourceRows"></tbody>
+        </table>
+      </div>
 
       <h3>Броня</h3>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Слот</th>
-            <th>Предмет</th>
-            <th>Защита</th>
-            <th>Свойства</th>
-          </tr>
-        </thead>
-        <tbody id="armorRows"></tbody>
-      </table>
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Слот</th>
+              <th>Предмет</th>
+              <th>Защита</th>
+              <th>Свойства</th>
+            </tr>
+          </thead>
+          <tbody id="armorRows"></tbody>
+        </table>
+      </div>
     </section>
 
     <section class="card">
       <h2>Контакты разных уровней</h2>
+
+      <div id="contactCounters" class="counter-row"></div>
 
       <div class="grid-2">
         <div>
@@ -475,7 +529,7 @@
     <section class="card">
       <h2>Последствия</h2>
 
-      <div id="consequenceCounters"></div>
+      <div id="consequenceCounters" class="counter-row"></div>
 
       <div class="grid-2">
         <div>
@@ -503,7 +557,7 @@
     <section class="card">
       <h2>Способности</h2>
 
-      <div id="abilityCounters"></div>
+      <div id="abilityCounters" class="counter-row"></div>
 
       <div class="grid-2">
         <div>
@@ -547,7 +601,7 @@
 
         <div>
           <label>Причина броска</label>
-          <input id="rollReason" placeholder="Например: скрываться, атака, сопротивление..." />
+          <input id="rollReason" placeholder="Например: УБИВАТЬ, ИЗБЕГАТЬ, сопротивление..." />
         </div>
       </div>
 
@@ -557,51 +611,69 @@
 
     <section class="card">
       <h2>Прочие заметки</h2>
-      <textarea id="notes" placeholder="Сюда можно записывать всё, что пока не получило отдельного раздела."></textarea>
+      <textarea id="notes" placeholder="Всё, что пока не получило отдельного раздела."></textarea>
     </section>
 
     <div class="toolbar">
-      <button onclick="saveSheet()">Сохранить</button>
-      <button class="secondary" onclick="loadSheet()">Загрузить</button>
+      <button onclick="saveSheet(true)">Сохранить</button>
+      <button class="secondary" onclick="loadSheet(true)">Загрузить</button>
       <button class="secondary" onclick="clearSheet()">Очистить</button>
     </div>
   </main>
 
   <script>
-    const STORAGE_KEY = "towerCharacterSheetV2";
+    const STORAGE_KEY = "towerCharacterSheetV4";
 
     const defaultSkills = [
-      "Пробиваться",
-      "Избегать",
-      "Скрываться",
-      "Узнавать",
-      "Говорить",
-      "Чинить",
-      "Техничить",
-      "Колдовать",
-      "Выживать",
-      "Драться",
-      "Стрелять",
-      "Вести"
+      {
+        name: "УБИВАТЬ",
+        description: "Навык, связанный с любым боем или попыткой что-то сломать."
+      },
+      {
+        name: "КОЛДОВАТЬ",
+        description: "Навык, применяемый для любой магии или магического предмета. Если вы имеете этот навык, вы можете создавать простые магические эффекты без проверки, например прикурить сигарету щелчком пальцев или перемешать напиток в кружке, не касаясь его."
+      },
+      {
+        name: "ЧИНИТЬ",
+        description: "Навык, дающий восстановить прежнее состояние чего-то или кого-то."
+      },
+      {
+        name: "ПРОБИВАТЬСЯ",
+        description: "Навык, отвечающий за перемещение в опасных ситуациях, например во время погони или перехода через Башню."
+      },
+      {
+        name: "СКРЫВАТЬСЯ",
+        description: "Навык, отвечающий за скрытное проникновение и перемещение. Незаметные нейтрализации не подозревающих противников — тоже часть этого навыка."
+      },
+      {
+        name: "ТЕХНИЧИТЬ",
+        description: "Навык, отвечающий за взаимодействие с технологией, будь то взлом или написание кода. Для создания новых предметов также используется этот навык."
+      },
+      {
+        name: "ИЗБЕГАТЬ",
+        description: "Навык, отвечающий за уход от физических и магических атак, например уворот, парирование или чтение короткого заговора."
+      },
+      {
+        name: "УЗНАВАТЬ",
+        description: "Навык, который отвечает за поиск вещей, опознание магических предметов или поиск данных в сети."
+      },
+      {
+        name: "ГОВОРИТЬ",
+        description: "Навык, обозначающий способность красиво и хорошо вести переговоры, торговаться или обманывать."
+      }
     ];
 
     const skillOptions = [
       "",
-      "Пробиваться",
-      "Избегать",
-      "Скрываться",
-      "Узнавать",
-      "Говорить",
-      "Чинить",
-      "Техничить",
-      "Колдовать",
-      "Выживать",
-      "Драться",
-      "Стрелять",
-      "Вести"
+      ...defaultSkills.map(skill => skill.name)
     ];
 
-    const armorSlots = ["Голова", "Тело", "Особое", "Рюкзак"];
+    const armorSlots = [
+      "Голова",
+      "Тело",
+      "Особое",
+      "Рюкзак"
+    ];
 
     function byId(id) {
       return document.getElementById(id);
@@ -611,6 +683,14 @@
       return options
         .map(option => `<option ${option === selected ? "selected" : ""}>${option}</option>`)
         .join("");
+    }
+
+    function escapeHtml(text) {
+      return String(text)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;");
     }
 
     function buildPartyRows() {
@@ -638,11 +718,29 @@
 
         container.innerHTML += `
           <tr>
-            <td><input id="skill${i}Name" value="${skill}" /></td>
-            <td class="check-cell"><input id="skill${i}HasSkill" type="checkbox" /></td>
-            <td class="check-cell"><input id="skill${i}HasDomain" type="checkbox" /></td>
-            <td class="check-cell"><input id="skill${i}HasMastery" type="checkbox" /></td>
-            <td><input id="skill${i}Note" placeholder="Тактики, специализация, источник..." /></td>
+            <td>
+              <input id="skill${i}Name" value="${escapeHtml(skill.name)}" />
+            </td>
+
+            <td>
+              <textarea id="skill${i}Description">${escapeHtml(skill.description)}</textarea>
+            </td>
+
+            <td class="check-cell">
+              <input id="skill${i}HasSkill" type="checkbox" />
+            </td>
+
+            <td class="check-cell">
+              <input id="skill${i}HasDomain" type="checkbox" />
+            </td>
+
+            <td class="check-cell">
+              <input id="skill${i}HasMastery" type="checkbox" />
+            </td>
+
+            <td>
+              <input id="skill${i}Note" placeholder="Тактики, специализация, источник..." />
+            </td>
           </tr>
         `;
       });
@@ -652,16 +750,20 @@
       const container = byId("tacticRows");
       container.innerHTML = "";
 
-      for (let i = 1; i <= 12; i++) {
+      for (let i = 1; i <= 15; i++) {
         container.innerHTML += `
           <tr>
             <td><input id="tactic${i}Name" placeholder="Например: Тихая ликвидация" /></td>
+
             <td>
               <select id="tactic${i}Skill">
                 ${makeOptions(skillOptions)}
               </select>
             </td>
-            <td><textarea id="tactic${i}Notes" placeholder="Конкретные тактики, условия применения, бонусы..."></textarea></td>
+
+            <td>
+              <textarea id="tactic${i}Notes" placeholder="Конкретные тактики, условия применения, бонусы..."></textarea>
+            </td>
           </tr>
         `;
       }
@@ -716,7 +818,10 @@
     }
 
     function countLines(id) {
-      const value = byId(id).value.trim();
+      const element = byId(id);
+      if (!element) return 0;
+
+      const value = element.value.trim();
       if (!value) return 0;
 
       return value
@@ -736,40 +841,68 @@
     }
 
     function renderCounters() {
-      const minorCons = countLines("conMinor");
-      const majorCons = countLines("conMajor");
-      const heavyCons = countLines("conHeavy");
-      const criticalCons = countLines("conCritical");
+      renderContactCounters();
+      renderConsequenceCounters();
+      renderAbilityCounters();
+      renderTacticCounters();
+    }
+
+    function renderContactCounters() {
+      const minor = countLines("contactsMinor");
+      const major = countLines("contactsMajor");
+      const powerful = countLines("contactsPowerful");
+      const legendary = countLines("contactsLegendary");
+
+      byId("contactCounters").innerHTML = `
+        <span class="counter">${minor} ${plural(minor, "малый", "малых", "малых")}</span>
+        <span class="counter">${major} ${plural(major, "значимый", "значимых", "значимых")}</span>
+        <span class="counter">${powerful} ${plural(powerful, "влиятельный", "влиятельных", "влиятельных")}</span>
+        <span class="counter">${legendary} ${plural(legendary, "легендарный", "легендарных", "легендарных")}</span>
+      `;
+    }
+
+    function renderConsequenceCounters() {
+      const minor = countLines("conMinor");
+      const major = countLines("conMajor");
+      const heavy = countLines("conHeavy");
+      const critical = countLines("conCritical");
 
       byId("consequenceCounters").innerHTML = `
-        <span class="counter">${minorCons} ${plural(minorCons, "малое", "малых", "малых")}</span>
-        <span class="counter">${majorCons} ${plural(majorCons, "значимое", "значимых", "значимых")}</span>
-        <span class="counter">${heavyCons} ${plural(heavyCons, "тяжёлое", "тяжёлых", "тяжёлых")}</span>
-        <span class="counter">${criticalCons} ${plural(criticalCons, "критическое", "критических", "критических")}</span>
+        <span class="counter">${minor} ${plural(minor, "малое", "малых", "малых")}</span>
+        <span class="counter">${major} ${plural(major, "значимое", "значимых", "значимых")}</span>
+        <span class="counter">${heavy} ${plural(heavy, "тяжёлое", "тяжёлых", "тяжёлых")}</span>
+        <span class="counter">${critical} ${plural(critical, "критическое", "критических", "критических")}</span>
       `;
+    }
 
-      const minorAbs = countLines("abMinor");
-      const profAbs = countLines("abProfessional");
-      const eliteAbs = countLines("abElite");
-      const specialAbs = countLines("abSpecial");
+    function renderAbilityCounters() {
+      const minor = countLines("abMinor");
+      const professional = countLines("abProfessional");
+      const elite = countLines("abElite");
+      const special = countLines("abSpecial");
 
       byId("abilityCounters").innerHTML = `
-        <span class="counter">${minorAbs} ${plural(minorAbs, "малая", "малые", "малых")}</span>
-        <span class="counter">${profAbs} ${plural(profAbs, "профессиональная", "профессиональные", "профессиональных")}</span>
-        <span class="counter">${eliteAbs} ${plural(eliteAbs, "элитная", "элитные", "элитных")}</span>
-        <span class="counter">${specialAbs} ${plural(specialAbs, "особая", "особые", "особых")}</span>
+        <span class="counter">${minor} ${plural(minor, "малая", "малые", "малых")}</span>
+        <span class="counter">${professional} ${plural(professional, "профессиональная", "профессиональные", "профессиональных")}</span>
+        <span class="counter">${elite} ${plural(elite, "элитная", "элитные", "элитных")}</span>
+        <span class="counter">${special} ${plural(special, "особая", "особые", "особых")}</span>
       `;
+    }
 
+    function renderTacticCounters() {
       let tacticGroups = 0;
-      let filledTactics = 0;
+      let tacticLines = 0;
 
-      for (let i = 1; i <= 12; i++) {
+      for (let i = 1; i <= 15; i++) {
         const group = byId(`tactic${i}Name`).value.trim();
         const notes = byId(`tactic${i}Notes`).value.trim();
 
-        if (group) tacticGroups++;
+        if (group) {
+          tacticGroups++;
+        }
+
         if (notes) {
-          filledTactics += notes
+          tacticLines += notes
             .split("\n")
             .map(line => line.trim())
             .filter(Boolean)
@@ -779,7 +912,7 @@
 
       byId("tacticCounters").innerHTML = `
         <span class="counter">${tacticGroups} ${plural(tacticGroups, "группа", "группы", "групп")} тактик</span>
-        <span class="counter">${filledTactics} ${plural(filledTactics, "записанная тактика", "записанные тактики", "записанных тактик")}</span>
+        <span class="counter">${tacticLines} ${plural(tacticLines, "записанная тактика", "записанные тактики", "записанных тактик")}</span>
       `;
     }
 
@@ -787,7 +920,7 @@
       return Array.from(document.querySelectorAll("input, textarea, select"));
     }
 
-    function saveSheet() {
+    function collectData() {
       const data = {};
 
       getAllInputs().forEach(element => {
@@ -802,23 +935,10 @@
 
       data.rollLog = byId("rollLog").textContent;
 
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      renderCounters();
-
-      alert("Лист сохранён на этом устройстве.");
+      return data;
     }
 
-    function loadSheet() {
-      const raw = localStorage.getItem(STORAGE_KEY);
-
-      if (!raw) {
-        renderCounters();
-        alert("Сохранённый лист не найден.");
-        return;
-      }
-
-      const data = JSON.parse(raw);
-
+    function applyData(data) {
       getAllInputs().forEach(element => {
         if (!element.id || data[element.id] === undefined) return;
 
@@ -833,24 +953,53 @@
       renderCounters();
     }
 
+    function saveSheet(showAlert = false) {
+      const data = collectData();
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      renderCounters();
+
+      if (showAlert) {
+        alert("Лист сохранён на этом устройстве.");
+      }
+    }
+
+    function loadSheet(showAlert = false) {
+      const raw = localStorage.getItem(STORAGE_KEY);
+
+      if (!raw) {
+        renderCounters();
+
+        if (showAlert) {
+          alert("Сохранённый лист не найден.");
+        }
+
+        return;
+      }
+
+      try {
+        const data = JSON.parse(raw);
+        applyData(data);
+
+        if (showAlert) {
+          alert("Лист загружен.");
+        }
+      } catch (error) {
+        console.error(error);
+
+        if (showAlert) {
+          alert("Не удалось загрузить сохранённый лист.");
+        }
+      }
+    }
+
     function clearSheet() {
-      const confirmed = confirm("Очистить весь лист персонажа? Это не удалит код, только данные в браузере.");
+      const confirmed = confirm("Очистить сохранённый лист и вернуть значения по умолчанию?");
 
       if (!confirmed) return;
 
-      getAllInputs().forEach(element => {
-        if (element.type === "checkbox") {
-          element.checked = false;
-        } else if (element.type === "number") {
-          element.value = 0;
-        } else {
-          element.value = "";
-        }
-      });
-
-      byId("rollLog").textContent = "";
       localStorage.removeItem(STORAGE_KEY);
-      renderCounters();
+      location.reload();
     }
 
     function rollDie(sides) {
@@ -875,38 +1024,20 @@
       });
 
       byId("rollLog").textContent = `[${time}] ${line}\n` + byId("rollLog").textContent;
-      saveSilently();
-    }
 
-    function saveSilently() {
-      const data = {};
-
-      getAllInputs().forEach(element => {
-        if (!element.id) return;
-
-        if (element.type === "checkbox") {
-          data[element.id] = element.checked;
-        } else {
-          data[element.id] = element.value;
-        }
-      });
-
-      data.rollLog = byId("rollLog").textContent;
-
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      renderCounters();
+      saveSheet(false);
     }
 
     function attachAutoSave() {
       getAllInputs().forEach(element => {
         element.addEventListener("input", () => {
           renderCounters();
-          saveSilently();
+          saveSheet(false);
         });
 
         element.addEventListener("change", () => {
           renderCounters();
-          saveSilently();
+          saveSheet(false);
         });
       });
     }
@@ -920,7 +1051,7 @@
       buildArmorRows();
 
       attachAutoSave();
-      loadSheet();
+      loadSheet(false);
       renderCounters();
     }
 
