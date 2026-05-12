@@ -1478,4 +1478,65 @@
       saveSheet(false);
     }
 
-    func
+   function attachAutoSave() {
+  getAllInputs().forEach(element => {
+    if (element.type === "checkbox") {
+      element.addEventListener("change", () => {
+        if (element.dataset.track) {
+          setTrackStressUpTo(element.dataset.track, element);
+          return;
+        }
+
+        renderCounters();
+        saveSheet(false);
+      });
+
+      return;
+    }
+
+    element.addEventListener("input", () => {
+      renderCounters();
+      saveSheet(false);
+    });
+
+    element.addEventListener("change", () => {
+      renderCounters();
+      saveSheet(false);
+    });
+  });
+}
+
+function init() {
+  buildResistanceRows();
+  buildPartyRows();
+  buildSkillRows();
+  buildDomainRows();
+  buildTacticRows();
+  buildGearRows();
+  buildResourceRows();
+  buildArmorRows();
+
+  attachAutoSave();
+  loadSheet(false);
+  renderCounters();
+}
+
+try {
+  init();
+} catch (error) {
+  console.error(error);
+
+  const box = document.createElement("div");
+  box.style.background = "#5a0002";
+  box.style.color = "#ffffff";
+  box.style.padding = "16px";
+  box.style.margin = "16px";
+  box.style.fontFamily = "monospace";
+  box.style.whiteSpace = "pre-wrap";
+  box.textContent = "Ошибка JavaScript:\n" + String(error && error.stack ? error.stack : error);
+
+  document.body.prepend(box);
+}
+  </script>
+</body>
+</html>
