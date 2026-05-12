@@ -987,112 +987,201 @@ function buildResistanceRows() {
     }
 
     function clampExtraSlots(value) {
-      const number = Number(value || 0);
+  const number = Number(value || 0);
 
-      if (Number.isNaN(number)) return 0;
-      if (number < 0) return 0;
-      if (number > 5) return 5;
+  if (Number.isNaN(number)) return 0;
+  if (number < 0) return 0;
+  if (number > 5) return 5;
 
-      return number;
+  return number;
+}
+
+function getTrackStressSlots(trackId) {
+  const extraSlots = clampExtraSlots(byId(`extraSlots_${trackId}`).value);
+  const slots = [];
+
+  for (let i = 1; i <= extraSlots; i++) {
+    slots.push(byId(`stressExtra_${trackId}_${i}`));
+  }
+
+  for (let i = 1; i <= 10; i++) {
+    slots.push(byId(`stressNormal_${trackId}_${i}`));
+  }
+
+  return slots;
+}
+
+function setTrackStressUpTo(trackId, clickedSlot) {
+  const slots = getTrackStressSlots(trackId);
+  const clickedIndex = slots.indexOf(clickedSlot);
+
+  if (clickedIndex === -1) return;
+
+  const shouldFill = clickedSlot.checked;
+
+  slots.forEach((slot, index) => {
+    if (shouldFill) {
+      slot.checked = index <= clickedIndex;
+    } else {
+      slot.checked = index < clickedIndex;
+    }
+  });
+
+  renderCounters();
+  saveSheet(false);
+}
+
+function updateStressScales() {
+  let totalNormalStress = 0;
+  let totalExtraStress = 0;
+  let totalUnlockedExtraSlots = 0;
+
+  stressTracks.forEach(track => {
+    const extraInput = byId(`extraSlots_${track.id}`);
+    const unlockedExtraSlots = clampExtraSlots(extraInput.value);
+
+    if (String(unlockedExtraSlots) !== extraInput.value) {
+      extraInput.value = unlockedExtraSlots;
     }
 
-   function updateStressScales() {
+    totalUnlockedExtraSlots += unlockedExtraSlots;
 
-    function renderCounters() {
-      updateStressScales();
-      renderSkillDomainCounters();
-      renderContactCounters();
-      renderConsequenceCounters();
-      renderAbilityCounters();
-      renderTacticCounters();
-    }
+    let normalStress = 0;
+    let extraStress = 0;
 
-    function renderSkillDomainCounters() {
-      let skills = 0;
-      let skillMasteries = 0;
-      let domains = 0;
-      let domainMasteries = 0;
+    for (let i = 1; i <= 5; i++) {
+      const checkbox = byId(`stressExtra_${track.id}_${i}`);
+      const dot = byId(`extraDot_${track.id}_${i}`);
+      const isUnlocked = i <= unlockedExtraSlots;
 
-      for (let i = 1; i <= defaultSkills.length; i++) {
-        if (byId(`skill${i}HasSkill`).checked) skills++;
-        if (byId(`skill${i}HasMastery`).checked) skillMasteries++;
+      checkbox.disabled = !isUnlocked;
+      dot.classList.toggle("locked", !isUnlocked);
+
+      if (!isUnlocked) {
+        checkbox.checked = false;
       }
 
-      for (let i = 1; i <= defaultDomains.length; i++) {
-        if (byId(`domain${i}HasDomain`).checked) domains++;
-        if (byId(`domain${i}HasMastery`).checked) domainMasteries++;
+      if (checkbox.checked) {
+        extraStress++;
       }
-
-      byId("skillDomainCounters").innerHTML = `
-        <span class="counter">${skills} ${plural(skills, "навык", "навыка", "навыков")}</span>
-        <span class="counter">${skillMasteries} ${plural(skillMasteries, "мастерство навыка", "мастерства навыков", "мастерств навыков")}</span>
-        <span class="counter">${domains} ${plural(domains, "область", "области", "областей")}</span>
-        <span class="counter">${domainMasteries} ${plural(domainMasteries, "мастерство области", "мастерства областей", "мастерств областей")}</span>
-      `;
     }
 
-    function renderContactCounters() {
-      const personal = countLines("contactsPersonal");
-      const faction = countLines("contactsFaction");
-      const world = countLines("contactsWorld");
-      const playerCharacters = countLines("contactsPlayerCharacters");
+    for (let i = 1; i <= 10; i++) {
+      const checkbox = byId(`stressNormal_${track.id}_${i}`);
 
-      byId("contactCounters").innerHTML = `
-        <span class="counter">${personal} ${plural(personal, "личный", "личных", "личных")}</span>
-        <span class="counter">${faction} ${plural(faction, "фракционный", "фракционных", "фракционных")}</span>
-        <span class="counter">${world} ${plural(world, "мировой", "мировых", "мировых")}</span>
-        <span class="counter">${playerCharacters} ${plural(playerCharacters, "персонаж игрока", "персонажа игроков", "персонажей игроков")}</span>
-      `;
-    }
-
-    function renderConsequenceCounters() {
-      const minor = countLines("conMinor");
-      const major = countLines("conMajor");
-
-      byId("consequenceCounters").innerHTML = `
-        <span class="counter">${minor} ${plural(minor, "малое", "малых", "малых")}</span>
-        <span class="counter">${major} ${plural(major, "значимое", "значимых", "значимых")}</span>
-      `;
-    }
-
-    function renderAbilityCounters() {
-      const minor = countLines("abMinor");
-      const professional = countLines("abProfessional");
-      const elite = countLines("abElite");
-
-      byId("abilityCounters").innerHTML = `
-        <span class="counter">${minor} ${plural(minor, "малая", "малые", "малых")}</span>
-        <span class="counter">${professional} ${plural(professional, "профессиональная", "профессиональные", "профессиональных")}</span>
-        <span class="counter">${elite} ${plural(elite, "элитная", "элитные", "элитных")}</span>
-      `;
-    }
-
-    function renderTacticCounters() {
-      let tacticGroups = 0;
-      let tacticLines = 0;
-
-      for (let i = 1; i <= 15; i++) {
-        const group = byId(`tactic${i}Name`).value.trim();
-        const notes = byId(`tactic${i}Notes`).value.trim();
-
-        if (group) {
-          tacticGroups++;
-        }
-
-        if (notes) {
-          tacticLines += notes
-            .split("\n")
-            .map(line => line.trim())
-            .filter(Boolean)
-            .length;
-        }
+      if (checkbox.checked) {
+        normalStress++;
       }
-
-      byId("tacticCounters").innerHTML = `
-        <span class="counter">${tacticGroups} ${plural(tacticGroups, "группа", "группы", "групп")} тактик</span>
-        <span class="counter">${tacticLines} ${plural(tacticLines, "записанная тактика", "записанные тактики", "записанных тактик")}</span>
-      `;
     }
+
+    totalNormalStress += normalStress;
+    totalExtraStress += extraStress;
+
+    byId(`stressCount_${track.id}`).textContent =
+      `${normalStress}/10 + ${extraStress}/${unlockedExtraSlots} доп.`;
+  });
+
+  byId("stressTotalCounters").innerHTML = `
+    <span class="counter">Общий стресс: ${totalNormalStress}/50</span>
+    <span class="counter">Дополнительный стресс: ${totalExtraStress}/${totalUnlockedExtraSlots}</span>
+  `;
+}
+
+function renderCounters() {
+  updateStressScales();
+  renderSkillDomainCounters();
+  renderContactCounters();
+  renderConsequenceCounters();
+  renderAbilityCounters();
+  renderTacticCounters();
+}
+
+function renderSkillDomainCounters() {
+  let skills = 0;
+  let skillMasteries = 0;
+  let domains = 0;
+  let domainMasteries = 0;
+
+  for (let i = 1; i <= defaultSkills.length; i++) {
+    if (byId(`skill${i}HasSkill`).checked) skills++;
+    if (byId(`skill${i}HasMastery`).checked) skillMasteries++;
+  }
+
+  for (let i = 1; i <= defaultDomains.length; i++) {
+    if (byId(`domain${i}HasDomain`).checked) domains++;
+    if (byId(`domain${i}HasMastery`).checked) domainMasteries++;
+  }
+
+  byId("skillDomainCounters").innerHTML = `
+    <span class="counter">${skills} ${plural(skills, "навык", "навыка", "навыков")}</span>
+    <span class="counter">${skillMasteries} ${plural(skillMasteries, "мастерство навыка", "мастерства навыков", "мастерств навыков")}</span>
+    <span class="counter">${domains} ${plural(domains, "область", "области", "областей")}</span>
+    <span class="counter">${domainMasteries} ${plural(domainMasteries, "мастерство области", "мастерства областей", "мастерств областей")}</span>
+  `;
+}
+
+function renderContactCounters() {
+  const personal = countLines("contactsPersonal");
+  const faction = countLines("contactsFaction");
+  const world = countLines("contactsWorld");
+  const playerCharacters = countLines("contactsPlayerCharacters");
+
+  byId("contactCounters").innerHTML = `
+    <span class="counter">${personal} ${plural(personal, "личный", "личных", "личных")}</span>
+    <span class="counter">${faction} ${plural(faction, "фракционный", "фракционных", "фракционных")}</span>
+    <span class="counter">${world} ${plural(world, "мировой", "мировых", "мировых")}</span>
+    <span class="counter">${playerCharacters} ${plural(playerCharacters, "персонаж игрока", "персонажа игроков", "персонажей игроков")}</span>
+  `;
+}
+
+function renderConsequenceCounters() {
+  const minor = countLines("conMinor");
+  const major = countLines("conMajor");
+
+  byId("consequenceCounters").innerHTML = `
+    <span class="counter">${minor} ${plural(minor, "малое", "малых", "малых")}</span>
+    <span class="counter">${major} ${plural(major, "значимое", "значимых", "значимых")}</span>
+  `;
+}
+
+function renderAbilityCounters() {
+  const minor = countLines("abMinor");
+  const professional = countLines("abProfessional");
+  const elite = countLines("abElite");
+
+  byId("abilityCounters").innerHTML = `
+    <span class="counter">${minor} ${plural(minor, "малая", "малые", "малых")}</span>
+    <span class="counter">${professional} ${plural(professional, "профессиональная", "профессиональные", "профессиональных")}</span>
+    <span class="counter">${elite} ${plural(elite, "элитная", "элитные", "элитных")}</span>
+  `;
+}
+
+function renderTacticCounters() {
+  let tacticGroups = 0;
+  let tacticLines = 0;
+
+  for (let i = 1; i <= 15; i++) {
+    const group = byId(`tactic${i}Name`).value.trim();
+    const notes = byId(`tactic${i}Notes`).value.trim();
+
+    if (group) {
+      tacticGroups++;
+    }
+
+    if (notes) {
+      tacticLines += notes
+        .split("\n")
+        .map(line => line.trim())
+        .filter(Boolean)
+        .length;
+    }
+  }
+
+  byId("tacticCounters").innerHTML = `
+    <span class="counter">${tacticGroups} ${plural(tacticGroups, "группа", "группы", "групп")} тактик</span>
+    <span class="counter">${tacticLines} ${plural(tacticLines, "записанная тактика", "записанные тактики", "записанных тактик")}</span>
+  `;
+}
 
     function getAllInputs() {
       return Array.from(document.querySelectorAll("input, textarea, select"));
