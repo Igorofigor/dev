@@ -8,15 +8,17 @@
 
   <style>
     :root {
-      --bg: #16010b;
-      --card: #5a0002;
-      --card-dark: #230111;
-      --text: #ffffff;
-      --muted: #ffffffaa;
-      --line: #ffffff33;
-      --line-strong: #ffffff66;
-      --button: #ffffff;
-      --button-text: #320216;
+      --bg: #ffffff;
+      --card: #ffffff;
+      --card-dark: #ffffff;
+      --text: #320216;
+      --muted: #5a0002cc;
+      --line: #5a000244;
+      --line-strong: #5a0002;
+      --accent: #5a0002;
+      --accent-soft: #5a000218;
+      --button: #5a0002;
+      --button-text: #ffffff;
     }
 
     * {
@@ -40,17 +42,25 @@
       margin: 0 0 8px;
       font-size: 30px;
       line-height: 1.1;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
 
     h2 {
       margin: 0 0 12px;
       font-size: 22px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
 
     h3 {
       margin: 20px 0 8px;
       font-size: 17px;
-      color: var(--muted);
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
 
     p {
@@ -62,17 +72,17 @@
     .card {
       margin-bottom: 16px;
       padding: 16px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
+      border: 2px solid var(--accent);
+      border-radius: 0;
       background: var(--card);
-      box-shadow: 0 10px 30px #00000033;
+      box-shadow: 8px 8px 0 var(--accent-soft);
     }
 
     .subcard {
       margin-top: 12px;
       padding: 12px;
-      border: 1px solid var(--line);
-      border-radius: 14px;
+      border: 1px solid var(--line-strong);
+      border-radius: 0;
       background: var(--card-dark);
     }
 
@@ -91,11 +101,19 @@
     button {
       width: 100%;
       border: 1px solid var(--line-strong);
-      border-radius: 11px;
+      border-radius: 0;
       padding: 10px;
       font: inherit;
-      background: var(--bg);
+      background: #ffffff;
       color: var(--text);
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus,
+    button:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
     }
 
     textarea {
@@ -104,17 +122,19 @@
     }
 
     button {
-      border: none;
+      border: 1px solid var(--accent);
       background: var(--button);
       color: var(--button-text);
       font-weight: 900;
       cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
 
     button.secondary {
       border: 1px solid var(--line-strong);
-      background: transparent;
-      color: var(--text);
+      background: #ffffff;
+      color: var(--accent);
     }
 
     .grid-2 {
@@ -144,7 +164,7 @@
     .table-wrap {
       width: 100%;
       overflow-x: auto;
-      border-radius: 12px;
+      border-radius: 0;
     }
 
     .table {
@@ -153,7 +173,7 @@
       border-collapse: collapse;
       margin-top: 8px;
       overflow: hidden;
-      border-radius: 12px;
+      border-radius: 0;
     }
 
     .wide-table {
@@ -162,17 +182,19 @@
 
     .table th,
     .table td {
-      border: 1px solid var(--line);
+      border: 1px solid var(--line-strong);
       padding: 8px;
       vertical-align: top;
     }
 
     .table th {
       text-align: left;
-      color: var(--muted);
+      color: #ffffff;
       font-size: 13px;
-      background: #00000022;
+      background: var(--accent);
       white-space: nowrap;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
 
     .table input,
@@ -186,16 +208,6 @@
       min-height: 58px;
     }
 
-    .check-cell {
-      text-align: center;
-      vertical-align: middle !important;
-    }
-
-    .check-cell input {
-      width: 24px;
-      height: 24px;
-    }
-
     .counter-row {
       margin: 6px 0 12px;
     }
@@ -206,55 +218,20 @@
       gap: 6px;
       margin: 4px 6px 4px 0;
       padding: 7px 10px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: #00000022;
-      color: var(--muted);
+      border: 1px solid var(--accent);
+      border-radius: 0;
+      background: #ffffff;
+      color: var(--accent);
       font-size: 14px;
-      font-weight: 800;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
     }
 
-    .stress-scale {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      align-items: center;
-      min-width: 300px;
-    }
-
-    .stress-dot {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 26px;
-      height: 26px;
-      border: 1px solid var(--line-strong);
-      border-radius: 999px;
-      background: #00000022;
-    }
-
-    .stress-dot input {
-      width: 18px;
-      height: 18px;
-      padding: 0;
-      margin: 0;
-      accent-color: #ffffff;
-    }
-
-    .stress-dot.extra {
-      border-style: dashed;
-      opacity: 0.95;
-    }
-
-    .stress-dot.locked {
-      opacity: 0.25;
-    }
-
-    .stress-divider {
-      width: 1px;
-      height: 26px;
-      background: var(--line-strong);
-      margin: 0 2px;
+    .hint {
+      margin-top: -4px;
+      font-size: 13px;
+      color: var(--muted);
     }
 
     .small-number {
@@ -262,18 +239,218 @@
     }
 
     .stress-count {
-      font-weight: 800;
-      color: var(--muted);
+      font-weight: 900;
+      color: var(--accent);
       white-space: nowrap;
+    }
+
+    .stress-scale {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      align-items: center;
+      min-width: 300px;
+    }
+
+    .stress-divider {
+      width: 2px;
+      height: 26px;
+      background: var(--accent);
+      margin: 0 2px;
+    }
+
+    .tri-check {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: auto;
+      margin: 0;
+      padding: 0;
+      color: var(--accent);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .tri-check input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+      width: 1px;
+      height: 1px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .tri-shape {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      background: var(--accent);
+      opacity: 0.22;
+      transition: opacity 0.12s ease, transform 0.12s ease;
+    }
+
+    .tri-check input:checked + .tri-shape {
+      opacity: 1;
+      transform: scale(1.08);
+    }
+
+    .tri-check input:disabled + .tri-shape {
+      opacity: 0.08;
+      cursor: not-allowed;
+    }
+
+    .tri-check.locked {
+      cursor: not-allowed;
+    }
+
+    .tri-right .tri-shape {
+      clip-path: polygon(0 0, 100% 50%, 0 100%);
+    }
+
+    .tri-left .tri-shape {
+      clip-path: polygon(100% 0, 0 50%, 100% 100%);
+    }
+
+    .tri-up .tri-shape {
+      clip-path: polygon(50% 0, 0 100%, 100% 100%);
+    }
+
+    .tri-down .tri-shape {
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+    }
+
+    .stress-triangle {
+      width: 26px;
+      height: 26px;
+    }
+
+    .stress-triangle.extra .tri-shape {
+      opacity: 0.14;
+    }
+
+    .stress-triangle.extra input:checked + .tri-shape {
+      opacity: 1;
+    }
+
+    .traits-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .trait-column {
+      border: 2px solid var(--accent);
+      border-radius: 0;
+      padding: 12px;
+      background: #ffffff;
+    }
+
+    .trait-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .trait-card {
+      border: 1px solid var(--accent);
+      border-radius: 0;
+      padding: 10px;
+      background: #ffffff;
+    }
+
+    .trait-name {
+      position: relative;
+      display: inline-block;
+      width: auto;
+      margin: 0 0 8px;
+      padding: 0;
+      border: none;
+      border-radius: 0;
+      background: transparent;
+      color: var(--accent);
+      font-weight: 1000;
+      text-align: left;
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .trait-name:hover,
+    .trait-name:focus {
+      background: transparent;
+      color: var(--accent);
+      outline: none;
+    }
+
+    .trait-tooltip {
+      display: none;
+      position: absolute;
+      z-index: 20;
+      left: 0;
+      bottom: calc(100% + 8px);
+      width: min(380px, 82vw);
+      padding: 10px;
+      border: 1px solid var(--accent);
+      border-radius: 0;
+      background: var(--accent);
+      color: #ffffff;
+      font-weight: 700;
+      line-height: 1.35;
+      text-transform: none;
+      letter-spacing: 0;
+      box-shadow: 8px 8px 0 var(--accent-soft);
+    }
+
+    .trait-name:hover .trait-tooltip,
+    .trait-name:focus .trait-tooltip {
+      display: block;
+    }
+
+    .trait-checks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .mini-check {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      width: auto;
+      margin: 0;
+      padding: 6px 8px;
+      border: 1px solid var(--accent);
+      border-radius: 0;
+      background: #ffffff;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .mini-check .tri-shape {
+      width: 18px;
+      height: 18px;
+    }
+
+    .trait-note {
+      margin-top: 6px;
     }
 
     .log {
       min-height: 110px;
       white-space: pre-wrap;
-      background: var(--bg);
-      border-radius: 12px;
+      background: #ffffff;
+      border-radius: 0;
       padding: 10px;
-      border: 1px solid var(--line);
+      border: 1px solid var(--accent);
+      color: var(--text);
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
       font-size: 14px;
     }
@@ -286,13 +463,7 @@
       gap: 8px;
       margin-top: 20px;
       padding: 12px 0 0;
-      background: linear-gradient(to top, var(--bg), #16010bdd);
-    }
-
-    .hint {
-      margin-top: -4px;
-      font-size: 13px;
-      color: var(--muted);
+      background: linear-gradient(to top, #ffffff, #ffffffdd);
     }
 
     @media (max-width: 760px) {
@@ -310,6 +481,10 @@
         grid-template-columns: repeat(3, 1fr);
       }
 
+      .traits-grid {
+        grid-template-columns: 1fr;
+      }
+
       .toolbar {
         grid-template-columns: 1fr;
       }
@@ -322,7 +497,7 @@
     <h1>Башня — интерактивный лист</h1>
     <p>
       Лист персонажа для игры: классы, сопротивления, защита, стресс,
-      навыки, области, мастерство, группы тактик, снаряжение, ресурсы,
+      навыки, области, группы тактик, снаряжение, ресурсы,
       броня, контакты, последствия, способности и броски костей.
     </p>
 
@@ -370,8 +545,8 @@
       <h2>Сопротивления, защита и стресс</h2>
       <p class="hint">
         В каждой строке есть сопротивление, защита, число разблокированных дополнительных слотов и шкала стресса.
-        Первые 5 точек — дополнительные: они могут получать стресс, но не входят в общий стресс.
-        Следующие 10 точек — обычный стресс.
+        Первые 5 треугольников — дополнительные: они могут получать стресс, но не входят в общий стресс.
+        Следующие 10 — обычный стресс.
       </p>
 
       <div id="stressTotalCounters" class="counter-row"></div>
@@ -412,44 +587,22 @@
     </section>
 
     <section class="card">
-      <h2>Навыки, области и мастерство</h2>
+      <h2>Навыки и области</h2>
 
       <div id="skillDomainCounters" class="counter-row"></div>
 
-      <h3>Навыки</h3>
-      <p class="hint">Отмечай наличие навыка и мастерства.</p>
+      <div class="traits-grid">
+        <div class="trait-column">
+          <h3>Навыки</h3>
+          <p class="hint">Наведи или нажми на название, чтобы увидеть описание.</p>
+          <div id="skillRows" class="trait-list"></div>
+        </div>
 
-      <div class="table-wrap">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Навык</th>
-              <th>Описание</th>
-              <th>Навык</th>
-              <th>Мастерство</th>
-              <th>Заметка</th>
-            </tr>
-          </thead>
-          <tbody id="skillRows"></tbody>
-        </table>
-      </div>
-
-      <h3>Области</h3>
-      <p class="hint">Области работают параллельно навыкам: отмечай область и мастерство в ней.</p>
-
-      <div class="table-wrap">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Область</th>
-              <th>Описание</th>
-              <th>Область</th>
-              <th>Мастерство</th>
-              <th>Заметка</th>
-            </tr>
-          </thead>
-          <tbody id="domainRows"></tbody>
-        </table>
+        <div class="trait-column">
+          <h3>Области</h3>
+          <p class="hint">У областей нет мастерства: только отметка самой области.</p>
+          <div id="domainRows" class="trait-list"></div>
+        </div>
       </div>
     </section>
 
@@ -628,7 +781,7 @@
   </main>
 
   <script>
-    const STORAGE_KEY = "towerCharacterSheetV6";
+    const STORAGE_KEY = "towerCharacterSheetV8";
 
     const stressTracks = [
       { id: "bullets", label: "ПУЛИ" },
@@ -733,12 +886,12 @@
     }
 
     function escapeHtml(text) {
-  return String(text)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-}
+      return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
 
     function makeOptions(options, selected = "") {
       return options
@@ -746,69 +899,71 @@
         .join("");
     }
 
-function buildResistanceRows() {
-  const container = byId("resistanceRows");
-  container.innerHTML = "";
+    function buildResistanceRows() {
+      const container = byId("resistanceRows");
+      container.innerHTML = "";
 
-  stressTracks.forEach(track => {
-    let extraDots = "";
-    let normalDots = "";
+      stressTracks.forEach(track => {
+        let extraDots = "";
+        let normalDots = "";
 
-    for (let i = 1; i <= 5; i++) {
-      extraDots += `
-        <label class="stress-dot extra" id="extraDot_${track.id}_${i}" title="Дополнительный слот ${i}">
-          <input 
-            id="stressExtra_${track.id}_${i}" 
-            type="checkbox" 
-            data-track="${track.id}"
-            data-kind="extra"
-            data-index="${i}"
-          />
-        </label>
-      `;
+        for (let i = 1; i <= 5; i++) {
+          extraDots += `
+            <label class="tri-check tri-right stress-triangle extra" id="extraDot_${track.id}_${i}" title="Дополнительный слот ${i}">
+              <input
+                id="stressExtra_${track.id}_${i}"
+                type="checkbox"
+                data-track="${track.id}"
+                data-kind="extra"
+                data-index="${i}"
+              />
+              <span class="tri-shape"></span>
+            </label>
+          `;
+        }
+
+        for (let i = 1; i <= 10; i++) {
+          normalDots += `
+            <label class="tri-check tri-right stress-triangle" title="Обычный стресс ${i}">
+              <input
+                id="stressNormal_${track.id}_${i}"
+                type="checkbox"
+                data-track="${track.id}"
+                data-kind="normal"
+                data-index="${i}"
+              />
+              <span class="tri-shape"></span>
+            </label>
+          `;
+        }
+
+        container.innerHTML += `
+          <tr>
+            <td><strong>${track.label}</strong></td>
+
+            <td>
+              <input id="protection_${track.id}" class="small-number" type="number" value="0" />
+            </td>
+
+            <td>
+              <input id="extraSlots_${track.id}" class="small-number" type="number" min="0" max="5" value="0" />
+            </td>
+
+            <td>
+              <div class="stress-scale">
+                ${extraDots}
+                <span class="stress-divider"></span>
+                ${normalDots}
+              </div>
+            </td>
+
+            <td>
+              <span id="stressCount_${track.id}" class="stress-count">0/10</span>
+            </td>
+          </tr>
+        `;
+      });
     }
-
-    for (let i = 1; i <= 10; i++) {
-      normalDots += `
-        <label class="stress-dot" title="Обычный стресс ${i}">
-          <input 
-            id="stressNormal_${track.id}_${i}" 
-            type="checkbox"
-            data-track="${track.id}"
-            data-kind="normal"
-            data-index="${i}"
-          />
-        </label>
-      `;
-    }
-
-    container.innerHTML += `
-      <tr>
-        <td><strong>${track.label}</strong></td>
-
-        <td>
-          <input id="protection_${track.id}" class="small-number" type="number" value="0" />
-        </td>
-
-        <td>
-          <input id="extraSlots_${track.id}" class="small-number" type="number" min="0" max="5" value="0" />
-        </td>
-
-        <td>
-          <div class="stress-scale">
-            ${extraDots}
-            <span class="stress-divider"></span>
-            ${normalDots}
-          </div>
-        </td>
-
-        <td>
-          <span id="stressCount_${track.id}" class="stress-count">0/10</span>
-        </td>
-      </tr>
-    `;
-  });
-}
 
     function buildPartyRows() {
       const container = byId("partyRows");
@@ -832,29 +987,36 @@ function buildResistanceRows() {
 
       defaultSkills.forEach((skill, index) => {
         const i = index + 1;
+        const name = escapeHtml(skill.name);
+        const description = escapeHtml(skill.description);
 
         container.innerHTML += `
-          <tr>
-            <td>
-              <input id="skill${i}Name" value="${escapeHtml(skill.name)}" />
-            </td>
+          <div class="trait-card">
+            <button type="button" class="trait-name">
+              ${name}
+              <span class="trait-tooltip">${description}</span>
+            </button>
 
-            <td>
-              <textarea id="skill${i}Description">${escapeHtml(skill.description)}</textarea>
-            </td>
+            <div class="trait-checks">
+              <label class="mini-check tri-check tri-up">
+                <input id="skill${i}HasSkill" type="checkbox" />
+                <span class="tri-shape"></span>
+                <span>Навык</span>
+              </label>
 
-            <td class="check-cell">
-              <input id="skill${i}HasSkill" type="checkbox" />
-            </td>
+              <label class="mini-check tri-check tri-up">
+                <input id="skill${i}HasMastery" type="checkbox" />
+                <span class="tri-shape"></span>
+                <span>Мастерство</span>
+              </label>
+            </div>
 
-            <td class="check-cell">
-              <input id="skill${i}HasMastery" type="checkbox" />
-            </td>
-
-            <td>
-              <input id="skill${i}Note" placeholder="Тактики, специализация, источник..." />
-            </td>
-          </tr>
+            <input
+              id="skill${i}Note"
+              class="trait-note"
+              placeholder="Тактики, специализация, источник..."
+            />
+          </div>
         `;
       });
     }
@@ -865,29 +1027,30 @@ function buildResistanceRows() {
 
       defaultDomains.forEach((domain, index) => {
         const i = index + 1;
+        const name = escapeHtml(domain.name);
+        const description = escapeHtml(domain.description);
 
         container.innerHTML += `
-          <tr>
-            <td>
-              <input id="domain${i}Name" value="${escapeHtml(domain.name)}" />
-            </td>
+          <div class="trait-card">
+            <button type="button" class="trait-name">
+              ${name}
+              <span class="trait-tooltip">${description}</span>
+            </button>
 
-            <td>
-              <textarea id="domain${i}Description">${escapeHtml(domain.description)}</textarea>
-            </td>
+            <div class="trait-checks">
+              <label class="mini-check tri-check tri-down">
+                <input id="domain${i}HasDomain" type="checkbox" />
+                <span class="tri-shape"></span>
+                <span>Область</span>
+              </label>
+            </div>
 
-            <td class="check-cell">
-              <input id="domain${i}HasDomain" type="checkbox" />
-            </td>
-
-            <td class="check-cell">
-              <input id="domain${i}HasMastery" type="checkbox" />
-            </td>
-
-            <td>
-              <input id="domain${i}Note" placeholder="Фракция, область Башни, источник..." />
-            </td>
-          </tr>
+            <input
+              id="domain${i}Note"
+              class="trait-note"
+              placeholder="Фракция, область Башни, источник..."
+            />
+          </div>
         `;
       });
     }
@@ -987,201 +1150,219 @@ function buildResistanceRows() {
     }
 
     function clampExtraSlots(value) {
-  const number = Number(value || 0);
+      const number = Number(value || 0);
 
-  if (Number.isNaN(number)) return 0;
-  if (number < 0) return 0;
-  if (number > 5) return 5;
+      if (Number.isNaN(number)) return 0;
+      if (number < 0) return 0;
+      if (number > 5) return 5;
 
-  return number;
-}
-
-function getTrackStressSlots(trackId) {
-  const extraSlots = clampExtraSlots(byId(`extraSlots_${trackId}`).value);
-  const slots = [];
-
-  for (let i = 1; i <= extraSlots; i++) {
-    slots.push(byId(`stressExtra_${trackId}_${i}`));
-  }
-
-  for (let i = 1; i <= 10; i++) {
-    slots.push(byId(`stressNormal_${trackId}_${i}`));
-  }
-
-  return slots;
-}
-
-function setTrackStressUpTo(trackId, clickedSlot) {
-  const slots = getTrackStressSlots(trackId);
-  const clickedIndex = slots.indexOf(clickedSlot);
-
-  if (clickedIndex === -1) return;
-
-  const shouldFill = clickedSlot.checked;
-
-  slots.forEach((slot, index) => {
-    if (shouldFill) {
-      slot.checked = index <= clickedIndex;
-    } else {
-      slot.checked = index < clickedIndex;
-    }
-  });
-
-  renderCounters();
-  saveSheet(false);
-}
-
-function updateStressScales() {
-  let totalNormalStress = 0;
-  let totalExtraStress = 0;
-  let totalUnlockedExtraSlots = 0;
-
-  stressTracks.forEach(track => {
-    const extraInput = byId(`extraSlots_${track.id}`);
-    const unlockedExtraSlots = clampExtraSlots(extraInput.value);
-
-    if (String(unlockedExtraSlots) !== extraInput.value) {
-      extraInput.value = unlockedExtraSlots;
+      return number;
     }
 
-    totalUnlockedExtraSlots += unlockedExtraSlots;
+    function getTrackStressSlots(trackId) {
+      const extraSlots = clampExtraSlots(byId(`extraSlots_${trackId}`).value);
+      const slots = [];
 
-    let normalStress = 0;
-    let extraStress = 0;
-
-    for (let i = 1; i <= 5; i++) {
-      const checkbox = byId(`stressExtra_${track.id}_${i}`);
-      const dot = byId(`extraDot_${track.id}_${i}`);
-      const isUnlocked = i <= unlockedExtraSlots;
-
-      checkbox.disabled = !isUnlocked;
-      dot.classList.toggle("locked", !isUnlocked);
-
-      if (!isUnlocked) {
-        checkbox.checked = false;
+      for (let i = 1; i <= extraSlots; i++) {
+        slots.push(byId(`stressExtra_${trackId}_${i}`));
       }
 
-      if (checkbox.checked) {
-        extraStress++;
+      for (let i = 1; i <= 10; i++) {
+        slots.push(byId(`stressNormal_${trackId}_${i}`));
       }
+
+      return slots;
     }
 
-    for (let i = 1; i <= 10; i++) {
-      const checkbox = byId(`stressNormal_${track.id}_${i}`);
+    function normalizeTrackStress(trackId) {
+      const slots = getTrackStressSlots(trackId);
+      let highestChecked = -1;
 
-      if (checkbox.checked) {
-        normalStress++;
+      slots.forEach((slot, index) => {
+        if (slot.checked) {
+          highestChecked = index;
+        }
+      });
+
+      slots.forEach((slot, index) => {
+        slot.checked = highestChecked >= 0 && index <= highestChecked;
+      });
+    }
+
+    function setTrackStressUpTo(trackId, clickedSlot) {
+      const slots = getTrackStressSlots(trackId);
+      const clickedIndex = slots.indexOf(clickedSlot);
+
+      if (clickedIndex === -1) return;
+
+      const shouldFill = clickedSlot.checked;
+
+      slots.forEach((slot, index) => {
+        if (shouldFill) {
+          slot.checked = index <= clickedIndex;
+        } else {
+          slot.checked = index < clickedIndex;
+        }
+      });
+
+      renderCounters();
+      saveSheet(false);
+    }
+
+    function updateStressScales() {
+      let totalNormalStress = 0;
+      let totalExtraStress = 0;
+      let totalUnlockedExtraSlots = 0;
+
+      stressTracks.forEach(track => {
+        const extraInput = byId(`extraSlots_${track.id}`);
+        const unlockedExtraSlots = clampExtraSlots(extraInput.value);
+
+        if (String(unlockedExtraSlots) !== extraInput.value) {
+          extraInput.value = unlockedExtraSlots;
+        }
+
+        totalUnlockedExtraSlots += unlockedExtraSlots;
+
+        for (let i = 1; i <= 5; i++) {
+          const checkbox = byId(`stressExtra_${track.id}_${i}`);
+          const dot = byId(`extraDot_${track.id}_${i}`);
+          const isUnlocked = i <= unlockedExtraSlots;
+
+          checkbox.disabled = !isUnlocked;
+          dot.classList.toggle("locked", !isUnlocked);
+
+          if (!isUnlocked) {
+            checkbox.checked = false;
+          }
+        }
+
+        normalizeTrackStress(track.id);
+
+        let normalStress = 0;
+        let extraStress = 0;
+
+        for (let i = 1; i <= 5; i++) {
+          const checkbox = byId(`stressExtra_${track.id}_${i}`);
+
+          if (checkbox.checked) {
+            extraStress++;
+          }
+        }
+
+        for (let i = 1; i <= 10; i++) {
+          const checkbox = byId(`stressNormal_${track.id}_${i}`);
+
+          if (checkbox.checked) {
+            normalStress++;
+          }
+        }
+
+        totalNormalStress += normalStress;
+        totalExtraStress += extraStress;
+
+        byId(`stressCount_${track.id}`).textContent =
+          `${normalStress}/10 + ${extraStress}/${unlockedExtraSlots} доп.`;
+      });
+
+      byId("stressTotalCounters").innerHTML = `
+        <span class="counter">Общий стресс: ${totalNormalStress}/50</span>
+        <span class="counter">Дополнительный стресс: ${totalExtraStress}/${totalUnlockedExtraSlots}</span>
+      `;
+    }
+
+    function renderCounters() {
+      updateStressScales();
+      renderSkillDomainCounters();
+      renderContactCounters();
+      renderConsequenceCounters();
+      renderAbilityCounters();
+      renderTacticCounters();
+    }
+
+    function renderSkillDomainCounters() {
+      let skills = 0;
+      let skillMasteries = 0;
+      let domains = 0;
+
+      for (let i = 1; i <= defaultSkills.length; i++) {
+        if (byId(`skill${i}HasSkill`).checked) skills++;
+        if (byId(`skill${i}HasMastery`).checked) skillMasteries++;
       }
+
+      for (let i = 1; i <= defaultDomains.length; i++) {
+        if (byId(`domain${i}HasDomain`).checked) domains++;
+      }
+
+      byId("skillDomainCounters").innerHTML = `
+        <span class="counter">${skills} ${plural(skills, "навык", "навыка", "навыков")}</span>
+        <span class="counter">${skillMasteries} ${plural(skillMasteries, "мастерство", "мастерства", "мастерств")}</span>
+        <span class="counter">${domains} ${plural(domains, "область", "области", "областей")}</span>
+      `;
     }
 
-    totalNormalStress += normalStress;
-    totalExtraStress += extraStress;
+    function renderContactCounters() {
+      const personal = countLines("contactsPersonal");
+      const faction = countLines("contactsFaction");
+      const world = countLines("contactsWorld");
+      const playerCharacters = countLines("contactsPlayerCharacters");
 
-    byId(`stressCount_${track.id}`).textContent =
-      `${normalStress}/10 + ${extraStress}/${unlockedExtraSlots} доп.`;
-  });
-
-  byId("stressTotalCounters").innerHTML = `
-    <span class="counter">Общий стресс: ${totalNormalStress}/50</span>
-    <span class="counter">Дополнительный стресс: ${totalExtraStress}/${totalUnlockedExtraSlots}</span>
-  `;
-}
-
-function renderCounters() {
-  updateStressScales();
-  renderSkillDomainCounters();
-  renderContactCounters();
-  renderConsequenceCounters();
-  renderAbilityCounters();
-  renderTacticCounters();
-}
-
-function renderSkillDomainCounters() {
-  let skills = 0;
-  let skillMasteries = 0;
-  let domains = 0;
-  let domainMasteries = 0;
-
-  for (let i = 1; i <= defaultSkills.length; i++) {
-    if (byId(`skill${i}HasSkill`).checked) skills++;
-    if (byId(`skill${i}HasMastery`).checked) skillMasteries++;
-  }
-
-  for (let i = 1; i <= defaultDomains.length; i++) {
-    if (byId(`domain${i}HasDomain`).checked) domains++;
-    if (byId(`domain${i}HasMastery`).checked) domainMasteries++;
-  }
-
-  byId("skillDomainCounters").innerHTML = `
-    <span class="counter">${skills} ${plural(skills, "навык", "навыка", "навыков")}</span>
-    <span class="counter">${skillMasteries} ${plural(skillMasteries, "мастерство навыка", "мастерства навыков", "мастерств навыков")}</span>
-    <span class="counter">${domains} ${plural(domains, "область", "области", "областей")}</span>
-    <span class="counter">${domainMasteries} ${plural(domainMasteries, "мастерство области", "мастерства областей", "мастерств областей")}</span>
-  `;
-}
-
-function renderContactCounters() {
-  const personal = countLines("contactsPersonal");
-  const faction = countLines("contactsFaction");
-  const world = countLines("contactsWorld");
-  const playerCharacters = countLines("contactsPlayerCharacters");
-
-  byId("contactCounters").innerHTML = `
-    <span class="counter">${personal} ${plural(personal, "личный", "личных", "личных")}</span>
-    <span class="counter">${faction} ${plural(faction, "фракционный", "фракционных", "фракционных")}</span>
-    <span class="counter">${world} ${plural(world, "мировой", "мировых", "мировых")}</span>
-    <span class="counter">${playerCharacters} ${plural(playerCharacters, "персонаж игрока", "персонажа игроков", "персонажей игроков")}</span>
-  `;
-}
-
-function renderConsequenceCounters() {
-  const minor = countLines("conMinor");
-  const major = countLines("conMajor");
-
-  byId("consequenceCounters").innerHTML = `
-    <span class="counter">${minor} ${plural(minor, "малое", "малых", "малых")}</span>
-    <span class="counter">${major} ${plural(major, "значимое", "значимых", "значимых")}</span>
-  `;
-}
-
-function renderAbilityCounters() {
-  const minor = countLines("abMinor");
-  const professional = countLines("abProfessional");
-  const elite = countLines("abElite");
-
-  byId("abilityCounters").innerHTML = `
-    <span class="counter">${minor} ${plural(minor, "малая", "малые", "малых")}</span>
-    <span class="counter">${professional} ${plural(professional, "профессиональная", "профессиональные", "профессиональных")}</span>
-    <span class="counter">${elite} ${plural(elite, "элитная", "элитные", "элитных")}</span>
-  `;
-}
-
-function renderTacticCounters() {
-  let tacticGroups = 0;
-  let tacticLines = 0;
-
-  for (let i = 1; i <= 15; i++) {
-    const group = byId(`tactic${i}Name`).value.trim();
-    const notes = byId(`tactic${i}Notes`).value.trim();
-
-    if (group) {
-      tacticGroups++;
+      byId("contactCounters").innerHTML = `
+        <span class="counter">${personal} ${plural(personal, "личный", "личных", "личных")}</span>
+        <span class="counter">${faction} ${plural(faction, "фракционный", "фракционных", "фракционных")}</span>
+        <span class="counter">${world} ${plural(world, "мировой", "мировых", "мировых")}</span>
+        <span class="counter">${playerCharacters} ${plural(playerCharacters, "персонаж игрока", "персонажа игроков", "персонажей игроков")}</span>
+      `;
     }
 
-    if (notes) {
-      tacticLines += notes
-        .split("\n")
-        .map(line => line.trim())
-        .filter(Boolean)
-        .length;
-    }
-  }
+    function renderConsequenceCounters() {
+      const minor = countLines("conMinor");
+      const major = countLines("conMajor");
 
-  byId("tacticCounters").innerHTML = `
-    <span class="counter">${tacticGroups} ${plural(tacticGroups, "группа", "группы", "групп")} тактик</span>
-    <span class="counter">${tacticLines} ${plural(tacticLines, "записанная тактика", "записанные тактики", "записанных тактик")}</span>
-  `;
-}
+      byId("consequenceCounters").innerHTML = `
+        <span class="counter">${minor} ${plural(minor, "малое", "малых", "малых")}</span>
+        <span class="counter">${major} ${plural(major, "значимое", "значимых", "значимых")}</span>
+      `;
+    }
+
+    function renderAbilityCounters() {
+      const minor = countLines("abMinor");
+      const professional = countLines("abProfessional");
+      const elite = countLines("abElite");
+
+      byId("abilityCounters").innerHTML = `
+        <span class="counter">${minor} ${plural(minor, "малая", "малые", "малых")}</span>
+        <span class="counter">${professional} ${plural(professional, "профессиональная", "профессиональные", "профессиональных")}</span>
+        <span class="counter">${elite} ${plural(elite, "элитная", "элитные", "элитных")}</span>
+      `;
+    }
+
+    function renderTacticCounters() {
+      let tacticGroups = 0;
+      let tacticLines = 0;
+
+      for (let i = 1; i <= 15; i++) {
+        const group = byId(`tactic${i}Name`).value.trim();
+        const notes = byId(`tactic${i}Notes`).value.trim();
+
+        if (group) {
+          tacticGroups++;
+        }
+
+        if (notes) {
+          tacticLines += notes
+            .split("\n")
+            .map(line => line.trim())
+            .filter(Boolean)
+            .length;
+        }
+      }
+
+      byId("tacticCounters").innerHTML = `
+        <span class="counter">${tacticGroups} ${plural(tacticGroups, "группа", "группы", "групп")} тактик</span>
+        <span class="counter">${tacticLines} ${plural(tacticLines, "записанная тактика", "записанные тактики", "записанных тактик")}</span>
+      `;
+    }
 
     function getAllInputs() {
       return Array.from(document.querySelectorAll("input, textarea, select"));
@@ -1296,41 +1477,4 @@ function renderTacticCounters() {
       saveSheet(false);
     }
 
-    function attachAutoSave() {
-  getAllInputs().forEach(element => {
-    element.addEventListener("input", () => {
-      renderCounters();
-      saveSheet(false);
-    });
-
-    element.addEventListener("change", () => {
-      if (element.dataset.track) {
-        setTrackStressUpTo(element.dataset.track, element);
-        return;
-      }
-
-      renderCounters();
-      saveSheet(false);
-    });
-  });
-}
-
-    function init() {
-      buildResistanceRows();
-      buildPartyRows();
-      buildSkillRows();
-      buildDomainRows();
-      buildTacticRows();
-      buildGearRows();
-      buildResourceRows();
-      buildArmorRows();
-
-      attachAutoSave();
-      loadSheet(false);
-      renderCounters();
-    }
-
-    init();
-  </script>
-</body>
-</html>
+    func
