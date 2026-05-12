@@ -89,7 +89,7 @@
       <h2>Персонаж</h2>
 
       <label>Имя</label>
-      <input id="name" placeholder="Например: Илья Красный Рукав" />
+      <input id="name" placeholder="Например: Первый сын Второго Сына" />
 
       <label>Класс</label>
       <select id="className">
@@ -99,8 +99,9 @@
         <option>Экономант</option>
         <option>Паратехник</option>
         <option>Подкодыш</option>
-        <option>Охотник крови</option>
-        <option>Оккультный дизайнер</option>
+        <option>Росоход</option>
+        <option>Неболом</option>
+       <option>Красный РУкав</option>
       </select>
 
       <label>Описание</label>
@@ -116,10 +117,6 @@
           <input id="stressBullets" type="number" min="0" value="0" />
         </div>
         <div>
-          <label>Тело</label>
-          <input id="stressBody" type="number" min="0" value="0" />
-        </div>
-        <div>
           <label>Разум</label>
           <input id="stressMind" type="number" min="0" value="0" />
         </div>
@@ -128,6 +125,15 @@
           <input id="stressSpirit" type="number" min="0" value="0" />
         </div>
       </div>
+      <div>
+          <label>Судьба</label>
+          <input id="stressFate" type="number" min="0" value="0" />
+        </div>
+        <div>
+          <label>Ресурсы</label>
+          <input id="stressResource" type="number" min="0" value="0" />
+        </div>
+    
     </section>
 
     <section class="card">
@@ -178,9 +184,10 @@
       "className",
       "description",
       "stressBullets",
-      "stressBody",
       "stressMind",
       "stressSpirit",
+      "stressFate",
+      "stressResource",
       "protection",
       "resistance",
       "notes"
