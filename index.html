@@ -10,11 +10,9 @@
     :root {
       --bg: #ffffff;
       --card: #ffffff;
-      --card-dark: #ffffff;
       --text: #320216;
       --muted: #5a0002cc;
       --line: #5a000244;
-      --line-strong: #5a0002;
       --accent: #5a0002;
       --accent-soft: #5a000218;
       --button: #5a0002;
@@ -38,29 +36,26 @@
       margin: 0 auto 80px;
     }
 
-    h1 {
-      margin: 0 0 8px;
-      font-size: 30px;
-      line-height: 1.1;
+    h1, h2, h3 {
       color: var(--accent);
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
 
+    h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+      line-height: 1.1;
+    }
+
     h2 {
-      margin: 0 0 12px;
+      margin: 0;
       font-size: 22px;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
     }
 
     h3 {
       margin: 20px 0 8px;
       font-size: 17px;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
     }
 
     p {
@@ -78,12 +73,17 @@
       box-shadow: 8px 8px 0 var(--accent-soft);
     }
 
-    .subcard {
-      margin-top: 12px;
-      padding: 12px;
-      border: 1px solid var(--line-strong);
-      border-radius: 0;
-      background: var(--card-dark);
+    .title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .title-row h2,
+    .title-row h3 {
+      margin: 0;
     }
 
     label {
@@ -100,7 +100,7 @@
     select,
     button {
       width: 100%;
-      border: 1px solid var(--line-strong);
+      border: 1px solid var(--accent);
       border-radius: 0;
       padding: 10px;
       font: inherit;
@@ -122,7 +122,6 @@
     }
 
     button {
-      border: 1px solid var(--accent);
       background: var(--button);
       color: var(--button-text);
       font-weight: 900;
@@ -132,9 +131,30 @@
     }
 
     button.secondary {
-      border: 1px solid var(--line-strong);
       background: #ffffff;
       color: var(--accent);
+    }
+
+    .triangle-button {
+      width: 34px;
+      min-width: 34px;
+      height: 34px;
+      padding: 0;
+      border: none;
+      background: transparent;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .triangle-button::before {
+      content: "";
+      display: block;
+      width: 0;
+      height: 0;
+      border-top: 15px solid transparent;
+      border-bottom: 15px solid transparent;
+      border-left: 26px solid var(--accent);
     }
 
     .grid-2 {
@@ -149,12 +169,6 @@
       gap: 12px;
     }
 
-    .grid-4 {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-    }
-
     .dice-row {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -164,7 +178,6 @@
     .table-wrap {
       width: 100%;
       overflow-x: auto;
-      border-radius: 0;
     }
 
     .table {
@@ -172,17 +185,15 @@
       min-width: 760px;
       border-collapse: collapse;
       margin-top: 8px;
-      overflow: hidden;
-      border-radius: 0;
     }
 
     .wide-table {
-      min-width: 980px;
+      min-width: 1040px;
     }
 
     .table th,
     .table td {
-      border: 1px solid var(--line-strong);
+      border: 1px solid var(--accent);
       padding: 8px;
       vertical-align: top;
     }
@@ -205,7 +216,7 @@
     }
 
     .table textarea {
-      min-height: 58px;
+      min-height: 54px;
     }
 
     .counter-row {
@@ -219,7 +230,6 @@
       margin: 4px 6px 4px 0;
       padding: 7px 10px;
       border: 1px solid var(--accent);
-      border-radius: 0;
       background: #ffffff;
       color: var(--accent);
       font-size: 14px;
@@ -229,7 +239,7 @@
     }
 
     .hint {
-      margin-top: -4px;
+      margin-top: 4px;
       font-size: 13px;
       color: var(--muted);
     }
@@ -238,7 +248,9 @@
       max-width: 84px;
     }
 
-    .stress-count {
+    .stress-count,
+    .armor-total,
+    .armor-bonus {
       font-weight: 900;
       color: var(--accent);
       white-space: nowrap;
@@ -265,6 +277,8 @@
       align-items: center;
       justify-content: center;
       width: auto;
+      min-width: 24px;
+      min-height: 24px;
       margin: 0;
       padding: 0;
       color: var(--accent);
@@ -272,72 +286,68 @@
       user-select: none;
     }
 
-   .tri-check input {
-  position: absolute;
-  opacity: 0;
-  width: 24px;
-  height: 24px;
-  margin: 0;
-  padding: 0;
-}
-
-.tri-check {
-  min-width: 24px;
-  min-height: 24px;
-}
+    .tri-check input {
+      position: absolute;
+      opacity: 0;
+      width: 24px;
+      height: 24px;
+      margin: 0;
+      padding: 0;
+    }
 
     .tri-shape {
-  display: inline-block;
-  width: 0;
-  height: 0;
-  opacity: 0.28;
-  transition: opacity 0.12s ease, transform 0.12s ease;
-}
+      display: inline-block;
+      width: 0;
+      height: 0;
+      opacity: 0.45;
+      transition: opacity 0.12s ease, transform 0.12s ease;
+    }
 
-.tri-check input:checked + .tri-shape {
-  opacity: 1;
-  transform: scale(1.14);
-}
+    .tri-check input:checked + .tri-shape {
+      opacity: 1;
+      transform: scale(1.12);
+    }
 
-.tri-check input:disabled + .tri-shape {
-  opacity: 0.08;
-  cursor: not-allowed;
-}
+    .tri-check input:disabled + .tri-shape {
+      opacity: 0.08;
+      cursor: not-allowed;
+    }
 
-.tri-check.locked {
-  cursor: not-allowed;
-}
+    .tri-check.locked {
+      cursor: not-allowed;
+    }
 
-.tri-right .tri-shape {
-  border-top: 12px solid transparent;
-  border-bottom: 12px solid transparent;
-  border-left: 22px solid var(--accent);
-}
+    .tri-right .tri-shape {
+      border-top: 12px solid transparent;
+      border-bottom: 12px solid transparent;
+      border-left: 22px solid var(--accent);
+    }
 
-.tri-left .tri-shape {
-  border-top: 12px solid transparent;
-  border-bottom: 12px solid transparent;
-  border-right: 22px solid var(--accent);
-}
+    .tri-left .tri-shape {
+      border-top: 12px solid transparent;
+      border-bottom: 12px solid transparent;
+      border-right: 22px solid var(--accent);
+    }
 
-.tri-up .tri-shape {
-  border-left: 12px solid transparent;
-  border-right: 12px solid transparent;
-  border-bottom: 22px solid var(--accent);
-}
+    .tri-up .tri-shape {
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-bottom: 22px solid var(--accent);
+    }
 
-.tri-down .tri-shape {
-  border-left: 12px solid transparent;
-  border-right: 12px solid transparent;
-  border-top: 22px solid var(--accent);
-}
+    .tri-down .tri-shape {
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-top: 22px solid var(--accent);
+    }
+
     .stress-triangle {
       width: 26px;
       height: 26px;
     }
 
     .stress-triangle.extra .tri-shape {
-      opacity: 0.14;
+      opacity: 0.22;
     }
 
     .stress-triangle.extra input:checked + .tri-shape {
@@ -353,31 +363,35 @@
 
     .trait-column {
       border: 2px solid var(--accent);
-      border-radius: 0;
-      padding: 12px;
+      padding: 10px;
       background: #ffffff;
     }
 
     .trait-list {
       display: grid;
-      gap: 10px;
+      gap: 6px;
     }
 
     .trait-card {
       border: 1px solid var(--accent);
-      border-radius: 0;
-      padding: 10px;
+      padding: 7px;
       background: #ffffff;
+    }
+
+    .trait-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
     }
 
     .trait-name {
       position: relative;
       display: inline-block;
       width: auto;
-      margin: 0 0 8px;
+      margin: 0;
       padding: 0;
       border: none;
-      border-radius: 0;
       background: transparent;
       color: var(--accent);
       font-weight: 1000;
@@ -405,7 +419,6 @@
       width: min(380px, 82vw);
       padding: 10px;
       border: 1px solid var(--accent);
-      border-radius: 0;
       background: var(--accent);
       color: #ffffff;
       font-weight: 700;
@@ -421,38 +434,26 @@
     }
 
     .trait-checks {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 8px;
+      display: inline-flex;
+      flex-wrap: nowrap;
+      gap: 7px;
+      align-items: center;
     }
 
-    .mini-check {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      width: auto;
-      margin: 0;
-      padding: 6px 8px;
-      border: 1px solid var(--accent);
-      border-radius: 0;
-      background: #ffffff;
-      color: var(--accent);
-      font-size: 13px;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
+    .trait-card .tri-shape {
+      transform-origin: center;
     }
 
     .trait-note {
       margin-top: 6px;
+      padding: 7px;
+      font-size: 14px;
     }
 
     .log {
       min-height: 110px;
       white-space: pre-wrap;
       background: #ffffff;
-      border-radius: 0;
       padding: 10px;
       border: 1px solid var(--accent);
       color: var(--text);
@@ -477,8 +478,7 @@
       }
 
       .grid-2,
-      .grid-3,
-      .grid-4 {
+      .grid-3 {
         grid-template-columns: 1fr;
       }
 
@@ -501,9 +501,9 @@
   <main class="app">
     <h1>Башня — интерактивный лист</h1>
     <p>
-      Лист персонажа для игры: классы, сопротивления, защита, стресс,
-      навыки, области, группы тактик, снаряжение, ресурсы,
-      броня, контакты, последствия, способности и броски костей.
+      Лист персонажа: классы, сопротивления, защита, стресс, навыки, области,
+      группы тактик, снаряжение, ресурсы, броня, контакты, последствия,
+      способности и броски костей.
     </p>
 
     <section class="card">
@@ -547,11 +547,14 @@
     </section>
 
     <section class="card">
-      <h2>Сопротивления, защита и стресс</h2>
+      <div class="title-row">
+        <h2>Сопротивления, защита и стресс</h2>
+      </div>
+
       <p class="hint">
-        В каждой строке есть сопротивление, защита, число разблокированных дополнительных слотов и шкала стресса.
-        Первые 5 треугольников — дополнительные: они могут получать стресс, но не входят в общий стресс.
-        Следующие 10 — обычный стресс.
+        Первые 5 треугольников — дополнительные слоты. Они могут получать стресс,
+        но не входят в общий стресс. Следующие 10 — обычный стресс.
+        Защита брони автоматически прибавляется к выбранному сопротивлению.
       </p>
 
       <div id="stressTotalCounters" class="counter-row"></div>
@@ -561,7 +564,9 @@
           <thead>
             <tr>
               <th>Сопротивление</th>
-              <th>Защита</th>
+              <th>Базовая защита</th>
+              <th>Броня</th>
+              <th>Итого защита</th>
               <th>Доп. слоты</th>
               <th>Стресс</th>
               <th>Итог</th>
@@ -599,20 +604,23 @@
       <div class="traits-grid">
         <div class="trait-column">
           <h3>Навыки</h3>
-          <p class="hint">Наведи или нажми на название, чтобы увидеть описание.</p>
+          <p class="hint">Наведи или нажми на название, чтобы увидеть описание. Два треугольника: навык и мастерство.</p>
           <div id="skillRows" class="trait-list"></div>
         </div>
 
         <div class="trait-column">
           <h3>Области</h3>
-          <p class="hint">У областей нет мастерства: только отметка самой области.</p>
+          <p class="hint">У областей нет мастерства. Один треугольник означает наличие области.</p>
           <div id="domainRows" class="trait-list"></div>
         </div>
       </div>
     </section>
 
     <section class="card">
-      <h2>Группы тактик</h2>
+      <div class="title-row">
+        <h2>Группы тактик</h2>
+        <button class="triangle-button" type="button" onclick="addTacticRow()" title="Добавить группу тактик"></button>
+      </div>
 
       <div id="tacticCounters" class="counter-row"></div>
 
@@ -640,6 +648,7 @@
             <tr>
               <th>Слот</th>
               <th>Предмет</th>
+              <th>Качество</th>
               <th>Свойства / заметки</th>
             </tr>
           </thead>
@@ -647,13 +656,18 @@
         </table>
       </div>
 
-      <h3>10 слотов ресурсов</h3>
+      <div class="title-row">
+        <h3>Ресурсы</h3>
+        <button class="triangle-button" type="button" onclick="addResourceRow()" title="Добавить слот ресурса"></button>
+      </div>
+
       <div class="table-wrap">
         <table class="table">
           <thead>
             <tr>
               <th>№</th>
               <th>Ресурс</th>
+              <th>Качество</th>
               <th>Свойства / цена / применение</th>
             </tr>
           </thead>
@@ -668,6 +682,7 @@
             <tr>
               <th>Слот</th>
               <th>Предмет</th>
+              <th>Сопротивление</th>
               <th>Защита</th>
               <th>Свойства</th>
             </tr>
@@ -786,7 +801,14 @@
   </main>
 
   <script>
-    const STORAGE_KEY = "towerCharacterSheetV8";
+    const STORAGE_KEY = "towerCharacterSheetV10";
+
+    const DEFAULT_TACTIC_COUNT = 1;
+    const DEFAULT_RESOURCE_COUNT = 1;
+
+    let tacticCount = DEFAULT_TACTIC_COUNT;
+    let resourceCount = DEFAULT_RESOURCE_COUNT;
+    let listenersAttached = false;
 
     const stressTracks = [
       { id: "bullets", label: "ПУЛИ" },
@@ -795,6 +817,8 @@
       { id: "fate", label: "СУДЬБА" },
       { id: "resources", label: "РЕСУРСЫ" }
     ];
+
+    const dieOptions = ["", "D4", "D6", "D8", "D10", "D12"];
 
     const defaultSkills = [
       {
@@ -900,8 +924,17 @@
 
     function makeOptions(options, selected = "") {
       return options
-        .map(option => `<option ${option === selected ? "selected" : ""}>${escapeHtml(option)}</option>`)
+        .map(option => `<option value="${escapeHtml(option)}" ${option === selected ? "selected" : ""}>${escapeHtml(option)}</option>`)
         .join("");
+    }
+
+    function makeResistanceOptions(selected = "") {
+      const empty = `<option value=""></option>`;
+      const options = stressTracks
+        .map(track => `<option value="${track.id}" ${track.id === selected ? "selected" : ""}>${track.label}</option>`)
+        .join("");
+
+      return empty + options;
     }
 
     function buildResistanceRows() {
@@ -951,6 +984,14 @@
             </td>
 
             <td>
+              <span id="armorBonus_${track.id}" class="armor-bonus">0</span>
+            </td>
+
+            <td>
+              <span id="totalProtection_${track.id}" class="armor-total">0</span>
+            </td>
+
+            <td>
               <input id="extraSlots_${track.id}" class="small-number" type="number" min="0" max="5" value="0" />
             </td>
 
@@ -997,29 +1038,29 @@
 
         container.innerHTML += `
           <div class="trait-card">
-            <button type="button" class="trait-name">
-              ${name}
-              <span class="trait-tooltip">${description}</span>
-            </button>
+            <div class="trait-top">
+              <button type="button" class="trait-name">
+                ${name}
+                <span class="trait-tooltip">${description}</span>
+              </button>
 
-            <div class="trait-checks">
-              <label class="mini-check tri-check tri-up">
-                <input id="skill${i}HasSkill" type="checkbox" />
-                <span class="tri-shape"></span>
-                <span>Навык</span>
-              </label>
+              <div class="trait-checks">
+                <label class="tri-check tri-up" title="Навык">
+                  <input id="skill${i}HasSkill" type="checkbox" />
+                  <span class="tri-shape"></span>
+                </label>
 
-              <label class="mini-check tri-check tri-up">
-                <input id="skill${i}HasMastery" type="checkbox" />
-                <span class="tri-shape"></span>
-                <span>Мастерство</span>
-              </label>
+                <label class="tri-check tri-up" title="Мастерство">
+                  <input id="skill${i}HasMastery" type="checkbox" />
+                  <span class="tri-shape"></span>
+                </label>
+              </div>
             </div>
 
             <input
               id="skill${i}Note"
               class="trait-note"
-              placeholder="Тактики, специализация, источник..."
+              placeholder="Заметка..."
             />
           </div>
         `;
@@ -1037,50 +1078,59 @@
 
         container.innerHTML += `
           <div class="trait-card">
-            <button type="button" class="trait-name">
-              ${name}
-              <span class="trait-tooltip">${description}</span>
-            </button>
+            <div class="trait-top">
+              <button type="button" class="trait-name">
+                ${name}
+                <span class="trait-tooltip">${description}</span>
+              </button>
 
-            <div class="trait-checks">
-              <label class="mini-check tri-check tri-down">
-                <input id="domain${i}HasDomain" type="checkbox" />
-                <span class="tri-shape"></span>
-                <span>Область</span>
-              </label>
+              <div class="trait-checks">
+                <label class="tri-check tri-down" title="Область">
+                  <input id="domain${i}HasDomain" type="checkbox" />
+                  <span class="tri-shape"></span>
+                </label>
+              </div>
             </div>
-
-            <input
-              id="domain${i}Note"
-              class="trait-note"
-              placeholder="Фракция, область Башни, источник..."
-            />
           </div>
         `;
       });
+    }
+
+    function appendTacticRow(index) {
+      byId("tacticRows").insertAdjacentHTML(
+        "beforeend",
+        `
+          <tr>
+            <td><input id="tactic${index}Name" placeholder="Например: Тихая ликвидация" /></td>
+
+            <td>
+              <select id="tactic${index}Skill">
+                ${makeOptions(skillOptions)}
+              </select>
+            </td>
+
+            <td>
+              <textarea id="tactic${index}Notes" placeholder="Конкретные тактики, условия применения, бонусы..."></textarea>
+            </td>
+          </tr>
+        `
+      );
     }
 
     function buildTacticRows() {
       const container = byId("tacticRows");
       container.innerHTML = "";
 
-      for (let i = 1; i <= 15; i++) {
-        container.innerHTML += `
-          <tr>
-            <td><input id="tactic${i}Name" placeholder="Например: Тихая ликвидация" /></td>
-
-            <td>
-              <select id="tactic${i}Skill">
-                ${makeOptions(skillOptions)}
-              </select>
-            </td>
-
-            <td>
-              <textarea id="tactic${i}Notes" placeholder="Конкретные тактики, условия применения, бонусы..."></textarea>
-            </td>
-          </tr>
-        `;
+      for (let i = 1; i <= tacticCount; i++) {
+        appendTacticRow(i);
       }
+    }
+
+    function addTacticRow() {
+      tacticCount += 1;
+      appendTacticRow(tacticCount);
+      renderCounters();
+      saveSheet(false);
     }
 
     function buildGearRows() {
@@ -1092,25 +1142,49 @@
           <tr>
             <td>${i}</td>
             <td><input id="gear${i}Name" placeholder="Предмет" /></td>
+            <td>
+              <select id="gear${i}Quality">
+                ${makeOptions(dieOptions)}
+              </select>
+            </td>
             <td><input id="gear${i}Note" placeholder="Свойства, поломки, странность..." /></td>
           </tr>
         `;
       }
     }
 
+    function appendResourceRow(index) {
+      byId("resourceRows").insertAdjacentHTML(
+        "beforeend",
+        `
+          <tr>
+            <td>${index}</td>
+            <td><input id="resource${index}Name" placeholder="Ресурс" /></td>
+            <td>
+              <select id="resource${index}Quality">
+                ${makeOptions(dieOptions)}
+              </select>
+            </td>
+            <td><input id="resource${index}Note" placeholder="Свойства, качество, кому нужен..." /></td>
+          </tr>
+        `
+      );
+    }
+
     function buildResourceRows() {
       const container = byId("resourceRows");
       container.innerHTML = "";
 
-      for (let i = 1; i <= 10; i++) {
-        container.innerHTML += `
-          <tr>
-            <td>${i}</td>
-            <td><input id="resource${i}Name" placeholder="Ресурс" /></td>
-            <td><input id="resource${i}Note" placeholder="Свойства, качество, кому нужен..." /></td>
-          </tr>
-        `;
+      for (let i = 1; i <= resourceCount; i++) {
+        appendResourceRow(i);
       }
+    }
+
+    function addResourceRow() {
+      resourceCount += 1;
+      appendResourceRow(resourceCount);
+      renderCounters();
+      saveSheet(false);
     }
 
     function buildArmorRows() {
@@ -1124,7 +1198,12 @@
           <tr>
             <td>${slot}</td>
             <td><input id="armor${i}Name" placeholder="${slot}" /></td>
-            <td><input id="armor${i}Protection" type="number" value="0" /></td>
+            <td>
+              <select id="armor${i}Resistance">
+                ${makeResistanceOptions()}
+              </select>
+            </td>
+            <td><input id="armor${i}Protection" type="number" min="0" value="0" /></td>
             <td><input id="armor${i}Note" placeholder="Свойства, штрафы, особые эффекты..." /></td>
           </tr>
         `;
@@ -1214,6 +1293,32 @@
       saveSheet(false);
     }
 
+    function calculateArmorBonuses() {
+      const bonuses = {};
+
+      stressTracks.forEach(track => {
+        bonuses[track.id] = 0;
+      });
+
+      for (let i = 1; i <= armorSlots.length; i++) {
+        const resistance = byId(`armor${i}Resistance`).value;
+        const protection = Number(byId(`armor${i}Protection`).value || 0);
+
+        if (resistance && Object.prototype.hasOwnProperty.call(bonuses, resistance)) {
+          bonuses[resistance] += protection;
+        }
+      }
+
+      stressTracks.forEach(track => {
+        const base = Number(byId(`protection_${track.id}`).value || 0);
+        const armor = bonuses[track.id] || 0;
+        const total = base + armor;
+
+        byId(`armorBonus_${track.id}`).textContent = armor;
+        byId(`totalProtection_${track.id}`).textContent = total;
+      });
+    }
+
     function updateStressScales() {
       let totalNormalStress = 0;
       let totalExtraStress = 0;
@@ -1248,17 +1353,13 @@
         let extraStress = 0;
 
         for (let i = 1; i <= 5; i++) {
-          const checkbox = byId(`stressExtra_${track.id}_${i}`);
-
-          if (checkbox.checked) {
+          if (byId(`stressExtra_${track.id}_${i}`).checked) {
             extraStress++;
           }
         }
 
         for (let i = 1; i <= 10; i++) {
-          const checkbox = byId(`stressNormal_${track.id}_${i}`);
-
-          if (checkbox.checked) {
+          if (byId(`stressNormal_${track.id}_${i}`).checked) {
             normalStress++;
           }
         }
@@ -1277,12 +1378,14 @@
     }
 
     function renderCounters() {
+      calculateArmorBonuses();
       updateStressScales();
       renderSkillDomainCounters();
       renderContactCounters();
       renderConsequenceCounters();
       renderAbilityCounters();
       renderTacticCounters();
+      renderResourceCounters();
     }
 
     function renderSkillDomainCounters() {
@@ -1346,9 +1449,9 @@
       let tacticGroups = 0;
       let tacticLines = 0;
 
-      for (let i = 1; i <= 15; i++) {
-        const group = byId(`tactic${i}Name`).value.trim();
-        const notes = byId(`tactic${i}Notes`).value.trim();
+      for (let i = 1; i <= tacticCount; i++) {
+        const group = byId(`tactic${i}Name`)?.value.trim() || "";
+        const notes = byId(`tactic${i}Notes`)?.value.trim() || "";
 
         if (group) {
           tacticGroups++;
@@ -1369,12 +1472,34 @@
       `;
     }
 
+    function renderResourceCounters() {
+      const filledResources = Array.from({ length: resourceCount }, (_, index) => index + 1)
+        .filter(i => byId(`resource${i}Name`)?.value.trim()).length;
+
+      const resourceTitle = byId("resourceCounterVirtual");
+
+      if (resourceTitle) {
+        resourceTitle.remove();
+      }
+
+      byId("resourceRows").insertAdjacentHTML(
+        "beforebegin",
+        `<div id="resourceCounterVirtual" class="counter-row">
+          <span class="counter">${resourceCount} ${plural(resourceCount, "слот", "слота", "слотов")} ресурсов</span>
+          <span class="counter">${filledResources} ${plural(filledResources, "заполнен", "заполнены", "заполнено")}</span>
+        </div>`
+      );
+    }
+
     function getAllInputs() {
       return Array.from(document.querySelectorAll("input, textarea, select"));
     }
 
     function collectData() {
-      const data = {};
+      const data = {
+        tacticCount,
+        resourceCount
+      };
 
       getAllInputs().forEach(element => {
         if (!element.id) return;
@@ -1406,6 +1531,18 @@
       renderCounters();
     }
 
+    function readSavedData() {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return null;
+
+      try {
+        return JSON.parse(raw);
+      } catch (error) {
+        console.error(error);
+        return null;
+      }
+    }
+
     function saveSheet(showAlert = false) {
       renderCounters();
 
@@ -1419,9 +1556,9 @@
     }
 
     function loadSheet(showAlert = false) {
-      const raw = localStorage.getItem(STORAGE_KEY);
+      const data = readSavedData();
 
-      if (!raw) {
+      if (!data) {
         renderCounters();
 
         if (showAlert) {
@@ -1431,19 +1568,15 @@
         return;
       }
 
-      try {
-        const data = JSON.parse(raw);
-        applyData(data);
+      tacticCount = Number(data.tacticCount || DEFAULT_TACTIC_COUNT);
+      resourceCount = Number(data.resourceCount || DEFAULT_RESOURCE_COUNT);
 
-        if (showAlert) {
-          alert("Лист загружен.");
-        }
-      } catch (error) {
-        console.error(error);
+      buildTacticRows();
+      buildResourceRows();
+      applyData(data);
 
-        if (showAlert) {
-          alert("Не удалось загрузить сохранённый лист.");
-        }
+      if (showAlert) {
+        alert("Лист загружен.");
       }
     }
 
@@ -1482,11 +1615,29 @@
       saveSheet(false);
     }
 
-   function attachAutoSave() {
-  getAllInputs().forEach(element => {
-    if (element.type === "checkbox") {
-      element.addEventListener("change", () => {
-        if (element.dataset.track) {
+    function isFormElement(element) {
+      return element && ["INPUT", "TEXTAREA", "SELECT"].includes(element.tagName);
+    }
+
+    function attachAutoSave() {
+      if (listenersAttached) return;
+
+      document.addEventListener("input", event => {
+        const element = event.target;
+
+        if (!isFormElement(element)) return;
+        if (element.type === "checkbox") return;
+
+        renderCounters();
+        saveSheet(false);
+      });
+
+      document.addEventListener("change", event => {
+        const element = event.target;
+
+        if (!isFormElement(element)) return;
+
+        if (element.type === "checkbox" && element.dataset.track) {
           setTrackStressUpTo(element.dataset.track, element);
           return;
         }
@@ -1495,52 +1646,52 @@
         saveSheet(false);
       });
 
-      return;
+      listenersAttached = true;
     }
 
-    element.addEventListener("input", () => {
-      renderCounters();
-      saveSheet(false);
-    });
+    function init() {
+      buildResistanceRows();
+      buildPartyRows();
+      buildSkillRows();
+      buildDomainRows();
+      buildGearRows();
+      buildArmorRows();
 
-    element.addEventListener("change", () => {
-      renderCounters();
-      saveSheet(false);
-    });
-  });
-}
+      const saved = readSavedData();
 
-function init() {
-  buildResistanceRows();
-  buildPartyRows();
-  buildSkillRows();
-  buildDomainRows();
-  buildTacticRows();
-  buildGearRows();
-  buildResourceRows();
-  buildArmorRows();
+      if (saved) {
+        tacticCount = Number(saved.tacticCount || DEFAULT_TACTIC_COUNT);
+        resourceCount = Number(saved.resourceCount || DEFAULT_RESOURCE_COUNT);
+      }
 
-  attachAutoSave();
-  loadSheet(false);
-  renderCounters();
-}
+      buildTacticRows();
+      buildResourceRows();
 
-try {
-  init();
-} catch (error) {
-  console.error(error);
+      attachAutoSave();
 
-  const box = document.createElement("div");
-  box.style.background = "#5a0002";
-  box.style.color = "#ffffff";
-  box.style.padding = "16px";
-  box.style.margin = "16px";
-  box.style.fontFamily = "monospace";
-  box.style.whiteSpace = "pre-wrap";
-  box.textContent = "Ошибка JavaScript:\n" + String(error && error.stack ? error.stack : error);
+      if (saved) {
+        applyData(saved);
+      } else {
+        renderCounters();
+      }
+    }
 
-  document.body.prepend(box);
-}
+    try {
+      init();
+    } catch (error) {
+      console.error(error);
+
+      const box = document.createElement("div");
+      box.style.background = "#5a0002";
+      box.style.color = "#ffffff";
+      box.style.padding = "16px";
+      box.style.margin = "16px";
+      box.style.fontFamily = "monospace";
+      box.style.whiteSpace = "pre-wrap";
+      box.textContent = "Ошибка JavaScript:\n" + String(error && error.stack ? error.stack : error);
+
+      document.body.prepend(box);
+    }
   </script>
 </body>
 </html>
