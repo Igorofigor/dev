@@ -32,7 +32,7 @@
     }
 
     .app {
-      max-width: 1040px;
+      max-width: 1120px;
       margin: 0 auto 80px;
     }
 
@@ -135,12 +135,6 @@
       gap: 12px;
     }
 
-    .grid-5 {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 12px;
-    }
-
     .dice-row {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -160,6 +154,10 @@
       margin-top: 8px;
       overflow: hidden;
       border-radius: 12px;
+    }
+
+    .wide-table {
+      min-width: 980px;
     }
 
     .table th,
@@ -216,6 +214,59 @@
       font-weight: 800;
     }
 
+    .stress-scale {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      min-width: 300px;
+    }
+
+    .stress-dot {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      background: #00000022;
+    }
+
+    .stress-dot input {
+      width: 18px;
+      height: 18px;
+      padding: 0;
+      margin: 0;
+      accent-color: #ffffff;
+    }
+
+    .stress-dot.extra {
+      border-style: dashed;
+      opacity: 0.95;
+    }
+
+    .stress-dot.locked {
+      opacity: 0.25;
+    }
+
+    .stress-divider {
+      width: 1px;
+      height: 26px;
+      background: var(--line-strong);
+      margin: 0 2px;
+    }
+
+    .small-number {
+      max-width: 84px;
+    }
+
+    .stress-count {
+      font-weight: 800;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
     .log {
       min-height: 110px;
       white-space: pre-wrap;
@@ -251,8 +302,7 @@
 
       .grid-2,
       .grid-3,
-      .grid-4,
-      .grid-5 {
+      .grid-4 {
         grid-template-columns: 1fr;
       }
 
@@ -271,9 +321,9 @@
   <main class="app">
     <h1>Башня — интерактивный лист</h1>
     <p>
-      Лист персонажа для игры: классы, стресс, сопротивления, навыки, области,
-      мастерство, группы тактик, снаряжение, ресурсы, броня, контакты,
-      последствия, способности и броски костей.
+      Лист персонажа для игры: классы, сопротивления, защита, стресс,
+      навыки, области, мастерство, группы тактик, снаряжение, ресурсы,
+      броня, контакты, последствия, способности и броски костей.
     </p>
 
     <section class="card">
@@ -317,76 +367,29 @@
     </section>
 
     <section class="card">
-      <h2>Стресс</h2>
+      <h2>Сопротивления, защита и стресс</h2>
+      <p class="hint">
+        В каждой строке есть сопротивление, защита, число разблокированных дополнительных слотов и шкала стресса.
+        Первые 5 точек — дополнительные: они могут получать стресс, но не входят в общий стресс.
+        Следующие 10 точек — обычный стресс.
+      </p>
 
-      <div class="grid-5">
-        <div>
-          <label>ПУЛИ</label>
-          <input id="stressBullets" type="number" min="0" value="0" />
-        </div>
+      <div id="stressTotalCounters" class="counter-row"></div>
 
-        <div>
-          <label>РАЗУМ</label>
-          <input id="stressMind" type="number" min="0" value="0" />
-        </div>
-
-        <div>
-          <label>ДУХ</label>
-          <input id="stressSpirit" type="number" min="0" value="0" />
-        </div>
-
-        <div>
-          <label>СУДЬБА</label>
-          <input id="stressFate" type="number" min="0" value="0" />
-        </div>
-
-        <div>
-          <label>РЕСУРСЫ</label>
-          <input id="stressResources" type="number" min="0" value="0" />
-        </div>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>Сопротивления и защита</h2>
-
-      <div class="grid-5">
-        <div>
-          <label>ПУЛИ</label>
-          <input id="resBullets" type="number" value="0" />
-        </div>
-
-        <div>
-          <label>РАЗУМ</label>
-          <input id="resMind" type="number" value="0" />
-        </div>
-
-        <div>
-          <label>ДУХ</label>
-          <input id="resSpirit" type="number" value="0" />
-        </div>
-
-        <div>
-          <label>СУДЬБА</label>
-          <input id="resFate" type="number" value="0" />
-        </div>
-
-        <div>
-          <label>РЕСУРСЫ</label>
-          <input id="resResources" type="number" value="0" />
-        </div>
-      </div>
-
-      <div class="grid-2">
-        <div>
-          <label>Общая защита</label>
-          <input id="protection" type="number" value="0" />
-        </div>
-
-        <div>
-          <label>Особая защита / барьер</label>
-          <input id="specialProtection" placeholder="Броня, дух, купол, контракт, устройство..." />
-        </div>
+      <div class="table-wrap">
+        <table class="table wide-table">
+          <thead>
+            <tr>
+              <th>Сопротивление</th>
+              <th>Значение</th>
+              <th>Защита</th>
+              <th>Доп. слоты</th>
+              <th>Стресс</th>
+              <th>Итог</th>
+            </tr>
+          </thead>
+          <tbody id="resistanceRows"></tbody>
+        </table>
       </div>
     </section>
 
@@ -411,9 +414,11 @@
 
     <section class="card">
       <h2>Навыки, области и мастерство</h2>
-      <p class="hint">
-        Отмечай, что есть у персонажа: сам навык, область или мастерство.
-      </p>
+
+      <div id="skillDomainCounters" class="counter-row"></div>
+
+      <h3>Навыки</h3>
+      <p class="hint">Отмечай наличие навыка и мастерства.</p>
 
       <div class="table-wrap">
         <table class="table">
@@ -422,12 +427,29 @@
               <th>Навык</th>
               <th>Описание</th>
               <th>Навык</th>
-              <th>Область</th>
               <th>Мастерство</th>
               <th>Заметка</th>
             </tr>
           </thead>
           <tbody id="skillRows"></tbody>
+        </table>
+      </div>
+
+      <h3>Области</h3>
+      <p class="hint">Области работают параллельно навыкам: отмечай область и мастерство в ней.</p>
+
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Область</th>
+              <th>Описание</th>
+              <th>Область</th>
+              <th>Мастерство</th>
+              <th>Заметка</th>
+            </tr>
+          </thead>
+          <tbody id="domainRows"></tbody>
         </table>
       </div>
     </section>
@@ -499,29 +521,29 @@
     </section>
 
     <section class="card">
-      <h2>Контакты разных уровней</h2>
+      <h2>Контакты</h2>
 
       <div id="contactCounters" class="counter-row"></div>
 
       <div class="grid-2">
         <div>
-          <label>Малые контакты</label>
-          <textarea id="contactsMinor" placeholder="По одному контакту на строку"></textarea>
+          <label>Контакты личного уровня</label>
+          <textarea id="contactsPersonal" placeholder="По одному контакту на строку"></textarea>
         </div>
 
         <div>
-          <label>Значимые контакты</label>
-          <textarea id="contactsMajor" placeholder="По одному контакту на строку"></textarea>
+          <label>Контакты фракционного уровня</label>
+          <textarea id="contactsFaction" placeholder="По одному контакту на строку"></textarea>
         </div>
 
         <div>
-          <label>Влиятельные контакты</label>
-          <textarea id="contactsPowerful" placeholder="По одному контакту на строку"></textarea>
+          <label>Контакты мирового уровня</label>
+          <textarea id="contactsWorld" placeholder="По одному контакту на строку"></textarea>
         </div>
 
         <div>
-          <label>Легендарные контакты</label>
-          <textarea id="contactsLegendary" placeholder="По одному контакту на строку"></textarea>
+          <label>Контакты-персонажи игроков</label>
+          <textarea id="contactsPlayerCharacters" placeholder="По одному персонажу на строку"></textarea>
         </div>
       </div>
     </section>
@@ -541,16 +563,6 @@
           <label>Значимые последствия</label>
           <textarea id="conMajor" placeholder="По одному последствию на строку"></textarea>
         </div>
-
-        <div>
-          <label>Тяжёлые последствия</label>
-          <textarea id="conHeavy" placeholder="По одному последствию на строку"></textarea>
-        </div>
-
-        <div>
-          <label>Критические последствия</label>
-          <textarea id="conCritical" placeholder="По одному последствию на строку"></textarea>
-        </div>
       </div>
     </section>
 
@@ -559,7 +571,7 @@
 
       <div id="abilityCounters" class="counter-row"></div>
 
-      <div class="grid-2">
+      <div class="grid-3">
         <div>
           <label>Малые способности</label>
           <textarea id="abMinor" placeholder="По одной способности на строку"></textarea>
@@ -573,11 +585,6 @@
         <div>
           <label>Элитные способности</label>
           <textarea id="abElite" placeholder="По одной способности на строку"></textarea>
-        </div>
-
-        <div>
-          <label>Особые способности</label>
-          <textarea id="abSpecial" placeholder="По одной способности на строку"></textarea>
         </div>
       </div>
     </section>
@@ -622,7 +629,15 @@
   </main>
 
   <script>
-    const STORAGE_KEY = "towerCharacterSheetV4";
+    const STORAGE_KEY = "towerCharacterSheetV5";
+
+    const stressTracks = [
+      { id: "bullets", label: "ПУЛИ" },
+      { id: "mind", label: "РАЗУМ" },
+      { id: "spirit", label: "ДУХ" },
+      { id: "fate", label: "СУДЬБА" },
+      { id: "resources", label: "РЕСУРСЫ" }
+    ];
 
     const defaultSkills = [
       {
@@ -663,6 +678,45 @@
       }
     ];
 
+    const defaultDomains = [
+      {
+        name: "ЧАЩА",
+        description: "Область, отвечающая за взаимодействие с людьми из народа Ножей и с локациями Башни, похожими на лес или лабиринт."
+      },
+      {
+        name: "ПУСТОШЬ",
+        description: "Область, отвечающая за взаимодействие с людьми из народа Ядов, а также за представляющие опасность ядовитые и проклятые локации Башни."
+      },
+      {
+        name: "ВОЛНЫ",
+        description: "Область, отвечающая за взаимодействие с людьми из народа Граней и с постоянно меняющимися или разумными локациями."
+      },
+      {
+        name: "ГОРИЗОНТ",
+        description: "Область, отвечающая за взаимодействие с людьми из народа Железа и за огромные открытые локации в Башне."
+      },
+      {
+        name: "АРМИЯ",
+        description: "Область для взаимодействия с чем угодно военным: от оружия и техники до людей и компьютерных программ. Ещё она отвечает за укреплённые или патрулируемые локации в Башне."
+      },
+      {
+        name: "БЕЗУМИЕ",
+        description: "Область, обозначающая сумасшедшее влияние Башни и всех, кто ей подвергся, а также не связанных с Башней культистов."
+      },
+      {
+        name: "МИР",
+        description: "Область, отвечающая за все не-военные организации, места, людей и занятия, например за разговор с торговцем или готовку. Кроме того, она отвечает за места в Башне, похожие на человеческую городскую застройку."
+      },
+      {
+        name: "КОРПОРАЦИИ",
+        description: "Область могучих частных компаний, ставших полубожественной силой, и контролируемых ими мест Башни."
+      },
+      {
+        name: "ДУХИ",
+        description: "Область духов природы и компьютерных программ, а также их вотчин: в Башне другие реки и леса, зато встречаются подкодыши и духи предметов."
+      }
+    ];
+
     const skillOptions = [
       "",
       ...defaultSkills.map(skill => skill.name)
@@ -679,18 +733,74 @@
       return document.getElementById(id);
     }
 
-    function makeOptions(options, selected = "") {
-      return options
-        .map(option => `<option ${option === selected ? "selected" : ""}>${option}</option>`)
-        .join("");
-    }
-
     function escapeHtml(text) {
       return String(text)
         .replaceAll("&", "&amp;")
         .replaceAll("<", "&lt;")
         .replaceAll(">", "&gt;")
         .replaceAll('"', "&quot;");
+    }
+
+    function makeOptions(options, selected = "") {
+      return options
+        .map(option => `<option ${option === selected ? "selected" : ""}>${escapeHtml(option)}</option>`)
+        .join("");
+    }
+
+    function buildResistanceRows() {
+      const container = byId("resistanceRows");
+      container.innerHTML = "";
+
+      stressTracks.forEach(track => {
+        let extraDots = "";
+        let normalDots = "";
+
+        for (let i = 1; i <= 5; i++) {
+          extraDots += `
+            <label class="stress-dot extra" id="extraDot_${track.id}_${i}" title="Дополнительный слот ${i}">
+              <input id="stressExtra_${track.id}_${i}" type="checkbox" />
+            </label>
+          `;
+        }
+
+        for (let i = 1; i <= 10; i++) {
+          normalDots += `
+            <label class="stress-dot" title="Обычный стресс ${i}">
+              <input id="stressNormal_${track.id}_${i}" type="checkbox" />
+            </label>
+          `;
+        }
+
+        container.innerHTML += `
+          <tr>
+            <td><strong>${track.label}</strong></td>
+
+            <td>
+              <input id="res_${track.id}" class="small-number" type="number" value="0" />
+            </td>
+
+            <td>
+              <input id="protection_${track.id}" class="small-number" type="number" value="0" />
+            </td>
+
+            <td>
+              <input id="extraSlots_${track.id}" class="small-number" type="number" min="0" max="5" value="0" />
+            </td>
+
+            <td>
+              <div class="stress-scale">
+                ${extraDots}
+                <span class="stress-divider"></span>
+                ${normalDots}
+              </div>
+            </td>
+
+            <td>
+              <span id="stressCount_${track.id}" class="stress-count">0/10</span>
+            </td>
+          </tr>
+        `;
+      });
     }
 
     function buildPartyRows() {
@@ -731,15 +841,44 @@
             </td>
 
             <td class="check-cell">
-              <input id="skill${i}HasDomain" type="checkbox" />
-            </td>
-
-            <td class="check-cell">
               <input id="skill${i}HasMastery" type="checkbox" />
             </td>
 
             <td>
               <input id="skill${i}Note" placeholder="Тактики, специализация, источник..." />
+            </td>
+          </tr>
+        `;
+      });
+    }
+
+    function buildDomainRows() {
+      const container = byId("domainRows");
+      container.innerHTML = "";
+
+      defaultDomains.forEach((domain, index) => {
+        const i = index + 1;
+
+        container.innerHTML += `
+          <tr>
+            <td>
+              <input id="domain${i}Name" value="${escapeHtml(domain.name)}" />
+            </td>
+
+            <td>
+              <textarea id="domain${i}Description">${escapeHtml(domain.description)}</textarea>
+            </td>
+
+            <td class="check-cell">
+              <input id="domain${i}HasDomain" type="checkbox" />
+            </td>
+
+            <td class="check-cell">
+              <input id="domain${i}HasMastery" type="checkbox" />
+            </td>
+
+            <td>
+              <input id="domain${i}Note" placeholder="Фракция, область Башни, источник..." />
             </td>
           </tr>
         `;
@@ -840,38 +979,126 @@
       return many;
     }
 
+    function clampExtraSlots(value) {
+      const number = Number(value || 0);
+
+      if (Number.isNaN(number)) return 0;
+      if (number < 0) return 0;
+      if (number > 5) return 5;
+
+      return number;
+    }
+
+    function updateStressScales() {
+      let totalNormalStress = 0;
+      let totalExtraStress = 0;
+      let totalUnlockedExtraSlots = 0;
+
+      stressTracks.forEach(track => {
+        const extraInput = byId(`extraSlots_${track.id}`);
+        const unlockedExtraSlots = clampExtraSlots(extraInput.value);
+
+        if (String(unlockedExtraSlots) !== extraInput.value) {
+          extraInput.value = unlockedExtraSlots;
+        }
+
+        totalUnlockedExtraSlots += unlockedExtraSlots;
+
+        let normalStress = 0;
+        let extraStress = 0;
+
+        for (let i = 1; i <= 5; i++) {
+          const checkbox = byId(`stressExtra_${track.id}_${i}`);
+          const dot = byId(`extraDot_${track.id}_${i}`);
+          const isUnlocked = i <= unlockedExtraSlots;
+
+          checkbox.disabled = !isUnlocked;
+          dot.classList.toggle("locked", !isUnlocked);
+
+          if (!isUnlocked) {
+            checkbox.checked = false;
+          }
+
+          if (checkbox.checked) {
+            extraStress++;
+          }
+        }
+
+        for (let i = 1; i <= 10; i++) {
+          const checkbox = byId(`stressNormal_${track.id}_${i}`);
+
+          if (checkbox.checked) {
+            normalStress++;
+          }
+        }
+
+        totalNormalStress += normalStress;
+        totalExtraStress += extraStress;
+
+        byId(`stressCount_${track.id}`).textContent =
+          `${normalStress}/10 + ${extraStress}/${unlockedExtraSlots} доп.`;
+      });
+
+      byId("stressTotalCounters").innerHTML = `
+        <span class="counter">Общий стресс: ${totalNormalStress}/50</span>
+        <span class="counter">Дополнительный стресс: ${totalExtraStress}/${totalUnlockedExtraSlots}</span>
+      `;
+    }
+
     function renderCounters() {
+      updateStressScales();
+      renderSkillDomainCounters();
       renderContactCounters();
       renderConsequenceCounters();
       renderAbilityCounters();
       renderTacticCounters();
     }
 
+    function renderSkillDomainCounters() {
+      let skills = 0;
+      let skillMasteries = 0;
+      let domains = 0;
+      let domainMasteries = 0;
+
+      for (let i = 1; i <= defaultSkills.length; i++) {
+        if (byId(`skill${i}HasSkill`).checked) skills++;
+        if (byId(`skill${i}HasMastery`).checked) skillMasteries++;
+      }
+
+      for (let i = 1; i <= defaultDomains.length; i++) {
+        if (byId(`domain${i}HasDomain`).checked) domains++;
+        if (byId(`domain${i}HasMastery`).checked) domainMasteries++;
+      }
+
+      byId("skillDomainCounters").innerHTML = `
+        <span class="counter">${skills} ${plural(skills, "навык", "навыка", "навыков")}</span>
+        <span class="counter">${skillMasteries} ${plural(skillMasteries, "мастерство навыка", "мастерства навыков", "мастерств навыков")}</span>
+        <span class="counter">${domains} ${plural(domains, "область", "области", "областей")}</span>
+        <span class="counter">${domainMasteries} ${plural(domainMasteries, "мастерство области", "мастерства областей", "мастерств областей")}</span>
+      `;
+    }
+
     function renderContactCounters() {
-      const minor = countLines("contactsMinor");
-      const major = countLines("contactsMajor");
-      const powerful = countLines("contactsPowerful");
-      const legendary = countLines("contactsLegendary");
+      const personal = countLines("contactsPersonal");
+      const faction = countLines("contactsFaction");
+      const world = countLines("contactsWorld");
+      const playerCharacters = countLines("contactsPlayerCharacters");
 
       byId("contactCounters").innerHTML = `
-        <span class="counter">${minor} ${plural(minor, "малый", "малых", "малых")}</span>
-        <span class="counter">${major} ${plural(major, "значимый", "значимых", "значимых")}</span>
-        <span class="counter">${powerful} ${plural(powerful, "влиятельный", "влиятельных", "влиятельных")}</span>
-        <span class="counter">${legendary} ${plural(legendary, "легендарный", "легендарных", "легендарных")}</span>
+        <span class="counter">${personal} ${plural(personal, "личный", "личных", "личных")}</span>
+        <span class="counter">${faction} ${plural(faction, "фракционный", "фракционных", "фракционных")}</span>
+        <span class="counter">${world} ${plural(world, "мировой", "мировых", "мировых")}</span>
+        <span class="counter">${playerCharacters} ${plural(playerCharacters, "персонаж игрока", "персонажа игроков", "персонажей игроков")}</span>
       `;
     }
 
     function renderConsequenceCounters() {
       const minor = countLines("conMinor");
       const major = countLines("conMajor");
-      const heavy = countLines("conHeavy");
-      const critical = countLines("conCritical");
 
       byId("consequenceCounters").innerHTML = `
         <span class="counter">${minor} ${plural(minor, "малое", "малых", "малых")}</span>
         <span class="counter">${major} ${plural(major, "значимое", "значимых", "значимых")}</span>
-        <span class="counter">${heavy} ${plural(heavy, "тяжёлое", "тяжёлых", "тяжёлых")}</span>
-        <span class="counter">${critical} ${plural(critical, "критическое", "критических", "критических")}</span>
       `;
     }
 
@@ -879,13 +1106,11 @@
       const minor = countLines("abMinor");
       const professional = countLines("abProfessional");
       const elite = countLines("abElite");
-      const special = countLines("abSpecial");
 
       byId("abilityCounters").innerHTML = `
         <span class="counter">${minor} ${plural(minor, "малая", "малые", "малых")}</span>
         <span class="counter">${professional} ${plural(professional, "профессиональная", "профессиональные", "профессиональных")}</span>
         <span class="counter">${elite} ${plural(elite, "элитная", "элитные", "элитных")}</span>
-        <span class="counter">${special} ${plural(special, "особая", "особые", "особых")}</span>
       `;
     }
 
@@ -954,10 +1179,11 @@
     }
 
     function saveSheet(showAlert = false) {
+      renderCounters();
+
       const data = collectData();
 
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      renderCounters();
 
       if (showAlert) {
         alert("Лист сохранён на этом устройстве.");
@@ -1043,8 +1269,10 @@
     }
 
     function init() {
+      buildResistanceRows();
       buildPartyRows();
       buildSkillRows();
+      buildDomainRows();
       buildTacticRows();
       buildGearRows();
       buildResourceRows();
