@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Башня — Лист персонажа</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 16px;
+      font-family: system-ui, sans-serif;
+      background: #16010b;
+      color: #ffffff;
+    }
+
+    .app {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    h1, h2 {
+      margin-bottom: 8px;
+    }
+
+    .card {
+      border: 1px solid #ffffff44;
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 16px;
+      background: #320216;
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: 600;
+    }
+
+    input, textarea, select, button {
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 6px;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #ffffff66;
+      background: #16010b;
+      color: white;
+      font-size: 16px;
+    }
+
+    button {
+      cursor: pointer;
+      font-weight: 700;
+      background: white;
+      color: #320216;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .dice-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+
+    .dice-row button {
+      padding: 12px 4px;
+    }
+
+    .log {
+      min-height: 80px;
+      white-space: pre-wrap;
+      background: #16010b;
+      border-radius: 10px;
+      padding: 10px;
+      border: 1px solid #ffffff33;
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <h1>Башня — Лист персонажа</h1>
+
+    <section class="card">
+      <h2>Персонаж</h2>
+
+      <label>Имя</label>
+      <input id="name" placeholder="Например: Илья Красный Рукав" />
+
+      <label>Класс</label>
+      <select id="className">
+        <option>Страж Врат</option>
+        <option>Светоносец</option>
+        <option>Раствор души</option>
+        <option>Экономант</option>
+        <option>Паратехник</option>
+        <option>Подкодыш</option>
+        <option>Охотник крови</option>
+        <option>Оккультный дизайнер</option>
+      </select>
+
+      <label>Описание</label>
+      <textarea id="description" rows="3" placeholder="Внешность, народ, фракция, цель..."></textarea>
+    </section>
+
+    <section class="card">
+      <h2>Стресс</h2>
+
+      <div class="row">
+        <div>
+          <label>Пули</label>
+          <input id="stressBullets" type="number" min="0" value="0" />
+        </div>
+        <div>
+          <label>Тело</label>
+          <input id="stressBody" type="number" min="0" value="0" />
+        </div>
+        <div>
+          <label>Разум</label>
+          <input id="stressMind" type="number" min="0" value="0" />
+        </div>
+        <div>
+          <label>Дух</label>
+          <input id="stressSpirit" type="number" min="0" value="0" />
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Защита и сопротивления</h2>
+
+      <div class="row">
+        <div>
+          <label>Защита</label>
+          <input id="protection" type="number" value="0" />
+        </div>
+        <div>
+          <label>Сопротивление</label>
+          <input id="resistance" type="number" value="0" />
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Броски костей</h2>
+
+      <div class="dice-row">
+        <button onclick="rollDie(4)">D4</button>
+        <button onclick="rollDie(6)">D6</button>
+        <button onclick="rollDie(8)">D8</button>
+        <button onclick="rollDie(10)">D10</button>
+        <button onclick="rollDie(12)">D12</button>
+      </div>
+
+      <label>Журнал бросков</label>
+      <div id="log" class="log"></div>
+    </section>
+
+    <section class="card">
+      <h2>Заметки</h2>
+      <textarea id="notes" rows="5" placeholder="Тактики, ресурсы, последствия, снаряжение..."></textarea>
+    </section>
+
+    <section class="card">
+      <button onclick="saveCharacter()">Сохранить персонажа</button>
+      <button onclick="loadCharacter()">Загрузить персонажа</button>
+      <button onclick="clearCharacter()">Очистить</button>
+    </section>
+  </main>
+
+  <script>
+    const fields = [
+      "name",
+      "className",
+      "description",
+      "stressBullets",
+      "stressBody",
+      "stressMind",
+      "stressSpirit",
+      "protection",
+      "resistance",
+      "notes"
+    ];
+
+    function rollDie(sides) {
+      const result = Math.floor(Math.random() * sides) + 1;
+      const line = `D${sides}: ${result}`;
+      const log = document.getElementById("log");
+      log.textContent = line + "\n" + log.textContent;
+    }
+
+    function saveCharacter() {
+      const character = {};
+
+      fields.forEach(id => {
+        character[id] = document.getElementById(id).value;
+      });
+
+      localStorage.setItem("towerCharacter", JSON.stringify(character));
+      alert("Персонаж сохранён на этом устройстве.");
+    }
+
+    function loadCharacter() {
+      const saved = localStorage.getItem("towerCharacter");
+
+      if (!saved) {
+        alert("Сохранённый персонаж не найден.");
+        return;
+      }
+
+      const character = JSON.parse(saved);
+
+      fields.forEach(id => {
+        if (character[id] !== undefined) {
+          document.getElementById(id).value = character[id];
+        }
+      });
+    }
+
+    function clearCharacter() {
+      if (!confirm("Очистить лист персонажа?")) return;
+
+      fields.forEach(id => {
+        document.getElementById(id).value = "";
+      });
+
+      document.getElementById("log").textContent = "";
+    }
+
+    loadCharacter();
+  </script>
+</body>
+</html>
