@@ -283,44 +283,50 @@
     }
 
     .tri-shape {
-      display: inline-block;
-      width: 24px;
-      height: 24px;
-      background: var(--accent);
-      opacity: 0.22;
-      transition: opacity 0.12s ease, transform 0.12s ease;
-    }
+  display: inline-block;
+  width: 0;
+  height: 0;
+  opacity: 0.28;
+  transition: opacity 0.12s ease, transform 0.12s ease;
+}
 
-    .tri-check input:checked + .tri-shape {
-      opacity: 1;
-      transform: scale(1.08);
-    }
+.tri-check input:checked + .tri-shape {
+  opacity: 1;
+  transform: scale(1.14);
+}
 
-    .tri-check input:disabled + .tri-shape {
-      opacity: 0.08;
-      cursor: not-allowed;
-    }
+.tri-check input:disabled + .tri-shape {
+  opacity: 0.08;
+  cursor: not-allowed;
+}
 
-    .tri-check.locked {
-      cursor: not-allowed;
-    }
+.tri-check.locked {
+  cursor: not-allowed;
+}
 
-    .tri-right .tri-shape {
-      clip-path: polygon(0 0, 100% 50%, 0 100%);
-    }
+.tri-right .tri-shape {
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 22px solid var(--accent);
+}
 
-    .tri-left .tri-shape {
-      clip-path: polygon(100% 0, 0 50%, 100% 100%);
-    }
+.tri-left .tri-shape {
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-right: 22px solid var(--accent);
+}
 
-    .tri-up .tri-shape {
-      clip-path: polygon(50% 0, 0 100%, 100% 100%);
-    }
+.tri-up .tri-shape {
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 22px solid var(--accent);
+}
 
-    .tri-down .tri-shape {
-      clip-path: polygon(0 0, 100% 0, 50% 100%);
-    }
-
+.tri-down .tri-shape {
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 22px solid var(--accent);
+}
     .stress-triangle {
       width: 26px;
       height: 26px;
@@ -432,11 +438,6 @@
       font-weight: 900;
       text-transform: uppercase;
       letter-spacing: 0.03em;
-    }
-
-    .mini-check .tri-shape {
-      width: 18px;
-      height: 18px;
     }
 
     .trait-note {
