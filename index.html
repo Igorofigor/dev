@@ -381,7 +381,6 @@
           <thead>
             <tr>
               <th>Сопротивление</th>
-              <th>Значение</th>
               <th>Защита</th>
               <th>Доп. слоты</th>
               <th>Стресс</th>
@@ -629,7 +628,7 @@
   </main>
 
   <script>
-    const STORAGE_KEY = "towerCharacterSheetV5";
+    const STORAGE_KEY = "towerCharacterSheetV6";
 
     const stressTracks = [
       { id: "bullets", label: "ПУЛИ" },
@@ -747,61 +746,69 @@
         .join("");
     }
 
-    function buildResistanceRows() {
-      const container = byId("resistanceRows");
-      container.innerHTML = "";
+function buildResistanceRows() {
+  const container = byId("resistanceRows");
+  container.innerHTML = "";
 
-      stressTracks.forEach(track => {
-        let extraDots = "";
-        let normalDots = "";
+  stressTracks.forEach(track => {
+    let extraDots = "";
+    let normalDots = "";
 
-        for (let i = 1; i <= 5; i++) {
-          extraDots += `
-            <label class="stress-dot extra" id="extraDot_${track.id}_${i}" title="Дополнительный слот ${i}">
-              <input id="stressExtra_${track.id}_${i}" type="checkbox" />
-            </label>
-          `;
-        }
-
-        for (let i = 1; i <= 10; i++) {
-          normalDots += `
-            <label class="stress-dot" title="Обычный стресс ${i}">
-              <input id="stressNormal_${track.id}_${i}" type="checkbox" />
-            </label>
-          `;
-        }
-
-        container.innerHTML += `
-          <tr>
-            <td><strong>${track.label}</strong></td>
-
-            <td>
-              <input id="res_${track.id}" class="small-number" type="number" value="0" />
-            </td>
-
-            <td>
-              <input id="protection_${track.id}" class="small-number" type="number" value="0" />
-            </td>
-
-            <td>
-              <input id="extraSlots_${track.id}" class="small-number" type="number" min="0" max="5" value="0" />
-            </td>
-
-            <td>
-              <div class="stress-scale">
-                ${extraDots}
-                <span class="stress-divider"></span>
-                ${normalDots}
-              </div>
-            </td>
-
-            <td>
-              <span id="stressCount_${track.id}" class="stress-count">0/10</span>
-            </td>
-          </tr>
-        `;
-      });
+    for (let i = 1; i <= 5; i++) {
+      extraDots += `
+        <label class="stress-dot extra" id="extraDot_${track.id}_${i}" title="Дополнительный слот ${i}">
+          <input 
+            id="stressExtra_${track.id}_${i}" 
+            type="checkbox" 
+            data-track="${track.id}"
+            data-kind="extra"
+            data-index="${i}"
+          />
+        </label>
+      `;
     }
+
+    for (let i = 1; i <= 10; i++) {
+      normalDots += `
+        <label class="stress-dot" title="Обычный стресс ${i}">
+          <input 
+            id="stressNormal_${track.id}_${i}" 
+            type="checkbox"
+            data-track="${track.id}"
+            data-kind="normal"
+            data-index="${i}"
+          />
+        </label>
+      `;
+    }
+
+    container.innerHTML += `
+      <tr>
+        <td><strong>${track.label}</strong></td>
+
+        <td>
+          <input id="protection_${track.id}" class="small-number" type="number" value="0" />
+        </td>
+
+        <td>
+          <input id="extraSlots_${track.id}" class="small-number" type="number" min="0" max="5" value="0" />
+        </td>
+
+        <td>
+          <div class="stress-scale">
+            ${extraDots}
+            <span class="stress-divider"></span>
+            ${normalDots}
+          </div>
+        </td>
+
+        <td>
+          <span id="stressCount_${track.id}" class="stress-count">0/10</span>
+        </td>
+      </tr>
+    `;
+  });
+}
 
     function buildPartyRows() {
       const container = byId("partyRows");
@@ -989,61 +996,7 @@
       return number;
     }
 
-    function updateStressScales() {
-      let totalNormalStress = 0;
-      let totalExtraStress = 0;
-      let totalUnlockedExtraSlots = 0;
-
-      stressTracks.forEach(track => {
-        const extraInput = byId(`extraSlots_${track.id}`);
-        const unlockedExtraSlots = clampExtraSlots(extraInput.value);
-
-        if (String(unlockedExtraSlots) !== extraInput.value) {
-          extraInput.value = unlockedExtraSlots;
-        }
-
-        totalUnlockedExtraSlots += unlockedExtraSlots;
-
-        let normalStress = 0;
-        let extraStress = 0;
-
-        for (let i = 1; i <= 5; i++) {
-          const checkbox = byId(`stressExtra_${track.id}_${i}`);
-          const dot = byId(`extraDot_${track.id}_${i}`);
-          const isUnlocked = i <= unlockedExtraSlots;
-
-          checkbox.disabled = !isUnlocked;
-          dot.classList.toggle("locked", !isUnlocked);
-
-          if (!isUnlocked) {
-            checkbox.checked = false;
-          }
-
-          if (checkbox.checked) {
-            extraStress++;
-          }
-        }
-
-        for (let i = 1; i <= 10; i++) {
-          const checkbox = byId(`stressNormal_${track.id}_${i}`);
-
-          if (checkbox.checked) {
-            normalStress++;
-          }
-        }
-
-        totalNormalStress += normalStress;
-        totalExtraStress += extraStress;
-
-        byId(`stressCount_${track.id}`).textContent =
-          `${normalStress}/10 + ${extraStress}/${unlockedExtraSlots} доп.`;
-      });
-
-      byId("stressTotalCounters").innerHTML = `
-        <span class="counter">Общий стресс: ${totalNormalStress}/50</span>
-        <span class="counter">Дополнительный стресс: ${totalExtraStress}/${totalUnlockedExtraSlots}</span>
-      `;
-    }
+   function updateStressScales() {
 
     function renderCounters() {
       updateStressScales();
@@ -1255,18 +1208,23 @@
     }
 
     function attachAutoSave() {
-      getAllInputs().forEach(element => {
-        element.addEventListener("input", () => {
-          renderCounters();
-          saveSheet(false);
-        });
+  getAllInputs().forEach(element => {
+    element.addEventListener("input", () => {
+      renderCounters();
+      saveSheet(false);
+    });
 
-        element.addEventListener("change", () => {
-          renderCounters();
-          saveSheet(false);
-        });
-      });
-    }
+    element.addEventListener("change", () => {
+      if (element.dataset.track) {
+        setTrackStressUpTo(element.dataset.track, element);
+        return;
+      }
+
+      renderCounters();
+      saveSheet(false);
+    });
+  });
+}
 
     function init() {
       buildResistanceRows();
