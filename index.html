@@ -40,6 +40,9 @@
     .table textarea{min-height:54px}
     .counter-row{margin:6px 0 12px}
     .counter{display:inline-flex;align-items:center;gap:6px;margin:4px 6px 4px 0;padding:7px 10px;border:1px solid var(--accent);background:#fff;color:var(--accent);font-size:14px;font-weight:900;text-transform:uppercase;letter-spacing:.03em}
+    .counter-check{display:inline-flex;flex-direction:column;align-items:stretch;gap:5px;margin:4px 6px 4px 0;padding:7px 10px;border:1px solid var(--accent);background:#fff;color:var(--accent);font-size:14px;font-weight:900;text-transform:uppercase;letter-spacing:.03em;vertical-align:top;min-width:230px}
+    .counter-check button{width:100%;padding:7px 10px;font-size:13px}
+    .counter-check-result{font-size:13px;color:var(--muted);text-transform:none;letter-spacing:0;font-weight:900}
     .hint{margin-top:4px;font-size:13px;color:var(--muted)}
     .small-number{max-width:84px}
     .inline-total{margin-top:5px;font-size:13px;font-weight:900;color:var(--accent)}
@@ -119,6 +122,16 @@
     </section>
 
     <section class="card">
+      <div class="title-row"><h2>Последствия</h2></div>
+      <div id="consequenceCounters" class="counter-row"></div>
+      <div class="slot-grid">
+        <div class="slot-box"><div class="title-row"><h3>Малые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('consequence','minor')"></button><button class="triangle-button right" type="button" onclick="addSlot('consequence','minor')"></button></div></div><div id="consequence_minor_rows" class="slot-list"></div></div>
+        <div class="slot-box"><div class="title-row"><h3>Значимые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('consequence','major')"></button><button class="triangle-button right" type="button" onclick="addSlot('consequence','major')"></button></div></div><div id="consequence_major_rows" class="slot-list"></div></div>
+        <div class="slot-box"><div class="title-row"><h3>Роковые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('consequence','fatal')"></button><button class="triangle-button right" type="button" onclick="addSlot('consequence','fatal')"></button></div></div><div id="consequence_fatal_rows" class="slot-list"></div></div>
+      </div>
+    </section>
+
+    <section class="card">
       <h2>Шкалы дружбы</h2>
       <p class="hint">Сопротивления дружбы с соратниками, отмечайте в них стресс ради бонусов.</p>
       <div class="table-wrap"><table class="table"><thead><tr><th>Имя</th><th>Стресс</th><th>Защита</th><th>Заметка</th></tr></thead><tbody id="partyRows"></tbody></table></div>
@@ -172,15 +185,6 @@
         <div class="slot-box"><div class="title-row"><h3>Фракционные</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('contact','faction')"></button><button class="triangle-button right" type="button" onclick="addSlot('contact','faction')"></button></div></div><div id="contact_faction_rows" class="slot-list"></div></div>
         <div class="slot-box"><div class="title-row"><h3>Мировые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('contact','world')"></button><button class="triangle-button right" type="button" onclick="addSlot('contact','world')"></button></div></div><div id="contact_world_rows" class="slot-list"></div></div>
         <div class="slot-box"><div class="title-row"><h3>Персонажи игроков</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('contact','players')"></button><button class="triangle-button right" type="button" onclick="addSlot('contact','players')"></button></div></div><div id="contact_players_rows" class="slot-list"></div></div>
-      </div>
-    </section>
-
-    <section class="card">
-      <div class="title-row"><h2>Последствия</h2></div>
-      <div id="consequenceCounters" class="counter-row"></div>
-      <div class="slot-grid">
-        <div class="slot-box"><div class="title-row"><h3>Малые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('consequence','minor')"></button><button class="triangle-button right" type="button" onclick="addSlot('consequence','minor')"></button></div></div><div id="consequence_minor_rows" class="slot-list"></div></div>
-        <div class="slot-box"><div class="title-row"><h3>Значимые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('consequence','major')"></button><button class="triangle-button right" type="button" onclick="addSlot('consequence','major')"></button></div></div><div id="consequence_major_rows" class="slot-list"></div></div>
       </div>
     </section>
 
@@ -275,7 +279,7 @@
   </div>
 
   <script>
-    const STORAGE_KEY="towerCharacterSheetV13";
+    const STORAGE_KEY="towerCharacterSheetV14";
 
     const DEFAULT_TACTIC_COUNT=2;
     const DEFAULT_RESOURCE_COUNT=1;
@@ -293,9 +297,10 @@
     let listenersAttached=false;
     let rollMasteryEnabled=false;
     let advancedRollHistory=[];
+    let lastConsequenceCheckText="";
 
     const contactCounts={personal:1,faction:1,world:1,players:1};
-    const consequenceCounts={minor:1,major:1};
+    const consequenceCounts={minor:1,major:1,fatal:1};
     const abilityCounts={minor:1,professional:1,elite:1};
     const countMaps={contact:contactCounts,consequence:consequenceCounts,ability:abilityCounts};
 
@@ -699,10 +704,31 @@
       saveSheet(false);
     }
 
+    function getCurrentStressTotals(){
+      let normalStress=0;
+      let extraStress=0;
+
+      stressTracks.forEach(track=>{
+        for(let i=1;i<=5;i++){
+          const checkbox=byId(`stressExtra_${track.id}_${i}`);
+          if(checkbox&&checkbox.checked)extraStress++;
+        }
+
+        for(let i=1;i<=10;i++){
+          const checkbox=byId(`stressNormal_${track.id}_${i}`);
+          if(checkbox&&checkbox.checked)normalStress++;
+        }
+      });
+
+      return{
+  normalStress,
+  extraStress,
+  totalStress:normalStress
+};
+    }
+
     function updateStressScales(){
       const totals=updateProtectionAndExtraSlots();
-      let totalNormalStress=0;
-      let totalExtraStress=0;
       let totalUnlockedExtraSlots=0;
 
       stressTracks.forEach(track=>{
@@ -726,13 +752,44 @@
         for(let i=1;i<=5;i++)if(byId(`stressExtra_${track.id}_${i}`).checked)extraStress++;
         for(let i=1;i<=10;i++)if(byId(`stressNormal_${track.id}_${i}`).checked)normalStress++;
 
-        totalNormalStress+=normalStress;
-        totalExtraStress+=extraStress;
-
         byId(`stressCount_${track.id}`).textContent=`${normalStress}/10 + ${extraStress}/${unlockedExtraSlots} доп.`;
       });
 
-      byId("stressTotalCounters").innerHTML=`<span class="counter">Общий стресс: ${totalNormalStress}/50</span><span class="counter">Дополнительный стресс: ${totalExtraStress}/${totalUnlockedExtraSlots}</span>`;
+      const stressTotals=getCurrentStressTotals();
+      const consequenceResult=lastConsequenceCheckText||"Проверка ещё не выполнялась.";
+
+      byId("stressTotalCounters").innerHTML=`
+        <span class="counter">Общий стресс: ${stressTotals.normalStress}/50</span>
+        <span class="counter">Дополнительный стресс: ${stressTotals.extraStress}/${totalUnlockedExtraSlots}</span>
+        <span class="counter">Суммарный стресс: ${stressTotals.totalStress}</span>
+        <span class="counter-check">
+          <button type="button" onclick="checkConsequence()">Проверить последствие</button>
+          <span id="consequenceCheckResult" class="counter-check-result">${escapeHtml(consequenceResult)}</span>
+        </span>
+      `;
+    }
+
+    function checkConsequence(){
+      const totals=getCurrentStressTotals();
+      const totalStress=totals.totalStress;
+      const roll=Math.floor(Math.random()*10)+1;
+
+      if(roll < totalStress){
+        let consequence="Малое последствие";
+
+        if(totalStress >= 16){
+          consequence="Роковое последствие";
+        } else if(totalStress >= 6){
+          consequence="Значимое последствие";
+        }
+
+        lastConsequenceCheckText=`К10: ${roll}, стресс: ${totalStress} — ${consequence}`;
+      } else {
+        lastConsequenceCheckText=`К10: ${roll}, стресс: ${totalStress} — Без последствия`;
+      }
+
+      renderCounters();
+      saveSheet(false);
     }
 
     function updateMasteryNoteVisibility(){
@@ -810,7 +867,8 @@
     function renderConsequenceCounters(){
       const minor=countFilledSlots("consequence","minor");
       const major=countFilledSlots("consequence","major");
-      byId("consequenceCounters").innerHTML=`<span class="counter">${minor}/${consequenceCounts.minor} малых</span><span class="counter">${major}/${consequenceCounts.major} значимых</span>`;
+      const fatal=countFilledSlots("consequence","fatal");
+      byId("consequenceCounters").innerHTML=`<span class="counter">${minor}/${consequenceCounts.minor} малых</span><span class="counter">${major}/${consequenceCounts.major} значимых</span><span class="counter">${fatal}/${consequenceCounts.fatal} роковых</span>`;
     }
 
     function renderAbilityCounters(){
@@ -835,7 +893,8 @@
         autoSelectedSkillMasteries:[...autoSelectedSkillMasteries],
         autoSelectedDomainMasteries:[...autoSelectedDomainMasteries],
         rollMasteryEnabled,
-        advancedRollHistory
+        advancedRollHistory,
+        lastConsequenceCheckText
       };
 
       getAllInputs().forEach(element=>{
@@ -854,6 +913,7 @@
       autoSelectedDomainMasteries=new Set(data.autoSelectedDomainMasteries||[]);
       rollMasteryEnabled=Boolean(data.rollMasteryEnabled);
       advancedRollHistory=Array.isArray(data.advancedRollHistory)?data.advancedRollHistory.slice(0,10):[];
+      lastConsequenceCheckText=data.lastConsequenceCheckText||"";
 
       getAllInputs().forEach(element=>{
         if(!element.id||data[element.id]===undefined)return;
@@ -872,7 +932,7 @@
       resourceCount=Math.min(Math.max(0,Number(data?.resourceCount??DEFAULT_RESOURCE_COUNT)),MAX_RESOURCE_COUNT);
 
       Object.assign(contactCounts,{personal:1,faction:1,world:1,players:1},data?.contactCounts||{});
-      Object.assign(consequenceCounts,{minor:1,major:1},data?.consequenceCounts||{});
+      Object.assign(consequenceCounts,{minor:1,major:1,fatal:1},data?.consequenceCounts||{});
       Object.assign(abilityCounts,{minor:1,professional:1,elite:1},data?.abilityCounts||{});
 
       abilityCounts.professional=Math.min(Math.max(0,Number(abilityCounts.professional)),MAX_ABILITY_COUNTS.professional);
