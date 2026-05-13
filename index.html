@@ -473,6 +473,9 @@
       padding: 7px;
       font-size: 14px;
     }
+    .mastery-note {
+  display: none;
+}
 
     .slot-grid {
       display: grid;
@@ -943,8 +946,11 @@
     };
     const MAX_PROTECTION_PER_RESISTANCE = 5;
 
+let autoSelectedSkills = new Set();
+let autoSelectedDomains = new Set();
+let autoSelectedSkillMasteries = new Set();
 
-    let tacticCount = DEFAULT_TACTIC_COUNT;
+let tacticCount = DEFAULT_TACTIC_COUNT;
     let resourceCount = DEFAULT_RESOURCE_COUNT;
     let listenersAttached = false;
 
@@ -1232,43 +1238,6 @@ function applyAutomaticSelections() {
     }
   });
 
-  autoSelectedDomains.forEach(domainName => {
-    if (!desiredDomains.has(domainName)) {
-      const checkbox = getDomainCheckbox(domainName);
-
-      if (checkbox) {
-        checkbox.checked = false;
-      }
-    }
-  });
-
-  desiredSkills.forEach(skillName => {
-    const checkbox = getSkillCheckbox(skillName);
-
-    if (checkbox) {
-      checkbox.checked = true;
-    }
-  });
-
-  desiredSkillMasteries.forEach(skillName => {
-    const checkbox = getSkillMasteryCheckbox(skillName);
-
-    if (checkbox) {
-      checkbox.checked = true;
-    }
-  });
-
-  desiredDomains.forEach(domainName => {
-    const checkbox = getDomainCheckbox(domainName);
-
-    if (checkbox) {
-      checkbox.checked = true;
-    }
-  });
-
-  autoSelectedSkills = desiredSkills;
-  autoSelectedDomains = desiredDomains;
-  autoSelectedSkillMasteries = desiredSkillMasteries;
 }
 
       autoSelectedDomains.forEach(domainName => {
@@ -1296,11 +1265,6 @@ function applyAutomaticSelections() {
           checkbox.checked = true;
         }
       });
-
-      let autoSelectedSkills = new Set();
-let autoSelectedDomains = new Set();
-let autoSelectedSkillMasteries = new Set();
-    
 
     function escapeHtml(text) {
       return String(text)
