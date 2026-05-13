@@ -593,15 +593,31 @@
         </div>
 
         <div>
-          <label>Народ / происхождение</label>
-          <input id="origin" placeholder="Народ, фракция, родина..." />
-        </div>
+  <label>Народ</label>
+  <select id="nationName">
+    <option></option>
+    <option>Народ Ножей</option>
+    <option>Народ Ядов</option>
+    <option>Народ Граней</option>
+    <option>Народ Железа</option>
+  </select>
+</div>
 
-        <div>
-          <label>Цель</label>
-          <input id="goal" placeholder="Зачем персонаж идёт в Башню?" />
-        </div>
-      </div>
+<div>
+  <label>Род Войск</label>
+  <select id="serviceBranch">
+    <option></option>
+    <option>Тяжёлая пехота</option>
+    <option>Мобильная пехота</option>
+    <option>Разведка</option>
+    <option>Военный инженер</option>
+    <option>Штурмовая пехота</option>
+    <option>Служба безопасности</option>
+    <option>Мистическая пехота</option>
+    <option>Полевой медик</option>
+    <option>Отдел исследований</option>
+  </select>
+</div>
 
       <label>Описание</label>
       <textarea id="description" placeholder="Внешность, манеры, важные детали, странности, связи..."></textarea>
@@ -929,7 +945,14 @@
     const STORAGE_KEY = "towerCharacterSheetV11";
 
     const DEFAULT_TACTIC_COUNT = 1;
-    const DEFAULT_RESOURCE_COUNT = 1;
+const DEFAULT_RESOURCE_COUNT = 1;
+
+const MAX_RESOURCE_COUNT = 10;
+
+const MAX_ABILITY_COUNTS = {
+  professional: 5,
+  elite: 1
+};
 
     let tacticCount = DEFAULT_TACTIC_COUNT;
     let resourceCount = DEFAULT_RESOURCE_COUNT;
@@ -1047,6 +1070,64 @@
       }
     ];
 
+    const serviceBranchSkillMap = {
+  "Тяжёлая пехота": "УБИВАТЬ",
+  "Мобильная пехота": "ПРОБИВАТЬСЯ",
+  "Разведка": "СКРЫВАТЬСЯ",
+  "Военный инженер": "ТЕХНИЧИТЬ",
+  "Штурмовая пехота": "ИЗБЕГАТЬ",
+  "Служба безопасности": "ГОВОРИТЬ",
+  "Мистическая пехота": "КОЛДОВАТЬ",
+  "Полевой медик": "ЧИНИТЬ",
+  "Отдел исследований": "УЗНАВАТЬ"
+};
+
+const classDefaultsMap = {
+  "Страж Врат": {
+    skill: "УБИВАТЬ",
+    domain: "АРМИЯ"
+  },
+  "Светоносец": {
+    skill: "ПРОБИВАТЬСЯ",
+    domain: "МИР"
+  },
+  "Росоход": {
+    skill: "СКРЫВАТЬСЯ",
+    domain: "ЧАЩА"
+  },
+  "Экономант": {
+    skill: "КОЛДОВАТЬ",
+    domain: "КОРПОРАЦИИ"
+  },
+  "Неболом": {
+    skill: "УЗНАВАТЬ",
+    domain: "ГОРИЗОНТ"
+  },
+  "Красный Рукав": {
+    skill: "УБИВАТЬ",
+    domain: "МИР"
+  },
+  "Раствор Души": {
+    skill: "ГОВОРИТЬ",
+    domain: "МИР"
+  },
+  "Подкодыш": {
+    skill: "ПРОБИВАТЬСЯ",
+    domain: "ДУХИ"
+  },
+  "Паратехник": {
+    skill: "ТЕХНИЧИТЬ",
+    domain: "КОРПОРАЦИИ"
+  }
+};
+
+const nationDomainMap = {
+  "Народ Ножей": "ЧАЩА",
+  "Народ Ядов": "ПУСТОШЬ",
+  "Народ Граней": "ВОЛНЫ",
+  "Народ Железа": "ГОРИЗОНТ"
+};
+
     const skillOptions = [
       "",
       ...defaultSkills.map(skill => skill.name)
@@ -1062,6 +1143,56 @@
     function byId(id) {
       return document.getElementById(id);
     }
+
+    function findSkillIndex(skillName) {
+  return defaultSkills.findIndex(skill => skill.name === skillName) + 1;
+}
+
+function findDomainIndex(domainName) {
+  return defaultDomains.findIndex(domain => domain.name === domainName) + 1;
+}
+
+function checkSkillByName(skillName) {
+  const index = findSkillIndex(skillName);
+  if (!index) return;
+
+  const checkbox = byId(`skill${index}HasSkill`);
+  if (checkbox) {
+    checkbox.checked = true;
+  }
+}
+
+function checkDomainByName(domainName) {
+  const index = findDomainIndex(domainName);
+  if (!index) return;
+
+  const checkbox = byId(`domain${index}HasDomain`);
+  if (checkbox) {
+    checkbox.checked = true;
+  }
+}
+
+function applyAutomaticSelections() {
+  const serviceBranch = byId("serviceBranch")?.value;
+  const className = byId("className")?.value;
+  const nationName = byId("nationName")?.value;
+
+  const branchSkill = serviceBranchSkillMap[serviceBranch];
+  if (branchSkill) {
+    checkSkillByName(branchSkill);
+  }
+
+  const classDefaults = classDefaultsMap[className];
+  if (classDefaults) {
+    checkSkillByName(classDefaults.skill);
+    checkDomainByName(classDefaults.domain);
+  }
+
+  const nationDomain = nationDomainMap[nationName];
+  if (nationDomain) {
+    checkDomainByName(nationDomain);
+  }
+}
 
     function escapeHtml(text) {
       return String(text)
@@ -1332,13 +1463,17 @@
       }
     }
 
-    function addResourceRow() {
-      preserveDataAndRebuild(() => {
-        resourceCount += 1;
-        buildResourceRows();
-      });
-    }
+   function addResourceRow() {
+  if (resourceCount >= MAX_RESOURCE_COUNT) {
+    alert("Нельзя добавить больше 10 ресурсов.");
+    return;
+  }
 
+  preserveDataAndRebuild(() => {
+    resourceCount += 1;
+    buildResourceRows();
+  });
+}
     function removeResourceRow() {
       if (resourceCount <= 0) return;
 
@@ -1394,11 +1529,27 @@
     }
 
     function addSlot(kind, type) {
-      preserveDataAndRebuild(() => {
-        countMaps[kind][type] += 1;
-        buildSlotRows(kind, type);
-      });
+  if (kind === "ability") {
+    const max = MAX_ABILITY_COUNTS[type];
+
+    if (max !== undefined && countMaps[kind][type] >= max) {
+      if (type === "professional") {
+        alert("Нельзя добавить больше 5 профессиональных способностей.");
+      } else if (type === "elite") {
+        alert("Нельзя добавить больше 1 элитной способности.");
+      } else {
+        alert("Достигнут предел ячеек.");
+      }
+
+      return;
     }
+  }
+
+  preserveDataAndRebuild(() => {
+    countMaps[kind][type] += 1;
+    buildSlotRows(kind, type);
+  });
+}
 
     function removeSlot(kind, type) {
       if (countMaps[kind][type] <= 0) return;
@@ -1627,14 +1778,15 @@
     }
 
     function renderCounters() {
-      updateStressScales();
-      renderSkillDomainCounters();
-      renderTacticCounters();
-      renderResourceCounters();
-      renderContactCounters();
-      renderConsequenceCounters();
-      renderAbilityCounters();
-    }
+  applyAutomaticSelections();
+  updateStressScales();
+  renderSkillDomainCounters();
+  renderTacticCounters();
+  renderResourceCounters();
+  renderContactCounters();
+  renderConsequenceCounters();
+  renderAbilityCounters();
+}
 
     function renderSkillDomainCounters() {
       let skills = 0;
@@ -1785,7 +1937,10 @@
 
     function applyCountsFromData(data) {
       tacticCount = Number(data?.tacticCount || DEFAULT_TACTIC_COUNT);
-      resourceCount = Number(data?.resourceCount || DEFAULT_RESOURCE_COUNT);
+     resourceCount = Math.min(
+  Number(data?.resourceCount || DEFAULT_RESOURCE_COUNT),
+  MAX_RESOURCE_COUNT
+);
 
       Object.assign(contactCounts, {
         personal: 1,
@@ -1805,6 +1960,15 @@
         elite: 1
       }, data?.abilityCounts || {});
     }
+    abilityCounts.professional = Math.min(
+  abilityCounts.professional,
+  MAX_ABILITY_COUNTS.professional
+);
+
+abilityCounts.elite = Math.min(
+  abilityCounts.elite,
+  MAX_ABILITY_COUNTS.elite
+);
 
     function readSavedData() {
       const raw = localStorage.getItem(STORAGE_KEY);
