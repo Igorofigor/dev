@@ -944,8 +944,20 @@
   <script>
     const STORAGE_KEY = "towerCharacterSheetV11";
 
-    const DEFAULT_TACTIC_COUNT = 1;
+    const DEFAULT_TACTIC_COUNT = 2;
 const DEFAULT_RESOURCE_COUNT = 1;
+
+const MAX_RESOURCE_COUNT = 10;
+
+const MAX_ABILITY_COUNTS = {
+  professional: 5,
+  elite: 1
+};
+
+const MAX_PROTECTION_PER_RESISTANCE = 5;
+
+let autoSelectedSkills = new Set();
+let autoSelectedDomains = new Set();
 
 const MAX_RESOURCE_COUNT = 10;
 
@@ -1128,6 +1140,64 @@ const nationDomainMap = {
   "Народ Железа": "ГОРИЗОНТ"
 };
 
+const serviceBranchSkillMap = {
+  "Тяжёлая пехота": "УБИВАТЬ",
+  "Мобильная пехота": "ПРОБИВАТЬСЯ",
+  "Разведка": "СКРЫВАТЬСЯ",
+  "Военный инженер": "ТЕХНИЧИТЬ",
+  "Штурмовая пехота": "ИЗБЕГАТЬ",
+  "Служба безопасности": "ГОВОРИТЬ",
+  "Мистическая пехота": "КОЛДОВАТЬ",
+  "Полевой медик": "ЧИНИТЬ",
+  "Отдел исследований": "УЗНАВАТЬ"
+};
+
+const classDefaultsMap = {
+  "Страж Врат": {
+    skill: "УБИВАТЬ",
+    domain: "АРМИЯ"
+  },
+  "Светоносец": {
+    skill: "ПРОБИВАТЬСЯ",
+    domain: "МИР"
+  },
+  "Росоход": {
+    skill: "СКРЫВАТЬСЯ",
+    domain: "ЧАЩА"
+  },
+  "Экономант": {
+    skill: "КОЛДОВАТЬ",
+    domain: "КОРПОРАЦИИ"
+  },
+  "Неболом": {
+    skill: "УЗНАВАТЬ",
+    domain: "ГОРИЗОНТ"
+  },
+  "Красный Рукав": {
+    skill: "УБИВАТЬ",
+    domain: "МИР"
+  },
+  "Раствор Души": {
+    skill: "ГОВОРИТЬ",
+    domain: "МИР"
+  },
+  "Подкодыш": {
+    skill: "ПРОБИВАТЬСЯ",
+    domain: "ДУХИ"
+  },
+  "Паратехник": {
+    skill: "ТЕХНИЧИТЬ",
+    domain: "КОРПОРАЦИИ"
+  }
+};
+
+const nationDomainMap = {
+  "Народ Ножей": "ЧАЩА",
+  "Народ Ядов": "ПУСТОШЬ",
+  "Народ Граней": "ВОЛНЫ",
+  "Народ Железа": "ГОРИЗОНТ"
+};
+
     const skillOptions = [
       "",
       ...defaultSkills.map(skill => skill.name)
@@ -1143,7 +1213,100 @@ const nationDomainMap = {
     function byId(id) {
       return document.getElementById(id);
     }
+function findSkillIndex(skillName) {
+  return defaultSkills.findIndex(skill => skill.name === skillName) + 1;
+}
 
+function findDomainIndex(domainName) {
+  return defaultDomains.findIndex(domain => domain.name === domainName) + 1;
+}
+
+function getSkillCheckbox(skillName) {
+  const index = findSkillIndex(skillName);
+  if (!index) return null;
+
+  return byId(`skill${index}HasSkill`);
+}
+
+function getDomainCheckbox(domainName) {
+  const index = findDomainIndex(domainName);
+  if (!index) return null;
+
+  return byId(`domain${index}HasDomain`);
+}
+
+function getDesiredAutomaticSelections() {
+  const desiredSkills = new Set();
+  const desiredDomains = new Set();
+
+  const serviceBranch = byId("serviceBranch")?.value;
+  const className = byId("className")?.value;
+  const nationName = byId("nationName")?.value;
+
+  const branchSkill = serviceBranchSkillMap[serviceBranch];
+  if (branchSkill) {
+    desiredSkills.add(branchSkill);
+  }
+
+  const classDefaults = classDefaultsMap[className];
+  if (classDefaults) {
+    desiredSkills.add(classDefaults.skill);
+    desiredDomains.add(classDefaults.domain);
+  }
+
+  const nationDomain = nationDomainMap[nationName];
+  if (nationDomain) {
+    desiredDomains.add(nationDomain);
+  }
+
+  return {
+    desiredSkills,
+    desiredDomains
+  };
+}
+
+function applyAutomaticSelections() {
+  const { desiredSkills, desiredDomains } = getDesiredAutomaticSelections();
+
+  autoSelectedSkills.forEach(skillName => {
+    if (!desiredSkills.has(skillName)) {
+      const checkbox = getSkillCheckbox(skillName);
+
+      if (checkbox) {
+        checkbox.checked = false;
+      }
+    }
+  });
+
+  autoSelectedDomains.forEach(domainName => {
+    if (!desiredDomains.has(domainName)) {
+      const checkbox = getDomainCheckbox(domainName);
+
+      if (checkbox) {
+        checkbox.checked = false;
+      }
+    }
+  });
+
+  desiredSkills.forEach(skillName => {
+    const checkbox = getSkillCheckbox(skillName);
+
+    if (checkbox) {
+      checkbox.checked = true;
+    }
+  });
+
+  desiredDomains.forEach(domainName => {
+    const checkbox = getDomainCheckbox(domainName);
+
+    if (checkbox) {
+      checkbox.checked = true;
+    }
+  });
+
+  autoSelectedSkills = desiredSkills;
+  autoSelectedDomains = desiredDomains;
+}
     function findSkillIndex(skillName) {
   return defaultSkills.findIndex(skill => skill.name === skillName) + 1;
 }
@@ -1605,7 +1768,15 @@ function applyAutomaticSelections() {
       if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return few;
       return many;
     }
+function clampProtection(value) {
+  const number = Number(value || 0);
 
+  if (Number.isNaN(number)) return 0;
+  if (number < 0) return 0;
+  if (number > MAX_PROTECTION_PER_RESISTANCE) return MAX_PROTECTION_PER_RESISTANCE;
+
+  return number;
+}
     function clampExtraSlots(value) {
       const number = Number(value || 0);
 
@@ -1645,10 +1816,11 @@ function applyAutomaticSelections() {
       const totals = {};
 
       stressTracks.forEach(track => {
-        const manualProtection = Number(byId(`protectionManual_${track.id}`).value || 0);
-        const armorProtection = armorBonuses[track.id].protection;
-        const totalProtection = manualProtection + armorProtection;
+        const manualProtection = clampProtection(byId(`protectionManual_${track.id}`).value);
+const armorProtection = Number(armorBonuses[track.id].protection || 0);
+const totalProtection = clampProtection(manualProtection + armorProtection);
 
+byId(`protectionManual_${track.id}`).value = manualProtection;
         const manualExtraSlotsRaw = Number(byId(`extraSlotsManual_${track.id}`).value || 0);
         const manualExtraSlots = clampExtraSlots(manualExtraSlotsRaw);
         const armorExtraSlots = armorBonuses[track.id].extraSlots;
@@ -1657,7 +1829,7 @@ function applyAutomaticSelections() {
         byId(`extraSlotsManual_${track.id}`).value = manualExtraSlots;
 
         byId(`protectionTotal_${track.id}`).textContent =
-          `Итого: ${totalProtection} (${manualProtection} + ${armorProtection} броня)`;
+  `Итого: ${totalProtection}/5 (${manualProtection} + ${armorProtection} броня)`;
 
         byId(`extraSlotsTotal_${track.id}`).textContent =
           `Итого: ${totalExtraSlots}/5 (${manualExtraSlots} + ${armorExtraSlots} броня)`;
@@ -1787,6 +1959,7 @@ function applyAutomaticSelections() {
   renderConsequenceCounters();
   renderAbilityCounters();
 }
+
 
     function renderSkillDomainCounters() {
       let skills = 0;
