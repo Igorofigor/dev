@@ -679,10 +679,10 @@
 }
 
     function buildAllSlotRows(){
-      Object.keys(contactCounts).forEach(type=>buildSlotRows("contact",type));
-      Object.keys(consequenceCounts).forEach(type=>buildSlotRows("consequence",type));
-      Object.keys(abilityCounts).forEach(type=>buildSlotRows("ability",type));
-    }
+  ["personal","faction","world","players"].forEach(type=>buildSlotRows("contact",type));
+  ["minor","major"].forEach(type=>buildSlotRows("consequence",type));
+  ["minor","professional","elite"].forEach(type=>buildSlotRows("ability",type));
+}
 
     function addSlot(kind,type){
       if(kind==="ability"){
@@ -893,10 +893,10 @@ function updateStressScales(){
   }
 
   byId("stressTotalCounters").innerHTML=`
-    <span class="counter stress-total-counter ${stressClass}">Общий стресс: ${totalNormalStress}/100</span>
-    <button type="button" onclick="checkConsequence()">Проверка последствия</button>
-    <div id="consequenceCheckResult" class="hint"></div>
-  `;
+  <span class="counter stress-total-counter ${stressClass}">Общий стресс: ${totalNormalStress}/100</span>
+  <button type="button" onclick="checkConsequence()">Проверка последствия</button>
+  <div id="consequenceCheckResult" class="hint">${escapeHtml(lastConsequenceCheckText)}</div>
+`;
 }
 
     function checkConsequence(){
@@ -995,12 +995,13 @@ function updateStressScales(){
     }
 
     function renderConsequenceCounters(){
-      const minor=countFilledSlots("consequence","minor");
-      const major=countFilledSlots("consequence","major");
-      const fatal=countFilledSlots("consequence","fatal");
-      byId("consequenceCounters").innerHTML=`<span class="counter">${minor}/${consequenceCounts.minor} малых</span><span class="counter">${major}/${consequenceCounts.major} значимых</span><span class="counter">${fatal}/${consequenceCounts.fatal} роковых</span>`;
-    }
+  const minor=countFilledSlots("consequence","minor");
+  const major=countFilledSlots("consequence","major");
 
+  byId("consequenceCounters").innerHTML=
+    `<span class="counter">${minor}/${consequenceCounts.minor} малых</span>`+
+    `<span class="counter">${major}/${consequenceCounts.major} значимых</span>`;
+}
     function renderAbilityCounters(){
       const minor=countFilledSlots("ability","minor");
       const professional=countFilledSlots("ability","professional");
@@ -1058,23 +1059,44 @@ function updateStressScales(){
     }
 
     function applyCountsFromData(data){
-      tacticCount=Math.max(0,Number(data?.tacticCount??DEFAULT_TACTIC_COUNT));
-      resourceCount=Math.min(Math.max(0,Number(data?.resourceCount??DEFAULT_RESOURCE_COUNT)),MAX_RESOURCE_COUNT);
+  tacticCount=Math.max(0,Number(data?.tacticCount??DEFAULT_TACTIC_COUNT));
+  resourceCount=Math.min(
+    Math.max(0,Number(data?.resourceCount??DEFAULT_RESOURCE_COUNT)),
+    MAX_RESOURCE_COUNT
+  );
 
-      Object.assign(contactCounts,{personal:1,faction:1,world:1,players:1},data?.contactCounts||{});
-      consequenceCounts.minor = Number(data?.consequenceCounts?.minor ?? 1);
-consequenceCounts.major = Number(data?.consequenceCounts?.major ?? 1);
+  Object.assign(contactCounts,{
+    personal:1,
+    faction:1,
+    world:1,
+    players:1
+  },data?.contactCounts||{});
 
-delete consequenceCounts.fatal;
-delete consequenceCounts.deadly;
-delete consequenceCounts.doom;
-delete consequenceCounts.critical;
-delete consequenceCounts.rock;
-      Object.assign(abilityCounts,{minor:1,professional:1,elite:1},data?.abilityCounts||{});
+  consequenceCounts.minor=Number(data?.consequenceCounts?.minor??consequenceCounts.minor??0);
+  consequenceCounts.major=Number(data?.consequenceCounts?.major??consequenceCounts.major??0);
 
-      abilityCounts.professional=Math.min(Math.max(0,Number(abilityCounts.professional)),MAX_ABILITY_COUNTS.professional);
-      abilityCounts.elite=Math.min(Math.max(0,Number(abilityCounts.elite)),MAX_ABILITY_COUNTS.elite);
-    }
+  delete consequenceCounts.fatal;
+  delete consequenceCounts.deadly;
+  delete consequenceCounts.doom;
+  delete consequenceCounts.critical;
+  delete consequenceCounts.rock;
+
+  Object.assign(abilityCounts,{
+    minor:1,
+    professional:1,
+    elite:1
+  },data?.abilityCounts||{});
+
+  abilityCounts.professional=Math.min(
+    Math.max(0,Number(abilityCounts.professional)),
+    MAX_ABILITY_COUNTS.professional
+  );
+
+  abilityCounts.elite=Math.min(
+    Math.max(0,Number(abilityCounts.elite)),
+    MAX_ABILITY_COUNTS.elite
+  );
+}
 
     function readSavedData(){
       const raw=localStorage.getItem(STORAGE_KEY);
