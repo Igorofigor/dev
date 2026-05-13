@@ -659,13 +659,24 @@
     }
 
     function buildSlotRows(kind,type){
-      const container=byId(`${kind}_${type}_rows`);
-      const count=countMaps[kind][type];
-      container.innerHTML="";
-      for(let i=1;i<=count;i++){
-        container.innerHTML+=`<div class="slot-entry"><textarea id="${kind}_${type}_${i}" placeholder="Ячейка ${i}"></textarea></div>`;
-      }
-    }
+  const container=byId(`${kind}_${type}_rows`);
+
+  if(!container){
+    return;
+  }
+
+  const count=Number(countMaps[kind]?.[type] || 0);
+
+  container.innerHTML="";
+
+  for(let i=1;i<=count;i++){
+    container.innerHTML+=`
+      <div class="slot-entry">
+        <textarea id="${kind}_${type}_${i}" placeholder="Ячейка ${i}"></textarea>
+      </div>
+    `;
+  }
+}
 
     function buildAllSlotRows(){
       Object.keys(contactCounts).forEach(type=>buildSlotRows("contact",type));
@@ -1051,7 +1062,14 @@ function updateStressScales(){
       resourceCount=Math.min(Math.max(0,Number(data?.resourceCount??DEFAULT_RESOURCE_COUNT)),MAX_RESOURCE_COUNT);
 
       Object.assign(contactCounts,{personal:1,faction:1,world:1,players:1},data?.contactCounts||{});
-      Object.assign(consequenceCounts,{minor:1,major:1,fatal:1},data?.consequenceCounts||{});
+      consequenceCounts.minor = Number(data?.consequenceCounts?.minor ?? 1);
+consequenceCounts.major = Number(data?.consequenceCounts?.major ?? 1);
+
+delete consequenceCounts.fatal;
+delete consequenceCounts.deadly;
+delete consequenceCounts.doom;
+delete consequenceCounts.critical;
+delete consequenceCounts.rock;
       Object.assign(abilityCounts,{minor:1,professional:1,elite:1},data?.abilityCounts||{});
 
       abilityCounts.professional=Math.min(Math.max(0,Number(abilityCounts.professional)),MAX_ABILITY_COUNTS.professional);
