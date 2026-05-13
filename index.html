@@ -943,8 +943,7 @@
     };
     const MAX_PROTECTION_PER_RESISTANCE = 5;
 
-    let autoSelectedSkills = new Set();
-    let autoSelectedDomains = new Set();
+
     let tacticCount = DEFAULT_TACTIC_COUNT;
     let resourceCount = DEFAULT_RESOURCE_COUNT;
     let listenersAttached = false;
@@ -1134,71 +1133,143 @@
     function byId(id) {
       return document.getElementById(id);
     }
+function findSkillIndex(skillName) {
+  return defaultSkills.findIndex(skill => skill.name === skillName) + 1;
+}
 
-    function findSkillIndex(skillName) {
-      return defaultSkills.findIndex(skill => skill.name === skillName) + 1;
+function findDomainIndex(domainName) {
+  return defaultDomains.findIndex(domain => domain.name === domainName) + 1;
+}
+
+function getSkillCheckbox(skillName) {
+  const index = findSkillIndex(skillName);
+  if (!index) return null;
+
+  return byId(`skill${index}HasSkill`);
+}
+
+function getSkillMasteryCheckbox(skillName) {
+  const index = findSkillIndex(skillName);
+  if (!index) return null;
+
+  return byId(`skill${index}HasMastery`);
+}
+
+function getDomainCheckbox(domainName) {
+  const index = findDomainIndex(domainName);
+  if (!index) return null;
+
+  return byId(`domain${index}HasDomain`);
+}
+
+function getDesiredAutomaticSelections() {
+  const desiredSkills = new Set();
+  const desiredDomains = new Set();
+  const desiredSkillMasteries = new Set();
+  const skillSourceCounts = {};
+
+  function addSkillSource(skillName) {
+    if (!skillName) return;
+
+    desiredSkills.add(skillName);
+
+    skillSourceCounts[skillName] = (skillSourceCounts[skillName] || 0) + 1;
+
+    if (skillSourceCounts[skillName] >= 2) {
+      desiredSkillMasteries.add(skillName);
     }
+  }
 
-    function findDomainIndex(domainName) {
-      return defaultDomains.findIndex(domain => domain.name === domainName) + 1;
-    }
+  const serviceBranch = byId("serviceBranch")?.value;
+  const className = byId("className")?.value;
+  const nationName = byId("nationName")?.value;
 
-    function getSkillCheckbox(skillName) {
-      const index = findSkillIndex(skillName);
-      if (!index) return null;
+  const branchSkill = serviceBranchSkillMap[serviceBranch];
+  addSkillSource(branchSkill);
 
-      return byId(`skill${index}HasSkill`);
-    }
+  const classDefaults = classDefaultsMap[className];
+  if (classDefaults) {
+    addSkillSource(classDefaults.skill);
+    desiredDomains.add(classDefaults.domain);
+  }
 
-    function getDomainCheckbox(domainName) {
-      const index = findDomainIndex(domainName);
-      if (!index) return null;
+  const nationDomain = nationDomainMap[nationName];
+  if (nationDomain) {
+    desiredDomains.add(nationDomain);
+  }
 
-      return byId(`domain${index}HasDomain`);
-    }
+  return {
+    desiredSkills,
+    desiredDomains,
+    desiredSkillMasteries
+  };
+}
 
-    function getDesiredAutomaticSelections() {
-      const desiredSkills = new Set();
-      const desiredDomains = new Set();
+function applyAutomaticSelections() {
+  const {
+    desiredSkills,
+    desiredDomains,
+    desiredSkillMasteries
+  } = getDesiredAutomaticSelections();
 
-      const serviceBranch = byId("serviceBranch")?.value;
-      const className = byId("className")?.value;
-      const nationName = byId("nationName")?.value;
+  autoSelectedSkills.forEach(skillName => {
+    if (!desiredSkills.has(skillName)) {
+      const checkbox = getSkillCheckbox(skillName);
 
-      const branchSkill = serviceBranchSkillMap[serviceBranch];
-      if (branchSkill) {
-        desiredSkills.add(branchSkill);
+      if (checkbox) {
+        checkbox.checked = false;
       }
-
-      const classDefaults = classDefaultsMap[className];
-      if (classDefaults) {
-        desiredSkills.add(classDefaults.skill);
-        desiredDomains.add(classDefaults.domain);
-      }
-
-      const nationDomain = nationDomainMap[nationName];
-      if (nationDomain) {
-        desiredDomains.add(nationDomain);
-      }
-
-      return {
-        desiredSkills,
-        desiredDomains
-      };
     }
+  });
 
-    function applyAutomaticSelections() {
-      const { desiredSkills, desiredDomains } = getDesiredAutomaticSelections();
+  autoSelectedSkillMasteries.forEach(skillName => {
+    if (!desiredSkillMasteries.has(skillName)) {
+      const checkbox = getSkillMasteryCheckbox(skillName);
 
-      autoSelectedSkills.forEach(skillName => {
-        if (!desiredSkills.has(skillName)) {
-          const checkbox = getSkillCheckbox(skillName);
+      if (checkbox) {
+        checkbox.checked = false;
+      }
+    }
+  });
 
-          if (checkbox) {
-            checkbox.checked = false;
-          }
-        }
-      });
+  autoSelectedDomains.forEach(domainName => {
+    if (!desiredDomains.has(domainName)) {
+      const checkbox = getDomainCheckbox(domainName);
+
+      if (checkbox) {
+        checkbox.checked = false;
+      }
+    }
+  });
+
+  desiredSkills.forEach(skillName => {
+    const checkbox = getSkillCheckbox(skillName);
+
+    if (checkbox) {
+      checkbox.checked = true;
+    }
+  });
+
+  desiredSkillMasteries.forEach(skillName => {
+    const checkbox = getSkillMasteryCheckbox(skillName);
+
+    if (checkbox) {
+      checkbox.checked = true;
+    }
+  });
+
+  desiredDomains.forEach(domainName => {
+    const checkbox = getDomainCheckbox(domainName);
+
+    if (checkbox) {
+      checkbox.checked = true;
+    }
+  });
+
+  autoSelectedSkills = desiredSkills;
+  autoSelectedDomains = desiredDomains;
+  autoSelectedSkillMasteries = desiredSkillMasteries;
+}
 
       autoSelectedDomains.forEach(domainName => {
         if (!desiredDomains.has(domainName)) {
@@ -1226,9 +1297,10 @@
         }
       });
 
-      autoSelectedSkills = desiredSkills;
-      autoSelectedDomains = desiredDomains;
-    }
+      let autoSelectedSkills = new Set();
+let autoSelectedDomains = new Set();
+let autoSelectedSkillMasteries = new Set();
+    
 
     function escapeHtml(text) {
       return String(text)
@@ -1368,10 +1440,10 @@
             </div>
 
             <input
-              id="skill${i}Note"
-              class="trait-note"
-              placeholder="Заметка..."
-            />
+  id="skill${i}Note"
+  class="trait-note mastery-note"
+  placeholder="Заметка к мастерству..."
+/>
           </div>
         `;
       });
@@ -1811,17 +1883,27 @@
         <span class="counter">Дополнительный стресс: ${totalExtraStress}/${totalUnlockedExtraSlots}</span>
       `;
     }
+function updateMasteryNoteVisibility() {
+  for (let i = 1; i <= defaultSkills.length; i++) {
+    const masteryCheckbox = byId(`skill${i}HasMastery`);
+    const noteInput = byId(`skill${i}Note`);
 
+    if (!masteryCheckbox || !noteInput) continue;
+
+    noteInput.style.display = masteryCheckbox.checked ? "block" : "none";
+  }
+}
     function renderCounters() {
-      applyAutomaticSelections();
-      updateStressScales();
-      renderSkillDomainCounters();
-      renderTacticCounters();
-      renderResourceCounters();
-      renderContactCounters();
-      renderConsequenceCounters();
-      renderAbilityCounters();
-    }
+  applyAutomaticSelections();
+  updateMasteryNoteVisibility();
+  updateStressScales();
+  renderSkillDomainCounters();
+  renderTacticCounters();
+  renderResourceCounters();
+  renderContactCounters();
+  renderConsequenceCounters();
+  renderAbilityCounters();
+}
 
     function renderSkillDomainCounters() {
       let skills = 0;
