@@ -47,7 +47,43 @@
     .small-number{max-width:84px}
     .inline-total{margin-top:5px;font-size:13px;font-weight:900;color:var(--accent)}
     .stress-count{font-weight:900;color:var(--accent);white-space:nowrap}
-    .stress-scale{display:flex;flex-wrap:nowrap;gap:3px;align-items:center;min-width:260px}
+    .stress-scale{display:flex;flex-wrap:nowrap;gap:3px;align-items:center;min-width:260px}.stress-scale {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 3px;
+  align-items: flex-start;
+  min-width: 260px;
+}
+
+.stress-extra-zone {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 3px;
+  align-items: center;
+}
+
+.stress-normal-zone {
+  display: grid;
+  gap: 3px;
+}
+
+.stress-normal-row {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 3px;
+  align-items: center;
+}
+
+.stress-total-counter.stress-warning {
+  background: #320216;
+  color: #ffffff;
+}
+
+.stress-total-counter.stress-critical {
+  background: #000000;
+  color: #ffffff;
+  border-color: #000000;
+}
     .stress-divider{width:1px;height:16px;background:var(--accent);margin:0 2px}
     .tri-check{position:relative;display:inline-flex;align-items:center;justify-content:center;width:auto;min-width:24px;min-height:24px;margin:0;padding:0;color:var(--accent);cursor:pointer;user-select:none}
     .tri-check input{position:absolute;opacity:0;width:24px;height:24px;margin:0;padding:0}
@@ -127,7 +163,6 @@
       <div class="slot-grid">
         <div class="slot-box"><div class="title-row"><h3>Малые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('consequence','minor')"></button><button class="triangle-button right" type="button" onclick="addSlot('consequence','minor')"></button></div></div><div id="consequence_minor_rows" class="slot-list"></div></div>
         <div class="slot-box"><div class="title-row"><h3>Значимые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('consequence','major')"></button><button class="triangle-button right" type="button" onclick="addSlot('consequence','major')"></button></div></div><div id="consequence_major_rows" class="slot-list"></div></div>
-        <div class="slot-box"><div class="title-row"><h3>Роковые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('consequence','fatal')"></button><button class="triangle-button right" type="button" onclick="addSlot('consequence','fatal')"></button></div></div><div id="consequence_fatal_rows" class="slot-list"></div></div>
       </div>
     </section>
 
@@ -299,9 +334,12 @@
     let advancedRollHistory=[];
     let lastConsequenceCheckText="";
 
-    const contactCounts={personal:1,faction:1,world:1,players:1};
-    const consequenceCounts={minor:1,major:1,fatal:1};
-    const abilityCounts={minor:1,professional:1,elite:1};
+    const contactCounts={personal:1,faction:0,world:0,players:1};
+    const consequenceCounts={
+  minor:0,
+  major:0
+};
+    const abilityCounts={minor:3,professional:1,elite:0};
     const countMaps={contact:contactCounts,consequence:consequenceCounts,ability:abilityCounts};
 
     const stressTracks=[
@@ -471,20 +509,71 @@
     }
 
     function buildResistanceRows(){
-      const container=byId("resistanceRows");
-      container.innerHTML="";
-      stressTracks.forEach(track=>{
-        let extraDots="";
-        let normalDots="";
-        for(let i=1;i<=5;i++){
-          extraDots+=`<label class="tri-check tri-right stress-triangle extra" id="extraDot_${track.id}_${i}" title="Дополнительный слот ${i}"><input id="stressExtra_${track.id}_${i}" type="checkbox" data-track="${track.id}" data-kind="extra" data-index="${i}" /><span class="tri-shape"></span></label>`;
-        }
-        for(let i=1;i<=10;i++){
-          normalDots+=`<label class="tri-check tri-right stress-triangle" title="Обычный стресс ${i}"><input id="stressNormal_${track.id}_${i}" type="checkbox" data-track="${track.id}" data-kind="normal" data-index="${i}" /><span class="tri-shape"></span></label>`;
-        }
-        container.innerHTML+=`<tr><td><strong>${track.label}</strong></td><td><input id="protectionManual_${track.id}" class="small-number" type="number" value="0" /><div id="protectionTotal_${track.id}" class="inline-total">Итого: 0</div></td><td><input id="extraSlotsManual_${track.id}" class="small-number" type="number" min="0" max="5" value="0" /><div id="extraSlotsTotal_${track.id}" class="inline-total">Итого: 0/5</div></td><td><div class="stress-scale">${extraDots}<span class="stress-divider"></span>${normalDots}</div></td><td><span id="stressCount_${track.id}" class="stress-count">0/10</span></td></tr>`;
-      });
+  const container=byId("resistanceRows");
+  container.innerHTML="";
+
+  stressTracks.forEach(track=>{
+    let extraDots="";
+    let normalDotsFirst="";
+    let normalDotsSecond="";
+
+    for(let i=1;i<=5;i++){
+      extraDots+=`
+        <label class="tri-check tri-right stress-triangle extra" id="extraDot_${track.id}_${i}" title="Дополнительный слот ${i}">
+          <input id="stressExtra_${track.id}_${i}" type="checkbox" data-track="${track.id}" data-kind="extra" data-index="${i}" />
+          <span class="tri-shape"></span>
+        </label>
+      `;
     }
+
+    for(let i=1;i<=10;i++){
+      normalDotsFirst+=`
+        <label class="tri-check tri-right stress-triangle" title="Обычный стресс ${i}">
+          <input id="stressNormal_${track.id}_${i}" type="checkbox" data-track="${track.id}" data-kind="normal" data-index="${i}" />
+          <span class="tri-shape"></span>
+        </label>
+      `;
+
+      normalDotsSecond+=`
+        <label class="tri-check tri-right stress-triangle" title="Обычный стресс ${i + 10}">
+          <input id="stressNormal2_${track.id}_${i}" type="checkbox" data-track="${track.id}" data-kind="normal2" data-index="${i}" />
+          <span class="tri-shape"></span>
+        </label>
+      `;
+    }
+
+    container.innerHTML+=`
+      <tr>
+        <td><strong>${track.label}</strong></td>
+
+        <td>
+          <input id="protectionManual_${track.id}" class="small-number" type="number" value="0" />
+          <div id="protectionTotal_${track.id}" class="inline-total">Итого: 0</div>
+        </td>
+
+        <td>
+          <input id="extraSlotsManual_${track.id}" class="small-number" type="number" min="0" max="5" value="0" />
+          <div id="extraSlotsTotal_${track.id}" class="inline-total">Итого: 0/5</div>
+        </td>
+
+        <td>
+          <div class="stress-scale">
+            <div class="stress-extra-zone">${extraDots}</div>
+            <span class="stress-divider"></span>
+            <div class="stress-normal-zone">
+              <div class="stress-normal-row">${normalDotsFirst}</div>
+              <div class="stress-normal-row">${normalDotsSecond}</div>
+            </div>
+          </div>
+        </td>
+
+        <td>
+          <span id="stressCount_${track.id}" class="stress-count">0/20</span>
+        </td>
+      </tr>
+    `;
+  });
+}
 
     function buildPartyRows(){
       const container=byId("partyRows");
@@ -678,12 +767,23 @@
       return totals;
     }
 
-    function getTrackStressSlots(trackId,totalExtraSlots){
-      const slots=[];
-      for(let i=1;i<=totalExtraSlots;i++)slots.push(byId(`stressExtra_${trackId}_${i}`));
-      for(let i=1;i<=10;i++)slots.push(byId(`stressNormal_${trackId}_${i}`));
-      return slots;
-    }
+   function getTrackStressSlots(trackId,totalExtraSlots){
+  const slots=[];
+
+  for(let i=1;i<=totalExtraSlots;i++){
+    slots.push(byId(`stressExtra_${trackId}_${i}`));
+  }
+
+  for(let i=1;i<=10;i++){
+    slots.push(byId(`stressNormal_${trackId}_${i}`));
+  }
+
+  for(let i=1;i<=10;i++){
+    slots.push(byId(`stressNormal2_${trackId}_${i}`));
+  }
+
+  return slots;
+}
 
     function normalizeTrackStress(trackId,totalExtraSlots){
       const slots=getTrackStressSlots(trackId,totalExtraSlots);
@@ -705,69 +805,88 @@
     }
 
     function getCurrentStressTotals(){
-      let normalStress=0;
-      let extraStress=0;
+  let normalStress=0;
+  let extraStress=0;
 
-      stressTracks.forEach(track=>{
-        for(let i=1;i<=5;i++){
-          const checkbox=byId(`stressExtra_${track.id}_${i}`);
-          if(checkbox&&checkbox.checked)extraStress++;
-        }
-
-        for(let i=1;i<=10;i++){
-          const checkbox=byId(`stressNormal_${track.id}_${i}`);
-          if(checkbox&&checkbox.checked)normalStress++;
-        }
-      });
-
-      return{
-  normalStress,
-  extraStress,
-  totalStress:normalStress
-};
+  stressTracks.forEach(track=>{
+    for(let i=1;i<=5;i++){
+      if(byId(`stressExtra_${track.id}_${i}`)?.checked){
+        extraStress++;
+      }
     }
 
-    function updateStressScales(){
-      const totals=updateProtectionAndExtraSlots();
-      let totalUnlockedExtraSlots=0;
+    for(let i=1;i<=10;i++){
+      if(byId(`stressNormal_${track.id}_${i}`)?.checked){
+        normalStress++;
+      }
 
-      stressTracks.forEach(track=>{
-        const unlockedExtraSlots=totals[track.id].extraSlots;
-        totalUnlockedExtraSlots+=unlockedExtraSlots;
-
-        for(let i=1;i<=5;i++){
-          const checkbox=byId(`stressExtra_${track.id}_${i}`);
-          const dot=byId(`extraDot_${track.id}_${i}`);
-          const isUnlocked=i<=unlockedExtraSlots;
-          checkbox.disabled=!isUnlocked;
-          dot.classList.toggle("locked",!isUnlocked);
-          if(!isUnlocked)checkbox.checked=false;
-        }
-
-        normalizeTrackStress(track.id,unlockedExtraSlots);
-
-        let normalStress=0;
-        let extraStress=0;
-
-        for(let i=1;i<=5;i++)if(byId(`stressExtra_${track.id}_${i}`).checked)extraStress++;
-        for(let i=1;i<=10;i++)if(byId(`stressNormal_${track.id}_${i}`).checked)normalStress++;
-
-        byId(`stressCount_${track.id}`).textContent=`${normalStress}/10 + ${extraStress}/${unlockedExtraSlots} доп.`;
-      });
-
-      const stressTotals=getCurrentStressTotals();
-      const consequenceResult=lastConsequenceCheckText||"Проверка ещё не выполнялась.";
-
-      byId("stressTotalCounters").innerHTML=`
-        <span class="counter">Общий стресс: ${stressTotals.normalStress}/50</span>
-        <span class="counter">Дополнительный стресс: ${stressTotals.extraStress}/${totalUnlockedExtraSlots}</span>
-        <span class="counter">Суммарный стресс: ${stressTotals.totalStress}</span>
-        <span class="counter-check">
-          <button type="button" onclick="checkConsequence()">Проверить последствие</button>
-          <span id="consequenceCheckResult" class="counter-check-result">${escapeHtml(consequenceResult)}</span>
-        </span>
-      `;
+      if(byId(`stressNormal2_${track.id}_${i}`)?.checked){
+        normalStress++;
+      }
     }
+  });
+
+  return{
+    normalStress,
+    extraStress,
+    totalStress:normalStress
+  };
+}
+
+function updateStressScales(){
+  const totals=updateProtectionAndExtraSlots();
+
+  let totalNormalStress=0;
+
+  stressTracks.forEach(track=>{
+    const unlockedExtraSlots=totals[track.id].extraSlots;
+
+    for(let i=1;i<=5;i++){
+      const checkbox=byId(`stressExtra_${track.id}_${i}`);
+      const dot=byId(`extraDot_${track.id}_${i}`);
+      const isUnlocked=i<=unlockedExtraSlots;
+
+      checkbox.disabled=!isUnlocked;
+      dot.classList.toggle("locked",!isUnlocked);
+
+      if(!isUnlocked){
+        checkbox.checked=false;
+      }
+    }
+
+    normalizeTrackStress(track.id,unlockedExtraSlots);
+
+    let normalStress=0;
+
+    for(let i=1;i<=10;i++){
+      if(byId(`stressNormal_${track.id}_${i}`)?.checked){
+        normalStress++;
+      }
+
+      if(byId(`stressNormal2_${track.id}_${i}`)?.checked){
+        normalStress++;
+      }
+    }
+
+    totalNormalStress+=normalStress;
+
+    byId(`stressCount_${track.id}`).textContent=`${normalStress}/20`;
+  });
+
+  let stressClass="";
+
+  if(totalNormalStress>=17){
+    stressClass="stress-critical";
+  }else if(totalNormalStress>=6){
+    stressClass="stress-warning";
+  }
+
+  byId("stressTotalCounters").innerHTML=`
+    <span class="counter stress-total-counter ${stressClass}">Общий стресс: ${totalNormalStress}/100</span>
+    <button type="button" onclick="checkConsequence()">Проверка последствия</button>
+    <div id="consequenceCheckResult" class="hint"></div>
+  `;
+}
 
     function checkConsequence(){
       const totals=getCurrentStressTotals();
