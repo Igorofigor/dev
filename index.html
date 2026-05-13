@@ -83,6 +83,12 @@
     function getSkillCheckbox(skillName){const index=findSkillIndex(skillName);return index?byId(`skill${index}HasSkill`):null}
     function getSkillMasteryCheckbox(skillName){const index=findSkillIndex(skillName);return index?byId(`skill${index}HasMastery`):null}
     function getDomainCheckbox(domainName){const index=findDomainIndex(domainName);return index?byId(`domain${index}HasDomain`):null}
+    function getDomainMasteryCheckbox(domainName) {
+  const index = findDomainIndex(domainName);
+  if (!index) return null;
+
+  return byId(`domain${index}HasMastery`);
+}
     function getDesiredAutomaticSelections(){
       const desiredSkills=new Set(),desiredDomains=new Set(),desiredSkillMasteries=new Set(),skillSourceCounts={};
       function addSkillSource(skillName){if(!skillName)return;desiredSkills.add(skillName);skillSourceCounts[skillName]=(skillSourceCounts[skillName]||0)+1;if(skillSourceCounts[skillName]>=2)desiredSkillMasteries.add(skillName)}
@@ -109,8 +115,45 @@
     function buildResistanceRows(){const container=byId("resistanceRows");container.innerHTML="";stressTracks.forEach(track=>{let extraDots="",normalDots="";for(let i=1;i<=5;i++)extraDots+=`<label class="tri-check tri-right stress-triangle extra" id="extraDot_${track.id}_${i}" title="Дополнительный слот ${i}"><input id="stressExtra_${track.id}_${i}" type="checkbox" data-track="${track.id}" data-kind="extra" data-index="${i}" /><span class="tri-shape"></span></label>`;for(let i=1;i<=10;i++)normalDots+=`<label class="tri-check tri-right stress-triangle" title="Обычный стресс ${i}"><input id="stressNormal_${track.id}_${i}" type="checkbox" data-track="${track.id}" data-kind="normal" data-index="${i}" /><span class="tri-shape"></span></label>`;container.innerHTML+=`<tr><td><strong>${track.label}</strong></td><td><input id="protectionManual_${track.id}" class="small-number" type="number" value="0" /><div id="protectionTotal_${track.id}" class="inline-total">Итого: 0</div></td><td><input id="extraSlotsManual_${track.id}" class="small-number" type="number" min="0" max="5" value="0" /><div id="extraSlotsTotal_${track.id}" class="inline-total">Итого: 0/5</div></td><td><div class="stress-scale">${extraDots}<span class="stress-divider"></span>${normalDots}</div></td><td><span id="stressCount_${track.id}" class="stress-count">0/10</span></td></tr>`})}
     function buildPartyRows(){const container=byId("partyRows");container.innerHTML="";for(let i=1;i<=5;i++)container.innerHTML+=`<tr><td><input id="party${i}Name" placeholder="Персонаж ${i}" /></td><td><input id="party${i}Stress" type="number" min="0" value="0" /></td><td><input id="party${i}Protection" type="number" value="0" /></td><td><input id="party${i}Note" placeholder="Роль, состояние, опасность..." /></td></tr>`}
     function buildSkillRows(){const container=byId("skillRows");container.innerHTML="";defaultSkills.forEach((skill,index)=>{const i=index+1,name=escapeHtml(skill.name),description=escapeHtml(skill.description);container.innerHTML+=`<div class="trait-card"><div class="trait-top"><button type="button" class="trait-name">${name}<span class="trait-tooltip">${description}</span></button><div class="trait-checks"><label class="tri-check tri-up" title="Навык"><input id="skill${i}HasSkill" type="checkbox" /><span class="tri-shape"></span></label><label class="tri-check tri-up" title="Мастерство"><input id="skill${i}HasMastery" type="checkbox" /><span class="tri-shape"></span></label></div></div><input id="skill${i}Note" class="trait-note mastery-note" placeholder="Заметка к мастерству..." /></div>`})}
-    function buildDomainRows(){const container=byId("domainRows");container.innerHTML="";defaultDomains.forEach((domain,index)=>{const i=index+1,name=escapeHtml(domain.name),description=escapeHtml(domain.description);container.innerHTML+=`<div class="trait-card"><div class="trait-top"><button type="button" class="trait-name">${name}<span class="trait-tooltip">${description}</span></button><div class="trait-checks"><label class="tri-check tri-down" title="Область"><input id="domain${i}HasDomain" type="checkbox" /><span class="tri-shape"></span></label></div></div></div>`})}
-    function appendTacticRow(index){byId("tacticRows").insertAdjacentHTML("beforeend",`<tr><td><input id="tactic${index}Name" placeholder="Например: Тихая ликвидация" /></td><td><select id="tactic${index}Skill">${makeOptions(skillOptions)}</select></td><td><textarea id="tactic${index}Notes" placeholder="Конкретные тактики, условия применения, бонусы..."></textarea></td></tr>`)}
+function buildDomainRows() {
+  const container = byId("domainRows");
+  container.innerHTML = "";
+
+  defaultDomains.forEach((domain, index) => {
+    const i = index + 1;
+    const name = escapeHtml(domain.name);
+    const description = escapeHtml(domain.description);
+
+    container.innerHTML += `
+      <div class="trait-card">
+        <div class="trait-top">
+          <button type="button" class="trait-name">
+            ${name}
+            <span class="trait-tooltip">${description}</span>
+          </button>
+
+          <div class="trait-checks">
+            <label class="tri-check tri-down" title="Область">
+              <input id="domain${i}HasDomain" type="checkbox" />
+              <span class="tri-shape"></span>
+            </label>
+
+            <label class="tri-check tri-down" title="Мастерство области">
+              <input id="domain${i}HasMastery" type="checkbox" />
+              <span class="tri-shape"></span>
+            </label>
+          </div>
+        </div>
+
+        <input
+          id="domain${i}Note"
+          class="trait-note mastery-note"
+          placeholder="Заметка к мастерству области..."
+        />
+      </div>
+    `;
+  });
+}    function appendTacticRow(index){byId("tacticRows").insertAdjacentHTML("beforeend",`<tr><td><input id="tactic${index}Name" placeholder="Например: Тихая ликвидация" /></td><td><select id="tactic${index}Skill">${makeOptions(skillOptions)}</select></td><td><textarea id="tactic${index}Notes" placeholder="Конкретные тактики, условия применения, бонусы..."></textarea></td></tr>`)}
     function buildTacticRows(){const container=byId("tacticRows");container.innerHTML="";for(let i=1;i<=tacticCount;i++)appendTacticRow(i)}
     function addTacticRow(){preserveDataAndRebuild(()=>{tacticCount+=1;buildTacticRows()})}
     function removeTacticRow(){if(tacticCount<=0)return;preserveDataAndRebuild(()=>{tacticCount-=1;buildTacticRows()})}
@@ -135,8 +178,25 @@
     function normalizeTrackStress(trackId,totalExtraSlots){const slots=getTrackStressSlots(trackId,totalExtraSlots);let highestChecked=-1;slots.forEach((slot,index)=>{if(slot.checked)highestChecked=index});slots.forEach((slot,index)=>{slot.checked=highestChecked>=0&&index<=highestChecked})}
     function setTrackStressUpTo(trackId,clickedSlot){const totals=updateProtectionAndExtraSlots(),totalExtraSlots=totals[trackId].extraSlots,slots=getTrackStressSlots(trackId,totalExtraSlots),clickedIndex=slots.indexOf(clickedSlot);if(clickedIndex===-1)return;const shouldFill=clickedSlot.checked;slots.forEach((slot,index)=>{slot.checked=shouldFill?index<=clickedIndex:index<clickedIndex});renderCounters();saveSheet(false)}
     function updateStressScales(){const totals=updateProtectionAndExtraSlots();let totalNormalStress=0,totalExtraStress=0,totalUnlockedExtraSlots=0;stressTracks.forEach(track=>{const unlockedExtraSlots=totals[track.id].extraSlots;totalUnlockedExtraSlots+=unlockedExtraSlots;for(let i=1;i<=5;i++){const checkbox=byId(`stressExtra_${track.id}_${i}`),dot=byId(`extraDot_${track.id}_${i}`),isUnlocked=i<=unlockedExtraSlots;checkbox.disabled=!isUnlocked;dot.classList.toggle("locked",!isUnlocked);if(!isUnlocked)checkbox.checked=false}normalizeTrackStress(track.id,unlockedExtraSlots);let normalStress=0,extraStress=0;for(let i=1;i<=5;i++)if(byId(`stressExtra_${track.id}_${i}`).checked)extraStress++;for(let i=1;i<=10;i++)if(byId(`stressNormal_${track.id}_${i}`).checked)normalStress++;totalNormalStress+=normalStress;totalExtraStress+=extraStress;byId(`stressCount_${track.id}`).textContent=`${normalStress}/10 + ${extraStress}/${unlockedExtraSlots} доп.`});byId("stressTotalCounters").innerHTML=`<span class="counter">Общий стресс: ${totalNormalStress}/50</span><span class="counter">Дополнительный стресс: ${totalExtraStress}/${totalUnlockedExtraSlots}</span>`}
-    function updateMasteryNoteVisibility(){for(let i=1;i<=defaultSkills.length;i++){const masteryCheckbox=byId(`skill${i}HasMastery`),noteInput=byId(`skill${i}Note`);if(!masteryCheckbox||!noteInput)continue;noteInput.style.display=masteryCheckbox.checked?"block":"none"}}
-    function renderCounters(){applyAutomaticSelections();updateMasteryNoteVisibility();updateStressScales();renderSkillDomainCounters();renderTacticCounters();renderResourceCounters();renderContactCounters();renderConsequenceCounters();renderAbilityCounters()}
+function updateMasteryNoteVisibility() {
+  for (let i = 1; i <= defaultSkills.length; i++) {
+    const masteryCheckbox = byId(`skill${i}HasMastery`);
+    const noteInput = byId(`skill${i}Note`);
+
+    if (!masteryCheckbox || !noteInput) continue;
+
+    noteInput.style.display = masteryCheckbox.checked ? "block" : "none";
+  }
+
+  for (let i = 1; i <= defaultDomains.length; i++) {
+    const masteryCheckbox = byId(`domain${i}HasMastery`);
+    const noteInput = byId(`domain${i}Note`);
+
+    if (!masteryCheckbox || !noteInput) continue;
+
+    noteInput.style.display = masteryCheckbox.checked ? "block" : "none";
+  }
+}    function renderCounters(){applyAutomaticSelections();updateMasteryNoteVisibility();updateStressScales();renderSkillDomainCounters();renderTacticCounters();renderResourceCounters();renderContactCounters();renderConsequenceCounters();renderAbilityCounters()}
 function renderSkillDomainCounters() {
   let skills = 0;
   let domains = 0;
