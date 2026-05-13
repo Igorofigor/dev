@@ -164,6 +164,42 @@ body::before {
   position: relative;
   z-index: 1;
 }
+body {
+  position: relative;
+  min-height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background-image: var(--class-bg-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  opacity: 0.18;
+  filter: contrast(1.1);
+}
+
+.app {
+  position: relative;
+  z-index: 1;
+}
+
+.floating-roll-button {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 900;
+}
+
+.roll-modal {
+  z-index: 1000;
+}
   </style>
 </head>
 
