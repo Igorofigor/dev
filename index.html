@@ -337,6 +337,30 @@
       border-bottom: 12px solid transparent;
       border-left: 22px solid var(--accent);
     }
+    .stress-scale .tri-right .tri-shape {
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 13px solid var(--accent);
+}
+
+.stress-scale .stress-triangle {
+  width: 15px;
+  height: 15px;
+  min-width: 15px;
+  min-height: 15px;
+}
+
+.stress-scale {
+  flex-wrap: nowrap;
+  gap: 3px;
+  min-width: 260px;
+}
+
+.stress-divider {
+  width: 1px;
+  height: 16px;
+  margin: 0 2px;
+}
 
     .tri-left .tri-shape {
       border-top: 12px solid transparent;
@@ -540,12 +564,8 @@
 
 <body>
   <main class="app">
-    <h1>Башня — интерактивный лист</h1>
-    <p>
-      Лист персонажа: классы, сопротивления, защита, стресс, навыки, области,
-      группы тактик, снаряжение, ресурсы, броня, контакты, последствия,
-      способности и броски костей.
-    </p>
+    <h1>Башня Упадёт — интерактивный лист персонажа</h1>
+   
 
     <section class="card">
       <h2>Персонаж</h2>
@@ -616,8 +636,8 @@
     </section>
 
     <section class="card">
-      <h2>Другие персонажи игроков</h2>
-      <p class="hint">Быстрый учёт союзников: имя, стресс, защита и состояние.</p>
+      <h2>Шкалы дружбы</h2>
+      <p class="hint">Сопротивления дружбы с соратниками, отмечайте в них стресс ради боунсов.</p>
 
       <div class="table-wrap">
         <table class="table">
@@ -642,13 +662,11 @@
       <div class="traits-grid">
         <div class="trait-column">
           <h3>Навыки</h3>
-          <p class="hint">Наведи или нажми на название, чтобы увидеть описание. Два треугольника: навык и мастерство.</p>
           <div id="skillRows" class="trait-list"></div>
         </div>
 
         <div class="trait-column">
           <h3>Области</h3>
-          <p class="hint">У областей нет мастерства. Один треугольник означает наличие области.</p>
           <div id="domainRows" class="trait-list"></div>
         </div>
       </div>
