@@ -54,8 +54,8 @@
     }
 
     h3 {
-      margin: 20px 0 8px;
-      font-size: 17px;
+      margin: 0;
+      font-size: 16px;
     }
 
     p {
@@ -81,9 +81,10 @@
       margin-bottom: 12px;
     }
 
-    .title-row h2,
-    .title-row h3 {
-      margin: 0;
+    .title-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
 
     label {
@@ -117,7 +118,7 @@
     }
 
     textarea {
-      min-height: 82px;
+      min-height: 70px;
       resize: vertical;
     }
 
@@ -152,9 +153,18 @@
       display: block;
       width: 0;
       height: 0;
+    }
+
+    .triangle-button.right::before {
       border-top: 15px solid transparent;
       border-bottom: 15px solid transparent;
       border-left: 26px solid var(--accent);
+    }
+
+    .triangle-button.left::before {
+      border-top: 15px solid transparent;
+      border-bottom: 15px solid transparent;
+      border-right: 26px solid var(--accent);
     }
 
     .grid-2 {
@@ -248,9 +258,14 @@
       max-width: 84px;
     }
 
-    .stress-count,
-    .armor-total,
-    .armor-bonus {
+    .inline-total {
+      margin-top: 5px;
+      font-size: 13px;
+      font-weight: 900;
+      color: var(--accent);
+    }
+
+    .stress-count {
       font-weight: 900;
       color: var(--accent);
       white-space: nowrap;
@@ -440,14 +455,39 @@
       align-items: center;
     }
 
-    .trait-card .tri-shape {
-      transform-origin: center;
-    }
-
     .trait-note {
       margin-top: 6px;
       padding: 7px;
       font-size: 14px;
+    }
+
+    .slot-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .slot-box {
+      border: 1px solid var(--accent);
+      padding: 10px;
+      background: #ffffff;
+    }
+
+    .slot-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .slot-entry {
+      border: 1px solid var(--accent);
+      padding: 8px;
+      background: #ffffff;
+    }
+
+    .slot-entry textarea,
+    .slot-entry input {
+      padding: 8px;
+      min-height: 54px;
     }
 
     .log {
@@ -478,7 +518,8 @@
       }
 
       .grid-2,
-      .grid-3 {
+      .grid-3,
+      .slot-grid {
         grid-template-columns: 1fr;
       }
 
@@ -552,9 +593,8 @@
       </div>
 
       <p class="hint">
-        Первые 5 треугольников — дополнительные слоты. Они могут получать стресс,
-        но не входят в общий стресс. Следующие 10 — обычный стресс.
-        Защита брони автоматически прибавляется к выбранному сопротивлению.
+        В ячейку защиты можно вписать любое число. Защита от брони суммируется с ним автоматически.
+        То же работает с дополнительными слотами: ручные слоты + слоты от брони.
       </p>
 
       <div id="stressTotalCounters" class="counter-row"></div>
@@ -564,9 +604,7 @@
           <thead>
             <tr>
               <th>Сопротивление</th>
-              <th>Базовая защита</th>
-              <th>Броня</th>
-              <th>Итого защита</th>
+              <th>Защита</th>
               <th>Доп. слоты</th>
               <th>Стресс</th>
               <th>Итог</th>
@@ -619,7 +657,10 @@
     <section class="card">
       <div class="title-row">
         <h2>Группы тактик</h2>
-        <button class="triangle-button" type="button" onclick="addTacticRow()" title="Добавить группу тактик"></button>
+        <div class="title-actions">
+          <button class="triangle-button left" type="button" onclick="removeTacticRow()" title="Убрать группу тактик"></button>
+          <button class="triangle-button right" type="button" onclick="addTacticRow()" title="Добавить группу тактик"></button>
+        </div>
       </div>
 
       <div id="tacticCounters" class="counter-row"></div>
@@ -656,10 +697,15 @@
         </table>
       </div>
 
-      <div class="title-row">
+      <div class="title-row" style="margin-top: 18px;">
         <h3>Ресурсы</h3>
-        <button class="triangle-button" type="button" onclick="addResourceRow()" title="Добавить слот ресурса"></button>
+        <div class="title-actions">
+          <button class="triangle-button left" type="button" onclick="removeResourceRow()" title="Убрать ресурс"></button>
+          <button class="triangle-button right" type="button" onclick="addResourceRow()" title="Добавить ресурс"></button>
+        </div>
       </div>
+
+      <div id="resourceCounters" class="counter-row"></div>
 
       <div class="table-wrap">
         <table class="table">
@@ -675,7 +721,7 @@
         </table>
       </div>
 
-      <h3>Броня</h3>
+      <h3 style="margin-top: 18px;">Броня</h3>
       <div class="table-wrap">
         <table class="table">
           <thead>
@@ -684,6 +730,7 @@
               <th>Предмет</th>
               <th>Сопротивление</th>
               <th>Защита</th>
+              <th>Доп. слоты</th>
               <th>Свойства</th>
             </tr>
           </thead>
@@ -693,70 +740,130 @@
     </section>
 
     <section class="card">
-      <h2>Контакты</h2>
+      <div class="title-row">
+        <h2>Контакты</h2>
+      </div>
 
       <div id="contactCounters" class="counter-row"></div>
 
-      <div class="grid-2">
-        <div>
-          <label>Контакты личного уровня</label>
-          <textarea id="contactsPersonal" placeholder="По одному контакту на строку"></textarea>
+      <div class="slot-grid">
+        <div class="slot-box">
+          <div class="title-row">
+            <h3>Личные</h3>
+            <div class="title-actions">
+              <button class="triangle-button left" type="button" onclick="removeSlot('contact', 'personal')" title="Убрать контакт"></button>
+              <button class="triangle-button right" type="button" onclick="addSlot('contact', 'personal')" title="Добавить контакт"></button>
+            </div>
+          </div>
+          <div id="contact_personal_rows" class="slot-list"></div>
         </div>
 
-        <div>
-          <label>Контакты фракционного уровня</label>
-          <textarea id="contactsFaction" placeholder="По одному контакту на строку"></textarea>
+        <div class="slot-box">
+          <div class="title-row">
+            <h3>Фракционные</h3>
+            <div class="title-actions">
+              <button class="triangle-button left" type="button" onclick="removeSlot('contact', 'faction')" title="Убрать контакт"></button>
+              <button class="triangle-button right" type="button" onclick="addSlot('contact', 'faction')" title="Добавить контакт"></button>
+            </div>
+          </div>
+          <div id="contact_faction_rows" class="slot-list"></div>
         </div>
 
-        <div>
-          <label>Контакты мирового уровня</label>
-          <textarea id="contactsWorld" placeholder="По одному контакту на строку"></textarea>
+        <div class="slot-box">
+          <div class="title-row">
+            <h3>Мировые</h3>
+            <div class="title-actions">
+              <button class="triangle-button left" type="button" onclick="removeSlot('contact', 'world')" title="Убрать контакт"></button>
+              <button class="triangle-button right" type="button" onclick="addSlot('contact', 'world')" title="Добавить контакт"></button>
+            </div>
+          </div>
+          <div id="contact_world_rows" class="slot-list"></div>
         </div>
 
-        <div>
-          <label>Контакты-персонажи игроков</label>
-          <textarea id="contactsPlayerCharacters" placeholder="По одному персонажу на строку"></textarea>
+        <div class="slot-box">
+          <div class="title-row">
+            <h3>Персонажи игроков</h3>
+            <div class="title-actions">
+              <button class="triangle-button left" type="button" onclick="removeSlot('contact', 'players')" title="Убрать персонажа"></button>
+              <button class="triangle-button right" type="button" onclick="addSlot('contact', 'players')" title="Добавить персонажа"></button>
+            </div>
+          </div>
+          <div id="contact_players_rows" class="slot-list"></div>
         </div>
       </div>
     </section>
 
     <section class="card">
-      <h2>Последствия</h2>
+      <div class="title-row">
+        <h2>Последствия</h2>
+      </div>
 
       <div id="consequenceCounters" class="counter-row"></div>
 
-      <div class="grid-2">
-        <div>
-          <label>Малые последствия</label>
-          <textarea id="conMinor" placeholder="По одному последствию на строку"></textarea>
+      <div class="slot-grid">
+        <div class="slot-box">
+          <div class="title-row">
+            <h3>Малые</h3>
+            <div class="title-actions">
+              <button class="triangle-button left" type="button" onclick="removeSlot('consequence', 'minor')" title="Убрать последствие"></button>
+              <button class="triangle-button right" type="button" onclick="addSlot('consequence', 'minor')" title="Добавить последствие"></button>
+            </div>
+          </div>
+          <div id="consequence_minor_rows" class="slot-list"></div>
         </div>
 
-        <div>
-          <label>Значимые последствия</label>
-          <textarea id="conMajor" placeholder="По одному последствию на строку"></textarea>
+        <div class="slot-box">
+          <div class="title-row">
+            <h3>Значимые</h3>
+            <div class="title-actions">
+              <button class="triangle-button left" type="button" onclick="removeSlot('consequence', 'major')" title="Убрать последствие"></button>
+              <button class="triangle-button right" type="button" onclick="addSlot('consequence', 'major')" title="Добавить последствие"></button>
+            </div>
+          </div>
+          <div id="consequence_major_rows" class="slot-list"></div>
         </div>
       </div>
     </section>
 
     <section class="card">
-      <h2>Способности</h2>
+      <div class="title-row">
+        <h2>Способности</h2>
+      </div>
 
       <div id="abilityCounters" class="counter-row"></div>
 
-      <div class="grid-3">
-        <div>
-          <label>Малые способности</label>
-          <textarea id="abMinor" placeholder="По одной способности на строку"></textarea>
+      <div class="slot-grid">
+        <div class="slot-box">
+          <div class="title-row">
+            <h3>Малые</h3>
+            <div class="title-actions">
+              <button class="triangle-button left" type="button" onclick="removeSlot('ability', 'minor')" title="Убрать способность"></button>
+              <button class="triangle-button right" type="button" onclick="addSlot('ability', 'minor')" title="Добавить способность"></button>
+            </div>
+          </div>
+          <div id="ability_minor_rows" class="slot-list"></div>
         </div>
 
-        <div>
-          <label>Профессиональные способности</label>
-          <textarea id="abProfessional" placeholder="По одной способности на строку"></textarea>
+        <div class="slot-box">
+          <div class="title-row">
+            <h3>Профессиональные</h3>
+            <div class="title-actions">
+              <button class="triangle-button left" type="button" onclick="removeSlot('ability', 'professional')" title="Убрать способность"></button>
+              <button class="triangle-button right" type="button" onclick="addSlot('ability', 'professional')" title="Добавить способность"></button>
+            </div>
+          </div>
+          <div id="ability_professional_rows" class="slot-list"></div>
         </div>
 
-        <div>
-          <label>Элитные способности</label>
-          <textarea id="abElite" placeholder="По одной способности на строку"></textarea>
+        <div class="slot-box">
+          <div class="title-row">
+            <h3>Элитные</h3>
+            <div class="title-actions">
+              <button class="triangle-button left" type="button" onclick="removeSlot('ability', 'elite')" title="Убрать способность"></button>
+              <button class="triangle-button right" type="button" onclick="addSlot('ability', 'elite')" title="Добавить способность"></button>
+            </div>
+          </div>
+          <div id="ability_elite_rows" class="slot-list"></div>
         </div>
       </div>
     </section>
@@ -801,7 +908,7 @@
   </main>
 
   <script>
-    const STORAGE_KEY = "towerCharacterSheetV10";
+    const STORAGE_KEY = "towerCharacterSheetV11";
 
     const DEFAULT_TACTIC_COUNT = 1;
     const DEFAULT_RESOURCE_COUNT = 1;
@@ -809,6 +916,30 @@
     let tacticCount = DEFAULT_TACTIC_COUNT;
     let resourceCount = DEFAULT_RESOURCE_COUNT;
     let listenersAttached = false;
+
+    const contactCounts = {
+      personal: 1,
+      faction: 1,
+      world: 1,
+      players: 1
+    };
+
+    const consequenceCounts = {
+      minor: 1,
+      major: 1
+    };
+
+    const abilityCounts = {
+      minor: 1,
+      professional: 1,
+      elite: 1
+    };
+
+    const countMaps = {
+      contact: contactCounts,
+      consequence: consequenceCounts,
+      ability: abilityCounts
+    };
 
     const stressTracks = [
       { id: "bullets", label: "ПУЛИ" },
@@ -980,19 +1111,13 @@
             <td><strong>${track.label}</strong></td>
 
             <td>
-              <input id="protection_${track.id}" class="small-number" type="number" value="0" />
+              <input id="protectionManual_${track.id}" class="small-number" type="number" value="0" />
+              <div id="protectionTotal_${track.id}" class="inline-total">Итого: 0</div>
             </td>
 
             <td>
-              <span id="armorBonus_${track.id}" class="armor-bonus">0</span>
-            </td>
-
-            <td>
-              <span id="totalProtection_${track.id}" class="armor-total">0</span>
-            </td>
-
-            <td>
-              <input id="extraSlots_${track.id}" class="small-number" type="number" min="0" max="5" value="0" />
+              <input id="extraSlotsManual_${track.id}" class="small-number" type="number" min="0" max="5" value="0" />
+              <div id="extraSlotsTotal_${track.id}" class="inline-total">Итого: 0/5</div>
             </td>
 
             <td>
@@ -1127,10 +1252,19 @@
     }
 
     function addTacticRow() {
-      tacticCount += 1;
-      appendTacticRow(tacticCount);
-      renderCounters();
-      saveSheet(false);
+      preserveDataAndRebuild(() => {
+        tacticCount += 1;
+        buildTacticRows();
+      });
+    }
+
+    function removeTacticRow() {
+      if (tacticCount <= 0) return;
+
+      preserveDataAndRebuild(() => {
+        tacticCount -= 1;
+        buildTacticRows();
+      });
     }
 
     function buildGearRows() {
@@ -1181,10 +1315,19 @@
     }
 
     function addResourceRow() {
-      resourceCount += 1;
-      appendResourceRow(resourceCount);
-      renderCounters();
-      saveSheet(false);
+      preserveDataAndRebuild(() => {
+        resourceCount += 1;
+        buildResourceRows();
+      });
+    }
+
+    function removeResourceRow() {
+      if (resourceCount <= 0) return;
+
+      preserveDataAndRebuild(() => {
+        resourceCount -= 1;
+        buildResourceRows();
+      });
     }
 
     function buildArmorRows() {
@@ -1204,10 +1347,56 @@
               </select>
             </td>
             <td><input id="armor${i}Protection" type="number" min="0" value="0" /></td>
+            <td><input id="armor${i}ExtraSlots" type="number" min="0" max="5" value="0" /></td>
             <td><input id="armor${i}Note" placeholder="Свойства, штрафы, особые эффекты..." /></td>
           </tr>
         `;
       });
+    }
+
+    function buildSlotRows(kind, type) {
+      const container = byId(`${kind}_${type}_rows`);
+      const count = countMaps[kind][type];
+
+      container.innerHTML = "";
+
+      for (let i = 1; i <= count; i++) {
+        container.innerHTML += `
+          <div class="slot-entry">
+            <textarea id="${kind}_${type}_${i}" placeholder="Ячейка ${i}"></textarea>
+          </div>
+        `;
+      }
+    }
+
+    function buildAllSlotRows() {
+      Object.keys(contactCounts).forEach(type => buildSlotRows("contact", type));
+      Object.keys(consequenceCounts).forEach(type => buildSlotRows("consequence", type));
+      Object.keys(abilityCounts).forEach(type => buildSlotRows("ability", type));
+    }
+
+    function addSlot(kind, type) {
+      preserveDataAndRebuild(() => {
+        countMaps[kind][type] += 1;
+        buildSlotRows(kind, type);
+      });
+    }
+
+    function removeSlot(kind, type) {
+      if (countMaps[kind][type] <= 0) return;
+
+      preserveDataAndRebuild(() => {
+        countMaps[kind][type] -= 1;
+        buildSlotRows(kind, type);
+      });
+    }
+
+    function preserveDataAndRebuild(rebuildAction) {
+      const data = collectData();
+
+      rebuildAction();
+      applyData(data);
+      saveSheet(false);
     }
 
     function countLines(id) {
@@ -1222,6 +1411,21 @@
         .map(line => line.trim())
         .filter(Boolean)
         .length;
+    }
+
+    function countFilledSlots(kind, type) {
+      let filled = 0;
+      const count = countMaps[kind][type];
+
+      for (let i = 1; i <= count; i++) {
+        const element = byId(`${kind}_${type}_${i}`);
+
+        if (element && element.value.trim()) {
+          filled++;
+        }
+      }
+
+      return filled;
     }
 
     function plural(number, one, few, many) {
@@ -1243,11 +1447,65 @@
       return number;
     }
 
-    function getTrackStressSlots(trackId) {
-      const extraSlots = clampExtraSlots(byId(`extraSlots_${trackId}`).value);
+    function getArmorBonuses() {
+      const bonuses = {};
+
+      stressTracks.forEach(track => {
+        bonuses[track.id] = {
+          protection: 0,
+          extraSlots: 0
+        };
+      });
+
+      for (let i = 1; i <= armorSlots.length; i++) {
+        const resistance = byId(`armor${i}Resistance`)?.value;
+        const protection = Number(byId(`armor${i}Protection`)?.value || 0);
+        const extraSlots = Number(byId(`armor${i}ExtraSlots`)?.value || 0);
+
+        if (resistance && bonuses[resistance]) {
+          bonuses[resistance].protection += protection;
+          bonuses[resistance].extraSlots += extraSlots;
+        }
+      }
+
+      return bonuses;
+    }
+
+    function updateProtectionAndExtraSlots() {
+      const armorBonuses = getArmorBonuses();
+      const totals = {};
+
+      stressTracks.forEach(track => {
+        const manualProtection = Number(byId(`protectionManual_${track.id}`).value || 0);
+        const armorProtection = armorBonuses[track.id].protection;
+        const totalProtection = manualProtection + armorProtection;
+
+        const manualExtraSlotsRaw = Number(byId(`extraSlotsManual_${track.id}`).value || 0);
+        const manualExtraSlots = clampExtraSlots(manualExtraSlotsRaw);
+        const armorExtraSlots = armorBonuses[track.id].extraSlots;
+        const totalExtraSlots = clampExtraSlots(manualExtraSlots + armorExtraSlots);
+
+        byId(`extraSlotsManual_${track.id}`).value = manualExtraSlots;
+
+        byId(`protectionTotal_${track.id}`).textContent =
+          `Итого: ${totalProtection} (${manualProtection} + ${armorProtection} броня)`;
+
+        byId(`extraSlotsTotal_${track.id}`).textContent =
+          `Итого: ${totalExtraSlots}/5 (${manualExtraSlots} + ${armorExtraSlots} броня)`;
+
+        totals[track.id] = {
+          protection: totalProtection,
+          extraSlots: totalExtraSlots
+        };
+      });
+
+      return totals;
+    }
+
+    function getTrackStressSlots(trackId, totalExtraSlots) {
       const slots = [];
 
-      for (let i = 1; i <= extraSlots; i++) {
+      for (let i = 1; i <= totalExtraSlots; i++) {
         slots.push(byId(`stressExtra_${trackId}_${i}`));
       }
 
@@ -1258,8 +1516,8 @@
       return slots;
     }
 
-    function normalizeTrackStress(trackId) {
-      const slots = getTrackStressSlots(trackId);
+    function normalizeTrackStress(trackId, totalExtraSlots) {
+      const slots = getTrackStressSlots(trackId, totalExtraSlots);
       let highestChecked = -1;
 
       slots.forEach((slot, index) => {
@@ -1274,7 +1532,9 @@
     }
 
     function setTrackStressUpTo(trackId, clickedSlot) {
-      const slots = getTrackStressSlots(trackId);
+      const totals = updateProtectionAndExtraSlots();
+      const totalExtraSlots = totals[trackId].extraSlots;
+      const slots = getTrackStressSlots(trackId, totalExtraSlots);
       const clickedIndex = slots.indexOf(clickedSlot);
 
       if (clickedIndex === -1) return;
@@ -1293,44 +1553,15 @@
       saveSheet(false);
     }
 
-    function calculateArmorBonuses() {
-      const bonuses = {};
-
-      stressTracks.forEach(track => {
-        bonuses[track.id] = 0;
-      });
-
-      for (let i = 1; i <= armorSlots.length; i++) {
-        const resistance = byId(`armor${i}Resistance`).value;
-        const protection = Number(byId(`armor${i}Protection`).value || 0);
-
-        if (resistance && Object.prototype.hasOwnProperty.call(bonuses, resistance)) {
-          bonuses[resistance] += protection;
-        }
-      }
-
-      stressTracks.forEach(track => {
-        const base = Number(byId(`protection_${track.id}`).value || 0);
-        const armor = bonuses[track.id] || 0;
-        const total = base + armor;
-
-        byId(`armorBonus_${track.id}`).textContent = armor;
-        byId(`totalProtection_${track.id}`).textContent = total;
-      });
-    }
-
     function updateStressScales() {
+      const totals = updateProtectionAndExtraSlots();
+
       let totalNormalStress = 0;
       let totalExtraStress = 0;
       let totalUnlockedExtraSlots = 0;
 
       stressTracks.forEach(track => {
-        const extraInput = byId(`extraSlots_${track.id}`);
-        const unlockedExtraSlots = clampExtraSlots(extraInput.value);
-
-        if (String(unlockedExtraSlots) !== extraInput.value) {
-          extraInput.value = unlockedExtraSlots;
-        }
+        const unlockedExtraSlots = totals[track.id].extraSlots;
 
         totalUnlockedExtraSlots += unlockedExtraSlots;
 
@@ -1347,7 +1578,7 @@
           }
         }
 
-        normalizeTrackStress(track.id);
+        normalizeTrackStress(track.id, unlockedExtraSlots);
 
         let normalStress = 0;
         let extraStress = 0;
@@ -1378,14 +1609,13 @@
     }
 
     function renderCounters() {
-      calculateArmorBonuses();
       updateStressScales();
       renderSkillDomainCounters();
+      renderTacticCounters();
+      renderResourceCounters();
       renderContactCounters();
       renderConsequenceCounters();
       renderAbilityCounters();
-      renderTacticCounters();
-      renderResourceCounters();
     }
 
     function renderSkillDomainCounters() {
@@ -1406,42 +1636,6 @@
         <span class="counter">${skills} ${plural(skills, "навык", "навыка", "навыков")}</span>
         <span class="counter">${skillMasteries} ${plural(skillMasteries, "мастерство", "мастерства", "мастерств")}</span>
         <span class="counter">${domains} ${plural(domains, "область", "области", "областей")}</span>
-      `;
-    }
-
-    function renderContactCounters() {
-      const personal = countLines("contactsPersonal");
-      const faction = countLines("contactsFaction");
-      const world = countLines("contactsWorld");
-      const playerCharacters = countLines("contactsPlayerCharacters");
-
-      byId("contactCounters").innerHTML = `
-        <span class="counter">${personal} ${plural(personal, "личный", "личных", "личных")}</span>
-        <span class="counter">${faction} ${plural(faction, "фракционный", "фракционных", "фракционных")}</span>
-        <span class="counter">${world} ${plural(world, "мировой", "мировых", "мировых")}</span>
-        <span class="counter">${playerCharacters} ${plural(playerCharacters, "персонаж игрока", "персонажа игроков", "персонажей игроков")}</span>
-      `;
-    }
-
-    function renderConsequenceCounters() {
-      const minor = countLines("conMinor");
-      const major = countLines("conMajor");
-
-      byId("consequenceCounters").innerHTML = `
-        <span class="counter">${minor} ${plural(minor, "малое", "малых", "малых")}</span>
-        <span class="counter">${major} ${plural(major, "значимое", "значимых", "значимых")}</span>
-      `;
-    }
-
-    function renderAbilityCounters() {
-      const minor = countLines("abMinor");
-      const professional = countLines("abProfessional");
-      const elite = countLines("abElite");
-
-      byId("abilityCounters").innerHTML = `
-        <span class="counter">${minor} ${plural(minor, "малая", "малые", "малых")}</span>
-        <span class="counter">${professional} ${plural(professional, "профессиональная", "профессиональные", "профессиональных")}</span>
-        <span class="counter">${elite} ${plural(elite, "элитная", "элитные", "элитных")}</span>
       `;
     }
 
@@ -1467,38 +1661,78 @@
       }
 
       byId("tacticCounters").innerHTML = `
+        <span class="counter">${tacticCount} ${plural(tacticCount, "ячейка", "ячейки", "ячеек")}</span>
         <span class="counter">${tacticGroups} ${plural(tacticGroups, "группа", "группы", "групп")} тактик</span>
         <span class="counter">${tacticLines} ${plural(tacticLines, "записанная тактика", "записанные тактики", "записанных тактик")}</span>
       `;
     }
 
     function renderResourceCounters() {
-      const filledResources = Array.from({ length: resourceCount }, (_, index) => index + 1)
-        .filter(i => byId(`resource${i}Name`)?.value.trim()).length;
+      let filledResources = 0;
 
-      const resourceTitle = byId("resourceCounterVirtual");
-
-      if (resourceTitle) {
-        resourceTitle.remove();
+      for (let i = 1; i <= resourceCount; i++) {
+        if (byId(`resource${i}Name`)?.value.trim()) {
+          filledResources++;
+        }
       }
 
-      byId("resourceRows").insertAdjacentHTML(
-        "beforebegin",
-        `<div id="resourceCounterVirtual" class="counter-row">
-          <span class="counter">${resourceCount} ${plural(resourceCount, "слот", "слота", "слотов")} ресурсов</span>
-          <span class="counter">${filledResources} ${plural(filledResources, "заполнен", "заполнены", "заполнено")}</span>
-        </div>`
-      );
+      byId("resourceCounters").innerHTML = `
+        <span class="counter">${resourceCount} ${plural(resourceCount, "ячейка", "ячейки", "ячеек")} ресурсов</span>
+        <span class="counter">${filledResources} ${plural(filledResources, "заполнена", "заполнены", "заполнено")}</span>
+      `;
+    }
+
+    function renderContactCounters() {
+      const personal = countFilledSlots("contact", "personal");
+      const faction = countFilledSlots("contact", "faction");
+      const world = countFilledSlots("contact", "world");
+      const players = countFilledSlots("contact", "players");
+
+      byId("contactCounters").innerHTML = `
+        <span class="counter">${personal}/${contactCounts.personal} личных</span>
+        <span class="counter">${faction}/${contactCounts.faction} фракционных</span>
+        <span class="counter">${world}/${contactCounts.world} мировых</span>
+        <span class="counter">${players}/${contactCounts.players} персонажей игроков</span>
+      `;
+    }
+
+    function renderConsequenceCounters() {
+      const minor = countFilledSlots("consequence", "minor");
+      const major = countFilledSlots("consequence", "major");
+
+      byId("consequenceCounters").innerHTML = `
+        <span class="counter">${minor}/${consequenceCounts.minor} малых</span>
+        <span class="counter">${major}/${consequenceCounts.major} значимых</span>
+      `;
+    }
+
+    function renderAbilityCounters() {
+      const minor = countFilledSlots("ability", "minor");
+      const professional = countFilledSlots("ability", "professional");
+      const elite = countFilledSlots("ability", "elite");
+
+      byId("abilityCounters").innerHTML = `
+        <span class="counter">${minor}/${abilityCounts.minor} малых</span>
+        <span class="counter">${professional}/${abilityCounts.professional} профессиональных</span>
+        <span class="counter">${elite}/${abilityCounts.elite} элитных</span>
+      `;
     }
 
     function getAllInputs() {
       return Array.from(document.querySelectorAll("input, textarea, select"));
     }
 
+    function cloneObject(object) {
+      return JSON.parse(JSON.stringify(object));
+    }
+
     function collectData() {
       const data = {
         tacticCount,
-        resourceCount
+        resourceCount,
+        contactCounts: cloneObject(contactCounts),
+        consequenceCounts: cloneObject(consequenceCounts),
+        abilityCounts: cloneObject(abilityCounts)
       };
 
       getAllInputs().forEach(element => {
@@ -1529,6 +1763,29 @@
 
       byId("rollLog").textContent = data.rollLog || "";
       renderCounters();
+    }
+
+    function applyCountsFromData(data) {
+      tacticCount = Number(data?.tacticCount || DEFAULT_TACTIC_COUNT);
+      resourceCount = Number(data?.resourceCount || DEFAULT_RESOURCE_COUNT);
+
+      Object.assign(contactCounts, {
+        personal: 1,
+        faction: 1,
+        world: 1,
+        players: 1
+      }, data?.contactCounts || {});
+
+      Object.assign(consequenceCounts, {
+        minor: 1,
+        major: 1
+      }, data?.consequenceCounts || {});
+
+      Object.assign(abilityCounts, {
+        minor: 1,
+        professional: 1,
+        elite: 1
+      }, data?.abilityCounts || {});
     }
 
     function readSavedData() {
@@ -1568,11 +1825,8 @@
         return;
       }
 
-      tacticCount = Number(data.tacticCount || DEFAULT_TACTIC_COUNT);
-      resourceCount = Number(data.resourceCount || DEFAULT_RESOURCE_COUNT);
-
-      buildTacticRows();
-      buildResourceRows();
+      applyCountsFromData(data);
+      buildDynamicRows();
       applyData(data);
 
       if (showAlert) {
@@ -1649,24 +1903,30 @@
       listenersAttached = true;
     }
 
-    function init() {
+    function buildStaticRows() {
       buildResistanceRows();
       buildPartyRows();
       buildSkillRows();
       buildDomainRows();
       buildGearRows();
       buildArmorRows();
+    }
 
+    function buildDynamicRows() {
+      buildTacticRows();
+      buildResourceRows();
+      buildAllSlotRows();
+    }
+
+    function init() {
       const saved = readSavedData();
 
       if (saved) {
-        tacticCount = Number(saved.tacticCount || DEFAULT_TACTIC_COUNT);
-        resourceCount = Number(saved.resourceCount || DEFAULT_RESOURCE_COUNT);
+        applyCountsFromData(saved);
       }
 
-      buildTacticRows();
-      buildResourceRows();
-
+      buildStaticRows();
+      buildDynamicRows();
       attachAutoSave();
 
       if (saved) {
