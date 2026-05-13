@@ -1218,53 +1218,37 @@ function applyAutomaticSelections() {
     desiredSkillMasteries
   } = getDesiredAutomaticSelections();
 
-  autoSelectedSkills.forEach(skillName => {
-    if (!desiredSkills.has(skillName)) {
-      const checkbox = getSkillCheckbox(skillName);
+ 
+  };
 
-      if (checkbox) {
-        checkbox.checked = false;
-      }
+  desiredSkills.forEach(skillName => {
+    const checkbox = getSkillCheckbox(skillName);
+
+    if (checkbox) {
+      checkbox.checked = true;
     }
   });
 
-  autoSelectedSkillMasteries.forEach(skillName => {
-    if (!desiredSkillMasteries.has(skillName)) {
-      const checkbox = getSkillMasteryCheckbox(skillName);
+  desiredSkillMasteries.forEach(skillName => {
+    const checkbox = getSkillMasteryCheckbox(skillName);
 
-      if (checkbox) {
-        checkbox.checked = false;
-      }
+    if (checkbox) {
+      checkbox.checked = true;
     }
   });
 
-}
+  desiredDomains.forEach(domainName => {
+    const checkbox = getDomainCheckbox(domainName);
 
-      autoSelectedDomains.forEach(domainName => {
-        if (!desiredDomains.has(domainName)) {
-          const checkbox = getDomainCheckbox(domainName);
+    if (checkbox) {
+      checkbox.checked = true;
+    }
+  });
 
-          if (checkbox) {
-            checkbox.checked = false;
-          }
-        }
-      });
+  autoSelectedSkills = desiredSkills;
+  autoSelectedDomains = desiredDomains;
+  autoSelectedSkillMasteries = desiredSkillMasteries;
 
-      desiredSkills.forEach(skillName => {
-        const checkbox = getSkillCheckbox(skillName);
-
-        if (checkbox) {
-          checkbox.checked = true;
-        }
-      });
-
-      desiredDomains.forEach(domainName => {
-        const checkbox = getDomainCheckbox(domainName);
-
-        if (checkbox) {
-          checkbox.checked = true;
-        }
-      });
 
     function escapeHtml(text) {
       return String(text)
