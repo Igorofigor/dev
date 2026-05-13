@@ -653,7 +653,7 @@
 
     <section class="card">
       <h2>Шкалы дружбы</h2>
-      <p class="hint">Сопротивления дружбы с соратниками, отмечайте в них стресс ради боунсов.</p>
+      <p class="hint">Сопротивления дружбы с соратниками, отмечайте в них стресс ради бонусов.</p>
 
       <div class="table-wrap">
         <table class="table">
@@ -959,13 +959,6 @@ const MAX_PROTECTION_PER_RESISTANCE = 5;
 let autoSelectedSkills = new Set();
 let autoSelectedDomains = new Set();
 
-const MAX_RESOURCE_COUNT = 10;
-
-const MAX_ABILITY_COUNTS = {
-  professional: 5,
-  elite: 1
-};
-
     let tacticCount = DEFAULT_TACTIC_COUNT;
     let resourceCount = DEFAULT_RESOURCE_COUNT;
     let listenersAttached = false;
@@ -1082,56 +1075,7 @@ const MAX_ABILITY_COUNTS = {
       }
     ];
 
-    const serviceBranchSkillMap = {
-  "Тяжёлая пехота": "УБИВАТЬ",
-  "Мобильная пехота": "ПРОБИВАТЬСЯ",
-  "Разведка": "СКРЫВАТЬСЯ",
-  "Военный инженер": "ТЕХНИЧИТЬ",
-  "Штурмовая пехота": "ИЗБЕГАТЬ",
-  "Служба безопасности": "ГОВОРИТЬ",
-  "Мистическая пехота": "КОЛДОВАТЬ",
-  "Полевой медик": "ЧИНИТЬ",
-  "Отдел исследований": "УЗНАВАТЬ"
-};
-
-const classDefaultsMap = {
-  "Страж Врат": {
-    skill: "УБИВАТЬ",
-    domain: "АРМИЯ"
-  },
-  "Светоносец": {
-    skill: "ПРОБИВАТЬСЯ",
-    domain: "МИР"
-  },
-  "Росоход": {
-    skill: "СКРЫВАТЬСЯ",
-    domain: "ЧАЩА"
-  },
-  "Экономант": {
-    skill: "КОЛДОВАТЬ",
-    domain: "КОРПОРАЦИИ"
-  },
-  "Неболом": {
-    skill: "УЗНАВАТЬ",
-    domain: "ГОРИЗОНТ"
-  },
-  "Красный Рукав": {
-    skill: "УБИВАТЬ",
-    domain: "МИР"
-  },
-  "Раствор Души": {
-    skill: "ГОВОРИТЬ",
-    domain: "МИР"
-  },
-  "Подкодыш": {
-    skill: "ПРОБИВАТЬСЯ",
-    domain: "ДУХИ"
-  },
-  "Паратехник": {
-    skill: "ТЕХНИЧИТЬ",
-    domain: "КОРПОРАЦИИ"
-  }
-};
+    
 
 const nationDomainMap = {
   "Народ Ножей": "ЧАЩА",
@@ -1191,12 +1135,7 @@ const classDefaultsMap = {
   }
 };
 
-const nationDomainMap = {
-  "Народ Ножей": "ЧАЩА",
-  "Народ Ядов": "ПУСТОШЬ",
-  "Народ Граней": "ВОЛНЫ",
-  "Народ Железа": "ГОРИЗОНТ"
-};
+
 
     const skillOptions = [
       "",
