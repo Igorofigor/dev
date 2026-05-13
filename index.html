@@ -227,6 +227,16 @@
       <div class="title-row"><h2>Способности</h2></div>
       <div id="abilityCounters" class="counter-row"></div>
       <div class="slot-grid">
+        <div class="slot-box">
+  <div class="title-row">
+    <h3>Базовые</h3>
+    <div class="title-actions">
+      <button class="triangle-button left" type="button" onclick="removeSlot('ability','basic')"></button>
+      <button class="triangle-button right" type="button" onclick="addSlot('ability','basic')"></button>
+    </div>
+  </div>
+  <div id="ability_basic_rows" class="slot-list"></div>
+</div>
         <div class="slot-box"><div class="title-row"><h3>Малые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('ability','minor')"></button><button class="triangle-button right" type="button" onclick="addSlot('ability','minor')"></button></div></div><div id="ability_minor_rows" class="slot-list"></div></div>
         <div class="slot-box"><div class="title-row"><h3>Профессиональные</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('ability','professional')"></button><button class="triangle-button right" type="button" onclick="addSlot('ability','professional')"></button></div></div><div id="ability_professional_rows" class="slot-list"></div></div>
         <div class="slot-box"><div class="title-row"><h3>Элитные</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('ability','elite')"></button><button class="triangle-button right" type="button" onclick="addSlot('ability','elite')"></button></div></div><div id="ability_elite_rows" class="slot-list"></div></div>
@@ -339,7 +349,12 @@
   minor:0,
   major:0
 };
-    const abilityCounts={minor:3,professional:1,elite:0};
+    const abilityCounts={
+  basic:1,
+  minor:3,
+  professional:1,
+  elite:0
+};
     const countMaps={contact:contactCounts,consequence:consequenceCounts,ability:abilityCounts};
 
     const stressTracks=[
@@ -678,11 +693,12 @@
   }
 }
 
-    function buildAllSlotRows(){
+   function buildAllSlotRows(){
   ["personal","faction","world","players"].forEach(type=>buildSlotRows("contact",type));
   ["minor","major"].forEach(type=>buildSlotRows("consequence",type));
-  ["minor","professional","elite"].forEach(type=>buildSlotRows("ability",type));
+  ["basic","minor","professional","elite"].forEach(type=>buildSlotRows("ability",type));
 }
+
 
     function addSlot(kind,type){
       if(kind==="ability"){
@@ -1003,12 +1019,17 @@ function updateStressScales(){
     `<span class="counter">${major}/${consequenceCounts.major} значимых</span>`;
 }
     function renderAbilityCounters(){
-      const minor=countFilledSlots("ability","minor");
-      const professional=countFilledSlots("ability","professional");
-      const elite=countFilledSlots("ability","elite");
-      byId("abilityCounters").innerHTML=`<span class="counter">${minor}/${abilityCounts.minor} малых</span><span class="counter">${professional}/${abilityCounts.professional} профессиональных</span><span class="counter">${elite}/${abilityCounts.elite} элитных</span>`;
-    }
+  const basic=countFilledSlots("ability","basic");
+  const minor=countFilledSlots("ability","minor");
+  const professional=countFilledSlots("ability","professional");
+  const elite=countFilledSlots("ability","elite");
 
+  byId("abilityCounters").innerHTML=
+    `<span class="counter">${basic}/${abilityCounts.basic} базовых</span>`+
+    `<span class="counter">${minor}/${abilityCounts.minor} малых</span>`+
+    `<span class="counter">${professional}/${abilityCounts.professional} профессиональных</span>`+
+    `<span class="counter">${elite}/${abilityCounts.elite} элитных</span>`;
+}
     function getAllInputs(){return Array.from(document.querySelectorAll("input, textarea, select"))}
     function cloneObject(object){return JSON.parse(JSON.stringify(object))}
 
@@ -1082,10 +1103,11 @@ function updateStressScales(){
   delete consequenceCounts.rock;
 
   Object.assign(abilityCounts,{
-    minor:1,
-    professional:1,
-    elite:1
-  },data?.abilityCounts||{});
+  basic:1,
+  minor:1,
+  professional:1,
+  elite:1
+},data?.abilityCounts||{});
 
   abilityCounts.professional=Math.min(
     Math.max(0,Number(abilityCounts.professional)),
