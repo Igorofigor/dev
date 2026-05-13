@@ -131,6 +131,39 @@
     .roll-die{display:inline-block;margin:2px 4px 2px 0;padding:3px 7px;border:1px solid var(--accent);font-weight:900}
     .roll-die.max{color:var(--danger);border-color:var(--danger);font-weight:1000}
     @media(max-width:760px){body{padding:12px}.grid-2,.slot-grid{grid-template-columns:1fr}.dice-row{grid-template-columns:repeat(3,1fr)}.traits-grid{grid-template-columns:1fr}.toolbar{grid-template-columns:1fr}.floating-roll-button{width:64px;height:64px;right:12px;bottom:12px}}
+ .card,
+.slot-box,
+.trait-card,
+.slot-entry {
+  background: rgba(255, 255, 255, 0.9);
+}
+ body {
+  position: relative;
+  min-height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background-image: var(--class-bg-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  opacity: 0.18;
+  filter: contrast(1.1);
+}
+
+.app,
+.floating-roll-button,
+.roll-modal {
+  position: relative;
+  z-index: 1;
+}
   </style>
 </head>
 
@@ -421,6 +454,17 @@
       "Подкодыш":{skill:"ПРОБИВАТЬСЯ",domain:"ДУХИ"},
       "Паратехник":{skill:"ТЕХНИЧИТЬ",domain:"КОРПОРАЦИИ"}
     };
+    const classBackgroundMap = {
+  "Страж Врат": "images/class-gate-guard.png",
+  "Светоносец": "images/class-lightbearer.png",
+  "Раствор Души": "images/class-soul-fluid.png",
+  "Экономант": "images/class-economancer.png",
+  "Неболом": "images/class-skybreaker.png",
+  "Росоход": "images/class-dew-walker.png",
+  "Подкодыш": "images/class-codeling.png",
+  "Паратехник": "images/class-paratech.png",
+  "Красный Рукав": "images/class-red-sleeve.png"
+};
 
     const skillOptions=["",...defaultSkills.map(skill=>skill.name)];
     const domainOptions=["",...defaultDomains.map(domain=>domain.name)];
@@ -445,7 +489,16 @@
     function getSkillMasteryCheckbox(skillName){const index=findSkillIndex(skillName);return index?byId(`skill${index}HasMastery`):null}
     function getDomainCheckbox(domainName){const index=findDomainIndex(domainName);return index?byId(`domain${index}HasDomain`):null}
     function getDomainMasteryCheckbox(domainName){const index=findDomainIndex(domainName);return index?byId(`domain${index}HasMastery`):null}
+function updateClassBackground() {
+  const className = byId("className")?.value || "";
+  const imagePath = classBackgroundMap[className];
 
+  if (imagePath) {
+    document.body.style.setProperty("--class-bg-image", `url("${imagePath}")`);
+  } else {
+    document.body.style.setProperty("--class-bg-image", "none");
+  }
+}
     function getDesiredAutomaticSelections(){
       const desiredSkills=new Set();
       const desiredDomains=new Set();
@@ -955,16 +1008,17 @@ function updateStressScales(){
     }
 
     function renderCounters(){
-      applyAutomaticSelections();
-      updateMasteryNoteVisibility();
-      updateStressScales();
-      renderSkillDomainCounters();
-      renderTacticCounters();
-      renderResourceCounters();
-      renderContactCounters();
-      renderConsequenceCounters();
-      renderAbilityCounters();
-    }
+  applyAutomaticSelections();
+  updateClassBackground();
+  updateMasteryNoteVisibility();
+  updateStressScales();
+  renderSkillDomainCounters();
+  renderTacticCounters();
+  renderResourceCounters();
+  renderContactCounters();
+  renderConsequenceCounters();
+  renderAbilityCounters();
+}
 
     function renderSkillDomainCounters(){
       let skills=0;
