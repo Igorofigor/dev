@@ -571,54 +571,57 @@
       <h2>Персонаж</h2>
 
       <div class="grid-2">
-        <div>
-          <label>Имя</label>
-          <input id="characterName" placeholder="Имя персонажа" />
-        </div>
+  <div>
+    <label>Имя</label>
+    <input id="characterName" placeholder="Имя персонажа" />
+  </div>
 
-        <div>
-          <label>Класс</label>
-          <select id="className">
-            <option></option>
-            <option>Страж Врат</option>
-            <option>Светоносец</option>
-            <option>Раствор Души</option>
-            <option>Экономант</option>
-            <option>Неболом</option>
-            <option>Росоход</option>
-            <option>Подкодыш</option>
-            <option>Паратехник</option>
-            <option>Красный Рукав</option>
-          </select>
-        </div>
+  <div>
+    <label>Класс</label>
+    <select id="className">
+      <option></option>
+      <option>Страж Врат</option>
+      <option>Светоносец</option>
+      <option>Раствор Души</option>
+      <option>Экономант</option>
+      <option>Неболом</option>
+      <option>Росоход</option>
+      <option>Подкодыш</option>
+      <option>Паратехник</option>
+      <option>Красный Рукав</option>
+    </select>
+  </div>
 
-        <div>
-  <label>Народ</label>
-  <select id="nationName">
-    <option></option>
-    <option>Народ Ножей</option>
-    <option>Народ Ядов</option>
-    <option>Народ Граней</option>
-    <option>Народ Железа</option>
-  </select>
+  <div>
+    <label>Народ</label>
+    <select id="nationName">
+      <option></option>
+      <option>Народ Ножей</option>
+      <option>Народ Ядов</option>
+      <option>Народ Граней</option>
+      <option>Народ Железа</option>
+    </select>
+  </div>
+
+  <div>
+    <label>Род Войск</label>
+    <select id="serviceBranch">
+      <option></option>
+      <option>Тяжёлая пехота</option>
+      <option>Мобильная пехота</option>
+      <option>Разведка</option>
+      <option>Военный инженер</option>
+      <option>Штурмовая пехота</option>
+      <option>Служба безопасности</option>
+      <option>Мистическая пехота</option>
+      <option>Полевой медик</option>
+      <option>Отдел исследований</option>
+    </select>
+  </div>
 </div>
 
-<div>
-  <label>Род Войск</label>
-  <select id="serviceBranch">
-    <option></option>
-    <option>Тяжёлая пехота</option>
-    <option>Мобильная пехота</option>
-    <option>Разведка</option>
-    <option>Военный инженер</option>
-    <option>Штурмовая пехота</option>
-    <option>Служба безопасности</option>
-    <option>Мистическая пехота</option>
-    <option>Полевой медик</option>
-    <option>Отдел исследований</option>
-  </select>
-</div>
-
+<label>Описание</label>
+<textarea id="description" placeholder="Внешность, манеры, важные детали, странности, связи..."></textarea>
       <label>Описание</label>
       <textarea id="description" placeholder="Внешность, манеры, важные детали, странности, связи..."></textarea>
     </section>
@@ -1152,31 +1155,6 @@ const classDefaultsMap = {
     function byId(id) {
       return document.getElementById(id);
     }
-function findSkillIndex(skillName) {
-  return defaultSkills.findIndex(skill => skill.name === skillName) + 1;
-}
-
-function findDomainIndex(domainName) {
-  return defaultDomains.findIndex(domain => domain.name === domainName) + 1;
-}
-
-function getSkillCheckbox(skillName) {
-  const index = findSkillIndex(skillName);
-  if (!index) return null;
-
-  return byId(`skill${index}HasSkill`);
-}
-
-function getDomainCheckbox(domainName) {
-  const index = findDomainIndex(domainName);
-  if (!index) return null;
-
-  return byId(`domain${index}HasDomain`);
-}
-
-function getDesiredAutomaticSelections() {
-  const desiredSkills = new Set();
-  const desiredDomains = new Set();
 
   const serviceBranch = byId("serviceBranch")?.value;
   const className = byId("className")?.value;
@@ -1202,10 +1180,6 @@ function getDesiredAutomaticSelections() {
     desiredSkills,
     desiredDomains
   };
-}
-
-function applyAutomaticSelections() {
-  const { desiredSkills, desiredDomains } = getDesiredAutomaticSelections();
 
   autoSelectedSkills.forEach(skillName => {
     if (!desiredSkills.has(skillName)) {
@@ -1245,7 +1219,7 @@ function applyAutomaticSelections() {
 
   autoSelectedSkills = desiredSkills;
   autoSelectedDomains = desiredDomains;
-}
+
     function findSkillIndex(skillName) {
   return defaultSkills.findIndex(skill => skill.name === skillName) + 1;
 }
@@ -2048,40 +2022,41 @@ byId(`protectionManual_${track.id}`).value = manualProtection;
     }
 
     function applyCountsFromData(data) {
-      tacticCount = Number(data?.tacticCount || DEFAULT_TACTIC_COUNT);
-     resourceCount = Math.min(
-  Number(data?.resourceCount || DEFAULT_RESOURCE_COUNT),
-  MAX_RESOURCE_COUNT
-);
+  tacticCount = Number(data?.tacticCount || DEFAULT_TACTIC_COUNT);
 
-      Object.assign(contactCounts, {
-        personal: 1,
-        faction: 1,
-        world: 1,
-        players: 1
-      }, data?.contactCounts || {});
+  resourceCount = Math.min(
+    Number(data?.resourceCount || DEFAULT_RESOURCE_COUNT),
+    MAX_RESOURCE_COUNT
+  );
 
-      Object.assign(consequenceCounts, {
-        minor: 1,
-        major: 1
-      }, data?.consequenceCounts || {});
+  Object.assign(contactCounts, {
+    personal: 1,
+    faction: 1,
+    world: 1,
+    players: 1
+  }, data?.contactCounts || {});
 
-      Object.assign(abilityCounts, {
-        minor: 1,
-        professional: 1,
-        elite: 1
-      }, data?.abilityCounts || {});
-    }
-    abilityCounts.professional = Math.min(
-  abilityCounts.professional,
-  MAX_ABILITY_COUNTS.professional
-);
+  Object.assign(consequenceCounts, {
+    minor: 1,
+    major: 1
+  }, data?.consequenceCounts || {});
 
-abilityCounts.elite = Math.min(
-  abilityCounts.elite,
-  MAX_ABILITY_COUNTS.elite
-);
+  Object.assign(abilityCounts, {
+    minor: 1,
+    professional: 1,
+    elite: 1
+  }, data?.abilityCounts || {});
 
+  abilityCounts.professional = Math.min(
+    abilityCounts.professional,
+    MAX_ABILITY_COUNTS.professional
+  );
+
+  abilityCounts.elite = Math.min(
+    abilityCounts.elite,
+    MAX_ABILITY_COUNTS.elite
+  );
+}
     function readSavedData() {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (!raw) return null;
