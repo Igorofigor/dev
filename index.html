@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Башня — интерактивный лист</title>
+  <title>Башня Упадёт — интерактивный лист персонажа</title>
 
   <style>
     :root {
@@ -273,15 +273,15 @@
 
     .stress-scale {
       display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
+      flex-wrap: nowrap;
+      gap: 3px;
       align-items: center;
-      min-width: 300px;
+      min-width: 260px;
     }
 
     .stress-divider {
-      width: 2px;
-      height: 26px;
+      width: 1px;
+      height: 16px;
       background: var(--accent);
       margin: 0 2px;
     }
@@ -337,30 +337,12 @@
       border-bottom: 12px solid transparent;
       border-left: 22px solid var(--accent);
     }
+
     .stress-scale .tri-right .tri-shape {
-  border-top: 7px solid transparent;
-  border-bottom: 7px solid transparent;
-  border-left: 13px solid var(--accent);
-}
-
-.stress-scale .stress-triangle {
-  width: 15px;
-  height: 15px;
-  min-width: 15px;
-  min-height: 15px;
-}
-
-.stress-scale {
-  flex-wrap: nowrap;
-  gap: 3px;
-  min-width: 260px;
-}
-
-.stress-divider {
-  width: 1px;
-  height: 16px;
-  margin: 0 2px;
-}
+      border-top: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+      border-left: 13px solid var(--accent);
+    }
 
     .tri-left .tri-shape {
       border-top: 12px solid transparent;
@@ -383,6 +365,13 @@
     .stress-triangle {
       width: 26px;
       height: 26px;
+    }
+
+    .stress-scale .stress-triangle {
+      width: 15px;
+      height: 15px;
+      min-width: 15px;
+      min-height: 15px;
     }
 
     .stress-triangle.extra .tri-shape {
@@ -565,63 +554,60 @@
 <body>
   <main class="app">
     <h1>Башня Упадёт — интерактивный лист персонажа</h1>
-   
 
     <section class="card">
       <h2>Персонаж</h2>
 
       <div class="grid-2">
-  <div>
-    <label>Имя</label>
-    <input id="characterName" placeholder="Имя персонажа" />
-  </div>
+        <div>
+          <label>Имя</label>
+          <input id="characterName" placeholder="Имя персонажа" />
+        </div>
 
-  <div>
-    <label>Класс</label>
-    <select id="className">
-      <option></option>
-      <option>Страж Врат</option>
-      <option>Светоносец</option>
-      <option>Раствор Души</option>
-      <option>Экономант</option>
-      <option>Неболом</option>
-      <option>Росоход</option>
-      <option>Подкодыш</option>
-      <option>Паратехник</option>
-      <option>Красный Рукав</option>
-    </select>
-  </div>
+        <div>
+          <label>Класс</label>
+          <select id="className">
+            <option></option>
+            <option>Страж Врат</option>
+            <option>Светоносец</option>
+            <option>Раствор Души</option>
+            <option>Экономант</option>
+            <option>Неболом</option>
+            <option>Росоход</option>
+            <option>Подкодыш</option>
+            <option>Паратехник</option>
+            <option>Красный Рукав</option>
+          </select>
+        </div>
 
-  <div>
-    <label>Народ</label>
-    <select id="nationName">
-      <option></option>
-      <option>Народ Ножей</option>
-      <option>Народ Ядов</option>
-      <option>Народ Граней</option>
-      <option>Народ Железа</option>
-    </select>
-  </div>
+        <div>
+          <label>Народ</label>
+          <select id="nationName">
+            <option></option>
+            <option>Народ Ножей</option>
+            <option>Народ Ядов</option>
+            <option>Народ Граней</option>
+            <option>Народ Железа</option>
+          </select>
+        </div>
 
-  <div>
-    <label>Род Войск</label>
-    <select id="serviceBranch">
-      <option></option>
-      <option>Тяжёлая пехота</option>
-      <option>Мобильная пехота</option>
-      <option>Разведка</option>
-      <option>Военный инженер</option>
-      <option>Штурмовая пехота</option>
-      <option>Служба безопасности</option>
-      <option>Мистическая пехота</option>
-      <option>Полевой медик</option>
-      <option>Отдел исследований</option>
-    </select>
-  </div>
-</div>
+        <div>
+          <label>Род Войск</label>
+          <select id="serviceBranch">
+            <option></option>
+            <option>Тяжёлая пехота</option>
+            <option>Мобильная пехота</option>
+            <option>Разведка</option>
+            <option>Военный инженер</option>
+            <option>Штурмовая пехота</option>
+            <option>Служба безопасности</option>
+            <option>Мистическая пехота</option>
+            <option>Полевой медик</option>
+            <option>Отдел исследований</option>
+          </select>
+        </div>
+      </div>
 
-<label>Описание</label>
-<textarea id="description" placeholder="Внешность, манеры, важные детали, странности, связи..."></textarea>
       <label>Описание</label>
       <textarea id="description" placeholder="Внешность, манеры, важные детали, странности, связи..."></textarea>
     </section>
@@ -948,20 +934,17 @@
     const STORAGE_KEY = "towerCharacterSheetV11";
 
     const DEFAULT_TACTIC_COUNT = 2;
-const DEFAULT_RESOURCE_COUNT = 1;
+    const DEFAULT_RESOURCE_COUNT = 1;
 
-const MAX_RESOURCE_COUNT = 10;
+    const MAX_RESOURCE_COUNT = 10;
+    const MAX_ABILITY_COUNTS = {
+      professional: 5,
+      elite: 1
+    };
+    const MAX_PROTECTION_PER_RESISTANCE = 5;
 
-const MAX_ABILITY_COUNTS = {
-  professional: 5,
-  elite: 1
-};
-
-const MAX_PROTECTION_PER_RESISTANCE = 5;
-
-let autoSelectedSkills = new Set();
-let autoSelectedDomains = new Set();
-
+    let autoSelectedSkills = new Set();
+    let autoSelectedDomains = new Set();
     let tacticCount = DEFAULT_TACTIC_COUNT;
     let resourceCount = DEFAULT_RESOURCE_COUNT;
     let listenersAttached = false;
@@ -1078,67 +1061,63 @@ let autoSelectedDomains = new Set();
       }
     ];
 
-    
+    const nationDomainMap = {
+      "Народ Ножей": "ЧАЩА",
+      "Народ Ядов": "ПУСТОШЬ",
+      "Народ Граней": "ВОЛНЫ",
+      "Народ Железа": "ГОРИЗОНТ"
+    };
 
-const nationDomainMap = {
-  "Народ Ножей": "ЧАЩА",
-  "Народ Ядов": "ПУСТОШЬ",
-  "Народ Граней": "ВОЛНЫ",
-  "Народ Железа": "ГОРИЗОНТ"
-};
+    const serviceBranchSkillMap = {
+      "Тяжёлая пехота": "УБИВАТЬ",
+      "Мобильная пехота": "ПРОБИВАТЬСЯ",
+      "Разведка": "СКРЫВАТЬСЯ",
+      "Военный инженер": "ТЕХНИЧИТЬ",
+      "Штурмовая пехота": "ИЗБЕГАТЬ",
+      "Служба безопасности": "ГОВОРИТЬ",
+      "Мистическая пехота": "КОЛДОВАТЬ",
+      "Полевой медик": "ЧИНИТЬ",
+      "Отдел исследований": "УЗНАВАТЬ"
+    };
 
-const serviceBranchSkillMap = {
-  "Тяжёлая пехота": "УБИВАТЬ",
-  "Мобильная пехота": "ПРОБИВАТЬСЯ",
-  "Разведка": "СКРЫВАТЬСЯ",
-  "Военный инженер": "ТЕХНИЧИТЬ",
-  "Штурмовая пехота": "ИЗБЕГАТЬ",
-  "Служба безопасности": "ГОВОРИТЬ",
-  "Мистическая пехота": "КОЛДОВАТЬ",
-  "Полевой медик": "ЧИНИТЬ",
-  "Отдел исследований": "УЗНАВАТЬ"
-};
-
-const classDefaultsMap = {
-  "Страж Врат": {
-    skill: "УБИВАТЬ",
-    domain: "АРМИЯ"
-  },
-  "Светоносец": {
-    skill: "ПРОБИВАТЬСЯ",
-    domain: "МИР"
-  },
-  "Росоход": {
-    skill: "СКРЫВАТЬСЯ",
-    domain: "ЧАЩА"
-  },
-  "Экономант": {
-    skill: "КОЛДОВАТЬ",
-    domain: "КОРПОРАЦИИ"
-  },
-  "Неболом": {
-    skill: "УЗНАВАТЬ",
-    domain: "ГОРИЗОНТ"
-  },
-  "Красный Рукав": {
-    skill: "УБИВАТЬ",
-    domain: "МИР"
-  },
-  "Раствор Души": {
-    skill: "ГОВОРИТЬ",
-    domain: "МИР"
-  },
-  "Подкодыш": {
-    skill: "ПРОБИВАТЬСЯ",
-    domain: "ДУХИ"
-  },
-  "Паратехник": {
-    skill: "ТЕХНИЧИТЬ",
-    domain: "КОРПОРАЦИИ"
-  }
-};
-
-
+    const classDefaultsMap = {
+      "Страж Врат": {
+        skill: "УБИВАТЬ",
+        domain: "АРМИЯ"
+      },
+      "Светоносец": {
+        skill: "ПРОБИВАТЬСЯ",
+        domain: "МИР"
+      },
+      "Росоход": {
+        skill: "СКРЫВАТЬСЯ",
+        domain: "ЧАЩА"
+      },
+      "Экономант": {
+        skill: "КОЛДОВАТЬ",
+        domain: "КОРПОРАЦИИ"
+      },
+      "Неболом": {
+        skill: "УЗНАВАТЬ",
+        domain: "ГОРИЗОНТ"
+      },
+      "Красный Рукав": {
+        skill: "УБИВАТЬ",
+        domain: "МИР"
+      },
+      "Раствор Души": {
+        skill: "ГОВОРИТЬ",
+        domain: "МИР"
+      },
+      "Подкодыш": {
+        skill: "ПРОБИВАТЬСЯ",
+        domain: "ДУХИ"
+      },
+      "Паратехник": {
+        skill: "ТЕХНИЧИТЬ",
+        domain: "КОРПОРАЦИИ"
+      }
+    };
 
     const skillOptions = [
       "",
@@ -1156,119 +1135,100 @@ const classDefaultsMap = {
       return document.getElementById(id);
     }
 
-  const serviceBranch = byId("serviceBranch")?.value;
-  const className = byId("className")?.value;
-  const nationName = byId("nationName")?.value;
-
-  const branchSkill = serviceBranchSkillMap[serviceBranch];
-  if (branchSkill) {
-    desiredSkills.add(branchSkill);
-  }
-
-  const classDefaults = classDefaultsMap[className];
-  if (classDefaults) {
-    desiredSkills.add(classDefaults.skill);
-    desiredDomains.add(classDefaults.domain);
-  }
-
-  const nationDomain = nationDomainMap[nationName];
-  if (nationDomain) {
-    desiredDomains.add(nationDomain);
-  }
-
-  return {
-    desiredSkills,
-    desiredDomains
-  };
-
-  autoSelectedSkills.forEach(skillName => {
-    if (!desiredSkills.has(skillName)) {
-      const checkbox = getSkillCheckbox(skillName);
-
-      if (checkbox) {
-        checkbox.checked = false;
-      }
-    }
-  });
-
-  autoSelectedDomains.forEach(domainName => {
-    if (!desiredDomains.has(domainName)) {
-      const checkbox = getDomainCheckbox(domainName);
-
-      if (checkbox) {
-        checkbox.checked = false;
-      }
-    }
-  });
-
-  desiredSkills.forEach(skillName => {
-    const checkbox = getSkillCheckbox(skillName);
-
-    if (checkbox) {
-      checkbox.checked = true;
-    }
-  });
-
-  desiredDomains.forEach(domainName => {
-    const checkbox = getDomainCheckbox(domainName);
-
-    if (checkbox) {
-      checkbox.checked = true;
-    }
-  });
-
-  autoSelectedSkills = desiredSkills;
-  autoSelectedDomains = desiredDomains;
-
     function findSkillIndex(skillName) {
-  return defaultSkills.findIndex(skill => skill.name === skillName) + 1;
-}
+      return defaultSkills.findIndex(skill => skill.name === skillName) + 1;
+    }
 
-function findDomainIndex(domainName) {
-  return defaultDomains.findIndex(domain => domain.name === domainName) + 1;
-}
+    function findDomainIndex(domainName) {
+      return defaultDomains.findIndex(domain => domain.name === domainName) + 1;
+    }
 
-function checkSkillByName(skillName) {
-  const index = findSkillIndex(skillName);
-  if (!index) return;
+    function getSkillCheckbox(skillName) {
+      const index = findSkillIndex(skillName);
+      if (!index) return null;
 
-  const checkbox = byId(`skill${index}HasSkill`);
-  if (checkbox) {
-    checkbox.checked = true;
-  }
-}
+      return byId(`skill${index}HasSkill`);
+    }
 
-function checkDomainByName(domainName) {
-  const index = findDomainIndex(domainName);
-  if (!index) return;
+    function getDomainCheckbox(domainName) {
+      const index = findDomainIndex(domainName);
+      if (!index) return null;
 
-  const checkbox = byId(`domain${index}HasDomain`);
-  if (checkbox) {
-    checkbox.checked = true;
-  }
-}
+      return byId(`domain${index}HasDomain`);
+    }
 
-function applyAutomaticSelections() {
-  const serviceBranch = byId("serviceBranch")?.value;
-  const className = byId("className")?.value;
-  const nationName = byId("nationName")?.value;
+    function getDesiredAutomaticSelections() {
+      const desiredSkills = new Set();
+      const desiredDomains = new Set();
 
-  const branchSkill = serviceBranchSkillMap[serviceBranch];
-  if (branchSkill) {
-    checkSkillByName(branchSkill);
-  }
+      const serviceBranch = byId("serviceBranch")?.value;
+      const className = byId("className")?.value;
+      const nationName = byId("nationName")?.value;
 
-  const classDefaults = classDefaultsMap[className];
-  if (classDefaults) {
-    checkSkillByName(classDefaults.skill);
-    checkDomainByName(classDefaults.domain);
-  }
+      const branchSkill = serviceBranchSkillMap[serviceBranch];
+      if (branchSkill) {
+        desiredSkills.add(branchSkill);
+      }
 
-  const nationDomain = nationDomainMap[nationName];
-  if (nationDomain) {
-    checkDomainByName(nationDomain);
-  }
-}
+      const classDefaults = classDefaultsMap[className];
+      if (classDefaults) {
+        desiredSkills.add(classDefaults.skill);
+        desiredDomains.add(classDefaults.domain);
+      }
+
+      const nationDomain = nationDomainMap[nationName];
+      if (nationDomain) {
+        desiredDomains.add(nationDomain);
+      }
+
+      return {
+        desiredSkills,
+        desiredDomains
+      };
+    }
+
+    function applyAutomaticSelections() {
+      const { desiredSkills, desiredDomains } = getDesiredAutomaticSelections();
+
+      autoSelectedSkills.forEach(skillName => {
+        if (!desiredSkills.has(skillName)) {
+          const checkbox = getSkillCheckbox(skillName);
+
+          if (checkbox) {
+            checkbox.checked = false;
+          }
+        }
+      });
+
+      autoSelectedDomains.forEach(domainName => {
+        if (!desiredDomains.has(domainName)) {
+          const checkbox = getDomainCheckbox(domainName);
+
+          if (checkbox) {
+            checkbox.checked = false;
+          }
+        }
+      });
+
+      desiredSkills.forEach(skillName => {
+        const checkbox = getSkillCheckbox(skillName);
+
+        if (checkbox) {
+          checkbox.checked = true;
+        }
+      });
+
+      desiredDomains.forEach(domainName => {
+        const checkbox = getDomainCheckbox(domainName);
+
+        if (checkbox) {
+          checkbox.checked = true;
+        }
+      });
+
+      autoSelectedSkills = desiredSkills;
+      autoSelectedDomains = desiredDomains;
+    }
 
     function escapeHtml(text) {
       return String(text)
@@ -1539,17 +1499,18 @@ function applyAutomaticSelections() {
       }
     }
 
-   function addResourceRow() {
-  if (resourceCount >= MAX_RESOURCE_COUNT) {
-    alert("Нельзя добавить больше 10 ресурсов.");
-    return;
-  }
+    function addResourceRow() {
+      if (resourceCount >= MAX_RESOURCE_COUNT) {
+        alert("Нельзя добавить больше 10 ресурсов.");
+        return;
+      }
 
-  preserveDataAndRebuild(() => {
-    resourceCount += 1;
-    buildResourceRows();
-  });
-}
+      preserveDataAndRebuild(() => {
+        resourceCount += 1;
+        buildResourceRows();
+      });
+    }
+
     function removeResourceRow() {
       if (resourceCount <= 0) return;
 
@@ -1605,27 +1566,27 @@ function applyAutomaticSelections() {
     }
 
     function addSlot(kind, type) {
-  if (kind === "ability") {
-    const max = MAX_ABILITY_COUNTS[type];
+      if (kind === "ability") {
+        const max = MAX_ABILITY_COUNTS[type];
 
-    if (max !== undefined && countMaps[kind][type] >= max) {
-      if (type === "professional") {
-        alert("Нельзя добавить больше 5 профессиональных способностей.");
-      } else if (type === "elite") {
-        alert("Нельзя добавить больше 1 элитной способности.");
-      } else {
-        alert("Достигнут предел ячеек.");
+        if (max !== undefined && countMaps[kind][type] >= max) {
+          if (type === "professional") {
+            alert("Нельзя добавить больше 5 профессиональных способностей.");
+          } else if (type === "elite") {
+            alert("Нельзя добавить больше 1 элитной способности.");
+          } else {
+            alert("Достигнут предел ячеек.");
+          }
+
+          return;
+        }
       }
 
-      return;
+      preserveDataAndRebuild(() => {
+        countMaps[kind][type] += 1;
+        buildSlotRows(kind, type);
+      });
     }
-  }
-
-  preserveDataAndRebuild(() => {
-    countMaps[kind][type] += 1;
-    buildSlotRows(kind, type);
-  });
-}
 
     function removeSlot(kind, type) {
       if (countMaps[kind][type] <= 0) return;
@@ -1642,20 +1603,6 @@ function applyAutomaticSelections() {
       rebuildAction();
       applyData(data);
       saveSheet(false);
-    }
-
-    function countLines(id) {
-      const element = byId(id);
-      if (!element) return 0;
-
-      const value = element.value.trim();
-      if (!value) return 0;
-
-      return value
-        .split("\n")
-        .map(line => line.trim())
-        .filter(Boolean)
-        .length;
     }
 
     function countFilledSlots(kind, type) {
@@ -1681,15 +1628,17 @@ function applyAutomaticSelections() {
       if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return few;
       return many;
     }
-function clampProtection(value) {
-  const number = Number(value || 0);
 
-  if (Number.isNaN(number)) return 0;
-  if (number < 0) return 0;
-  if (number > MAX_PROTECTION_PER_RESISTANCE) return MAX_PROTECTION_PER_RESISTANCE;
+    function clampProtection(value) {
+      const number = Number(value || 0);
 
-  return number;
-}
+      if (Number.isNaN(number)) return 0;
+      if (number < 0) return 0;
+      if (number > MAX_PROTECTION_PER_RESISTANCE) return MAX_PROTECTION_PER_RESISTANCE;
+
+      return number;
+    }
+
     function clampExtraSlots(value) {
       const number = Number(value || 0);
 
@@ -1730,10 +1679,11 @@ function clampProtection(value) {
 
       stressTracks.forEach(track => {
         const manualProtection = clampProtection(byId(`protectionManual_${track.id}`).value);
-const armorProtection = Number(armorBonuses[track.id].protection || 0);
-const totalProtection = clampProtection(manualProtection + armorProtection);
+        const armorProtection = Number(armorBonuses[track.id].protection || 0);
+        const totalProtection = clampProtection(manualProtection + armorProtection);
 
-byId(`protectionManual_${track.id}`).value = manualProtection;
+        byId(`protectionManual_${track.id}`).value = manualProtection;
+
         const manualExtraSlotsRaw = Number(byId(`extraSlotsManual_${track.id}`).value || 0);
         const manualExtraSlots = clampExtraSlots(manualExtraSlotsRaw);
         const armorExtraSlots = armorBonuses[track.id].extraSlots;
@@ -1742,7 +1692,7 @@ byId(`protectionManual_${track.id}`).value = manualProtection;
         byId(`extraSlotsManual_${track.id}`).value = manualExtraSlots;
 
         byId(`protectionTotal_${track.id}`).textContent =
-  `Итого: ${totalProtection}/5 (${manualProtection} + ${armorProtection} броня)`;
+          `Итого: ${totalProtection}/5 (${manualProtection} + ${armorProtection} броня)`;
 
         byId(`extraSlotsTotal_${track.id}`).textContent =
           `Итого: ${totalExtraSlots}/5 (${manualExtraSlots} + ${armorExtraSlots} броня)`;
@@ -1863,16 +1813,15 @@ byId(`protectionManual_${track.id}`).value = manualProtection;
     }
 
     function renderCounters() {
-  applyAutomaticSelections();
-  updateStressScales();
-  renderSkillDomainCounters();
-  renderTacticCounters();
-  renderResourceCounters();
-  renderContactCounters();
-  renderConsequenceCounters();
-  renderAbilityCounters();
-}
-
+      applyAutomaticSelections();
+      updateStressScales();
+      renderSkillDomainCounters();
+      renderTacticCounters();
+      renderResourceCounters();
+      renderContactCounters();
+      renderConsequenceCounters();
+      renderAbilityCounters();
+    }
 
     function renderSkillDomainCounters() {
       let skills = 0;
@@ -2022,41 +1971,42 @@ byId(`protectionManual_${track.id}`).value = manualProtection;
     }
 
     function applyCountsFromData(data) {
-  tacticCount = Number(data?.tacticCount || DEFAULT_TACTIC_COUNT);
+      tacticCount = Math.max(0, Number(data?.tacticCount ?? DEFAULT_TACTIC_COUNT));
 
-  resourceCount = Math.min(
-    Number(data?.resourceCount || DEFAULT_RESOURCE_COUNT),
-    MAX_RESOURCE_COUNT
-  );
+      resourceCount = Math.min(
+        Math.max(0, Number(data?.resourceCount ?? DEFAULT_RESOURCE_COUNT)),
+        MAX_RESOURCE_COUNT
+      );
 
-  Object.assign(contactCounts, {
-    personal: 1,
-    faction: 1,
-    world: 1,
-    players: 1
-  }, data?.contactCounts || {});
+      Object.assign(contactCounts, {
+        personal: 1,
+        faction: 1,
+        world: 1,
+        players: 1
+      }, data?.contactCounts || {});
 
-  Object.assign(consequenceCounts, {
-    minor: 1,
-    major: 1
-  }, data?.consequenceCounts || {});
+      Object.assign(consequenceCounts, {
+        minor: 1,
+        major: 1
+      }, data?.consequenceCounts || {});
 
-  Object.assign(abilityCounts, {
-    minor: 1,
-    professional: 1,
-    elite: 1
-  }, data?.abilityCounts || {});
+      Object.assign(abilityCounts, {
+        minor: 1,
+        professional: 1,
+        elite: 1
+      }, data?.abilityCounts || {});
 
-  abilityCounts.professional = Math.min(
-    abilityCounts.professional,
-    MAX_ABILITY_COUNTS.professional
-  );
+      abilityCounts.professional = Math.min(
+        Math.max(0, Number(abilityCounts.professional)),
+        MAX_ABILITY_COUNTS.professional
+      );
 
-  abilityCounts.elite = Math.min(
-    abilityCounts.elite,
-    MAX_ABILITY_COUNTS.elite
-  );
-}
+      abilityCounts.elite = Math.min(
+        Math.max(0, Number(abilityCounts.elite)),
+        MAX_ABILITY_COUNTS.elite
+      );
+    }
+
     function readSavedData() {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (!raw) return null;
