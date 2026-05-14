@@ -6,57 +6,153 @@
   <title>Башня Упадёт — интерактивный лист персонажа</title>
   <style>
     :root{--bg:#fff;--card:#fff;--text:#320216;--muted:#5a0002cc;--line:#5a000244;--accent:#5a0002;--accent-soft:#5a000218;--button:#5a0002;--button-text:#fff}*{box-sizing:border-box}body{margin:0;padding:16px;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}.app{max-width:1120px;margin:0 auto 80px}h1,h2,h3{color:var(--accent);text-transform:uppercase;letter-spacing:.04em}h1{margin:0 0 8px;font-size:30px;line-height:1.1}h2{margin:0;font-size:22px}h3{margin:0;font-size:16px}p{margin-top:0;color:var(--muted);line-height:1.45}.card{margin-bottom:16px;padding:16px;border:2px solid var(--accent);border-radius:0;background:var(--card);box-shadow:8px 8px 0 var(--accent-soft)}.title-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.title-actions{display:inline-flex;align-items:center;gap:8px}label{display:block;margin-top:10px;margin-bottom:5px;font-size:14px;font-weight:800;color:var(--muted)}input,textarea,select,button{width:100%;border:1px solid var(--accent);border-radius:0;padding:10px;font:inherit;background:#fff;color:var(--text)}input:focus,textarea:focus,select:focus,button:focus{outline:2px solid var(--accent);outline-offset:2px}textarea{min-height:70px;resize:vertical}button{background:var(--button);color:var(--button-text);font-weight:900;cursor:pointer;text-transform:uppercase;letter-spacing:.04em}button.secondary{background:#fff;color:var(--accent)}.triangle-button{width:34px;min-width:34px;height:34px;padding:0;border:none;background:transparent;display:inline-flex;align-items:center;justify-content:center}.triangle-button::before{content:"";display:block;width:0;height:0}.triangle-button.right::before{border-top:15px solid transparent;border-bottom:15px solid transparent;border-left:26px solid var(--accent)}.triangle-button.left::before{border-top:15px solid transparent;border-bottom:15px solid transparent;border-right:26px solid var(--accent)}.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.dice-row{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.table-wrap{width:100%;overflow-x:auto}.table{width:100%;min-width:760px;border-collapse:collapse;margin-top:8px}.wide-table{min-width:1040px}.table th,.table td{border:1px solid var(--accent);padding:8px;vertical-align:top}.table th{text-align:left;color:#fff;font-size:13px;background:var(--accent);white-space:nowrap;text-transform:uppercase;letter-spacing:.04em}.table input,.table textarea,.table select{margin:0;min-height:unset}.table textarea{min-height:54px}.counter-row{margin:6px 0 12px}.counter{display:inline-flex;align-items:center;gap:6px;margin:4px 6px 4px 0;padding:7px 10px;border:1px solid var(--accent);background:#fff;color:var(--accent);font-size:14px;font-weight:900;text-transform:uppercase;letter-spacing:.03em}.hint{margin-top:4px;font-size:13px;color:var(--muted)}.small-number{max-width:84px}.inline-total{margin-top:5px;font-size:13px;font-weight:900;color:var(--accent)}.stress-count{font-weight:900;color:var(--accent);white-space:nowrap}.stress-scale{display:flex;flex-wrap:nowrap;gap:3px;align-items:center;min-width:260px}.stress-divider{width:1px;height:16px;background:var(--accent);margin:0 2px}.tri-check{position:relative;display:inline-flex;align-items:center;justify-content:center;width:auto;min-width:24px;min-height:24px;margin:0;padding:0;color:var(--accent);cursor:pointer;user-select:none}.tri-check input{position:absolute;opacity:0;width:24px;height:24px;margin:0;padding:0}.tri-shape{display:inline-block;width:0;height:0;opacity:.45;transition:opacity .12s ease,transform .12s ease}.tri-check input:checked+.tri-shape{opacity:1;transform:scale(1.12)}.tri-check input:disabled+.tri-shape{opacity:.08;cursor:not-allowed}.tri-check.locked{cursor:not-allowed}.tri-right .tri-shape{border-top:12px solid transparent;border-bottom:12px solid transparent;border-left:22px solid var(--accent)}.stress-scale .tri-right .tri-shape{border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:13px solid var(--accent)}.tri-left .tri-shape{border-top:12px solid transparent;border-bottom:12px solid transparent;border-right:22px solid var(--accent)}.tri-up .tri-shape{border-left:12px solid transparent;border-right:12px solid transparent;border-bottom:22px solid var(--accent)}.tri-down .tri-shape{border-left:12px solid transparent;border-right:12px solid transparent;border-top:22px solid var(--accent)}.stress-triangle{width:26px;height:26px}.stress-scale .stress-triangle{width:15px;height:15px;min-width:15px;min-height:15px}.stress-triangle.extra .tri-shape{opacity:.22}.stress-triangle.extra input:checked+.tri-shape{opacity:1}.traits-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}.trait-column{border:2px solid var(--accent);padding:10px;background:#fff}.trait-list{display:grid;gap:6px}.trait-card{border:1px solid var(--accent);padding:7px;background:#fff}.trait-top{display:flex;align-items:center;justify-content:space-between;gap:8px}.trait-name{position:relative;display:inline-block;width:auto;margin:0;padding:0;border:none;background:transparent;color:var(--accent);font-weight:1000;text-align:left;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:4px;text-transform:uppercase;letter-spacing:.04em}.trait-name:hover,.trait-name:focus{background:transparent;color:var(--accent);outline:none}.trait-tooltip{display:none;position:absolute;z-index:20;left:0;bottom:calc(100% + 8px);width:min(380px,82vw);padding:10px;border:1px solid var(--accent);background:var(--accent);color:#fff;font-weight:700;line-height:1.35;text-transform:none;letter-spacing:0;box-shadow:8px 8px 0 var(--accent-soft)}.trait-name:hover .trait-tooltip,.trait-name:focus .trait-tooltip{display:block}.trait-checks{display:inline-flex;flex-wrap:nowrap;gap:7px;align-items:center}.trait-note{margin-top:6px;padding:7px;font-size:14px}.mastery-note{display:none}.slot-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.slot-box{border:1px solid var(--accent);padding:10px;background:#fff}.slot-list{display:grid;gap:8px}.slot-entry{border:1px solid var(--accent);padding:8px;background:#fff}.slot-entry textarea,.slot-entry input{padding:8px;min-height:54px}.log{min-height:110px;white-space:pre-wrap;background:#fff;padding:10px;border:1px solid var(--accent);color:var(--text);font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:14px}.toolbar{position:sticky;bottom:0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:20px;padding:12px 0 0;background:linear-gradient(to top,#fff,#ffffffdd)}@media(max-width:760px){body{padding:12px}.grid-2,.slot-grid{grid-template-columns:1fr}.dice-row{grid-template-columns:repeat(3,1fr)}.traits-grid{grid-template-columns:1fr}.toolbar{grid-template-columns:1fr}}
+
     .floating-roll-button {
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
 
-  position: fixed !important;
-  right: 24px;
-  bottom: 24px;
-  z-index: 2000;
+      position: fixed !important;
+      right: 24px;
+      bottom: 24px;
+      z-index: 2000;
 
-  width: 76px !important;
-  height: 76px !important;
-  padding: 0;
+      width: 76px !important;
+      height: 76px !important;
+      padding: 0;
 
-  border: 2px solid var(--accent);
-  background: var(--button);
-  color: var(--button-text);
-  box-shadow: 8px 8px 0 var(--accent-soft);
+      border: 2px solid var(--accent);
+      background: var(--button);
+      color: var(--button-text);
+      box-shadow: 8px 8px 0 var(--accent-soft);
 
-  transform: rotate(45deg);
-  transform-origin: center;
+      transform: rotate(45deg);
+      transform-origin: center;
 
-  font-size: 18px;
-  font-weight: 1000;
-}
+      font-size: 18px;
+      font-weight: 1000;
+    }
 
-.floating-roll-button span {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    .floating-roll-button span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-  width: 100%;
-  height: 100%;
+      width: 100%;
+      height: 100%;
 
-  transform: rotate(-45deg);
-}
-.roll-modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 3000;
-  padding: 16px;
-  background: #32021655;
-  overflow: auto;
-}
+      transform: rotate(-45deg);
+    }
 
-.roll-modal.open {
-  display: flex !important;
-  align-items: flex-start;
-  justify-content: center;
-}
+    .roll-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      padding: 16px;
+      background: #32021655;
+      overflow: auto;
+    }
+
+    .roll-modal.open {
+      display: flex !important;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .roll-modal-panel {
+      width: min(760px, 100%);
+      margin: 24px auto;
+      padding: 16px;
+      border: 2px solid var(--accent);
+      background: #fff;
+      color: var(--text);
+      box-shadow: 12px 12px 0 var(--accent-soft);
+    }
+
+    .roll-modal-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .roll-modal-header h2 {
+      margin: 0;
+    }
+
+    .roll-modal-close {
+      width: 44px;
+      min-width: 44px;
+      height: 44px;
+      padding: 0;
+      line-height: 1;
+      font-size: 24px;
+    }
+
+    .roll-menu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .roll-menu-dice-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      margin: 12px 0;
+    }
+
+    .roll-menu-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .roll-mastery-hint {
+      margin-top: 8px;
+      padding: 8px;
+      border: 1px solid var(--accent);
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .roll-history {
+      max-height: 220px;
+      overflow: auto;
+      min-height: 90px;
+      white-space: pre-wrap;
+      background: #fff;
+      padding: 10px;
+      border: 1px solid var(--accent);
+      color: var(--text);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 14px;
+    }
+
+    @media(max-width:760px){
+      .floating-roll-button {
+        right: 16px;
+        bottom: 16px;
+        width: 64px !important;
+        height: 64px !important;
+        font-size: 15px;
+      }
+
+      .roll-menu-grid,
+      .roll-menu-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .roll-menu-dice-row {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
   </style>
 </head>
 <body>
@@ -83,9 +179,66 @@
       <div class="slot-box"><div class="title-row"><h3>Мировые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('contact','world')"></button><button class="triangle-button right" type="button" onclick="addSlot('contact','world')"></button></div></div><div id="contact_world_rows" class="slot-list"></div></div>
       <div class="slot-box"><div class="title-row"><h3>Персонажи игроков</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('contact','players')"></button><button class="triangle-button right" type="button" onclick="addSlot('contact','players')"></button></div></div><div id="contact_players_rows" class="slot-list"></div></div>
     </div></section>
+
     <button id="openRollMenuButton" class="floating-roll-button" type="button" onclick="openRollMenu()">
-  <span>ПРВ</span>
-</button>
+      <span>ПРВ</span>
+    </button>
+
+    <div id="rollModal" class="roll-modal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="roll-modal-panel" role="document">
+        <div class="roll-modal-header">
+          <div>
+            <h2 id="rollMenuTitle">Автоматические броски</h2>
+            <p id="rollMenuSubtitle" class="hint">Выберите шаблон или бросьте нужную кость вручную.</p>
+          </div>
+          <button class="roll-modal-close" type="button" onclick="closeRollMenu()" aria-label="Закрыть меню бросков">×</button>
+        </div>
+
+        <label>Шаблон из листа</label>
+        <select id="advancedRollPreset" onchange="useRollPreset()">
+          <option value="">Без шаблона</option>
+        </select>
+
+        <div class="roll-menu-grid">
+          <div>
+            <label>Кость</label>
+            <select id="advancedRollDie">
+              <option value="4">D4</option>
+              <option value="6" selected>D6</option>
+              <option value="8">D8</option>
+              <option value="10">D10</option>
+              <option value="12">D12</option>
+            </select>
+          </div>
+          <div>
+            <label>Модификатор</label>
+            <input id="advancedRollModifier" type="number" value="0" />
+          </div>
+        </div>
+
+        <label>Причина броска</label>
+        <input id="advancedRollReason" placeholder="Например: УБИВАТЬ, ресурс, тактика..." />
+
+        <div id="rollMasteryHint" class="roll-mastery-hint" style="display:none"></div>
+
+        <div class="roll-menu-dice-row">
+          <button type="button" onclick="writeRollResult(4, Number(byId('advancedRollModifier').value||0), byId('advancedRollReason').value.trim())">D4</button>
+          <button type="button" onclick="writeRollResult(6, Number(byId('advancedRollModifier').value||0), byId('advancedRollReason').value.trim())">D6</button>
+          <button type="button" onclick="writeRollResult(8, Number(byId('advancedRollModifier').value||0), byId('advancedRollReason').value.trim())">D8</button>
+          <button type="button" onclick="writeRollResult(10, Number(byId('advancedRollModifier').value||0), byId('advancedRollReason').value.trim())">D10</button>
+          <button type="button" onclick="writeRollResult(12, Number(byId('advancedRollModifier').value||0), byId('advancedRollReason').value.trim())">D12</button>
+        </div>
+
+        <div class="roll-menu-actions">
+          <button type="button" onclick="performAdvancedRoll()">Бросить выбранную кость</button>
+          <button class="secondary" type="button" onclick="closeRollMenu()">Закрыть</button>
+        </div>
+
+        <label>Последние броски</label>
+        <div id="advancedRollHistory" class="roll-history"></div>
+      </div>
+    </div>
+
     <section class="card"><div class="title-row"><h2>Последствия</h2></div><div id="consequenceCounters" class="counter-row"></div><div class="slot-grid"><div class="slot-box"><div class="title-row"><h3>Малые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('consequence','minor')"></button><button class="triangle-button right" type="button" onclick="addSlot('consequence','minor')"></button></div></div><div id="consequence_minor_rows" class="slot-list"></div></div><div class="slot-box"><div class="title-row"><h3>Значимые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('consequence','major')"></button><button class="triangle-button right" type="button" onclick="addSlot('consequence','major')"></button></div></div><div id="consequence_major_rows" class="slot-list"></div></div></div></section>
     <section class="card"><div class="title-row"><h2>Способности</h2></div><div id="abilityCounters" class="counter-row"></div><div class="slot-grid"><div class="slot-box"><div class="title-row"><h3>Малые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('ability','minor')"></button><button class="triangle-button right" type="button" onclick="addSlot('ability','minor')"></button></div></div><div id="ability_minor_rows" class="slot-list"></div></div><div class="slot-box"><div class="title-row"><h3>Профессиональные</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('ability','professional')"></button><button class="triangle-button right" type="button" onclick="addSlot('ability','professional')"></button></div></div><div id="ability_professional_rows" class="slot-list"></div></div><div class="slot-box"><div class="title-row"><h3>Элитные</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('ability','elite')"></button><button class="triangle-button right" type="button" onclick="addSlot('ability','elite')"></button></div></div><div id="ability_elite_rows" class="slot-list"></div></div></div></section>
     <section class="card"><h2>Броски костей</h2><div class="dice-row"><button onclick="rollDie(4)">D4</button><button onclick="rollDie(6)">D6</button><button onclick="rollDie(8)">D8</button><button onclick="rollDie(10)">D10</button><button onclick="rollDie(12)">D12</button></div><div class="grid-2"><div><label>Модификатор</label><input id="rollModifier" type="number" value="0" /></div><div><label>Причина броска</label><input id="rollReason" placeholder="Например: УБИВАТЬ, ИЗБЕГАТЬ, сопротивление..." /></div></div><label>Журнал бросков</label><div id="rollLog" class="log"></div></section>
@@ -98,6 +251,7 @@
     const MAX_ABILITY_COUNTS={professional:5,elite:1};
     let autoSelectedSkills=new Set(),autoSelectedDomains=new Set(),autoSelectedSkillMasteries=new Set();
     let tacticCount=DEFAULT_TACTIC_COUNT,resourceCount=DEFAULT_RESOURCE_COUNT,listenersAttached=false;
+    let rollMenuEventsAttached=false;
     const contactCounts={personal:1,faction:1,world:1,players:1};
     const consequenceCounts={minor:1,major:1};
     const abilityCounts={minor:1,professional:1,elite:1};
@@ -123,7 +277,7 @@
       {name:"АРМИЯ",description:"Область для взаимодействия с чем угодно военным: от оружия и техники до людей и компьютерных программ. Ещё она отвечает за укреплённые или патрулируемые локации в Башне."},
       {name:"БЕЗУМИЕ",description:"Область, обозначающая сумасшедшее влияние Башни и всех, кто ей подвергся, а также не связанных с Башней культистов."},
       {name:"МИР",description:"Область, отвечающая за все не-военные организации, места, людей и занятия, например за разговор с торговцем или готовку. Кроме того, она отвечает за места в Башне, похожие на человеческую городскую застройку."},
-      {name:"КОРПОРАЦИИ",description:"Область могучих частных компаний, ставших полубожественной силой, и контролируемых ими мест Башни."},
+      {name:"КОРПОРАЦИИ",description:"Область могучих частных компаний, ставших полубожественной силой, и контролируемыми ими мест Башни."},
       {name:"ДУХИ",description:"Область духов природы и компьютерных программ, а также их вотчин: в Башне другие реки и леса, зато встречаются подкодыши и духи предметов."}
     ];
     const nationDomainMap={"Народ Ножей":"ЧАЩА","Народ Ядов":"ПУСТОШЬ","Народ Граней":"ВОЛНЫ","Народ Железа":"ГОРИЗОНТ"};
@@ -131,12 +285,14 @@
     const classDefaultsMap={"Страж Врат":{skill:"УБИВАТЬ",domain:"АРМИЯ"},"Светоносец":{skill:"ПРОБИВАТЬСЯ",domain:"МИР"},"Росоход":{skill:"СКРЫВАТЬСЯ",domain:"ЧАЩА"},"Экономант":{skill:"КОЛДОВАТЬ",domain:"КОРПОРАЦИИ"},"Неболом":{skill:"УЗНАВАТЬ",domain:"ГОРИЗОНТ"},"Красный Рукав":{skill:"УБИВАТЬ",domain:"МИР"},"Раствор Души":{skill:"ГОВОРИТЬ",domain:"МИР"},"Подкодыш":{skill:"ПРОБИВАТЬСЯ",domain:"ДУХИ"},"Паратехник":{skill:"ТЕХНИЧИТЬ",domain:"КОРПОРАЦИИ"}};
     const skillOptions=["",...defaultSkills.map(skill=>skill.name)];
     const armorSlots=["Голова","Тело","Особое","Рюкзак"];
+
     function byId(id){return document.getElementById(id)}
     function findSkillIndex(skillName){return defaultSkills.findIndex(skill=>skill.name===skillName)+1}
     function findDomainIndex(domainName){return defaultDomains.findIndex(domain=>domain.name===domainName)+1}
     function getSkillCheckbox(skillName){const index=findSkillIndex(skillName);return index?byId(`skill${index}HasSkill`):null}
     function getSkillMasteryCheckbox(skillName){const index=findSkillIndex(skillName);return index?byId(`skill${index}HasMastery`):null}
     function getDomainCheckbox(domainName){const index=findDomainIndex(domainName);return index?byId(`domain${index}HasDomain`):null}
+
     function getDesiredAutomaticSelections(){
       const desiredSkills=new Set(),desiredDomains=new Set(),desiredSkillMasteries=new Set(),skillSourceCounts={};
       function addSkillSource(skillName){if(!skillName)return;desiredSkills.add(skillName);skillSourceCounts[skillName]=(skillSourceCounts[skillName]||0)+1;if(skillSourceCounts[skillName]>=2)desiredSkillMasteries.add(skillName)}
@@ -147,6 +303,7 @@
       if(nationDomain)desiredDomains.add(nationDomain);
       return{desiredSkills,desiredDomains,desiredSkillMasteries};
     }
+
     function applyAutomaticSelections(){
       const{desiredSkills,desiredDomains,desiredSkillMasteries}=getDesiredAutomaticSelections();
       autoSelectedSkills.forEach(skillName=>{if(!desiredSkills.has(skillName)){const checkbox=getSkillCheckbox(skillName);if(checkbox)checkbox.checked=false}});
@@ -157,9 +314,11 @@
       desiredDomains.forEach(domainName=>{const checkbox=getDomainCheckbox(domainName);if(checkbox)checkbox.checked=true});
       autoSelectedSkills=new Set(desiredSkills);autoSelectedDomains=new Set(desiredDomains);autoSelectedSkillMasteries=new Set(desiredSkillMasteries);
     }
+
     function escapeHtml(text){return String(text).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
     function makeOptions(options,selected=""){return options.map(option=>`<option value="${escapeHtml(option)}" ${option===selected?"selected":""}>${escapeHtml(option)}</option>`).join("")}
     function makeResistanceOptions(selected=""){return `<option value=""></option>`+stressTracks.map(track=>`<option value="${track.id}" ${track.id===selected?"selected":""}>${track.label}</option>`).join("")}
+
     function buildResistanceRows(){const container=byId("resistanceRows");container.innerHTML="";stressTracks.forEach(track=>{let extraDots="",normalDots="";for(let i=1;i<=5;i++)extraDots+=`<label class="tri-check tri-right stress-triangle extra" id="extraDot_${track.id}_${i}" title="Дополнительный слот ${i}"><input id="stressExtra_${track.id}_${i}" type="checkbox" data-track="${track.id}" data-kind="extra" data-index="${i}" /><span class="tri-shape"></span></label>`;for(let i=1;i<=10;i++)normalDots+=`<label class="tri-check tri-right stress-triangle" title="Обычный стресс ${i}"><input id="stressNormal_${track.id}_${i}" type="checkbox" data-track="${track.id}" data-kind="normal" data-index="${i}" /><span class="tri-shape"></span></label>`;container.innerHTML+=`<tr><td><strong>${track.label}</strong></td><td><input id="protectionManual_${track.id}" class="small-number" type="number" value="0" /><div id="protectionTotal_${track.id}" class="inline-total">Итого: 0</div></td><td><input id="extraSlotsManual_${track.id}" class="small-number" type="number" min="0" max="5" value="0" /><div id="extraSlotsTotal_${track.id}" class="inline-total">Итого: 0/5</div></td><td><div class="stress-scale">${extraDots}<span class="stress-divider"></span>${normalDots}</div></td><td><span id="stressCount_${track.id}" class="stress-count">0/10</span></td></tr>`})}
     function buildPartyRows(){const container=byId("partyRows");container.innerHTML="";for(let i=1;i<=5;i++)container.innerHTML+=`<tr><td><input id="party${i}Name" placeholder="Персонаж ${i}" /></td><td><input id="party${i}Stress" type="number" min="0" value="0" /></td><td><input id="party${i}Protection" type="number" value="0" /></td><td><input id="party${i}Note" placeholder="Роль, состояние, опасность..." /></td></tr>`}
     function buildSkillRows(){const container=byId("skillRows");container.innerHTML="";defaultSkills.forEach((skill,index)=>{const i=index+1,name=escapeHtml(skill.name),description=escapeHtml(skill.description);container.innerHTML+=`<div class="trait-card"><div class="trait-top"><button type="button" class="trait-name">${name}<span class="trait-tooltip">${description}</span></button><div class="trait-checks"><label class="tri-check tri-up" title="Навык"><input id="skill${i}HasSkill" type="checkbox" /><span class="tri-shape"></span></label><label class="tri-check tri-up" title="Мастерство"><input id="skill${i}HasMastery" type="checkbox" /><span class="tri-shape"></span></label></div></div><input id="skill${i}Note" class="trait-note mastery-note" placeholder="Заметка к мастерству..." /></div>`})}
@@ -176,6 +335,7 @@
     function buildArmorRows(){const container=byId("armorRows");container.innerHTML="";armorSlots.forEach((slot,index)=>{const i=index+1;container.innerHTML+=`<tr><td>${slot}</td><td><input id="armor${i}Name" placeholder="${slot}" /></td><td><select id="armor${i}Resistance">${makeResistanceOptions()}</select></td><td><input id="armor${i}Protection" type="number" min="0" value="0" /></td><td><input id="armor${i}ExtraSlots" type="number" min="0" max="5" value="0" /></td><td><input id="armor${i}Note" placeholder="Свойства, штрафы, особые эффекты..." /></td></tr>`})}
     function buildSlotRows(kind,type){const container=byId(`${kind}_${type}_rows`),count=countMaps[kind][type];container.innerHTML="";for(let i=1;i<=count;i++)container.innerHTML+=`<div class="slot-entry"><textarea id="${kind}_${type}_${i}" placeholder="Ячейка ${i}"></textarea></div>`}
     function buildAllSlotRows(){Object.keys(contactCounts).forEach(type=>buildSlotRows("contact",type));Object.keys(consequenceCounts).forEach(type=>buildSlotRows("consequence",type));Object.keys(abilityCounts).forEach(type=>buildSlotRows("ability",type))}
+
     function addSlot(kind,type){if(kind==="ability"){const max=MAX_ABILITY_COUNTS[type];if(max!==undefined&&countMaps[kind][type]>=max){if(type==="professional")alert("Нельзя добавить больше 5 профессиональных способностей.");else if(type==="elite")alert("Нельзя добавить больше 1 элитной способности.");else alert("Достигнут предел ячеек.");return}}preserveDataAndRebuild(()=>{countMaps[kind][type]+=1;buildSlotRows(kind,type)})}
     function removeSlot(kind,type){if(countMaps[kind][type]<=0)return;preserveDataAndRebuild(()=>{countMaps[kind][type]-=1;buildSlotRows(kind,type)})}
     function preserveDataAndRebuild(rebuildAction){const data=collectData();rebuildAction();applyData(data);saveSheet(false)}
@@ -183,20 +343,23 @@
     function plural(number,one,few,many){const mod10=number%10,mod100=number%100;if(mod10===1&&mod100!==11)return one;if(mod10>=2&&mod10<=4&&(mod100<12||mod100>14))return few;return many}
     function clampProtection(value){const number=Number(value||0);if(Number.isNaN(number)||number<0)return 0;if(number>MAX_PROTECTION_PER_RESISTANCE)return MAX_PROTECTION_PER_RESISTANCE;return number}
     function clampExtraSlots(value){const number=Number(value||0);if(Number.isNaN(number)||number<0)return 0;if(number>5)return 5;return number}
+
     function getArmorBonuses(){const bonuses={};stressTracks.forEach(track=>{bonuses[track.id]={protection:0,extraSlots:0}});for(let i=1;i<=armorSlots.length;i++){const resistance=byId(`armor${i}Resistance`)?.value,protection=Number(byId(`armor${i}Protection`)?.value||0),extraSlots=Number(byId(`armor${i}ExtraSlots`)?.value||0);if(resistance&&bonuses[resistance]){bonuses[resistance].protection+=protection;bonuses[resistance].extraSlots+=extraSlots}}return bonuses}
     function updateProtectionAndExtraSlots(){const armorBonuses=getArmorBonuses(),totals={};stressTracks.forEach(track=>{const manualProtection=clampProtection(byId(`protectionManual_${track.id}`).value),armorProtection=Number(armorBonuses[track.id].protection||0),totalProtection=clampProtection(manualProtection+armorProtection);byId(`protectionManual_${track.id}`).value=manualProtection;const manualExtraSlots=clampExtraSlots(Number(byId(`extraSlotsManual_${track.id}`).value||0)),armorExtraSlots=armorBonuses[track.id].extraSlots,totalExtraSlots=clampExtraSlots(manualExtraSlots+armorExtraSlots);byId(`extraSlotsManual_${track.id}`).value=manualExtraSlots;byId(`protectionTotal_${track.id}`).textContent=`Итого: ${totalProtection}/5 (${manualProtection} + ${armorProtection} броня)`;byId(`extraSlotsTotal_${track.id}`).textContent=`Итого: ${totalExtraSlots}/5 (${manualExtraSlots} + ${armorExtraSlots} броня)`;totals[track.id]={protection:totalProtection,extraSlots:totalExtraSlots}});return totals}
     function getTrackStressSlots(trackId,totalExtraSlots){const slots=[];for(let i=1;i<=totalExtraSlots;i++)slots.push(byId(`stressExtra_${trackId}_${i}`));for(let i=1;i<=10;i++)slots.push(byId(`stressNormal_${trackId}_${i}`));return slots}
     function normalizeTrackStress(trackId,totalExtraSlots){const slots=getTrackStressSlots(trackId,totalExtraSlots);let highestChecked=-1;slots.forEach((slot,index)=>{if(slot.checked)highestChecked=index});slots.forEach((slot,index)=>{slot.checked=highestChecked>=0&&index<=highestChecked})}
     function setTrackStressUpTo(trackId,clickedSlot){const totals=updateProtectionAndExtraSlots(),totalExtraSlots=totals[trackId].extraSlots,slots=getTrackStressSlots(trackId,totalExtraSlots),clickedIndex=slots.indexOf(clickedSlot);if(clickedIndex===-1)return;const shouldFill=clickedSlot.checked;slots.forEach((slot,index)=>{slot.checked=shouldFill?index<=clickedIndex:index<clickedIndex});renderCounters();saveSheet(false)}
+
     function updateStressScales(){const totals=updateProtectionAndExtraSlots();let totalNormalStress=0,totalExtraStress=0,totalUnlockedExtraSlots=0;stressTracks.forEach(track=>{const unlockedExtraSlots=totals[track.id].extraSlots;totalUnlockedExtraSlots+=unlockedExtraSlots;for(let i=1;i<=5;i++){const checkbox=byId(`stressExtra_${track.id}_${i}`),dot=byId(`extraDot_${track.id}_${i}`),isUnlocked=i<=unlockedExtraSlots;checkbox.disabled=!isUnlocked;dot.classList.toggle("locked",!isUnlocked);if(!isUnlocked)checkbox.checked=false}normalizeTrackStress(track.id,unlockedExtraSlots);let normalStress=0,extraStress=0;for(let i=1;i<=5;i++)if(byId(`stressExtra_${track.id}_${i}`).checked)extraStress++;for(let i=1;i<=10;i++)if(byId(`stressNormal_${track.id}_${i}`).checked)normalStress++;totalNormalStress+=normalStress;totalExtraStress+=extraStress;byId(`stressCount_${track.id}`).textContent=`${normalStress}/10 + ${extraStress}/${unlockedExtraSlots} доп.`});byId("stressTotalCounters").innerHTML=`<span class="counter">Общий стресс: ${totalNormalStress}/50</span><span class="counter">Дополнительный стресс: ${totalExtraStress}/${totalUnlockedExtraSlots}</span>`}
     function updateMasteryNoteVisibility(){for(let i=1;i<=defaultSkills.length;i++){const masteryCheckbox=byId(`skill${i}HasMastery`),noteInput=byId(`skill${i}Note`);if(!masteryCheckbox||!noteInput)continue;noteInput.style.display=masteryCheckbox.checked?"block":"none"}}
-    function renderCounters(){applyAutomaticSelections();updateMasteryNoteVisibility();updateStressScales();renderSkillDomainCounters();renderTacticCounters();renderResourceCounters();renderContactCounters();renderConsequenceCounters();renderAbilityCounters()}
+    function renderCounters(){applyAutomaticSelections();updateMasteryNoteVisibility();updateStressScales();renderSkillDomainCounters();renderTacticCounters();renderResourceCounters();renderContactCounters();renderConsequenceCounters();renderAbilityCounters();if(byId("rollModal")?.classList.contains("open")){populateRollPresets();updateRollMasteryButton();renderAdvancedRollHistory()}}
     function renderSkillDomainCounters(){let skills=0,skillMasteries=0,domains=0;for(let i=1;i<=defaultSkills.length;i++){if(byId(`skill${i}HasSkill`).checked)skills++;if(byId(`skill${i}HasMastery`).checked)skillMasteries++}for(let i=1;i<=defaultDomains.length;i++)if(byId(`domain${i}HasDomain`).checked)domains++;byId("skillDomainCounters").innerHTML=`<span class="counter">${skills} ${plural(skills,"навык","навыка","навыков")}</span><span class="counter">${skillMasteries} ${plural(skillMasteries,"мастерство","мастерства","мастерств")}</span><span class="counter">${domains} ${plural(domains,"область","области","областей")}</span>`}
     function renderTacticCounters(){let tacticGroups=0,tacticLines=0;for(let i=1;i<=tacticCount;i++){const group=byId(`tactic${i}Name`)?.value.trim()||"",notes=byId(`tactic${i}Notes`)?.value.trim()||"";if(group)tacticGroups++;if(notes)tacticLines+=notes.split("\n").map(line=>line.trim()).filter(Boolean).length}byId("tacticCounters").innerHTML=`<span class="counter">${tacticCount} ${plural(tacticCount,"ячейка","ячейки","ячеек")}</span><span class="counter">${tacticGroups} ${plural(tacticGroups,"группа","группы","групп")} тактик</span><span class="counter">${tacticLines} ${plural(tacticLines,"записанная тактика","записанные тактики","записанных тактик")}</span>`}
     function renderResourceCounters(){let filledResources=0;for(let i=1;i<=resourceCount;i++)if(byId(`resource${i}Name`)?.value.trim())filledResources++;byId("resourceCounters").innerHTML=`<span class="counter">${resourceCount} ${plural(resourceCount,"ячейка","ячейки","ячеек")} ресурсов</span><span class="counter">${filledResources} ${plural(filledResources,"заполнена","заполнены","заполнено")}</span>`}
     function renderContactCounters(){const personal=countFilledSlots("contact","personal"),faction=countFilledSlots("contact","faction"),world=countFilledSlots("contact","world"),players=countFilledSlots("contact","players");byId("contactCounters").innerHTML=`<span class="counter">${personal}/${contactCounts.personal} личных</span><span class="counter">${faction}/${contactCounts.faction} фракционных</span><span class="counter">${world}/${contactCounts.world} мировых</span><span class="counter">${players}/${contactCounts.players} персонажей игроков</span>`}
     function renderConsequenceCounters(){const minor=countFilledSlots("consequence","minor"),major=countFilledSlots("consequence","major");byId("consequenceCounters").innerHTML=`<span class="counter">${minor}/${consequenceCounts.minor} малых</span><span class="counter">${major}/${consequenceCounts.major} значимых</span>`}
     function renderAbilityCounters(){const minor=countFilledSlots("ability","minor"),professional=countFilledSlots("ability","professional"),elite=countFilledSlots("ability","elite");byId("abilityCounters").innerHTML=`<span class="counter">${minor}/${abilityCounts.minor} малых</span><span class="counter">${professional}/${abilityCounts.professional} профессиональных</span><span class="counter">${elite}/${abilityCounts.elite} элитных</span>`}
+
     function getAllInputs(){return Array.from(document.querySelectorAll("input, textarea, select"))}
     function cloneObject(object){return JSON.parse(JSON.stringify(object))}
     function collectData(){const data={tacticCount,resourceCount,contactCounts:cloneObject(contactCounts),consequenceCounts:cloneObject(consequenceCounts),abilityCounts:cloneObject(abilityCounts)};getAllInputs().forEach(element=>{if(!element.id)return;data[element.id]=element.type==="checkbox"?element.checked:element.value});data.rollLog=byId("rollLog").textContent;return data}
@@ -206,44 +369,154 @@
     function saveSheet(showAlert=false){renderCounters();const data=collectData();localStorage.setItem(STORAGE_KEY,JSON.stringify(data));if(showAlert)alert("Лист сохранён на этом устройстве.")}
     function loadSheet(showAlert=false){const data=readSavedData();if(!data){renderCounters();if(showAlert)alert("Сохранённый лист не найден.");return}applyCountsFromData(data);buildDynamicRows();applyData(data);if(showAlert)alert("Лист загружен.")}
     function clearSheet(){const confirmed=confirm("Очистить сохранённый лист и вернуть значения по умолчанию?");if(!confirmed)return;localStorage.removeItem(STORAGE_KEY);location.reload()}
-    function rollDie(sides){const modifier=Number(byId("rollModifier").value||0),reason=byId("rollReason").value.trim(),result=Math.floor(Math.random()*sides)+1,total=result+modifier;let line=`D${sides}: ${result}`;if(modifier!==0)line+=` ${modifier>0?"+":""}${modifier} = ${total}`;if(reason)line+=` — ${reason}`;const time=new Date().toLocaleTimeString("ru-RU",{hour:"2-digit",minute:"2-digit"});byId("rollLog").textContent=`[${time}] ${line}\n`+byId("rollLog").textContent;saveSheet(false)}
+
+    function writeRollResult(sides,modifier=0,reason=""){
+      const result=Math.floor(Math.random()*sides)+1,total=result+modifier;
+      let line=`D${sides}: ${result}`;
+      if(modifier!==0)line+=` ${modifier>0?"+":""}${modifier} = ${total}`;
+      if(reason)line+=` — ${reason}`;
+      const time=new Date().toLocaleTimeString("ru-RU",{hour:"2-digit",minute:"2-digit"});
+      byId("rollLog").textContent=`[${time}] ${line}\n`+byId("rollLog").textContent;
+      renderAdvancedRollHistory();
+      saveSheet(false);
+    }
+
+    function rollDie(sides){
+      const modifier=Number(byId("rollModifier").value||0),reason=byId("rollReason").value.trim();
+      writeRollResult(sides,modifier,reason);
+    }
+
     function isFormElement(element){return element&&["INPUT","TEXTAREA","SELECT"].includes(element.tagName)}
     function attachAutoSave(){if(listenersAttached)return;document.addEventListener("input",event=>{const element=event.target;if(!isFormElement(element))return;if(element.type==="checkbox")return;renderCounters();saveSheet(false)});document.addEventListener("change",event=>{const element=event.target;if(!isFormElement(element))return;if(element.type==="checkbox"&&element.dataset.track){setTrackStressUpTo(element.dataset.track,element);return}renderCounters();saveSheet(false)});listenersAttached=true}
     function buildStaticRows(){buildResistanceRows();buildPartyRows();buildSkillRows();buildDomainRows();buildGearRows();buildArmorRows()}
     function buildDynamicRows(){buildTacticRows();buildResourceRows();buildAllSlotRows()}
-    function openRollMenu(){
-  const modal = byId("rollModal");
 
-  if(!modal){
-    console.error("Не найден элемент #rollModal");
-    return;
-  }
+    function getRollPresets(){
+      const presets=[{label:"Без шаблона",reason:"",die:""}];
 
-  modal.classList.add("open");
-  modal.setAttribute("aria-hidden","false");
+      for(let i=1;i<=defaultSkills.length;i++){
+        const skill=defaultSkills[i-1];
+        const hasSkill=byId(`skill${i}HasSkill`)?.checked;
+        const hasMastery=byId(`skill${i}HasMastery`)?.checked;
+        if(hasSkill||hasMastery){
+          presets.push({
+            label:`Навык: ${skill.name}${hasMastery?" + мастерство":""}`,
+            reason:`Навык: ${skill.name}${hasMastery?" + мастерство":""}`,
+            die:""
+          });
+        }
+      }
 
-  try{
-    updateRollMenuTitle();
-    renderAdvancedRollHistory();
-    updateRollMasteryButton();
-  }catch(error){
-    console.error("Ошибка при обновлении меню броска:", error);
-  }
-}
-function closeRollMenu(){
-  const modal = byId("rollModal");
+      for(let i=1;i<=defaultDomains.length;i++){
+        const domain=defaultDomains[i-1];
+        const hasDomain=byId(`domain${i}HasDomain`)?.checked;
+        if(hasDomain){
+          presets.push({
+            label:`Область: ${domain.name}`,
+            reason:`Область: ${domain.name}`,
+            die:""
+          });
+        }
+      }
 
-  if(!modal){
-    console.error("Не найден элемент #rollModal");
-    return;
-  }
+      for(let i=1;i<=tacticCount;i++){
+        const name=byId(`tactic${i}Name`)?.value.trim();
+        const skill=byId(`tactic${i}Skill`)?.value.trim();
+        if(name){
+          presets.push({
+            label:`Тактика: ${name}${skill?` / ${skill}`:""}`,
+            reason:`Тактика: ${name}${skill?` / ${skill}`:""}`,
+            die:""
+          });
+        }
+      }
 
-  modal.classList.remove("open");
-  modal.setAttribute("aria-hidden","true");
-}
-    function init(){const saved=readSavedData();if(saved)applyCountsFromData(saved);buildStaticRows();buildDynamicRows();attachAutoSave();if(saved)applyData(saved);else renderCounters()}
-    try{init()}catch(error){console.error(error);const box=document.createElement("div");box.style.background="#5a0002";box.style.color="#ffffff";box.style.padding="16px";box.style.margin="16px";box.style.fontFamily="monospace";box.style.whiteSpace="pre-wrap";box.textContent="Ошибка JavaScript:\n"+String(error&&error.stack?error.stack:error);document.body.prepend(box)}
-  
-  </script>
-</body>
-</html>
+      for(let i=1;i<=4;i++){
+        const name=byId(`gear${i}Name`)?.value.trim();
+        const quality=byId(`gear${i}Quality`)?.value.trim();
+        if(name){
+          presets.push({
+            label:`Снаряжение: ${name}${quality?` / ${quality}`:""}`,
+            reason:`Снаряжение: ${name}`,
+            die:quality.replace("D","")
+          });
+        }
+      }
+
+      for(let i=1;i<=resourceCount;i++){
+        const name=byId(`resource${i}Name`)?.value.trim();
+        const quality=byId(`resource${i}Quality`)?.value.trim();
+        if(name){
+          presets.push({
+            label:`Ресурс: ${name}${quality?` / ${quality}`:""}`,
+            reason:`Ресурс: ${name}`,
+            die:quality.replace("D","")
+          });
+        }
+      }
+
+      return presets;
+    }
+
+    function populateRollPresets(){
+      const select=byId("advancedRollPreset");
+      if(!select)return;
+
+      const previousValue=select.value;
+      const presets=getRollPresets();
+      select.innerHTML="";
+
+      presets.forEach((preset,index)=>{
+        const option=document.createElement("option");
+        option.value=String(index);
+        option.textContent=preset.label;
+        option.dataset.reason=preset.reason;
+        option.dataset.die=preset.die;
+        select.appendChild(option);
+      });
+
+      if(previousValue&&Array.from(select.options).some(option=>option.value===previousValue)){
+        select.value=previousValue;
+      }
+    }
+
+    function useRollPreset(){
+      const select=byId("advancedRollPreset");
+      if(!select)return;
+
+      const option=select.selectedOptions[0];
+      if(!option)return;
+
+      const reason=option.dataset.reason||"";
+      const die=option.dataset.die||"";
+
+      if(reason)byId("advancedRollReason").value=reason;
+      if(die)byId("advancedRollDie").value=die;
+
+      updateRollMasteryButton();
+      saveSheet(false);
+    }
+
+    function updateRollMenuTitle(){
+      const title=byId("rollMenuTitle");
+      const subtitle=byId("rollMenuSubtitle");
+      if(!title||!subtitle)return;
+
+      const characterName=byId("characterName")?.value.trim();
+      const className=byId("className")?.value.trim();
+
+      title.textContent="Автоматические броски";
+      if(characterName||className){
+        subtitle.textContent=[characterName,className].filter(Boolean).join(" — ");
+      }else{
+        subtitle.textContent="Выберите шаблон или бросьте нужную кость вручную.";
+      }
+    }
+
+    function updateRollMasteryButton(){
+      const hint=byId("rollMasteryHint");
+      const reason=byId("advancedRollReason")?.value||"";
+      if(!hint)return;
+
+      const masteredSkill=defaultSkills.find((skill,index)=>{
+        return reason.includes(skill.name)&&byId(`skill$
