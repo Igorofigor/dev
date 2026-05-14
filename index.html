@@ -828,14 +828,17 @@
     .floating-action-label{font-size:9px;padding:3px 5px;box-shadow:3px 3px 0 var(--accent-soft)}
 
     
+
 .portrait-preview{
-  display:block;
+  display:none;
   width:100%;
-  max-width:260px;
-  margin-top:10px;
+  max-width:320px;
+  aspect-ratio:210 / 297;
+  margin-top:12px;
   border:2px solid var(--accent);
   background:#fff;
   object-fit:cover;
+  object-position:center center;
 }
   </style>
 </head>
@@ -1858,6 +1861,7 @@
       if(mod10>=2&&mod10<=4&&(mod100<12||mod100>14))return few;
       return many;
     }
+    drawImageCover(ctx,portrait,portraitX,portraitY,portraitW,portraitH);
 
     function clampProtection(value){
       const number=Number(value||0);
