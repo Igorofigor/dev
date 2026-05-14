@@ -27,7 +27,6 @@
       --class-parallax-y:0px;
       --nation-parallax-y:0px;
     }
-    
 
     *{box-sizing:border-box}
 
@@ -803,7 +802,6 @@
       .tactics-modal,
       .resources-modal{padding:12px}
     }
-    
 
     button,
     .die-shape-button,
@@ -827,19 +825,106 @@
     body.has-class-emblem .floating-roll-button{width:82px;height:82px}
     .floating-action-label{font-size:9px;padding:3px 5px;box-shadow:3px 3px 0 var(--accent-soft)}
 
-    
 
-.portrait-preview{
-  display:none;
-  width:100%;
-  max-width:320px;
-  aspect-ratio:210 / 297;
-  margin-top:12px;
-  border:2px solid var(--accent);
-  background:#fff;
-  object-fit:cover;
-  object-position:center center;
-}
+    .portrait-export-block{
+      margin-top:14px;
+      margin-bottom:14px;
+      padding:12px;
+      border:1px solid var(--accent);
+      background:rgba(255,255,255,.88);
+      transition:background-color .14s ease,border-color .14s ease,box-shadow .14s ease;
+    }
+
+    .portrait-export-block:hover{
+      background:var(--hover-bg);
+      border-color:var(--accent-hover);
+      box-shadow:4px 4px 0 var(--accent-hover-soft);
+    }
+
+    .portrait-layout{
+      display:grid;
+      grid-template-columns:minmax(220px,320px) 1fr;
+      gap:16px;
+      align-items:start;
+    }
+
+    .portrait-panel{min-width:0}
+
+    .portrait-preview-wrap{
+      width:100%;
+      max-width:320px;
+      margin-top:12px;
+      border:2px solid var(--accent);
+      background:#fff;
+      aspect-ratio:210 / 297;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+    }
+
+    .portrait-preview-placeholder{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:16px;
+      color:var(--accent);
+      font-weight:1000;
+      text-align:center;
+      text-transform:uppercase;
+      letter-spacing:.05em;
+      opacity:.45;
+      pointer-events:none;
+    }
+
+    .portrait-preview{
+      display:none;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center center;
+      background:#fff;
+    }
+
+    .portrait-preview.has-image{display:block}
+    .portrait-preview.has-image + .portrait-preview-placeholder{display:none}
+
+    .portrait-actions{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:8px;
+      margin-top:10px;
+    }
+
+    .portrait-export-actions{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+      align-content:start;
+    }
+
+    .portrait-export-actions h3{margin-top:0}
+
+    .export-preview{
+      display:none;
+      width:100%;
+      max-width:420px;
+      margin-top:6px;
+      border:2px solid var(--accent);
+      background:#fff;
+      box-shadow:8px 8px 0 var(--accent-soft);
+    }
+
+    .export-preview.has-image{display:block}
+
+    @media(max-width:760px){
+      .portrait-layout{grid-template-columns:1fr}
+      .portrait-preview-wrap{max-width:100%}
+    }
+
   </style>
 </head>
 
@@ -849,10 +934,37 @@
 
     <section id="characterCard" class="card">
       <h2>Персонаж</h2>
+
+      <div class="portrait-export-block">
+        <div class="portrait-layout">
+          <div class="portrait-panel">
+            <h3>Портрет</h3>
+            <p class="hint">Картинка отображается в вертикальных пропорциях А4. Лишнее обрезается без растягивания.</p>
+
+            <label>Загрузить портрет</label>
+            <input id="characterPortraitUpload" type="file" accept="image/*" />
+
+            <div class="portrait-preview-wrap">
+              <img id="characterPortraitPreview" class="portrait-preview" alt="Портрет персонажа" />
+              <div class="portrait-preview-placeholder">Портрет<br>А4</div>
+            </div>
+
+            <div class="portrait-actions">
+              <button class="secondary" type="button" onclick="removeCharacterPortrait()">Убрать портрет</button>
+            </div>
+          </div>
+
+          <div class="portrait-export-actions">
+            <h3>Экспорт карточки</h3>
+            <p class="hint">Создаёт отдельную карточку персонажа в формате PNG или JPEG из верхнего блока листа.</p>
+            <button type="button" onclick="exportCharacterInfoCard('png')">Скачать PNG</button>
+            <button class="secondary" type="button" onclick="exportCharacterInfoCard('jpeg')">Скачать JPEG</button>
+            <img id="exportPreview" class="export-preview" alt="Предпросмотр экспортированной карточки" />
+          </div>
+        </div>
+      </div>
+
       <div class="grid-2">
-        <label>Портрет персонажа</label>
-<input id="characterPortraitUpload" type="file" accept="image/*" />
-<img id="characterPortraitPreview" class="portrait-preview" alt="Портрет персонажа" />
         <div><label>Имя</label><input id="characterName" placeholder="Имя персонажа" /></div>
         <div><label>Класс</label><select id="className"><option></option><option>Страж Врат</option><option>Светоносец</option><option>Раствор Души</option><option>Экономант</option><option>Неболом</option><option>Росоход</option><option>Подкодыш</option><option>Паратехник</option><option>Красный Рукав</option></select></div>
         <div><label>Народ</label><select id="nationName"><option></option><option>Народ Ножей</option><option>Народ Ядов</option><option>Народ Граней</option><option>Народ Железа</option></select></div>
@@ -1122,6 +1234,8 @@
 
   <script>
     const STORAGE_KEY="towerCharacterSheetV14";
+    const CHARACTER_PORTRAIT_KEY="towerCharacterPortraitV1";
+    let portraitDataUrl="";
 
     const DEFAULT_TACTIC_COUNT=2;
     const DEFAULT_RESOURCE_COUNT=1;
@@ -1397,38 +1511,301 @@
       setButtonMaskImage("openResourcesMenuButton",resourcesImage);
       setButtonMaskImage("openAbilitiesMenuButton","images/abilitybutton.svg");
     }
-      function attachImageUpload(){
-  const input = document.getElementById("characterPortraitUpload");
-  const preview = document.getElementById("characterPortraitPreview");
 
-  if(!input || !preview)return;
 
-  input.addEventListener("change", event=>{
-    const file = event.target.files?.[0];
-    if(!file)return;
+    function showCharacterPortrait(imageData){
+      const preview=byId("characterPortraitPreview");
 
-    if(!file.type.startsWith("image/")){
-      alert("Можно загружать только изображения.");
-      input.value = "";
-      return;
+      portraitDataUrl=imageData||"";
+
+      if(!preview)return;
+
+      if(!portraitDataUrl){
+        preview.removeAttribute("src");
+        preview.classList.remove("has-image");
+        return;
+      }
+
+      preview.src=portraitDataUrl;
+      preview.classList.add("has-image");
     }
 
-    const reader = new FileReader();
+    function attachCharacterPortraitUpload(){
+      const input=byId("characterPortraitUpload");
+      if(!input)return;
 
-    reader.onload = ()=>{
-      const imageData = reader.result;
-      preview.src = imageData;
-      localStorage.setItem("towerCharacterPortrait", imageData);
-    };
+      const savedImage=localStorage.getItem(CHARACTER_PORTRAIT_KEY);
+      if(savedImage)showCharacterPortrait(savedImage);
 
-    reader.readAsDataURL(file);
-  });
+      input.addEventListener("change",event=>{
+        const file=event.target.files?.[0];
+        if(!file)return;
 
-  const savedImage = localStorage.getItem("towerCharacterPortrait");
-  if(savedImage){
-    preview.src = savedImage;
-  }
-}
+        if(!file.type.startsWith("image/")){
+          alert("Можно загружать только изображения.");
+          input.value="";
+          return;
+        }
+
+        const reader=new FileReader();
+
+        reader.onload=()=>{
+          const imageData=String(reader.result||"");
+
+          try{
+            localStorage.setItem(CHARACTER_PORTRAIT_KEY,imageData);
+          }catch(error){
+            alert("Изображение слишком большое для локального сохранения браузера. Попробуй файл меньшего размера.");
+            console.error(error);
+          }
+
+          showCharacterPortrait(imageData);
+        };
+
+        reader.onerror=()=>alert("Не удалось прочитать файл изображения.");
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function removeCharacterPortrait(){
+      const input=byId("characterPortraitUpload");
+      if(input)input.value="";
+
+      localStorage.removeItem(CHARACTER_PORTRAIT_KEY);
+      showCharacterPortrait("");
+
+      const exportPreview=byId("exportPreview");
+      if(exportPreview){
+        exportPreview.removeAttribute("src");
+        exportPreview.classList.remove("has-image");
+      }
+
+      saveSheet(false);
+    }
+
+    function loadImageForExport(src){
+      return new Promise((resolve,reject)=>{
+        if(!src){
+          resolve(null);
+          return;
+        }
+
+        const image=new Image();
+        image.onload=()=>resolve(image);
+        image.onerror=reject;
+        image.src=src;
+      });
+    }
+
+    function drawImageCover(ctx,image,x,y,w,h){
+      if(!image)return;
+
+      const imageWidth=image.naturalWidth||image.width;
+      const imageHeight=image.naturalHeight||image.height;
+      const imageRatio=imageWidth/imageHeight;
+      const targetRatio=w/h;
+
+      let sx=0;
+      let sy=0;
+      let sw=imageWidth;
+      let sh=imageHeight;
+
+      if(imageRatio>targetRatio){
+        sw=imageHeight*targetRatio;
+        sx=(imageWidth-sw)/2;
+      }else{
+        sh=imageWidth/targetRatio;
+        sy=(imageHeight-sh)/2;
+      }
+
+      ctx.drawImage(image,sx,sy,sw,sh,x,y,w,h);
+    }
+
+    function wrapCanvasText(ctx,text,x,y,maxWidth,lineHeight,maxLines){
+      const words=String(text||"").replace(/\s+/g," ").trim().split(" ").filter(Boolean);
+      const lines=[];
+      let line="";
+
+      words.forEach(word=>{
+        const testLine=line?line+" "+word:word;
+        if(ctx.measureText(testLine).width>maxWidth&&line){
+          lines.push(line);
+          line=word;
+        }else{
+          line=testLine;
+        }
+      });
+
+      if(line)lines.push(line);
+
+      const visibleLines=maxLines?lines.slice(0,maxLines):lines;
+
+      visibleLines.forEach((visibleLine,index)=>{
+        let output=visibleLine;
+
+        if(maxLines&&index===maxLines-1&&lines.length>maxLines){
+          while(ctx.measureText(output+"…").width>maxWidth&&output.length>0){
+            output=output.slice(0,-1);
+          }
+          output+="…";
+        }
+
+        ctx.fillText(output,x,y+index*lineHeight);
+      });
+
+      return visibleLines.length*lineHeight;
+    }
+
+    function getCssVar(name,fallback){
+      const value=getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+      return value||fallback;
+    }
+
+    function safeFileName(text){
+      return String(text||"character")
+        .trim()
+        .replace(/[\\/:*?"<>|]+/g,"")
+        .replace(/\s+/g,"_")
+        .slice(0,64)||"character";
+    }
+
+    async function exportCharacterInfoCard(format="png"){
+      saveSheet(false);
+
+      const characterName=byId("characterName")?.value.trim()||"Без имени";
+      const className=byId("className")?.value.trim()||"—";
+      const nationName=byId("nationName")?.value.trim()||"—";
+      const serviceBranch=byId("serviceBranch")?.value.trim()||"—";
+      const description=byId("description")?.value.trim()||"—";
+
+      const image=await loadImageForExport(portraitDataUrl).catch(error=>{
+        console.error(error);
+        return null;
+      });
+
+      const canvas=document.createElement("canvas");
+      canvas.width=1240;
+      canvas.height=1754;
+
+      const ctx=canvas.getContext("2d");
+      const accent=getCssVar("--accent","#320216");
+      const muted=getCssVar("--muted","#5a0002cc");
+      const soft=getCssVar("--accent-soft","#5a000218");
+      const white="#ffffff";
+
+      ctx.fillStyle=white;
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+
+      ctx.fillStyle=soft;
+      ctx.fillRect(64,64,canvas.width-128,canvas.height-128);
+
+      ctx.fillStyle=white;
+      ctx.fillRect(48,48,canvas.width-128,canvas.height-128);
+
+      ctx.strokeStyle=accent;
+      ctx.lineWidth=8;
+      ctx.strokeRect(48,48,canvas.width-128,canvas.height-128);
+
+      ctx.fillStyle=accent;
+      ctx.font="1000 54px system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
+      ctx.fillText("БАШНЯ УПАДЁТ",96,132);
+
+      ctx.fillStyle=muted;
+      ctx.font="900 26px system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
+      ctx.fillText("КАРТОЧКА ПЕРСОНАЖА",96,174);
+
+      const portraitX=96;
+      const portraitY=230;
+      const portraitW=420;
+      const portraitH=594;
+
+      ctx.fillStyle=accent;
+      ctx.fillRect(portraitX-16,portraitY-16,portraitW+32,portraitH+32);
+
+      ctx.fillStyle=white;
+      ctx.fillRect(portraitX,portraitY,portraitW,portraitH);
+
+      if(image){
+        drawImageCover(ctx,image,portraitX,portraitY,portraitW,portraitH);
+      }else{
+        ctx.fillStyle=soft;
+        ctx.fillRect(portraitX,portraitY,portraitW,portraitH);
+
+        ctx.fillStyle=accent;
+        ctx.font="1000 42px system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
+        ctx.textAlign="center";
+        ctx.fillText("ПОРТРЕТ",portraitX+portraitW/2,portraitY+portraitH/2-8);
+        ctx.font="900 28px system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
+        ctx.fillText("A4",portraitX+portraitW/2,portraitY+portraitH/2+38);
+        ctx.textAlign="left";
+      }
+
+      const textX=580;
+      const textW=530;
+      let y=244;
+
+      ctx.fillStyle=accent;
+      ctx.font="1000 64px system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
+      y+=wrapCanvasText(ctx,characterName,textX,y,textW,70,3)+54;
+
+      function drawInfo(label,value){
+        ctx.fillStyle=muted;
+        ctx.font="900 26px system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
+        ctx.fillText(label.toUpperCase(),textX,y);
+
+        ctx.fillStyle=accent;
+        ctx.font="900 42px system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
+        y+=wrapCanvasText(ctx,value||"—",textX,y+48,textW,48,2)+62;
+      }
+
+      drawInfo("Класс",className);
+      drawInfo("Народ",nationName);
+      drawInfo("Род войск",serviceBranch);
+
+      const descX=96;
+      const descY=910;
+      const descW=1048;
+
+      ctx.fillStyle=accent;
+      ctx.font="1000 36px system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
+      ctx.fillText("ОПИСАНИЕ",descX,descY);
+
+      ctx.fillStyle=accent;
+      ctx.globalAlpha=.13;
+      ctx.fillRect(descX,descY+24,descW,520);
+      ctx.globalAlpha=1;
+
+      ctx.fillStyle=accent;
+      ctx.font="700 32px system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
+      wrapCanvasText(ctx,description,descX+28,descY+80,descW-56,44,10);
+
+      ctx.strokeStyle=accent;
+      ctx.lineWidth=4;
+      ctx.strokeRect(descX,descY+24,descW,520);
+
+      ctx.fillStyle=muted;
+      ctx.font="900 24px system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
+      ctx.fillText("ПОРТРЕТ ОБРЕЗАН ПО ПРИНЦИПУ COVER · ПРОПОРЦИИ A4",96,1614);
+
+      const isJpeg=format==="jpeg"||format==="jpg";
+      const mimeType=isJpeg?"image/jpeg":"image/png";
+      const extension=isJpeg?"jpg":"png";
+      const quality=isJpeg?0.92:undefined;
+      const dataUrl=canvas.toDataURL(mimeType,quality);
+
+      const exportPreview=byId("exportPreview");
+      if(exportPreview){
+        exportPreview.src=dataUrl;
+        exportPreview.classList.add("has-image");
+      }
+
+      const link=document.createElement("a");
+      link.href=dataUrl;
+      link.download=`${safeFileName(characterName)}_towerfall_card.${extension}`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    }
 
     function clearStressHoverPreviews(){
       document.querySelectorAll(".stress-triangle.hover-preview").forEach(label=>{label.classList.remove("hover-preview")});
@@ -1861,7 +2238,6 @@
       if(mod10>=2&&mod10<=4&&(mod100<12||mod100>14))return few;
       return many;
     }
-    drawImageCover(ctx,portrait,portraitX,portraitY,portraitW,portraitH);
 
     function clampProtection(value){
       const number=Number(value||0);
@@ -2149,6 +2525,7 @@
       };
       getAllInputs().forEach(element=>{
         if(!element.id)return;
+        if(element.type==="file")return;
         data[element.id]=element.type==="checkbox"?element.checked:element.value;
       });
       data.rollLog=byId("rollLog")?.textContent||"";
@@ -2171,6 +2548,7 @@
       lastConsequenceCheckText=data.lastConsequenceCheckText||"";
       getAllInputs().forEach(element=>{
         if(!element.id||data[element.id]===undefined)return;
+        if(element.type==="file")return;
         if(element.type==="checkbox")element.checked=Boolean(data[element.id]);
         else element.value=data[element.id];
       });
@@ -2252,6 +2630,7 @@
       document.addEventListener("input",event=>{
         const element=event.target;
         if(!isFormElement(element))return;
+        if(element.type==="file")return;
         if(element.type==="checkbox")return;
         renderCounters();
         saveSheet(false);
@@ -2259,6 +2638,7 @@
       document.addEventListener("change",event=>{
         const element=event.target;
         if(!isFormElement(element))return;
+        if(element.type==="file")return;
         if(element.type==="checkbox"&&element.dataset.track){
           setTrackStressUpTo(element.dataset.track,element);
           return;
@@ -2546,7 +2926,7 @@
       attachAutoSave();
       attachParallax();
       attachStressHoverEffects();
-      attachImageUpload();
+      attachCharacterPortraitUpload();
       if(saved)applyData(saved);
       else{
         updateRollMasteryButton();
