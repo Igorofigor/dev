@@ -4,9 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Башня Упадёт — интерактивный лист персонажа</title>
-<label>Портрет персонажа</label>
-<input id="characterPortraitUpload" type="file" accept="image/*" />
-<img id="characterPortraitPreview" class="portrait-preview" alt="Портрет персонажа" />
+
   <style>
     :root{
       --bg:#fff;
@@ -29,6 +27,7 @@
       --class-parallax-y:0px;
       --nation-parallax-y:0px;
     }
+    
 
     *{box-sizing:border-box}
 
@@ -804,6 +803,7 @@
       .tactics-modal,
       .resources-modal{padding:12px}
     }
+    
 
     button,
     .die-shape-button,
@@ -847,6 +847,9 @@
     <section id="characterCard" class="card">
       <h2>Персонаж</h2>
       <div class="grid-2">
+        <label>Портрет персонажа</label>
+<input id="characterPortraitUpload" type="file" accept="image/*" />
+<img id="characterPortraitPreview" class="portrait-preview" alt="Портрет персонажа" />
         <div><label>Имя</label><input id="characterName" placeholder="Имя персонажа" /></div>
         <div><label>Класс</label><select id="className"><option></option><option>Страж Врат</option><option>Светоносец</option><option>Раствор Души</option><option>Экономант</option><option>Неболом</option><option>Росоход</option><option>Подкодыш</option><option>Паратехник</option><option>Красный Рукав</option></select></div>
         <div><label>Народ</label><select id="nationName"><option></option><option>Народ Ножей</option><option>Народ Ядов</option><option>Народ Граней</option><option>Народ Железа</option></select></div>
