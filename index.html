@@ -185,6 +185,32 @@ body::after {
       .toolbar{grid-template-columns:1fr}
       .floating-roll-button{width:64px;height:64px;right:12px;bottom:12px}
     }
+    .roll-panel {
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.roll-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background-image: var(--class-bg-image);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: min(55%, 420px) auto;
+
+  opacity: 0.14;
+  filter: contrast(1.15);
+}
+
+.roll-panel > * {
+  position: relative;
+  z-index: 1;
+}
   </style>
 </head>
 
