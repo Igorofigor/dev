@@ -70,9 +70,65 @@
     h2{margin:0;font-size:22px}
     h3{margin:0;font-size:16px}
     p{margin-top:0;color:var(--muted);line-height:1.45}
-    .card{margin-bottom:16px;padding:16px;border:2px solid var(--accent);border-radius:0;background:rgba(255,255,255,.9);box-shadow:8px 8px 0 var(--accent-soft)}
+
+    .card{
+      margin-bottom:16px;
+      padding:16px;
+      border:2px solid var(--accent);
+      border-radius:0;
+      background:rgba(255,255,255,.9);
+      box-shadow:8px 8px 0 var(--accent-soft);
+      transition:background-color .18s ease,color .18s ease,border-color .18s ease,box-shadow .18s ease;
+    }
+
     .title-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
-    .title-actions{display:inline-flex;align-items:center;gap:8px}
+    .title-actions{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap}
+
+    .card-content{
+      overflow:hidden;
+      max-height:5000px;
+      opacity:1;
+      transition:max-height .28s ease,opacity .18s ease,margin-top .18s ease;
+    }
+
+    .collapsible-card.is-collapsed .card-content{
+      max-height:0;
+      opacity:0;
+      margin-top:0;
+      pointer-events:none;
+    }
+
+    .collapse-section-button{
+      width:34px;
+      min-width:34px;
+      height:34px;
+      padding:0;
+      border:none;
+      background:transparent;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .collapse-section-button::before{
+      content:"";
+      display:block;
+      width:0;
+      height:0;
+    }
+
+    .collapse-section-button.up::before{
+      border-left:12px solid transparent;
+      border-right:12px solid transparent;
+      border-bottom:22px solid var(--accent);
+    }
+
+    .collapse-section-button.down::before{
+      border-left:12px solid transparent;
+      border-right:12px solid transparent;
+      border-top:22px solid var(--accent);
+    }
+
     label{display:block;margin-top:10px;margin-bottom:5px;font-size:14px;font-weight:800;color:var(--muted)}
     input,textarea,select,button{width:100%;border:1px solid var(--accent);border-radius:0;padding:10px;font:inherit;background:#fff;color:var(--text)}
     input:focus,textarea:focus,select:focus,button:focus{outline:2px solid var(--accent);outline-offset:2px}
@@ -81,7 +137,18 @@
     button.secondary{background:#fff;color:var(--accent)}
     button.toggle-button.is-active{background:var(--accent);color:#fff}
 
-    .triangle-button{width:34px;min-width:34px;height:34px;padding:0;border:none;background:transparent;display:inline-flex;align-items:center;justify-content:center}
+    .triangle-button{
+      width:34px;
+      min-width:34px;
+      height:34px;
+      padding:0;
+      border:none;
+      background:transparent;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+    }
+
     .triangle-button::before{content:"";display:block;width:0;height:0}
     .triangle-button.right::before{border-top:15px solid transparent;border-bottom:15px solid transparent;border-left:26px solid var(--accent)}
     .triangle-button.left::before{border-top:15px solid transparent;border-bottom:15px solid transparent;border-right:26px solid var(--accent)}
@@ -114,6 +181,29 @@
     .stress-total-counter.stress-warning{background:#320216;color:#fff}
     .stress-total-counter.stress-critical{background:#000;color:#fff;border-color:#000}
     .stress-divider{width:1px;height:16px;background:var(--accent);margin:0 2px}
+
+    .consequences-card.stress-warning{
+      background:rgba(50,2,22,.18);
+    }
+
+    .consequences-card.stress-critical{
+      background:#000;
+      color:#fff;
+      border-color:#000;
+      box-shadow:8px 8px 0 rgba(0,0,0,.22);
+    }
+
+    .consequences-card.stress-critical h2,
+    .consequences-card.stress-critical h3,
+    .consequences-card.stress-critical .hint{
+      color:#fff;
+    }
+
+    .consequences-card.stress-critical .slot-box,
+    .consequences-card.stress-critical .slot-entry{
+      background:rgba(255,255,255,.92);
+      color:var(--text);
+    }
 
     .tri-check{position:relative;display:inline-flex;align-items:center;justify-content:center;width:auto;min-width:24px;min-height:24px;margin:0;padding:0;color:var(--accent);cursor:pointer;user-select:none}
     .tri-check input{position:absolute;opacity:0;width:24px;height:24px;margin:0;padding:0}
@@ -151,6 +241,33 @@
     .slot-entry textarea,.slot-entry input{padding:8px;min-height:54px}
     .log{min-height:110px;white-space:pre-wrap;background:#fff;padding:10px;border:1px solid var(--accent);color:var(--text);font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:14px}
     .toolbar{position:sticky;bottom:0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:20px;padding:12px 0 0;background:linear-gradient(to top,#fff,#ffffffdd)}
+
+    .quality-cell{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:8px;
+      align-items:center;
+    }
+
+    .quality-die-preview{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:44px;
+      height:34px;
+      min-width:44px;
+      background:var(--accent);
+      color:#fff;
+      border:none;
+      font-weight:1000;
+      font-size:13px;
+      line-height:1;
+    }
+
+    .quality-die-preview.empty{
+      opacity:.25;
+      clip-path:polygon(0 0,100% 0,100% 100%,0 100%);
+    }
 
     .floating-actions{
       position:fixed;
@@ -196,20 +313,26 @@
 
     .roll-modal,
     .diary-modal{
-      display:none;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
       position:fixed;
       inset:0;
       z-index:1000;
       padding:16px;
       background:#32021655;
       overflow:auto;
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+      transition:opacity .2s ease,visibility .2s ease;
     }
 
     .roll-modal.open,
     .diary-modal.open{
-      display:flex;
-      align-items:flex-start;
-      justify-content:center;
+      opacity:1;
+      visibility:visible;
+      pointer-events:auto;
     }
 
     .roll-panel,
@@ -222,6 +345,13 @@
       box-shadow:10px 10px 0 var(--accent-soft);
       position:relative;
       overflow:hidden;
+      transform:translateY(18px) scale(.985);
+      transition:transform .2s ease;
+    }
+
+    .roll-modal.open .roll-panel,
+    .diary-modal.open .diary-panel{
+      transform:translateY(0) scale(1);
     }
 
     .roll-panel::before{
@@ -236,6 +366,19 @@
       background-repeat:no-repeat;
       opacity:.09;
       filter:contrast(1.1);
+    }
+
+    .diary-panel::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      background-image:var(--nation-pattern-image);
+      background-size:300px 300px;
+      background-position:center;
+      background-repeat:repeat;
+      opacity:.08;
     }
 
     .roll-panel>*,
@@ -319,29 +462,11 @@
     .die-d10{clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%)}
     .die-d12{clip-path:polygon(50% 0%,97.55% 34.55%,79.39% 90.45%,20.61% 90.45%,2.45% 34.55%)}
 
-    .die-shape-button.die-d4{
-      padding-top:18px;
-    }
-
-    .die-shape-button.die-d6{
-      width:64px;
-      height:64px;
-    }
-
-    .die-shape-button.die-d8{
-      width:72px;
-      height:72px;
-    }
-
-    .die-shape-button.die-d10{
-      width:100px;
-      height:60px;
-    }
-
-    .die-shape-button.die-d12{
-      width:74px;
-      height:74px;
-    }
+    .die-shape-button.die-d4{padding-top:18px}
+    .die-shape-button.die-d6{width:64px;height:64px}
+    .die-shape-button.die-d8{width:72px;height:72px}
+    .die-shape-button.die-d10{width:100px;height:60px}
+    .die-shape-button.die-d12{width:74px;height:74px}
 
     .simple-roll-result-line{
       display:flex;
@@ -367,31 +492,11 @@
       line-height:1;
     }
 
-    .die-shape-result.die-d4{
-      width:42px;
-      height:40px;
-      padding-top:12px;
-    }
-
-    .die-shape-result.die-d6{
-      width:38px;
-      height:38px;
-    }
-
-    .die-shape-result.die-d8{
-      width:42px;
-      height:42px;
-    }
-
-    .die-shape-result.die-d10{
-      width:58px;
-      height:36px;
-    }
-
-    .die-shape-result.die-d12{
-      width:44px;
-      height:44px;
-    }
+    .die-shape-result.die-d4{width:42px;height:40px;padding-top:12px}
+    .die-shape-result.die-d6{width:38px;height:38px}
+    .die-shape-result.die-d8{width:42px;height:42px}
+    .die-shape-result.die-d10{width:58px;height:36px}
+    .die-shape-result.die-d12{width:44px;height:44px}
 
     .die-shape-result .die-value{
       background:transparent !important;
@@ -407,6 +512,29 @@
       text-decoration:underline;
       text-decoration-thickness:2px;
       text-underline-offset:3px;
+    }
+
+    @keyframes roll-pop{
+      0%{transform:scale(.82) rotate(-8deg);opacity:.3}
+      60%{transform:scale(1.14) rotate(5deg);opacity:1}
+      100%{transform:scale(1) rotate(0deg);opacity:1}
+    }
+
+    @keyframes roll-pop-strong{
+      0%{transform:scale(.55) rotate(-18deg);opacity:.15}
+      40%{transform:scale(1.36) rotate(14deg);opacity:1}
+      70%{transform:scale(.9) rotate(-7deg);opacity:1}
+      100%{transform:scale(1) rotate(0deg);opacity:1}
+    }
+
+    .roll-history-entry.roll-new .roll-die,
+    .roll-history-entry.roll-new .die-shape-result{
+      animation:roll-pop .24s ease-out;
+    }
+
+    .roll-history-entry.roll-new-strong .roll-die,
+    .roll-history-entry.roll-new-strong .die-shape-result{
+      animation:roll-pop-strong .48s ease-out;
     }
 
     @media(max-width:760px){
@@ -427,7 +555,7 @@
   <main class="app">
     <h1>Башня Упадёт — интерактивный лист персонажа</h1>
 
-    <section class="card">
+    <section id="characterCard" class="card">
       <h2>Персонаж</h2>
       <div class="grid-2">
         <div><label>Имя</label><input id="characterName" placeholder="Имя персонажа" /></div>
@@ -439,14 +567,14 @@
       <textarea id="description" placeholder="Внешность, манеры, важные детали, странности, связи..."></textarea>
     </section>
 
-    <section class="card">
+    <section id="resistanceCard" class="card">
       <div class="title-row"><h2>Сопротивления, защита и стресс</h2></div>
       <p class="hint">В ячейку защиты можно вписать любое число. Защита от брони суммируется с ним автоматически. То же работает с дополнительными слотами: ручные слоты + слоты от брони.</p>
       <div id="stressTotalCounters" class="counter-row"></div>
       <div class="table-wrap"><table class="table wide-table"><thead><tr><th>Сопротивление</th><th>Защита</th><th>Доп. слоты</th><th>Стресс</th><th>Итог</th></tr></thead><tbody id="resistanceRows"></tbody></table></div>
     </section>
 
-    <section class="card">
+    <section id="consequencesCard" class="card consequences-card">
       <div class="title-row"><h2>Последствия</h2></div>
       <div id="consequenceCounters" class="counter-row"></div>
       <div class="slot-grid">
@@ -455,13 +583,13 @@
       </div>
     </section>
 
-    <section class="card">
+    <section id="partyCard" class="card">
       <h2>Шкалы дружбы</h2>
       <p class="hint">Сопротивления дружбы с соратниками, отмечайте в них стресс ради бонусов.</p>
       <div class="table-wrap"><table class="table"><thead><tr><th>Имя</th><th>Стресс</th><th>Защита</th><th>Заметка</th></tr></thead><tbody id="partyRows"></tbody></table></div>
     </section>
 
-    <section class="card">
+    <section id="skillsCard" class="card">
       <h2>Навыки и области</h2>
       <div id="skillDomainCounters" class="counter-row"></div>
       <div class="traits-grid">
@@ -470,49 +598,7 @@
       </div>
     </section>
 
-    <section class="card">
-      <div class="title-row">
-        <h2>Группы тактик</h2>
-        <div class="title-actions">
-          <button class="triangle-button left" type="button" onclick="removeTacticRow()" title="Убрать группу тактик"></button>
-          <button class="triangle-button right" type="button" onclick="addTacticRow()" title="Добавить группу тактик"></button>
-        </div>
-      </div>
-      <div id="tacticCounters" class="counter-row"></div>
-      <div class="table-wrap"><table class="table"><thead><tr><th>Группа тактик</th><th>Связанный навык</th><th>Тактики / заметки</th></tr></thead><tbody id="tacticRows"></tbody></table></div>
-    </section>
-
-    <section class="card">
-      <h2>Снаряжение</h2>
-      <h3>4 слота снаряжения</h3>
-      <div class="table-wrap"><table class="table"><thead><tr><th>Слот</th><th>Предмет</th><th>Качество</th><th>Свойства / заметки</th></tr></thead><tbody id="gearRows"></tbody></table></div>
-
-      <div class="title-row" style="margin-top:18px">
-        <h3>Ресурсы</h3>
-        <div class="title-actions">
-          <button class="triangle-button left" type="button" onclick="removeResourceRow()" title="Убрать ресурс"></button>
-          <button class="triangle-button right" type="button" onclick="addResourceRow()" title="Добавить ресурс"></button>
-        </div>
-      </div>
-      <div id="resourceCounters" class="counter-row"></div>
-      <div class="table-wrap"><table class="table"><thead><tr><th>№</th><th>Ресурс</th><th>Качество</th><th>Свойства / цена / применение</th></tr></thead><tbody id="resourceRows"></tbody></table></div>
-
-      <h3 style="margin-top:18px">Броня</h3>
-      <div class="table-wrap"><table class="table"><thead><tr><th>Слот</th><th>Предмет</th><th>Сопротивление</th><th>Защита</th><th>Доп. слоты</th><th>Свойства</th></tr></thead><tbody id="armorRows"></tbody></table></div>
-    </section>
-
-    <section class="card">
-      <div class="title-row"><h2>Контакты</h2></div>
-      <div id="contactCounters" class="counter-row"></div>
-      <div class="slot-grid">
-        <div class="slot-box"><div class="title-row"><h3>Личные</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('contact','personal')"></button><button class="triangle-button right" type="button" onclick="addSlot('contact','personal')"></button></div></div><div id="contact_personal_rows" class="slot-list"></div></div>
-        <div class="slot-box"><div class="title-row"><h3>Фракционные</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('contact','faction')"></button><button class="triangle-button right" type="button" onclick="addSlot('contact','faction')"></button></div></div><div id="contact_faction_rows" class="slot-list"></div></div>
-        <div class="slot-box"><div class="title-row"><h3>Мировые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('contact','world')"></button><button class="triangle-button right" type="button" onclick="addSlot('contact','world')"></button></div></div><div id="contact_world_rows" class="slot-list"></div></div>
-        <div class="slot-box"><div class="title-row"><h3>Персонажи игроков</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('contact','players')"></button><button class="triangle-button right" type="button" onclick="addSlot('contact','players')"></button></div></div><div id="contact_players_rows" class="slot-list"></div></div>
-      </div>
-    </section>
-
-    <section class="card">
+    <section id="abilitiesCard" class="card">
       <div class="title-row"><h2>Способности</h2></div>
       <div id="abilityCounters" class="counter-row"></div>
       <div class="slot-grid">
@@ -532,20 +618,63 @@
       </div>
     </section>
 
-    <section class="card">
+    <section id="tacticsCard" class="card">
+      <div class="title-row">
+        <h2>Группы тактик</h2>
+        <div class="title-actions">
+          <button class="triangle-button left" type="button" onclick="removeTacticRow()" title="Убрать группу тактик"></button>
+          <button class="triangle-button right" type="button" onclick="addTacticRow()" title="Добавить группу тактик"></button>
+        </div>
+      </div>
+      <div id="tacticCounters" class="counter-row"></div>
+      <div class="table-wrap"><table class="table"><thead><tr><th>Группа тактик</th><th>Связанный навык</th><th>Тактики / заметки</th></tr></thead><tbody id="tacticRows"></tbody></table></div>
+    </section>
+
+    <section id="gearCard" class="card">
+      <h2>Снаряжение</h2>
+      <h3>4 слота снаряжения</h3>
+      <div class="table-wrap"><table class="table"><thead><tr><th>Слот</th><th>Предмет</th><th>Навык</th><th>Качество</th><th>Свойства / заметки</th></tr></thead><tbody id="gearRows"></tbody></table></div>
+
+      <div class="title-row" style="margin-top:18px">
+        <h3>Ресурсы</h3>
+        <div class="title-actions">
+          <button class="triangle-button left" type="button" onclick="removeResourceRow()" title="Убрать ресурс"></button>
+          <button class="triangle-button right" type="button" onclick="addResourceRow()" title="Добавить ресурс"></button>
+        </div>
+      </div>
+      <div id="resourceCounters" class="counter-row"></div>
+      <div class="table-wrap"><table class="table"><thead><tr><th>№</th><th>Ресурс</th><th>Качество</th><th>Свойства / цена / применение</th></tr></thead><tbody id="resourceRows"></tbody></table></div>
+
+      <h3 style="margin-top:18px">Броня</h3>
+      <div class="table-wrap"><table class="table"><thead><tr><th>Слот</th><th>Предмет</th><th>Сопротивление</th><th>Защита</th><th>Доп. слоты</th><th>Свойства</th></tr></thead><tbody id="armorRows"></tbody></table></div>
+    </section>
+
+    <section id="contactsCard" class="card">
+      <div class="title-row"><h2>Контакты</h2></div>
+      <div id="contactCounters" class="counter-row"></div>
+      <div class="slot-grid">
+        <div class="slot-box"><div class="title-row"><h3>Личные</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('contact','personal')"></button><button class="triangle-button right" type="button" onclick="addSlot('contact','personal')"></button></div></div><div id="contact_personal_rows" class="slot-list"></div></div>
+        <div class="slot-box"><div class="title-row"><h3>Фракционные</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('contact','faction')"></button><button class="triangle-button right" type="button" onclick="addSlot('contact','faction')"></button></div></div><div id="contact_faction_rows" class="slot-list"></div></div>
+        <div class="slot-box"><div class="title-row"><h3>Мировые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('contact','world')"></button><button class="triangle-button right" type="button" onclick="addSlot('contact','world')"></button></div></div><div id="contact_world_rows" class="slot-list"></div></div>
+        <div class="slot-box"><div class="title-row"><h3>Персонажи игроков</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('contact','players')"></button><button class="triangle-button right" type="button" onclick="addSlot('contact','players')"></button></div></div><div id="contact_players_rows" class="slot-list"></div></div>
+      </div>
+    </section>
+
+    <section id="classQuestionsCard" class="card">
       <h2>Классовые вопросы</h2>
+      <p class="hint">Три свободные ячейки для важных вопросов класса, личной драмы, долга, странностей или сюжетных крючков.</p>
       <div class="grid-3">
         <div>
           <label>Вопрос 1</label>
-          <textarea id="classQuestion1" placeholder="Вопрос 1"></textarea>
+          <textarea id="classQuestion1" placeholder="Что в твоём классе делает тебя опасным, странным или нужным?"></textarea>
         </div>
         <div>
           <label>Вопрос 2</label>
-          <textarea id="classQuestion2" placeholder="Вопрос 2"></textarea>
+          <textarea id="classQuestion2" placeholder="Кто или что связано с твоей силой?"></textarea>
         </div>
         <div>
           <label>Вопрос 3</label>
-          <textarea id="classQuestion3" placeholder="Вопрос 3"></textarea>
+          <textarea id="classQuestion3" placeholder="Что ты потеряешь, если зайдёшь слишком далеко?"></textarea>
         </div>
       </div>
     </section>
@@ -665,6 +794,7 @@
     let diaryCount=DEFAULT_DIARY_COUNT;
     let listenersAttached=false;
     let parallaxAttached=false;
+    let collapsiblesAttached=false;
     let rollMasteryEnabled=false;
     let advancedRollHistory=[];
     let lastConsequenceCheckText="";
@@ -785,6 +915,12 @@
     function byId(id){return document.getElementById(id)}
     function escapeHtml(text){return String(text).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
     function makeOptions(options,selected=""){return options.map(option=>`<option value="${escapeHtml(option)}" ${option===selected?"selected":""}>${escapeHtml(option)}</option>`).join("")}
+    function makeDieOptions(selected=""){
+      return dieOptions.map(option=>{
+        const label=option?option.replace("D","К"):"";
+        return `<option value="${escapeHtml(option)}" ${option===selected?"selected":""}>${escapeHtml(label)}</option>`;
+      }).join("");
+    }
     function makeResistanceOptions(selected=""){return `<option value=""></option>`+stressTracks.map(track=>`<option value="${track.id}" ${track.id===selected?"selected":""}>${track.label}</option>`).join("")}
 
     function findSkillIndex(skillName){return defaultSkills.findIndex(skill=>skill.name===skillName)+1}
@@ -831,6 +967,93 @@
       updateParallaxBackground();
 
       parallaxAttached=true;
+    }
+
+    function enhanceCollapsibleCards(){
+      if(collapsiblesAttached)return;
+
+      const cards=Array.from(document.querySelectorAll("main.app > section.card"));
+
+      cards.forEach((card,index)=>{
+        if(card.dataset.collapsibleProcessed==="true")return;
+
+        card.classList.add("collapsible-card");
+        if(!card.id)card.id=`card_${index+1}`;
+        card.dataset.collapseId=card.id;
+
+        let header=Array.from(card.children).find(child=>child.classList?.contains("title-row")||child.tagName==="H2");
+        if(!header)return;
+
+        if(header.tagName==="H2"){
+          const titleRow=document.createElement("div");
+          titleRow.className="title-row";
+          card.insertBefore(titleRow,header);
+          titleRow.appendChild(header);
+          header=titleRow;
+        }
+
+        let actions=header.querySelector(":scope > .title-actions");
+        if(!actions){
+          actions=document.createElement("div");
+          actions.className="title-actions";
+          header.appendChild(actions);
+        }
+
+        const collapseButton=document.createElement("button");
+        collapseButton.type="button";
+        collapseButton.className="collapse-section-button up";
+        collapseButton.title="Свернуть / развернуть секцию";
+        collapseButton.setAttribute("aria-label","Свернуть / развернуть секцию");
+        collapseButton.onclick=function(){toggleCardCollapse(this)};
+        actions.appendChild(collapseButton);
+
+        const content=document.createElement("div");
+        content.className="card-content";
+
+        let node=header.nextSibling;
+        while(node){
+          const next=node.nextSibling;
+          content.appendChild(node);
+          node=next;
+        }
+
+        card.appendChild(content);
+        card.dataset.collapsibleProcessed="true";
+      });
+
+      collapsiblesAttached=true;
+    }
+
+    function toggleCardCollapse(button){
+      const card=button.closest(".collapsible-card");
+      if(!card)return;
+
+      const isCollapsed=!card.classList.contains("is-collapsed");
+      card.classList.toggle("is-collapsed",isCollapsed);
+      button.classList.toggle("up",!isCollapsed);
+      button.classList.toggle("down",isCollapsed);
+      saveSheet(false);
+    }
+
+    function collectCollapsedCards(){
+      return Array.from(document.querySelectorAll(".collapsible-card.is-collapsed"))
+        .map(card=>card.dataset.collapseId||card.id)
+        .filter(Boolean);
+    }
+
+    function applyCollapsedCards(collapsedCards){
+      const collapsedSet=new Set(collapsedCards||[]);
+      document.querySelectorAll(".collapsible-card").forEach(card=>{
+        const id=card.dataset.collapseId||card.id;
+        const collapsed=collapsedSet.has(id);
+        card.classList.toggle("is-collapsed",collapsed);
+
+        const button=card.querySelector(".collapse-section-button");
+        if(button){
+          button.classList.toggle("up",!collapsed);
+          button.classList.toggle("down",collapsed);
+        }
+      });
     }
 
     function getDesiredAutomaticSelections(){
@@ -1018,12 +1241,37 @@
       const container=byId("gearRows");
       container.innerHTML="";
       for(let i=1;i<=4;i++){
-        container.innerHTML+=`<tr><td>${i}</td><td><input id="gear${i}Name" placeholder="Предмет" /></td><td><select id="gear${i}Quality">${makeOptions(dieOptions)}</select></td><td><input id="gear${i}Note" placeholder="Свойства, поломки, странность..." /></td></tr>`;
+        container.innerHTML+=`
+          <tr>
+            <td>${i}</td>
+            <td><input id="gear${i}Name" placeholder="Предмет" /></td>
+            <td><select id="gear${i}Skill">${makeOptions(skillOptions)}</select></td>
+            <td>
+              <div class="quality-cell">
+                <select id="gear${i}Quality">${makeDieOptions()}</select>
+                <span id="gear${i}QualityPreview" class="quality-die-preview empty">—</span>
+              </div>
+            </td>
+            <td><input id="gear${i}Note" placeholder="Свойства, поломки, странность..." /></td>
+          </tr>
+        `;
       }
     }
 
     function appendResourceRow(index){
-      byId("resourceRows").insertAdjacentHTML("beforeend",`<tr><td>${index}</td><td><input id="resource${index}Name" placeholder="Ресурс" /></td><td><select id="resource${index}Quality">${makeOptions(dieOptions)}</select></td><td><input id="resource${index}Note" placeholder="Свойства, качество, кому нужен..." /></td></tr>`);
+      byId("resourceRows").insertAdjacentHTML("beforeend",`
+        <tr>
+          <td>${index}</td>
+          <td><input id="resource${index}Name" placeholder="Ресурс" /></td>
+          <td>
+            <div class="quality-cell">
+              <select id="resource${index}Quality">${makeDieOptions()}</select>
+              <span id="resource${index}QualityPreview" class="quality-die-preview empty">—</span>
+            </div>
+          </td>
+          <td><input id="resource${index}Note" placeholder="Свойства, качество, кому нужен..." /></td>
+        </tr>
+      `);
     }
 
     function buildResourceRows(){
@@ -1253,6 +1501,14 @@
       return{normalStress,extraStress,totalStress:normalStress};
     }
 
+    function updateConsequenceCardStressState(totalNormalStress){
+      const card=byId("consequencesCard");
+      if(!card)return;
+
+      card.classList.toggle("stress-warning",totalNormalStress>=6&&totalNormalStress<17);
+      card.classList.toggle("stress-critical",totalNormalStress>=17);
+    }
+
     function updateStressScales(){
       const totals=updateProtectionAndExtraSlots();
       let totalNormalStress=0;
@@ -1286,6 +1542,8 @@
       let stressClass="";
       if(totalNormalStress>=17)stressClass="stress-critical";
       else if(totalNormalStress>=6)stressClass="stress-warning";
+
+      updateConsequenceCardStressState(totalNormalStress);
 
       byId("stressTotalCounters").innerHTML=`
         <span class="counter stress-total-counter ${stressClass}">Общий стресс: ${totalNormalStress}/100</span>
@@ -1344,12 +1602,40 @@
       if(title)title.textContent=getRollMenuTitleText();
     }
 
+    function updateQualityDiePreview(selectId,previewId){
+      const select=byId(selectId);
+      const preview=byId(previewId);
+      if(!select||!preview)return;
+
+      const value=select.value||"";
+      preview.className="quality-die-preview empty";
+      preview.textContent="—";
+
+      const match=value.match(/^D(4|6|8|10|12)$/);
+      if(!match)return;
+
+      const sides=match[1];
+      preview.className=`quality-die-preview die-d${sides}`;
+      preview.textContent=`К${sides}`;
+    }
+
+    function updateQualityDiePreviews(){
+      for(let i=1;i<=4;i++){
+        updateQualityDiePreview(`gear${i}Quality`,`gear${i}QualityPreview`);
+      }
+
+      for(let i=1;i<=resourceCount;i++){
+        updateQualityDiePreview(`resource${i}Quality`,`resource${i}QualityPreview`);
+      }
+    }
+
     function renderCounters(){
       applyAutomaticSelections();
       updateClassBackground();
       updateNationPattern();
       updateMasteryNoteVisibility();
       updateStressScales();
+      updateQualityDiePreviews();
       renderSkillDomainCounters();
       renderTacticCounters();
       renderResourceCounters();
@@ -1440,7 +1726,8 @@
         autoSelectedDomainMasteries:[...autoSelectedDomainMasteries],
         rollMasteryEnabled,
         advancedRollHistory,
-        lastConsequenceCheckText
+        lastConsequenceCheckText,
+        collapsedCards:collectCollapsedCards()
       };
 
       getAllInputs().forEach(element=>{
@@ -1488,6 +1775,7 @@
       updateRollMasteryButton();
       renderAdvancedRollHistory();
       renderCounters();
+      applyCollapsedCards(data.collapsedCards||[]);
     }
 
     function applyCountsFromData(data){
@@ -1730,7 +2018,7 @@
       saveSheet(false);
     }
 
-    function renderSimpleRollEntry(entry){
+    function renderSimpleRollEntry(entry,isNewest=false){
       const sides=Number(entry.sides||0);
       const result=Number(entry.result||0);
       const modifier=Number(entry.modifier||0);
@@ -1738,13 +2026,14 @@
       const reason=entry.reason||"";
       const isEdge=result===1||result===sides;
       const edgeClass=isEdge?" edge":"";
+      const burstClass=isNewest?(result===sides?" roll-new-strong":" roll-new"):"";
       let detail=`К${sides}: ${result}`;
 
       if(modifier!==0)detail+=` ${modifier>0?"+":""}${modifier} = ${total}`;
       if(reason)detail+=` — ${escapeHtml(reason)}`;
 
       return `
-        <div class="roll-history-entry">
+        <div class="roll-history-entry${burstClass}">
           <div class="roll-history-top">[${escapeHtml(entry.time||"")}] Простой бросок К${sides}</div>
           <div class="simple-roll-result-line">
             <span class="die-shape-result die-d${sides}${edgeClass}"><span class="die-value">${result}</span></span>
@@ -1754,18 +2043,22 @@
       `;
     }
 
-    function renderLegacyRollEntry(entry){
+    function renderLegacyRollEntry(entry,isNewest=false){
+      const burstClass=isNewest?" roll-new":"";
       return `
-        <div class="roll-history-entry">
+        <div class="roll-history-entry${burstClass}">
           <div class="roll-history-top">Старый простой бросок</div>
           <div class="hint">${escapeHtml(entry.text||"")}</div>
         </div>
       `;
     }
 
-    function renderAdvancedRollEntry(entry){
+    function renderAdvancedRollEntry(entry,isNewest=false){
       const values=Array.isArray(entry.rolls)?entry.rolls:[];
       const maxValue=values.length?Math.max(...values):0;
+      const isCriticalSuccess=entry.resultLabel==="Критический успех";
+      const burstClass=isNewest?(isCriticalSuccess?" roll-new-strong":" roll-new"):"";
+
       const rolls=values.map(value=>{
         const classes=["roll-die"];
         if(value===maxValue)classes.push("max");
@@ -1781,7 +2074,7 @@
       parts.push(`Сложность: ${escapeHtml(entry.difficultyLabel||"Нормальная")}`);
 
       return `
-        <div class="roll-history-entry">
+        <div class="roll-history-entry${burstClass}">
           <div class="roll-history-top">[${escapeHtml(entry.time||"")}] ${escapeHtml(entry.resultLabel||"")}</div>
           <div>${rolls}</div>
           <div class="hint">${parts.join(" · ")}</div>
@@ -1799,10 +2092,11 @@
         return;
       }
 
-      container.innerHTML=advancedRollHistory.map(entry=>{
-        if(entry.type==="simple")return renderSimpleRollEntry(entry);
-        if(entry.type==="legacy")return renderLegacyRollEntry(entry);
-        return renderAdvancedRollEntry(entry);
+      container.innerHTML=advancedRollHistory.map((entry,index)=>{
+        const isNewest=index===0;
+        if(entry.type==="simple")return renderSimpleRollEntry(entry,isNewest);
+        if(entry.type==="legacy")return renderLegacyRollEntry(entry,isNewest);
+        return renderAdvancedRollEntry(entry,isNewest);
       }).join("");
     }
 
@@ -1829,6 +2123,7 @@
 
       buildStaticRows();
       buildDynamicRows();
+      enhanceCollapsibleCards();
       attachAutoSave();
       attachParallax();
 
