@@ -16,6 +16,7 @@
       --accent-soft:#5a000218;
       --button:#5a0002;
       --button-text:#fff;
+      --on-accent:#fff;
       --danger:#c40000;
       --class-bg-image:none;
       --nation-pattern-image:none;
@@ -135,7 +136,7 @@
     textarea{min-height:70px;resize:vertical}
     button{background:var(--button);color:var(--button-text);font-weight:900;cursor:pointer;text-transform:uppercase;letter-spacing:.04em}
     button.secondary{background:#fff;color:var(--accent)}
-    button.toggle-button.is-active{background:var(--accent);color:#fff}
+    button.toggle-button.is-active{background:var(--accent);color:var(--on-accent)}
 
     .triangle-button{
       width:34px;
@@ -160,7 +161,7 @@
     .table{width:100%;min-width:760px;border-collapse:collapse;margin-top:8px}
     .wide-table{min-width:1040px}
     .table th,.table td{border:1px solid var(--accent);padding:8px;vertical-align:top}
-    .table th{text-align:left;color:#fff;font-size:13px;background:var(--accent);white-space:nowrap;text-transform:uppercase;letter-spacing:.04em}
+    .table th{text-align:left;color:var(--on-accent);font-size:13px;background:var(--accent);white-space:nowrap;text-transform:uppercase;letter-spacing:.04em}
     .table input,.table textarea,.table select{margin:0;min-height:unset}
     .table textarea{min-height:54px}
 
@@ -228,7 +229,7 @@
     .trait-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
     .trait-name{position:relative;display:inline-block;width:auto;margin:0;padding:0;border:none;background:transparent;color:var(--accent);font-weight:1000;text-align:left;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:4px;text-transform:uppercase;letter-spacing:.04em}
     .trait-name:hover,.trait-name:focus{background:transparent;color:var(--accent);outline:none}
-    .trait-tooltip{display:none;position:absolute;z-index:20;left:0;bottom:calc(100% + 8px);width:min(380px,82vw);padding:10px;border:1px solid var(--accent);background:var(--accent);color:#fff;font-weight:700;line-height:1.35;text-transform:none;letter-spacing:0;box-shadow:8px 8px 0 var(--accent-soft)}
+    .trait-tooltip{display:none;position:absolute;z-index:20;left:0;bottom:calc(100% + 8px);width:min(380px,82vw);padding:10px;border:1px solid var(--accent);background:var(--accent);color:var(--on-accent);font-weight:700;line-height:1.35;text-transform:none;letter-spacing:0;box-shadow:8px 8px 0 var(--accent-soft)}
     .trait-name:hover .trait-tooltip,.trait-name:focus .trait-tooltip{display:block}
     .trait-checks{display:inline-flex;flex-wrap:nowrap;gap:7px;align-items:center}
     .trait-note{margin-top:6px;padding:7px;font-size:14px}
@@ -256,7 +257,7 @@
       height:34px;
       min-width:44px;
       background:var(--accent);
-      color:#fff;
+      color:var(--on-accent);
       border:none;
       font-weight:1000;
       font-size:13px;
@@ -502,7 +503,7 @@
       margin:2px 4px 2px 0;
       padding:0;
       background:var(--accent);
-      color:#fff;
+      color:var(--on-accent);
       border:none;
       clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
       font-weight:1000;
@@ -585,7 +586,7 @@
       padding:6px;
       margin:2px 4px 2px 0;
       background:var(--accent);
-      color:#fff;
+      color:var(--on-accent);
       border:none;
       font-weight:1000;
       vertical-align:middle;
@@ -600,7 +601,7 @@
 
     .die-shape-result .die-value{
       background:transparent !important;
-      color:#fff;
+      color:var(--on-accent);
       border:none;
       box-shadow:none;
       padding:0;
@@ -626,32 +627,6 @@
       70%{transform:scale(.9) rotate(-7deg)}
       100%{transform:scale(1) rotate(0deg)}
     }
-    @keyframes roll-max-burst{
-  0%{
-    transform:scale(.45) rotate(-28deg);
-    filter:contrast(1.1);
-  }
-
-  28%{
-    transform:scale(1.65) rotate(22deg);
-    filter:contrast(1.55);
-  }
-
-  52%{
-    transform:scale(.82) rotate(-14deg);
-    filter:contrast(1.35);
-  }
-
-  74%{
-    transform:scale(1.22) rotate(8deg);
-    filter:contrast(1.45);
-  }
-
-  100%{
-    transform:scale(1) rotate(0deg);
-    filter:contrast(1);
-  }
-}
 
     .roll-history-entry.roll-new .roll-die,
     .roll-history-entry.roll-new .die-shape-result{
@@ -662,10 +637,7 @@
     .roll-history-entry.roll-new-strong .die-shape-result{
       animation:roll-pop-strong .48s ease-out;
     }
-.roll-history-entry.roll-new-strong .roll-die.max,
-.roll-history-entry.roll-new-strong .die-shape-result.edge{
-  animation:roll-max-burst .78s cubic-bezier(.18,1.35,.28,1);
-}
+
     @media(max-width:760px){
       body{padding:12px}
       .grid-2,.grid-3,.slot-grid{grid-template-columns:1fr}
@@ -1086,6 +1058,15 @@
       "Народ Железа":"images/pattern-iron.png"
     };
 
+    const DEFAULT_THEME_COLOR="#5a0002";
+
+    const nationThemeMap={
+      "Народ Ножей":"#4F818D",
+      "Народ Граней":"#B7AE85",
+      "Народ Железа":"#597376",
+      "Народ Ядов":"#6a0002"
+    };
+
     const skillOptions=["",...defaultSkills.map(skill=>skill.name)];
     const domainOptions=["",...defaultDomains.map(domain=>domain.name)];
     const armorSlots=["Голова","Тело","Особое","Рюкзак"];
@@ -1128,6 +1109,21 @@
       const nationName=byId("nationName")?.value||"";
       const imagePath=nationPatternMap[nationName];
       document.body.style.setProperty("--nation-pattern-image",imagePath?`url("${imagePath}")`:"none");
+    }
+
+    function updateNationTheme(){
+      const nationName=byId("nationName")?.value||"";
+      const themeColor=nationThemeMap[nationName]||DEFAULT_THEME_COLOR;
+      const onAccent=nationName==="Народ Граней"?"#320216":"#fff";
+
+      document.documentElement.style.setProperty("--accent",themeColor);
+      document.documentElement.style.setProperty("--button",themeColor);
+      document.documentElement.style.setProperty("--text",themeColor);
+      document.documentElement.style.setProperty("--muted",`${themeColor}cc`);
+      document.documentElement.style.setProperty("--line",`${themeColor}44`);
+      document.documentElement.style.setProperty("--accent-soft",`${themeColor}22`);
+      document.documentElement.style.setProperty("--button-text",onAccent);
+      document.documentElement.style.setProperty("--on-accent",onAccent);
     }
 
     function updateParallaxBackground(){
@@ -1819,6 +1815,7 @@
 
     function renderCounters(){
       applyAutomaticSelections();
+      updateNationTheme();
       updateClassBackground();
       updateNationPattern();
       updateMasteryNoteVisibility();
