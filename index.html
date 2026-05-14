@@ -146,14 +146,163 @@
     .floating-roll-button{position:fixed;right:18px;bottom:18px;z-index:900;width:76px;height:76px;border:2px solid var(--accent);box-shadow:8px 8px 0 var(--accent-soft);font-size:18px}
     .roll-modal{display:none;position:fixed;inset:0;z-index:1000;padding:16px;background:#32021655;overflow:auto}
     .roll-modal.open{display:flex;align-items:flex-start;justify-content:center}
-    .roll-panel{width:min(760px,100%);margin-top:28px;padding:16px;border:2px solid var(--accent);background:#fff;box-shadow:10px 10px 0 var(--accent-soft)}
+    .roll-panel{
+      width:min(760px,100%);
+      margin-top:28px;
+      padding:16px;
+      border:2px solid var(--accent);
+      background:#fff;
+      box-shadow:10px 10px 0 var(--accent-soft);
+      position:relative;
+      overflow:hidden;
+    }
+    .roll-panel::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      background-image:var(--class-bg-image);
+      background-size:contain;
+      background-position:center;
+      background-repeat:no-repeat;
+      opacity:.09;
+      filter:contrast(1.1);
+    }
+    .roll-panel>*{position:relative;z-index:1}
+    .roll-subsection{
+      margin-top:16px;
+      padding:12px;
+      border:1px solid var(--accent);
+      background:rgba(255,255,255,.84);
+    }
     .roll-result-title{margin:12px 0 8px;padding:10px;border:2px solid var(--accent);font-weight:1000;text-transform:uppercase;color:var(--accent);letter-spacing:.04em}
     .roll-detail{margin-bottom:10px;color:var(--muted);font-weight:700}
     .roll-history{display:grid;gap:8px}
     .roll-history-entry{border:1px solid var(--accent);padding:8px;background:#fff;font-size:14px}
     .roll-history-top{font-weight:900;color:var(--accent);margin-bottom:4px}
-    .roll-die{display:inline-block;margin:2px 4px 2px 0;padding:3px 7px;border:1px solid var(--accent);font-weight:900}
+    .roll-die{display:inline-block;margin:2px 4px 2px 0;padding:3px 7px;border:1px solid var(--accent);font-weight:900;background:#fff}
     .roll-die.max{color:var(--danger);border-color:var(--danger);font-weight:1000}
+    .roll-die.edge{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+
+    .simple-dice-row{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:10px;
+      align-items:center;
+      justify-items:center;
+      margin:12px 0;
+    }
+
+    .die-shape-button{
+      width:78px;
+      height:68px;
+      min-width:0;
+      padding:0;
+      border:2px solid var(--accent);
+      background:var(--button);
+      color:var(--button-text);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:5px 5px 0 var(--accent-soft);
+      font-weight:1000;
+      text-align:center;
+    }
+
+    .die-shape-button:hover,
+    .die-shape-button:focus{
+      filter:contrast(1.12);
+    }
+
+    .die-shape-button.die-d4{
+      clip-path:polygon(50% 0%,100% 100%,0% 100%);
+      padding-top:18px;
+    }
+
+    .die-shape-button.die-d6{
+      width:64px;
+      height:64px;
+      clip-path:polygon(0 0,100% 0,100% 100%,0 100%);
+    }
+
+    .die-shape-button.die-d8{
+      width:72px;
+      height:72px;
+      clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
+    }
+
+    .die-shape-button.die-d10{
+      width:100px;
+      height:60px;
+      clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
+    }
+
+    .die-shape-button.die-d12{
+      width:74px;
+      height:74px;
+      clip-path:polygon(50% 0%,97.55% 34.55%,79.39% 90.45%,20.61% 90.45%,2.45% 34.55%);
+    }
+
+    .simple-roll-result-line{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+      margin:6px 0;
+    }
+
+    .die-shape-result{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:38px;
+      min-height:38px;
+      padding:6px;
+      margin:2px 4px 2px 0;
+      background:#fff;
+      color:var(--accent);
+      border:2px solid var(--accent);
+      font-weight:1000;
+      vertical-align:middle;
+    }
+
+    .die-shape-result.die-d4{
+      width:42px;
+      height:40px;
+      clip-path:polygon(50% 0%,100% 100%,0% 100%);
+      padding-top:12px;
+    }
+
+    .die-shape-result.die-d6{
+      width:38px;
+      height:38px;
+      clip-path:polygon(0 0,100% 0,100% 100%,0 100%);
+    }
+
+    .die-shape-result.die-d8{
+      width:42px;
+      height:42px;
+      clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
+    }
+
+    .die-shape-result.die-d10{
+      width:58px;
+      height:36px;
+      clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
+    }
+
+    .die-shape-result.die-d12{
+      width:44px;
+      height:44px;
+      clip-path:polygon(50% 0%,97.55% 34.55%,79.39% 90.45%,20.61% 90.45%,2.45% 34.55%);
+    }
+
+    .die-shape-result.edge .die-value{
+      text-decoration:underline;
+      text-decoration-thickness:2px;
+      text-underline-offset:3px;
+    }
 
     @media(max-width:760px){
       body{padding:12px}
@@ -162,6 +311,7 @@
       .traits-grid{grid-template-columns:1fr}
       .toolbar{grid-template-columns:1fr}
       .floating-roll-button{width:64px;height:64px;right:12px;bottom:12px}
+      .simple-dice-row{grid-template-columns:repeat(3,1fr)}
     }
   </style>
 </head>
@@ -276,23 +426,6 @@
     </section>
 
     <section class="card">
-      <h2>Броски костей</h2>
-      <div class="dice-row">
-        <button onclick="rollDie(4)">D4</button>
-        <button onclick="rollDie(6)">D6</button>
-        <button onclick="rollDie(8)">D8</button>
-        <button onclick="rollDie(10)">D10</button>
-        <button onclick="rollDie(12)">D12</button>
-      </div>
-      <div class="grid-2">
-        <div><label>Модификатор</label><input id="rollModifier" type="number" value="0" /></div>
-        <div><label>Причина броска</label><input id="rollReason" placeholder="Например: УБИВАТЬ, ИЗБЕГАТЬ, сопротивление..." /></div>
-      </div>
-      <label>Журнал простых бросков</label>
-      <div id="rollLog" class="log"></div>
-    </section>
-
-    <section class="card">
       <h2>Прочие заметки</h2>
       <textarea id="notes" placeholder="Всё, что пока не получило отдельного раздела."></textarea>
     </section>
@@ -306,51 +439,69 @@
 
   <button id="openRollMenuButton" class="floating-roll-button" type="button" onclick="openRollMenu()">D10</button>
 
-  <div id="rollModal" class="roll-modal" onclick="closeRollMenuOnBackdrop(event)">
+  <div id="rollModal" class="roll-modal" onclick="closeRollMenuOnBackdrop(event)" aria-hidden="true">
     <div class="roll-panel" onclick="event.stopPropagation()">
       <div class="title-row">
         <h2 id="autoRollTitle">Автоматический бросок</h2>
         <button class="secondary" type="button" onclick="closeRollMenu()">Закрыть</button>
       </div>
 
-      <div class="grid-2">
-        <div>
-          <label>Навык</label>
-          <select id="autoRollSkill"></select>
+      <div class="roll-subsection">
+        <h3>Автоматический бросок</h3>
+        <div class="grid-2">
+          <div>
+            <label>Навык</label>
+            <select id="autoRollSkill"></select>
+          </div>
+
+          <div>
+            <label>Область</label>
+            <select id="autoRollDomain"></select>
+          </div>
+
+          <div>
+            <label>Мастерство</label>
+            <button id="autoRollMasteryToggle" class="secondary toggle-button" type="button" onclick="toggleRollMastery()">Мастерство: нет</button>
+          </div>
+
+          <div>
+            <label>Количество помощников</label>
+            <input id="autoRollHelpers" type="number" min="0" value="0" />
+          </div>
+
+          <div>
+            <label>Сложность</label>
+            <select id="autoRollDifficulty">
+              <option value="0">Нормальная</option>
+              <option value="1">Рискованная</option>
+              <option value="2">Опасная</option>
+              <option value="3">Роковая</option>
+            </select>
+          </div>
         </div>
 
-        <div>
-          <label>Область</label>
-          <select id="autoRollDomain"></select>
-        </div>
+        <button type="button" style="margin-top:14px" onclick="rollAdvancedDice()">Бросить кости</button>
 
-        <div>
-          <label>Мастерство</label>
-          <button id="autoRollMasteryToggle" class="secondary toggle-button" type="button" onclick="toggleRollMastery()">Мастерство: нет</button>
-        </div>
+        <div id="autoRollResultTitle" class="roll-result-title">Результат появится здесь</div>
+        <div id="autoRollResultDetails" class="roll-detail"></div>
+      </div>
 
-        <div>
-          <label>Количество помощников</label>
-          <input id="autoRollHelpers" type="number" min="0" value="0" />
+      <div class="roll-subsection">
+        <h3>Простой бросок</h3>
+        <div class="simple-dice-row">
+          <button class="die-shape-button die-d4" type="button" onclick="rollDie(4)">D4</button>
+          <button class="die-shape-button die-d6" type="button" onclick="rollDie(6)">D6</button>
+          <button class="die-shape-button die-d8" type="button" onclick="rollDie(8)">D8</button>
+          <button class="die-shape-button die-d10" type="button" onclick="rollDie(10)">D10</button>
+          <button class="die-shape-button die-d12" type="button" onclick="rollDie(12)">D12</button>
         </div>
-
-        <div>
-          <label>Сложность</label>
-          <select id="autoRollDifficulty">
-            <option value="0">Нормальная</option>
-            <option value="1">Рискованная</option>
-            <option value="2">Опасная</option>
-            <option value="3">Роковая</option>
-          </select>
+        <div class="grid-2">
+          <div><label>Модификатор</label><input id="rollModifier" type="number" value="0" /></div>
+          <div><label>Причина броска</label><input id="rollReason" placeholder="Например: УБИВАТЬ, ИЗБЕГАТЬ, сопротивление..." /></div>
         </div>
       </div>
 
-      <button type="button" style="margin-top:14px" onclick="rollAdvancedDice()">Бросить кости</button>
-
-      <div id="autoRollResultTitle" class="roll-result-title">Результат появится здесь</div>
-      <div id="autoRollResultDetails" class="roll-detail"></div>
-
-      <h3 style="margin-top:14px">Журнал последних 10 бросков</h3>
+      <h3 style="margin-top:14px">Общий журнал последних 10 бросков</h3>
       <div id="autoRollHistory" class="roll-history"></div>
     </div>
   </div>
@@ -1112,8 +1263,18 @@
         data[element.id]=element.type==="checkbox"?element.checked:element.value;
       });
 
-      data.rollLog=byId("rollLog").textContent;
+      data.rollLog=byId("rollLog")?.textContent||"";
       return data;
+    }
+
+    function convertLegacySimpleLog(logText){
+      if(!logText)return[];
+      return String(logText)
+        .split("\n")
+        .map(line=>line.trim())
+        .filter(Boolean)
+        .slice(0,10)
+        .map(line=>({type:"legacy",text:line}));
     }
 
     function applyData(data){
@@ -1123,6 +1284,11 @@
       autoSelectedDomainMasteries=new Set(data.autoSelectedDomainMasteries||[]);
       rollMasteryEnabled=Boolean(data.rollMasteryEnabled);
       advancedRollHistory=Array.isArray(data.advancedRollHistory)?data.advancedRollHistory.slice(0,10):[];
+
+      if(data.rollLog&&!advancedRollHistory.length){
+        advancedRollHistory=convertLegacySimpleLog(data.rollLog);
+      }
+
       lastConsequenceCheckText=data.lastConsequenceCheckText||"";
 
       getAllInputs().forEach(element=>{
@@ -1131,7 +1297,9 @@
         else element.value=data[element.id];
       });
 
-      byId("rollLog").textContent=data.rollLog||"";
+      const legacyRollLog=byId("rollLog");
+      if(legacyRollLog)legacyRollLog.textContent=data.rollLog||"";
+
       updateRollMasteryButton();
       renderAdvancedRollHistory();
       renderCounters();
@@ -1195,18 +1363,24 @@
     }
 
     function rollDie(sides){
-      const modifier=Number(byId("rollModifier").value||0);
-      const reason=byId("rollReason").value.trim();
+      const modifier=Number(byId("rollModifier")?.value||0);
+      const reason=byId("rollReason")?.value.trim()||"";
       const result=Math.floor(Math.random()*sides)+1;
       const total=result+modifier;
-
-      let line=`D${sides}: ${result}`;
-      if(modifier!==0)line+=` ${modifier>0?"+":""}${modifier} = ${total}`;
-      if(reason)line+=` — ${reason}`;
-
       const time=new Date().toLocaleTimeString("ru-RU",{hour:"2-digit",minute:"2-digit"});
-      byId("rollLog").textContent=`[${time}] ${line}\n`+byId("rollLog").textContent;
 
+      advancedRollHistory.unshift({
+        type:"simple",
+        time,
+        sides,
+        result,
+        modifier,
+        total,
+        reason
+      });
+
+      advancedRollHistory=advancedRollHistory.slice(0,10);
+      renderAdvancedRollHistory();
       saveSheet(false);
     }
 
@@ -1326,6 +1500,7 @@
       const time=new Date().toLocaleTimeString("ru-RU",{hour:"2-digit",minute:"2-digit"});
 
       const entry={
+        type:"advanced",
         time,skillName,domainName,skillChecked,domainChecked,
         masteryRequested:rollMasteryEnabled,masteryApplied,helpers,difficultyLabel,difficultyPenalty,
         intendedDice,diceToRoll,downgradeSteps,rolls,maxRoll,criticalTens,
@@ -1345,6 +1520,66 @@
       saveSheet(false);
     }
 
+    function renderSimpleRollEntry(entry){
+      const sides=Number(entry.sides||0);
+      const result=Number(entry.result||0);
+      const modifier=Number(entry.modifier||0);
+      const total=Number(entry.total??(result+modifier));
+      const reason=entry.reason||"";
+      const isEdge=result===1||result===sides;
+      const edgeClass=isEdge?" edge":"";
+      let detail=`D${sides}: ${result}`;
+
+      if(modifier!==0)detail+=` ${modifier>0?"+":""}${modifier} = ${total}`;
+      if(reason)detail+=` — ${escapeHtml(reason)}`;
+
+      return `
+        <div class="roll-history-entry">
+          <div class="roll-history-top">[${escapeHtml(entry.time||"")}] Простой бросок D${sides}</div>
+          <div class="simple-roll-result-line">
+            <span class="die-shape-result die-d${sides}${edgeClass}"><span class="die-value">${result}</span></span>
+            <span>${detail}</span>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderLegacyRollEntry(entry){
+      return `
+        <div class="roll-history-entry">
+          <div class="roll-history-top">Старый простой бросок</div>
+          <div class="hint">${escapeHtml(entry.text||"")}</div>
+        </div>
+      `;
+    }
+
+    function renderAdvancedRollEntry(entry){
+      const values=Array.isArray(entry.rolls)?entry.rolls:[];
+      const maxValue=values.length?Math.max(...values):0;
+      const rolls=values.map(value=>{
+        const classes=["roll-die"];
+        if(value===maxValue)classes.push("max");
+        if(value===1||value===10)classes.push("edge");
+        return `<span class="${classes.join(" ")}">${value}</span>`;
+      }).join("");
+
+      const parts=[];
+      if(entry.skillName)parts.push(`Навык: ${escapeHtml(entry.skillName)}${entry.skillChecked?" ✓":""}`);
+      if(entry.domainName)parts.push(`Область: ${escapeHtml(entry.domainName)}${entry.domainChecked?" ✓":""}`);
+      if(entry.masteryRequested)parts.push(`Мастерство: ${entry.masteryApplied?"применено":"нет"}`);
+      if(entry.helpers)parts.push(`Помощники: ${entry.helpers}`);
+      parts.push(`Сложность: ${escapeHtml(entry.difficultyLabel||"Нормальная")}`);
+
+      return `
+        <div class="roll-history-entry">
+          <div class="roll-history-top">[${escapeHtml(entry.time||"")}] ${escapeHtml(entry.resultLabel||"")}</div>
+          <div>${rolls}</div>
+          <div class="hint">${parts.join(" · ")}</div>
+          <div class="hint">Максимум: ${entry.maxRoll??maxValue}. Костей: ${entry.diceToRoll??values.length}. Снижение: ${entry.downgradeSteps??0}. ${escapeHtml(entry.resultText||"")}</div>
+        </div>
+      `;
+    }
+
     function renderAdvancedRollHistory(){
       const container=byId("autoRollHistory");
       if(!container)return;
@@ -1355,28 +1590,9 @@
       }
 
       container.innerHTML=advancedRollHistory.map(entry=>{
-        const values=Array.isArray(entry.rolls)?entry.rolls:[];
-        const maxValue=values.length?Math.max(...values):0;
-        const rolls=values.map(value=>{
-          const cls=value===maxValue?"roll-die max":"roll-die";
-          return `<span class="${cls}">${value}</span>`;
-        }).join("");
-
-        const parts=[];
-        if(entry.skillName)parts.push(`Навык: ${escapeHtml(entry.skillName)}${entry.skillChecked?" ✓":""}`);
-        if(entry.domainName)parts.push(`Область: ${escapeHtml(entry.domainName)}${entry.domainChecked?" ✓":""}`);
-        if(entry.masteryRequested)parts.push(`Мастерство: ${entry.masteryApplied?"применено":"нет"}`);
-        if(entry.helpers)parts.push(`Помощники: ${entry.helpers}`);
-        parts.push(`Сложность: ${escapeHtml(entry.difficultyLabel||"Нормальная")}`);
-
-        return `
-          <div class="roll-history-entry">
-            <div class="roll-history-top">[${escapeHtml(entry.time||"")}] ${escapeHtml(entry.resultLabel||"")}</div>
-            <div>${rolls}</div>
-            <div class="hint">${parts.join(" · ")}</div>
-            <div class="hint">Максимум: ${entry.maxRoll??maxValue}. Костей: ${entry.diceToRoll??values.length}. Снижение: ${entry.downgradeSteps??0}. ${escapeHtml(entry.resultText||"")}</div>
-          </div>
-        `;
+        if(entry.type==="simple")return renderSimpleRollEntry(entry);
+        if(entry.type==="legacy")return renderLegacyRollEntry(entry);
+        return renderAdvancedRollEntry(entry);
       }).join("");
     }
 
