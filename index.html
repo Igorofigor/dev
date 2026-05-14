@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Башня Упадёт — интерактивный лист персонажа</title>
-
+<label>Портрет персонажа</label>
+<input id="characterPortraitUpload" type="file" accept="image/*" />
+<img id="characterPortraitPreview" class="portrait-preview" alt="Портрет персонажа" />
   <style>
     :root{
       --bg:#fff;
@@ -824,6 +826,17 @@
 
     body.has-class-emblem .floating-roll-button{width:82px;height:82px}
     .floating-action-label{font-size:9px;padding:3px 5px;box-shadow:3px 3px 0 var(--accent-soft)}
+
+    
+.portrait-preview{
+  display:block;
+  width:100%;
+  max-width:260px;
+  margin-top:10px;
+  border:2px solid var(--accent);
+  background:#fff;
+  object-fit:cover;
+}
   </style>
 </head>
 
@@ -1378,6 +1391,38 @@
       setButtonMaskImage("openResourcesMenuButton",resourcesImage);
       setButtonMaskImage("openAbilitiesMenuButton","images/abilitybutton.svg");
     }
+      function attachImageUpload(){
+  const input = document.getElementById("characterPortraitUpload");
+  const preview = document.getElementById("characterPortraitPreview");
+
+  if(!input || !preview)return;
+
+  input.addEventListener("change", event=>{
+    const file = event.target.files?.[0];
+    if(!file)return;
+
+    if(!file.type.startsWith("image/")){
+      alert("Можно загружать только изображения.");
+      input.value = "";
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = ()=>{
+      const imageData = reader.result;
+      preview.src = imageData;
+      localStorage.setItem("towerCharacterPortrait", imageData);
+    };
+
+    reader.readAsDataURL(file);
+  });
+
+  const savedImage = localStorage.getItem("towerCharacterPortrait");
+  if(savedImage){
+    preview.src = savedImage;
+  }
+}
 
     function clearStressHoverPreviews(){
       document.querySelectorAll(".stress-triangle.hover-preview").forEach(label=>{label.classList.remove("hover-preview")});
@@ -2494,6 +2539,7 @@
       attachAutoSave();
       attachParallax();
       attachStressHoverEffects();
+      attachImageUpload();
       if(saved)applyData(saved);
       else{
         updateRollMasteryButton();
