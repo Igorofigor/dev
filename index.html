@@ -181,10 +181,39 @@
     .roll-history{display:grid;gap:8px}
     .roll-history-entry{border:1px solid var(--accent);padding:8px;background:#fff;font-size:14px}
     .roll-history-top{font-weight:900;color:var(--accent);margin-bottom:4px}
-    .roll-die{display:inline-block;margin:2px 4px 2px 0;padding:3px 7px;border:1px solid var(--accent);font-weight:900;background:#fff}
-    .roll-die.max{color:var(--danger);border-color:var(--danger);font-weight:1000}
-    .roll-die.edge{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+.roll-die{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
 
+  width:58px;
+  height:36px;
+  margin:2px 4px 2px 0;
+  padding:0;
+
+  background:var(--accent);
+  color:#fff;
+  border:none;
+
+  clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
+
+  font-weight:1000;
+  line-height:1;
+  vertical-align:middle;
+}
+
+.roll-die.max{
+  background:var(--danger);
+  color:#fff;
+  border:none;
+  font-weight:1000;
+}
+
+.roll-die.edge{
+  text-decoration:underline;
+  text-decoration-thickness:2px;
+  text-underline-offset:3px;
+}
     .simple-dice-row{
       display:grid;
       grid-template-columns:repeat(5,1fr);
@@ -252,57 +281,38 @@
       margin:6px 0;
     }
 
-    .die-shape-result{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-width:38px;
-      min-height:38px;
-      padding:6px;
-      margin:2px 4px 2px 0;
-      background:#fff;
-      color:var(--accent);
-      border:2px solid var(--accent);
-      font-weight:1000;
-      vertical-align:middle;
-    }
+   .die-shape-result{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:38px;
+  min-height:38px;
+  padding:6px;
+  margin:2px 4px 2px 0;
 
-    .die-shape-result.die-d4{
-      width:42px;
-      height:40px;
-      clip-path:polygon(50% 0%,100% 100%,0% 100%);
-      padding-top:12px;
-    }
+  background:var(--accent);
+  color:#fff;
+  border:none;
 
-    .die-shape-result.die-d6{
-      width:38px;
-      height:38px;
-      clip-path:polygon(0 0,100% 0,100% 100%,0 100%);
-    }
+  font-weight:1000;
+  vertical-align:middle;
+}
 
-    .die-shape-result.die-d8{
-      width:42px;
-      height:42px;
-      clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
-    }
+.die-shape-result .die-value{
+  background:transparent !important;
+  color:#fff;
+  border:none;
+  box-shadow:none;
+  padding:0;
+  margin:0;
+  line-height:1;
+}
 
-    .die-shape-result.die-d10{
-      width:58px;
-      height:36px;
-      clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
-    }
-
-    .die-shape-result.die-d12{
-      width:44px;
-      height:44px;
-      clip-path:polygon(50% 0%,97.55% 34.55%,79.39% 90.45%,20.61% 90.45%,2.45% 34.55%);
-    }
-
-    .die-shape-result.edge .die-value{
-      text-decoration:underline;
-      text-decoration-thickness:2px;
-      text-underline-offset:3px;
-    }
+.die-shape-result.edge .die-value{
+  text-decoration:underline;
+  text-decoration-thickness:2px;
+  text-underline-offset:3px;
+}
 
     @media(max-width:760px){
       body{padding:12px}
