@@ -19,6 +19,8 @@
       --danger:#c40000;
       --class-bg-image:none;
       --nation-pattern-image:none;
+      --class-parallax-y:0px;
+      --nation-parallax-y:0px;
     }
 
     *{box-sizing:border-box}
@@ -41,10 +43,11 @@
       pointer-events:none;
       background-image:var(--class-bg-image);
       background-size:cover;
-      background-position:center;
+      background-position:center calc(50% + var(--class-parallax-y));
       background-repeat:no-repeat;
       opacity:.18;
       filter:contrast(1.1);
+      will-change:background-position;
     }
 
     body::after{
@@ -55,9 +58,10 @@
       pointer-events:none;
       background-image:var(--nation-pattern-image);
       background-size:360px 360px;
-      background-position:top center;
+      background-position:center var(--nation-parallax-y);
       background-repeat:repeat;
       opacity:.12;
+      will-change:background-position;
     }
 
     .app{max-width:1120px;margin:0 auto 80px;position:relative;z-index:1}
@@ -305,7 +309,7 @@
   <div id="rollModal" class="roll-modal" onclick="closeRollMenuOnBackdrop(event)">
     <div class="roll-panel" onclick="event.stopPropagation()">
       <div class="title-row">
-        <h2>Автоматический бросок</h2>
+        <h2 id="autoRollTitle">Автоматический бросок</h2>
         <button class="secondary" type="button" onclick="closeRollMenu()">Закрыть</button>
       </div>
 
@@ -368,6 +372,7 @@
     let tacticCount=DEFAULT_TACTIC_COUNT;
     let resourceCount=DEFAULT_RESOURCE_COUNT;
     let listenersAttached=false;
+    let parallaxAttached=false;
     let rollMasteryEnabled=false;
     let advancedRollHistory=[];
     let lastConsequenceCheckText="";
@@ -442,6 +447,18 @@
       "Паратехник":{skill:"ТЕХНИЧИТЬ",domain:"КОРПОРАЦИИ"}
     };
 
+    const classRollTitleMap={
+      "Страж Врат":"Отбить врата!",
+      "Светоносец":"Осветим мир!",
+      "Раствор Души":"Вспомни, кем ты был…",
+      "Экономант":"Лучшая сделка почти в кармане.",
+      "Неболом":"Это будет просто просчитать.",
+      "Росоход":"Вдохни глубоко и выпусти когти.",
+      "Подкодыш":"Заслужи золотое будущее!",
+      "Паратехник":"Победа на крыльях бабочки…",
+      "Красный Рукав":"Взрастим прекраснейший цветок!"
+    };
+
     const classBackgroundMap={
       "Страж Врат":"images/class-gate-guard.png",
       "Светоносец":"images/class-lightbearer.png",
@@ -495,6 +512,33 @@
       const nationName=byId("nationName")?.value||"";
       const imagePath=nationPatternMap[nationName];
       document.body.style.setProperty("--nation-pattern-image",imagePath?`url("${imagePath}")`:"none");
+    }
+
+    function updateParallaxBackground(){
+      const scrollY=window.scrollY||document.documentElement.scrollTop||0;
+      document.body.style.setProperty("--class-parallax-y",`${Math.round(scrollY*-0.07)}px`);
+      document.body.style.setProperty("--nation-parallax-y",`${Math.round(scrollY*-0.18)}px`);
+    }
+
+    function attachParallax(){
+      if(parallaxAttached)return;
+
+      let ticking=false;
+
+      function requestParallaxUpdate(){
+        if(ticking)return;
+        ticking=true;
+        window.requestAnimationFrame(()=>{
+          ticking=false;
+          updateParallaxBackground();
+        });
+      }
+
+      window.addEventListener("scroll",requestParallaxUpdate,{passive:true});
+      window.addEventListener("resize",requestParallaxUpdate);
+      updateParallaxBackground();
+
+      parallaxAttached=true;
     }
 
     function getDesiredAutomaticSelections(){
@@ -950,6 +994,22 @@
       }
     }
 
+    function getRollMenuTitleText(){
+      const totalStress=getCurrentStressTotals().totalStress;
+      const significantConsequences=countFilledSlots("consequence","major");
+
+      if(significantConsequences>=3||totalStress>10)return "Борись за жизнь!";
+      if((significantConsequences>=1&&significantConsequences<=2)||(totalStress>=5&&totalStress<=10))return "Это уже серьёзно…";
+
+      const className=byId("className")?.value||"";
+      return classRollTitleMap[className]||"Автоматический бросок";
+    }
+
+    function updateRollMenuTitle(){
+      const title=byId("autoRollTitle");
+      if(title)title.textContent=getRollMenuTitleText();
+    }
+
     function renderCounters(){
       applyAutomaticSelections();
       updateClassBackground();
@@ -962,6 +1022,7 @@
       renderContactCounters();
       renderConsequenceCounters();
       renderAbilityCounters();
+      updateRollMenuTitle();
     }
 
     function renderSkillDomainCounters(){
@@ -1188,6 +1249,7 @@
     }
 
     function openRollMenu(){
+      updateRollMenuTitle();
       byId("rollModal").classList.add("open");
       byId("rollModal").setAttribute("aria-hidden","false");
       renderAdvancedRollHistory();
@@ -1341,6 +1403,7 @@
       buildStaticRows();
       buildDynamicRows();
       attachAutoSave();
+      attachParallax();
 
       if(saved)applyData(saved);
       else{
