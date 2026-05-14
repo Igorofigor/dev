@@ -331,7 +331,7 @@ body::after {
   <div id="rollModal" class="roll-modal" onclick="closeRollMenuOnBackdrop(event)">
     <div class="roll-panel" onclick="event.stopPropagation()">
       <div class="title-row">
-        <h2>Автоматический бросок</h2>
+   <h2 id="rollMenuTitle">Автоматический бросок</h2>
         <button class="secondary" type="button" onclick="closeRollMenu()">Закрыть</button>
       </div>
 
@@ -498,6 +498,45 @@ body::after {
       {label:"Успех",text:"Действие удалось."},
       {label:"Критический успех",text:"За каждую кость 10 и более стресс, причиняемый вами, повышается на ступень."}
     ];
+    const classRollTitleMap = {
+  "Страж Врат": "Отбить врата!",
+  "Светоносец": "Осветим мир!",
+  "Раствор Души": "Вспомни, кем ты был…",
+  "Экономант": "Лучшая сделка почти в кармане.",
+  "Неболом": "Это будет просто просчитать.",
+  "Росоход": "Вдохни глубоко и выпусти когти.",
+  "Подкодыш": "Заслужи золотое будущее!",
+  "Паратехник": "Победа на крыльях бабочки…",
+  "Красный Рукав": "Взрастим прекраснейший цветок!"
+};
+
+function getRollMenuTitleText() {
+  const className = byId("className")?.value || "";
+  const totals = getCurrentStressTotals();
+  const totalStress = totals.totalStress;
+
+  const majorConsequences = countFilledSlots("consequence", "major");
+
+  if (majorConsequences >= 3 || totalStress > 10) {
+    return "Борись за жизнь!";
+  }
+
+  if (
+    majorConsequences >= 1 ||
+    (totalStress >= 5 && totalStress <= 10)
+  ) {
+    return "Это уже серьёзно…";
+  }
+
+  return classRollTitleMap[className] || "Автоматический бросок";
+}
+
+function updateRollMenuTitle() {
+  const title = byId("rollMenuTitle");
+  if (!title) return;
+
+  title.textContent = getRollMenuTitleText();
+}
 
     function byId(id){return document.getElementById(id)}
     function escapeHtml(text){return String(text).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
@@ -999,18 +1038,19 @@ function attachParallax() {
     }
 
     function renderCounters(){
-      applyAutomaticSelections();
-      updateClassBackground();
-      updateNationPattern();
-      updateMasteryNoteVisibility();
-      updateStressScales();
-      renderSkillDomainCounters();
-      renderTacticCounters();
-      renderResourceCounters();
-      renderContactCounters();
-      renderConsequenceCounters();
-      renderAbilityCounters();
-    }
+  applyAutomaticSelections();
+  updateClassBackground();
+  updateNationPattern();
+  updateMasteryNoteVisibility();
+  updateStressScales();
+  updateRollMenuTitle();
+  renderSkillDomainCounters();
+  renderTacticCounters();
+  renderResourceCounters();
+  renderContactCounters();
+  renderConsequenceCounters();
+  renderAbilityCounters();
+}
 
     function renderSkillDomainCounters(){
       let skills=0;
@@ -1236,11 +1276,12 @@ function attachParallax() {
     }
 
     function openRollMenu(){
-      byId("rollModal").classList.add("open");
-      byId("rollModal").setAttribute("aria-hidden","false");
-      renderAdvancedRollHistory();
-      updateRollMasteryButton();
-    }
+  updateRollMenuTitle();
+  byId("rollModal").classList.add("open");
+  byId("rollModal").setAttribute("aria-hidden","false");
+  renderAdvancedRollHistory();
+  updateRollMasteryButton();
+}
 
     function closeRollMenu(){
       byId("rollModal").classList.remove("open");
