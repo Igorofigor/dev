@@ -2032,9 +2032,7 @@
 
       const skillChecked=skillName?Boolean(getSkillCheckbox(skillName)?.checked):false;
       const domainChecked=domainName?Boolean(getDomainCheckbox(domainName)?.checked):false;
-      const skillMasteryChecked=skillName?Boolean(getSkillMasteryCheckbox(skillName)?.checked):false;
-      const domainMasteryChecked=domainName?Boolean(getDomainMasteryCheckbox(domainName)?.checked):false;
-      const masteryApplied=rollMasteryEnabled&&(skillMasteryChecked||domainMasteryChecked);
+const masteryApplied=rollMasteryEnabled;
 
       const baseDice=1;
       const intendedDice=baseDice+(skillChecked?1:0)+(domainChecked?1:0)+(masteryApplied?1:0)+helpers;
