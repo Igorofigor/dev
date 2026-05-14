@@ -42,13 +42,22 @@
       inset:0;
       z-index:0;
       pointer-events:none;
-      background-image:var(--class-bg-image);
-      background-size:cover;
-      background-position:center calc(50% + var(--class-parallax-y));
-      background-repeat:no-repeat;
+      background-color:transparent;
       opacity:.18;
       filter:contrast(1.1);
-      will-change:background-position;
+      will-change:mask-position,-webkit-mask-position;
+    }
+
+    body.has-class-emblem::before{
+      background-color:var(--accent);
+      -webkit-mask-image:var(--class-bg-image);
+      mask-image:var(--class-bg-image);
+      -webkit-mask-size:cover;
+      mask-size:cover;
+      -webkit-mask-position:center calc(50% + var(--class-parallax-y));
+      mask-position:center calc(50% + var(--class-parallax-y));
+      -webkit-mask-repeat:no-repeat;
+      mask-repeat:no-repeat;
     }
 
     body::after{
@@ -57,12 +66,21 @@
       inset:0;
       z-index:0;
       pointer-events:none;
-      background-image:var(--nation-pattern-image);
-      background-size:360px 360px;
-      background-position:center var(--nation-parallax-y);
-      background-repeat:repeat;
+      background-color:transparent;
       opacity:.12;
-      will-change:background-position;
+      will-change:mask-position,-webkit-mask-position;
+    }
+
+    body.has-nation-pattern::after{
+      background-color:var(--accent);
+      -webkit-mask-image:var(--nation-pattern-image);
+      mask-image:var(--nation-pattern-image);
+      -webkit-mask-size:360px 360px;
+      mask-size:360px 360px;
+      -webkit-mask-position:center var(--nation-parallax-y);
+      mask-position:center var(--nation-parallax-y);
+      -webkit-mask-repeat:repeat;
+      mask-repeat:repeat;
     }
 
     .app{max-width:1120px;margin:0 auto 80px;position:relative;z-index:1}
@@ -269,46 +287,31 @@
       clip-path:polygon(0 0,100% 0,100% 100%,0 100%);
     }
 
-   .floating-diary-button{
-  width:96px;
-  height:96px;
-  padding:0;
-  border:none;
-
-  background-color:var(--accent);
-
-  -webkit-mask-image:url("images/diarybutton.png");
-  mask-image:url("images/diarybutton.png");
-
-  -webkit-mask-size:contain;
-  mask-size:contain;
-
-  -webkit-mask-position:center;
-  mask-position:center;
-
-  -webkit-mask-repeat:no-repeat;
-  mask-repeat:no-repeat;
-
-  box-shadow:none;
-  font-size:0;
-  color:transparent;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-}
+    .floating-actions{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      z-index:900;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:14px;
+    }
 
     .floating-diary-button{
       width:96px;
       height:96px;
       padding:0;
       border:none;
-      background-color:transparent;
-      background-image:url("images/diarybutton.png");
-      background-size:contain;
-      background-position:center;
-      background-repeat:no-repeat;
+      background-color:var(--accent);
+      -webkit-mask-image:url("images/diarybutton.svg");
+      mask-image:url("images/diarybutton.svg");
+      -webkit-mask-size:contain;
+      mask-size:contain;
+      -webkit-mask-position:center;
+      mask-position:center;
+      -webkit-mask-repeat:no-repeat;
+      mask-repeat:no-repeat;
       box-shadow:none;
       font-size:0;
       color:transparent;
@@ -338,22 +341,23 @@
       width:104px;
       height:104px;
       padding:0;
-
       border:none;
       box-shadow:none;
-      background-color:transparent;
-      background-image:var(--class-bg-image);
-      background-size:contain;
-      background-position:center;
-      background-repeat:no-repeat;
-
+      background-color:var(--accent);
       color:transparent;
       font-size:0;
       text-shadow:none;
-
       clip-path:none;
       opacity:.92;
       filter:contrast(1.12);
+      -webkit-mask-image:var(--class-bg-image);
+      mask-image:var(--class-bg-image);
+      -webkit-mask-size:contain;
+      mask-size:contain;
+      -webkit-mask-position:center;
+      mask-position:center;
+      -webkit-mask-repeat:no-repeat;
+      mask-repeat:no-repeat;
     }
 
     body.has-class-emblem .floating-roll-button:hover,
@@ -370,35 +374,29 @@
     }
 
     .floating-sheet-menu-button{
-  width:104px;
-  height:88px;
-  padding:0;
-  border:none;
+      width:104px;
+      height:88px;
+      padding:0;
+      border:none;
+      background-color:var(--accent);
+      -webkit-mask-image:url("images/menubutton.svg");
+      mask-image:url("images/menubutton.svg");
+      -webkit-mask-size:contain;
+      mask-size:contain;
+      -webkit-mask-position:center;
+      mask-position:center;
+      -webkit-mask-repeat:no-repeat;
+      mask-repeat:no-repeat;
+      box-shadow:none;
+      font-size:0;
+      color:transparent;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      clip-path:none;
+    }
 
-  background-color:var(--accent);
-
-  -webkit-mask-image:url("images/menubutton.png");
-  mask-image:url("images/menubutton.png");
-
-  -webkit-mask-size:contain;
-  mask-size:contain;
-
-  -webkit-mask-position:center;
-  mask-position:center;
-
-  -webkit-mask-repeat:no-repeat;
-  mask-repeat:no-repeat;
-
-  box-shadow:none;
-  font-size:0;
-  color:transparent;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  clip-path:none;
-}
     .floating-diary-button:hover,
     .floating-diary-button:focus-visible,
     .floating-sheet-menu-button:hover,
@@ -478,12 +476,21 @@
       inset:0;
       z-index:0;
       pointer-events:none;
-      background-image:var(--class-bg-image);
-      background-size:contain;
-      background-position:center;
-      background-repeat:no-repeat;
+      background-color:transparent;
       opacity:.18;
       filter:contrast(1.1);
+    }
+
+    body.has-class-emblem .roll-panel::before{
+      background-color:var(--accent);
+      -webkit-mask-image:var(--class-bg-image);
+      mask-image:var(--class-bg-image);
+      -webkit-mask-size:contain;
+      mask-size:contain;
+      -webkit-mask-position:center;
+      mask-position:center;
+      -webkit-mask-repeat:no-repeat;
+      mask-repeat:no-repeat;
     }
 
     .diary-panel::before{
@@ -492,11 +499,20 @@
       inset:0;
       z-index:0;
       pointer-events:none;
-      background-image:var(--nation-pattern-image);
-      background-size:300px 300px;
-      background-position:center;
-      background-repeat:repeat;
+      background-color:transparent;
       opacity:.16;
+    }
+
+    body.has-nation-pattern .diary-panel::before{
+      background-color:var(--accent);
+      -webkit-mask-image:var(--nation-pattern-image);
+      mask-image:var(--nation-pattern-image);
+      -webkit-mask-size:300px 300px;
+      mask-size:300px 300px;
+      -webkit-mask-position:center;
+      mask-position:center;
+      -webkit-mask-repeat:repeat;
+      mask-repeat:repeat;
     }
 
     .roll-panel>*,
@@ -1069,29 +1085,29 @@
     };
 
     const classBackgroundMap={
-      "Страж Врат":"images/class-gate-guard.png",
-      "Светоносец":"images/class-lightbearer.png",
-      "Раствор Души":"images/class-soul-fluid.png",
-      "Экономант":"images/class-economancer.png",
-      "Неболом":"images/class-skybreaker.png",
-      "Росоход":"images/class-dew-walker.png",
-      "Подкодыш":"images/class-codeling.png",
-      "Паратехник":"images/class-paratech.png",
-      "Красный Рукав":"images/class-red-sleeve.png"
+      "Страж Врат":"images/class-gate-guard.svg",
+      "Светоносец":"images/class-lightbearer.svg",
+      "Раствор Души":"images/class-soul-fluid.svg",
+      "Экономант":"images/class-economancer.svg",
+      "Неболом":"images/class-skybreaker.svg",
+      "Росоход":"images/class-dew-walker.svg",
+      "Подкодыш":"images/class-codeling.svg",
+      "Паратехник":"images/class-paratech.svg",
+      "Красный Рукав":"images/class-red-sleeve.svg"
     };
 
     const nationPatternMap={
-      "Народ Ножей":"images/pattern-knives.png",
-      "Народ Ядов":"images/pattern-poisons.png",
-      "Народ Граней":"images/pattern-edges.png",
-      "Народ Железа":"images/pattern-iron.png"
+      "Народ Ножей":"images/pattern-knives.svg",
+      "Народ Ядов":"images/pattern-poisons.svg",
+      "Народ Граней":"images/pattern-edges.svg",
+      "Народ Железа":"images/pattern-iron.svg"
     };
 
     const DEFAULT_THEME_COLOR="#5a0002";
 
     const nationThemeMap={
       "Народ Ножей":"#4F818D",
-      "Народ Граней":"#B7AE85",
+      "Народ Граней":"#7D7452",
       "Народ Железа":"#597376",
       "Народ Ядов":"#6a0002"
     };
@@ -1126,6 +1142,22 @@
     function getDomainCheckbox(domainName){const index=findDomainIndex(domainName);return index?byId(`domain${index}HasDomain`):null}
     function getDomainMasteryCheckbox(domainName){const index=findDomainIndex(domainName);return index?byId(`domain${index}HasMastery`):null}
 
+    function hexToRgb(hex){
+      const normalized=String(hex||"").replace("#","").trim();
+      if(!/^[0-9a-fA-F]{6}$/.test(normalized))return{r:90,g:0,b:2};
+      return{
+        r:parseInt(normalized.slice(0,2),16),
+        g:parseInt(normalized.slice(2,4),16),
+        b:parseInt(normalized.slice(4,6),16)
+      };
+    }
+
+    function getReadableTextColor(hex){
+      const {r,g,b}=hexToRgb(hex);
+      const luminance=(0.299*r+0.587*g+0.114*b)/255;
+      return luminance>0.58?"#320216":"#fff";
+    }
+
     function updateClassBackground(){
       const className=byId("className")?.value||"";
       const imagePath=classBackgroundMap[className];
@@ -1137,13 +1169,15 @@
     function updateNationPattern(){
       const nationName=byId("nationName")?.value||"";
       const imagePath=nationPatternMap[nationName];
+
       document.body.style.setProperty("--nation-pattern-image",imagePath?`url("${imagePath}")`:"none");
+      document.body.classList.toggle("has-nation-pattern",Boolean(imagePath));
     }
 
     function updateNationTheme(){
       const nationName=byId("nationName")?.value||"";
       const themeColor=nationThemeMap[nationName]||DEFAULT_THEME_COLOR;
-      const onAccent=nationName==="Народ Граней"?"#320216":"#fff";
+      const onAccent=getReadableTextColor(themeColor);
 
       document.documentElement.style.setProperty("--accent",themeColor);
       document.documentElement.style.setProperty("--button",themeColor);
