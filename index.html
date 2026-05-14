@@ -6,16 +6,67 @@
   <title>Башня Упадёт — интерактивный лист персонажа</title>
 
   <style>
-    :root{--bg:#fff;--card:#fff;--text:#320216;--muted:#5a0002cc;--line:#5a000244;--accent:#5a0002;--accent-soft:#5a000218;--button:#5a0002;--button-text:#fff;--danger:#c40000}
+    :root{
+      --bg:#fff;
+      --card:#fff;
+      --text:#320216;
+      --muted:#5a0002cc;
+      --line:#5a000244;
+      --accent:#5a0002;
+      --accent-soft:#5a000218;
+      --button:#5a0002;
+      --button-text:#fff;
+      --danger:#c40000;
+      --class-bg-image:none;
+      --nation-pattern-image:none;
+    }
+
     *{box-sizing:border-box}
-    body{margin:0;padding:16px;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}
-    .app{max-width:1120px;margin:0 auto 80px}
+
+    body{
+      margin:0;
+      padding:16px;
+      min-height:100vh;
+      position:relative;
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      background-image:var(--class-bg-image);
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      opacity:.18;
+      filter:contrast(1.1);
+    }
+
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      background-image:var(--nation-pattern-image);
+      background-size:360px 360px;
+      background-position:top center;
+      background-repeat:repeat;
+      opacity:.12;
+    }
+
+    .app{max-width:1120px;margin:0 auto 80px;position:relative;z-index:1}
     h1,h2,h3{color:var(--accent);text-transform:uppercase;letter-spacing:.04em}
     h1{margin:0 0 8px;font-size:30px;line-height:1.1}
     h2{margin:0;font-size:22px}
     h3{margin:0;font-size:16px}
     p{margin-top:0;color:var(--muted);line-height:1.45}
-    .card{margin-bottom:16px;padding:16px;border:2px solid var(--accent);border-radius:0;background:var(--card);box-shadow:8px 8px 0 var(--accent-soft)}
+    .card{margin-bottom:16px;padding:16px;border:2px solid var(--accent);border-radius:0;background:rgba(255,255,255,.9);box-shadow:8px 8px 0 var(--accent-soft)}
     .title-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
     .title-actions{display:inline-flex;align-items:center;gap:8px}
     label{display:block;margin-top:10px;margin-bottom:5px;font-size:14px;font-weight:800;color:var(--muted)}
@@ -47,43 +98,12 @@
     .small-number{max-width:84px}
     .inline-total{margin-top:5px;font-size:13px;font-weight:900;color:var(--accent)}
     .stress-count{font-weight:900;color:var(--accent);white-space:nowrap}
-    .stress-scale{display:flex;flex-wrap:nowrap;gap:3px;align-items:center;min-width:260px}.stress-scale {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 3px;
-  align-items: flex-start;
-  min-width: 260px;
-}
-
-.stress-extra-zone {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 3px;
-  align-items: center;
-}
-
-.stress-normal-zone {
-  display: grid;
-  gap: 3px;
-}
-
-.stress-normal-row {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 3px;
-  align-items: center;
-}
-
-.stress-total-counter.stress-warning {
-  background: #320216;
-  color: #ffffff;
-}
-
-.stress-total-counter.stress-critical {
-  background: #000000;
-  color: #ffffff;
-  border-color: #000000;
-}
+    .stress-scale{display:flex;flex-wrap:nowrap;gap:3px;align-items:flex-start;min-width:260px}
+    .stress-extra-zone{display:flex;flex-wrap:nowrap;gap:3px;align-items:center}
+    .stress-normal-zone{display:grid;gap:3px}
+    .stress-normal-row{display:flex;flex-wrap:nowrap;gap:3px;align-items:center}
+    .stress-total-counter.stress-warning{background:#320216;color:#fff}
+    .stress-total-counter.stress-critical{background:#000;color:#fff;border-color:#000}
     .stress-divider{width:1px;height:16px;background:var(--accent);margin:0 2px}
     .tri-check{position:relative;display:inline-flex;align-items:center;justify-content:center;width:auto;min-width:24px;min-height:24px;margin:0;padding:0;color:var(--accent);cursor:pointer;user-select:none}
     .tri-check input{position:absolute;opacity:0;width:24px;height:24px;margin:0;padding:0}
@@ -101,9 +121,9 @@
     .stress-triangle.extra .tri-shape{opacity:.22}
     .stress-triangle.extra input:checked+.tri-shape{opacity:1}
     .traits-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
-    .trait-column{border:2px solid var(--accent);padding:10px;background:#fff}
+    .trait-column{border:2px solid var(--accent);padding:10px;background:rgba(255,255,255,.9)}
     .trait-list{display:grid;gap:6px}
-    .trait-card{border:1px solid var(--accent);padding:7px;background:#fff}
+    .trait-card{border:1px solid var(--accent);padding:7px;background:rgba(255,255,255,.9)}
     .trait-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
     .trait-name{position:relative;display:inline-block;width:auto;margin:0;padding:0;border:none;background:transparent;color:var(--accent);font-weight:1000;text-align:left;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:4px;text-transform:uppercase;letter-spacing:.04em}
     .trait-name:hover,.trait-name:focus{background:transparent;color:var(--accent);outline:none}
@@ -113,9 +133,9 @@
     .trait-note{margin-top:6px;padding:7px;font-size:14px}
     .mastery-note{display:none}
     .slot-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    .slot-box{border:1px solid var(--accent);padding:10px;background:#fff}
+    .slot-box{border:1px solid var(--accent);padding:10px;background:rgba(255,255,255,.9)}
     .slot-list{display:grid;gap:8px}
-    .slot-entry{border:1px solid var(--accent);padding:8px;background:#fff}
+    .slot-entry{border:1px solid var(--accent);padding:8px;background:rgba(255,255,255,.9)}
     .slot-entry textarea,.slot-entry input{padding:8px;min-height:54px}
     .log{min-height:110px;white-space:pre-wrap;background:#fff;padding:10px;border:1px solid var(--accent);color:var(--text);font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:14px}
     .toolbar{position:sticky;bottom:0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:20px;padding:12px 0 0;background:linear-gradient(to top,#fff,#ffffffdd)}
@@ -130,125 +150,15 @@
     .roll-history-top{font-weight:900;color:var(--accent);margin-bottom:4px}
     .roll-die{display:inline-block;margin:2px 4px 2px 0;padding:3px 7px;border:1px solid var(--accent);font-weight:900}
     .roll-die.max{color:var(--danger);border-color:var(--danger);font-weight:1000}
-    @media(max-width:760px){body{padding:12px}.grid-2,.slot-grid{grid-template-columns:1fr}.dice-row{grid-template-columns:repeat(3,1fr)}.traits-grid{grid-template-columns:1fr}.toolbar{grid-template-columns:1fr}.floating-roll-button{width:64px;height:64px;right:12px;bottom:12px}}
- .card,
-.slot-box,
-.trait-card,
-.slot-entry {
-  background: rgba(255, 255, 255, 0.9);
-}
- body {
-  position: relative;
-  min-height: 100vh;
-}
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-
-  background-image: var(--class-bg-image);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  opacity: 0.18;
-  filter: contrast(1.1);
-}
-body {
-  position: relative;
-  min-height: 100vh;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-
-  background-image: var(--class-bg-image);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  opacity: 0.18;
-  filter: contrast(1.1);
-}
-
-body::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-
-  background-image: var(--nation-pattern-image);
-  background-size: 360px 360px;
-  background-position: top center;
-  background-repeat: repeat;
-
-  opacity: 0.12;
-}
-
-.app {
-  position: relative;
-  z-index: 1;
-}
-
-.floating-roll-button {
-  position: fixed;
-  right: 18px;
-  bottom: 18px;
-  z-index: 900;
-}
-
-.roll-modal {
-  z-index: 1000;
-}
-
-.app {
-  position: relative;
-  z-index: 1;
-}
-body {
-  position: relative;
-  min-height: 100vh;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-
-  background-image: var(--class-bg-image);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  opacity: 0.18;
-  filter: contrast(1.1);
-}
-
-.app {
-  position: relative;
-  z-index: 1;
-}
-
-.floating-roll-button {
-  position: fixed;
-  right: 18px;
-  bottom: 18px;
-  z-index: 900;
-}
-
-.roll-modal {
-  z-index: 1000;
-}
+    @media(max-width:760px){
+      body{padding:12px}
+      .grid-2,.slot-grid{grid-template-columns:1fr}
+      .dice-row{grid-template-columns:repeat(3,1fr)}
+      .traits-grid{grid-template-columns:1fr}
+      .toolbar{grid-template-columns:1fr}
+      .floating-roll-button{width:64px;height:64px;right:12px;bottom:12px}
+    }
   </style>
 </head>
 
@@ -346,15 +256,15 @@ body::before {
       <div id="abilityCounters" class="counter-row"></div>
       <div class="slot-grid">
         <div class="slot-box">
-  <div class="title-row">
-    <h3>Базовые</h3>
-    <div class="title-actions">
-      <button class="triangle-button left" type="button" onclick="removeSlot('ability','basic')"></button>
-      <button class="triangle-button right" type="button" onclick="addSlot('ability','basic')"></button>
-    </div>
-  </div>
-  <div id="ability_basic_rows" class="slot-list"></div>
-</div>
+          <div class="title-row">
+            <h3>Базовые</h3>
+            <div class="title-actions">
+              <button class="triangle-button left" type="button" onclick="removeSlot('ability','basic')"></button>
+              <button class="triangle-button right" type="button" onclick="addSlot('ability','basic')"></button>
+            </div>
+          </div>
+          <div id="ability_basic_rows" class="slot-list"></div>
+        </div>
         <div class="slot-box"><div class="title-row"><h3>Малые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('ability','minor')"></button><button class="triangle-button right" type="button" onclick="addSlot('ability','minor')"></button></div></div><div id="ability_minor_rows" class="slot-list"></div></div>
         <div class="slot-box"><div class="title-row"><h3>Профессиональные</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('ability','professional')"></button><button class="triangle-button right" type="button" onclick="addSlot('ability','professional')"></button></div></div><div id="ability_professional_rows" class="slot-list"></div></div>
         <div class="slot-box"><div class="title-row"><h3>Элитные</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('ability','elite')"></button><button class="triangle-button right" type="button" onclick="addSlot('ability','elite')"></button></div></div><div id="ability_elite_rows" class="slot-list"></div></div>
@@ -463,16 +373,8 @@ body::before {
     let lastConsequenceCheckText="";
 
     const contactCounts={personal:1,faction:0,world:0,players:1};
-    const consequenceCounts={
-  minor:0,
-  major:0
-};
-    const abilityCounts={
-  basic:1,
-  minor:3,
-  professional:1,
-  elite:0
-};
+    const consequenceCounts={minor:0,major:0};
+    const abilityCounts={basic:1,minor:3,professional:1,elite:0};
     const countMaps={contact:contactCounts,consequence:consequenceCounts,ability:abilityCounts};
 
     const stressTracks=[
@@ -539,18 +441,25 @@ body::before {
       "Подкодыш":{skill:"ПРОБИВАТЬСЯ",domain:"ДУХИ"},
       "Паратехник":{skill:"ТЕХНИЧИТЬ",domain:"КОРПОРАЦИИ"}
     };
-    const classBackgroundMap = {
-  "Страж Врат": "images/class-gate-guard.png",
-  "Светоносец": "images/class-lightbearer.png",
-  "Раствор Души": "images/class-soul-fluid.png",
-  "Экономант": "images/class-economancer.png",
-  "Неболом": "images/class-skybreaker.png",
-  "Росоход": "images/class-dew-walker.png",
-  "Подкодыш": "images/class-codeling.png",
-  "Паратехник": "images/class-paratech.png",
-  "Красный Рукав": "images/class-red-sleeve.png"
-};
 
+    const classBackgroundMap={
+      "Страж Врат":"images/class-gate-guard.png",
+      "Светоносец":"images/class-lightbearer.png",
+      "Раствор Души":"images/class-soul-fluid.png",
+      "Экономант":"images/class-economancer.png",
+      "Неболом":"images/class-skybreaker.png",
+      "Росоход":"images/class-dew-walker.png",
+      "Подкодыш":"images/class-codeling.png",
+      "Паратехник":"images/class-paratech.png",
+      "Красный Рукав":"images/class-red-sleeve.png"
+    };
+
+    const nationPatternMap={
+      "Народ Ножей":"images/pattern-knives.png",
+      "Народ Ядов":"images/pattern-poisons.png",
+      "Народ Граней":"images/pattern-edges.png",
+      "Народ Железа":"images/pattern-iron.png"
+    };
 
     const skillOptions=["",...defaultSkills.map(skill=>skill.name)];
     const domainOptions=["",...defaultDomains.map(domain=>domain.name)];
@@ -575,26 +484,19 @@ body::before {
     function getSkillMasteryCheckbox(skillName){const index=findSkillIndex(skillName);return index?byId(`skill${index}HasMastery`):null}
     function getDomainCheckbox(domainName){const index=findDomainIndex(domainName);return index?byId(`domain${index}HasDomain`):null}
     function getDomainMasteryCheckbox(domainName){const index=findDomainIndex(domainName);return index?byId(`domain${index}HasMastery`):null}
-function updateClassBackground() {
-  const className = byId("className")?.value || "";
-  const imagePath = classBackgroundMap[className];
-  function updateNationPattern() {
-  const nationName = byId("nationName")?.value || "";
-  const imagePath = nationPatternMap[nationName];
 
-  if (imagePath) {
-    document.body.style.setProperty("--nation-pattern-image", `url("${imagePath}")`);
-  } else {
-    document.body.style.setProperty("--nation-pattern-image", "none");
-  }
-}
+    function updateClassBackground(){
+      const className=byId("className")?.value||"";
+      const imagePath=classBackgroundMap[className];
+      document.body.style.setProperty("--class-bg-image",imagePath?`url("${imagePath}")`:"none");
+    }
 
-  if (imagePath) {
-    document.body.style.setProperty("--class-bg-image", `url("${imagePath}")`);
-  } else {
-    document.body.style.setProperty("--class-bg-image", "none");
-  }
-}
+    function updateNationPattern(){
+      const nationName=byId("nationName")?.value||"";
+      const imagePath=nationPatternMap[nationName];
+      document.body.style.setProperty("--nation-pattern-image",imagePath?`url("${imagePath}")`:"none");
+    }
+
     function getDesiredAutomaticSelections(){
       const desiredSkills=new Set();
       const desiredDomains=new Set();
@@ -673,71 +575,65 @@ function updateClassBackground() {
     }
 
     function buildResistanceRows(){
-  const container=byId("resistanceRows");
-  container.innerHTML="";
+      const container=byId("resistanceRows");
+      container.innerHTML="";
 
-  stressTracks.forEach(track=>{
-    let extraDots="";
-    let normalDotsFirst="";
-    let normalDotsSecond="";
+      stressTracks.forEach(track=>{
+        let extraDots="";
+        let normalDotsFirst="";
+        let normalDotsSecond="";
 
-    for(let i=1;i<=5;i++){
-      extraDots+=`
-        <label class="tri-check tri-right stress-triangle extra" id="extraDot_${track.id}_${i}" title="Дополнительный слот ${i}">
-          <input id="stressExtra_${track.id}_${i}" type="checkbox" data-track="${track.id}" data-kind="extra" data-index="${i}" />
-          <span class="tri-shape"></span>
-        </label>
-      `;
+        for(let i=1;i<=5;i++){
+          extraDots+=`
+            <label class="tri-check tri-right stress-triangle extra" id="extraDot_${track.id}_${i}" title="Дополнительный слот ${i}">
+              <input id="stressExtra_${track.id}_${i}" type="checkbox" data-track="${track.id}" data-kind="extra" data-index="${i}" />
+              <span class="tri-shape"></span>
+            </label>
+          `;
+        }
+
+        for(let i=1;i<=10;i++){
+          normalDotsFirst+=`
+            <label class="tri-check tri-right stress-triangle" title="Обычный стресс ${i}">
+              <input id="stressNormal_${track.id}_${i}" type="checkbox" data-track="${track.id}" data-kind="normal" data-index="${i}" />
+              <span class="tri-shape"></span>
+            </label>
+          `;
+
+          normalDotsSecond+=`
+            <label class="tri-check tri-right stress-triangle" title="Обычный стресс ${i+10}">
+              <input id="stressNormal2_${track.id}_${i}" type="checkbox" data-track="${track.id}" data-kind="normal2" data-index="${i}" />
+              <span class="tri-shape"></span>
+            </label>
+          `;
+        }
+
+        container.innerHTML+=`
+          <tr>
+            <td><strong>${track.label}</strong></td>
+            <td>
+              <input id="protectionManual_${track.id}" class="small-number" type="number" value="0" />
+              <div id="protectionTotal_${track.id}" class="inline-total">Итого: 0</div>
+            </td>
+            <td>
+              <input id="extraSlotsManual_${track.id}" class="small-number" type="number" min="0" max="5" value="0" />
+              <div id="extraSlotsTotal_${track.id}" class="inline-total">Итого: 0/5</div>
+            </td>
+            <td>
+              <div class="stress-scale">
+                <div class="stress-extra-zone">${extraDots}</div>
+                <span class="stress-divider"></span>
+                <div class="stress-normal-zone">
+                  <div class="stress-normal-row">${normalDotsFirst}</div>
+                  <div class="stress-normal-row">${normalDotsSecond}</div>
+                </div>
+              </div>
+            </td>
+            <td><span id="stressCount_${track.id}" class="stress-count">0/20</span></td>
+          </tr>
+        `;
+      });
     }
-
-    for(let i=1;i<=10;i++){
-      normalDotsFirst+=`
-        <label class="tri-check tri-right stress-triangle" title="Обычный стресс ${i}">
-          <input id="stressNormal_${track.id}_${i}" type="checkbox" data-track="${track.id}" data-kind="normal" data-index="${i}" />
-          <span class="tri-shape"></span>
-        </label>
-      `;
-
-      normalDotsSecond+=`
-        <label class="tri-check tri-right stress-triangle" title="Обычный стресс ${i + 10}">
-          <input id="stressNormal2_${track.id}_${i}" type="checkbox" data-track="${track.id}" data-kind="normal2" data-index="${i}" />
-          <span class="tri-shape"></span>
-        </label>
-      `;
-    }
-
-    container.innerHTML+=`
-      <tr>
-        <td><strong>${track.label}</strong></td>
-
-        <td>
-          <input id="protectionManual_${track.id}" class="small-number" type="number" value="0" />
-          <div id="protectionTotal_${track.id}" class="inline-total">Итого: 0</div>
-        </td>
-
-        <td>
-          <input id="extraSlotsManual_${track.id}" class="small-number" type="number" min="0" max="5" value="0" />
-          <div id="extraSlotsTotal_${track.id}" class="inline-total">Итого: 0/5</div>
-        </td>
-
-        <td>
-          <div class="stress-scale">
-            <div class="stress-extra-zone">${extraDots}</div>
-            <span class="stress-divider"></span>
-            <div class="stress-normal-zone">
-              <div class="stress-normal-row">${normalDotsFirst}</div>
-              <div class="stress-normal-row">${normalDotsSecond}</div>
-            </div>
-          </div>
-        </td>
-
-        <td>
-          <span id="stressCount_${track.id}" class="stress-count">0/20</span>
-        </td>
-      </tr>
-    `;
-  });
-}
 
     function buildPartyRows(){
       const container=byId("partyRows");
@@ -823,33 +719,25 @@ function updateClassBackground() {
     }
 
     function buildSlotRows(kind,type){
-  const container=byId(`${kind}_${type}_rows`);
+      const container=byId(`${kind}_${type}_rows`);
+      if(!container)return;
+      const count=Number(countMaps[kind]?.[type]||0);
+      container.innerHTML="";
+      for(let i=1;i<=count;i++){
+        container.innerHTML+=`<div class="slot-entry"><textarea id="${kind}_${type}_${i}" placeholder="Ячейка ${i}"></textarea></div>`;
+      }
+    }
 
-  if(!container){
-    return;
-  }
-
-  const count=Number(countMaps[kind]?.[type] || 0);
-
-  container.innerHTML="";
-
-  for(let i=1;i<=count;i++){
-    container.innerHTML+=`
-      <div class="slot-entry">
-        <textarea id="${kind}_${type}_${i}" placeholder="Ячейка ${i}"></textarea>
-      </div>
-    `;
-  }
-}
-
-   function buildAllSlotRows(){
-  ["personal","faction","world","players"].forEach(type=>buildSlotRows("contact",type));
-  ["minor","major"].forEach(type=>buildSlotRows("consequence",type));
-  ["basic","minor","professional","elite"].forEach(type=>buildSlotRows("ability",type));
-}
-
+    function buildAllSlotRows(){
+      ["personal","faction","world","players"].forEach(type=>buildSlotRows("contact",type));
+      ["minor","major"].forEach(type=>buildSlotRows("consequence",type));
+      ["basic","minor","professional","elite"].forEach(type=>buildSlotRows("ability",type));
+    }
 
     function addSlot(kind,type){
+      if(!countMaps[kind])return;
+      if(countMaps[kind][type]===undefined)countMaps[kind][type]=0;
+
       if(kind==="ability"){
         const max=MAX_ABILITY_COUNTS[type];
         if(max!==undefined&&countMaps[kind][type]>=max){
@@ -863,7 +751,7 @@ function updateClassBackground() {
     }
 
     function removeSlot(kind,type){
-      if(countMaps[kind][type]<=0)return;
+      if(!countMaps[kind]||!countMaps[kind][type])return;
       preserveDataAndRebuild(()=>{countMaps[kind][type]-=1;buildSlotRows(kind,type)});
     }
 
@@ -876,7 +764,7 @@ function updateClassBackground() {
 
     function countFilledSlots(kind,type){
       let filled=0;
-      const count=countMaps[kind][type];
+      const count=Number(countMaps[kind]?.[type]||0);
       for(let i=1;i<=count;i++){
         const element=byId(`${kind}_${type}_${i}`);
         if(element&&element.value.trim())filled++;
@@ -943,23 +831,13 @@ function updateClassBackground() {
       return totals;
     }
 
-   function getTrackStressSlots(trackId,totalExtraSlots){
-  const slots=[];
-
-  for(let i=1;i<=totalExtraSlots;i++){
-    slots.push(byId(`stressExtra_${trackId}_${i}`));
-  }
-
-  for(let i=1;i<=10;i++){
-    slots.push(byId(`stressNormal_${trackId}_${i}`));
-  }
-
-  for(let i=1;i<=10;i++){
-    slots.push(byId(`stressNormal2_${trackId}_${i}`));
-  }
-
-  return slots;
-}
+    function getTrackStressSlots(trackId,totalExtraSlots){
+      const slots=[];
+      for(let i=1;i<=totalExtraSlots;i++)slots.push(byId(`stressExtra_${trackId}_${i}`));
+      for(let i=1;i<=10;i++)slots.push(byId(`stressNormal_${trackId}_${i}`));
+      for(let i=1;i<=10;i++)slots.push(byId(`stressNormal2_${trackId}_${i}`));
+      return slots.filter(Boolean);
+    }
 
     function normalizeTrackStress(trackId,totalExtraSlots){
       const slots=getTrackStressSlots(trackId,totalExtraSlots);
@@ -981,105 +859,74 @@ function updateClassBackground() {
     }
 
     function getCurrentStressTotals(){
-  let normalStress=0;
-  let extraStress=0;
+      let normalStress=0;
+      let extraStress=0;
 
-  stressTracks.forEach(track=>{
-    for(let i=1;i<=5;i++){
-      if(byId(`stressExtra_${track.id}_${i}`)?.checked){
-        extraStress++;
-      }
+      stressTracks.forEach(track=>{
+        for(let i=1;i<=5;i++){
+          if(byId(`stressExtra_${track.id}_${i}`)?.checked)extraStress++;
+        }
+        for(let i=1;i<=10;i++){
+          if(byId(`stressNormal_${track.id}_${i}`)?.checked)normalStress++;
+          if(byId(`stressNormal2_${track.id}_${i}`)?.checked)normalStress++;
+        }
+      });
+
+      return{normalStress,extraStress,totalStress:normalStress};
     }
 
-    for(let i=1;i<=10;i++){
-      if(byId(`stressNormal_${track.id}_${i}`)?.checked){
-        normalStress++;
-      }
+    function updateStressScales(){
+      const totals=updateProtectionAndExtraSlots();
+      let totalNormalStress=0;
 
-      if(byId(`stressNormal2_${track.id}_${i}`)?.checked){
-        normalStress++;
-      }
+      stressTracks.forEach(track=>{
+        const unlockedExtraSlots=totals[track.id].extraSlots;
+
+        for(let i=1;i<=5;i++){
+          const checkbox=byId(`stressExtra_${track.id}_${i}`);
+          const dot=byId(`extraDot_${track.id}_${i}`);
+          if(!checkbox||!dot)continue;
+
+          const isUnlocked=i<=unlockedExtraSlots;
+          checkbox.disabled=!isUnlocked;
+          dot.classList.toggle("locked",!isUnlocked);
+          if(!isUnlocked)checkbox.checked=false;
+        }
+
+        normalizeTrackStress(track.id,unlockedExtraSlots);
+
+        let normalStress=0;
+        for(let i=1;i<=10;i++){
+          if(byId(`stressNormal_${track.id}_${i}`)?.checked)normalStress++;
+          if(byId(`stressNormal2_${track.id}_${i}`)?.checked)normalStress++;
+        }
+
+        totalNormalStress+=normalStress;
+        byId(`stressCount_${track.id}`).textContent=`${normalStress}/20`;
+      });
+
+      let stressClass="";
+      if(totalNormalStress>=17)stressClass="stress-critical";
+      else if(totalNormalStress>=6)stressClass="stress-warning";
+
+      byId("stressTotalCounters").innerHTML=`
+        <span class="counter stress-total-counter ${stressClass}">Общий стресс: ${totalNormalStress}/100</span>
+        <button type="button" onclick="checkConsequence()">Проверка последствия</button>
+        <div id="consequenceCheckResult" class="hint">${escapeHtml(lastConsequenceCheckText)}</div>
+      `;
     }
-  });
-
-  return{
-    normalStress,
-    extraStress,
-    totalStress:normalStress
-  };
-}
-
-function updateStressScales(){
-  const totals=updateProtectionAndExtraSlots();
-
-  let totalNormalStress=0;
-
-  stressTracks.forEach(track=>{
-    const unlockedExtraSlots=totals[track.id].extraSlots;
-
-    for(let i=1;i<=5;i++){
-      const checkbox=byId(`stressExtra_${track.id}_${i}`);
-      const dot=byId(`extraDot_${track.id}_${i}`);
-      const isUnlocked=i<=unlockedExtraSlots;
-
-      checkbox.disabled=!isUnlocked;
-      dot.classList.toggle("locked",!isUnlocked);
-
-      if(!isUnlocked){
-        checkbox.checked=false;
-      }
-    }
-
-    normalizeTrackStress(track.id,unlockedExtraSlots);
-
-    let normalStress=0;
-
-    for(let i=1;i<=10;i++){
-      if(byId(`stressNormal_${track.id}_${i}`)?.checked){
-        normalStress++;
-      }
-
-      if(byId(`stressNormal2_${track.id}_${i}`)?.checked){
-        normalStress++;
-      }
-    }
-
-    totalNormalStress+=normalStress;
-
-    byId(`stressCount_${track.id}`).textContent=`${normalStress}/20`;
-  });
-
-  let stressClass="";
-
-  if(totalNormalStress>=17){
-    stressClass="stress-critical";
-  }else if(totalNormalStress>=6){
-    stressClass="stress-warning";
-  }
-
-  byId("stressTotalCounters").innerHTML=`
-  <span class="counter stress-total-counter ${stressClass}">Общий стресс: ${totalNormalStress}/100</span>
-  <button type="button" onclick="checkConsequence()">Проверка последствия</button>
-  <div id="consequenceCheckResult" class="hint">${escapeHtml(lastConsequenceCheckText)}</div>
-`;
-}
 
     function checkConsequence(){
       const totals=getCurrentStressTotals();
       const totalStress=totals.totalStress;
       const roll=Math.floor(Math.random()*10)+1;
 
-      if(roll < totalStress){
+      if(roll<totalStress){
         let consequence="Малое последствие";
-
-        if(totalStress >= 16){
-          consequence="Роковое последствие";
-        } else if(totalStress >= 6){
-          consequence="Значимое последствие";
-        }
-
+        if(totalStress>=16)consequence="Роковое последствие";
+        else if(totalStress>=6)consequence="Значимое последствие";
         lastConsequenceCheckText=`К10: ${roll}, стресс: ${totalStress} — ${consequence}`;
-      } else {
+      }else{
         lastConsequenceCheckText=`К10: ${roll}, стресс: ${totalStress} — Без последствия`;
       }
 
@@ -1102,37 +949,21 @@ function updateStressScales(){
         noteInput.style.display=masteryCheckbox.checked?"block":"none";
       }
     }
-    const nationPatternMap = {
-  "Народ Ножей": "images/pattern-knives.png",
-  "Народ Ядов": "images/pattern-poisons.png",
-  "Народ Граней": "images/pattern-edges.png",
-  "Народ Железа": "images/pattern-iron.png"
-};
-
-function updateNationBackground() {
-  const nationName = byId("nationName")?.value || "";
-  const imagePath = nationPatternMap[nationName];
-
-  if (imagePath) {
-    document.body.style.setProperty("--nation-pattern-image", `url("${imagePath}")`);
-  } else {
-    document.body.style.setProperty("--nation-pattern-image", "none");
-  }
-}
 
     function renderCounters(){
-  applyAutomaticSelections();
-  updateClassBackground();
-  updateNationPattern();
-  updateMasteryNoteVisibility();
-  updateStressScales();
-  renderSkillDomainCounters();
-  renderTacticCounters();
-  renderResourceCounters();
-  renderContactCounters();
-  renderConsequenceCounters();
-  renderAbilityCounters();
-}
+      applyAutomaticSelections();
+      updateClassBackground();
+      updateNationPattern();
+      updateMasteryNoteVisibility();
+      updateStressScales();
+      renderSkillDomainCounters();
+      renderTacticCounters();
+      renderResourceCounters();
+      renderContactCounters();
+      renderConsequenceCounters();
+      renderAbilityCounters();
+    }
+
     function renderSkillDomainCounters(){
       let skills=0;
       let domains=0;
@@ -1178,25 +1009,24 @@ function updateNationBackground() {
     }
 
     function renderConsequenceCounters(){
-  const minor=countFilledSlots("consequence","minor");
-  const major=countFilledSlots("consequence","major");
+      const minor=countFilledSlots("consequence","minor");
+      const major=countFilledSlots("consequence","major");
+      byId("consequenceCounters").innerHTML=`<span class="counter">${minor}/${consequenceCounts.minor} малых</span><span class="counter">${major}/${consequenceCounts.major} значимых</span>`;
+    }
 
-  byId("consequenceCounters").innerHTML=
-    `<span class="counter">${minor}/${consequenceCounts.minor} малых</span>`+
-    `<span class="counter">${major}/${consequenceCounts.major} значимых</span>`;
-}
     function renderAbilityCounters(){
-  const basic=countFilledSlots("ability","basic");
-  const minor=countFilledSlots("ability","minor");
-  const professional=countFilledSlots("ability","professional");
-  const elite=countFilledSlots("ability","elite");
+      const basic=countFilledSlots("ability","basic");
+      const minor=countFilledSlots("ability","minor");
+      const professional=countFilledSlots("ability","professional");
+      const elite=countFilledSlots("ability","elite");
 
-  byId("abilityCounters").innerHTML=
-    `<span class="counter">${basic}/${abilityCounts.basic} базовых</span>`+
-    `<span class="counter">${minor}/${abilityCounts.minor} малых</span>`+
-    `<span class="counter">${professional}/${abilityCounts.professional} профессиональных</span>`+
-    `<span class="counter">${elite}/${abilityCounts.elite} элитных</span>`;
-}
+      byId("abilityCounters").innerHTML=
+        `<span class="counter">${basic}/${abilityCounts.basic} базовых</span>`+
+        `<span class="counter">${minor}/${abilityCounts.minor} малых</span>`+
+        `<span class="counter">${professional}/${abilityCounts.professional} профессиональных</span>`+
+        `<span class="counter">${elite}/${abilityCounts.elite} элитных</span>`;
+    }
+
     function getAllInputs(){return Array.from(document.querySelectorAll("input, textarea, select"))}
     function cloneObject(object){return JSON.parse(JSON.stringify(object))}
 
@@ -1247,45 +1077,24 @@ function updateNationBackground() {
     }
 
     function applyCountsFromData(data){
-  tacticCount=Math.max(0,Number(data?.tacticCount??DEFAULT_TACTIC_COUNT));
-  resourceCount=Math.min(
-    Math.max(0,Number(data?.resourceCount??DEFAULT_RESOURCE_COUNT)),
-    MAX_RESOURCE_COUNT
-  );
+      tacticCount=Math.max(0,Number(data?.tacticCount??DEFAULT_TACTIC_COUNT));
+      resourceCount=Math.min(Math.max(0,Number(data?.resourceCount??DEFAULT_RESOURCE_COUNT)),MAX_RESOURCE_COUNT);
 
-  Object.assign(contactCounts,{
-    personal:1,
-    faction:1,
-    world:1,
-    players:1
-  },data?.contactCounts||{});
+      Object.assign(contactCounts,{personal:1,faction:0,world:0,players:1},data?.contactCounts||{});
 
-  consequenceCounts.minor=Number(data?.consequenceCounts?.minor??consequenceCounts.minor??0);
-  consequenceCounts.major=Number(data?.consequenceCounts?.major??consequenceCounts.major??0);
+      consequenceCounts.minor=Number(data?.consequenceCounts?.minor??consequenceCounts.minor??0);
+      consequenceCounts.major=Number(data?.consequenceCounts?.major??consequenceCounts.major??0);
+      delete consequenceCounts.fatal;
+      delete consequenceCounts.deadly;
+      delete consequenceCounts.doom;
+      delete consequenceCounts.critical;
+      delete consequenceCounts.rock;
 
-  delete consequenceCounts.fatal;
-  delete consequenceCounts.deadly;
-  delete consequenceCounts.doom;
-  delete consequenceCounts.critical;
-  delete consequenceCounts.rock;
+      Object.assign(abilityCounts,{basic:1,minor:3,professional:1,elite:0},data?.abilityCounts||{});
 
-  Object.assign(abilityCounts,{
-  basic:1,
-  minor:1,
-  professional:1,
-  elite:1
-},data?.abilityCounts||{});
-
-  abilityCounts.professional=Math.min(
-    Math.max(0,Number(abilityCounts.professional)),
-    MAX_ABILITY_COUNTS.professional
-  );
-
-  abilityCounts.elite=Math.min(
-    Math.max(0,Number(abilityCounts.elite)),
-    MAX_ABILITY_COUNTS.elite
-  );
-}
+      abilityCounts.professional=Math.min(Math.max(0,Number(abilityCounts.professional)),MAX_ABILITY_COUNTS.professional);
+      abilityCounts.elite=Math.min(Math.max(0,Number(abilityCounts.elite)),MAX_ABILITY_COUNTS.elite);
+    }
 
     function readSavedData(){
       const raw=localStorage.getItem(STORAGE_KEY);
@@ -1331,7 +1140,6 @@ function updateNationBackground() {
       const total=result+modifier;
 
       let line=`D${sides}: ${result}`;
-
       if(modifier!==0)line+=` ${modifier>0?"+":""}${modifier} = ${total}`;
       if(reason)line+=` — ${reason}`;
 
@@ -1435,7 +1243,6 @@ function updateNationBackground() {
 
       const skillChecked=skillName?Boolean(getSkillCheckbox(skillName)?.checked):false;
       const domainChecked=domainName?Boolean(getDomainCheckbox(domainName)?.checked):false;
-
       const skillMasteryChecked=skillName?Boolean(getSkillMasteryCheckbox(skillName)?.checked):false;
       const domainMasteryChecked=domainName?Boolean(getDomainMasteryCheckbox(domainName)?.checked):false;
       const masteryApplied=rollMasteryEnabled&&(skillMasteryChecked||domainMasteryChecked);
@@ -1447,37 +1254,20 @@ function updateNationBackground() {
       const downgradeSteps=Math.max(0,1-rawDiceAfterDifficulty);
 
       const rolls=[];
-      for(let i=0;i<diceToRoll;i++){
-        rolls.push(Math.floor(Math.random()*10)+1);
-      }
+      for(let i=0;i<diceToRoll;i++)rolls.push(Math.floor(Math.random()*10)+1);
 
       const maxRoll=Math.max(...rolls);
       const naturalIndex=getResultIndex(maxRoll);
       const finalIndex=Math.max(0,naturalIndex-downgradeSteps);
       const finalResult=resultLevels[finalIndex];
       const criticalTens=rolls.filter(value=>value>=10).length;
-
       const time=new Date().toLocaleTimeString("ru-RU",{hour:"2-digit",minute:"2-digit"});
 
       const entry={
-        time,
-        skillName,
-        domainName,
-        skillChecked,
-        domainChecked,
-        masteryRequested:rollMasteryEnabled,
-        masteryApplied,
-        helpers,
-        difficultyLabel,
-        difficultyPenalty,
-        intendedDice,
-        diceToRoll,
-        downgradeSteps,
-        rolls,
-        maxRoll,
-        criticalTens,
-        resultLabel:finalResult.label,
-        resultText:finalResult.text
+        time,skillName,domainName,skillChecked,domainChecked,
+        masteryRequested:rollMasteryEnabled,masteryApplied,helpers,difficultyLabel,difficultyPenalty,
+        intendedDice,diceToRoll,downgradeSteps,rolls,maxRoll,criticalTens,
+        resultLabel:finalResult.label,resultText:finalResult.text
       };
 
       advancedRollHistory.unshift(entry);
@@ -1503,8 +1293,10 @@ function updateNationBackground() {
       }
 
       container.innerHTML=advancedRollHistory.map(entry=>{
-        const rolls=entry.rolls.map(value=>{
-          const cls=value===entry.maxRoll?"roll-die max":"roll-die";
+        const values=Array.isArray(entry.rolls)?entry.rolls:[];
+        const maxValue=values.length?Math.max(...values):0;
+        const rolls=values.map(value=>{
+          const cls=value===maxValue?"roll-die max":"roll-die";
           return `<span class="${cls}">${value}</span>`;
         }).join("");
 
@@ -1513,14 +1305,14 @@ function updateNationBackground() {
         if(entry.domainName)parts.push(`Область: ${escapeHtml(entry.domainName)}${entry.domainChecked?" ✓":""}`);
         if(entry.masteryRequested)parts.push(`Мастерство: ${entry.masteryApplied?"применено":"нет"}`);
         if(entry.helpers)parts.push(`Помощники: ${entry.helpers}`);
-        parts.push(`Сложность: ${escapeHtml(entry.difficultyLabel)}`);
+        parts.push(`Сложность: ${escapeHtml(entry.difficultyLabel||"Нормальная")}`);
 
         return `
           <div class="roll-history-entry">
-            <div class="roll-history-top">[${escapeHtml(entry.time)}] ${escapeHtml(entry.resultLabel)}</div>
+            <div class="roll-history-top">[${escapeHtml(entry.time||"")}] ${escapeHtml(entry.resultLabel||"")}</div>
             <div>${rolls}</div>
             <div class="hint">${parts.join(" · ")}</div>
-            <div class="hint">Максимум: ${entry.maxRoll}. Костей: ${entry.diceToRoll}. Снижение: ${entry.downgradeSteps}. ${escapeHtml(entry.resultText)}</div>
+            <div class="hint">Максимум: ${entry.maxRoll??maxValue}. Костей: ${entry.diceToRoll??values.length}. Снижение: ${entry.downgradeSteps??0}. ${escapeHtml(entry.resultText||"")}</div>
           </div>
         `;
       }).join("");
@@ -1544,7 +1336,6 @@ function updateNationBackground() {
 
     function init(){
       const saved=readSavedData();
-
       if(saved)applyCountsFromData(saved);
 
       buildStaticRows();
@@ -1569,7 +1360,7 @@ function updateNationBackground() {
       box.style.margin="16px";
       box.style.fontFamily="monospace";
       box.style.whiteSpace="pre-wrap";
-      box.textContent="Ошибка JavaScript:\n"+String(error&&error.stack?error.stack:error);
+      box.textContent="Ошибка JavaScript:\n"+(error?.name||"Error")+": "+(error?.message||String(error))+"\n\n"+(error?.stack||"");
       document.body.prepend(box);
     }
   </script>
