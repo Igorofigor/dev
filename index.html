@@ -479,8 +479,13 @@
       text-align:center;
     }
 
-    .die-shape-button:hover,
-    .die-shape-button:focus{filter:contrast(1.12)}
+    .die-shape-button:hover{
+  filter:contrast(1.12);
+}
+
+.die-shape-button:focus-visible{
+  filter:contrast(1.12);
+}
 
     .die-d4{clip-path:polygon(50% 0%,100% 100%,0% 100%)}
     .die-d6{clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
@@ -574,6 +579,13 @@
       .floating-sheet-menu-button{width:88px;height:74px;font-size:10px}
       .simple-dice-row{grid-template-columns:repeat(3,1fr)}
     }
+    button,
+.die-shape-button,
+.floating-roll-button,
+.floating-diary-button,
+.floating-sheet-menu-button{
+  -webkit-tap-highlight-color: transparent;
+}
   </style>
 </head>
 
