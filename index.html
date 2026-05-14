@@ -826,100 +826,151 @@
     .floating-action-label{font-size:9px;padding:3px 5px;box-shadow:3px 3px 0 var(--accent-soft)}
 
 
-    .portrait-export-block{
-      margin-top:14px;
-      margin-bottom:14px;
-      padding:12px;
-      border:1px solid var(--accent);
-      background:rgba(255,255,255,.88);
-      transition:background-color .14s ease,border-color .14s ease,box-shadow .14s ease;
-    }
+   .character-head-layout{
+  display:grid;
+  grid-template-columns:minmax(160px,240px) 1fr;
+  gap:16px;
+  align-items:start;
+  margin-top:14px;
+}
 
-    .portrait-export-block:hover{
-      background:var(--hover-bg);
-      border-color:var(--accent-hover);
-      box-shadow:4px 4px 0 var(--accent-hover-soft);
-    }
+.character-portrait-column{
+  min-width:0;
+}
 
-    .portrait-layout{
-      display:grid;
-      grid-template-columns:minmax(220px,320px) 1fr;
-      gap:16px;
-      align-items:start;
-    }
+.character-fields-column{
+  min-width:0;
+}
 
-    .portrait-panel{min-width:0}
+.portrait-preview-wrap{
+  width:100%;
+  max-width:240px;
+  border:2px solid var(--accent);
+  background:#fff;
+  aspect-ratio:210 / 297;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+}
 
-    .portrait-preview-wrap{
-      width:100%;
-      max-width:320px;
-      margin-top:12px;
-      border:2px solid var(--accent);
-      background:#fff;
-      aspect-ratio:210 / 297;
-      overflow:hidden;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      position:relative;
-    }
+.portrait-preview-placeholder{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px;
+  color:var(--accent);
+  font-weight:1000;
+  text-align:center;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+  opacity:.45;
+  pointer-events:none;
+}
 
-    .portrait-preview-placeholder{
-      position:absolute;
-      inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:16px;
-      color:var(--accent);
-      font-weight:1000;
-      text-align:center;
-      text-transform:uppercase;
-      letter-spacing:.05em;
-      opacity:.45;
-      pointer-events:none;
-    }
+.portrait-preview{
+  display:none;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center center;
+  background:#fff;
+}
 
-    .portrait-preview{
-      display:none;
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      object-position:center center;
-      background:#fff;
-    }
+.portrait-preview.has-image{
+  display:block;
+}
 
-    .portrait-preview.has-image{display:block}
-    .portrait-preview.has-image + .portrait-preview-placeholder{display:none}
+.portrait-preview.has-image + .portrait-preview-placeholder{
+  display:none;
+}
 
-    .portrait-actions{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:8px;
-      margin-top:10px;
-    }
+.portrait-controls{
+  width:100%;
+  max-width:240px;
+  margin-top:8px;
+  border:1px solid var(--accent);
+  background:rgba(255,255,255,.88);
+}
 
-    .portrait-export-actions{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:10px;
-      align-content:start;
-    }
+.portrait-controls summary{
+  padding:6px 8px;
+  color:var(--accent);
+  font-size:11px;
+  font-weight:1000;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  cursor:pointer;
+  user-select:none;
+}
 
-    .portrait-export-actions h3{margin-top:0}
+.portrait-controls summary:hover{
+  color:var(--accent-hover);
+  background:var(--hover-bg);
+}
 
-    .export-preview{
-      display:none;
-      width:100%;
-      max-width:420px;
-      margin-top:6px;
-      border:2px solid var(--accent);
-      background:#fff;
-      box-shadow:8px 8px 0 var(--accent-soft);
-    }
+.portrait-file-input{
+  display:none;
+}
 
-    .export-preview.has-image{display:block}
+.portrait-mini-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6px;
+  padding:8px;
+}
 
+.portrait-mini-button{
+  width:100%;
+  min-height:30px;
+  margin:0;
+  padding:6px 7px;
+  border:1px solid var(--accent);
+  background:var(--button);
+  color:var(--button-text);
+  font-size:10px;
+  font-weight:1000;
+  line-height:1;
+  text-align:center;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  cursor:pointer;
+}
+
+label.portrait-mini-button{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0;
+}
+
+.portrait-mini-button.secondary,
+button.secondary.portrait-mini-button{
+  background:#fff;
+  color:var(--accent);
+}
+
+.portrait-mini-button:hover,
+.portrait-mini-button:focus-visible{
+  background:var(--accent-hover);
+  color:var(--on-hover);
+  border-color:var(--accent-hover);
+  box-shadow:3px 3px 0 var(--accent-hover-soft);
+}
+
+@media(max-width:760px){
+  .character-head-layout{
+    grid-template-columns:1fr;
+  }
+
+  .portrait-preview-wrap,
+  .portrait-controls{
+    max-width:320px;
+  }
+}
     @media(max-width:760px){
       .portrait-layout{grid-template-columns:1fr}
       .portrait-preview-wrap{max-width:100%}
@@ -932,50 +983,83 @@
   <main class="app">
     <h1>Башня Упадёт — интерактивный лист персонажа</h1>
 
-    <section id="characterCard" class="card">
-      <h2>Персонаж</h2>
+   <section id="characterCard" class="card">
+  <h2>Персонаж</h2>
 
-      
+  <div class="character-head-layout">
+    <div class="character-portrait-column">
+      <div class="portrait-preview-wrap">
+        <img id="characterPortraitPreview" class="portrait-preview" alt="Портрет персонажа" />
+        <div class="portrait-preview-placeholder">Портрет<br>А4</div>
+      </div>
 
-<div class="portrait-export-block">
-  <div class="portrait-panel">
-    <h3>Портрет</h3>
+      <details class="portrait-controls">
+        <summary>Настройки портрета</summary>
 
-    <label>Загрузить портрет</label>
-    <
+        <input id="characterPortraitUpload" class="portrait-file-input" type="file" accept="image/*" />
 
+        <div class="portrait-mini-actions">
+          <label class="portrait-mini-button" for="characterPortraitUpload">Загрузить</label>
+          <button class="secondary portrait-mini-button" type="button" onclick="removeCharacterPortrait()">Удалить</button>
+          <button class="portrait-mini-button" type="button" onclick="exportCharacterInfoCard('png')">PNG</button>
+          <button class="secondary portrait-mini-button" type="button" onclick="exportCharacterInfoCard('jpeg')">JPEG</button>
+        </div>
+      </details>
+    </div>
 
-            <input id="characterPortraitUpload" type="file" accept="image/*" />
+    <div class="character-fields-column">
+      <div class="grid-2">
+        <div><label>Имя</label><input id="characterName" placeholder="Имя персонажа" /></div>
 
-            <div class="portrait-preview-wrap">
-              <img id="characterPortraitPreview" class="portrait-preview" alt="Портрет персонажа" />
-              <div class="portrait-preview-placeholder">Портрет<br>А4</div>
-            </div>
+        <div>
+          <label>Класс</label>
+          <select id="className">
+            <option></option>
+            <option>Страж Врат</option>
+            <option>Светоносец</option>
+            <option>Раствор Души</option>
+            <option>Экономант</option>
+            <option>Неболом</option>
+            <option>Росоход</option>
+            <option>Подкодыш</option>
+            <option>Паратехник</option>
+            <option>Красный Рукав</option>
+          </select>
+        </div>
 
-            <div class="portrait-actions">
-              <button class="secondary" type="button" onclick="removeCharacterPortrait()">Убрать портрет</button>
-            </div>
-          </div>
+        <div>
+          <label>Народ</label>
+          <select id="nationName">
+            <option></option>
+            <option>Народ Ножей</option>
+            <option>Народ Ядов</option>
+            <option>Народ Граней</option>
+            <option>Народ Железа</option>
+          </select>
+        </div>
 
-          <div class="portrait-export-actions">
-            <h3>Экспорт карточки</h3>
-            <p class="hint">Создаёт отдельную карточку персонажа в формате PNG или JPEG из верхнего блока листа.</p>
-            <button type="button" onclick="exportCharacterInfoCard('png')">Скачать PNG</button>
-            <button class="secondary" type="button" onclick="exportCharacterInfoCard('jpeg')">Скачать JPEG</button>
-            <img id="exportPreview" class="export-preview" alt="Предпросмотр экспортированной карточки" />
-          </div>
+        <div>
+          <label>Род Войск</label>
+          <select id="serviceBranch">
+            <option></option>
+            <option>Тяжёлая пехота</option>
+            <option>Мобильная пехота</option>
+            <option>Разведка</option>
+            <option>Военный инженер</option>
+            <option>Штурмовая пехота</option>
+            <option>Служба безопасности</option>
+            <option>Мистическая пехота</option>
+            <option>Полевой медик</option>
+            <option>Отдел исследований</option>
+          </select>
         </div>
       </div>
 
-      <div class="grid-2">
-        <div><label>Имя</label><input id="characterName" placeholder="Имя персонажа" /></div>
-        <div><label>Класс</label><select id="className"><option></option><option>Страж Врат</option><option>Светоносец</option><option>Раствор Души</option><option>Экономант</option><option>Неболом</option><option>Росоход</option><option>Подкодыш</option><option>Паратехник</option><option>Красный Рукав</option></select></div>
-        <div><label>Народ</label><select id="nationName"><option></option><option>Народ Ножей</option><option>Народ Ядов</option><option>Народ Граней</option><option>Народ Железа</option></select></div>
-        <div><label>Род Войск</label><select id="serviceBranch"><option></option><option>Тяжёлая пехота</option><option>Мобильная пехота</option><option>Разведка</option><option>Военный инженер</option><option>Штурмовая пехота</option><option>Служба безопасности</option><option>Мистическая пехота</option><option>Полевой медик</option><option>Отдел исследований</option></select></div>
-      </div>
       <label>Описание</label>
       <textarea id="description" placeholder="Внешность, манеры, важные детали, странности, связи..."></textarea>
-    </section>
+    </div>
+  </div>
+</section>
 
     <section id="resistanceCard" class="card">
       <div class="title-row"><h2>Сопротивления, защита и стресс</h2></div>
