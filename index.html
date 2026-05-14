@@ -33,33 +33,59 @@
       color:var(--text);
     }
 
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      z-index:0;
-      pointer-events:none;
-      background-image:var(--class-bg-image);
-      background-size:cover;
-      background-position:center;
-      background-repeat:no-repeat;
-      opacity:.18;
-      filter:contrast(1.1);
-    }
+    body {
+  position: relative;
+  min-height: 100vh;
+  --class-bg-y: 0px;
+  --nation-pattern-y: 0px;
+}
 
-    body::after{
-      content:"";
-      position:fixed;
-      inset:0;
-      z-index:0;
-      pointer-events:none;
-      background-image:var(--nation-pattern-image);
-      background-size:360px 360px;
-      background-position:top center;
-      background-repeat:repeat;
-      opacity:.12;
-    }
+body::before {
+  content: "";
+  position: fixed;
+  inset: -80px 0;
+  z-index: 0;
+  pointer-events: none;
 
+  background-image: var(--class-bg-image);
+  background-size: cover;
+  background-position: center calc(50% + var(--class-bg-y));
+  background-repeat: no-repeat;
+
+  opacity: 0.18;
+  filter: contrast(1.1);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: -80px 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background-image: var(--nation-pattern-image);
+  background-size: 360px 360px;
+  background-position: center var(--nation-pattern-y);
+  background-repeat: repeat;
+
+  opacity: 0.12;
+}
+
+.app {
+  position: relative;
+  z-index: 1;
+}
+
+.floating-roll-button {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 900;
+}
+
+.roll-modal {
+  z-index: 1000;
+}
     .app{max-width:1120px;margin:0 auto 80px;position:relative;z-index:1}
     h1,h2,h3{color:var(--accent);text-transform:uppercase;letter-spacing:.04em}
     h1{margin:0 0 8px;font-size:30px;line-height:1.1}
@@ -496,7 +522,29 @@
       const imagePath=nationPatternMap[nationName];
       document.body.style.setProperty("--nation-pattern-image",imagePath?`url("${imagePath}")`:"none");
     }
+let parallaxTicking = false;
 
+function updateParallaxBackgrounds() {
+  const scrollY = window.scrollY || window.pageYOffset || 0;
+
+  document.body.style.setProperty("--class-bg-y", `${scrollY * 0.12}px`);
+  document.body.style.setProperty("--nation-pattern-y", `${scrollY * 0.32}px`);
+
+  parallaxTicking = false;
+}
+
+function requestParallaxUpdate() {
+  if (parallaxTicking) return;
+
+  parallaxTicking = true;
+  requestAnimationFrame(updateParallaxBackgrounds);
+}
+
+function attachParallax() {
+  window.addEventListener("scroll", requestParallaxUpdate, { passive: true });
+  window.addEventListener("resize", requestParallaxUpdate);
+  updateParallaxBackgrounds();
+}
     function getDesiredAutomaticSelections(){
       const desiredSkills=new Set();
       const desiredDomains=new Set();
@@ -1348,6 +1396,7 @@
         renderAdvancedRollHistory();
         renderCounters();
       }
+      attachParallax();
     }
 
     try{init()}
