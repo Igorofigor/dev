@@ -1852,14 +1852,7 @@ const [image,nationPatternImage,classEmblemImage]=await Promise.all([
       const textX=580;
       const textW=530;
       let y=244;
-      ctx.fillStyle=white;
-ctx.globalAlpha=.82;
-ctx.fillRect(textX-28,210,textW+56,590);
-ctx.globalAlpha=1;
-
-ctx.strokeStyle=accent;
-ctx.lineWidth=3;
-ctx.strokeRect(textX-28,210,textW+56,590);
+      
       drawTintedImageContain(
   ctx,
   classEmblemImage,
