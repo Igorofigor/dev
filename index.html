@@ -80,11 +80,14 @@
     button{background:var(--button);color:var(--button-text);font-weight:900;cursor:pointer;text-transform:uppercase;letter-spacing:.04em}
     button.secondary{background:#fff;color:var(--accent)}
     button.toggle-button.is-active{background:var(--accent);color:#fff}
+
     .triangle-button{width:34px;min-width:34px;height:34px;padding:0;border:none;background:transparent;display:inline-flex;align-items:center;justify-content:center}
     .triangle-button::before{content:"";display:block;width:0;height:0}
     .triangle-button.right::before{border-top:15px solid transparent;border-bottom:15px solid transparent;border-left:26px solid var(--accent)}
     .triangle-button.left::before{border-top:15px solid transparent;border-bottom:15px solid transparent;border-right:26px solid var(--accent)}
+
     .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
     .dice-row{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
     .table-wrap{width:100%;overflow-x:auto}
     .table{width:100%;min-width:760px;border-collapse:collapse;margin-top:8px}
@@ -93,6 +96,7 @@
     .table th{text-align:left;color:#fff;font-size:13px;background:var(--accent);white-space:nowrap;text-transform:uppercase;letter-spacing:.04em}
     .table input,.table textarea,.table select{margin:0;min-height:unset}
     .table textarea{min-height:54px}
+
     .counter-row{margin:6px 0 12px}
     .counter{display:inline-flex;align-items:center;gap:6px;margin:4px 6px 4px 0;padding:7px 10px;border:1px solid var(--accent);background:#fff;color:var(--accent);font-size:14px;font-weight:900;text-transform:uppercase;letter-spacing:.03em}
     .counter-check{display:inline-flex;flex-direction:column;align-items:stretch;gap:5px;margin:4px 6px 4px 0;padding:7px 10px;border:1px solid var(--accent);background:#fff;color:var(--accent);font-size:14px;font-weight:900;text-transform:uppercase;letter-spacing:.03em;vertical-align:top;min-width:230px}
@@ -101,6 +105,7 @@
     .hint{margin-top:4px;font-size:13px;color:var(--muted)}
     .small-number{max-width:84px}
     .inline-total{margin-top:5px;font-size:13px;font-weight:900;color:var(--accent)}
+
     .stress-count{font-weight:900;color:var(--accent);white-space:nowrap}
     .stress-scale{display:flex;flex-wrap:nowrap;gap:3px;align-items:flex-start;min-width:260px}
     .stress-extra-zone{display:flex;flex-wrap:nowrap;gap:3px;align-items:center}
@@ -109,6 +114,7 @@
     .stress-total-counter.stress-warning{background:#320216;color:#fff}
     .stress-total-counter.stress-critical{background:#000;color:#fff;border-color:#000}
     .stress-divider{width:1px;height:16px;background:var(--accent);margin:0 2px}
+
     .tri-check{position:relative;display:inline-flex;align-items:center;justify-content:center;width:auto;min-width:24px;min-height:24px;margin:0;padding:0;color:var(--accent);cursor:pointer;user-select:none}
     .tri-check input{position:absolute;opacity:0;width:24px;height:24px;margin:0;padding:0}
     .tri-shape{display:inline-block;width:0;height:0;opacity:.45;transition:opacity .12s ease,transform .12s ease}
@@ -124,6 +130,7 @@
     .stress-scale .stress-triangle{width:15px;height:15px;min-width:15px;min-height:15px}
     .stress-triangle.extra .tri-shape{opacity:.22}
     .stress-triangle.extra input:checked+.tri-shape{opacity:1}
+
     .traits-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
     .trait-column{border:2px solid var(--accent);padding:10px;background:rgba(255,255,255,.9)}
     .trait-list{display:grid;gap:6px}
@@ -136,6 +143,7 @@
     .trait-checks{display:inline-flex;flex-wrap:nowrap;gap:7px;align-items:center}
     .trait-note{margin-top:6px;padding:7px;font-size:14px}
     .mastery-note{display:none}
+
     .slot-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
     .slot-box{border:1px solid var(--accent);padding:10px;background:rgba(255,255,255,.9)}
     .slot-list{display:grid;gap:8px}
@@ -143,10 +151,69 @@
     .slot-entry textarea,.slot-entry input{padding:8px;min-height:54px}
     .log{min-height:110px;white-space:pre-wrap;background:#fff;padding:10px;border:1px solid var(--accent);color:var(--text);font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:14px}
     .toolbar{position:sticky;bottom:0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:20px;padding:12px 0 0;background:linear-gradient(to top,#fff,#ffffffdd)}
-    .floating-roll-button{position:fixed;right:18px;bottom:18px;z-index:900;width:76px;height:76px;border:2px solid var(--accent);box-shadow:8px 8px 0 var(--accent-soft);font-size:18px}
-    .roll-modal{display:none;position:fixed;inset:0;z-index:1000;padding:16px;background:#32021655;overflow:auto}
-    .roll-modal.open{display:flex;align-items:flex-start;justify-content:center}
-    .roll-panel{
+
+    .floating-actions{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      z-index:900;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:14px;
+    }
+
+    .floating-diary-button{
+      width:96px;
+      height:96px;
+      padding:0;
+      border:2px solid var(--accent);
+      background:var(--button);
+      color:var(--button-text);
+      box-shadow:8px 8px 0 var(--accent-soft);
+      font-size:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+    }
+
+    .floating-roll-button{
+      width:132px;
+      height:76px;
+      padding:0;
+      border:none;
+      background:var(--button);
+      color:var(--button-text);
+      box-shadow:8px 8px 0 var(--accent-soft);
+      font-size:13px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
+    }
+
+    .roll-modal,
+    .diary-modal{
+      display:none;
+      position:fixed;
+      inset:0;
+      z-index:1000;
+      padding:16px;
+      background:#32021655;
+      overflow:auto;
+    }
+
+    .roll-modal.open,
+    .diary-modal.open{
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+    }
+
+    .roll-panel,
+    .diary-panel{
       width:min(760px,100%);
       margin-top:28px;
       padding:16px;
@@ -156,6 +223,7 @@
       position:relative;
       overflow:hidden;
     }
+
     .roll-panel::before{
       content:"";
       position:absolute;
@@ -169,66 +237,54 @@
       opacity:.09;
       filter:contrast(1.1);
     }
-    .roll-panel>*{position:relative;z-index:1}
-    .roll-subsection{
+
+    .roll-panel>*,
+    .diary-panel>*{position:relative;z-index:1}
+
+    .roll-subsection,
+    .diary-subsection{
       margin-top:16px;
       padding:12px;
       border:1px solid var(--accent);
       background:rgba(255,255,255,.84);
     }
+
     .roll-result-title{margin:12px 0 8px;padding:10px;border:2px solid var(--accent);font-weight:1000;text-transform:uppercase;color:var(--accent);letter-spacing:.04em}
     .roll-detail{margin-bottom:10px;color:var(--muted);font-weight:700}
     .roll-history{display:grid;gap:8px}
     .roll-history-entry{border:1px solid var(--accent);padding:8px;background:#fff;font-size:14px}
     .roll-history-top{font-weight:900;color:var(--accent);margin-bottom:4px}
+
     .roll-die{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:58px;
+      height:36px;
+      margin:2px 4px 2px 0;
+      padding:0;
+      background:var(--accent);
+      color:#fff;
+      border:none;
+      clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
+      font-weight:1000;
+      line-height:1;
+      vertical-align:middle;
+    }
 
-  width:58px;
-  height:36px;
-  margin:2px 4px 2px 0;
-  padding:0;
+    .roll-die.max{
+      background:var(--danger);
+      color:#fff;
+      border:none;
+      font-weight:1000;
+    }
 
-  background:var(--accent);
-  color:#fff;
-  border:none;
+    .roll-die.edge{
+      text-decoration:underline;
+      text-decoration-thickness:2px;
+      text-underline-offset:3px;
+    }
 
-  clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
-
-  font-weight:1000;
-  line-height:1;
-  vertical-align:middle;
-}
-
-.roll-die.max{
-  background:var(--danger);
-  color:#fff;
-  border:none;
-  font-weight:1000;
-}
-
-.roll-die.edge{
-  text-decoration:underline;
-  text-decoration-thickness:2px;
-  text-underline-offset:3px;
-}
-  
-
-
-.roll-die.max{
-  background:var(--danger);
-  color:#fff;
-  border:none;
-  font-weight:1000;
-}
-
-.roll-die.edge{
-  text-decoration:underline;
-  text-decoration-thickness:2px;
-  text-underline-offset:3px;
-}
     .simple-dice-row{
       display:grid;
       grid-template-columns:repeat(5,1fr);
@@ -253,58 +309,38 @@
       font-weight:1000;
       text-align:center;
     }
-    .die-d4{
-  clip-path:polygon(50% 0%,100% 100%,0% 100%);
-}
-
-.die-d6{
-  clip-path:polygon(0 0,100% 0,100% 100%,0 100%);
-}
-
-.die-d8{
-  clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
-}
-
-.die-d10{
-  clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
-}
-
-.die-d12{
-  clip-path:polygon(50% 0%,97.55% 34.55%,79.39% 90.45%,20.61% 90.45%,2.45% 34.55%);
-}
 
     .die-shape-button:hover,
-    .die-shape-button:focus{
-      filter:contrast(1.12);
-    }
+    .die-shape-button:focus{filter:contrast(1.12)}
+
+    .die-d4{clip-path:polygon(50% 0%,100% 100%,0% 100%)}
+    .die-d6{clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
+    .die-d8{clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%)}
+    .die-d10{clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%)}
+    .die-d12{clip-path:polygon(50% 0%,97.55% 34.55%,79.39% 90.45%,20.61% 90.45%,2.45% 34.55%)}
 
     .die-shape-button.die-d4{
-      clip-path:polygon(50% 0%,100% 100%,0% 100%);
       padding-top:18px;
     }
 
     .die-shape-button.die-d6{
       width:64px;
       height:64px;
-      clip-path:polygon(0 0,100% 0,100% 100%,0 100%);
     }
 
     .die-shape-button.die-d8{
       width:72px;
       height:72px;
-      clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
     }
 
     .die-shape-button.die-d10{
       width:100px;
       height:60px;
-      clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
     }
 
     .die-shape-button.die-d12{
       width:74px;
       height:74px;
-      clip-path:polygon(50% 0%,97.55% 34.55%,79.39% 90.45%,20.61% 90.45%,2.45% 34.55%);
     }
 
     .simple-roll-result-line{
@@ -315,109 +351,73 @@
       margin:6px 0;
     }
 
-   .die-shape-result{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
+    .die-shape-result{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:38px;
+      min-height:38px;
+      padding:6px;
+      margin:2px 4px 2px 0;
+      background:var(--accent);
+      color:#fff;
+      border:none;
+      font-weight:1000;
+      vertical-align:middle;
+      line-height:1;
+    }
 
-  min-width:38px;
-  min-height:38px;
-  padding:6px;
-  margin:2px 4px 2px 0;
+    .die-shape-result.die-d4{
+      width:42px;
+      height:40px;
+      padding-top:12px;
+    }
 
-  background:var(--accent);
-  color:#fff;
-  border:none;
+    .die-shape-result.die-d6{
+      width:38px;
+      height:38px;
+    }
 
-  font-weight:1000;
-  vertical-align:middle;
-  line-height:1;
-}
+    .die-shape-result.die-d8{
+      width:42px;
+      height:42px;
+    }
 
-.die-shape-result.die-d4{
-  width:42px;
-  height:40px;
-  padding-top:12px;
-}
+    .die-shape-result.die-d10{
+      width:58px;
+      height:36px;
+    }
 
-.die-shape-result.die-d6{
-  width:38px;
-  height:38px;
-}
+    .die-shape-result.die-d12{
+      width:44px;
+      height:44px;
+    }
 
-.die-shape-result.die-d8{
-  width:42px;
-  height:42px;
-}
+    .die-shape-result .die-value{
+      background:transparent !important;
+      color:#fff;
+      border:none;
+      box-shadow:none;
+      padding:0;
+      margin:0;
+      line-height:1;
+    }
 
-.die-shape-result.die-d10{
-  width:58px;
-  height:36px;
-}
-
-.die-shape-result.die-d12{
-  width:44px;
-  height:44px;
-}
-
-.die-shape-result .die-value{
-  background:transparent !important;
-  color:#fff;
-  border:none;
-  box-shadow:none;
-  padding:0;
-  margin:0;
-  line-height:1;
-}
-
-.die-shape-result.edge .die-value{
-  text-decoration:underline;
-  text-decoration-thickness:2px;
-  text-underline-offset:3px;
-}
-.die-d4{
-  clip-path:polygon(50% 0%,100% 100%,0% 100%);
-}
-
-.die-d6{
-  clip-path:polygon(0 0,100% 0,100% 100%,0 100%);
-}
-
-.die-d8{
-  clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
-}
-
-.die-d10{
-  clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
-}
-
-.die-d12{
-  clip-path:polygon(50% 0%,97.55% 34.55%,79.39% 90.45%,20.61% 90.45%,2.45% 34.55%);
-}
-
-.die-shape-result .die-value{
-  background:transparent !important;
-  color:#fff;
-  border:none;
-  box-shadow:none;
-  padding:0;
-  margin:0;
-  line-height:1;
-}
-
-.die-shape-result.edge .die-value{
-  text-decoration:underline;
-  text-decoration-thickness:2px;
-  text-underline-offset:3px;
-}
+    .die-shape-result.edge .die-value{
+      text-decoration:underline;
+      text-decoration-thickness:2px;
+      text-underline-offset:3px;
+    }
 
     @media(max-width:760px){
       body{padding:12px}
-      .grid-2,.slot-grid{grid-template-columns:1fr}
+      .grid-2,.grid-3,.slot-grid{grid-template-columns:1fr}
       .dice-row{grid-template-columns:repeat(3,1fr)}
       .traits-grid{grid-template-columns:1fr}
       .toolbar{grid-template-columns:1fr}
-      .floating-roll-button{width:64px;height:64px;right:12px;bottom:12px}
+      .floating-actions{right:12px;bottom:12px;gap:10px}
+      .floating-diary-button{width:76px;height:76px;font-size:10px}
+      .floating-roll-button{width:112px;height:64px;font-size:11px}
       .simple-dice-row{grid-template-columns:repeat(3,1fr)}
     }
   </style>
@@ -533,8 +533,22 @@
     </section>
 
     <section class="card">
-      <h2>Прочие заметки</h2>
-      <textarea id="notes" placeholder="Всё, что пока не получило отдельного раздела."></textarea>
+      <h2>Классовые вопросы</h2>
+      <p class="hint">Три свободные ячейки для важных вопросов класса, личной драмы, долга, странностей или сюжетных крючков.</p>
+      <div class="grid-3">
+        <div>
+          <label>Вопрос 1</label>
+          <textarea id="classQuestion1" placeholder="Что в твоём классе делает тебя опасным, странным или нужным?"></textarea>
+        </div>
+        <div>
+          <label>Вопрос 2</label>
+          <textarea id="classQuestion2" placeholder="Кто или что связано с твоей силой?"></textarea>
+        </div>
+        <div>
+          <label>Вопрос 3</label>
+          <textarea id="classQuestion3" placeholder="Что ты потеряешь, если зайдёшь слишком далеко?"></textarea>
+        </div>
+      </div>
     </section>
 
     <div class="toolbar">
@@ -544,7 +558,26 @@
     </div>
   </main>
 
-  <button id="openRollMenuButton" class="floating-roll-button" type="button" onclick="openRollMenu()">D10</button>
+  <div class="floating-actions">
+    <button id="openDiaryButton" class="floating-diary-button" type="button" onclick="openDiaryMenu()">ДНЕВНИК</button>
+    <button id="openRollMenuButton" class="floating-roll-button" type="button" onclick="openRollMenu()">БРОСОК</button>
+  </div>
+
+  <div id="diaryModal" class="diary-modal" onclick="closeDiaryMenuOnBackdrop(event)" aria-hidden="true">
+    <div class="diary-panel" onclick="event.stopPropagation()">
+      <div class="title-row">
+        <h2>Дневник</h2>
+        <div class="title-actions">
+          <button class="triangle-button left" type="button" onclick="removeDiaryEntry()" title="Убрать запись"></button>
+          <button class="triangle-button right" type="button" onclick="addDiaryEntry()" title="Добавить запись"></button>
+          <button class="secondary" type="button" onclick="closeDiaryMenu()">Закрыть</button>
+        </div>
+      </div>
+      <p class="hint">Здесь можно хранить заметки, сцены, долги, обещания, странные находки и всё, что не должно занимать место на основном листе.</p>
+      <div id="diaryCounters" class="counter-row"></div>
+      <div id="diaryRows" class="slot-list"></div>
+    </div>
+  </div>
 
   <div id="rollModal" class="roll-modal" onclick="closeRollMenuOnBackdrop(event)" aria-hidden="true">
     <div class="roll-panel" onclick="event.stopPropagation()">
@@ -596,11 +629,11 @@
       <div class="roll-subsection">
         <h3>Простой бросок</h3>
         <div class="simple-dice-row">
-          <button class="die-shape-button die-d4" type="button" onclick="rollDie(4)">D4</button>
-          <button class="die-shape-button die-d6" type="button" onclick="rollDie(6)">D6</button>
-          <button class="die-shape-button die-d8" type="button" onclick="rollDie(8)">D8</button>
-          <button class="die-shape-button die-d10" type="button" onclick="rollDie(10)">D10</button>
-          <button class="die-shape-button die-d12" type="button" onclick="rollDie(12)">D12</button>
+          <button class="die-shape-button die-d4" type="button" onclick="rollDie(4)">К4</button>
+          <button class="die-shape-button die-d6" type="button" onclick="rollDie(6)">К6</button>
+          <button class="die-shape-button die-d8" type="button" onclick="rollDie(8)">К8</button>
+          <button class="die-shape-button die-d10" type="button" onclick="rollDie(10)">К10</button>
+          <button class="die-shape-button die-d12" type="button" onclick="rollDie(12)">К12</button>
         </div>
         <div class="grid-2">
           <div><label>Модификатор</label><input id="rollModifier" type="number" value="0" /></div>
@@ -618,6 +651,7 @@
 
     const DEFAULT_TACTIC_COUNT=2;
     const DEFAULT_RESOURCE_COUNT=1;
+    const DEFAULT_DIARY_COUNT=1;
     const MAX_RESOURCE_COUNT=10;
     const MAX_PROTECTION_PER_RESISTANCE=5;
     const MAX_ABILITY_COUNTS={professional:5,elite:1};
@@ -629,6 +663,7 @@
 
     let tacticCount=DEFAULT_TACTIC_COUNT;
     let resourceCount=DEFAULT_RESOURCE_COUNT;
+    let diaryCount=DEFAULT_DIARY_COUNT;
     let listenersAttached=false;
     let parallaxAttached=false;
     let rollMasteryEnabled=false;
@@ -1036,6 +1071,48 @@
       ["basic","minor","professional","elite"].forEach(type=>buildSlotRows("ability",type));
     }
 
+    function buildDiaryRows(){
+      const container=byId("diaryRows");
+      if(!container)return;
+      container.innerHTML="";
+      for(let i=1;i<=diaryCount;i++){
+        container.innerHTML+=`
+          <div class="slot-entry">
+            <label>Запись ${i}</label>
+            <textarea id="diaryEntry${i}" placeholder="Заметка, сцена, долг, обещание, находка, имя, странность..."></textarea>
+          </div>
+        `;
+      }
+      renderDiaryCounters();
+    }
+
+    function addDiaryEntry(){
+      preserveDataAndRebuild(()=>{
+        diaryCount+=1;
+        buildDiaryRows();
+      });
+    }
+
+    function removeDiaryEntry(){
+      if(diaryCount<=0)return;
+      preserveDataAndRebuild(()=>{
+        diaryCount-=1;
+        buildDiaryRows();
+      });
+    }
+
+    function renderDiaryCounters(){
+      const container=byId("diaryCounters");
+      if(!container)return;
+
+      let filled=0;
+      for(let i=1;i<=diaryCount;i++){
+        if(byId(`diaryEntry${i}`)?.value.trim())filled++;
+      }
+
+      container.innerHTML=`<span class="counter">${diaryCount} ${plural(diaryCount,"ячейка","ячейки","ячеек")}</span><span class="counter">${filled} ${plural(filled,"заполнена","заполнены","заполнено")}</span>`;
+    }
+
     function addSlot(kind,type){
       if(!countMaps[kind])return;
       if(countMaps[kind][type]===undefined)countMaps[kind][type]=0;
@@ -1280,6 +1357,7 @@
       renderContactCounters();
       renderConsequenceCounters();
       renderAbilityCounters();
+      renderDiaryCounters();
       updateRollMenuTitle();
     }
 
@@ -1353,6 +1431,7 @@
       const data={
         tacticCount,
         resourceCount,
+        diaryCount,
         contactCounts:cloneObject(contactCounts),
         consequenceCounts:cloneObject(consequenceCounts),
         abilityCounts:cloneObject(abilityCounts),
@@ -1415,6 +1494,7 @@
     function applyCountsFromData(data){
       tacticCount=Math.max(0,Number(data?.tacticCount??DEFAULT_TACTIC_COUNT));
       resourceCount=Math.min(Math.max(0,Number(data?.resourceCount??DEFAULT_RESOURCE_COUNT)),MAX_RESOURCE_COUNT);
+      diaryCount=Math.max(0,Number(data?.diaryCount??DEFAULT_DIARY_COUNT));
 
       Object.assign(contactCounts,{personal:1,faction:0,world:0,players:1},data?.contactCounts||{});
 
@@ -1518,7 +1598,10 @@
       });
 
       document.addEventListener("keydown",event=>{
-        if(event.key==="Escape")closeRollMenu();
+        if(event.key==="Escape"){
+          closeRollMenu();
+          closeDiaryMenu();
+        }
       });
 
       listenersAttached=true;
@@ -1538,12 +1621,33 @@
     }
 
     function closeRollMenu(){
-      byId("rollModal").classList.remove("open");
-      byId("rollModal").setAttribute("aria-hidden","true");
+      const modal=byId("rollModal");
+      if(!modal)return;
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden","true");
     }
 
     function closeRollMenuOnBackdrop(event){
       if(event.target.id==="rollModal")closeRollMenu();
+    }
+
+    function openDiaryMenu(){
+      const modal=byId("diaryModal");
+      if(!modal)return;
+      renderDiaryCounters();
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden","false");
+    }
+
+    function closeDiaryMenu(){
+      const modal=byId("diaryModal");
+      if(!modal)return;
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden","true");
+    }
+
+    function closeDiaryMenuOnBackdrop(event){
+      if(event.target.id==="diaryModal")closeDiaryMenu();
     }
 
     function toggleRollMastery(){
@@ -1635,14 +1739,14 @@
       const reason=entry.reason||"";
       const isEdge=result===1||result===sides;
       const edgeClass=isEdge?" edge":"";
-      let detail=`D${sides}: ${result}`;
+      let detail=`К${sides}: ${result}`;
 
       if(modifier!==0)detail+=` ${modifier>0?"+":""}${modifier} = ${total}`;
       if(reason)detail+=` — ${escapeHtml(reason)}`;
 
       return `
         <div class="roll-history-entry">
-          <div class="roll-history-top">[${escapeHtml(entry.time||"")}] Простой бросок D${sides}</div>
+          <div class="roll-history-top">[${escapeHtml(entry.time||"")}] Простой бросок К${sides}</div>
           <div class="simple-roll-result-line">
             <span class="die-shape-result die-d${sides}${edgeClass}"><span class="die-value">${result}</span></span>
             <span>${detail}</span>
@@ -1717,6 +1821,7 @@
       buildTacticRows();
       buildResourceRows();
       buildAllSlotRows();
+      buildDiaryRows();
     }
 
     function init(){
