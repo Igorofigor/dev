@@ -240,7 +240,6 @@
     .slot-entry{border:1px solid var(--accent);padding:8px;background:rgba(255,255,255,.9)}
     .slot-entry textarea,.slot-entry input{padding:8px;min-height:54px}
     .log{min-height:110px;white-space:pre-wrap;background:#fff;padding:10px;border:1px solid var(--accent);color:var(--text);font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:14px}
-    .toolbar{position:sticky;bottom:0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:20px;padding:12px 0 0;background:linear-gradient(to top,#fff,#ffffffdd)}
 
     .quality-cell{
       display:grid;
@@ -310,24 +309,26 @@
       text-align:center;
       clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
     }
-.floating-sheet-menu-button{
-  width:104px;
-  height:88px;
-  padding:12px 10px 0;
-  border:none;
-  background:var(--button);
-  color:var(--button-text);
-  box-shadow:8px 8px 0 var(--accent-soft);
-  font-size:12px;
-  display:flex;
-  align-items:flex-start;
-  justify-content:center;
-  text-align:center;
-  clip-path:polygon(50% 100%,0 0,100% 0);
-}
+
+    .floating-sheet-menu-button{
+      width:104px;
+      height:88px;
+      padding:12px 10px 0;
+      border:none;
+      background:var(--button);
+      color:var(--button-text);
+      box-shadow:8px 8px 0 var(--accent-soft);
+      font-size:12px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      text-align:center;
+      clip-path:polygon(50% 100%,0 0,100% 0);
+    }
+
     .roll-modal,
-.diary-modal,
-.sheet-menu-modal{
+    .diary-modal,
+    .sheet-menu-modal{
       display:flex;
       align-items:flex-start;
       justify-content:center;
@@ -335,7 +336,7 @@
       inset:0;
       z-index:1000;
       padding:16px;
-      background:#32021655;
+      background:rgba(0,0,0,.22);
       overflow:auto;
       opacity:0;
       visibility:hidden;
@@ -343,18 +344,17 @@
       transition:opacity .2s ease,visibility .2s ease;
     }
 
-   .roll-modal.open,
-.diary-modal.open,
-.sheet-menu-modal.open{
+    .roll-modal.open,
+    .diary-modal.open,
+    .sheet-menu-modal.open{
       opacity:1;
       visibility:visible;
       pointer-events:auto;
-    
     }
 
-    ..roll-panel,
-.diary-panel,
-.sheet-menu-panel{
+    .roll-panel,
+    .diary-panel,
+    .sheet-menu-panel{
       width:min(760px,100%);
       margin-top:28px;
       padding:16px;
@@ -368,7 +368,8 @@
     }
 
     .roll-modal.open .roll-panel,
-    .diary-modal.open .diary-panel{
+    .diary-modal.open .diary-panel,
+    .sheet-menu-modal.open .sheet-menu-panel{
       transform:translateY(0) scale(1);
     }
 
@@ -400,8 +401,14 @@
     }
 
     .roll-panel>*,
-.diary-panel>*,
-.sheet-menu-panel>*{position:relative;z-index:1}
+    .diary-panel>*,
+    .sheet-menu-panel>*{position:relative;z-index:1}
+
+    .sheet-menu-actions{
+      display:grid;
+      gap:10px;
+      margin-top:14px;
+    }
 
     .roll-subsection,
     .diary-subsection{
@@ -534,17 +541,17 @@
     }
 
     @keyframes roll-pop{
-  0%{transform:scale(.82) rotate(-8deg)}
-  60%{transform:scale(1.14) rotate(5deg)}
-  100%{transform:scale(1) rotate(0deg)}
-}
+      0%{transform:scale(.82) rotate(-8deg)}
+      60%{transform:scale(1.14) rotate(5deg)}
+      100%{transform:scale(1) rotate(0deg)}
+    }
 
-@keyframes roll-pop-strong{
-  0%{transform:scale(.55) rotate(-18deg)}
-  40%{transform:scale(1.36) rotate(14deg)}
-  70%{transform:scale(.9) rotate(-7deg)}
-  100%{transform:scale(1) rotate(0deg)}
-}
+    @keyframes roll-pop-strong{
+      0%{transform:scale(.55) rotate(-18deg)}
+      40%{transform:scale(1.36) rotate(14deg)}
+      70%{transform:scale(.9) rotate(-7deg)}
+      100%{transform:scale(1) rotate(0deg)}
+    }
 
     .roll-history-entry.roll-new .roll-die,
     .roll-history-entry.roll-new .die-shape-result{
@@ -561,22 +568,12 @@
       .grid-2,.grid-3,.slot-grid{grid-template-columns:1fr}
       .dice-row{grid-template-columns:repeat(3,1fr)}
       .traits-grid{grid-template-columns:1fr}
-      .toolbar{grid-template-columns:1fr}
       .floating-actions{right:12px;bottom:12px;gap:10px}
       .floating-diary-button{width:76px;height:76px;font-size:10px}
       .floating-roll-button{width:112px;height:64px;font-size:11px}
+      .floating-sheet-menu-button{width:88px;height:74px;font-size:10px}
       .simple-dice-row{grid-template-columns:repeat(3,1fr)}
     }
-    .floating-sheet-menu-button{
-  width:88px;
-  height:74px;
-  font-size:10px;
-}
-    .sheet-menu-actions{
-  display:grid;
-  gap:10px;
-  margin-top:14px;
-}
   </style>
 </head>
 
@@ -710,10 +707,10 @@
   </main>
 
   <div class="floating-actions">
-  <button id="openDiaryButton" class="floating-diary-button" type="button" onclick="openDiaryMenu()">ДНЕВНИК</button>
-  <button id="openRollMenuButton" class="floating-roll-button" type="button" onclick="openRollMenu()">БРОСОК</button>
-  <button id="openSheetMenuButton" class="floating-sheet-menu-button" type="button" onclick="openSheetMenu()">МЕНЮ</button>
-</div>
+    <button id="openDiaryButton" class="floating-diary-button" type="button" onclick="openDiaryMenu()">ДНЕВНИК</button>
+    <button id="openRollMenuButton" class="floating-roll-button" type="button" onclick="openRollMenu()">БРОСОК</button>
+    <button id="openSheetMenuButton" class="floating-sheet-menu-button" type="button" onclick="openSheetMenu()">МЕНЮ</button>
+  </div>
 
   <div id="diaryModal" class="diary-modal" onclick="closeDiaryMenuOnBackdrop(event)" aria-hidden="true">
     <div class="diary-panel" onclick="event.stopPropagation()">
@@ -731,26 +728,28 @@
     </div>
   </div>
 
+  <div id="sheetMenuModal" class="sheet-menu-modal" onclick="closeSheetMenuOnBackdrop(event)" aria-hidden="true">
+    <div class="sheet-menu-panel" onclick="event.stopPropagation()">
+      <div class="title-row">
+        <h2>Меню листа</h2>
+        <button class="secondary" type="button" onclick="closeSheetMenu()">Закрыть</button>
+      </div>
+
+      <div class="sheet-menu-actions">
+        <button type="button" onclick="saveSheet(true)">Сохранить</button>
+        <button class="secondary" type="button" onclick="loadSheet(true)">Загрузить</button>
+        <button class="secondary" type="button" onclick="clearSheet()">Очистить</button>
+      </div>
+    </div>
+  </div>
+
   <div id="rollModal" class="roll-modal" onclick="closeRollMenuOnBackdrop(event)" aria-hidden="true">
     <div class="roll-panel" onclick="event.stopPropagation()">
       <div class="title-row">
         <h2 id="autoRollTitle">Автоматический бросок</h2>
         <button class="secondary" type="button" onclick="closeRollMenu()">Закрыть</button>
       </div>
-<div id="sheetMenuModal" class="sheet-menu-modal" onclick="closeSheetMenuOnBackdrop(event)" aria-hidden="true">
-  <div class="sheet-menu-panel" onclick="event.stopPropagation()">
-    <div class="title-row">
-      <h2>Меню листа</h2>
-      <button class="secondary" type="button" onclick="closeSheetMenu()">Закрыть</button>
-    </div>
 
-    <div class="sheet-menu-actions">
-      <button type="button" onclick="saveSheet(true)">Сохранить</button>
-      <button class="secondary" type="button" onclick="loadSheet(true)">Загрузить</button>
-      <button class="secondary" type="button" onclick="clearSheet()">Очистить</button>
-    </div>
-  </div>
-</div>
       <div class="roll-subsection">
         <h3>Автоматический бросок</h3>
         <div class="grid-2">
@@ -1922,12 +1921,11 @@
       });
 
       document.addEventListener("keydown",event=>{
-       if(event.key==="Escape"){
-  closeRollMenu();
-  closeDiaryMenu();
-  closeSheetMenu();
-}
-        
+        if(event.key==="Escape"){
+          closeRollMenu();
+          closeDiaryMenu();
+          closeSheetMenu();
+        }
       });
 
       listenersAttached=true;
@@ -1975,23 +1973,24 @@
     function closeDiaryMenuOnBackdrop(event){
       if(event.target.id==="diaryModal")closeDiaryMenu();
     }
+
     function openSheetMenu(){
-  const modal=byId("sheetMenuModal");
-  if(!modal)return;
-  modal.classList.add("open");
-  modal.setAttribute("aria-hidden","false");
-}
+      const modal=byId("sheetMenuModal");
+      if(!modal)return;
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden","false");
+    }
 
-function closeSheetMenu(){
-  const modal=byId("sheetMenuModal");
-  if(!modal)return;
-  modal.classList.remove("open");
-  modal.setAttribute("aria-hidden","true");
-}
+    function closeSheetMenu(){
+      const modal=byId("sheetMenuModal");
+      if(!modal)return;
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden","true");
+    }
 
-function closeSheetMenuOnBackdrop(event){
-  if(event.target.id==="sheetMenuModal")closeSheetMenu();
-}
+    function closeSheetMenuOnBackdrop(event){
+      if(event.target.id==="sheetMenuModal")closeSheetMenu();
+    }
 
     function toggleRollMastery(){
       rollMasteryEnabled=!rollMasteryEnabled;
