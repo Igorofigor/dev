@@ -586,6 +586,52 @@
 .floating-sheet-menu-button{
   -webkit-tap-highlight-color: transparent;
 }
+.roll-panel,
+.diary-panel,
+.sheet-menu-panel{
+  isolation:isolate;
+}
+
+.roll-history-entry.roll-new .roll-die,
+.roll-history-entry.roll-new .die-shape-result,
+.roll-history-entry.roll-new-strong .roll-die,
+.roll-history-entry.roll-new-strong .die-shape-result{
+  backface-visibility:hidden;
+  will-change:transform;
+}
+button,
+.die-shape-button,
+.floating-roll-button,
+.floating-diary-button,
+.floating-sheet-menu-button{
+  -webkit-tap-highlight-color: transparent;
+}
+
+.die-shape-button:hover{
+  filter:contrast(1.12);
+}
+
+.die-shape-button:focus-visible{
+  filter:contrast(1.12);
+}
+
+button:active{
+  filter:none;
+}
+
+.roll-panel,
+.diary-panel,
+.sheet-menu-panel{
+  isolation:isolate;
+}
+
+.roll-history-entry.roll-new .roll-die,
+.roll-history-entry.roll-new .die-shape-result,
+.roll-history-entry.roll-new-strong .roll-die,
+.roll-history-entry.roll-new-strong .die-shape-result{
+  backface-visibility:hidden;
+  will-change:transform;
+}
   </style>
 </head>
 
