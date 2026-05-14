@@ -310,9 +310,24 @@
       text-align:center;
       clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
     }
-
+.floating-sheet-menu-button{
+  width:104px;
+  height:88px;
+  padding:12px 10px 0;
+  border:none;
+  background:var(--button);
+  color:var(--button-text);
+  box-shadow:8px 8px 0 var(--accent-soft);
+  font-size:12px;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  text-align:center;
+  clip-path:polygon(50% 100%,0 0,100% 0);
+}
     .roll-modal,
-    .diary-modal{
+.diary-modal,
+.sheet-menu-modal{
       display:flex;
       align-items:flex-start;
       justify-content:center;
@@ -328,15 +343,18 @@
       transition:opacity .2s ease,visibility .2s ease;
     }
 
-    .roll-modal.open,
-    .diary-modal.open{
+   .roll-modal.open,
+.diary-modal.open,
+.sheet-menu-modal.open{
       opacity:1;
       visibility:visible;
       pointer-events:auto;
+    
     }
 
-    .roll-panel,
-    .diary-panel{
+    ..roll-panel,
+.diary-panel,
+.sheet-menu-panel{
       width:min(760px,100%);
       margin-top:28px;
       padding:16px;
@@ -382,7 +400,8 @@
     }
 
     .roll-panel>*,
-    .diary-panel>*{position:relative;z-index:1}
+.diary-panel>*,
+.sheet-menu-panel>*{position:relative;z-index:1}
 
     .roll-subsection,
     .diary-subsection{
@@ -548,6 +567,16 @@
       .floating-roll-button{width:112px;height:64px;font-size:11px}
       .simple-dice-row{grid-template-columns:repeat(3,1fr)}
     }
+    .floating-sheet-menu-button{
+  width:88px;
+  height:74px;
+  font-size:10px;
+}
+    .sheet-menu-actions{
+  display:grid;
+  gap:10px;
+  margin-top:14px;
+}
   </style>
 </head>
 
@@ -678,18 +707,13 @@
         </div>
       </div>
     </section>
-
-    <div class="toolbar">
-      <button onclick="saveSheet(true)">Сохранить</button>
-      <button class="secondary" onclick="loadSheet(true)">Загрузить</button>
-      <button class="secondary" onclick="clearSheet()">Очистить</button>
-    </div>
   </main>
 
   <div class="floating-actions">
-    <button id="openDiaryButton" class="floating-diary-button" type="button" onclick="openDiaryMenu()">ДНЕВНИК</button>
-    <button id="openRollMenuButton" class="floating-roll-button" type="button" onclick="openRollMenu()">БРОСОК</button>
-  </div>
+  <button id="openDiaryButton" class="floating-diary-button" type="button" onclick="openDiaryMenu()">ДНЕВНИК</button>
+  <button id="openRollMenuButton" class="floating-roll-button" type="button" onclick="openRollMenu()">БРОСОК</button>
+  <button id="openSheetMenuButton" class="floating-sheet-menu-button" type="button" onclick="openSheetMenu()">МЕНЮ</button>
+</div>
 
   <div id="diaryModal" class="diary-modal" onclick="closeDiaryMenuOnBackdrop(event)" aria-hidden="true">
     <div class="diary-panel" onclick="event.stopPropagation()">
@@ -713,7 +737,20 @@
         <h2 id="autoRollTitle">Автоматический бросок</h2>
         <button class="secondary" type="button" onclick="closeRollMenu()">Закрыть</button>
       </div>
+<div id="sheetMenuModal" class="sheet-menu-modal" onclick="closeSheetMenuOnBackdrop(event)" aria-hidden="true">
+  <div class="sheet-menu-panel" onclick="event.stopPropagation()">
+    <div class="title-row">
+      <h2>Меню листа</h2>
+      <button class="secondary" type="button" onclick="closeSheetMenu()">Закрыть</button>
+    </div>
 
+    <div class="sheet-menu-actions">
+      <button type="button" onclick="saveSheet(true)">Сохранить</button>
+      <button class="secondary" type="button" onclick="loadSheet(true)">Загрузить</button>
+      <button class="secondary" type="button" onclick="clearSheet()">Очистить</button>
+    </div>
+  </div>
+</div>
       <div class="roll-subsection">
         <h3>Автоматический бросок</h3>
         <div class="grid-2">
@@ -1885,10 +1922,12 @@
       });
 
       document.addEventListener("keydown",event=>{
-        if(event.key==="Escape"){
-          closeRollMenu();
-          closeDiaryMenu();
-        }
+       if(event.key==="Escape"){
+  closeRollMenu();
+  closeDiaryMenu();
+  closeSheetMenu();
+}
+        
       });
 
       listenersAttached=true;
@@ -1936,6 +1975,23 @@
     function closeDiaryMenuOnBackdrop(event){
       if(event.target.id==="diaryModal")closeDiaryMenu();
     }
+    function openSheetMenu(){
+  const modal=byId("sheetMenuModal");
+  if(!modal)return;
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden","false");
+}
+
+function closeSheetMenu(){
+  const modal=byId("sheetMenuModal");
+  if(!modal)return;
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden","true");
+}
+
+function closeSheetMenuOnBackdrop(event){
+  if(event.target.id==="sheetMenuModal")closeSheetMenu();
+}
 
     function toggleRollMastery(){
       rollMasteryEnabled=!rollMasteryEnabled;
