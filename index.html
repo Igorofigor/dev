@@ -550,12 +550,7 @@ body::before {
   "Паратехник": "images/class-paratech.png",
   "Красный Рукав": "images/class-red-sleeve.png"
 };
-const nationPatternMap = {
-  "Народ Ножей": "images/pattern-knives.png",
-  "Народ Ядов": "images/pattern-poisons.png",
-  "Народ Граней": "images/pattern-edges.png",
-  "Народ Железа": "images/pattern-iron.png"
-};
+
 
     const skillOptions=["",...defaultSkills.map(skill=>skill.name)];
     const domainOptions=["",...defaultDomains.map(domain=>domain.name)];
@@ -1107,6 +1102,23 @@ function updateStressScales(){
         noteInput.style.display=masteryCheckbox.checked?"block":"none";
       }
     }
+    const nationPatternMap = {
+  "Народ Ножей": "images/pattern-knives.png",
+  "Народ Ядов": "images/pattern-poisons.png",
+  "Народ Граней": "images/pattern-edges.png",
+  "Народ Железа": "images/pattern-iron.png"
+};
+
+function updateNationBackground() {
+  const nationName = byId("nationName")?.value || "";
+  const imagePath = nationPatternMap[nationName];
+
+  if (imagePath) {
+    document.body.style.setProperty("--nation-pattern-image", `url("${imagePath}")`);
+  } else {
+    document.body.style.setProperty("--nation-pattern-image", "none");
+  }
+}
 
     function renderCounters(){
   applyAutomaticSelections();
