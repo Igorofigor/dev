@@ -309,56 +309,78 @@
       text-align:center;
       clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
     }
+
     body.has-class-emblem .floating-roll-button{
-  width:104px;
-  height:104px;
-  padding:0;
+      width:104px;
+      height:104px;
+      padding:0;
 
-  border:none;
-  box-shadow:none;
-  background-color:transparent;
-  background-image:var(--class-bg-image);
-  background-size:contain;
-  background-position:center;
-  background-repeat:no-repeat;
+      border:none;
+      box-shadow:none;
+      background-color:transparent;
+      background-image:var(--class-bg-image);
+      background-size:contain;
+      background-position:center;
+      background-repeat:no-repeat;
 
-  color:transparent;
-  font-size:0;
-  text-shadow:none;
+      color:transparent;
+      font-size:0;
+      text-shadow:none;
 
-  clip-path:none;
-  opacity:.92;
-  filter:contrast(1.12);
-}
+      clip-path:none;
+      opacity:.92;
+      filter:contrast(1.12);
+    }
 
-body.has-class-emblem .floating-roll-button:hover,
-body.has-class-emblem .floating-roll-button:focus-visible{
-  opacity:1;
-  filter:contrast(1.2);
-}
+    body.has-class-emblem .floating-roll-button:hover,
+    body.has-class-emblem .floating-roll-button:focus-visible{
+      opacity:1;
+      filter:contrast(1.2);
+    }
 
-body.has-class-emblem .floating-roll-button::after{
-  content:"";
-  position:absolute;
-  inset:-4px;
-  border:1px solid transparent;
-}
+    body.has-class-emblem .floating-roll-button::after{
+      content:"";
+      position:absolute;
+      inset:-4px;
+      border:1px solid transparent;
+    }
 
-   .floating-sheet-menu-button{
-  width:104px;
-  height:88px;
-  padding:0;
-  border:none;
-  background:var(--button);
-  color:var(--button-text);
-  box-shadow:8px 8px 0 var(--accent-soft);
-  font-size:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  clip-path:polygon(50% 100%,0 0,100% 0);
-}
+    .floating-sheet-menu-button{
+      width:104px;
+      height:88px;
+      padding:0;
+      border:none;
+      background:var(--button);
+      color:var(--button-text);
+      box-shadow:8px 8px 0 var(--accent-soft);
+      font-size:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      clip-path:polygon(50% 100%,0 0,100% 0);
+    }
+
+    .roll-modal,
+    .diary-modal,
+    .sheet-menu-modal{
+      position:fixed;
+      inset:0;
+      z-index:1200;
+      display:none;
+      align-items:flex-start;
+      justify-content:center;
+      padding:18px;
+      overflow:auto;
+      background:rgba(50,2,22,.28);
+    }
+
+    .roll-modal.open,
+    .diary-modal.open,
+    .sheet-menu-modal.open{
+      display:flex;
+    }
+
     .roll-panel,
     .diary-panel,
     .sheet-menu-panel{
@@ -373,29 +395,30 @@ body.has-class-emblem .floating-roll-button::after{
       transform:translateY(18px) scale(.985);
       transition:transform .2s ease;
     }
-    .floating-action-item{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:5px;
-}
 
-.floating-action-label{
-  display:block;
-  padding:3px 6px;
-  background:rgba(255,255,255,.88);
-  color:var(--accent);
-  border:1px solid var(--accent);
-  font-size:10px;
-  font-weight:1000;
-  line-height:1;
-  text-align:center;
-  text-transform:uppercase;
-  letter-spacing:.06em;
-  box-shadow:4px 4px 0 var(--accent-soft);
-  pointer-events:none;
-  user-select:none;
-}
+    .floating-action-item{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:5px;
+    }
+
+    .floating-action-label{
+      display:block;
+      padding:3px 6px;
+      background:rgba(255,255,255,.88);
+      color:var(--accent);
+      border:1px solid var(--accent);
+      font-size:10px;
+      font-weight:1000;
+      line-height:1;
+      text-align:center;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      box-shadow:4px 4px 0 var(--accent-soft);
+      pointer-events:none;
+      user-select:none;
+    }
 
     .roll-modal.open .roll-panel,
     .diary-modal.open .diary-panel,
@@ -510,12 +533,12 @@ body.has-class-emblem .floating-roll-button::after{
     }
 
     .die-shape-button:hover{
-  filter:contrast(1.12);
-}
+      filter:contrast(1.12);
+    }
 
-.die-shape-button:focus-visible{
-  filter:contrast(1.12);
-}
+    .die-shape-button:focus-visible{
+      filter:contrast(1.12);
+    }
 
     .die-d4{clip-path:polygon(50% 0%,100% 100%,0% 100%)}
     .die-d6{clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
@@ -608,36 +631,43 @@ body.has-class-emblem .floating-roll-button::after{
       .floating-roll-button{width:112px;height:64px;font-size:11px}
       .floating-sheet-menu-button{width:88px;height:74px;font-size:10px}
       .simple-dice-row{grid-template-columns:repeat(3,1fr)}
+      .roll-modal,
+      .diary-modal,
+      .sheet-menu-modal{padding:12px}
     }
-    button,
-.die-shape-button,
-.floating-roll-button,
-.floating-diary-button,
-.floating-sheet-menu-button{
-  -webkit-tap-highlight-color: transparent;
-}
-.roll-panel,
-.diary-panel,
-.sheet-menu-panel{
-  isolation:isolate;
-}
 
-.roll-history-entry.roll-new .roll-die,
-.roll-history-entry.roll-new .die-shape-result,
-.roll-history-entry.roll-new-strong .roll-die,
-.roll-history-entry.roll-new-strong .die-shape-result{
-  backface-visibility:hidden;
-  will-change:transform;
-}
-body.has-class-emblem .floating-roll-button{
-  width:82px;
-  height:82px;
-}
-.floating-action-label{
-  font-size:9px;
-  padding:3px 5px;
-  box-shadow:3px 3px 0 var(--accent-soft);
-}
+    button,
+    .die-shape-button,
+    .floating-roll-button,
+    .floating-diary-button,
+    .floating-sheet-menu-button{
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .roll-panel,
+    .diary-panel,
+    .sheet-menu-panel{
+      isolation:isolate;
+    }
+
+    .roll-history-entry.roll-new .roll-die,
+    .roll-history-entry.roll-new .die-shape-result,
+    .roll-history-entry.roll-new-strong .roll-die,
+    .roll-history-entry.roll-new-strong .die-shape-result{
+      backface-visibility:hidden;
+      will-change:transform;
+    }
+
+    body.has-class-emblem .floating-roll-button{
+      width:82px;
+      height:82px;
+    }
+
+    .floating-action-label{
+      font-size:9px;
+      padding:3px 5px;
+      box-shadow:3px 3px 0 var(--accent-soft);
+    }
   </style>
 </head>
 
@@ -771,22 +801,21 @@ body.has-class-emblem .floating-roll-button{
   </main>
 
   <div class="floating-actions">
-  <div class="floating-action-item">
-    <button id="openDiaryButton" class="floating-diary-button" type="button" onclick="openDiaryMenu()" aria-label="Открыть дневник"></button>
-    <span class="floating-action-label">ДНЕВНИК</span>
-  </div>
+    <div class="floating-action-item">
+      <button id="openDiaryButton" class="floating-diary-button" type="button" onclick="openDiaryMenu()" aria-label="Открыть дневник"></button>
+      <span class="floating-action-label">ДНЕВНИК</span>
+    </div>
 
-  <div class="floating-action-item">
-    <button id="openRollMenuButton" class="floating-roll-button" type="button" onclick="openRollMenu()" aria-label="Открыть меню броска"></button>
-    <span class="floating-action-label">БРОСОК</span>
-  </div>
+    <div class="floating-action-item">
+      <button id="openRollMenuButton" class="floating-roll-button" type="button" onclick="openRollMenu()" aria-label="Открыть меню броска"></button>
+      <span class="floating-action-label">БРОСОК</span>
+    </div>
 
-  <div class="floating-action-item">
-    <button id="openSheetMenuButton" class="floating-sheet-menu-button" type="button" onclick="openSheetMenu()" aria-label="Открыть меню листа"></button>
-    <span class="floating-action-label">МЕНЮ</span>
+    <div class="floating-action-item">
+      <button id="openSheetMenuButton" class="floating-sheet-menu-button" type="button" onclick="openSheetMenu()" aria-label="Открыть меню листа"></button>
+      <span class="floating-action-label">МЕНЮ</span>
+    </div>
   </div>
-</div>
-
 
   <div id="diaryModal" class="diary-modal" onclick="closeDiaryMenuOnBackdrop(event)" aria-hidden="true">
     <div class="diary-panel" onclick="event.stopPropagation()">
@@ -1043,12 +1072,12 @@ body.has-class-emblem .floating-roll-button{
     function getDomainMasteryCheckbox(domainName){const index=findDomainIndex(domainName);return index?byId(`domain${index}HasMastery`):null}
 
     function updateClassBackground(){
-  const className=byId("className")?.value||"";
-  const imagePath=classBackgroundMap[className];
+      const className=byId("className")?.value||"";
+      const imagePath=classBackgroundMap[className];
 
-  document.body.style.setProperty("--class-bg-image",imagePath?`url("${imagePath}")`:"none");
-  document.body.classList.toggle("has-class-emblem",Boolean(imagePath));
-}
+      document.body.style.setProperty("--class-bg-image",imagePath?`url("${imagePath}")`:"none");
+      document.body.classList.toggle("has-class-emblem",Boolean(imagePath));
+    }
 
     function updateNationPattern(){
       const nationName=byId("nationName")?.value||"";
@@ -2110,7 +2139,7 @@ body.has-class-emblem .floating-roll-button{
 
       const skillChecked=skillName?Boolean(getSkillCheckbox(skillName)?.checked):false;
       const domainChecked=domainName?Boolean(getDomainCheckbox(domainName)?.checked):false;
-const masteryApplied=rollMasteryEnabled;
+      const masteryApplied=rollMasteryEnabled;
 
       const baseDice=1;
       const intendedDice=baseDice+(skillChecked?1:0)+(domainChecked?1:0)+(masteryApplied?1:0)+helpers;
