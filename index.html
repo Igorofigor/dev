@@ -157,10 +157,59 @@ body::before {
   opacity: 0.18;
   filter: contrast(1.1);
 }
+body {
+  position: relative;
+  min-height: 100vh;
+}
 
-.app,
-.floating-roll-button,
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background-image: var(--class-bg-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  opacity: 0.18;
+  filter: contrast(1.1);
+}
+
+body::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background-image: var(--nation-pattern-image);
+  background-size: 360px 360px;
+  background-position: top center;
+  background-repeat: repeat;
+
+  opacity: 0.12;
+}
+
+.app {
+  position: relative;
+  z-index: 1;
+}
+
+.floating-roll-button {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 900;
+}
+
 .roll-modal {
+  z-index: 1000;
+}
+
+.app {
   position: relative;
   z-index: 1;
 }
@@ -501,6 +550,12 @@ body::before {
   "Паратехник": "images/class-paratech.png",
   "Красный Рукав": "images/class-red-sleeve.png"
 };
+const nationPatternMap = {
+  "Народ Ножей": "images/pattern-knives.png",
+  "Народ Ядов": "images/pattern-poisons.png",
+  "Народ Граней": "images/pattern-edges.png",
+  "Народ Железа": "images/pattern-iron.png"
+};
 
     const skillOptions=["",...defaultSkills.map(skill=>skill.name)];
     const domainOptions=["",...defaultDomains.map(domain=>domain.name)];
@@ -528,6 +583,16 @@ body::before {
 function updateClassBackground() {
   const className = byId("className")?.value || "";
   const imagePath = classBackgroundMap[className];
+  function updateNationPattern() {
+  const nationName = byId("nationName")?.value || "";
+  const imagePath = nationPatternMap[nationName];
+
+  if (imagePath) {
+    document.body.style.setProperty("--nation-pattern-image", `url("${imagePath}")`);
+  } else {
+    document.body.style.setProperty("--nation-pattern-image", "none");
+  }
+}
 
   if (imagePath) {
     document.body.style.setProperty("--class-bg-image", `url("${imagePath}")`);
@@ -1046,6 +1111,7 @@ function updateStressScales(){
     function renderCounters(){
   applyAutomaticSelections();
   updateClassBackground();
+  updateNationPattern();
   updateMasteryNoteVisibility();
   updateStressScales();
   renderSkillDomainCounters();
@@ -1055,7 +1121,6 @@ function updateStressScales(){
   renderConsequenceCounters();
   renderAbilityCounters();
 }
-
     function renderSkillDomainCounters(){
       let skills=0;
       let domains=0;
