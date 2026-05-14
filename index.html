@@ -1678,10 +1678,23 @@
       const serviceBranch=byId("serviceBranch")?.value.trim()||"—";
       const description=byId("description")?.value.trim()||"—";
 
-      const image=await loadImageForExport(portraitDataUrl).catch(error=>{
-        console.error(error);
-        return null;
-      });
+      const nationPatternPath=nationPatternMap[nationName]||"";
+const classEmblemPath=classBackgroundMap[className]||"";
+
+const [image,nationPatternImage,classEmblemImage]=await Promise.all([
+  loadImageForExport(portraitDataUrl).catch(error=>{
+    console.error(error);
+    return null;
+  }),
+  loadImageForExport(nationPatternPath).catch(error=>{
+    console.warn("Не удалось загрузить национальный узор:", error);
+    return null;
+  }),
+  loadImageForExport(classEmblemPath).catch(error=>{
+    console.warn("Не удалось загрузить эмблему класса:", error);
+    return null;
+  })
+]);
 
       const canvas=document.createElement("canvas");
       canvas.width=1240;
@@ -1695,6 +1708,17 @@
 
       ctx.fillStyle=white;
       ctx.fillRect(0,0,canvas.width,canvas.height);
+      drawTintedPattern(
+  ctx,
+  nationPatternImage,
+  0,
+  0,
+  canvas.width,
+  canvas.height,
+  360,
+  accent,
+  .16
+);
 
       ctx.fillStyle=soft;
       ctx.fillRect(64,64,canvas.width-128,canvas.height-128);
@@ -1741,11 +1765,105 @@
       const textX=580;
       const textW=530;
       let y=244;
+      ctx.fillStyle=white;
+ctx.globalAlpha=.82;
+ctx.fillRect(textX-28,210,textW+56,590);
+ctx.globalAlpha=1;
+
+ctx.strokeStyle=accent;
+ctx.lineWidth=3;
+ctx.strokeRect(textX-28,210,textW+56,590);
+      drawTintedImageContain(
+  ctx,
+  classEmblemImage,
+  textX-20,
+  220,
+  textW+40,
+  560,
+  accent,
+  .18
+);
 
       ctx.fillStyle=accent;
       ctx.font="1000 64px system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
       y+=wrapCanvasText(ctx,characterName,textX,y,textW,70,3)+54;
+function drawImageContain(ctx,image,x,y,w,h){
+  if(!image)return;
 
+  const imageWidth=image.naturalWidth||image.width;
+  const imageHeight=image.naturalHeight||image.height;
+
+  const imageRatio=imageWidth/imageHeight;
+  const targetRatio=w/h;
+
+  let dw=w;
+  let dh=h;
+  let dx=x;
+  let dy=y;
+
+  if(imageRatio>targetRatio){
+    dh=w/imageRatio;
+    dy=y+(h-dh)/2;
+  }else{
+    dw=h*imageRatio;
+    dx=x+(w-dw)/2;
+  }
+
+  ctx.drawImage(image,dx,dy,dw,dh);
+}
+
+function makeTintedImageCanvas(image,width,height,color,mode="contain"){
+  const canvas=document.createElement("canvas");
+  canvas.width=Math.max(1,Math.round(width));
+  canvas.height=Math.max(1,Math.round(height));
+
+  const ctx=canvas.getContext("2d");
+
+  if(mode==="cover"){
+    drawImageCover(ctx,image,0,0,canvas.width,canvas.height);
+  }else{
+    drawImageContain(ctx,image,0,0,canvas.width,canvas.height);
+  }
+
+  ctx.globalCompositeOperation="source-in";
+  ctx.fillStyle=color;
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.globalCompositeOperation="source-over";
+
+  return canvas;
+}
+
+function drawTintedImageContain(ctx,image,x,y,w,h,color,alpha=.12){
+  if(!image)return;
+
+  const tinted=makeTintedImageCanvas(image,w,h,color,"contain");
+
+  ctx.save();
+  ctx.globalAlpha=alpha;
+  ctx.drawImage(tinted,x,y,w,h);
+  ctx.restore();
+}
+
+function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
+  if(!image)return;
+
+  const tile=makeTintedImageCanvas(image,tileSize,tileSize,color,"cover");
+  const pattern=ctx.createPattern(tile,"repeat");
+
+  if(!pattern)return;
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.rect(x,y,w,h);
+  ctx.clip();
+
+  ctx.globalAlpha=alpha;
+  ctx.fillStyle=pattern;
+  ctx.translate(x,y);
+  ctx.fillRect(0,0,w,h);
+
+  ctx.restore();
+}
       function drawInfo(label,value){
         ctx.fillStyle=muted;
         ctx.font="900 26px system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
