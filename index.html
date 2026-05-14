@@ -19,7 +19,6 @@
       --danger:#c40000;
       --class-bg-image:none;
       --nation-pattern-image:none;
-      --class-parallax-y:0px;
       --nation-parallax-y:0px;
     }
 
@@ -33,21 +32,7 @@
       font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       background:var(--bg);
       color:var(--text);
-    }
-
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      z-index:0;
-      pointer-events:none;
-      background-image:var(--class-bg-image);
-      background-size:cover;
-      background-position:center calc(50% + var(--class-parallax-y));
-      background-repeat:no-repeat;
-      opacity:.18;
-      filter:contrast(1.1);
-      will-change:background-position;
+      -webkit-tap-highlight-color:transparent;
     }
 
     body::after{
@@ -64,7 +49,63 @@
       will-change:background-position;
     }
 
-    .app{max-width:1120px;margin:0 auto 80px;position:relative;z-index:1}
+    button,
+    .die-shape-button,
+    .floating-roll-button,
+    .floating-diary-button,
+    .floating-sheet-menu-button{
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    button:active{filter:none}
+
+    .page-layout{
+      width:100%;
+      max-width:1400px;
+      margin:0 auto 80px;
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns:220px minmax(0,1120px);
+      gap:24px;
+      align-items:start;
+    }
+
+    .class-emblem-sidebar{
+      min-height:520px;
+      padding-top:72px;
+      pointer-events:none;
+      user-select:none;
+    }
+
+    .class-emblem-card{
+      width:100%;
+      min-height:420px;
+      border:2px solid var(--accent);
+      background-image:var(--class-bg-image);
+      background-size:contain;
+      background-position:top center;
+      background-repeat:no-repeat;
+      background-color:rgba(255,255,255,.52);
+      box-shadow:8px 8px 0 var(--accent-soft);
+      opacity:.72;
+      filter:contrast(1.12);
+    }
+
+    .class-emblem-caption{
+      margin-top:10px;
+      padding:8px;
+      border:1px solid var(--accent);
+      background:rgba(255,255,255,.82);
+      color:var(--accent);
+      font-size:12px;
+      font-weight:1000;
+      text-align:center;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+
+    .app{max-width:1120px;margin:0;position:relative;z-index:1}
     h1,h2,h3{color:var(--accent);text-transform:uppercase;letter-spacing:.04em}
     h1{margin:0 0 8px;font-size:30px;line-height:1.1}
     h2{margin:0;font-size:22px}
@@ -363,6 +404,7 @@
       box-shadow:10px 10px 0 var(--accent-soft);
       position:relative;
       overflow:hidden;
+      isolation:isolate;
       transform:translateY(18px) scale(.985);
       transition:transform .2s ease;
     }
@@ -415,7 +457,7 @@
       margin-top:16px;
       padding:12px;
       border:1px solid var(--accent);
-      background:rgba(255,255,255,.84);
+      background:rgba(255,255,255,.92);
     }
 
     .roll-result-title{margin:12px 0 8px;padding:10px;border:2px solid var(--accent);font-weight:1000;text-transform:uppercase;color:var(--accent);letter-spacing:.04em}
@@ -479,13 +521,8 @@
       text-align:center;
     }
 
-    .die-shape-button:hover{
-  filter:contrast(1.12);
-}
-
-.die-shape-button:focus-visible{
-  filter:contrast(1.12);
-}
+    .die-shape-button:hover{filter:contrast(1.12)}
+    .die-shape-button:focus-visible{filter:contrast(1.12)}
 
     .die-d4{clip-path:polygon(50% 0%,100% 100%,0% 100%)}
     .die-d6{clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
@@ -568,6 +605,30 @@
       animation:roll-pop-strong .48s ease-out;
     }
 
+    .roll-history-entry.roll-new .roll-die,
+    .roll-history-entry.roll-new .die-shape-result,
+    .roll-history-entry.roll-new-strong .roll-die,
+    .roll-history-entry.roll-new-strong .die-shape-result{
+      backface-visibility:hidden;
+      will-change:transform;
+    }
+
+    @media(max-width:1280px){
+      .page-layout{
+        max-width:1120px;
+        display:block;
+        margin:0 auto 80px;
+      }
+
+      .class-emblem-sidebar{
+        display:none;
+      }
+
+      .app{
+        margin:0 auto;
+      }
+    }
+
     @media(max-width:760px){
       body{padding:12px}
       .grid-2,.grid-3,.slot-grid{grid-template-columns:1fr}
@@ -579,190 +640,144 @@
       .floating-sheet-menu-button{width:88px;height:74px;font-size:10px}
       .simple-dice-row{grid-template-columns:repeat(3,1fr)}
     }
-    button,
-.die-shape-button,
-.floating-roll-button,
-.floating-diary-button,
-.floating-sheet-menu-button{
-  -webkit-tap-highlight-color: transparent;
-}
-.roll-panel,
-.diary-panel,
-.sheet-menu-panel{
-  isolation:isolate;
-}
-
-.roll-history-entry.roll-new .roll-die,
-.roll-history-entry.roll-new .die-shape-result,
-.roll-history-entry.roll-new-strong .roll-die,
-.roll-history-entry.roll-new-strong .die-shape-result{
-  backface-visibility:hidden;
-  will-change:transform;
-}
-button,
-.die-shape-button,
-.floating-roll-button,
-.floating-diary-button,
-.floating-sheet-menu-button{
-  -webkit-tap-highlight-color: transparent;
-}
-
-.die-shape-button:hover{
-  filter:contrast(1.12);
-}
-
-.die-shape-button:focus-visible{
-  filter:contrast(1.12);
-}
-
-button:active{
-  filter:none;
-}
-
-.roll-panel,
-.diary-panel,
-.sheet-menu-panel{
-  isolation:isolate;
-}
-
-.roll-history-entry.roll-new .roll-die,
-.roll-history-entry.roll-new .die-shape-result,
-.roll-history-entry.roll-new-strong .roll-die,
-.roll-history-entry.roll-new-strong .die-shape-result{
-  backface-visibility:hidden;
-  will-change:transform;
-}
   </style>
 </head>
 
 <body>
-  <main class="app">
-    <h1>Башня Упадёт — интерактивный лист персонажа</h1>
+  <div class="page-layout">
+    <aside class="class-emblem-sidebar" aria-hidden="true">
+      <div class="class-emblem-card"></div>
+      <div class="class-emblem-caption">Эмблема класса</div>
+    </aside>
 
-    <section id="characterCard" class="card">
-      <h2>Персонаж</h2>
-      <div class="grid-2">
-        <div><label>Имя</label><input id="characterName" placeholder="Имя персонажа" /></div>
-        <div><label>Класс</label><select id="className"><option></option><option>Страж Врат</option><option>Светоносец</option><option>Раствор Души</option><option>Экономант</option><option>Неболом</option><option>Росоход</option><option>Подкодыш</option><option>Паратехник</option><option>Красный Рукав</option></select></div>
-        <div><label>Народ</label><select id="nationName"><option></option><option>Народ Ножей</option><option>Народ Ядов</option><option>Народ Граней</option><option>Народ Железа</option></select></div>
-        <div><label>Род Войск</label><select id="serviceBranch"><option></option><option>Тяжёлая пехота</option><option>Мобильная пехота</option><option>Разведка</option><option>Военный инженер</option><option>Штурмовая пехота</option><option>Служба безопасности</option><option>Мистическая пехота</option><option>Полевой медик</option><option>Отдел исследований</option></select></div>
-      </div>
-      <label>Описание</label>
-      <textarea id="description" placeholder="Внешность, манеры, важные детали, странности, связи..."></textarea>
-    </section>
+    <main class="app">
+      <h1>Башня Упадёт — интерактивный лист персонажа</h1>
 
-    <section id="resistanceCard" class="card">
-      <div class="title-row"><h2>Сопротивления, защита и стресс</h2></div>
-      <p class="hint">В ячейку защиты можно вписать любое число. Защита от брони суммируется с ним автоматически. То же работает с дополнительными слотами: ручные слоты + слоты от брони.</p>
-      <div id="stressTotalCounters" class="counter-row"></div>
-      <div class="table-wrap"><table class="table wide-table"><thead><tr><th>Сопротивление</th><th>Защита</th><th>Доп. слоты</th><th>Стресс</th><th>Итог</th></tr></thead><tbody id="resistanceRows"></tbody></table></div>
-    </section>
+      <section id="characterCard" class="card">
+        <h2>Персонаж</h2>
+        <div class="grid-2">
+          <div><label>Имя</label><input id="characterName" placeholder="Имя персонажа" /></div>
+          <div><label>Класс</label><select id="className"><option></option><option>Страж Врат</option><option>Светоносец</option><option>Раствор Души</option><option>Экономант</option><option>Неболом</option><option>Росоход</option><option>Подкодыш</option><option>Паратехник</option><option>Красный Рукав</option></select></div>
+          <div><label>Народ</label><select id="nationName"><option></option><option>Народ Ножей</option><option>Народ Ядов</option><option>Народ Граней</option><option>Народ Железа</option></select></div>
+          <div><label>Род Войск</label><select id="serviceBranch"><option></option><option>Тяжёлая пехота</option><option>Мобильная пехота</option><option>Разведка</option><option>Военный инженер</option><option>Штурмовая пехота</option><option>Служба безопасности</option><option>Мистическая пехота</option><option>Полевой медик</option><option>Отдел исследований</option></select></div>
+        </div>
+        <label>Описание</label>
+        <textarea id="description" placeholder="Внешность, манеры, важные детали, странности, связи..."></textarea>
+      </section>
 
-    <section id="consequencesCard" class="card consequences-card">
-      <div class="title-row"><h2>Последствия</h2></div>
-      <div id="consequenceCounters" class="counter-row"></div>
-      <div class="slot-grid">
-        <div class="slot-box"><div class="title-row"><h3>Малые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('consequence','minor')"></button><button class="triangle-button right" type="button" onclick="addSlot('consequence','minor')"></button></div></div><div id="consequence_minor_rows" class="slot-list"></div></div>
-        <div class="slot-box"><div class="title-row"><h3>Значимые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('consequence','major')"></button><button class="triangle-button right" type="button" onclick="addSlot('consequence','major')"></button></div></div><div id="consequence_major_rows" class="slot-list"></div></div>
-      </div>
-    </section>
+      <section id="resistanceCard" class="card">
+        <div class="title-row"><h2>Сопротивления, защита и стресс</h2></div>
+        <p class="hint">В ячейку защиты можно вписать любое число. Защита от брони суммируется с ним автоматически. То же работает с дополнительными слотами: ручные слоты + слоты от брони.</p>
+        <div id="stressTotalCounters" class="counter-row"></div>
+        <div class="table-wrap"><table class="table wide-table"><thead><tr><th>Сопротивление</th><th>Защита</th><th>Доп. слоты</th><th>Стресс</th><th>Итог</th></tr></thead><tbody id="resistanceRows"></tbody></table></div>
+      </section>
 
-    <section id="partyCard" class="card">
-      <h2>Шкалы дружбы</h2>
-      <p class="hint">Сопротивления дружбы с соратниками, отмечайте в них стресс ради бонусов.</p>
-      <div class="table-wrap"><table class="table"><thead><tr><th>Имя</th><th>Стресс</th><th>Защита</th><th>Заметка</th></tr></thead><tbody id="partyRows"></tbody></table></div>
-    </section>
+      <section id="consequencesCard" class="card consequences-card">
+        <div class="title-row"><h2>Последствия</h2></div>
+        <div id="consequenceCounters" class="counter-row"></div>
+        <div class="slot-grid">
+          <div class="slot-box"><div class="title-row"><h3>Малые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('consequence','minor')"></button><button class="triangle-button right" type="button" onclick="addSlot('consequence','minor')"></button></div></div><div id="consequence_minor_rows" class="slot-list"></div></div>
+          <div class="slot-box"><div class="title-row"><h3>Значимые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('consequence','major')"></button><button class="triangle-button right" type="button" onclick="addSlot('consequence','major')"></button></div></div><div id="consequence_major_rows" class="slot-list"></div></div>
+        </div>
+      </section>
 
-    <section id="skillsCard" class="card">
-      <h2>Навыки и области</h2>
-      <div id="skillDomainCounters" class="counter-row"></div>
-      <div class="traits-grid">
-        <div class="trait-column"><h3>Навыки</h3><div id="skillRows" class="trait-list"></div></div>
-        <div class="trait-column"><h3>Области</h3><div id="domainRows" class="trait-list"></div></div>
-      </div>
-    </section>
+      <section id="partyCard" class="card">
+        <h2>Шкалы дружбы</h2>
+        <p class="hint">Сопротивления дружбы с соратниками, отмечайте в них стресс ради бонусов.</p>
+        <div class="table-wrap"><table class="table"><thead><tr><th>Имя</th><th>Стресс</th><th>Защита</th><th>Заметка</th></tr></thead><tbody id="partyRows"></tbody></table></div>
+      </section>
 
-    <section id="abilitiesCard" class="card">
-      <div class="title-row"><h2>Способности</h2></div>
-      <div id="abilityCounters" class="counter-row"></div>
-      <div class="slot-grid">
-        <div class="slot-box">
-          <div class="title-row">
-            <h3>Базовые</h3>
-            <div class="title-actions">
-              <button class="triangle-button left" type="button" onclick="removeSlot('ability','basic')"></button>
-              <button class="triangle-button right" type="button" onclick="addSlot('ability','basic')"></button>
+      <section id="skillsCard" class="card">
+        <h2>Навыки и области</h2>
+        <div id="skillDomainCounters" class="counter-row"></div>
+        <div class="traits-grid">
+          <div class="trait-column"><h3>Навыки</h3><div id="skillRows" class="trait-list"></div></div>
+          <div class="trait-column"><h3>Области</h3><div id="domainRows" class="trait-list"></div></div>
+        </div>
+      </section>
+
+      <section id="abilitiesCard" class="card">
+        <div class="title-row"><h2>Способности</h2></div>
+        <div id="abilityCounters" class="counter-row"></div>
+        <div class="slot-grid">
+          <div class="slot-box">
+            <div class="title-row">
+              <h3>Базовые</h3>
+              <div class="title-actions">
+                <button class="triangle-button left" type="button" onclick="removeSlot('ability','basic')"></button>
+                <button class="triangle-button right" type="button" onclick="addSlot('ability','basic')"></button>
+              </div>
             </div>
+            <div id="ability_basic_rows" class="slot-list"></div>
           </div>
-          <div id="ability_basic_rows" class="slot-list"></div>
+          <div class="slot-box"><div class="title-row"><h3>Малые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('ability','minor')"></button><button class="triangle-button right" type="button" onclick="addSlot('ability','minor')"></button></div></div><div id="ability_minor_rows" class="slot-list"></div></div>
+          <div class="slot-box"><div class="title-row"><h3>Профессиональные</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('ability','professional')"></button><button class="triangle-button right" type="button" onclick="addSlot('ability','professional')"></button></div></div><div id="ability_professional_rows" class="slot-list"></div></div>
+          <div class="slot-box"><div class="title-row"><h3>Элитные</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('ability','elite')"></button><button class="triangle-button right" type="button" onclick="addSlot('ability','elite')"></button></div></div><div id="ability_elite_rows" class="slot-list"></div></div>
         </div>
-        <div class="slot-box"><div class="title-row"><h3>Малые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('ability','minor')"></button><button class="triangle-button right" type="button" onclick="addSlot('ability','minor')"></button></div></div><div id="ability_minor_rows" class="slot-list"></div></div>
-        <div class="slot-box"><div class="title-row"><h3>Профессиональные</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('ability','professional')"></button><button class="triangle-button right" type="button" onclick="addSlot('ability','professional')"></button></div></div><div id="ability_professional_rows" class="slot-list"></div></div>
-        <div class="slot-box"><div class="title-row"><h3>Элитные</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('ability','elite')"></button><button class="triangle-button right" type="button" onclick="addSlot('ability','elite')"></button></div></div><div id="ability_elite_rows" class="slot-list"></div></div>
-      </div>
-    </section>
+      </section>
 
-    <section id="tacticsCard" class="card">
-      <div class="title-row">
-        <h2>Группы тактик</h2>
-        <div class="title-actions">
-          <button class="triangle-button left" type="button" onclick="removeTacticRow()" title="Убрать группу тактик"></button>
-          <button class="triangle-button right" type="button" onclick="addTacticRow()" title="Добавить группу тактик"></button>
+      <section id="tacticsCard" class="card">
+        <div class="title-row">
+          <h2>Группы тактик</h2>
+          <div class="title-actions">
+            <button class="triangle-button left" type="button" onclick="removeTacticRow()" title="Убрать группу тактик"></button>
+            <button class="triangle-button right" type="button" onclick="addTacticRow()" title="Добавить группу тактик"></button>
+          </div>
         </div>
-      </div>
-      <div id="tacticCounters" class="counter-row"></div>
-      <div class="table-wrap"><table class="table"><thead><tr><th>Группа тактик</th><th>Связанный навык</th><th>Тактики / заметки</th></tr></thead><tbody id="tacticRows"></tbody></table></div>
-    </section>
+        <div id="tacticCounters" class="counter-row"></div>
+        <div class="table-wrap"><table class="table"><thead><tr><th>Группа тактик</th><th>Связанный навык</th><th>Тактики / заметки</th></tr></thead><tbody id="tacticRows"></tbody></table></div>
+      </section>
 
-    <section id="gearCard" class="card">
-      <h2>Снаряжение</h2>
-      <h3>4 слота снаряжения</h3>
-      <div class="table-wrap"><table class="table"><thead><tr><th>Слот</th><th>Предмет</th><th>Навык</th><th>Качество</th><th>Свойства / заметки</th></tr></thead><tbody id="gearRows"></tbody></table></div>
+      <section id="gearCard" class="card">
+        <h2>Снаряжение</h2>
+        <h3>4 слота снаряжения</h3>
+        <div class="table-wrap"><table class="table"><thead><tr><th>Слот</th><th>Предмет</th><th>Навык</th><th>Качество</th><th>Свойства / заметки</th></tr></thead><tbody id="gearRows"></tbody></table></div>
 
-      <div class="title-row" style="margin-top:18px">
-        <h3>Ресурсы</h3>
-        <div class="title-actions">
-          <button class="triangle-button left" type="button" onclick="removeResourceRow()" title="Убрать ресурс"></button>
-          <button class="triangle-button right" type="button" onclick="addResourceRow()" title="Добавить ресурс"></button>
+        <div class="title-row" style="margin-top:18px">
+          <h3>Ресурсы</h3>
+          <div class="title-actions">
+            <button class="triangle-button left" type="button" onclick="removeResourceRow()" title="Убрать ресурс"></button>
+            <button class="triangle-button right" type="button" onclick="addResourceRow()" title="Добавить ресурс"></button>
+          </div>
         </div>
-      </div>
-      <div id="resourceCounters" class="counter-row"></div>
-      <div class="table-wrap"><table class="table"><thead><tr><th>№</th><th>Ресурс</th><th>Качество</th><th>Свойства / цена / применение</th></tr></thead><tbody id="resourceRows"></tbody></table></div>
+        <div id="resourceCounters" class="counter-row"></div>
+        <div class="table-wrap"><table class="table"><thead><tr><th>№</th><th>Ресурс</th><th>Качество</th><th>Свойства / цена / применение</th></tr></thead><tbody id="resourceRows"></tbody></table></div>
 
-      <h3 style="margin-top:18px">Броня</h3>
-      <div class="table-wrap"><table class="table"><thead><tr><th>Слот</th><th>Предмет</th><th>Сопротивление</th><th>Защита</th><th>Доп. слоты</th><th>Свойства</th></tr></thead><tbody id="armorRows"></tbody></table></div>
-    </section>
+        <h3 style="margin-top:18px">Броня</h3>
+        <div class="table-wrap"><table class="table"><thead><tr><th>Слот</th><th>Предмет</th><th>Сопротивление</th><th>Защита</th><th>Доп. слоты</th><th>Свойства</th></tr></thead><tbody id="armorRows"></tbody></table></div>
+      </section>
 
-    <section id="contactsCard" class="card">
-      <div class="title-row"><h2>Контакты</h2></div>
-      <div id="contactCounters" class="counter-row"></div>
-      <div class="slot-grid">
-        <div class="slot-box"><div class="title-row"><h3>Личные</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('contact','personal')"></button><button class="triangle-button right" type="button" onclick="addSlot('contact','personal')"></button></div></div><div id="contact_personal_rows" class="slot-list"></div></div>
-        <div class="slot-box"><div class="title-row"><h3>Фракционные</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('contact','faction')"></button><button class="triangle-button right" type="button" onclick="addSlot('contact','faction')"></button></div></div><div id="contact_faction_rows" class="slot-list"></div></div>
-        <div class="slot-box"><div class="title-row"><h3>Мировые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('contact','world')"></button><button class="triangle-button right" type="button" onclick="addSlot('contact','world')"></button></div></div><div id="contact_world_rows" class="slot-list"></div></div>
-        <div class="slot-box"><div class="title-row"><h3>Персонажи игроков</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('contact','players')"></button><button class="triangle-button right" type="button" onclick="addSlot('contact','players')"></button></div></div><div id="contact_players_rows" class="slot-list"></div></div>
-      </div>
-    </section>
+      <section id="contactsCard" class="card">
+        <div class="title-row"><h2>Контакты</h2></div>
+        <div id="contactCounters" class="counter-row"></div>
+        <div class="slot-grid">
+          <div class="slot-box"><div class="title-row"><h3>Личные</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('contact','personal')"></button><button class="triangle-button right" type="button" onclick="addSlot('contact','personal')"></button></div></div><div id="contact_personal_rows" class="slot-list"></div></div>
+          <div class="slot-box"><div class="title-row"><h3>Фракционные</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('contact','faction')"></button><button class="triangle-button right" type="button" onclick="addSlot('contact','faction')"></button></div></div><div id="contact_faction_rows" class="slot-list"></div></div>
+          <div class="slot-box"><div class="title-row"><h3>Мировые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('contact','world')"></button><button class="triangle-button right" type="button" onclick="addSlot('contact','world')"></button></div></div><div id="contact_world_rows" class="slot-list"></div></div>
+          <div class="slot-box"><div class="title-row"><h3>Персонажи игроков</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('contact','players')"></button><button class="triangle-button right" type="button" onclick="addSlot('contact','players')"></button></div></div><div id="contact_players_rows" class="slot-list"></div></div>
+        </div>
+      </section>
 
-    <section id="classQuestionsCard" class="card">
-      <h2>Классовые вопросы</h2>
-      <p class="hint">Три свободные ячейки для важных вопросов класса, личной драмы, долга, странностей или сюжетных крючков.</p>
-      <div class="grid-3">
-        <div>
-          <label>Вопрос 1</label>
-          <textarea id="classQuestion1" placeholder="Ответ"></textarea>
+      <section id="classQuestionsCard" class="card">
+        <h2>Классовые вопросы</h2>
+        <p class="hint">Три свободные ячейки для важных вопросов класса, личной драмы, долга, странностей или сюжетных крючков.</p>
+        <div class="grid-3">
+          <div>
+            <label>Вопрос 1</label>
+            <textarea id="classQuestion1" placeholder="Что в твоём классе делает тебя опасным, странным или нужным?"></textarea>
+          </div>
+          <div>
+            <label>Вопрос 2</label>
+            <textarea id="classQuestion2" placeholder="Кто или что связано с твоей силой?"></textarea>
+          </div>
+          <div>
+            <label>Вопрос 3</label>
+            <textarea id="classQuestion3" placeholder="Что ты потеряешь, если зайдёшь слишком далеко?"></textarea>
+          </div>
         </div>
-        <div>
-          <label>Вопрос 2</label>
-          <textarea id="classQuestion2" placeholder="Ответ"></textarea>
-        </div>
-        <div>
-          <label>Вопрос 3</label>
-          <textarea id="classQuestion3" placeholder="Ответ"></textarea>
-        </div>
-      </div>
-    </section>
-  </main>
+      </section>
+    </main>
+  </div>
 
   <div class="floating-actions">
     <button id="openDiaryButton" class="floating-diary-button" type="button" onclick="openDiaryMenu()">ДНЕВНИК</button>
@@ -1038,7 +1053,6 @@ button:active{
 
     function updateParallaxBackground(){
       const scrollY=window.scrollY||document.documentElement.scrollTop||0;
-      document.body.style.setProperty("--class-parallax-y",`${Math.round(scrollY*-0.07)}px`);
       document.body.style.setProperty("--nation-parallax-y",`${Math.round(scrollY*-0.18)}px`);
     }
 
@@ -2090,7 +2104,7 @@ button:active{
 
       const skillChecked=skillName?Boolean(getSkillCheckbox(skillName)?.checked):false;
       const domainChecked=domainName?Boolean(getDomainCheckbox(domainName)?.checked):false;
-const masteryApplied=rollMasteryEnabled;
+      const masteryApplied=rollMasteryEnabled;
 
       const baseDice=1;
       const intendedDice=baseDice+(skillChecked?1:0)+(domainChecked?1:0)+(masteryApplied?1:0)+helpers;
