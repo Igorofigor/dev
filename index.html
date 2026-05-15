@@ -975,6 +975,106 @@ button.secondary.portrait-mini-button{
       .portrait-layout{grid-template-columns:1fr}
       .portrait-preview-wrap{max-width:100%}
     }
+    .floating-rules-help-button{
+  width:96px;
+  height:96px;
+  padding:0;
+  border:none;
+  background-color:var(--accent);
+  -webkit-mask-image:url("images/rulesbutton.svg");
+  mask-image:url("images/rulesbutton.svg");
+  -webkit-mask-size:contain;
+  mask-size:contain;
+  -webkit-mask-position:center;
+  mask-position:center;
+  -webkit-mask-repeat:no-repeat;
+  mask-repeat:no-repeat;
+  box-shadow:none;
+  font-size:0;
+  color:transparent;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  transition:background-color .14s ease,filter .14s ease,transform .14s ease,opacity .14s ease;
+}
+
+.floating-rules-help-button:hover,
+.floating-rules-help-button:focus-visible{
+  background-color:var(--accent-hover);
+  opacity:1;
+  filter:contrast(1.15);
+  transform:scale(1.06);
+}
+
+@media(max-width:760px){
+  .floating-rules-help-button{
+    width:76px;
+    height:76px;
+    font-size:0;
+  }
+}
+.rules-help-modal{
+  position:fixed;
+  inset:0;
+  z-index:1200;
+  display:none;
+  align-items:flex-start;
+  justify-content:center;
+  padding:18px;
+  overflow:auto;
+  background:transparent;
+}
+
+.rules-help-modal.open{
+  display:flex;
+}
+
+.rules-help-panel{
+  width:min(860px,100%);
+  margin-top:28px;
+  padding:16px;
+  border:2px solid var(--accent);
+  background:#fff;
+  box-shadow:10px 10px 0 var(--accent-soft);
+  position:relative;
+  overflow:hidden;
+  transform:translateY(18px) scale(.985);
+  transition:transform .2s ease,border-color .14s ease,box-shadow .14s ease;
+}
+
+.rules-help-modal.open .rules-help-panel{
+  transform:translateY(0) scale(1);
+}
+
+.rules-help-panel:hover{
+  border-color:var(--accent-hover);
+  box-shadow:10px 10px 0 var(--accent-hover-soft);
+}
+
+.rules-help-content{
+  margin-top:12px;
+  padding:12px;
+  border:1px solid var(--accent);
+  background:rgba(255,255,255,.88);
+  color:var(--text);
+  line-height:1.5;
+}
+
+.rules-help-content h2,
+.rules-help-content h3{
+  margin-top:14px;
+}
+
+.rules-help-content ul{
+  padding-left:22px;
+}
+
+@media(max-width:760px){
+  .rules-help-modal{
+    padding:12px;
+  }
+}
 
   </style>
 </head>
@@ -1159,7 +1259,10 @@ button.secondary.portrait-mini-button{
       <button id="openRollMenuButton" class="floating-roll-button" type="button" onclick="openRollMenu()" aria-label="Открыть меню броска"></button>
       <span class="floating-action-label">БРОСОК</span>
     </div>
-
+<div class="floating-action-item">
+  <button id="openRulesHelpButton" class="floating-rules-help-button" type="button" onclick="openRulesHelpMenu()" aria-label="Открыть справку"></button>
+  <span class="floating-action-label">СПРАВКА</span>
+</div>
     <div class="floating-action-item">
       <button id="openSheetMenuButton" class="floating-sheet-menu-button" type="button" onclick="openSheetMenu()" aria-label="Открыть меню листа"></button>
       <span class="floating-action-label">МЕНЮ</span>
@@ -1220,7 +1323,18 @@ button.secondary.portrait-mini-button{
       <div class="table-wrap"><table class="table"><thead><tr><th>№</th><th>Ресурс</th><th>Качество</th><th>Свойства / цена / применение</th></tr></thead><tbody id="resourceRows"></tbody></table></div>
     </div>
   </div>
+<div id="rulesHelpModal" class="rules-help-modal" onclick="closeRulesHelpMenuOnBackdrop(event)" aria-hidden="true">
+  <div class="rules-help-panel" onclick="event.stopPropagation()">
+    <div class="title-row">
+      <h2>Справка</h2>
+      <button class="secondary" type="button" onclick="closeRulesHelpMenu()">Закрыть</button>
+    </div>
 
+    <div id="rulesHelpContent" class="rules-help-content">
+      Загрузка справки...
+    </div>
+  </div>
+</div>
   <div id="diaryModal" class="diary-modal" onclick="closeDiaryMenuOnBackdrop(event)" aria-hidden="true">
     <div class="diary-panel" onclick="event.stopPropagation()">
       <div class="title-row">
@@ -2848,6 +2962,7 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
           closeAbilitiesMenu();
           closeTacticsMenu();
           closeResourcesMenu();
+          closeRulesHelpMenu();
         }
       });
       listenersAttached=true;
@@ -3093,7 +3208,58 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
         return renderAdvancedRollEntry(entry,isNewest);
       }).join("");
     }
+let rulesHelpLoaded=false;
 
+async function loadRulesHelp(){
+  const container=byId("rulesHelpContent");
+  if(!container)return;
+
+  if(rulesHelpLoaded)return;
+
+  container.innerHTML="Загрузка справки...";
+
+  try{
+    const response=await fetch("rules-help.html",{
+      cache:"no-cache"
+    });
+
+    if(!response.ok){
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    const html=await response.text();
+    container.innerHTML=html;
+    rulesHelpLoaded=true;
+  }catch(error){
+    console.error(error);
+    container.innerHTML=
+      `<p><strong>Не удалось загрузить справку.</strong></p>
+       <p>Проверь, что файл <code>rules-help.html</code> лежит рядом с <code>index.html</code>.</p>
+       <p class="hint">Если ты открываешь лист как локальный файл через <code>file://</code>, браузер может блокировать загрузку внешних файлов. В таком случае лучше открыть лист через GitHub Pages или локальный сервер.</p>`;
+  }
+}
+
+function openRulesHelpMenu(){
+  const modal=byId("rulesHelpModal");
+  if(!modal)return;
+
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden","false");
+
+  loadRulesHelp();
+}
+
+function closeRulesHelpMenu(){
+  const modal=byId("rulesHelpModal");
+  if(!modal)return;
+
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden","true");
+}
+
+function closeRulesHelpMenuOnBackdrop(event){
+  if(event.target.id==="rulesHelpModal")closeRulesHelpMenu();
+}
     function buildStaticRows(){
       buildResistanceRows();
       buildPartyRows();
