@@ -1075,6 +1075,86 @@ button.secondary.portrait-mini-button{
     padding:12px;
   }
 }
+.rules-tabs{
+  display:grid;
+  gap:12px;
+}
+
+.rules-tabs-nav{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  padding-bottom:8px;
+  border-bottom:2px solid var(--accent);
+}
+
+.rules-tab-button{
+  width:auto;
+  min-width:0;
+  padding:8px 10px;
+  border:1px solid var(--accent);
+  background:#fff;
+  color:var(--accent);
+  font-size:12px;
+  font-weight:1000;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+  box-shadow:none;
+}
+
+.rules-tab-button:hover,
+.rules-tab-button:focus-visible{
+  background:var(--accent-hover);
+  color:var(--on-hover);
+  border-color:var(--accent-hover);
+  box-shadow:3px 3px 0 var(--accent-hover-soft);
+}
+
+.rules-tab-button.is-active{
+  background:var(--accent);
+  color:var(--on-accent);
+}
+
+.rules-tab-button.is-active:hover,
+.rules-tab-button.is-active:focus-visible{
+  background:var(--accent-hover);
+  color:var(--on-hover);
+}
+
+.rules-tab-panel{
+  display:none;
+  padding:12px;
+  border:1px solid var(--accent);
+  background:rgba(255,255,255,.9);
+}
+
+.rules-tab-panel.is-active{
+  display:block;
+}
+
+.rules-tab-panel h2{
+  margin-top:0;
+}
+
+.rules-tab-panel h3{
+  margin-top:16px;
+}
+
+.rules-tab-panel ul{
+  margin-top:8px;
+  padding-left:22px;
+}
+
+@media(max-width:760px){
+  .rules-tabs-nav{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+  }
+
+  .rules-tab-button{
+    width:100%;
+  }
+}
 
   </style>
 </head>
@@ -3211,6 +3291,9 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
 let rulesHelpLoaded=false;
 
 async function loadRulesHelp(){
+  if(rulesHelpLoaded){
+  initRulesHelpTabs();
+  return;
   const container=byId("rulesHelpContent");
   if(!container)return;
 
@@ -3230,15 +3313,55 @@ async function loadRulesHelp(){
     const html=await response.text();
     container.innerHTML=html;
     rulesHelpLoaded=true;
+    const html=await response.text();
+initRulesHelpTabs();
   }catch(error){
     console.error(error);
     container.innerHTML=
       `<p><strong>Не удалось загрузить справку.</strong></p>
        <p>Проверь, что файл <code>rules-help.html</code> лежит рядом с <code>index.html</code>.</p>
        <p class="hint">Если ты открываешь лист как локальный файл через <code>file://</code>, браузер может блокировать загрузку внешних файлов. В таком случае лучше открыть лист через GitHub Pages или локальный сервер.</p>`;
+  
   }
 }
+function initRulesHelpTabs(){
+  const tabsRoot=byId("rulesHelpContent")?.querySelector("[data-rules-tabs]");
+  if(!tabsRoot)return;
 
+  const buttons=Array.from(tabsRoot.querySelectorAll("[data-rules-tab]"));
+  const panels=Array.from(tabsRoot.querySelectorAll("[data-rules-panel]"));
+
+  function activateTab(tabId){
+    buttons.forEach(button=>{
+      const isActive=button.dataset.rulesTab===tabId;
+      button.classList.toggle("is-active",isActive);
+      button.setAttribute("aria-selected",isActive?"true":"false");
+    });
+
+    panels.forEach(panel=>{
+      const isActive=panel.dataset.rulesPanel===tabId;
+      panel.classList.toggle("is-active",isActive);
+      panel.hidden=!isActive;
+    });
+  }
+
+  buttons.forEach(button=>{
+    button.setAttribute("role","tab");
+    button.setAttribute("aria-selected",button.classList.contains("is-active")?"true":"false");
+
+    button.addEventListener("click",()=>{
+      activateTab(button.dataset.rulesTab);
+    });
+  });
+
+  panels.forEach(panel=>{
+    panel.setAttribute("role","tabpanel");
+    panel.hidden=!panel.classList.contains("is-active");
+  });
+
+  const initiallyActive=buttons.find(button=>button.classList.contains("is-active"))||buttons[0];
+  if(initiallyActive)activateTab(initiallyActive.dataset.rulesTab);
+}
 function openRulesHelpMenu(){
   const modal=byId("rulesHelpModal");
   if(!modal)return;
