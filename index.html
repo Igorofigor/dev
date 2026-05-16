@@ -1989,6 +1989,18 @@ const [image,nationPatternImage,classEmblemImage]=await Promise.all([
 
       ctx.fillStyle=white;
       ctx.fillRect(0,0,canvas.width,canvas.height);
+      
+
+      ctx.fillStyle=soft;
+      ctx.fillRect(64,64,canvas.width-128,canvas.height-128);
+
+      ctx.fillStyle=white;
+      ctx.fillRect(48,48,canvas.width-128,canvas.height-128);
+
+      ctx.strokeStyle=accent;
+      ctx.lineWidth=8;
+      ctx.strokeRect(48,48,canvas.width-128,canvas.height-128);
+
       drawTintedPattern(
   ctx,
   nationPatternImage,
@@ -2000,16 +2012,6 @@ const [image,nationPatternImage,classEmblemImage]=await Promise.all([
   accent,
   .16
 );
-
-      ctx.fillStyle=soft;
-      ctx.fillRect(64,64,canvas.width-128,canvas.height-128);
-
-      ctx.fillStyle=white;
-      ctx.fillRect(48,48,canvas.width-128,canvas.height-128);
-
-      ctx.strokeStyle=accent;
-      ctx.lineWidth=8;
-      ctx.strokeRect(48,48,canvas.width-128,canvas.height-128);
 
       ctx.fillStyle=accent;
       ctx.font="1000 54px system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
@@ -3291,13 +3293,13 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
 let rulesHelpLoaded=false;
 
 async function loadRulesHelp(){
-  if(rulesHelpLoaded){
-  initRulesHelpTabs();
-  return;
   const container=byId("rulesHelpContent");
   if(!container)return;
 
-  if(rulesHelpLoaded)return;
+  if(rulesHelpLoaded){
+    initRulesHelpTabs();
+    return;
+  }
 
   container.innerHTML="Загрузка справки...";
 
@@ -3313,17 +3315,16 @@ async function loadRulesHelp(){
     const html=await response.text();
     container.innerHTML=html;
     rulesHelpLoaded=true;
-    const html=await response.text();
-initRulesHelpTabs();
+    initRulesHelpTabs();
   }catch(error){
     console.error(error);
     container.innerHTML=
       `<p><strong>Не удалось загрузить справку.</strong></p>
        <p>Проверь, что файл <code>rules-help.html</code> лежит рядом с <code>index.html</code>.</p>
        <p class="hint">Если ты открываешь лист как локальный файл через <code>file://</code>, браузер может блокировать загрузку внешних файлов. В таком случае лучше открыть лист через GitHub Pages или локальный сервер.</p>`;
-  
   }
 }
+
 function initRulesHelpTabs(){
   const tabsRoot=byId("rulesHelpContent")?.querySelector("[data-rules-tabs]");
   if(!tabsRoot)return;
@@ -3362,6 +3363,7 @@ function initRulesHelpTabs(){
   const initiallyActive=buttons.find(button=>button.classList.contains("is-active"))||buttons[0];
   if(initiallyActive)activateTab(initiallyActive.dataset.rulesTab);
 }
+
 function openRulesHelpMenu(){
   const modal=byId("rulesHelpModal");
   if(!modal)return;
