@@ -1439,18 +1439,31 @@ button.secondary.portrait-mini-button{
       </div>
 
       <div class="sheet-menu-actions">
-        <button type="button" onclick="saveSheet(true)">Сохранить</button>
-        <button class="secondary" type="button" onclick="loadSheet(true)">Загрузить</button>
-        <button class="secondary" type="button" onclick="clearSheet()">Очистить</button>
-      </div>
-    </div>
-  </div>
+  <button type="button" onclick="saveSheet(true)">Сохранить</button>
+  <button class="secondary" type="button" onclick="loadSheet(true)">Загрузить</button>
+  <button class="secondary" type="button" onclick="clearSheet()">Очистить</button>
+
   <hr />
 
-<label>
-  <input id="publishRollsToggle" type="checkbox" onchange="setRollPublishEnabled(this.checked)" />
-  Публиковать броски в подключённые чаты
-</label>
+  <label>
+    <input id="publishRollsToggle" type="checkbox" onchange="setRollPublishEnabled(this.checked)" />
+    Публиковать броски в подключённые чаты
+  </label>
+
+  <label>Ключ кампании</label>
+  <input id="campaignKeyInput" readonly />
+
+  <button class="secondary" type="button" onclick="copyCampaignKey()">Скопировать ключ</button>
+  <button type="button" onclick="openTelegramConnect()">Добавить Telegram-бота</button>
+  <button type="button" onclick="openDiscordConnect()">Добавить Discord-бота</button>
+  <button class="secondary" type="button" onclick="regenerateCampaignKey()">Новый ключ кампании</button>
+
+  <p class="hint">
+    Telegram: Добавьте бота по кнопке. Discord: добавьте бота, затем в нужном канале напишите /tower-connect и вставьте ключ кампании.
+  </p>
+</div>
+
+
 
 <label>Ключ кампании</label>
 <input id="campaignKeyInput" readonly />
@@ -3084,8 +3097,8 @@ async function copyCampaignKey(){
 }
 
 function openTelegramConnect(){
-  const key = encodeURIComponent(getCampaignKey());
-  location.href = `https://t.me/${Towerdicerollbot}?startgroup=${key}`;
+  const key=encodeURIComponent(getCampaignKey());
+  location.href=`https://t.me/${Towerdicerollbot}?startgroup=${key}`;
 }
 
 function openDiscordConnect(){
@@ -3120,16 +3133,21 @@ async function publishRollResult(entry){
     console.warn("Ошибка отправки броска:", error);
   }
 }
+      function rollDie(sides){
+  const modifier=Number(byId("rollModifier")?.value||0);
+  const reason=byId("rollReason")?.value.trim()||"";
+  const result=Math.floor(Math.random()*sides)+1;
+  const total=result+modifier;
+  const time=new Date().toLocaleTimeString("ru-RU",{hour:"2-digit",minute:"2-digit"});
 
-    function rollDie(sides){
-      const entry = {type:"simple",time,sides,result,modifier,total,reason};
+  const entry={type:"simple",time,sides,result,modifier,total,reason};
 
-advancedRollHistory.unshift(entry);
-advancedRollHistory=advancedRollHistory.slice(0,10);
-renderAdvancedRollHistory();
-saveSheet(false);
-publishRollResult(entry);
-    }
+  advancedRollHistory.unshift(entry);
+  advancedRollHistory=advancedRollHistory.slice(0,10);
+  renderAdvancedRollHistory();
+  saveSheet(false);
+  publishRollResult(entry);
+}
 
     function isFormElement(element){return element&&["INPUT","TEXTAREA","SELECT"].includes(element.tagName)}
 
