@@ -1445,6 +1445,24 @@ button.secondary.portrait-mini-button{
       </div>
     </div>
   </div>
+  <hr />
+
+<label>
+  <input id="publishRollsToggle" type="checkbox" onchange="setRollPublishEnabled(this.checked)" />
+  Публиковать броски в подключённые чаты
+</label>
+
+<label>Ключ кампании</label>
+<input id="campaignKeyInput" readonly />
+
+<button class="secondary" type="button" onclick="copyCampaignKey()">Скопировать ключ</button>
+<button type="button" onclick="openTelegramConnect()">Добавить Telegram-бота</button>
+<button type="button" onclick="openDiscordConnect()">Добавить Discord-бота</button>
+<button class="secondary" type="button" onclick="regenerateCampaignKey()">Новый ключ кампании</button>
+
+<p class="hint">
+  Telegram: добавь бота по кнопке. Discord: добавь бота, затем в нужном канале напиши /tower-connect и вставь ключ кампании.
+</p>
 
   <div id="rollModal" class="roll-modal" onclick="closeRollMenuOnBackdrop(event)" aria-hidden="true">
     <div class="roll-panel" onclick="event.stopPropagation()">
@@ -1517,6 +1535,12 @@ button.secondary.portrait-mini-button{
     const STORAGE_KEY="towerCharacterSheetV14";
     const CHARACTER_PORTRAIT_KEY="towerCharacterPortraitV1";
     let portraitDataUrl="";
+
+    const ROLL_RELAY_URL = "holy-night-3fb5";
+const TELEGRAM_BOT_USERNAME = "ТВОЙ_TELEGRAM_BOT_USERNAME_БЕЗ_@";
+
+const TOWER_CAMPAIGN_KEY = "towerCampaignKeyV1";
+const TOWER_ROLL_PUBLISH_ENABLED = "towerRollPublishEnabledV1";
 
     const DEFAULT_TACTIC_COUNT=2;
     const DEFAULT_RESOURCE_COUNT=1;
@@ -3000,17 +3024,111 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
       localStorage.removeItem(STORAGE_KEY);
       location.reload();
     }
+    function makeRandomCampaignKey(){
+  const bytes = new Uint8Array(12);
+  crypto.getRandomValues(bytes);
+
+  const raw = btoa(String.fromCharCode(...bytes))
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/g, "");
+
+  return "tf_" + raw;
+}
+
+function getCampaignKey(){
+  let key = localStorage.getItem(TOWER_CAMPAIGN_KEY);
+
+  if(!key){
+    key = makeRandomCampaignKey();
+    localStorage.setItem(TOWER_CAMPAIGN_KEY, key);
+  }
+
+  return key;
+}
+
+function regenerateCampaignKey(){
+  const confirmed = confirm("Создать новый ключ кампании? Старые подключённые чаты перестанут получать броски этого листа.");
+  if(!confirmed)return;
+
+  const key = makeRandomCampaignKey();
+  localStorage.setItem(TOWER_CAMPAIGN_KEY, key);
+  syncRollIntegrationUi();
+}
+
+function isRollPublishEnabled(){
+  return localStorage.getItem(TOWER_ROLL_PUBLISH_ENABLED) === "true";
+}
+
+function setRollPublishEnabled(enabled){
+  localStorage.setItem(TOWER_ROLL_PUBLISH_ENABLED, enabled ? "true" : "false");
+}
+
+function syncRollIntegrationUi(){
+  const keyInput = byId("campaignKeyInput");
+  const toggle = byId("publishRollsToggle");
+
+  if(keyInput)keyInput.value = getCampaignKey();
+  if(toggle)toggle.checked = isRollPublishEnabled();
+}
+
+async function copyCampaignKey(){
+  const key = getCampaignKey();
+
+  try{
+    await navigator.clipboard.writeText(key);
+    alert("Ключ кампании скопирован.");
+  }catch(error){
+    prompt("Скопируй ключ кампании:", key);
+  }
+}
+
+function openTelegramConnect(){
+  const key = encodeURIComponent(getCampaignKey());
+  location.href = `https://t.me/${Towerdicerollbot}?startgroup=${key}`;
+}
+
+function openDiscordConnect(){
+  window.open(`${ROLL_RELAY_URL}/discord-invite`, "_blank");
+}
+
+async function publishRollResult(entry){
+  if(!isRollPublishEnabled())return;
+
+  const payload = {
+    campaignKey: getCampaignKey(),
+    characterName: byId("characterName")?.value || "Без имени",
+    className: byId("className")?.value || "",
+    nationName: byId("nationName")?.value || "",
+    serviceBranch: byId("serviceBranch")?.value || "",
+    entry
+  };
+
+  try{
+    const response = await fetch(`${ROLL_RELAY_URL}/roll`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if(!response.ok){
+      console.warn("Бросок не отправлен:", response.status, await response.text());
+    }
+  }catch(error){
+    console.warn("Ошибка отправки броска:", error);
+  }
+}
 
     function rollDie(sides){
-      const modifier=Number(byId("rollModifier")?.value||0);
-      const reason=byId("rollReason")?.value.trim()||"";
-      const result=Math.floor(Math.random()*sides)+1;
-      const total=result+modifier;
-      const time=new Date().toLocaleTimeString("ru-RU",{hour:"2-digit",minute:"2-digit"});
-      advancedRollHistory.unshift({type:"simple",time,sides,result,modifier,total,reason});
-      advancedRollHistory=advancedRollHistory.slice(0,10);
-      renderAdvancedRollHistory();
-      saveSheet(false);
+      const entry = {type:"simple",time,sides,result,modifier,total,reason};
+
+advancedRollHistory.unshift(entry);
+advancedRollHistory=advancedRollHistory.slice(0,10);
+renderAdvancedRollHistory();
+saveSheet(false);
+publishRollResult(entry);
     }
 
     function isFormElement(element){return element&&["INPUT","TEXTAREA","SELECT"].includes(element.tagName)}
@@ -3093,6 +3211,7 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
     function openSheetMenu(){
       const modal=byId("sheetMenuModal");
       if(!modal)return;
+      syncRollIntegrationUi();
       modal.classList.add("open");
       modal.setAttribute("aria-hidden","false");
     }
@@ -3219,6 +3338,7 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
       byId("autoRollResultDetails").textContent=`Костей до сложности: ${intendedDice}. Сложность: ${difficultyLabel} (-${difficultyPenalty}). `+`Брошено костей: ${diceToRoll}. Снижение степени успеха: ${downgradeSteps}. `+`Десяток: ${criticalTens}.`;
       renderAdvancedRollHistory();
       saveSheet(false);
+      publishRollResult(entry);
     }
 
     function renderSimpleRollEntry(entry,isNewest=false){
