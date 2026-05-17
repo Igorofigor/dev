@@ -1439,33 +1439,30 @@ button.secondary.portrait-mini-button{
       </div>
 
       <div class="sheet-menu-actions">
-  <button type="button" onclick="saveSheet(true)">Сохранить</button>
-  <button class="secondary" type="button" onclick="loadSheet(true)">Загрузить</button>
-  <button class="secondary" type="button" onclick="clearSheet()">Очистить</button>
-
+        <button type="button" onclick="saveSheet(true)">Сохранить</button>
+        <button class="secondary" type="button" onclick="loadSheet(true)">Загрузить</button>
+        <button class="secondary" type="button" onclick="clearSheet()">Очистить</button>
+      </div>
+    </div>
+  </div>
   <hr />
 
-  <label>
-    <input id="publishRollsToggle" type="checkbox" onchange="setRollPublishEnabled(this.checked)" />
-    Публиковать броски в подключённые чаты
-  </label>
+<label>
+  <input id="publishRollsToggle" type="checkbox" onchange="setRollPublishEnabled(this.checked)" />
+  Публиковать броски в подключённые чаты
+</label>
 
-  <label>Ключ кампании</label>
-  <input id="campaignKeyInput" readonly />
+<label>Ключ кампании</label>
+<input id="campaignKeyInput" readonly />
 
-  <button class="secondary" type="button" onclick="copyCampaignKey()">Скопировать ключ</button>
-  <button type="button" onclick="openTelegramConnect()">Добавить Telegram-бота</button>
-  <button type="button" onclick="openDiscordConnect()">Добавить Discord-бота</button>
-  <button class="secondary" type="button" onclick="regenerateCampaignKey()">Новый ключ кампании</button>
+<button class="secondary" type="button" onclick="copyCampaignKey()">Скопировать ключ</button>
+<button type="button" onclick="openTelegramConnect()">Добавить Telegram-бота</button>
+<button type="button" onclick="openDiscordConnect()">Добавить Discord-бота</button>
+<button class="secondary" type="button" onclick="regenerateCampaignKey()">Новый ключ кампании</button>
 
-  <p class="hint">
-    Telegram: Добавьте бота по кнопке. Discord: добавьте бота, затем в нужном канале напишите /tower-connect и вставьте ключ кампании.
-  </p>
-</div>
-
-
-
-
+<p class="hint">
+  Telegram: добавь бота по кнопке. Discord: добавь бота, затем в нужном канале напиши /tower-connect и вставь ключ кампании.
+</p>
 
   <div id="rollModal" class="roll-modal" onclick="closeRollMenuOnBackdrop(event)" aria-hidden="true">
     <div class="roll-panel" onclick="event.stopPropagation()">
@@ -1539,7 +1536,7 @@ button.secondary.portrait-mini-button{
     const CHARACTER_PORTRAIT_KEY="towerCharacterPortraitV1";
     let portraitDataUrl="";
 
-    const ROLL_RELAY_URL = "https://holy-night-3fb5.boulychov-igor.workers.dev/";
+    const ROLL_RELAY_URL = "holy-night-3fb5";
 const TELEGRAM_BOT_USERNAME = "ТВОЙ_TELEGRAM_BOT_USERNAME_БЕЗ_@";
 
 const TOWER_CAMPAIGN_KEY = "towerCampaignKeyV1";
@@ -3087,8 +3084,8 @@ async function copyCampaignKey(){
 }
 
 function openTelegramConnect(){
-  const key=encodeURIComponent(getCampaignKey());
-  location.href=`https://t.me/${Towerdicerollbot}?startgroup=${key}`;
+  const key = encodeURIComponent(getCampaignKey());
+  location.href = `https://t.me/${Towerdicerollbot}?startgroup=${key}`;
 }
 
 function openDiscordConnect(){
@@ -3123,21 +3120,16 @@ async function publishRollResult(entry){
     console.warn("Ошибка отправки броска:", error);
   }
 }
-      function rollDie(sides){
-  const modifier=Number(byId("rollModifier")?.value||0);
-  const reason=byId("rollReason")?.value.trim()||"";
-  const result=Math.floor(Math.random()*sides)+1;
-  const total=result+modifier;
-  const time=new Date().toLocaleTimeString("ru-RU",{hour:"2-digit",minute:"2-digit"});
 
-  const entry={type:"simple",time,sides,result,modifier,total,reason};
+    function rollDie(sides){
+      const entry = {type:"simple",time,sides,result,modifier,total,reason};
 
-  advancedRollHistory.unshift(entry);
-  advancedRollHistory=advancedRollHistory.slice(0,10);
-  renderAdvancedRollHistory();
-  saveSheet(false);
-  publishRollResult(entry);
-}
+advancedRollHistory.unshift(entry);
+advancedRollHistory=advancedRollHistory.slice(0,10);
+renderAdvancedRollHistory();
+saveSheet(false);
+publishRollResult(entry);
+    }
 
     function isFormElement(element){return element&&["INPUT","TEXTAREA","SELECT"].includes(element.tagName)}
 
