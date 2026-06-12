@@ -1968,18 +1968,6 @@ button.secondary.portrait-mini-button{
       const nationPatternPath=nationPatternMap[nationName]||"";
 const classEmblemPath=classBackgroundMap[className]||"";
 
-function makeCharacterExportPackage(){
-  renderCounters();
-
-  return {
-    app:"bashnya-character-sheet",
-    version:1,
-    exportedAt:new Date().toISOString(),
-    data:collectData(),
-    portraitDataUrl:portraitDataUrl||localStorage.getItem(CHARACTER_PORTRAIT_KEY)||""
-  };
-}
-
 function exportCharacterJSON(){
   const characterName=byId("characterName")?.value?.trim()||"character";
   const packageData=makeCharacterExportPackage();
@@ -3085,6 +3073,18 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
       localStorage.removeItem(STORAGE_KEY);
       location.reload();
     }
+    
+    function makeCharacterExportPackage(){
+  renderCounters();
+
+  return {
+    app:"bashnya-character-sheet",
+    version:1,
+    exportedAt:new Date().toISOString(),
+    data:collectData(),
+    portraitDataUrl:portraitDataUrl||localStorage.getItem(CHARACTER_PORTRAIT_KEY)||""
+  };
+}
 
     function rollDie(sides){
       const modifier=Number(byId("rollModifier")?.value||0);
