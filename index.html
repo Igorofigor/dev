@@ -89,6 +89,36 @@
       mask-repeat:repeat;
     }
 
+    .nation-theme-stripe{
+      position:fixed;
+      top:0;
+      left:7px;
+      z-index:2;
+      width:7px;
+      height:100vh;
+      pointer-events:none;
+      opacity:.72;
+      background:repeating-linear-gradient(
+        to bottom,
+        var(--accent) 0,
+        var(--accent) 11px,
+        transparent 11px,
+        transparent 25px
+      );
+      background-size:100% 50px;
+      animation:nation-stripe-rise 9s linear infinite;
+      transition:opacity .18s ease;
+    }
+
+    body.nation-stripe-animation-disabled .nation-theme-stripe{
+      animation:none;
+    }
+
+    @keyframes nation-stripe-rise{
+      from{background-position:0 0}
+      to{background-position:0 -50px}
+    }
+
     .app{max-width:1120px;margin:0 auto 80px;position:relative;z-index:1}
     h1,h2,h3{color:var(--accent);text-transform:uppercase;letter-spacing:.04em}
     h1{margin:0 0 8px;font-size:30px;line-height:1.1}
@@ -1162,6 +1192,7 @@ button.secondary.portrait-mini-button{
 </head>
 
 <body>
+  <div class="nation-theme-stripe" aria-hidden="true"></div>
   <main class="app">
     <h1>Башня Упадёт — интерактивный лист персонажа</h1>
 
@@ -1217,6 +1248,7 @@ button.secondary.portrait-mini-button{
             <option>Народ Ядов</option>
             <option>Народ Граней</option>
             <option>Народ Железа</option>
+            <option>Другой</option>
           </select>
         </div>
 
@@ -1440,10 +1472,12 @@ button.secondary.portrait-mini-button{
         <button class="secondary" type="button" onclick="closeSheetMenu()">Закрыть</button>
       </div>
 
-      <div class="sheet-menu-actions">
+<div class="sheet-menu-actions">
   <button type="button" onclick="saveSheet(true)">Сохранить</button>
   <button class="secondary" type="button" onclick="loadSheet(true)">Загрузить</button>
   <button class="secondary" type="button" onclick="clearSheet()">Очистить</button>
+
+  <button id="nationStripeAnimationToggle" class="secondary toggle-button" type="button" onclick="toggleNationStripeAnimation()" aria-pressed="true">Анимация полоски: да</button>
 
   <button type="button" onclick="exportCharacterJSON()">Экспорт .json</button>
   <button class="secondary" type="button" onclick="triggerImportCharacterJSON()">Импорт .json</button>
@@ -1523,6 +1557,7 @@ button.secondary.portrait-mini-button{
     const STORAGE_KEY="towerCharacterSheetV14";
     const CHARACTER_PORTRAIT_KEY="towerCharacterPortraitV1";
     let portraitDataUrl="";
+    let nationStripeAnimationEnabled=true;
 
     const DEFAULT_TACTIC_COUNT=2;
     const DEFAULT_RESOURCE_COUNT=1;
@@ -1612,7 +1647,7 @@ button.secondary.portrait-mini-button{
       "Экономант":{skill:"КОЛДОВАТЬ",domain:"КОРПОРАЦИИ"},
       "Неболом":{skill:"УЗНАВАТЬ",domain:"ГОРИЗОНТ"},
       "Красный Рукав":{skill:"УБИВАТЬ",domain:"МИР"},
-      "Раствор Души":{skill:"ГОВОРИТЬ",domain:"МИР"},
+      "Раствор Души":{skill:"ГОВОРИТЬ",domain:"БЕЗУМИЕ"},
       "Подкодыш":{skill:"ПРОБИВАТЬСЯ",domain:"ДУХИ"},
       "Паратехник":{skill:"ТЕХНИЧИТЬ",domain:"КОРПОРАЦИИ"}
     };
@@ -1751,6 +1786,21 @@ button.secondary.portrait-mini-button{
       document.documentElement.style.setProperty("--button-text",onAccent);
       document.documentElement.style.setProperty("--on-accent",onAccent);
       document.documentElement.style.setProperty("--on-hover",onHover);
+    }
+
+    function updateNationStripeAnimation(){
+      document.body.classList.toggle("nation-stripe-animation-disabled",!nationStripeAnimationEnabled);
+      const button=byId("nationStripeAnimationToggle");
+      if(!button)return;
+      button.classList.toggle("is-active",nationStripeAnimationEnabled);
+      button.textContent=nationStripeAnimationEnabled?"Анимация полоски: да":"Анимация полоски: нет";
+      button.setAttribute("aria-pressed",nationStripeAnimationEnabled?"true":"false");
+    }
+
+    function toggleNationStripeAnimation(){
+      nationStripeAnimationEnabled=!nationStripeAnimationEnabled;
+      updateNationStripeAnimation();
+      saveSheet(false);
     }
 
     function updateParallaxBackground(){
@@ -2836,6 +2886,7 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
     function renderCounters(){
       applyAutomaticSelections();
       updateNationTheme();
+      updateNationStripeAnimation();
       updateClassBackground();
       updateNationPattern();
       updateMasteryNoteVisibility();
@@ -2916,6 +2967,7 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
         autoSelectedSkillMasteries:[...autoSelectedSkillMasteries],
         autoSelectedDomainMasteries:[...autoSelectedDomainMasteries],
         rollMasteryEnabled,
+        nationStripeAnimationEnabled,
         advancedRollHistory,
         lastConsequenceCheckText,
         collapsedCards:collectCollapsedCards()
@@ -2940,6 +2992,7 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
       autoSelectedSkillMasteries=new Set(data.autoSelectedSkillMasteries||[]);
       autoSelectedDomainMasteries=new Set(data.autoSelectedDomainMasteries||[]);
       rollMasteryEnabled=Boolean(data.rollMasteryEnabled);
+      nationStripeAnimationEnabled=data.nationStripeAnimationEnabled===undefined?true:Boolean(data.nationStripeAnimationEnabled);
       advancedRollHistory=Array.isArray(data.advancedRollHistory)?data.advancedRollHistory.slice(0,10):[];
       if(data.rollLog&&!advancedRollHistory.length)advancedRollHistory=convertLegacySimpleLog(data.rollLog);
       lastConsequenceCheckText=data.lastConsequenceCheckText||"";
