@@ -106,7 +106,7 @@
         transparent 25px
       );
       background-size:100% 50px;
-      animation:nation-stripe-rise 6s linear infinite;
+      animation:nation-stripe-rise 18s linear infinite;
       transition:opacity .18s ease;
     }
 
@@ -693,6 +693,24 @@
     .resources-panel>*{position:relative;z-index:1}
 
     .sheet-menu-actions{display:grid;gap:10px;margin-top:14px}
+
+    .vk-integration-box{
+      margin-top:18px;
+      padding:12px;
+      border:2px solid var(--accent);
+      background:rgba(255,255,255,.88);
+    }
+
+    .vk-integration-box h3{margin-bottom:8px}
+    .vk-integration-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+    .vk-integration-status{margin-top:10px;padding:9px;border:1px solid var(--accent);background:#fff;color:var(--muted);font-weight:800;white-space:pre-wrap}
+    .vk-integration-status.success{background:var(--accent-soft);color:var(--accent)}
+    .vk-integration-status.error{border-color:var(--danger);color:var(--danger)}
+    .vk-bind-code{font-size:22px;font-weight:1000;letter-spacing:.12em;color:var(--accent)}
+
+    @media(max-width:760px){
+      .vk-integration-actions{grid-template-columns:1fr}
+    }
 
     .roll-subsection,
     .diary-subsection{
@@ -1483,6 +1501,23 @@ button.secondary.portrait-mini-button{
   <button class="secondary" type="button" onclick="triggerImportCharacterJSON()">Импорт .json</button>
   <input id="importCharacterJsonInput" type="file" accept=".json,application/json" hidden onchange="importCharacterJSON(event)" />
 </div>
+
+      <div class="vk-integration-box">
+        <h3>Интеграция с ВКонтакте</h3>
+        <p class="hint">Запусти VK-мост, получи код и отправь в игровой чат команду <strong>/bind КОД</strong>.</p>
+
+        <label for="vkBridgeUrl">Адрес VK-моста</label>
+        <input id="vkBridgeUrl" value="http://127.0.0.1:8787" placeholder="http://127.0.0.1:8787" />
+
+        <div class="vk-integration-actions">
+          <button type="button" onclick="requestVkBindCode()">Получить код привязки</button>
+          <button class="secondary" type="button" onclick="sendLastRollToVk()">Отправить последний бросок</button>
+          <button id="vkAutoSendToggle" class="secondary toggle-button" type="button" onclick="toggleVkAutoSend()" aria-pressed="false">Автоотправка: нет</button>
+          <button class="secondary" type="button" onclick="checkVkConnection()">Проверить связь</button>
+        </div>
+
+        <div id="vkIntegrationStatus" class="vk-integration-status">VK-мост ещё не подключён.</div>
+      </div>
     </div>
   </div>
 
@@ -1556,8 +1591,16 @@ button.secondary.portrait-mini-button{
   <script>
     const STORAGE_KEY="towerCharacterSheetV14";
     const CHARACTER_PORTRAIT_KEY="towerCharacterPortraitV1";
+    const VK_CONNECTION_KEY="towerVkConnectionV1";
     let portraitDataUrl="";
     let nationStripeAnimationEnabled=true;
+    let vkConnection={
+      bridgeUrl:"http://127.0.0.1:8787",
+      sheetId:"",
+      sheetSecret:"",
+      linkCode:"",
+      autoSend:false
+    };
 
     const DEFAULT_TACTIC_COUNT=2;
     const DEFAULT_RESOURCE_COUNT=1;
@@ -1706,6 +1749,163 @@ button.secondary.portrait-mini-button{
 
     function byId(id){return document.getElementById(id)}
     function escapeHtml(text){return String(text).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+
+    function normalizeVkBridgeUrl(value){return String(value||"").trim().replace(/\/+$/,"")}
+
+    function setVkIntegrationStatus(message,type=""){
+      const status=byId("vkIntegrationStatus");
+      if(!status)return;
+      status.className=`vk-integration-status${type?` ${type}`:""}`;
+      status.innerHTML=message;
+    }
+
+    function saveVkConnection(){
+      try{localStorage.setItem(VK_CONNECTION_KEY,JSON.stringify(vkConnection))}
+      catch(error){console.error("Не удалось сохранить настройки VK-моста",error)}
+    }
+
+    function loadVkConnection(){
+      try{
+        const raw=localStorage.getItem(VK_CONNECTION_KEY);
+        if(raw)vkConnection={...vkConnection,...JSON.parse(raw)};
+      }catch(error){console.error("Не удалось загрузить настройки VK-моста",error)}
+      updateVkIntegrationUi();
+    }
+
+    function updateVkIntegrationUi(){
+      const urlInput=byId("vkBridgeUrl");
+      if(urlInput)urlInput.value=vkConnection.bridgeUrl||"http://127.0.0.1:8787";
+      const toggle=byId("vkAutoSendToggle");
+      if(toggle){
+        toggle.classList.toggle("is-active",Boolean(vkConnection.autoSend));
+        toggle.textContent=vkConnection.autoSend?"Автоотправка: да":"Автоотправка: нет";
+        toggle.setAttribute("aria-pressed",vkConnection.autoSend?"true":"false");
+      }
+      if(vkConnection.linkCode){
+        setVkIntegrationStatus(`Код привязки: <span class="vk-bind-code">${escapeHtml(vkConnection.linkCode)}</span>\nОтправь в беседу: <strong>/bind ${escapeHtml(vkConnection.linkCode)}</strong>`,"success");
+      }else if(vkConnection.sheetId){
+        setVkIntegrationStatus("Лист зарегистрирован. Нажми «Проверить связь», чтобы узнать состояние привязки.","success");
+      }else{
+        setVkIntegrationStatus("VK-мост ещё не подключён.");
+      }
+    }
+
+    function getVkCharacterProfile(){
+      return{
+        name:byId("characterName")?.value.trim()||"Безымянный персонаж",
+        className:byId("className")?.value||"",
+        nationName:byId("nationName")?.value||""
+      };
+    }
+
+    async function vkBridgeRequest(path,payload){
+      const inputUrl=normalizeVkBridgeUrl(byId("vkBridgeUrl")?.value||vkConnection.bridgeUrl);
+      if(!inputUrl)throw new Error("Укажи адрес VK-моста.");
+      vkConnection.bridgeUrl=inputUrl;
+      saveVkConnection();
+      let response;
+      try{
+        response=await fetch(`${inputUrl}${path}`,{
+          method:"POST",
+          headers:{"Content-Type":"application/json"},
+          body:JSON.stringify(payload||{})
+        });
+      }catch(error){
+        throw new Error("VK-мост недоступен. Проверь, что сервер запущен и адрес указан верно.");
+      }
+      const result=await response.json().catch(()=>({}));
+      if(!response.ok)throw new Error(result.error||`Ошибка VK-моста: ${response.status}`);
+      return result;
+    }
+
+    async function requestVkBindCode(){
+      setVkIntegrationStatus("Создаю код привязки...");
+      try{
+        const result=await vkBridgeRequest("/api/connect",{
+          sheetId:vkConnection.sheetId,
+          sheetSecret:vkConnection.sheetSecret,
+          profile:getVkCharacterProfile()
+        });
+        vkConnection.sheetId=result.sheetId;
+        vkConnection.sheetSecret=result.sheetSecret;
+        vkConnection.linkCode=result.linkCode;
+        saveVkConnection();
+        updateVkIntegrationUi();
+      }catch(error){
+        setVkIntegrationStatus(escapeHtml(error.message||String(error)),"error");
+      }
+    }
+
+    async function checkVkConnection(){
+      if(!vkConnection.sheetId||!vkConnection.sheetSecret){
+        setVkIntegrationStatus("Сначала получи код привязки.","error");
+        return;
+      }
+      setVkIntegrationStatus("Проверяю связь...");
+      try{
+        const result=await vkBridgeRequest("/api/status",{
+          sheetId:vkConnection.sheetId,
+          sheetSecret:vkConnection.sheetSecret
+        });
+        if(result.bound){
+          vkConnection.linkCode="";
+          saveVkConnection();
+          setVkIntegrationStatus(`Связь установлена. Беседа: ${escapeHtml(result.chatLabel||"подключена")}.`,"success");
+        }else{
+          setVkIntegrationStatus(`Лист ещё не привязан.${vkConnection.linkCode?` Отправь в беседу <strong>/bind ${escapeHtml(vkConnection.linkCode)}</strong>.`:" Получи новый код привязки."}`,"error");
+        }
+      }catch(error){
+        setVkIntegrationStatus(escapeHtml(error.message||String(error)),"error");
+      }
+    }
+
+    function toggleVkAutoSend(){
+      vkConnection.autoSend=!vkConnection.autoSend;
+      saveVkConnection();
+      updateVkIntegrationUi();
+    }
+
+    async function sendRollToVk(entry,isAutomatic=false){
+      if(isAutomatic&&!vkConnection.autoSend)return false;
+      if(!vkConnection.sheetId||!vkConnection.sheetSecret){
+        if(!isAutomatic)setVkIntegrationStatus("Сначала получи код и привяжи лист командой /bind.","error");
+        return false;
+      }
+      if(!entry){
+        if(!isAutomatic)setVkIntegrationStatus("В журнале пока нет бросков.","error");
+        return false;
+      }
+      if(!isAutomatic)setVkIntegrationStatus("Отправляю бросок в беседу...");
+      try{
+        await vkBridgeRequest("/api/roll",{
+          sheetId:vkConnection.sheetId,
+          sheetSecret:vkConnection.sheetSecret,
+          profile:getVkCharacterProfile(),
+          roll:entry
+        });
+        vkConnection.linkCode="";
+        saveVkConnection();
+        setVkIntegrationStatus("Бросок отправлен в беседу ВКонтакте.","success");
+        return true;
+      }catch(error){
+        setVkIntegrationStatus(escapeHtml(error.message||String(error)),"error");
+        return false;
+      }
+    }
+
+    function sendLastRollToVk(){return sendRollToVk(advancedRollHistory[0],false)}
+
+    function attachVkIntegration(){
+      const input=byId("vkBridgeUrl");
+      if(!input||input.dataset.vkAttached)return;
+      input.addEventListener("change",()=>{
+        vkConnection.bridgeUrl=normalizeVkBridgeUrl(input.value)||"http://127.0.0.1:8787";
+        saveVkConnection();
+        updateVkIntegrationUi();
+      });
+      input.dataset.vkAttached="true";
+    }
+
     function makeOptions(options,selected=""){return options.map(option=>`<option value="${escapeHtml(option)}" ${option===selected?"selected":""}>${escapeHtml(option)}</option>`).join("")}
     function makeDieOptions(selected=""){
       return dieOptions.map(option=>{
@@ -3147,10 +3347,12 @@ function importCharacterJSON(event){
       const result=Math.floor(Math.random()*sides)+1;
       const total=result+modifier;
       const time=new Date().toLocaleTimeString("ru-RU",{hour:"2-digit",minute:"2-digit"});
-      advancedRollHistory.unshift({type:"simple",time,sides,result,modifier,total,reason});
+      const entry={type:"simple",time,sides,result,modifier,total,reason};
+      advancedRollHistory.unshift(entry);
       advancedRollHistory=advancedRollHistory.slice(0,10);
       renderAdvancedRollHistory();
       saveSheet(false);
+      void sendRollToVk(entry,true);
     }
 
     function isFormElement(element){return element&&["INPUT","TEXTAREA","SELECT"].includes(element.tagName)}
@@ -3359,6 +3561,7 @@ function importCharacterJSON(event){
       byId("autoRollResultDetails").textContent=`Костей до сложности: ${intendedDice}. Сложность: ${difficultyLabel} (-${difficultyPenalty}). `+`Брошено костей: ${diceToRoll}. Снижение степени успеха: ${downgradeSteps}. `+`Десяток: ${criticalTens}.`;
       renderAdvancedRollHistory();
       saveSheet(false);
+      void sendRollToVk(entry,true);
     }
 
     function renderSimpleRollEntry(entry,isNewest=false){
@@ -3558,6 +3761,8 @@ function closeRulesHelpMenuOnBackdrop(event){
         renderAdvancedRollHistory();
         renderCounters();
       }
+      loadVkConnection();
+      attachVkIntegration();
     }
 
     try{init()}
