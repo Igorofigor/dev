@@ -1647,7 +1647,7 @@ button.secondary.portrait-mini-button{
     </div>
   </div>
 
-  <script src="codex-data.js"></script>
+  <script src="codex-data.js?v=4"></script>
   <script>
     const STORAGE_KEY="towerCharacterSheetV14";
     const CHARACTER_PORTRAIT_KEY="towerCharacterPortraitV1";
@@ -3411,13 +3411,23 @@ function importCharacterJSON(event){
       const container=byId("codexTabs");
       if(!container)return;
       const sections=window.TOWER_CODEX?.sections||[];
-      container.innerHTML=sections.map(section=>`<button class="toggle-button${section.id===codexActiveSection?" is-active":""}" type="button" onclick="selectCodexSection('${escapeCodexHtml(section.id)}')">${escapeCodexHtml(section.title)}</button>`).join("");
+      const allItems=window.TOWER_CODEX?.items||[];
+      const classNames=[...new Set(allItems.filter(item=>item.section==="classes").map(item=>item.className).filter(Boolean))];
+      if(codexActiveSection==="classes"&&classNames.length)codexActiveSection=`classes:${classNames[0]}`;
+      const tabs=sections.flatMap(section=>section.id==="classes"
+        ?classNames.map(className=>({id:`classes:${className}`,title:className}))
+        :[{id:section.id,title:section.title}]);
+      container.innerHTML=tabs.map(tab=>`<button class="toggle-button${tab.id===codexActiveSection?" is-active":""}" type="button" onclick="selectCodexSection('${escapeCodexHtml(tab.id)}')">${escapeCodexHtml(tab.title)}</button>`).join("");
     }
 
     function renderCodexSection(){
       const container=byId("codexItems");
       if(!container)return;
-      const items=(window.TOWER_CODEX?.items||[]).filter(item=>item.section===codexActiveSection&&!(item.section==="equipment"&&item.isCategory));
+      const items=(window.TOWER_CODEX?.items||[]).filter(item=>{
+        const classTab=codexActiveSection.startsWith("classes:");
+        const sectionMatch=classTab?item.section==="classes"&&item.className===codexActiveSection.slice("classes:".length):item.section===codexActiveSection;
+        return sectionMatch&&!(item.section==="equipment"&&item.isCategory);
+      });
       const tierLabels={basic:"Базовые",minor:"Малые",professional:"Профессиональные",elite:"Элитные"};
       const groups=new Map();
       items.forEach(item=>{
