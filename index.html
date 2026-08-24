@@ -3417,25 +3417,25 @@ function importCharacterJSON(event){
     function renderCodexSection(){
       const container=byId("codexItems");
       if(!container)return;
-      const items=(window.TOWER_CODEX?.items||[]).filter(item=>item.section===codexActiveSection);
+      const items=(window.TOWER_CODEX?.items||[]).filter(item=>item.section===codexActiveSection&&!(item.section==="equipment"&&item.isCategory));
       const tierLabels={basic:"Базовые",minor:"Малые",professional:"Профессиональные",elite:"Элитные"};
       const groups=new Map();
       items.forEach(item=>{
         let label="Снаряжение";
-        if(item.section==="classes")label=`${item.className||"Класс"} — ${tierLabels[item.tier]||"Способности"}`;
-        if(item.section==="factions")label=`${item.factionName||"Фракционные способности"} — ${tierLabels[item.tier]||"Способности"}`;
-        if(item.section==="equipment")label=item.category||"Снаряжение";
+        if(item.section==="classes")label=item.className||"Класс";
+        if(item.section==="factions")label=item.factionArea||"Фракции";
+        if(item.section==="equipment")label=(item.category||"Снаряжение").replace(/\s*\([Кк]\d+(?:\s+[^)]*)?\)$/," ").trim();
         if(item.section==="tactics")label=item.skill||"Тактики";
         if(!groups.has(label))groups.set(label,[]);
         groups.get(label).push(item);
       });
       container.innerHTML=[...groups.entries()].map(([label,groupItems])=>`<details class="codex-group" open>
         <summary class="codex-group-summary">${escapeCodexHtml(label)} <span class="counter">${groupItems.length}</span></summary>
-        <div class="codex-group-items">${groupItems.map(item=>`<article class="codex-card" draggable="true" data-codex-id="${escapeCodexHtml(item.id)}" title="Перетащить в подходящий слот">
-          <h3>${escapeCodexHtml(item.title)}</h3>
+        <div class="codex-group-items">${groupItems.map(item=>{const cardTitle=item.section==="classes"?`${item.title} — ${tierLabels[item.tier]||"Способность"}`:item.section==="factions"?`${item.title} — ${item.factionName||"Фракция не указана"}`:item.title;return `<article class="codex-card" draggable="true" data-codex-id="${escapeCodexHtml(item.id)}" title="Перетащить в подходящий слот">
+          <h3>${escapeCodexHtml(cardTitle)}</h3>
           <div class="codex-card-meta">Страницы PDF: ${escapeCodexHtml((item.source?.pdfPages||[]).join(", "))} · ${escapeCodexHtml(item.tier||item.skill||item.dropTarget)}</div>
           <div class="codex-card-text">${escapeCodexHtml(item.text)}</div>
-        </article>`).join("")}</div>
+        </article>`}).join("")}</div>
       </details>`).join("");
       attachCodexDragHandlers();
     }
