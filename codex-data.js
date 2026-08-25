@@ -427,6 +427,109 @@ window.TOWER_CODEX = {
         "tactics-card-121-397",
         "tactics-card-121-398"
       ]
+    },
+    {
+      "id": "consequences",
+      "title": "Последствия",
+      "items": [
+        "consequences-card-1",
+        "consequences-card-2",
+        "consequences-card-3",
+        "consequences-card-4",
+        "consequences-card-5",
+        "consequences-card-6",
+        "consequences-card-7",
+        "consequences-card-8",
+        "consequences-card-9",
+        "consequences-card-10",
+        "consequences-card-11",
+        "consequences-card-12",
+        "consequences-card-13",
+        "consequences-card-14",
+        "consequences-card-15",
+        "consequences-card-16",
+        "consequences-card-17",
+        "consequences-card-18",
+        "consequences-card-19",
+        "consequences-card-20",
+        "consequences-card-21",
+        "consequences-card-22",
+        "consequences-card-23",
+        "consequences-card-24",
+        "consequences-card-25",
+        "consequences-card-26",
+        "consequences-card-27",
+        "consequences-card-28",
+        "consequences-card-29",
+        "consequences-card-30",
+        "consequences-card-31",
+        "consequences-card-32",
+        "consequences-card-33",
+        "consequences-card-34",
+        "consequences-card-35",
+        "consequences-card-36",
+        "consequences-card-37",
+        "consequences-card-38",
+        "consequences-card-39",
+        "consequences-card-40",
+        "consequences-card-41",
+        "consequences-card-42",
+        "consequences-card-43",
+        "consequences-card-44",
+        "consequences-card-45",
+        "consequences-card-46",
+        "consequences-card-47",
+        "consequences-card-48",
+        "consequences-card-49",
+        "consequences-card-50",
+        "consequences-card-51",
+        "consequences-card-52",
+        "consequences-card-53",
+        "consequences-card-54",
+        "consequences-card-55",
+        "consequences-card-56",
+        "consequences-card-57",
+        "consequences-card-58",
+        "consequences-card-59",
+        "consequences-card-60",
+        "consequences-card-61",
+        "consequences-card-62",
+        "consequences-card-63",
+        "consequences-card-64",
+        "consequences-card-65",
+        "consequences-card-66",
+        "consequences-card-67",
+        "consequences-card-68",
+        "consequences-card-69",
+        "consequences-card-70",
+        "consequences-card-71",
+        "consequences-card-72",
+        "consequences-card-73",
+        "consequences-card-74",
+        "consequences-card-75",
+        "consequences-card-76",
+        "consequences-card-77",
+        "consequences-card-78",
+        "consequences-card-79",
+        "consequences-card-80",
+        "consequences-card-81",
+        "consequences-card-82",
+        "consequences-card-83",
+        "consequences-card-84",
+        "consequences-card-85",
+        "consequences-card-86",
+        "consequences-card-87",
+        "consequences-card-88",
+        "consequences-card-89",
+        "consequences-card-90",
+        "consequences-card-91",
+        "consequences-card-92",
+        "consequences-card-93",
+        "consequences-card-94",
+        "consequences-card-95",
+        "consequences-card-96",
+        "consequences-card-97"
+      ]
     }
   ],
   "items": [
@@ -7534,6 +7637,1655 @@ window.TOWER_CODEX = {
       },
       "text": "4) Культура\n— Правильное приветствие: Вы знаете или быстро угадываете, как обратиться к\nчеловеку: жест, титул, дистанция, поклон. Первая реакция собеседника не может быть хуже\nнейтральной, если вы не пришли как очевидный враг.\n— Чтить запреты: Вы замечаете культурную ловушку: нельзя есть сладкое, нельзя\nговорить цифру, нельзя смотреть в глаза, нельзя трогать оружие. Вы задаёте ведущему\nвопрос, какое неочевидное действие может обидеть собеседника, вам ответят честно.\n— Подарок по смыслу: Вы выбираете дар, который говорит больше цены: нож, кусок\nткани, редкий запах. Подарок считается на ступень ценнее в этой культуре или ситуации.\n— Общий обычай: Вы находите мост между культурами: похожий ритуал, армейскую\nпривычку, одинаковый страх. Вы получаете мастерство в общении с представителями\nодного народа до конца сцены.\n— Грамотный перевод: Даже зная язык, легко не понять намёк. Вы объясняете\nсоюзникам, что на самом деле значила фраза, жест, пауза, отказ или подарок. До конца\nсцены вы получаете на ступень стресса в РЕСУРСЫ меньше от недовольства собеседника.\n241",
       "skill": "ГОВОРИТЬ"
+    },
+    {
+      "id": "consequences-card-1",
+      "kind": "consequence",
+      "title": "Выдохся",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы устали из-за ранений и интенсивного боя. Пока вы не отдохнёте, сложность бросков ПРОБИВАТЬСЯ повышается на ступень.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-2",
+      "kind": "consequence",
+      "title": "Граната!",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "В вашу сторону бросили гранату. Все находящиеся рядом персонажи проходят проверку ПРОБИВАТЬСЯ и соответствующей области. При провале, граната причиняет 1к8 стресса в пули.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-3",
+      "kind": "consequence",
+      "title": "Двоится в глазах",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Из-за громкого звука, слезоточивого газа или удара по голове, изображение у вас в глазах теряет чёткость. До конца сцены сложность атак на дальнюю дистанцию повышается на 1.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-4",
+      "kind": "consequence",
+      "title": "Закончились патроны",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы отстреляли весь магазин огнестрельного оружия. Перед тем, как его снова применить, пройдите проверку УБИВАТЬ и соответствующей области. Вы в любом случае перезарядитесь, но можете получить стресс при провале.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-5",
+      "kind": "consequence",
+      "title": "Кровотечение",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы ранены и истекаете кровью. До конца сцены каждый раз, как вы совершаете проверку, пометьте 1 стресса в пули и не бросайте на последствие.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-6",
+      "kind": "consequence",
+      "title": "Обезоружен",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Оружие выбито у вас из рук. Вы можете подобрать его обратно, пройдя проверку ПРОБИВАТЬСЯ и соответствующей области.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-7",
+      "kind": "consequence",
+      "title": "Обошли с фланга",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Враг переместился. Вы теряете бонусы от местоположения, например от нахождения на возвышении, за укрытием или в тени.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-8",
+      "kind": "consequence",
+      "title": "Оглушён",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы частично теряете слух. Все проверки УЗНАВАТЬ, связанные с попыткой что-то расслышать и все проверки СКРЫВАТЬСЯ станут до конца сцены на ступень сложнее.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-9",
+      "kind": "consequence",
+      "title": "Повреждена модификация",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Модуль для вашего оружия, например оптический прицел или штурмовая рукоять, сломан. Если вы устанавливали модификацию на оружие, она теряет это свойство. Вы можете починить её проверкой ЧИНИТЬ и соответствующей области. Вы всегда почините модификацию, но можете получить стресс.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-10",
+      "kind": "consequence",
+      "title": "Прижали к укрытию",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Плотный огонь не даёт вам высунуться. До конца сцены или пока не будет убит враг, при попытке перемещения вы получите стресс, если не пройдёте проверку ИЗБЕГАТЬ.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-11",
+      "kind": "consequence",
+      "title": "Разбили плиту",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Неудачное попадание в лёгкий бронежилет раскололо бронеплиту. Пока вы не вставите новую проверкой УБИВАТЬ и соответствующей области, ваша броня перестаёт работать.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-12",
+      "kind": "consequence",
+      "title": "Запутанный рок",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы чувствуете, что судьбы в Башне спутались так, что не различишь, какая кому принадлежит. В следующий раз, когда ваш соратник должен получить последствие, вы получаете его вместо него и убираете запутанный рок.",
+      "resistance": "СУДЬБА",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-13",
+      "kind": "consequence",
+      "title": "Клин",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Ваше оружие или другой важный предмет перестаёт работать как надо до конца сцены. Вы можете пройти проверку ЧИНИТЬ, чтобы срочно привести её в норму, вы всегда чините предмет, но можете получить стресс.",
+      "resistance": "СУДЬБА",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-14",
+      "kind": "consequence",
+      "title": "Низкая видимость",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "До конца сцены вокруг становится неожиданно темно, или поднимается туман, или взвивается вихрь бетонной крошки. Действия на дальней дистанции или требующие точных быстрых действий повышают сложность на ступень.",
+      "resistance": "СУДЬБА",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-15",
+      "kind": "consequence",
+      "title": "Обоюдоострый",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы щадите врага, которого щадить не следовало бы. Он вернётся в будущем, или навредит вам не напрямую. Когда он причиняет этот вред, снимите это последствие.",
+      "resistance": "СУДЬБА",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-16",
+      "kind": "consequence",
+      "title": "Обстоятельства",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Важного человека больше нет в оазисе, в котором вы его искали. С ним всё в порядке, но придётся либо дождаться его, либо отправиться на поиски.",
+      "resistance": "СУДЬБА",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-17",
+      "kind": "consequence",
+      "title": "Обходной путь",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вам приходится идти в обход из-за серьёзного препятствия. Длина восхождения увеличивается на к6.",
+      "resistance": "СУДЬБА",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-18",
+      "kind": "consequence",
+      "title": "Плохой знак",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Башня подмигнула вам красной лампой, выпавшей ребром игральной костью, или подобием лица в трещине бетона. В следующий раз, когда вы получите успех с ценой, ведущий добавит к нему ещё одну мелкую неприятность.",
+      "resistance": "СУДЬБА",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-19",
+      "kind": "consequence",
+      "title": "Поцелуй мгновения",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы чуть-чуть опоздали. В следующей сцене противник, опасность или переговорщик действует первым, повышая сложность первой проверки на одну ступень, даже если обычно преимущество было бы у вас.",
+      "resistance": "СУДЬБА",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-20",
+      "kind": "consequence",
+      "title": "Разделены",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы отделяетесь от отряда. Теперь вам придётся друг друга искать. Обычно для этого нужна проверка ПРОБИВАТЬСЯ против сопротивления в 6, но иногда ситуация может стать легче или тяжелее.",
+      "resistance": "СУДЬБА",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-21",
+      "kind": "consequence",
+      "title": "Только вперёд",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы потеряли очень много времени. Когда вы прибудете в следующую гавань, вы пропустите важное событие, например свежую поставку патронов, или визит готовых помочь наёмников.",
+      "resistance": "СУДЬБА",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-22",
+      "kind": "consequence",
+      "title": "Выпало из памяти",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы забываете какую-то важную вещь, например код от сейфа или дорогу обратно до оазиса.",
+      "resistance": "РАЗУМ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-23",
+      "kind": "consequence",
+      "title": "Голос разума",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "В голове появился разумный, вежливый и вредный голос, убеждающий вас не рисковать. Когда вы идёте на рискованное и более сложное действие ради союзника и себе во вред, получите к4 стресса в РАЗУМ и не бросайте на последствия.",
+      "resistance": "РАЗУМ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-24",
+      "kind": "consequence",
+      "title": "Избавление",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вам нужно срочно принять что-то потяжелее, или хотя бы выпить. Пока вы этого не сделаете, при получении стресса в разум вы будете бросать две кости и выбирать больший результат.",
+      "resistance": "РАЗУМ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-25",
+      "kind": "consequence",
+      "title": "Импульс",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы поддались эмоциям и не можете сосредоточиться. До конца сцены вы не можете использовать тактики.",
+      "resistance": "РАЗУМ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-26",
+      "kind": "consequence",
+      "title": "Могильный хохот",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы смеётесь в любой напряжённой ситуации. Например, когда вы на важных переговорах с серьёзным человеком, или куда-то крадётесь, ведущий может раз в сцену заявить, что вы громко рассмеялись, это всегда ведёт к чему-то негативному.",
+      "resistance": "РАЗУМ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-27",
+      "kind": "consequence",
+      "title": "Несопоставимо",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы не можете осознать, что происходит вокруг. До конца сцены вы не можете получать преимущество от областей.",
+      "resistance": "РАЗУМ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-28",
+      "kind": "consequence",
+      "title": "Потрясение",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы настолько не понимаете вещи, которая вас потрясла, что не можете даже думать о ней. До конца сцены сложность проверок против неё повышается на ступень.",
+      "resistance": "РАЗУМ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-29",
+      "kind": "consequence",
+      "title": "Самоуверенность",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы видите слабую точку врага или тайный проход, но не уверены, реальны ли они. Вы совершаете следующий бросок с мастерством, но при провале получаете на ступень больше стресса, поскольку слабое место вам только показалось.",
+      "resistance": "РАЗУМ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-30",
+      "kind": "consequence",
+      "title": "Сон наяву",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "На секунду вам кажется, что эта сцена вам уже снилась. Один раз до конца сцены ведущий может дать вам ложную, но правдоподобную деталь восприятия.",
+      "resistance": "РАЗУМ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-31",
+      "kind": "consequence",
+      "title": "Беспокойные руки",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы постоянно импульсивно хотите странных вещей. Раз в сцену ведущий может сказать, что вы смертельно хотите открыть дверь, подобрать предмет, не убивать конкретного врага, сказать своё настоящее имя. Если вы отказываетесь, получите к6 стресса в ДУХ.",
+      "resistance": "ДУХ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-32",
+      "kind": "consequence",
+      "title": "Искажение",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Магия в Башне работает странно, и подчас не подчиняется даже тому, из кого исходит. Одно положительное свойство одного вашего предмета снаряжения меняется на негативное.",
+      "resistance": "ДУХ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-33",
+      "kind": "consequence",
+      "title": "Конфликт интересов",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Ваша магия перестаёт вас слушаться, видимо считая, что ей лучше знать, что она делает. Каждый раз, как вы получаете стресс после броска навыка КОЛДОВАТЬ, вы бросаете на него две кости и выбираете большую.",
+      "resistance": "ДУХ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-34",
+      "kind": "consequence",
+      "title": "Повреждён оберег",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Ваш оберег, талисман, амулет, защитная программа или благословение, не даёт больше защиты в ДУХ. Обычно починить его может только подготовленный паратехник, или кто-то в оазисе.",
+      "resistance": "ДУХ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-35",
+      "kind": "consequence",
+      "title": "Следом",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "За вами на краю видимости начинает следовать странная сущность. Она не наносит прямого вреда, но каждый, кто её видит, получает к4 стресса в разум. Последствие автоматически убирается, когда вы выходите к оазису.",
+      "resistance": "ДУХ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-36",
+      "kind": "consequence",
+      "title": "Цвет братства",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Красный цвет обладает своим разумом, или с вами через него говорит что-то большее. Когда вы видите что-то достаточно большое и ярко-красное, например красный рукав или химсвет, оно начинает с вами разговаривать, пытаясь что-то донести загадками и метафорами, что занимает длительное время. Чтобы прервать разговор, вам придётся пройти проверку ГОВОРИТЬ, вы всегда из него выйдете, но можете получить стресс. Раз в сессию вы можете сказать, что получили от красного цвета полезную информацию: ведущий будет обязан раскрыть секрет о текущей локации.",
+      "resistance": "ДУХ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-37",
+      "kind": "consequence",
+      "title": "Чёрная жажда",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы смертельно желаете выпить человеческой крови и можете думать только об этом. Пока вы этого не сделаете, вы не можете убирать стресс способами кроме получения последствий.",
+      "resistance": "ДУХ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-38",
+      "kind": "consequence",
+      "title": "Эфемерный",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы начинаете мерцать, будто пропадая из реальности. До конца сцены каждый раз, как вы применяете магию, вы получаете 1к4 стресса в дух и не бросаете на последствия.",
+      "resistance": "ДУХ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-39",
+      "kind": "consequence",
+      "title": "Ложь",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "В следующий раз, когда вашей команде будут рассказывать важную информацию, от вас что-то утаят или напрямую солгут вам.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-40",
+      "kind": "consequence",
+      "title": "Мало припасов",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "У вас осталось очень мало патронов, еды и другого расходного материала. Вы получаете на ступень больше стресса в шкалу ресурсов. Союзник может помочь вам, получив к6 стресса в собственную шкалу ресурсов.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-41",
+      "kind": "consequence",
+      "title": "Неподходящий боеприпас",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "У вас есть подходящие по калибру патроны для вашего оружия, но они плохо работают с ним из-за материала гильзы, навески пороха или качества капсюля. Всё ваше огнестрельное оружие получает свойство ненадёжный.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-42",
+      "kind": "consequence",
+      "title": "Потерянный караван",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Караван Кра Сир опаздывает, или потерян вовсе. В следующем оазисе, где вы окажетесь, цены на соответствующее снаряжение или услуги будут на ступень выше.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-43",
+      "kind": "consequence",
+      "title": "Разряженный аккумулятор",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Ваши источники энергии истощились, вся ваша внешняя электроника перестаёт работать. Союзник может помочь вам, получив к6 стресса в собственную шкалу ресурсов.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-44",
+      "kind": "consequence",
+      "title": "Реалии рынка",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вас обсчитали, подсунули странные патроны, фальшивый пропуск или просроченные медикаменты. Следующий купленный или найденный предмет или ресурс к8 и ниже качеством получает неприятное свойство по выбору ведущего.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-45",
+      "kind": "consequence",
+      "title": "Риск",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вам не слишком доверяют, у всех торговцев цена предметов повышается на ступень. На ваших союзников это не распространяется, но им могут начать меньше доверять.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-46",
+      "kind": "consequence",
+      "title": "Слух в очереди",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "О вас пошёл мелкий неприятный слух. Следующая проверка ГОВОРИТЬ при торговле, найме или просьбе об услуге станет сложнее на ступень.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-47",
+      "kind": "consequence",
+      "title": "Утрата",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы теряете к6 ресурс, и сами не знаете, где могли его забыть.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "minor",
+      "severityLabel": "Малое"
+    },
+    {
+      "id": "consequences-card-48",
+      "kind": "consequence",
+      "title": "Без сознания",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "От ранений вы теряете сознание до конца сцены. Враги могут сделать с вами что угодно.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-49",
+      "kind": "consequence",
+      "title": "Повредили тяжёлую броню",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Ваша тяжёлая броня повреждена и не даёт больше защиты, пока вы не почините её проверкой ЧИНИТЬ и соответствующей области между боями. Вы всегда почините броню, но можете получить стресс при провале.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-50",
+      "kind": "consequence",
+      "title": "Повредили шлем",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Ваш шлем повреждён и не даёт больше защиты и дополнительных функций, пока вы не почините его проверкой ЧИНИТЬ и соответствующей области между боями. Вы всегда почините шлем, но можете получить стресс при провале.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-51",
+      "kind": "consequence",
+      "title": "Повреждена вспомогательная защита",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Ваша вспомогательная защита, например магические обереги, стелс-костюм, или кольчуга для рукопашного боя повреждена и не даёт больше защиты, пока вы не почините её проверкой ЧИНИТЬ между боями. Результат починки не гарантирован, при провале защита теряет свой эффект до починки в ближайшем оазисе.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-52",
+      "kind": "consequence",
+      "title": "Повреждена нога",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы серьёзно повредили ногу. Вы не можете ей пользоваться, пока не вылечите или не замените её. Это сделает броски ПРОБИВАТЬСЯ на 1 ступень сложнее. Это последствие можно получить во второй раз.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-53",
+      "kind": "consequence",
+      "title": "Повреждена рука",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы серьёзно повредили руку. Это повысит сложность большинства проверок на 1 ступень. Это последствие можно получить во второй раз.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-54",
+      "kind": "consequence",
+      "title": "Повреждён рюкзак",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Ваш рюкзак повреждён и не может больше выполнять своих функций, пока вы не почините его проверкой ЧИНИТЬ и соответствующей области между боями. Вы всегда почините рюкзак, но можете получить стресс при провале.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-55",
+      "kind": "consequence",
+      "title": "Серьёзное кровотечение",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вас заметно ранили. Вы получаете к6 стресса в ПУЛИ при каждой проверке.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-56",
+      "kind": "consequence",
+      "title": "Нарушена координация",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Проверки СКРЫВАТЬСЯ и ПРОБИВАТЬСЯ причиняют на ступень больше стресса при провале.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-57",
+      "kind": "consequence",
+      "title": "Ожог",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вас атаковали энергетическим оружием, кислотой или огнём. Весь входящий стресс повышается на ступень.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-58",
+      "kind": "consequence",
+      "title": "Сбита концентрация",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вам сложно сосредоточиться. Проверки, требующие потратить заметное время, становятся на ступень сложнее.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-59",
+      "kind": "consequence",
+      "title": "Крепкие узы",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Ваш контакт получает значимое последствие. Вам следует быть осторожнее.",
+      "resistance": "СУДЬБА",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-60",
+      "kind": "consequence",
+      "title": "Ненависть",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вас ненавидит одна из фракций. Придётся заслужить её доверие, или постоянно сражаться.",
+      "resistance": "СУДЬБА",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-61",
+      "kind": "consequence",
+      "title": "Ослеплён",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "До конца сцены все требующие зрения проверки становятся опасными. До конца следующей сцены все такие проверки становятся рискованными.",
+      "resistance": "СУДЬБА",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-62",
+      "kind": "consequence",
+      "title": "Подкрепление",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "На сторону противника прибывают дополнительные бойцы. Ведущий решает, сколько их будет, но обычно этот отряд не больше, чем тот, с которым отряд вступил в схватку изначально.",
+      "resistance": "СУДЬБА",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-63",
+      "kind": "consequence",
+      "title": "Поломка",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Ваше оружие или другой важный предмет ломается. Починить его можно только в оазисе.",
+      "resistance": "СУДЬБА",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-64",
+      "kind": "consequence",
+      "title": "Разорванные узы",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Каждый солдат вам скажет: первое, что ломается на настоящей войне — это связь. Вы не можете больше дистанционно связаться с контактами и оазисами, пока не потратите в одном из оазисов долгое время на калибровку.",
+      "resistance": "СУДЬБА",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-65",
+      "kind": "consequence",
+      "title": "Тень",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "После битвы один выживший и спрятавшийся противник заходит в тыл отряду. Перед тем, как вы его заметите, он успеет атаковать.",
+      "resistance": "СУДЬБА",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-66",
+      "kind": "consequence",
+      "title": "Хашахсотская дуэль втроём",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "В бой вступает третья сторона, которой ни вы, ни ваши оппоненты, не ожидали. Они сильнее каждого из ваших отрядов по отдельности, но слабее двух ваших отрядов вместе взятых.",
+      "resistance": "СУДЬБА",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-67",
+      "kind": "consequence",
+      "title": "Бесстрашие",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Из-за проблем с чувством самосохранения, вы постоянно рискуете там, где не надо. Когда вы совершаете проверку на последствие, вы бросаете к10 дважды и оставляете меньший результат. Вы причиняете на одну ступень больше стресса в рискованных и опасных проверках.",
+      "resistance": "РАЗУМ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-68",
+      "kind": "consequence",
+      "title": "Замедленная реакция",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы становитесь медлительны из-за яда, страшной усталости или сбоя импланта-стимулятора. Проверки ИЗБЕГАТЬ и ПРОБИВАТЬСЯ, требующие большой скорости, становятся на ступень труднее.",
+      "resistance": "РАЗУМ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-69",
+      "kind": "consequence",
+      "title": "Истинная любовь",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы находите прекрасное в кошмаре и не хотите нарушать покой Башни. Когда вы причиняете стресс восхождению, вы получаете столько же стресса в дух.",
+      "resistance": "РАЗУМ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-70",
+      "kind": "consequence",
+      "title": "Неутолимый",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы настолько устали от жестокости и страха, что не можете нормально отдыхать. Вы теряете одно условие избавления по выбору ведущего.",
+      "resistance": "РАЗУМ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-71",
+      "kind": "consequence",
+      "title": "Травма",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Что-то нанесло вам душевную травму: место, человек, корпорация. Вы всеми силами избегаете этого, а когда сталкиваетесь — сложность повышается на ступень. Если вы побеждаете эту угрозу, вы убираете это последствие.",
+      "resistance": "РАЗУМ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-72",
+      "kind": "consequence",
+      "title": "Фобия",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Область, в которой вы находитесь, въедается в вашу память одной жуткой деталью. Сложность всех проверок с этой областью повышается на ступень.",
+      "resistance": "РАЗУМ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-73",
+      "kind": "consequence",
+      "title": "Холод",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы теряете возможность испытывать и понимать яркие эмоции. Вы совершаете проверки ГОВОРИТЬ с мастерством, когда лжёте, или запугиваете, но не можете понять, когда вам лгут или для вас шутят.",
+      "resistance": "РАЗУМ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-74",
+      "kind": "consequence",
+      "title": "Ярость",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы без особой причины страшно взбешены и не можете принимать помощь, пока не избавитесь от этого последствия.",
+      "resistance": "РАЗУМ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-75",
+      "kind": "consequence",
+      "title": "Честь",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы были вызваны на поединок и не можете отказаться. До конца сцены, вы можете атаковать противников только на ближней дистанции, а на восхождении обязаны идти первым.",
+      "resistance": "ДУХ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-76",
+      "kind": "consequence",
+      "title": "Защитные заклинания",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы поражены заклинаниями, призванными сдержать зло. Вы не можете произносить цифру четыре и лгать.",
+      "resistance": "ДУХ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-77",
+      "kind": "consequence",
+      "title": "Кровь и бетон",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Ваши организм медленно превращается в арматуру, бетон и провода. Пока вы не уберёте это последствие, вы не сможете снимать стресс в пулях с помощью медицинских комплектов и прочей не-магической медицины.",
+      "resistance": "ДУХ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-78",
+      "kind": "consequence",
+      "title": "Мираж",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы приходите в локацию, к которой направлялись, но она оказывается подделкой из бетона и арматуры, копией, зародившейся в Башне. Она не причиняет прямого вреда, но вам придётся сделать ещё один переход до нужной точки.",
+      "resistance": "ДУХ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-79",
+      "kind": "consequence",
+      "title": "Поменялись телами",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Из-за странностей Башни, до конца сцены вы меняетесь телами с вашим соратником. Обменяйтесь листами персонажей с игроком, сидящим справа.",
+      "resistance": "ДУХ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-80",
+      "kind": "consequence",
+      "title": "Дефицит",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "В следующем оазисе, в который вы придёте, все к6 предметы и ресурсы будут стоить к8.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-81",
+      "kind": "consequence",
+      "title": "Конфискация",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "В следующем оазисе, в который вы придёте, у вас изымут всё оружие и откажутся пускать, если вы захотите пройти с ним. Вам его вернут, но в оазисе вы обязательно попадёте в ситуацию, где оно пригодилось бы.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-82",
+      "kind": "consequence",
+      "title": "Мститель",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "За ваши деяния за вами отправили убийцу со сложностью 1, причиняющего к10 стресса и имеющего защиту 3. Если вы убьёте мстителя, последствие останется.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-83",
+      "kind": "consequence",
+      "title": "Оболган",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "О вас распространились страшные слухи, пока вы не вернёте доброе имя, вас не пустят ни в один оазис.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-84",
+      "kind": "consequence",
+      "title": "Опасный клиент",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Несколько продавцов решили, что с вами опасно иметь дело. В одном оазисе или у одной фракции цены для вас выше на ступень, а редкие товары требуют дополнительной услуги.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-85",
+      "kind": "consequence",
+      "title": "Проблемы с логистикой",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Ваши патроны, батареи, лекарства или запчасти не пришли. До следующей сессии одна единица вашего снаряжения получает свойство ненадёжный, неудобный или требует к6 ресурс для каждого применения — по выбору ведущего.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-86",
+      "kind": "consequence",
+      "title": "Продан",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вам приходится продать важную или ценную, начиная с к10, вещь, чтобы расплатиться с долгами.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-87",
+      "kind": "consequence",
+      "title": "Свидетель",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Кто-то видел ваш обман, предательство, убийство или унизительный провал. Он не обязательно враг, но его молчание стоит к12 ресурса, услуги или опасного обещания.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "major",
+      "severityLabel": "Значимое"
+    },
+    {
+      "id": "consequences-card-88",
+      "kind": "consequence",
+      "title": "Распотрошён",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы погибли от множества ранений. Можете совершить последнее действие в вашей жизни, оно всегда успешно.",
+      "resistance": "ПУЛИ",
+      "severity": "doom",
+      "severityLabel": "Роковое"
+    },
+    {
+      "id": "consequences-card-89",
+      "kind": "consequence",
+      "title": "Проиграл",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Противник в решающий момент оказался сильнее. Опишите, как он вас добивает.",
+      "resistance": "ПУЛИ",
+      "severity": "doom",
+      "severityLabel": "Роковое"
+    },
+    {
+      "id": "consequences-card-90",
+      "kind": "consequence",
+      "title": "Рок",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вам просто страшно не везёт, вы взрываетесь на мине, падаете в провал в полу или натыкаетесь на злейших врагов там, где их не должно быть. Глупая смерть, но в Башне так случается часто.",
+      "resistance": "СУДЬБА",
+      "severity": "doom",
+      "severityLabel": "Роковое"
+    },
+    {
+      "id": "consequences-card-91",
+      "kind": "consequence",
+      "title": "Величие",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы поддаётесь тёмному влиянию Башни и становитесь безумным сектантом одной из её сущностей, например Короля в Камуфляже, или Царицы О Шести Масках.",
+      "resistance": "РАЗУМ",
+      "severity": "doom",
+      "severityLabel": "Роковое"
+    },
+    {
+      "id": "consequences-card-92",
+      "kind": "consequence",
+      "title": "Одержимый",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы сходите с ума и фокусируетесь на единственной цели, не можете думать ни о чём кроме неё. Когда вы её достигнете, ваш уставший организм тут же погибнет.",
+      "resistance": "РАЗУМ",
+      "severity": "doom",
+      "severityLabel": "Роковое"
+    },
+    {
+      "id": "consequences-card-93",
+      "kind": "consequence",
+      "title": "Великое Красное",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы прикасаетесь к чему-то красному и попадаете в Великое Красное, измерение древнее мира народов и Башни. Вы и другие попавшие сюда будете вечность вести разговоры друг с другом и с красным цветом. В этом нет ничего плохого, но взаимодействовать со внешним миром не выйдет.",
+      "resistance": "ДУХ",
+      "severity": "doom",
+      "severityLabel": "Роковое"
+    },
+    {
+      "id": "consequences-card-94",
+      "kind": "consequence",
+      "title": "Следом",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы погибаете, но ваша сущность остаётся бродить по Башне, вечно чувствуя холод и голод. Этот ваш осколок увязывается за разными группами восходящих, но не может подойти к ним достаточно близко, чтобы они могли снять проклятие.",
+      "resistance": "ДУХ",
+      "severity": "doom",
+      "severityLabel": "Роковое"
+    },
+    {
+      "id": "consequences-card-95",
+      "kind": "consequence",
+      "title": "Сияние",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы взрываетесь потоками яркой магии, сгорая от мощи, что не можете сдержать. Вы умираете и уничтожаете локацию, на которой находились. Люди выживают. Большинство.",
+      "resistance": "ДУХ",
+      "severity": "doom",
+      "severityLabel": "Роковое"
+    },
+    {
+      "id": "consequences-card-96",
+      "kind": "consequence",
+      "title": "Четыре",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          126
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Вы говорите вслух цифру четыре тогда, когда Она этого не хочет. Вы тут же исчезаете, без звука или вспышки, будто вас и не было.",
+      "resistance": "ДУХ",
+      "severity": "doom",
+      "severityLabel": "Роковое"
+    },
+    {
+      "id": "consequences-card-97",
+      "kind": "consequence",
+      "title": "Изгнан",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          126
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Никто больше вам не друг, все попытаются вас убить, обмануть или просто не выйдут на контакт.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "doom",
+      "severityLabel": "Роковое"
     }
   ]
 };

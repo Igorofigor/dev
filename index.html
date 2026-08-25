@@ -1432,8 +1432,8 @@ button.secondary.portrait-mini-button{
       <div class="title-row"><h2>Последствия</h2></div>
       <div id="consequenceCounters" class="counter-row"></div>
       <div class="slot-grid">
-        <div class="slot-box"><div class="title-row"><h3>Малые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('consequence','minor')"></button><button class="triangle-button right" type="button" onclick="addSlot('consequence','minor')"></button></div></div><div id="consequence_minor_rows" class="slot-list"></div></div>
-        <div class="slot-box"><div class="title-row"><h3>Значимые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('consequence','major')"></button><button class="triangle-button right" type="button" onclick="addSlot('consequence','major')"></button></div></div><div id="consequence_major_rows" class="slot-list"></div></div>
+        <div class="slot-box"><div class="title-row"><h3>Малые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('consequence','minor')"></button><button class="triangle-button right" type="button" onclick="addSlot('consequence','minor')"></button></div></div><div id="consequence_minor_rows" class="slot-list" data-codex-drop="consequence" data-codex-consequence-severity="minor"></div></div>
+        <div class="slot-box"><div class="title-row"><h3>Значимые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('consequence','major')"></button><button class="triangle-button right" type="button" onclick="addSlot('consequence','major')"></button></div></div><div id="consequence_major_rows" class="slot-list" data-codex-drop="consequence" data-codex-consequence-severity="major"></div></div>
       </div>
     </section>
 
@@ -3600,14 +3600,15 @@ function importCharacterJSON(event){
         if(item.section==="factions")label=currentLanguage==="en"?(item.factionAreaEn||item.factionArea):item.factionArea||"Фракции";
         if(item.section==="equipment")label=currentLanguage==="en"?(item.categoryEn||item.category):(item.category||"Снаряжение").replace(/\s*\([Кк]\d+(?:\s+[^)]*)?\)$/," ").trim();
         if(item.section==="tactics")label=currentLanguage==="en"?(item.skillEn||item.skill):item.skill||"Тактики";
+        if(item.section==="consequences")label=currentLanguage==="en"?(item.resistanceEn||item.resistance):item.resistance||"Сопротивление";
         if(!groups.has(label))groups.set(label,[]);
         groups.get(label).push(item);
       });
       container.innerHTML=[...groups.entries()].map(([label,groupItems])=>`<details class="codex-group" open>
         <summary class="codex-group-summary">${escapeCodexHtml(label)} <span class="counter">${groupItems.length}</span></summary>
-        <div class="codex-group-items">${groupItems.map(item=>{const cardTitle=item.section==="classes"?`${item.title} — ${tierLabels[item.tier]||"Ability"}`:item.section==="factions"?`${item.title} — ${currentLanguage==="en"?(item.factionNameEn||item.factionName):(item.factionName||"Фракция не указана")}`:item.title;return `<article class="codex-card" draggable="true" data-codex-id="${escapeCodexHtml(item.id)}" title="${currentLanguage==="en"?"Drag to a suitable slot":"Перетащить в подходящий слот"}">
+        <div class="codex-group-items">${groupItems.map(item=>{const severityLabel=currentLanguage==="en"?(item.severityLabelEn||item.severityLabel):item.severityLabel;const cardTitle=item.section==="classes"?`${item.title} — ${tierLabels[item.tier]||"Ability"}`:item.section==="factions"?`${item.title} — ${currentLanguage==="en"?(item.factionNameEn||item.factionName):(item.factionName||"Фракция не указана")}`:item.section==="consequences"?`${item.title} — ${severityLabel}`:item.title;const canDrag=item.section!=="consequences"||item.severity!=="doom";return `<article class="codex-card" draggable="${canDrag}" data-codex-id="${escapeCodexHtml(item.id)}" title="${canDrag?(currentLanguage==="en"?"Drag to a suitable slot":"Перетащить в подходящий слот"):(currentLanguage==="en"?"Reference-only Doom Fallout":"Роковое последствие приведено для справки")}">
           <h3>${escapeCodexHtml(cardTitle)}</h3>
-          <div class="codex-card-meta">${currentLanguage==="en"?"Rulebook pages":"Страницы PDF"}: ${escapeCodexHtml((item.source?.pdfPages||[]).join(", "))} · ${escapeCodexHtml(currentLanguage==="en"?(item.tier||item.skillEn||item.dropTarget):(item.tier||item.skill||item.dropTarget))}</div>
+          <div class="codex-card-meta">${currentLanguage==="en"?"Rulebook pages":"Страницы PDF"}: ${escapeCodexHtml((item.source?.pdfPages||[]).join(", "))} · ${escapeCodexHtml(currentLanguage==="en"?(item.severityLabelEn||item.tier||item.skillEn||item.dropTarget):(item.severityLabel||item.tier||item.skill||item.dropTarget))}</div>
           <div class="codex-card-text">${escapeCodexHtml(item.text)}</div>
         </article>`}).join("")}</div>
       </details>`).join("");
@@ -3619,6 +3620,7 @@ function importCharacterJSON(event){
     function codexItemFitsTarget(item,target){
       if(!item||!target||item.dropTarget!==target.dataset.codexDrop)return false;
       if(target.dataset.codexTier&&item.tier!==target.dataset.codexTier)return false;
+      if(target.dataset.codexConsequenceSeverity&&item.severity!==target.dataset.codexConsequenceSeverity)return false;
       if(target.dataset.codexDrop==="armor"&&item.armorSlots?.length&&!item.armorSlots.includes(target.dataset.codexArmorSlot))return false;
       return true;
     }
@@ -3646,7 +3648,7 @@ function importCharacterJSON(event){
     function fillCodexTarget(item,target){
       if(!codexItemFitsTarget(item,target))return false;
       const targetType=target.dataset.codexDrop;
-      if(targetType==="ability"){
+      if(targetType==="ability"||targetType==="consequence"){
         const field=[...target.querySelectorAll("textarea")].find(element=>!element.value.trim());
         if(!field){alert(currentLanguage==="en"?"There are no empty slots in this category.":"В этой категории нет свободной ячейки.");return false}
         field.value=item.text;

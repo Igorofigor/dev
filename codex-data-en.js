@@ -427,6 +427,109 @@ window.TOWER_CODEX_EN = {
         "tactics-card-121-397",
         "tactics-card-121-398"
       ]
+    },
+    {
+      "id": "consequences",
+      "title": "Fallout",
+      "items": [
+        "consequences-card-1",
+        "consequences-card-2",
+        "consequences-card-3",
+        "consequences-card-4",
+        "consequences-card-5",
+        "consequences-card-6",
+        "consequences-card-7",
+        "consequences-card-8",
+        "consequences-card-9",
+        "consequences-card-10",
+        "consequences-card-11",
+        "consequences-card-12",
+        "consequences-card-13",
+        "consequences-card-14",
+        "consequences-card-15",
+        "consequences-card-16",
+        "consequences-card-17",
+        "consequences-card-18",
+        "consequences-card-19",
+        "consequences-card-20",
+        "consequences-card-21",
+        "consequences-card-22",
+        "consequences-card-23",
+        "consequences-card-24",
+        "consequences-card-25",
+        "consequences-card-26",
+        "consequences-card-27",
+        "consequences-card-28",
+        "consequences-card-29",
+        "consequences-card-30",
+        "consequences-card-31",
+        "consequences-card-32",
+        "consequences-card-33",
+        "consequences-card-34",
+        "consequences-card-35",
+        "consequences-card-36",
+        "consequences-card-37",
+        "consequences-card-38",
+        "consequences-card-39",
+        "consequences-card-40",
+        "consequences-card-41",
+        "consequences-card-42",
+        "consequences-card-43",
+        "consequences-card-44",
+        "consequences-card-45",
+        "consequences-card-46",
+        "consequences-card-47",
+        "consequences-card-48",
+        "consequences-card-49",
+        "consequences-card-50",
+        "consequences-card-51",
+        "consequences-card-52",
+        "consequences-card-53",
+        "consequences-card-54",
+        "consequences-card-55",
+        "consequences-card-56",
+        "consequences-card-57",
+        "consequences-card-58",
+        "consequences-card-59",
+        "consequences-card-60",
+        "consequences-card-61",
+        "consequences-card-62",
+        "consequences-card-63",
+        "consequences-card-64",
+        "consequences-card-65",
+        "consequences-card-66",
+        "consequences-card-67",
+        "consequences-card-68",
+        "consequences-card-69",
+        "consequences-card-70",
+        "consequences-card-71",
+        "consequences-card-72",
+        "consequences-card-73",
+        "consequences-card-74",
+        "consequences-card-75",
+        "consequences-card-76",
+        "consequences-card-77",
+        "consequences-card-78",
+        "consequences-card-79",
+        "consequences-card-80",
+        "consequences-card-81",
+        "consequences-card-82",
+        "consequences-card-83",
+        "consequences-card-84",
+        "consequences-card-85",
+        "consequences-card-86",
+        "consequences-card-87",
+        "consequences-card-88",
+        "consequences-card-89",
+        "consequences-card-90",
+        "consequences-card-91",
+        "consequences-card-92",
+        "consequences-card-93",
+        "consequences-card-94",
+        "consequences-card-95",
+        "consequences-card-96",
+        "consequences-card-97"
+      ]
     }
   ],
   "items": [
@@ -8181,6 +8284,1849 @@ window.TOWER_CODEX_EN = {
       "text": "4. Culture\nProper Greeting: Know or quickly guess how to address someone through gesture, title, distance, or a bow. Their initial reaction cannot be worse than neutral unless you arrive as an obvious enemy.\nRespect the Taboos: Notice a cultural trap: one must not eat sweets, say a particular number, look into someone’s eyes, or touch a weapon. Ask the GM which unobvious action might offend the other person and receive a truthful answer.\nMeaningful Gift: Choose a gift whose meaning exceeds its price: a knife, a piece of cloth, or a rare scent. The gift counts as one value step higher in this culture or situation.\nShared Custom: Find a bridge between cultures through a similar ritual, military habit, or shared fear. Gain Mastery when communicating with members of one people until the end of the scene.\nAccurate Translation: Even when someone knows the language, they may miss an implication. Explain to your allies what a phrase, gesture, pause, refusal, or gift truly meant. Until the end of the scene, take RESOURCES Stress caused by the other person’s displeasure one step lower.",
       "skill": "ГОВОРИТЬ",
       "skillEn": "TALK"
+    },
+    {
+      "id": "consequences-card-1",
+      "kind": "consequence",
+      "title": "Exhausted",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You are tired from your wounds and the intensity of the fighting. Until you rest, ASCEND checks become one step harder.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-2",
+      "kind": "consequence",
+      "title": "Grenade!",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Someone throws a grenade toward you. Every nearby character makes an ASCEND check with the appropriate Domain. On a failure, the grenade deals D8 Stress in BULLETS.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-3",
+      "kind": "consequence",
+      "title": "Double Vision",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "A loud sound, tear gas, or a blow to the head makes your vision lose focus. Until the end of the scene, long-range attacks become one step harder.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-4",
+      "kind": "consequence",
+      "title": "Out of Ammunition",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You have emptied your firearm’s magazine. Before using it again, make a KILL check with the appropriate Domain. You reload regardless of the result but may take Stress on a failure.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-5",
+      "kind": "consequence",
+      "title": "Bleeding",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You are wounded and losing blood. Until the end of the scene, mark 1 Stress in BULLETS whenever you make a check. Do not make Fallout checks for this Stress.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-6",
+      "kind": "consequence",
+      "title": "Disarmed",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your weapon is knocked from your hands. Recover it by making an ASCEND check with the appropriate Domain.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-7",
+      "kind": "consequence",
+      "title": "Flanked",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "An enemy changes position. You lose positional bonuses from high ground, cover, shadows, or similar advantages.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-8",
+      "kind": "consequence",
+      "title": "Deafened",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You partially lose your hearing. Until the end of the scene, INVESTIGATE checks involving listening and all HIDE checks become one step harder.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-9",
+      "kind": "consequence",
+      "title": "Damaged Modification",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "A module attached to your weapon, such as an optical sight or assault grip, breaks. If you installed a modification on the weapon, it loses the corresponding property. Repair the modification with a FIX check using the appropriate Domain. You always repair it but may take Stress on a failure.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-10",
+      "kind": "consequence",
+      "title": "Pinned Behind Cover",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Heavy fire prevents you from exposing yourself. Until the end of the scene or until the responsible enemy is killed, attempting to move causes Stress unless you pass an EVADE check.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-11",
+      "kind": "consequence",
+      "title": "Broken Plate",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "An unlucky hit cracks the plate in your light body armor. Your armor stops functioning until you insert a new plate with a KILL check using the appropriate Domain.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-12",
+      "kind": "consequence",
+      "title": "Tangled Fate",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You sense that destinies inside the Tower have become so entangled that it is impossible to determine which belongs to whom. The next time a comrade would receive Fallout, you receive it instead and remove Tangled Fate.",
+      "resistance": "СУДЬБА",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-13",
+      "kind": "consequence",
+      "title": "Jam",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your weapon or another important item stops functioning correctly until the end of the scene. You may make a FIX check to restore it immediately. The item is always repaired, but you may take Stress on a failure.",
+      "resistance": "СУДЬБА",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-14",
+      "kind": "consequence",
+      "title": "Low Visibility",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Until the end of the scene, the area unexpectedly becomes dark, fog rises, or a storm of concrete dust fills the air. Actions at Long Range or requiring fast, precise movements become one step harder.",
+      "resistance": "СУДЬБА",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-15",
+      "kind": "consequence",
+      "title": "Double-Edged",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You spare an enemy who should not have been spared. They return in the future or harm you indirectly. Remove this Fallout when that harm occurs.",
+      "resistance": "СУДЬБА",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-16",
+      "kind": "consequence",
+      "title": "Circumstances",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "An important person is no longer present at the oasis where you expected to find them. They are safe, but you must either wait for their return or go looking for them.",
+      "resistance": "СУДЬБА",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-17",
+      "kind": "consequence",
+      "title": "Detour",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "A serious obstacle forces you to take a longer route. Increase the Ascent’s Resistance by D6.",
+      "resistance": "СУДЬБА",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-18",
+      "kind": "consequence",
+      "title": "Bad Omen",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "The Tower winks at you through a red lamp, a die landing on its edge, or something resembling a face in a crack in the concrete. The next time you receive a success with a cost, the GM adds another minor problem.",
+      "resistance": "СУДЬБА",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-19",
+      "kind": "consequence",
+      "title": "Kiss of the Moment",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You arrive just slightly too late. During the next scene, an enemy, danger, or negotiator acts first, increasing the difficulty of the first check by one step even if you would normally possess the advantage.",
+      "resistance": "СУДЬБА",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-20",
+      "kind": "consequence",
+      "title": "Separated",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You become separated from the squad and must find one another again. This normally requires an ASCEND check against Resistance 6, though circumstances may make it easier or harder.",
+      "resistance": "СУДЬБА",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-21",
+      "kind": "consequence",
+      "title": "Forward Only",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You have lost too much time. When you reach the next haven, you miss an important event, such as a fresh ammunition shipment or the visit of mercenaries willing to help.",
+      "resistance": "СУДЬБА",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-22",
+      "kind": "consequence",
+      "title": "Memory Gap",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You forget something important, such as the combination to a safe or the route back to an oasis.",
+      "resistance": "РАЗУМ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-23",
+      "kind": "consequence",
+      "title": "Voice of Reason",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "A rational, polite, and extremely unhelpful voice appears in your head, constantly advising you not to take risks. Whenever you perform a risky or more difficult action for an ally and to your own detriment, take D4 Stress in MIND without making a Fallout check.",
+      "resistance": "РАЗУМ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-24",
+      "kind": "consequence",
+      "title": "A Fix",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You urgently need something strong—or at least a drink. Until you satisfy this need, whenever you take MIND Stress, roll two Stress dice and use the higher result.",
+      "resistance": "РАЗУМ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-25",
+      "kind": "consequence",
+      "title": "Impulse",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You surrender to your emotions and cannot concentrate. You cannot use Tactics until the end of the scene.",
+      "resistance": "РАЗУМ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-26",
+      "kind": "consequence",
+      "title": "Graveyard Laughter",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You laugh during every tense situation. Once per scene, such as during important negotiations or while sneaking, the GM may declare that you laugh loudly. This always causes something negative to happen.",
+      "resistance": "РАЗУМ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-27",
+      "kind": "consequence",
+      "title": "Incomprehensible",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You cannot understand what is happening around you. Until the end of the scene, you cannot benefit from Domains.",
+      "resistance": "РАЗУМ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-28",
+      "kind": "consequence",
+      "title": "Shock",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You understand so little about whatever shocked you that you cannot even think about it. Until the end of the scene, checks made against its source become one step harder.",
+      "resistance": "РАЗУМ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-29",
+      "kind": "consequence",
+      "title": "Overconfidence",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You perceive a weak point in an enemy or a hidden passage but cannot tell whether it is real. Make your next roll with Mastery. On a failure, take Stress one step higher because the weakness existed only in your imagination.",
+      "resistance": "РАЗУМ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-30",
+      "kind": "consequence",
+      "title": "Waking Dream",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "For a moment, you feel that you have already dreamed this scene. Once before the end of the scene, the GM may give you a false but plausible sensory detail.",
+      "resistance": "РАЗУМ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-31",
+      "kind": "consequence",
+      "title": "Restless Hands",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You constantly experience strange, impulsive desires. Once per scene, the GM may declare that you desperately want to open a door, pick up an object, spare a particular enemy, reveal your true name, or do something similar. If you refuse, take D6 Stress in SPIRIT.",
+      "resistance": "ДУХ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-32",
+      "kind": "consequence",
+      "title": "Distortion",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Magic behaves strangely inside the Tower and sometimes refuses to obey even its source. One positive property of one of your items changes into a negative property.",
+      "resistance": "ДУХ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-33",
+      "kind": "consequence",
+      "title": "Conflict of Interest",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your magic stops obeying you, apparently deciding that it knows better. Whenever you take Stress after a CAST check, roll two Stress dice and use the higher result.",
+      "resistance": "ДУХ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-34",
+      "kind": "consequence",
+      "title": "Damaged Charm",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your charm, talisman, amulet, protective program, or blessing no longer provides Protection in SPIRIT. It can normally be repaired only by a trained Paratech or someone in an oasis.",
+      "resistance": "ДУХ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-35",
+      "kind": "consequence",
+      "title": "Following",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "A strange entity begins following you at the edge of your vision. It causes no direct harm, but everyone who sees it takes D4 Stress in MIND. Remove this Fallout automatically upon reaching an oasis.",
+      "resistance": "ДУХ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-36",
+      "kind": "consequence",
+      "title": "Color of Brotherhood",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "The color red possesses a mind of its own—or something greater uses it to speak with you. Whenever you see something sufficiently large and bright red, such as a Red Sleeve or a chemical light, it begins speaking to you in riddles and metaphors. The conversation takes significant time. Ending it requires a TALK check. You always escape the conversation but may take Stress on a failure. Once per session, you may declare that the color red gave you useful information. The GM must reveal one secret about the current location.",
+      "resistance": "ДУХ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-37",
+      "kind": "consequence",
+      "title": "Black Thirst",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You desperately crave human blood and can think of nothing else. Until you drink it, you cannot clear Stress by any method other than receiving Fallout.",
+      "resistance": "ДУХ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-38",
+      "kind": "consequence",
+      "title": "Ephemeral",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You begin flickering as though disappearing from reality. Until the end of the scene, whenever you use magic, take D4 Stress in SPIRIT without making a Fallout check.",
+      "resistance": "ДУХ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-39",
+      "kind": "consequence",
+      "title": "Lie",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "The next time someone gives your group important information, they conceal something or lie outright.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-40",
+      "kind": "consequence",
+      "title": "Low Supplies",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You have very little ammunition, food, and other consumable material remaining. Take RESOURCES Stress one step higher. An ally may help by taking D6 Stress in their own RESOURCES.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-41",
+      "kind": "consequence",
+      "title": "Incompatible Ammunition",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You possess ammunition of the correct caliber, but it functions poorly because of the cartridge material, powder load, or primer quality. All your firearms gain Unreliable.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-42",
+      "kind": "consequence",
+      "title": "Lost Caravan",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "A Kra Sir caravan is late or has disappeared entirely. At the next oasis you visit, the relevant equipment or services cost one value step more.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-43",
+      "kind": "consequence",
+      "title": "Depleted Battery",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your energy sources are exhausted, and all your external electronics stop functioning. An ally may help by taking D6 Stress in their own RESOURCES.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-44",
+      "kind": "consequence",
+      "title": "Market Realities",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You were overcharged or sold strange ammunition, a forged pass, or expired medicine. The next item or resource rated D8 or lower that you purchase or discover gains an unpleasant property chosen by the GM.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-45",
+      "kind": "consequence",
+      "title": "Risk",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "People do not trust you. Every merchant raises their prices for you by one step. This does not apply to your allies, though merchants may begin trusting them less as well.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-46",
+      "kind": "consequence",
+      "title": "Rumor in the Queue",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "An unpleasant minor rumor about you begins circulating. Your next TALK check made to trade, recruit someone, or request a service becomes one step harder.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-47",
+      "kind": "consequence",
+      "title": "Loss",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You lose a D6 resource and have no idea where you might have left it.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-48",
+      "kind": "consequence",
+      "title": "Unconscious",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your injuries cause you to lose consciousness until the end of the scene. Enemies may do anything they want with you.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-49",
+      "kind": "consequence",
+      "title": "Heavy Armor Damaged",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your heavy armor is damaged and no longer provides Protection. Between battles, repair it with a FIX check using the appropriate Domain. You always repair it but may take Stress on a failure.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-50",
+      "kind": "consequence",
+      "title": "Helmet Damaged",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your helmet is damaged and provides neither Protection nor additional functions. Between battles, repair it with a FIX check using the appropriate Domain. You always repair it but may take Stress on a failure.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-51",
+      "kind": "consequence",
+      "title": "Auxiliary Protection Damaged",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your auxiliary protection—such as magical charms, a stealth suit, or close-combat chainmail—is damaged and no longer provides Protection. Between battles, attempt to repair it with a FIX check. Repair is not guaranteed. On a failure, it remains ineffective until repaired at the nearest oasis.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-52",
+      "kind": "consequence",
+      "title": "Damaged Leg",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your leg is seriously injured and cannot be used until treated or replaced. ASCEND checks become one step harder. You may receive this Fallout twice.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-53",
+      "kind": "consequence",
+      "title": "Damaged Arm",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your arm is seriously injured. Most checks become one step harder. You may receive this Fallout twice.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-54",
+      "kind": "consequence",
+      "title": "Damaged Backpack",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your backpack is damaged and cannot perform its functions. Between battles, repair it with a FIX check using the appropriate Domain. You always repair it but may take Stress on a failure.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-55",
+      "kind": "consequence",
+      "title": "Severe Bleeding",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You suffer a serious wound. Take D6 Stress in BULLETS whenever you make a check.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-56",
+      "kind": "consequence",
+      "title": "Impaired Coordination",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "On a failure, HIDE and ASCEND checks deal Stress to you one step higher.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-57",
+      "kind": "consequence",
+      "title": "Burn",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You were attacked with an energy weapon, acid, or fire. All incoming Stress increases by one step.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-58",
+      "kind": "consequence",
+      "title": "Broken Concentration",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You have difficulty concentrating. Checks requiring significant time become one step harder.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-59",
+      "kind": "consequence",
+      "title": "Strong Bonds",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "One of your Contacts receives Major Fallout. You should be more careful.",
+      "resistance": "СУДЬБА",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-60",
+      "kind": "consequence",
+      "title": "Hatred",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "One faction hates you. You must either earn its trust or continue fighting it.",
+      "resistance": "СУДЬБА",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-61",
+      "kind": "consequence",
+      "title": "Blinded",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Until the end of the current scene, all checks requiring sight have dangerous difficulty. Until the end of the following scene, those checks have risky difficulty.",
+      "resistance": "СУДЬБА",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-62",
+      "kind": "consequence",
+      "title": "Reinforcements",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Additional fighters arrive to support the enemy. The GM determines their number, though the arriving group is normally no larger than the one the squad initially confronted.",
+      "resistance": "СУДЬБА",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-63",
+      "kind": "consequence",
+      "title": "Breakdown",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your weapon or another important item breaks. It can only be repaired in an oasis.",
+      "resistance": "СУДЬБА",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-64",
+      "kind": "consequence",
+      "title": "Severed Bonds",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Every soldier knows that communication is the first thing to fail in a real war. You cannot remotely contact your Contacts or oases until you spend a long time recalibrating your equipment in an oasis.",
+      "resistance": "СУДЬБА",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-65",
+      "kind": "consequence",
+      "title": "Shadow",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "After a battle, one surviving enemy who remained hidden moves behind the squad. They attack before you notice them.",
+      "resistance": "СУДЬБА",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-66",
+      "kind": "consequence",
+      "title": "Three-Way Hashahsot Duel",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "A third party unexpectedly joins the battle. It is stronger than either squad individually but weaker than both squads combined.",
+      "resistance": "СУДЬБА",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-67",
+      "kind": "consequence",
+      "title": "Fearlessness",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Problems with your instinct for self-preservation cause you to take unnecessary risks. Whenever you make a Fallout check, roll the D10 twice and keep the lower result. You deal Stress one step higher on risky and dangerous checks.",
+      "resistance": "РАЗУМ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-68",
+      "kind": "consequence",
+      "title": "Slowed Reactions",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Poison, terrible exhaustion, or a malfunctioning stimulant implant makes you sluggish. EVADE and ASCEND checks requiring great speed become one step harder.",
+      "resistance": "РАЗУМ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-69",
+      "kind": "consequence",
+      "title": "True Love",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You discover beauty within the nightmare and do not want to disturb the Tower’s peace. Whenever you deal Stress to an Ascent, take the same amount of Stress in SPIRIT.",
+      "resistance": "РАЗУМ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-70",
+      "kind": "consequence",
+      "title": "Unquenchable",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You are so exhausted by violence and fear that you cannot rest properly. Lose one recovery condition chosen by the GM.",
+      "resistance": "РАЗУМ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-71",
+      "kind": "consequence",
+      "title": "Trauma",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "A place, person, or corporation has traumatized you. You avoid it by any means possible. When confronting it, the difficulty of your checks increases by one step. Remove this Fallout if you defeat the threat.",
+      "resistance": "РАЗУМ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-72",
+      "kind": "consequence",
+      "title": "Phobia",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "The Domain you currently occupy burns itself into your memory through one horrifying detail. All checks involving that Domain become one step harder.",
+      "resistance": "РАЗУМ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-73",
+      "kind": "consequence",
+      "title": "Cold",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You lose the ability to experience and understand intense emotions. Make TALK checks with Mastery when lying or intimidating, but you cannot recognize when someone lies to you or makes a joke at your expense.",
+      "resistance": "РАЗУМ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-74",
+      "kind": "consequence",
+      "title": "Rage",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You are overwhelmingly furious for no particular reason and cannot accept assistance until this Fallout is removed.",
+      "resistance": "РАЗУМ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-75",
+      "kind": "consequence",
+      "title": "Honor",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Someone challenges you to a duel, and you cannot refuse. Until the end of the scene, you may attack enemies only at Close Range. During an Ascent, you must lead the group.",
+      "resistance": "ДУХ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-76",
+      "kind": "consequence",
+      "title": "Protective Spells",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You are afflicted by magic intended to restrain evil. You cannot say the number four or tell a lie.",
+      "resistance": "ДУХ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-77",
+      "kind": "consequence",
+      "title": "Blood and Concrete",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your body slowly transforms into rebar, concrete, and wiring. Until this Fallout is removed, medical kits and other nonmagical medicine cannot restore your BULLETS Stress.",
+      "resistance": "ДУХ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-78",
+      "kind": "consequence",
+      "title": "Mirage",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You arrive at your intended location, only to discover that it is a counterfeit made from concrete and rebar—a copy born within the Tower. It causes no direct harm, but another passage is required to reach the real destination.",
+      "resistance": "ДУХ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-79",
+      "kind": "consequence",
+      "title": "Swapped Bodies",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Because of the Tower’s peculiarities, you exchange bodies with a comrade until the end of the scene. Exchange character sheets with the player sitting to your right.",
+      "resistance": "ДУХ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-80",
+      "kind": "consequence",
+      "title": "Shortage",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "At the next oasis you visit, every D6 item and resource costs D8.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-81",
+      "kind": "consequence",
+      "title": "Confiscation",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "At the next oasis you visit, all your weapons are confiscated. You are denied entry if you refuse to surrender them. The weapons are eventually returned, but you inevitably encounter a situation inside the oasis where they would have been useful.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-82",
+      "kind": "consequence",
+      "title": "Avenger",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your actions cause an assassin to be sent after you. The Avenger has Difficulty 1, deals D10 Stress, and possesses 3 Protection. Killing the Avenger does not remove this Fallout.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-83",
+      "kind": "consequence",
+      "title": "Slandered",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Terrible rumors spread about you. Until you restore your good name, no oasis will allow you to enter.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-84",
+      "kind": "consequence",
+      "title": "Dangerous Client",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Several merchants decide that dealing with you is dangerous. At one oasis or among one faction, prices for you increase by one step, and rare goods require an additional service.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-85",
+      "kind": "consequence",
+      "title": "Logistical Problems",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your ammunition, batteries, medicine, or spare parts fail to arrive. Until the next session, one piece of your equipment gains Unreliable or Inconvenient, or requires a D6 resource every time it is used. The GM chooses the effect.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-86",
+      "kind": "consequence",
+      "title": "Sold",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You must sell an important or valuable item rated D10 or higher to settle your debts.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-87",
+      "kind": "consequence",
+      "title": "Witness",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Someone witnessed your deception, betrayal, murder, or humiliating failure. They are not necessarily an enemy, but their silence costs a D12 resource, a service, or a dangerous promise.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-88",
+      "kind": "consequence",
+      "title": "Gutted",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You die from numerous wounds. You may perform one final action before death. It automatically succeeds.",
+      "resistance": "ПУЛИ",
+      "severity": "doom",
+      "severityLabel": "Роковое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Doom"
+    },
+    {
+      "id": "consequences-card-89",
+      "kind": "consequence",
+      "title": "Defeated",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "At the decisive moment, your opponent proves stronger. Describe how they finish you off.",
+      "resistance": "ПУЛИ",
+      "severity": "doom",
+      "severityLabel": "Роковое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Doom"
+    },
+    {
+      "id": "consequences-card-90",
+      "kind": "consequence",
+      "title": "Doom",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You suffer a horrifying run of bad luck: a mine explodes beneath you, you fall through a hole in the floor, or your worst enemies appear where they should never have been. It is a foolish death, but such things happen often inside the Tower.",
+      "resistance": "СУДЬБА",
+      "severity": "doom",
+      "severityLabel": "Роковое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Doom"
+    },
+    {
+      "id": "consequences-card-91",
+      "kind": "consequence",
+      "title": "Grandeur",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You surrender to the Tower’s dark influence and become an insane cultist serving one of its entities, such as the King-in-Camouflage or the Queen of Six Masks.",
+      "resistance": "РАЗУМ",
+      "severity": "doom",
+      "severityLabel": "Роковое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Doom"
+    },
+    {
+      "id": "consequences-card-92",
+      "kind": "consequence",
+      "title": "Obsessed",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You lose your mind and become fixated on a single objective, unable to think about anything else. The moment you accomplish it, your exhausted body dies.",
+      "resistance": "РАЗУМ",
+      "severity": "doom",
+      "severityLabel": "Роковое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Doom"
+    },
+    {
+      "id": "consequences-card-93",
+      "kind": "consequence",
+      "title": "The Great Red",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You touch something red and enter the Great Red, a dimension older than both the world of the peoples and the Tower. You and the others trapped there spend eternity conversing with one another and with the color red. There is nothing unpleasant about this, but you can no longer interact with the outside world.",
+      "resistance": "ДУХ",
+      "severity": "doom",
+      "severityLabel": "Роковое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Doom"
+    },
+    {
+      "id": "consequences-card-94",
+      "kind": "consequence",
+      "title": "Following",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You die, but part of your essence remains wandering through the Tower, eternally cold and hungry. This fragment follows different groups of Ascenders but can never approach closely enough for them to remove its curse.",
+      "resistance": "ДУХ",
+      "severity": "doom",
+      "severityLabel": "Роковое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Doom"
+    },
+    {
+      "id": "consequences-card-95",
+      "kind": "consequence",
+      "title": "Radiance",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You explode in streams of brilliant magic, consumed by power you cannot contain. You die and destroy the location around you. The people survive. Most of them.",
+      "resistance": "ДУХ",
+      "severity": "doom",
+      "severityLabel": "Роковое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Doom"
+    },
+    {
+      "id": "consequences-card-96",
+      "kind": "consequence",
+      "title": "Four",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          126
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You say the number four aloud when She does not want you to. You instantly disappear without sound or flash, as though you had never existed.",
+      "resistance": "ДУХ",
+      "severity": "doom",
+      "severityLabel": "Роковое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Doom"
+    },
+    {
+      "id": "consequences-card-97",
+      "kind": "consequence",
+      "title": "Exiled",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          126
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Nobody is your friend anymore. Everyone will attempt to kill you, deceive you, or simply refuse to communicate.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "doom",
+      "severityLabel": "Роковое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Doom"
     }
   ]
 };
