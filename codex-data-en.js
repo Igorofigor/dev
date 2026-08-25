@@ -3457,7 +3457,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Basic Equipment",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium Properties: Reliable Modification Slots: 2\nA standard 9 mm pistol."
     },
     {
       "id": "equipment-7-62-7-10-64-178",
@@ -3481,7 +3482,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Basic Equipment",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium, long Properties: Automatic, Awkward at close combat Modification Slots: 2\nA standard assault rifle popular among the private armies of the People of Knives."
     },
     {
       "id": "equipment-8-64-179",
@@ -3505,7 +3507,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Basic Equipment",
-      "skillEn": "ASCEND"
+      "skillEn": "ASCEND",
+      "notesEn": "Modification Slots: 2"
     },
     {
       "id": "equipment-6-64-180",
@@ -3529,7 +3532,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Basic Equipment",
-      "skillEn": "FIX"
+      "skillEn": "FIX",
+      "notesEn": "BULLETS\nSimple equipment used to stabilize a wounded person."
     },
     {
       "id": "equipment-8-64-181",
@@ -3555,7 +3559,8 @@ window.TOWER_CODEX_EN = {
       "armorSlots": [
         "Тело"
       ],
-      "categoryEn": "Basic Equipment"
+      "categoryEn": "Basic Equipment",
+      "notesEn": "+1 Protection and +1 slot in BULLETS.\nA protective vest covering the chest."
     },
     {
       "id": "equipment-10-65-182",
@@ -3581,7 +3586,8 @@ window.TOWER_CODEX_EN = {
       "armorSlots": [
         "Рюкзак"
       ],
-      "categoryEn": "Basic Equipment"
+      "categoryEn": "Basic Equipment",
+      "notesEn": "+1 Protection and +1 slot in RESOURCES.\nA compact pack designed to be worn during combat."
     },
     {
       "id": "equipment-6-65-183",
@@ -3607,7 +3613,8 @@ window.TOWER_CODEX_EN = {
       "armorSlots": [
         "Особое"
       ],
-      "categoryEn": "Basic Equipment"
+      "categoryEn": "Basic Equipment",
+      "notesEn": "Clothing with the Camouflage (X) Property.\nFor most Domains, this means literal military camouflage. For certain Domains, it may instead be another appropriate type of clothing: an ornate and luxurious traditional costume for the WORLD Domain, for example, or formal attire for the CORPORATIONS Domain.\nOccupies a special armor slot."
     },
     {
       "id": "equipment-6-65-184",
@@ -3630,7 +3637,8 @@ window.TOWER_CODEX_EN = {
       "resistance": null,
       "protection": 0,
       "extraSlots": 0,
-      "categoryEn": "Basic Equipment"
+      "categoryEn": "Basic Equipment",
+      "notesEn": "A simple and easily exchanged Resource."
     },
     {
       "id": "equipment-6-65-185",
@@ -3655,7 +3663,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Basic Equipment",
-      "skillEn": "ASCEND"
+      "skillEn": "ASCEND",
+      "notesEn": "Allows you to add a Property to a piece of equipment or remove one of its negative Properties."
     },
     {
       "id": "equipment-10-66-186",
@@ -3679,7 +3688,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Pistols",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium Properties: Quiet, Powerful\nA suppressed pistol chambered for a large 10 mm cartridge and equipped with a system that traps the propellant gases.\nA selector allows it to operate in two modes: semiautomatic fire or manual cycling. The second mode prevents the weapon’s automatic mechanism from producing any sound."
     },
     {
       "id": "equipment-7-66-187",
@@ -3703,7 +3713,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Pistols",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium Properties: Automatic Modification Slots: 2\nA submachine gun equipped with a recoil-balancing system."
     },
     {
       "id": "equipment-15-5-66-188",
@@ -3727,7 +3738,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Pistols",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium Properties: Awkward at close combat, Powerful\nAt the beginning of combat or after using a Reload Tactic, choose one additional keyword for the weapon:\nArmor-Piercing (2).\nFire.\nEnergy.\nAn imposing semiautomatic smoothbore pistol chambered for a short 15 mm cartridge.\nOptimized combustion allows it to use a minimal propellant charge while retaining the caliber of a full-sized hunting shotgun from ancient times. An exceptionally broad selection of ammunition is produced for this pistol."
     },
     {
       "id": "equipment-9-1-66-189",
@@ -3751,7 +3763,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Pistols",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium Properties: Reliable Modification Slots: 2\nThe self-defense model instead has the following Properties:\nReliable, Concealable, Awkward at medium range.\nA semiautomatic 9 mm pistol. A smaller self-defense version is also available, distinguished by its reduced ammunition capacity and shorter barrel."
     },
     {
       "id": "equipment-9-67-190",
@@ -3775,7 +3788,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Pistols",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium Properties: Burst\nReload Tactics performed with this weapon are one step harder.\nA small-production-run pistol made from premium materials, with wooden or bone grip panels. Its defining feature is its ability to fire five-round bursts.\nInstead of a magazine, the pistol uses a large replaceable barrel assembly preloaded with caseless cartridges. The rounds are stacked one behind another and fired using electrical ignition."
     },
     {
       "id": "equipment-card-67-191",
@@ -3799,7 +3813,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Combat Knives",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat Properties: Armor-Piercing (2) Modification Slots: 2\nA ceramic knife with a 15 cm diamond-coated blade, especially effective for cutting attacks. It remains sharp for a long time but cannot be resharpened.\nThe grip is made from gray plastic and includes a lanyard hole. The knife comes with a plastic sheath that can be attached to a load-bearing rig."
     },
     {
       "id": "equipment-card-67-192",
@@ -3823,7 +3838,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Combat Knives",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat Properties: Powerful Modification Slots: 2\nA modern version of the traditional combat knife of the People of Knives. It is made from complex powdered alloys combining exceptional strength and hardness.\nIts weight and 40 cm blade allow it to deliver serious chopping blows. The grip and sheath are made from stabilized wood. Customers can specify the engraving they want on the Ikt when ordering it through the company website.\nThis model’s vibration drive cycles through frequencies more quickly, allowing it to cut materials of differing densities more effectively."
     },
     {
       "id": "equipment-card-67-193",
@@ -3847,7 +3863,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Combat Knives",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat Properties: Dueling, Balanced\nA shortened version of the traditional bladed weapon of the People of Edges. Its slightly curved 30 cm blade contains a standard vibration drive that increases the effectiveness of its strikes.\nSirivirst Fakhir vibration drives use a patented extended frequency range, making it easier to cut both extremely hard and extremely soft targets.\nAn elaborate basket guard protects the wielder’s hand."
     },
     {
       "id": "equipment-card-67-194",
@@ -3872,7 +3889,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Combat Knives",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat Modification Slots: 2\nA combat version of a broad reed-cutting knife, named after a plant found in the bays of the People of Edges.\nIts 50 cm recurved blade and thick spine make it capable of delivering powerful chopping blows, but the weapon is unsuitable for fencing or elaborate martial arts.\nInstead of a vibration drive, it contains an inertial fluid inside the grip and part of the blade. This improves its balance and allows faster attacks."
     },
     {
       "id": "equipment-7-62-7-68-195",
@@ -3896,7 +3914,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Assault Rifles",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium, long Properties: Automatic, Awkward at close combat Modification Slots: 2\nA standard assault rifle popular among the private armies of the People of Knives. It is distinguished by its long effective range and tremendous stopping power.\nImproved propellant and a polymer cartridge case allow the ammunition to be smaller while increasing bullet velocity.\nThe grip, stock, and handguard are traditionally made from stabilized wood, although lighter versions with nanopolymer furniture are also available.\nThe V-7 is highly modular. Many companies manufacture replacement grips, receiver covers, trigger assemblies, and other components for it."
     },
     {
       "id": "equipment-11-5-9-68-196",
@@ -3920,7 +3939,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Assault Rifles",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium, long Properties: Automatic, Powerful, Awkward at close combat, Heavy\nA reinforced assault rifle chambered for the 11.5×46 mm cartridge. It is normally fired semiautomatically against targets in medium or heavy infantry armor, though it also possesses an automatic mode.\nIts recoil is considerable, so automatic fire is usually limited to short bursts.\nExcept for the grip and handguard, the V-9 is made entirely from metal. A polymer receiver cover proved unable to withstand the vibration of the mechanisms designed for its large cartridge.\nAn upper inertial rail is connected to the weapon by a movable track. This protects mounted optics from the rifle’s powerful recoil."
     },
     {
       "id": "equipment-5-56-68-197",
@@ -3944,7 +3964,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Assault Rifles",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium, long Properties: Automatic, Accurate Modification Slots: 2\nA bullpup rifle with a top-mounted helical magazine. The magazine’s enormous capacity and a recoil-stabilization system make it easier to fire long bursts at any Range.\nThe body is made entirely from nanopolymer, significantly reducing the rifle’s weight even with a full magazine. The grip and handguard are made from wood with horn inlays.\nIts thickened barrel can be replaced easily."
     },
     {
       "id": "equipment-7-62-69-198",
@@ -3968,7 +3989,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Assault Rifles",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium, long Properties: Automatic, Smart, Awkward at close combat\nA smart assault rifle equipped with targeting systems, cameras, and a target-recognition AI.\nIt has two trigger systems. The slower but more reliable backup is a conventional trigger. The faster option is remotely activated through an implant-control system.\nA smart visor, smart lenses, or cybernetic eyes can connect to the rifle’s cameras, allowing the user to see from the weapon’s perspective.\nThe rifle requires extremely careful maintenance."
     },
     {
       "id": "equipment-7-62-69-199",
@@ -3992,7 +4014,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Assault Rifles",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium, long Properties: Automatic, Awkward at long range Modification Slots: 2\nA shortened full-caliber rifle intended for storming buildings.\nIts metal body makes it useful in close combat. The standard magazine holds relatively few rounds, though this is usually sufficient at short distances.\nThe detachable folding stock is secured at several points, increasing its reliability."
     },
     {
       "id": "equipment-7-62-2-69-200",
@@ -4017,7 +4040,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Light Machine Guns",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium, long Properties: Automatic, Suppression Modification Slots: 2\nA modification of the V-7 assault rifle with a long, reinforced, replaceable barrel, a reinforced receiver cover, and integrated bipods.\nMagazine feeding allows it to be reloaded more quickly. Unlike most light machine guns, it also possesses a semiautomatic mode."
     },
     {
       "id": "equipment-5-56-29-70-201",
@@ -4041,7 +4065,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Light Machine Guns",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium, long Properties: Automatic, Awkward at close combat, Suppression, Bipod Modification Slots: 2\nA lightweight box-fed machine gun. Its 3D-printed nanopolymer ammunition belt makes a loaded box considerably lighter.\nThe S-29 is highly accurate at medium Range and is frequently fitted with optical sights.\nBipods are included but can be attached or removed easily."
     },
     {
       "id": "equipment-11-5-70-202",
@@ -4065,7 +4090,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Light Machine Guns",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium, long Properties: Automatic, Awkward at medium range, Powerful, Suppression, Heavy Modification Slots: 2\nA general-purpose machine gun most often used from a fixed mount.\nIts tremendous recoil and noise are offset by considerable firepower. Some users fit the already-heavy weapon with an active suppressor that uses microphones and speakers to cancel the sound of firing and mechanical operation.\nThe company produces a proprietary backpack containing a belt of either 750 or 1,500 rounds, depending on the model."
     },
     {
       "id": "equipment-5-56-70-203",
@@ -4089,7 +4115,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Light Machine Guns",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium, long Properties: Automatic, Awkward at close combat, Suppression, Burst Modification Slots: 2\nA lightweight machine gun built around a coordinated twin-barrel system. While one barrel fires, the other reloads, producing an extraordinary density of fire.\nIt has almost no vertical recoil but sways noticeably from side to side during long bursts.\nAmmunition is fed from two high-capacity magazines. Shorter barrels can also be installed."
     },
     {
       "id": "equipment-7-62-70-204",
@@ -4113,7 +4140,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Light Machine Guns",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium, long Properties: Automatic, Smart, Suppression\nA widely used smart light machine gun, made lighter with nanopolymers so that it can be carried during mobile operations and used inside buildings.\nIt feeds from a drum magazine. Its smart systems allow the user to see through its cameras and activate it through an implant-control system as though it were an extension of their own body.\nCombined with a remotely controlled mount, the Warrior-King becomes a remote-operated turret."
     },
     {
       "id": "equipment-11-5-70-205",
@@ -4137,7 +4165,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Long-Range Rifles",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium, long Properties: Smart, Powerful, Heavy Modification Slots: 2\nA sniper rifle with a smart scope and ballistic processor.\nIts bolt-action mechanism provides maximum accuracy at long Range. Integrated computers and cameras calculate the correct lead based on distance, wind, and other conditions.\nThe built-in scope displays an image on a nanodisplay and supports infrared, night, and spiritual vision."
     },
     {
       "id": "equipment-7-62-5-70-206",
@@ -4161,7 +4190,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Long-Range Rifles",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium, long Properties: Quiet Modification Slots: 2\nA sniper rifle with systems that conceal both muzzle flash and sound.\nActive noise cancellation suppresses the report and mechanical noise. A barrel shroud and muzzle attachment made from polymer metamaterial absorb heat and release it slowly and evenly.\nAs a result, the firing rifle cannot be seen through thermal optics, while combat neural networks do not recognize it as a weapon.\nThe X-5 is semiautomatic, allowing its user to exploit the lack of noise and temperature fluctuations more effectively."
     },
     {
       "id": "equipment-5-56-5-71-207",
@@ -4185,7 +4215,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Long-Range Rifles",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium, long Properties: Accurate, Dueling, Awkward at close combat Modification Slots: 4\nA highly modular scout rifle.\nThis lightweight long-range rifle is quick to aim and can be fired easily without support. Its modular system allows the mechanism to be reconfigured into almost any weapon form without tools."
     },
     {
       "id": "equipment-12-7-71-208",
@@ -4209,7 +4240,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Long-Range Rifles",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Long Properties: Accurate, Powerful, Heavy, Loud, Single-Shot Modification Slots: 2\nA heavy rifle that accelerates its projectile electromagnetically. It is designed to defeat heavily armored infantry and light vehicles.\nA heavy tungsten projectile is loaded from above. The weapon has no magazine, as one would further increase its already enormous weight and accelerate mechanical wear.\nA massive battery attaches beneath the rifle.\nIts extremely loud shot is accompanied by a plasma flash, but can strike targets at tremendous distances."
     },
     {
       "id": "equipment-7-62-71-209",
@@ -4233,7 +4265,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Long-Range Rifles",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium, long Properties: Automatic, Accurate, Awkward at close combat Modification Slots: 2\nAn automatic sniper rifle named after its designer.\nThe first model in the family was intended for hunting. Its automatic mode allowed a hunter who missed their first shot to stop an enraged animal with a burst.\nThe accurate, long-range rifle proved popular with the free armies of the People of the Steppes. It is traditionally decorated with horn and wood.\nA nonlethal conversion using tranquilizer ammunition is also available."
     },
     {
       "id": "equipment-8-71-210",
@@ -4256,7 +4289,8 @@ window.TOWER_CODEX_EN = {
       "resistance": "bullets",
       "protection": 3,
       "extraSlots": 0,
-      "categoryEn": "Ballistic Shields"
+      "categoryEn": "Ballistic Shields",
+      "notesEn": "+3 Protection in BULLETS. +5 Protection in BULLETS against melee weapons.\nA small mobile shield made from transparent polymer. It protects the torso and was designed for police and close-combat fighters."
     },
     {
       "id": "equipment-97-71-211",
@@ -4280,7 +4314,8 @@ window.TOWER_CODEX_EN = {
       "resistance": "bullets",
       "protection": 4,
       "extraSlots": 0,
-      "categoryEn": "Ballistic Shields"
+      "categoryEn": "Ballistic Shields",
+      "notesEn": "+4 Protection in BULLETS.\nASCEND checks involving speed are one step harder.\nOnce per scene, the shield can blind opponents. One subsequent action cannot cause Fallout, even if its check fails.\nA medium shield made from ultra-high-molecular-weight plastic and light alloys. Protective plates unfold from its sides and lower edge.\nFlash lamps built into the shield blind targets without eye protection."
     },
     {
       "id": "equipment-card-72-212",
@@ -4306,7 +4341,8 @@ window.TOWER_CODEX_EN = {
       "armorSlots": [
         "Рюкзак"
       ],
-      "categoryEn": "Ballistic Shields"
+      "categoryEn": "Ballistic Shields",
+      "notesEn": "+5 Protection in BULLETS.\nAllies at the same Range as you receive +4 Protection in BULLETS.\nYour HIDE and ASCEND checks are one step harder.\nA heavy assault shield named after a plant found in the bays of the People of Edges.\nIt is made from durable special alloys and enclosed in a protective fabric cover to prevent fragmentation.\nOccupies a Backpack Slot."
     },
     {
       "id": "equipment-card-72-213",
@@ -4330,7 +4366,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Heavy Melee Weapons",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat Properties: Armor-Piercing (2), Dueling\nA modernized version of the traditional bladed weapon of the People of Edges.\nIts extended-range vibration drive allows it to thrust, chop, and cut effectively. It has a slightly curved blade and a basket hilt made from gilded special alloys. The grip is wrapped in traditional medicinal herbs.\nPerfectly balanced for fencing, the Benchmark is a powerful argument in a sword-against-sword duel."
     },
     {
       "id": "equipment-card-72-214",
@@ -4354,7 +4391,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Heavy Melee Weapons",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat Properties: Stable, Powerful\nA modern interpretation of the national two-handed sword of the People of Poisons.\nIts long grip and straight blade, set at an angle to one another, generate tremendous chopping force.\nA protected reservoir inside the sword contains a balancing fluid that accelerates attacks and makes the TsTsTs more difficult to parry.\nIn keeping with tradition, Sirivirst Fakhir makes its sheath from wood wrapped in leather."
     },
     {
       "id": "equipment-1-72-215",
@@ -4378,7 +4416,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Heavy Melee Weapons",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat Properties: Accurate Modification Slots: 2\nA straight, long vibration sword used as a standard weapon by many armies.\nIts patented rapid frequency-cycling system makes it effective under almost any conditions.\nThe U-1 is incorporated into numerous military combat systems, allowing its user to fight in many styles and even switch between them during combat to adapt to an opponent."
     },
     {
       "id": "equipment-8-72-216",
@@ -4402,7 +4441,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Heavy Melee Weapons",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat Properties: Energy, Nonlethal\nA telescopic electroshock baton, particularly dangerous against machines and cyborgs. It is often used in pairs.\nA reinforced battery and adjustable capacitors allow the strength of the shock to be controlled. The weapon can stun a target or burn them—and their implants—to death."
     },
     {
       "id": "equipment-card-72-217",
@@ -4426,7 +4466,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Heavy Melee Weapons",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat Properties: Armor-Piercing (2) Modification Slots: 2\nA combat axe designed to defeat armored targets and modeled after the traditional Kits axe.\nIts flexible shaft bends slightly on impact, preventing the full force of the blow from being transferred into the wielder’s hand.\nThe narrow head is made from hard special alloys and designed to crack ceramic and metal armor. It may become lodged in polymer or compressed-plastic armor."
     },
     {
       "id": "equipment-card-72-218",
@@ -4450,7 +4491,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Heavy Melee Weapons",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat Properties: Awkward when fighting a moving enemy, Powerful, Armor-Piercing (2)\nA massive sledgehammer with a linear drive powered by a battery inside the grip.\nIt can break through even the thickest walls and is equally useful against heavily armored enemies."
     },
     {
       "id": "equipment-card-73-219",
@@ -4474,7 +4516,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Tactical Weapons",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Long Properties: Stable, Smart, Spread, Single-Shot, Heavy Modification Slots: 2\nAn anti-tank launcher equipped with extremely advanced guidance systems.\nIt is loaded with an anti-tank missile inside a protective polymer casing. The missile carries a powerful shaped charge, while its modern nanofuel engine accelerates it beyond the speed of sound to defeat active protection systems.\nAfter launch, the weapon’s computers and cameras communicate with the systems aboard the missile, creating a fire-and-forget effect.\nThe tremendous cost of each shot makes the launcher unpopular. It became more common among small mercenary groups and even gangs only after cheaper unguided missiles entered production."
     },
     {
       "id": "equipment-card-73-220",
@@ -4498,7 +4541,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Tactical Weapons",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Long Properties: Spread, Powerful, Automatic, Loud, Heavy Modification Slots: 2\nA repeating launcher intended to attack heavily armored infantry and enemies behind cover.\nIt uses a four-round drum magazine loaded with rocket-propelled grenades and can fire them in rapid succession.\nFragmentation grenades are most common, though shaped-charge ammunition is also widely used."
     },
     {
       "id": "equipment-card-73-221",
@@ -4522,7 +4566,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Tactical Weapons",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Long Properties: Spread, Fire, Bipod, Loud, Heavy Modification Slots: 2\nA rocket flamethrower designed to attack targets inside buildings and lightly armored vehicles.\nIts incendiary projectile rapidly consumes oxygen even in open spaces. The burning temperature is sufficient to melt armor-grade metal and crack structural concrete.\nCarefreeness is loaded from above with a projectile in a protective polymer casing. This supports a two-person crew: one operator keeps the weapon aimed while the second reloads it."
     },
     {
       "id": "equipment-2-73-222",
@@ -4547,7 +4592,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Tactical Weapons",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium, long Properties: Powerful, Spread, Single-Shot, Heavy, Loud Modification Slots: 2\nAt the beginning of a combat scene and after using a Reload Tactic, you may add one additional Property to the weapon.\nA recoilless weapon firing 120 mm ammunition.\nBecause its shells are extremely heavy, a K-2 team normally consists of two fighters: a gunner and a loader carrying the ammunition.\nCommon ammunition includes high-explosive, shaped-charge, illumination, submunition, and flechette shells.\nCompact nuclear rounds also exist. They are not officially sold to civilians but can always be found on the black market for the right price."
     },
     {
       "id": "equipment-card-74-223",
@@ -4571,7 +4617,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Energy Weapons",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium Properties: Energy, Powerful, Nonlethal Modification Slots: 2\nAn electrical pistol designed to fight drones and cyborgs.\nIt first emits an invisible laser that ionizes the air, then sends an electrical charge along the beam, burning flesh and electronics.\nIts Range is limited but sufficient to fire several times at an approaching enemy.\nThe weapon was originally nonlethal and intended for police use. As violence involving gangs intensified, police forces gradually abandoned such merciful weapons."
     },
     {
       "id": "equipment-card-74-224",
@@ -4595,7 +4642,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Energy Weapons",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium, long Properties: Awkward at medium range, Accurate, Fire, Energy Modification Slots: 2\nA long-range laser rifle powered by a battery mounted beneath the barrel.\nIt produces neither recoil nor the sound of a shot. Its invisible beam reaches farther than conventional sniper bullets, though it is considerably more dependent on atmospheric conditions."
     },
     {
       "id": "equipment-card-74-225",
@@ -4619,7 +4667,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Energy Weapons",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium Properties: Energy, Spread, Balanced, Heavy, Loud\nA rifle-sized microwave cannon designed to destroy electronics.\nIt projects a cone of microwaves that burns out electrical circuits and is especially effective against drones.\nWith sufficient power and prolonged exposure, it can damage even heavily shielded machines and armor.\nAt close Range it affects a broad area and can strike several targets at once."
     },
     {
       "id": "equipment-card-74-226",
@@ -4646,7 +4695,8 @@ window.TOWER_CODEX_EN = {
         "Рюкзак"
       ],
       "categoryEn": "Energy Weapons",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium Properties: Spread, Energy, Heavy, Loud, Nonlethal Modification Slots: 2\nWhen the Damage Die rolls its maximum result, the weapon loses the Nonlethal Property.\nA shoulder-fired sonic cannon of “practically nonlethal” effect. It requires a power pack that occupies a Backpack Slot.\nIt emits sound across shifting frequencies that humans find unbearable, allowing it to disperse crowds. Active noise-canceling headphones synchronized with the weapon are included.\nProlonged exposure can destroy hearing and damage the eyes and bones. After several people died from internal bleeding, the company changed the product description to “a weapon of practically nonlethal effect.”\nThe phrase became popular online and is now frequently used as a joke."
     },
     {
       "id": "equipment-2-75-227",
@@ -4670,7 +4720,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Grenades",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium Properties: Spread, Single-Shot Modification Slots: 2\nA standard fragmentation grenade with a customizable casing."
     },
     {
       "id": "equipment-6-75-228",
@@ -4694,7 +4745,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Grenades",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium Properties: Single-Shot, Energy, Lingering\nBlinds opponents: one subsequent action cannot cause Fallout, even if its check fails.\nA flashbang grenade that temporarily blinds and deafens targets without eye and ear protection.\nIts pyramidal shape allows it to produce a louder sound."
     },
     {
       "id": "equipment-card-75-229",
@@ -4718,7 +4770,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Grenades",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium Properties: Spread, Stable, Single-Shot\nA cluster grenade that releases highly explosive submunitions when it detonates. Particularly useful in open spaces."
     },
     {
       "id": "equipment-card-75-230",
@@ -4742,7 +4795,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Grenades",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium Properties: Spread, Single-Shot, Fire\nAn incendiary grenade filled with a burning compound and intended for storming buildings."
     },
     {
       "id": "equipment-card-75-231",
@@ -4766,7 +4820,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Grenades",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium Properties: Spread, Single-Shot, Suppression\nA small grenade that bounces after impact when metal plates unfold from its casing.\nIt is highly effective against enemies behind cover but is less predictable than a conventional grenade and requires extensive training."
     },
     {
       "id": "equipment-card-75-232",
@@ -4790,7 +4845,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Grenades",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium Properties: Lingering, Fire, Single-Shot\nA sticky thermite grenade intended for use against armor.\nIt must be removed from its protective casing before being thrown."
     },
     {
       "id": "equipment-card-75-233",
@@ -4814,7 +4870,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Grenades",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "to everyone without a gas mask Range: Close combat, medium Properties: Single-Shot\nGrants Mastery on HIDE and ASCEND checks made while escaping or storming a position.\nA smoke grenade that produces clouds previously achievable only by tanks.\nIts burning red phosphorus creates smoke that blocks scanners and thermal optics. The smoke is extremely toxic."
     },
     {
       "id": "equipment-card-75-234",
@@ -4838,7 +4895,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Grenades",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium Properties: Spread, Single-Shot, Energy, Nonlethal\nAn electrical grenade that scatters electrodes around its landing point, transforming itself into a trap.\nIt functions as a powerful taser and, with a well-placed throw, can temporarily incapacitate an entire squad."
     },
     {
       "id": "equipment-card-75-235",
@@ -4862,7 +4920,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Grenades",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium\nDistracts an opponent, compelling them to investigate the location where the grenade was thrown.\nA decoy grenade that creates the signature of a soldier on enemy scanners.\nIts name has nothing to do with its function because the Weapons of the World marketing department sends developers a list of mandatory names before the proposed weapons even exist on paper."
     },
     {
       "id": "equipment-12-76-236",
@@ -4886,7 +4945,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Rare Weapons",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium, long Properties: Spread, Powerful, Awkward at long range, Loud\nProtection is twice as effective against this weapon.\nA 25 mm shotgun firing either large buckshot or a solid projectile.\nOver the past quarter-century, extremely durable military clothing and technologically reinforced skin have reduced conventional shotguns from weapons for storming trenches and buildings to hunting weapons and tools of home defense.\nDVCZ therefore replaced its traditional shotgun line with a single model.\nParry combines pump-action and semiautomatic mechanisms. Locking the pump and changing the fire-mode selector switches between them.\nHeavy and reliable, it can tear limbs through military clothing and knock armored fighters to the ground at close Range."
     },
     {
       "id": "equipment-4-76-237",
@@ -4910,7 +4970,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Rare Weapons",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Choose the statistics of any pistol or assault rifle.\nThe weapon gains the following Properties:\nUnreliable, Loud, Concealable.\nThese weapons are manufactured by independent craftspeople on 3D printers.\nThe unusual properties of nanopolymers allow even automatic mechanisms to be printed. When combined with polymer-cased ammunition and polymer bullets, the resulting weapon becomes almost invisible to scanners.\nPolymer weapons are often concealed inside cybernetic implant holsters. They have poor reliability but extraordinary availability, sometimes being sold by the crate or by weight rather than individually."
     },
     {
       "id": "equipment-6-76-238",
@@ -4934,7 +4995,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Rare Weapons",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium Properties: Quiet, Single-Shot; cannot receive the Out of Ammunition Fallout Modification Slots: 2\nA modern form of the traditional weapons of the People of Edges and the People of Poisons.\nIt incorporates pulleys, sight and targeting rails, an ergonomic grip, a counterweight, and arrow guides.\nIn a major war it is considered sporting equipment, but it remains popular on the streets among daredevils eager to demonstrate their coordination.\nInside the Tower, where arrows and bolts can be improvised from available materials, it is extremely useful during persistent ammunition shortages.\nMost are produced by Rti Kti Dann and DVCZ."
     },
     {
       "id": "equipment-12-76-239",
@@ -4958,7 +5020,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Rare Weapons",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium, long Properties: Smart, Accurate, Automatic\nAfter a successful attack, the weapon records incontrovertible proof of the hit. When you eliminate a mission target, gain a D10 CORPORATIONS Resource.\nAn assault rifle with an integrated legal recorder, created for corporate operations where it is important not merely to kill someone, but to prove that the correct person was killed in the correct place and under the correct contractual clause.\nAscenders use it more simply: shoot a monster, then sell the recording to scientists, insurers, cultists, or the victim’s relatives—whichever offers the most money first."
     },
     {
       "id": "equipment-800-10-76-240",
@@ -4982,7 +5045,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Rare Weapons",
-      "skillEn": "KILL"
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium Properties: Accurate, Smart\nWhen dealing Stress with this weapon, you may maximize it and take D8 Stress in BULLETS.\nAn assault pistol with an aggressive stabilization system that forcibly corrects the shooter’s hand after a failed shot.\nSometimes it aims better than its owner. Sometimes it twists the owner’s wrist hard enough to make them reconsider their shooting stance."
     },
     {
       "id": "equipment-card-76-241",
@@ -5008,7 +5072,8 @@ window.TOWER_CODEX_EN = {
       "armorSlots": [
         "Тело"
       ],
-      "categoryEn": "Body Armor"
+      "categoryEn": "Body Armor",
+      "notesEn": "Simple chest armor carrying one of several kinds of ballistic insert.\nUnlike heavier armor, it can be repaired during combat by inserting a new ballistic package. A replacement insert counts as a D6 ARMY Resource stored in the backpack."
     },
     {
       "id": "equipment-card-76-242",
@@ -5034,7 +5099,8 @@ window.TOWER_CODEX_EN = {
       "armorSlots": [
         "Тело"
       ],
-      "categoryEn": "Ballistic Packs"
+      "categoryEn": "Ballistic Packs",
+      "notesEn": "A basic insert that does not alter the vest’s other Properties.\n+1 Protection and +1 slot in BULLETS."
     },
     {
       "id": "equipment-card-76-243",
@@ -5060,7 +5126,8 @@ window.TOWER_CODEX_EN = {
       "armorSlots": [
         "Тело"
       ],
-      "categoryEn": "Ballistic Packs"
+      "categoryEn": "Ballistic Packs",
+      "notesEn": "A heavier insert offering better Protection but slowing rapid hand movements.\n+2 Protection and +2 slots in BULLETS.\nInteracting with extremely fast targets is one step harder."
     },
     {
       "id": "equipment-card-77-244",
@@ -5086,7 +5153,8 @@ window.TOWER_CODEX_EN = {
       "armorSlots": [
         "Тело"
       ],
-      "categoryEn": "Ballistic Packs"
+      "categoryEn": "Ballistic Packs",
+      "notesEn": "Provides the greatest Protection but has poor durability.\n+3 Protection in BULLETS.\nYour first BULLETS Fallout in each scene is Shattered Plate."
     },
     {
       "id": "equipment-card-77-245",
@@ -5112,7 +5180,8 @@ window.TOWER_CODEX_EN = {
       "armorSlots": [
         "Тело"
       ],
-      "categoryEn": "Ballistic Packs"
+      "categoryEn": "Ballistic Packs",
+      "notesEn": "An insert with enlarged cutouts that allows faster arm movement. Its construction prevents it from sinking in water.\n+1 Protection in BULLETS.\nOnce per scene, you may Reroll an ASCEND check."
     },
     {
       "id": "equipment-card-77-246",
@@ -5138,7 +5207,8 @@ window.TOWER_CODEX_EN = {
       "armorSlots": [
         "Тело"
       ],
-      "categoryEn": "Ballistic Packs"
+      "categoryEn": "Ballistic Packs",
+      "notesEn": "Designed to protect against thermal and energy attacks while still offering limited Protection from bullets and fragments.\n+3 Protection in BULLETS against Energy attacks.\n+1 Protection in BULLETS against everything else."
     },
     {
       "id": "equipment-card-77-247",
@@ -5164,7 +5234,8 @@ window.TOWER_CODEX_EN = {
       "armorSlots": [
         "Тело"
       ],
-      "categoryEn": "Body Armor"
+      "categoryEn": "Body Armor",
+      "notesEn": "+3 Protection and +3 slots in BULLETS.\nIf you have a BULLETS Fallout, your ASCEND, EVADE, and HIDE checks become one step harder.\nHeavy armor protecting the chest, abdomen, groin, arms, and legs."
     },
     {
       "id": "equipment-card-77-248",
@@ -5190,7 +5261,8 @@ window.TOWER_CODEX_EN = {
       "armorSlots": [
         "Тело"
       ],
-      "categoryEn": "Body Armor"
+      "categoryEn": "Body Armor",
+      "notesEn": "+4 Protection and +4 slots in BULLETS.\nAll ASCEND, EVADE, and HIDE checks are one step harder.\nExtremely heavy armor that makes movement difficult."
     },
     {
       "id": "equipment-card-77-249",
@@ -5216,7 +5288,8 @@ window.TOWER_CODEX_EN = {
       "armorSlots": [
         "Особое"
       ],
-      "categoryEn": "Other Armor"
+      "categoryEn": "Other Armor",
+      "notesEn": "+5 Protection in BULLETS against melee attacks.\n+2 Protection in BULLETS against everything else.\nArmor intended to be worn alongside conventional protection. Occupies an Other Armor Slot.\nIt may be rigid composite armor made from ultra-high-molecular-weight plastic, chainmail, or traditional clothing reinforced with carbon fiber and boiled leather."
     },
     {
       "id": "equipment-card-77-250",
@@ -5242,7 +5315,8 @@ window.TOWER_CODEX_EN = {
       "armorSlots": [
         "Особое"
       ],
-      "categoryEn": "Other Armor"
+      "categoryEn": "Other Armor",
+      "notesEn": "+1 Protection and +1 slot in BULLETS.\nOnce per scene, you may Reroll a HIDE or ASCEND check.\nQuiet items deal one additional step of Stress while enemies remain unaware of you.\nOccupies an Other Armor Slot.\nA tight-fitting suit that redistributes body heat and reduces noise through active cancellation and soft soles.\nCameras and colored electronic ink provide active camouflage."
     },
     {
       "id": "equipment-card-77-251",
@@ -5268,7 +5342,8 @@ window.TOWER_CODEX_EN = {
       "armorSlots": [
         "Особое"
       ],
-      "categoryEn": "Other Armor"
+      "categoryEn": "Other Armor",
+      "notesEn": "+1 Protection and +1 slot in BULLETS.\nOnce per scene, you may Reroll a KILL or ASCEND check.\nIncrease the Stress Die of your melee attacks by one step.\nA combined combat suit consisting of a titanium exoskeleton and carbon-nanotube muscles. It enhances the wearer’s physical strength and draws power from the wearer’s internal energy."
     },
     {
       "id": "equipment-card-77-252",
@@ -5294,7 +5369,8 @@ window.TOWER_CODEX_EN = {
       "armorSlots": [
         "Особое"
       ],
-      "categoryEn": "Other Armor"
+      "categoryEn": "Other Armor",
+      "notesEn": "Ignore Properties that would make carried Equipment or Resources inconvenient to transport.\nOnce per session, you may reject one ASCEND Fallout.\nOccupies an Other Armor Slot.\nAn active metal-framed exoskeleton with vibration compensation and a smart balancing system that corrects for wind and loss of balance."
     },
     {
       "id": "equipment-6-77-253",
@@ -5320,7 +5396,8 @@ window.TOWER_CODEX_EN = {
       "armorSlots": [
         "Голова"
       ],
-      "categoryEn": "Helmets"
+      "categoryEn": "Helmets",
+      "notesEn": "+2 Protection in BULLETS.\nIt can be donned quickly when danger appears or discarded quickly if damaged. Unlike an integrated helmet, it can be repaired in the field.\nProtects the upper half of the head."
     },
     {
       "id": "equipment-10-77-254",
@@ -5346,7 +5423,8 @@ window.TOWER_CODEX_EN = {
       "armorSlots": [
         "Голова"
       ],
-      "categoryEn": "Helmets"
+      "categoryEn": "Helmets",
+      "notesEn": "+3 Protection in BULLETS.\n+5 Protection in BULLETS against gas and smoke.\nA complete helmet with a visor, integrated radio, and gas mask."
     },
     {
       "id": "equipment-6-77-255",
@@ -5372,7 +5450,8 @@ window.TOWER_CODEX_EN = {
       "armorSlots": [
         "Особое"
       ],
-      "categoryEn": "Spiritual Protection"
+      "categoryEn": "Spiritual Protection",
+      "notesEn": "+2 Protection and +2 slots in SPIRIT.\nLight-alloy animal figurines, enchanted feathers, geometric shapes, bark boxes, pierced coins, or bundles of medicinal herbs—almost anything can serve as spiritual protection.\nOccupies an Other Armor Slot."
     },
     {
       "id": "equipment-12-77-256",
@@ -5398,7 +5477,8 @@ window.TOWER_CODEX_EN = {
       "armorSlots": [
         "Рюкзак"
       ],
-      "categoryEn": "Spiritual Protection"
+      "categoryEn": "Spiritual Protection",
+      "notesEn": "Once per session, gain +5 Protection and +5 slots in SPIRIT until the end of the scene.\nA backpack-like machine based on an artifact recovered from the depths of the Tower. When activated, it weakens the Tower’s influence.\nOccupies a Backpack Slot."
     },
     {
       "id": "equipment-card-77-257",
@@ -5424,7 +5504,8 @@ window.TOWER_CODEX_EN = {
       "armorSlots": [
         "Рюкзак"
       ],
-      "categoryEn": "Backpacks"
+      "categoryEn": "Backpacks",
+      "notesEn": "+1 Protection and +1 slot in RESOURCES.\nA compact pack intended for use during combat."
     },
     {
       "id": "equipment-card-77-258",
@@ -5450,7 +5531,8 @@ window.TOWER_CODEX_EN = {
       "armorSlots": [
         "Рюкзак"
       ],
-      "categoryEn": "Backpacks"
+      "categoryEn": "Backpacks",
+      "notesEn": "+3 Protection and +3 slots in RESOURCES. Heavy.\nA large expedition backpack."
     },
     {
       "id": "equipment-card-78-259",
@@ -5476,7 +5558,8 @@ window.TOWER_CODEX_EN = {
       "armorSlots": [
         "Рюкзак"
       ],
-      "categoryEn": "Backpacks"
+      "categoryEn": "Backpacks",
+      "notesEn": "Choose one firearm with the Automatic Property at any time. That weapon is unaffected by the Out of Ammunition Fallout.\nChanging the selected weapon during combat or other difficult circumstances requires a Reload Tactic or a KILL check.\nA backpack holding ammunition and a flexible universal belt that feeds rounds directly into the weapon. Especially popular with machine gunners."
     },
     {
       "id": "equipment-card-78-260",
@@ -5503,7 +5586,8 @@ window.TOWER_CODEX_EN = {
         "Рюкзак"
       ],
       "categoryEn": "Backpacks",
-      "skillEn": "FIX"
+      "skillEn": "FIX",
+      "notesEn": "BULLETS Properties: Powerful, Stable\nA complete field medic’s kit worn on the back."
     },
     {
       "id": "equipment-card-78-261",
@@ -5529,7 +5613,8 @@ window.TOWER_CODEX_EN = {
       "armorSlots": [
         "Рюкзак"
       ],
-      "categoryEn": "Backpacks"
+      "categoryEn": "Backpacks",
+      "notesEn": "You cannot receive the Severed Bonds Fallout.\nRemote communications with allies and contacts cannot be detected or intercepted.\nA large portable radio based on a Tower artifact, an array of protected microcomputers, and transmitters operating across multiple frequencies."
     },
     {
       "id": "equipment-card-78-262",
@@ -5556,7 +5641,8 @@ window.TOWER_CODEX_EN = {
         "Рюкзак"
       ],
       "categoryEn": "Backpacks",
-      "skillEn": "FIX"
+      "skillEn": "FIX",
+      "notesEn": "MIND Properties: Balanced, Stable, Powerful\nEquipment for preparing hot meals that are considerably better for the stomach and nerves than a constant diet of field rations."
     },
     {
       "id": "equipment-card-78-263",
@@ -5582,7 +5668,8 @@ window.TOWER_CODEX_EN = {
       "armorSlots": [
         "Рюкзак"
       ],
-      "categoryEn": "Backpacks"
+      "categoryEn": "Backpacks",
+      "notesEn": "Once per scene, gain Mastery on a check requiring precise or rapid hand movements.\nAdditional mechanical arms worn on the back and controlled through an external terminal or a cybernetic implant in the spine."
     },
     {
       "id": "equipment-card-78-264",
@@ -5609,7 +5696,8 @@ window.TOWER_CODEX_EN = {
         "Рюкзак"
       ],
       "categoryEn": "Backpacks",
-      "skillEn": "INVESTIGATE"
+      "skillEn": "INVESTIGATE",
+      "notesEn": "A set of tools and reagents for field analysis.\nIt is normally associated with a single specialty, such as forensics or botany, but remains useful whenever you attempt to learn more."
     },
     {
       "id": "equipment-card-78-265",
@@ -5637,7 +5725,8 @@ window.TOWER_CODEX_EN = {
         "Рюкзак"
       ],
       "categoryEn": "Backpacks",
-      "skillEn": "ASCEND"
+      "skillEn": "ASCEND",
+      "notesEn": "Until the end of the scene, you may reduce this item’s die by one step to make an ASCEND check at normal difficulty.\nOccupies both an Other Armor Slot and a Backpack Slot.\nA lightweight carbon-fiber exoskeleton with magnets in the palms and soles, paired automatic grappling hooks, and a fuel pack connected to several multidirectional jet engines.\nDesigned for rapid operations, wall-running, and dizzying leaps. Civilian models are extremely popular among extreme athletes."
     },
     {
       "id": "equipment-card-78-266",
@@ -5661,7 +5750,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Restorative Equipment",
-      "skillEn": "FIX"
+      "skillEn": "FIX",
+      "notesEn": "BULLETS Properties: Calibrated\nMedical tools and medicines for field surgery."
     },
     {
       "id": "equipment-card-78-267",
@@ -5685,7 +5775,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Restorative Equipment",
-      "skillEn": "FIX"
+      "skillEn": "FIX",
+      "notesEn": "MIND Properties: Accurate\nA musical instrument used during rest.\nExamples include the Isr of the People of Knives, which is braced against the ground and played with two bows, and the KhZNNN of the People of Poisons, a wind keyboard instrument with an elaborate valve system."
     },
     {
       "id": "equipment-card-78-268",
@@ -5709,7 +5800,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Restorative Equipment",
-      "skillEn": "FIX"
+      "skillEn": "FIX",
+      "notesEn": "SPIRIT Properties: Balanced\nMedicinal herbs burned to cleanse a patient’s supernatural essence."
     },
     {
       "id": "equipment-card-78-269",
@@ -5733,7 +5825,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Restorative Equipment",
-      "skillEn": "FIX"
+      "skillEn": "FIX",
+      "notesEn": "FATE Properties: Powerful\nSacrificial money that can be brought into temples.\nIt is used both as a donation and as an independent element of prayer. When burned, the money is believed to pass into the hands of the ancestors."
     },
     {
       "id": "equipment-card-78-270",
@@ -5757,7 +5850,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Restorative Equipment",
-      "skillEn": "FIX"
+      "skillEn": "FIX",
+      "notesEn": "RESOURCES Properties: Stable\nA metal or plastic container. Soldiers normally use these to store ammunition, rations, or batteries."
     },
     {
       "id": "equipment-card-78-271",
@@ -5781,7 +5875,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Travel Equipment",
-      "skillEn": "ASCEND"
+      "skillEn": "ASCEND",
+      "notesEn": "Properties: Powerful, Calibrated, Overheating\nA flashlight with an adjustable light spectrum. It can be attached to a load-bearing rig."
     },
     {
       "id": "equipment-card-79-272",
@@ -5805,7 +5900,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Travel Equipment",
-      "skillEn": "ASCEND"
+      "skillEn": "ASCEND",
+      "notesEn": "Modification Slots: 2\nA smartphone-sized portable radar with a screen and several adjustable antennas."
     },
     {
       "id": "equipment-card-79-273",
@@ -5829,7 +5925,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Travel Equipment",
-      "skillEn": "ASCEND"
+      "skillEn": "ASCEND",
+      "notesEn": "Properties: Accurate, Powerful, Stable\nA clothing-mounted scanner containing a constantly updated map of predictions."
     },
     {
       "id": "equipment-card-79-274",
@@ -5853,7 +5950,8 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Travel Equipment",
-      "skillEn": "ASCEND"
+      "skillEn": "ASCEND",
+      "notesEn": "Properties: Accurate, Loud\nOnce per session, you must feed the bird by taking D4 Stress in RESOURCES. Otherwise, it dies.\nA small six-eyed bird with the gift of prophecy. Miners of the People of Salt carry them underground to avoid becoming lost."
     },
     {
       "id": "factions-card-82-275",

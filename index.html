@@ -1588,7 +1588,7 @@ button.secondary.portrait-mini-button{
       <div class="table-wrap"><table class="table"><thead><tr><th>№</th><th>Ресурс</th><th>Качество</th><th>Свойства / цена / применение</th></tr></thead><tbody id="resourceRows"></tbody></table></div>
     </div>
   </div>
-  <button id="languageToggleButton" class="language-toggle-button" type="button" onclick="toggleLanguage()" aria-label="Переключить язык">EN</button>
+  <button id="languageToggleButton" class="language-toggle-button" type="button" onclick="location.href='index-en.html'" aria-label="English version">EN</button>
 
   <div id="codexModal" class="codex-modal" onclick="closeCodexMenuOnBackdrop(event)" aria-hidden="true">
     <div id="codexPanel" class="codex-panel" onclick="event.stopPropagation()">
@@ -1722,36 +1722,62 @@ button.secondary.portrait-mini-button{
   </div>
 
   <script src="codex-data.js?v=6"></script>
-  <script>window.TOWER_CODEX_RU=window.TOWER_CODEX;</script>
-  <script src="codex-data-en.js?v=1"></script>
   <script>
     const STORAGE_KEY="towerCharacterSheetV14";
     const CHARACTER_PORTRAIT_KEY="towerCharacterPortraitV1";
     let portraitDataUrl="";
     let nationStripeAnimationEnabled=true;
-    let currentLanguage=localStorage.getItem("towerSheetLanguage")||"ru";
+    const currentLanguage="ru";
     const UI_EN={"КОДЕКС":"CODEX","СПОСОБНОСТИ":"ABILITIES","ТАКТИКИ":"TACTICS","РЕСУРСЫ":"RESOURCES","ДНЕВНИК":"DIARY","БРОСОК":"ROLL","СПРАВКА":"HELP","МЕНЮ":"MENU","Персонаж":"Character","Портрет":"Portrait","Настройки портрета":"Portrait settings","Загрузить":"Load","Удалить":"Delete","Имя":"Name","Класс":"Class","Народ":"Nation","Другой":"Other","Род Войск":"Military Branch","Описание":"Description","Сопротивления, защита и стресс":"Resistances, Protection and Stress","Сопротивление":"Resistance","Защита":"Protection","Доп. слоты":"Extra Slots","Стресс":"Stress","Итог":"Total","Последствия":"Fallout","Малые":"Minor","Значимые":"Major","Шкалы дружбы":"Friendship Tracks","Заметка":"Note","Навыки и области":"Skills and Domains","Навыки":"Skills","Области":"Domains","Снаряжение":"Equipment","Слот":"Slot","Предмет":"Item","Качество":"Quality","Свойства / заметки":"Properties / Notes","Броня":"Armor","Свойства":"Properties","Контакты":"Contacts","Личные":"Personal","Фракционные":"Faction","Мировые":"World","Персонажи игроков":"Player Characters","Классовые вопросы":"Class Questions","Вопрос 1":"Question 1","Вопрос 2":"Question 2","Вопрос 3":"Question 3","Закрыть":"Close","Базовые":"Basic","Малые":"Minor","Профессиональные":"Professional","Элитные":"Elite","Группы тактик":"Tactic Groups","Группа тактик":"Tactic Group","Связанный навык":"Linked Skill","Тактики / заметки":"Tactics / Notes","Ресурс":"Resource","Свойства / цена / применение":"Properties / Cost / Use","Кодекс":"Codex","Справка":"Rules Help","Дневник":"Diary","Меню листа":"Sheet Menu","Сохранить":"Save","Очистить":"Clear","Анимация полоски: да":"Stripe animation: yes","Анимация полоски: нет":"Stripe animation: no","Экспорт .json":"Export .json","Импорт .json":"Import .json","Автоматический бросок":"Automatic Roll","Навык":"Skill","Страж Врат":"Gate Guard","Светоносец":"Light Bearer","Раствор Души":"Soul Fluid","Росоход":"Dew Walker","Экономант":"Economancer","Неболом":"Skybreaker","Подкодыш":"Codeling","Паратехник":"Paratech","Красный Рукав":"Red Sleeve","Народ Ножей":"People of Knives","Народ Ядов":"People of Poisons","Народ Граней":"People of Facets","Народ Железа":"People of Iron","Тяжёлая пехота":"Heavy Infantry","Мобильная пехота":"Mobile Infantry","Разведка":"Reconnaissance","Военный инженер":"Military Engineer","Штурмовая пехота":"Assault Infantry","Служба безопасности":"Security Service","Мистическая пехота":"Mystical Infantry","Полевой медик":"Field Medic","Отдел исследований":"Research Division","Открыть кодекс":"Open codex","Открыть способности":"Open abilities","Открыть группы тактик":"Open tactics","Открыть ресурсы":"Open resources","Открыть дневник":"Open diary","Открыть меню броска":"Open roll menu","Открыть справку":"Open rules help","Открыть меню листа":"Open sheet menu"};
+    Object.assign(UI_EN,{"Башня Упадёт — интерактивный лист персонажа":"Tower Will Fall — Interactive Character Sheet","В ячейку защиты можно вписать любое число. Защита от брони суммируется с ним автоматически. То же работает с дополнительными слотами: ручные слоты + слоты от брони.":"Enter any number in a Protection cell. Armor Protection is added automatically. Extra slots work the same way: manual slots plus armor slots.","Сопротивления дружбы с соратниками, отмечайте в них стресс ради бонусов.":"Friendship resistances with comrades; mark Stress in them to gain benefits.","4 слота снаряжения":"4 equipment slots","Три свободные ячейки для важных вопросов класса, личной драмы, долга, странностей или сюжетных крючков.":"Three free fields for class questions, personal drama, debts, peculiarities, or story hooks.","Способности":"Abilities","Ресурсы":"Resources","перетащить окно":"drag window","Выберите группу, раскройте нужную карточку и перетащите её в подходящий слот листа. Допустимые слоты подсветятся цветом темы. Окно перемещается за шапку и меняет размер за правый нижний угол.":"Choose a group, open a card, and drag it to a suitable sheet slot. Valid slots are highlighted with the theme color. Drag the title bar to move the window and its lower-right corner to resize it.","Загрузка справки...":"Loading rules help...","Здесь можно хранить заметки, сцены, долги, обещания, странные находки и всё, что не должно занимать место на основном листе.":"Keep notes, scenes, debts, promises, strange discoveries, and anything else that should not occupy the main sheet here.","Область":"Domain","Мастерство":"Mastery","Мастерство области":"Domain Mastery","Мастерство: нет":"Mastery: no","Мастерство: да":"Mastery: yes","Количество помощников":"Number of helpers","Сложность":"Difficulty","Нормальная":"Standard","Рискованная":"Risky","Опасная":"Dangerous","Роковая":"Doom","Бросить кости":"Roll dice","Результат появится здесь":"The result will appear here","Бросков пока нет.":"No rolls yet.","Простой бросок":"Simple roll","Модификатор":"Modifier","Причина броска":"Roll reason","Общий журнал последних 10 бросков":"Shared log of the last 10 rolls","Имя персонажа":"Character name","Внешность, манеры, важные детали, странности, связи...":"Appearance, mannerisms, important details, peculiarities, relationships...","Ответ":"Answer","Например: УБИВАТЬ, ИЗБЕГАТЬ, сопротивление...":"For example: KILL, EVADE, resistance...","Например: Тихая ликвидация":"For example: Silent elimination","Конкретные тактики, условия применения, бонусы...":"Specific tactics, conditions, bonuses...","Роль, состояние, опасность...":"Role, condition, danger...","Заметка к мастерству навыка...":"Skill Mastery note...","Заметка к мастерству области...":"Domain Mastery note...","Свойства, поломки, странность...":"Properties, damage, peculiarities...","Свойства, качество, кому нужен...":"Properties, quality, who needs it...","Свойства, штрафы, особые эффекты...":"Properties, penalties, special effects...","Заметка, сцена, долг, обещание, находка, имя, странность...":"Note, scene, debt, promise, discovery, name, peculiarity...","Убрать группу тактик":"Remove tactic group","Добавить группу тактик":"Add tactic group","Убрать ресурс":"Remove resource","Добавить ресурс":"Add resource","Перетащите, чтобы переместить окно":"Drag to move the window","Изменить размер окна":"Resize window","Убрать запись":"Remove entry","Добавить запись":"Add entry","Русская версия":"Russian version"});
+    Object.assign(UI_EN,{"ПУЛИ":"BULLETS","РАЗУМ":"MIND","ДУХ":"SPIRIT","СУДЬБА":"FATE","УБИВАТЬ":"KILL","КОЛДОВАТЬ":"CAST","ЧИНИТЬ":"FIX","ПРОБИВАТЬСЯ":"ASCEND","СКРЫВАТЬСЯ":"HIDE","ТЕХНИЧИТЬ":"TECH","ИЗБЕГАТЬ":"EVADE","УЗНАВАТЬ":"INVESTIGATE","ГОВОРИТЬ":"TALK","ЧАЩА":"THICKET","ПУСТОШЬ":"WASTELAND","ВОЛНЫ":"WAVES","ГОРИЗОНТ":"HORIZON","АРМИЯ":"ARMY","БЕЗУМИЕ":"MADNESS","МИР":"WORLD","КОРПОРАЦИИ":"CORPORATIONS","ДУХИ":"SPIRITS","К4":"D4","К6":"D6","К8":"D8","К10":"D10","К12":"D12","Голова":"Head","Тело":"Body","Особое":"Special","Рюкзак":"Backpack"});
+    Object.assign(UI_EN,{"А4":"A4","Навык, связанный с любым боем или попыткой что-то сломать.":"A Skill used for any kind of combat or an attempt to break something.","Навык, применяемый для любой магии или магического предмета. Если вы имеете этот навык, вы можете создавать простые магические эффекты без проверки, например прикурить сигарету щелчком пальцев или перемешать напиток в кружке, не касаясь его.":"A Skill used for any magic or magical item. With it, you can create simple magical effects without a check, such as lighting a cigarette with a snap of your fingers or stirring a drink without touching it.","Навык, дающий восстановить прежнее состояние чего-то или кого-то.":"A Skill used to restore something or someone to their former condition.","Навык, отвечающий за перемещение в опасных ситуациях, например во время погони или перехода через Башню.":"A Skill used to move through dangerous situations, such as a chase or an Ascent through the Tower.","Навык, отвечающий за скрытное проникновение и перемещение. Незаметные нейтрализации не подозревающих противников — тоже часть этого навыка.":"A Skill used for covert entry and movement. Silently neutralizing unsuspecting enemies is also part of this Skill.","Навык, отвечающий за взаимодействие с технологией, будь то взлом или написание кода. Для создания новых предметов также используется этот навык.":"A Skill used to interact with technology, from hacking to writing code. It is also used to create new items.","Навык, отвечающий за уход от физических и магических атак, например уворот, парирование или чтение короткого заговора.":"A Skill used to avoid physical and magical attacks, such as dodging, parrying, or reciting a short ward.","Навык, который отвечает за поиск вещей, опознание магических предметов или поиск данных в сети.":"A Skill used to find things, identify magical items, or search for information online.","Навык, обозначающий способность красиво и хорошо вести переговоры, торговаться или обманывать.":"A Skill used to negotiate, bargain, persuade, or deceive.","Область, отвечающая за взаимодействие с людьми из народа Ножей и с локациями Башни, похожими на лес или лабиринт.":"A Domain for interacting with the People of Knives and Tower locations resembling forests or labyrinths.","Область, отвечающая за взаимодействие с людьми из народа Ядов, а также за представляющие опасность ядовитые и проклятые локации Башни.":"A Domain for interacting with the People of Poisons and dangerous poisonous or cursed Tower locations.","Область, отвечающая за взаимодействие с людьми из народа Граней и с постоянно меняющимися или разумными локациями.":"A Domain for interacting with the People of Facets and constantly changing or sentient locations.","Область, отвечающая за взаимодействие с людьми из народа Железа и за огромные открытые локации в Башне.":"A Domain for interacting with the People of Iron and enormous open locations in the Tower.","Область для взаимодействия с чем угодно военным: от оружия и техники до людей и компьютерных программ. Ещё она отвечает за укреплённые или патрулируемые локации в Башне.":"A Domain for anything military, from weapons and vehicles to personnel and software. It also covers fortified or patrolled Tower locations.","Область, обозначающая сумасшедшее влияние Башни и всех, кто ей подвергся, а также не связанных с Башней культистов.":"A Domain covering the Tower's maddening influence, everyone affected by it, and cultists unrelated to the Tower.","Область, отвечающая за все не-военные организации, места, людей и занятия, например за разговор с торговцем или готовку. Кроме того, она отвечает за места в Башне, похожие на человеческую городскую застройку.":"A Domain for civilian organizations, places, people, and activities. It also covers Tower locations resembling human urban development.","Область могучих частных компаний, ставших полубожественной силой, и контролируемых ими мест Башни.":"A Domain of powerful private companies that became near-divine forces, and the Tower locations they control.","Область духов природы и компьютерных программ, а также их вотчин: в Башне другие реки и леса, зато встречаются подкодыши и духи предметов.":"A Domain of nature spirits and computer programs, along with their domains, including Codelings and spirits of objects."});
+    Object.assign(UI_EN,{"Критический провал":"Critical Failure","Провал":"Failure","Успех с ценой":"Success at a Cost","Успех":"Success","Критический успех":"Critical Success","Действие не удалось, получите на ступень больше стресса.":"The action fails; take Stress one step higher.","Действие не удалось, получите стресс.":"The action fails; take Stress.","Действие удалось, получите стресс.":"The action succeeds; take Stress.","Действие удалось.":"The action succeeds.","За каждую кость 10 и более стресс, причиняемый вами, повышается на ступень.":"For each die showing 10 or more, increase the Stress you inflict by one step.","Борись за жизнь!":"Fight for your life!","Это уже серьёзно…":"This is getting serious…","Отбить врата!":"Hold the Gate!","Осветим мир!":"Let us light the world!","Вспомни, кем ты был…":"Remember who you were…","Лучшая сделка почти в кармане.":"The best deal is almost in the bag.","Это будет просто просчитать.":"This will be easy to calculate.","Вдохни глубоко и выпусти когти.":"Breathe deep and bare your claws.","Заслужи золотое будущее!":"Earn a golden future!","Победа на крыльях бабочки…":"Victory on butterfly wings…","Взрастим прекраснейший цветок!":"Let us grow the fairest flower!","Малое последствие":"Minor Fallout","Значимое последствие":"Major Fallout","Роковое последствие":"Doom Fallout","Без последствия":"No Fallout","Свернуть / развернуть секцию":"Collapse / expand section"});
+    const UI_EN_REPLACEMENTS=[["ОБЩИЙ СТРЕСС","TOTAL STRESS"],["Общий стресс","Total Stress"],["ПРОВЕРКА ПОСЛЕДСТВИЯ","FALLOUT CHECK"],["Проверка последствия","Fallout Check"],["ЗНАЧИМЫХ","MAJOR"],["значимых","major"],["МАЛЫХ","MINOR"],["малых","minor"],["НАВЫКОВ","SKILLS"],["навыков","skills"],["ОБЛАСТЕЙ","DOMAINS"],["областей","domains"],["ЛИЧНЫХ","PERSONAL"],["личных","personal"],["ФРАКЦИОННЫХ","FACTION"],["фракционных","faction"],["МИРОВЫХ","WORLD"],["мировых","world"],["ПЕРСОНАЖЕЙ ИГРОКОВ","PLAYER CHARACTERS"],["персонажей игроков","player characters"],["БАЗОВЫХ","BASIC"],["базовых","basic"],["ПРОФЕССИОНАЛЬНЫХ","PROFESSIONAL"],["профессиональных","professional"],["ЭЛИТНЫХ","ELITE"],["элитных","elite"],["Дополнительный слот","Extra slot"],["Обычный стресс","Regular Stress"],["Персонаж","Character"],["Ячейка","Slot"],["Запись","Entry"]];
+    function translateUiText(value){
+      const text=String(value??""); const trimmed=text.trim(); if(!trimmed)return text;
+      let translated=UI_EN[trimmed]||trimmed.replace(/^Итого:/,"Total:").replace(/ броня\)/g," armor)").replace(/^Стресс:/,"Stress:");
+      UI_EN_REPLACEMENTS.forEach(([ru,en])=>{translated=translated.replaceAll(ru,en)});
+      return text.replace(trimmed,translated);
+    }
+    function localizeUiSubtree(root=document.body){
+      if(currentLanguage!=="en"||!root)return;
+      const textNodes=[];
+      if(root.nodeType===Node.TEXT_NODE)textNodes.push(root);
+      else{
+        const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+        while(walker.nextNode())textNodes.push(walker.currentNode);
+      }
+      textNodes.forEach(node=>{
+        const option=node.parentElement?.tagName==="OPTION"?node.parentElement:null;
+        if(option&&!option.hasAttribute("value")&&node.nodeValue.trim())option.setAttribute("value",node.nodeValue.trim());
+        const translated=translateUiText(node.nodeValue);
+        if(translated!==node.nodeValue)node.nodeValue=translated;
+      });
+      const elements=root.nodeType===Node.ELEMENT_NODE?[root,...root.querySelectorAll("*")]:[];
+      elements.forEach(el=>{
+        ["aria-label","placeholder","title"].forEach(attribute=>{
+          if(!el.hasAttribute(attribute))return;
+          const value=el.getAttribute(attribute);
+          const translated=translateUiText(value);
+          if(translated!==value)el.setAttribute(attribute,translated);
+        });
+      });
+    }
     function localizeStaticUi(){
       document.documentElement.lang=currentLanguage;
       const button=byId("languageToggleButton"); if(button)button.textContent=currentLanguage==="en"?"RU":"EN";
-      document.querySelectorAll(".floating-action-label").forEach(el=>{if(!el.dataset.ru)el.dataset.ru=el.textContent.trim();el.textContent=currentLanguage==="en"?(UI_EN[el.dataset.ru]||el.dataset.ru):el.dataset.ru});
-      const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT); const nodes=[]; while(walker.nextNode())nodes.push(walker.currentNode);
-      nodes.forEach(node=>{if(!node.__ruText)node.__ruText=node.nodeValue;const ru=node.__ruText.trim();if(!ru)return;const translated=currentLanguage==="en"?(UI_EN[ru]||ru):ru;node.nodeValue=node.nodeValue.replace(ru,translated)});
-      document.querySelectorAll("[aria-label]").forEach(el=>{const ru=el.dataset.ruAria||el.getAttribute("aria-label");if(!el.dataset.ruAria)el.dataset.ruAria=ru;el.setAttribute("aria-label",currentLanguage==="en"?(UI_EN[ru]||ru):ru)});
+      localizeUiSubtree(document.body);
     }
-    function setLanguage(language){
-      currentLanguage=language==="en"?"en":"ru"; localStorage.setItem("towerSheetLanguage",currentLanguage);
-      window.TOWER_CODEX=currentLanguage==="en"?window.TOWER_CODEX_EN:window.TOWER_CODEX_RU;
-      if(codexActiveSection?.startsWith("classes:"))codexActiveSection="classes";
-      if(typeof updateNationTheme==="function"){updateNationTheme();updateClassBackground();updateNationPattern();updateNationStripeAnimation();}
-      localizeStaticUi();
-      if(typeof renderCodexTabs==="function"){renderCodexTabs();renderCodexSection()}
-      if(typeof renderCounters==="function")renderCounters();
-      localizeStaticUi();
-      rulesHelpLoaded=false; if(typeof loadRulesHelp==="function"&&byId("rulesHelpContent"))loadRulesHelp();
+    function startUiLocalizationObserver(){
+      if(currentLanguage!=="en")return;
+      const observer=new MutationObserver(mutations=>mutations.forEach(mutation=>{
+        if(mutation.type==="characterData")localizeUiSubtree(mutation.target);
+        else if(mutation.type==="childList")mutation.addedNodes.forEach(localizeUiSubtree);
+        else if(mutation.type==="attributes")localizeUiSubtree(mutation.target);
+      }));
+      observer.observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:["aria-label","placeholder","title"]});
     }
-    function toggleLanguage(){setLanguage(currentLanguage==="en"?"ru":"en")}
-
     const DEFAULT_TACTIC_COUNT=2;
     const DEFAULT_RESOURCE_COUNT=1;
     const DEFAULT_DIARY_COUNT=1;
@@ -1857,6 +1883,18 @@ button.secondary.portrait-mini-button{
       "Красный Рукав":"Взрастим прекраснейший цветок!"
     };
 
+    const classRollTitleMapEn={
+      "Страж Врат":"Hold the Gate!",
+      "Светоносец":"Let us light the world!",
+      "Раствор Души":"Remember who you were…",
+      "Экономант":"The best deal is almost in the bag.",
+      "Неболом":"This will be easy to calculate.",
+      "Росоход":"Breathe deep and bare your claws.",
+      "Подкодыш":"Earn a golden future!",
+      "Паратехник":"Victory on butterfly wings…",
+      "Красный Рукав":"Let us grow the fairest flower!"
+    };
+
     const classBackgroundMap={
       "Страж Врат":"images/class-gate-guard.svg",
       "Светоносец":"images/class-lightbearer.svg",
@@ -1896,11 +1934,11 @@ button.secondary.portrait-mini-button{
     const armorSlots=["Голова","Тело","Особое","Рюкзак"];
 
     const resultLevels=[
-      {label:"Критический провал",text:"Действие не удалось, получите на ступень больше стресса."},
-      {label:"Провал",text:"Действие не удалось, получите стресс."},
-      {label:"Успех с ценой",text:"Действие удалось, получите стресс."},
-      {label:"Успех",text:"Действие удалось."},
-      {label:"Критический успех",text:"За каждую кость 10 и более стресс, причиняемый вами, повышается на ступень."}
+      {label:"Критический провал",labelEn:"Critical Failure",text:"Действие не удалось, получите на ступень больше стресса.",textEn:"The action fails; take Stress one step higher."},
+      {label:"Провал",labelEn:"Failure",text:"Действие не удалось, получите стресс.",textEn:"The action fails; take Stress."},
+      {label:"Успех с ценой",labelEn:"Success at a Cost",text:"Действие удалось, получите стресс.",textEn:"The action succeeds; take Stress."},
+      {label:"Успех",labelEn:"Success",text:"Действие удалось.",textEn:"The action succeeds."},
+      {label:"Критический успех",labelEn:"Critical Success",text:"За каждую кость 10 и более стресс, причиняемый вами, повышается на ступень.",textEn:"For each die showing 10 or more, increase the Stress you inflict by one step."}
     ];
 
     function byId(id){return document.getElementById(id)}
@@ -2079,7 +2117,7 @@ button.secondary.portrait-mini-button{
         if(!file)return;
 
         if(!file.type.startsWith("image/")){
-          alert("Можно загружать только изображения.");
+          alert(currentLanguage==="en"?"Only image files can be uploaded.":"Можно загружать только изображения.");
           input.value="";
           return;
         }
@@ -2092,14 +2130,14 @@ button.secondary.portrait-mini-button{
           try{
             localStorage.setItem(CHARACTER_PORTRAIT_KEY,imageData);
           }catch(error){
-            alert("Изображение слишком большое для локального сохранения браузера. Попробуй файл меньшего размера.");
+            alert(currentLanguage==="en"?"The image is too large for browser storage. Try a smaller file.":"Изображение слишком большое для локального сохранения браузера. Попробуй файл меньшего размера.");
             console.error(error);
           }
 
           showCharacterPortrait(imageData);
         };
 
-        reader.onerror=()=>alert("Не удалось прочитать файл изображения.");
+        reader.onerror=()=>alert(currentLanguage==="en"?"Could not read the image file.":"Не удалось прочитать файл изображения.");
         reader.readAsDataURL(file);
       });
     }
@@ -2779,7 +2817,7 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
 
     function addResourceRow(){
       if(resourceCount>=MAX_RESOURCE_COUNT){
-        alert("Нельзя добавить больше 10 ресурсов.");
+        alert(currentLanguage==="en"?"You cannot add more than 10 resources.":"Нельзя добавить больше 10 ресурсов.");
         return;
       }
       preserveDataAndRebuild(()=>{resourceCount+=1;buildResourceRows()});
@@ -2824,7 +2862,7 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
       for(let i=1;i<=diaryCount;i++){
         container.innerHTML+=`
           <div class="slot-entry">
-            <label>Запись ${i}</label>
+            <label>${currentLanguage==="en"?"Entry":"Запись"} ${i}</label>
             <textarea id="diaryEntry${i}" placeholder="Заметка, сцена, долг, обещание, находка, имя, странность..."></textarea>
           </div>
         `;
@@ -2842,7 +2880,9 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
       for(let i=1;i<=diaryCount;i++){
         if(byId(`diaryEntry${i}`)?.value.trim())filled++;
       }
-      container.innerHTML=`<span class="counter">${diaryCount} ${plural(diaryCount,"ячейка","ячейки","ячеек")}</span><span class="counter">${filled} ${plural(filled,"заполнена","заполнены","заполнено")}</span>`;
+      container.innerHTML=currentLanguage==="en"
+        ?`<span class="counter">${countLabelEn(diaryCount,"slot","slots")}</span><span class="counter">${filled} filled</span>`
+        :`<span class="counter">${diaryCount} ${plural(diaryCount,"ячейка","ячейки","ячеек")}</span><span class="counter">${filled} ${plural(filled,"заполнена","заполнены","заполнено")}</span>`;
     }
 
     function addSlot(kind,type){
@@ -2851,9 +2891,9 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
       if(kind==="ability"){
         const max=MAX_ABILITY_COUNTS[type];
         if(max!==undefined&&countMaps[kind][type]>=max){
-          if(type==="professional")alert("Нельзя добавить больше 5 профессиональных способностей.");
-          else if(type==="elite")alert("Нельзя добавить больше 1 элитной способности.");
-          else alert("Достигнут предел ячеек.");
+          if(type==="professional")alert(currentLanguage==="en"?"You cannot add more than 5 professional abilities.":"Нельзя добавить больше 5 профессиональных способностей.");
+          else if(type==="elite")alert(currentLanguage==="en"?"You cannot add more than 1 elite ability.":"Нельзя добавить больше 1 элитной способности.");
+          else alert(currentLanguage==="en"?"The slot limit has been reached.":"Достигнут предел ячеек.");
           return;
         }
       }
@@ -2889,6 +2929,8 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
       if(mod10>=2&&mod10<=4&&(mod100<12||mod100>14))return few;
       return many;
     }
+
+    function countLabelEn(number,one,many){return `${number} ${number===1?one:many}`}
 
     function clampProtection(value){
       const number=Number(value||0);
@@ -3028,12 +3070,12 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
       const totalStress=totals.totalStress;
       const roll=Math.floor(Math.random()*10)+1;
       if(roll<totalStress){
-        let consequence="Малое последствие";
-        if(totalStress>=16)consequence="Роковое последствие";
-        else if(totalStress>=6)consequence="Значимое последствие";
-        lastConsequenceCheckText=`К10: ${roll}, стресс: ${totalStress} — ${consequence}`;
+        let consequence=currentLanguage==="en"?"Minor Fallout":"Малое последствие";
+        if(totalStress>=16)consequence=currentLanguage==="en"?"Doom Fallout":"Роковое последствие";
+        else if(totalStress>=6)consequence=currentLanguage==="en"?"Major Fallout":"Значимое последствие";
+        lastConsequenceCheckText=`${currentLanguage==="en"?"D10":"К10"}: ${roll}, ${currentLanguage==="en"?"Stress":"стресс"}: ${totalStress} — ${consequence}`;
       }else{
-        lastConsequenceCheckText=`К10: ${roll}, стресс: ${totalStress} — Без последствия`;
+        lastConsequenceCheckText=`${currentLanguage==="en"?"D10":"К10"}: ${roll}, ${currentLanguage==="en"?"Stress":"стресс"}: ${totalStress} — ${currentLanguage==="en"?"No Fallout":"Без последствия"}`;
       }
       renderCounters();
       saveSheet(false);
@@ -3057,10 +3099,10 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
     function getRollMenuTitleText(){
       const totalStress=getCurrentStressTotals().totalStress;
       const significantConsequences=countFilledSlots("consequence","major");
-      if(significantConsequences>=3||totalStress>10)return "Борись за жизнь!";
-      if((significantConsequences>=1&&significantConsequences<=2)||(totalStress>=5&&totalStress<=10))return "Это уже серьёзно…";
+      if(significantConsequences>=3||totalStress>10)return currentLanguage==="en"?"Fight for your life!":"Борись за жизнь!";
+      if((significantConsequences>=1&&significantConsequences<=2)||(totalStress>=5&&totalStress<=10))return currentLanguage==="en"?"This is getting serious…":"Это уже серьёзно…";
       const className=byId("className")?.value||"";
-      return classRollTitleMap[className]||"Автоматический бросок";
+      return (currentLanguage==="en"?classRollTitleMapEn[className]:classRollTitleMap[className])||(currentLanguage==="en"?"Automatic Roll":"Автоматический бросок");
     }
 
     function updateRollMenuTitle(){
@@ -3113,7 +3155,9 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
       let domains=0;
       for(let i=1;i<=defaultSkills.length;i++)if(byId(`skill${i}HasSkill`).checked)skills++;
       for(let i=1;i<=defaultDomains.length;i++)if(byId(`domain${i}HasDomain`).checked)domains++;
-      byId("skillDomainCounters").innerHTML=`<span class="counter">${skills} ${plural(skills,"навык","навыка","навыков")}</span><span class="counter">${domains} ${plural(domains,"область","области","областей")}</span>`;
+      byId("skillDomainCounters").innerHTML=currentLanguage==="en"
+        ?`<span class="counter">${countLabelEn(skills,"skill","skills")}</span><span class="counter">${countLabelEn(domains,"domain","domains")}</span>`
+        :`<span class="counter">${skills} ${plural(skills,"навык","навыка","навыков")}</span><span class="counter">${domains} ${plural(domains,"область","области","областей")}</span>`;
     }
 
     function renderTacticCounters(){
@@ -3125,13 +3169,17 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
         if(group)tacticGroups++;
         if(notes)tacticLines+=notes.split("\n").map(line=>line.trim()).filter(Boolean).length;
       }
-      byId("tacticCounters").innerHTML=`<span class="counter">${tacticCount} ${plural(tacticCount,"ячейка","ячейки","ячеек")}</span><span class="counter">${tacticGroups} ${plural(tacticGroups,"группа","группы","групп")} тактик</span><span class="counter">${tacticLines} ${plural(tacticLines,"записанная тактика","записанные тактики","записанных тактик")}</span>`;
+      byId("tacticCounters").innerHTML=currentLanguage==="en"
+        ?`<span class="counter">${countLabelEn(tacticCount,"slot","slots")}</span><span class="counter">${countLabelEn(tacticGroups,"tactic group","tactic groups")}</span><span class="counter">${countLabelEn(tacticLines,"recorded tactic","recorded tactics")}</span>`
+        :`<span class="counter">${tacticCount} ${plural(tacticCount,"ячейка","ячейки","ячеек")}</span><span class="counter">${tacticGroups} ${plural(tacticGroups,"группа","группы","групп")} тактик</span><span class="counter">${tacticLines} ${plural(tacticLines,"записанная тактика","записанные тактики","записанных тактик")}</span>`;
     }
 
     function renderResourceCounters(){
       let filledResources=0;
       for(let i=1;i<=resourceCount;i++)if(byId(`resource${i}Name`)?.value.trim())filledResources++;
-      byId("resourceCounters").innerHTML=`<span class="counter">${resourceCount} ${plural(resourceCount,"ячейка","ячейки","ячеек")} ресурсов</span><span class="counter">${filledResources} ${plural(filledResources,"заполнена","заполнены","заполнено")}</span>`;
+      byId("resourceCounters").innerHTML=currentLanguage==="en"
+        ?`<span class="counter">${countLabelEn(resourceCount,"resource slot","resource slots")}</span><span class="counter">${filledResources} filled</span>`
+        :`<span class="counter">${resourceCount} ${plural(resourceCount,"ячейка","ячейки","ячеек")} ресурсов</span><span class="counter">${filledResources} ${plural(filledResources,"заполнена","заполнены","заполнено")}</span>`;
     }
 
     function renderContactCounters(){
@@ -3139,13 +3187,17 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
       const faction=countFilledSlots("contact","faction");
       const world=countFilledSlots("contact","world");
       const players=countFilledSlots("contact","players");
-      byId("contactCounters").innerHTML=`<span class="counter">${personal}/${contactCounts.personal} личных</span><span class="counter">${faction}/${contactCounts.faction} фракционных</span><span class="counter">${world}/${contactCounts.world} мировых</span><span class="counter">${players}/${contactCounts.players} персонажей игроков</span>`;
+      byId("contactCounters").innerHTML=currentLanguage==="en"
+        ?`<span class="counter">${personal}/${contactCounts.personal} personal</span><span class="counter">${faction}/${contactCounts.faction} faction</span><span class="counter">${world}/${contactCounts.world} world</span><span class="counter">${players}/${contactCounts.players} player characters</span>`
+        :`<span class="counter">${personal}/${contactCounts.personal} личных</span><span class="counter">${faction}/${contactCounts.faction} фракционных</span><span class="counter">${world}/${contactCounts.world} мировых</span><span class="counter">${players}/${contactCounts.players} персонажей игроков</span>`;
     }
 
     function renderConsequenceCounters(){
       const minor=countFilledSlots("consequence","minor");
       const major=countFilledSlots("consequence","major");
-      byId("consequenceCounters").innerHTML=`<span class="counter">${minor}/${consequenceCounts.minor} малых</span><span class="counter">${major}/${consequenceCounts.major} значимых</span>`;
+      byId("consequenceCounters").innerHTML=currentLanguage==="en"
+        ?`<span class="counter">${minor}/${consequenceCounts.minor} minor</span><span class="counter">${major}/${consequenceCounts.major} major</span>`
+        :`<span class="counter">${minor}/${consequenceCounts.minor} малых</span><span class="counter">${major}/${consequenceCounts.major} значимых</span>`;
     }
 
     function renderAbilityCounters(){
@@ -3153,7 +3205,9 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
       const minor=countFilledSlots("ability","minor");
       const professional=countFilledSlots("ability","professional");
       const elite=countFilledSlots("ability","elite");
-      byId("abilityCounters").innerHTML=`<span class="counter">${basic}/${abilityCounts.basic} базовых</span>`+`<span class="counter">${minor}/${abilityCounts.minor} малых</span>`+`<span class="counter">${professional}/${abilityCounts.professional} профессиональных</span>`+`<span class="counter">${elite}/${abilityCounts.elite} элитных</span>`;
+      byId("abilityCounters").innerHTML=currentLanguage==="en"
+        ?`<span class="counter">${basic}/${abilityCounts.basic} basic</span><span class="counter">${minor}/${abilityCounts.minor} minor</span><span class="counter">${professional}/${abilityCounts.professional} professional</span><span class="counter">${elite}/${abilityCounts.elite} elite</span>`
+        :`<span class="counter">${basic}/${abilityCounts.basic} базовых</span>`+`<span class="counter">${minor}/${abilityCounts.minor} малых</span>`+`<span class="counter">${professional}/${abilityCounts.professional} профессиональных</span>`+`<span class="counter">${elite}/${abilityCounts.elite} элитных</span>`;
     }
 
     function getAllInputs(){return Array.from(document.querySelectorAll("input, textarea, select"))}
@@ -3243,24 +3297,24 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
       renderCounters();
       const data=collectData();
       localStorage.setItem(STORAGE_KEY,JSON.stringify(data));
-      if(showAlert)alert("Лист сохранён на этом устройстве.");
+      if(showAlert)alert(currentLanguage==="en"?"The sheet has been saved on this device.":"Лист сохранён на этом устройстве.");
     }
 
     function loadSheet(showAlert=false){
       const data=readSavedData();
       if(!data){
         renderCounters();
-        if(showAlert)alert("Сохранённый лист не найден.");
+        if(showAlert)alert(currentLanguage==="en"?"No saved sheet was found.":"Сохранённый лист не найден.");
         return;
       }
       applyCountsFromData(data);
       buildDynamicRows();
       applyData(data);
-      if(showAlert)alert("Лист загружен.");
+      if(showAlert)alert(currentLanguage==="en"?"The sheet has been loaded.":"Лист загружен.");
     }
 
     function clearSheet(){
-      const confirmed=confirm("Очистить сохранённый лист и вернуть значения по умолчанию?");
+      const confirmed=confirm(currentLanguage==="en"?"Clear the saved sheet and restore the default values?":"Очистить сохранённый лист и вернуть значения по умолчанию?");
       if(!confirmed)return;
       localStorage.removeItem(STORAGE_KEY);
       location.reload();
@@ -3331,15 +3385,15 @@ function importCharacterJSON(event){
 
       saveSheet(false);
       closeSheetMenu();
-      alert("Лист импортирован из .json.");
+      alert(currentLanguage==="en"?"The sheet has been imported from .json.":"Лист импортирован из .json.");
     }catch(error){
       console.error(error);
-      alert("Не удалось импортировать файл. Проверь, что это JSON-файл листа персонажа.");
+      alert(currentLanguage==="en"?"Could not import the file. Make sure it is a character-sheet JSON file.":"Не удалось импортировать файл. Проверь, что это JSON-файл листа персонажа.");
     }
   };
 
   reader.onerror=()=>{
-    alert("Не удалось прочитать файл.");
+    alert(currentLanguage==="en"?"Could not read the file.":"Не удалось прочитать файл.");
   };
 
   reader.readAsText(file);
@@ -3351,7 +3405,7 @@ function importCharacterJSON(event){
       const reason=byId("rollReason")?.value.trim()||"";
       const result=Math.floor(Math.random()*sides)+1;
       const total=result+modifier;
-      const time=new Date().toLocaleTimeString("ru-RU",{hour:"2-digit",minute:"2-digit"});
+      const time=new Date().toLocaleTimeString(currentLanguage==="en"?"en-GB":"ru-RU",{hour:"2-digit",minute:"2-digit"});
       const entry={type:"simple",time,sides,result,modifier,total,reason};
       advancedRollHistory.unshift(entry);
       advancedRollHistory=advancedRollHistory.slice(0,10);
@@ -3594,7 +3648,7 @@ function importCharacterJSON(event){
       const targetType=target.dataset.codexDrop;
       if(targetType==="ability"){
         const field=[...target.querySelectorAll("textarea")].find(element=>!element.value.trim());
-        if(!field){alert("В этой категории нет свободной ячейки.");return false}
+        if(!field){alert(currentLanguage==="en"?"There are no empty slots in this category.":"В этой категории нет свободной ячейки.");return false}
         field.value=item.text;
         field.dispatchEvent(new Event("input",{bubbles:true}));
         return true;
@@ -3618,7 +3672,7 @@ function importCharacterJSON(event){
         if(name)name.value=item.title;
         if(skill)skill.value=item.skill||"";
         if(quality)quality.value=item.quality||"";
-        if(note)note.value=item.notes??item.text;
+        if(note)note.value=currentLanguage==="en"?(item.notesEn??item.text):(item.notes??item.text);
         dispatchCodexFieldUpdates([name,skill,quality,note]);
         updateQualityDiePreview(`gear${index}Quality`,`gear${index}QualityPreview`);
         return true;
@@ -3637,7 +3691,7 @@ function importCharacterJSON(event){
         if(resistance)resistance.value=item.resistance||"";
         if(protection)protection.value=Number(item.protection||0);
         if(extraSlots)extraSlots.value=Number(item.extraSlots||0);
-        if(note)note.value=item.notes??item.text;
+        if(note)note.value=currentLanguage==="en"?(item.notesEn??item.text):(item.notes??item.text);
         dispatchCodexFieldUpdates([name,skill,quality,resistance,protection,extraSlots,note]);
         updateQualityDiePreview(`armor${index}Quality`,`armor${index}QualityPreview`);
         renderCounters();
@@ -3866,7 +3920,7 @@ function importCharacterJSON(event){
       const button=byId("autoRollMasteryToggle");
       if(!button)return;
       button.classList.toggle("is-active",rollMasteryEnabled);
-      button.textContent=rollMasteryEnabled?"Мастерство: да":"Мастерство: нет";
+      button.textContent=currentLanguage==="en"?(rollMasteryEnabled?"Mastery: yes":"Mastery: no"):(rollMasteryEnabled?"Мастерство: да":"Мастерство: нет");
       button.setAttribute("aria-pressed",rollMasteryEnabled?"true":"false");
     }
 
@@ -3907,12 +3961,14 @@ function importCharacterJSON(event){
       const finalIndex=Math.max(0,naturalIndex-downgradeSteps);
       const finalResult=resultLevels[finalIndex];
       const criticalTens=rolls.filter(value=>value>=10).length;
-      const time=new Date().toLocaleTimeString("ru-RU",{hour:"2-digit",minute:"2-digit"});
+      const time=new Date().toLocaleTimeString(currentLanguage==="en"?"en-GB":"ru-RU",{hour:"2-digit",minute:"2-digit"});
       const entry={type:"advanced",time,skillName,domainName,skillChecked,domainChecked,masteryRequested:rollMasteryEnabled,masteryApplied,helpers,difficultyLabel,difficultyPenalty,intendedDice,diceToRoll,downgradeSteps,rolls,maxRoll,criticalTens,resultLabel:finalResult.label,resultText:finalResult.text};
       advancedRollHistory.unshift(entry);
       advancedRollHistory=advancedRollHistory.slice(0,10);
-      byId("autoRollResultTitle").textContent=`${finalResult.label}: ${finalResult.text}`;
-      byId("autoRollResultDetails").textContent=`Костей до сложности: ${intendedDice}. Сложность: ${difficultyLabel} (-${difficultyPenalty}). `+`Брошено костей: ${diceToRoll}. Снижение степени успеха: ${downgradeSteps}. `+`Десяток: ${criticalTens}.`;
+      byId("autoRollResultTitle").textContent=currentLanguage==="en"?`${finalResult.labelEn}: ${finalResult.textEn}`:`${finalResult.label}: ${finalResult.text}`;
+      byId("autoRollResultDetails").textContent=currentLanguage==="en"
+        ?`Dice before difficulty: ${intendedDice}. Difficulty: ${UI_EN[difficultyLabel]||difficultyLabel} (-${difficultyPenalty}). Dice rolled: ${diceToRoll}. Success downgrades: ${downgradeSteps}. Tens: ${criticalTens}.`
+        :`Костей до сложности: ${intendedDice}. Сложность: ${difficultyLabel} (-${difficultyPenalty}). Брошено костей: ${diceToRoll}. Снижение степени успеха: ${downgradeSteps}. Десяток: ${criticalTens}.`;
       renderAdvancedRollHistory();
       saveSheet(false);
     }
@@ -3926,12 +3982,12 @@ function importCharacterJSON(event){
       const isEdge=result===1||result===sides;
       const edgeClass=isEdge?" edge":"";
       const burstClass=isNewest?(result===sides?" roll-new-strong":" roll-new"):"";
-      let detail=`К${sides}: ${result}`;
+      let detail=`${currentLanguage==="en"?"D":"К"}${sides}: ${result}`;
       if(modifier!==0)detail+=` ${modifier>0?"+":""}${modifier} = ${total}`;
       if(reason)detail+=` — ${escapeHtml(reason)}`;
       return `
         <div class="roll-history-entry${burstClass}">
-          <div class="roll-history-top">[${escapeHtml(entry.time||"")}] Простой бросок К${sides}</div>
+          <div class="roll-history-top">[${escapeHtml(entry.time||"")}] ${currentLanguage==="en"?`Simple D${sides} roll`:`Простой бросок К${sides}`}</div>
           <div class="simple-roll-result-line">
             <span class="die-shape-result die-d${sides}${edgeClass}"><span class="die-value">${result}</span></span>
             <span>${detail}</span>
@@ -3942,7 +3998,7 @@ function importCharacterJSON(event){
 
     function renderLegacyRollEntry(entry,isNewest=false){
       const burstClass=isNewest?" roll-new":"";
-      return `<div class="roll-history-entry${burstClass}"><div class="roll-history-top">Старый простой бросок</div><div class="hint">${escapeHtml(entry.text||"")}</div></div>`;
+      return `<div class="roll-history-entry${burstClass}"><div class="roll-history-top">${currentLanguage==="en"?"Old simple roll":"Старый простой бросок"}</div><div class="hint">${escapeHtml(entry.text||"")}</div></div>`;
     }
 
     function renderAdvancedRollEntry(entry,isNewest=false){
@@ -3957,17 +4013,20 @@ function importCharacterJSON(event){
         return `<span class="${classes.join(" ")}">${value}</span>`;
       }).join("");
       const parts=[];
-      if(entry.skillName)parts.push(`Навык: ${escapeHtml(entry.skillName)}${entry.skillChecked?" ✓":""}`);
-      if(entry.domainName)parts.push(`Область: ${escapeHtml(entry.domainName)}${entry.domainChecked?" ✓":""}`);
-      if(entry.masteryRequested)parts.push(`Мастерство: ${entry.masteryApplied?"применено":"нет"}`);
-      if(entry.helpers)parts.push(`Помощники: ${entry.helpers}`);
-      parts.push(`Сложность: ${escapeHtml(entry.difficultyLabel||"Нормальная")}`);
+      if(entry.skillName)parts.push(`${currentLanguage==="en"?"Skill":"Навык"}: ${escapeHtml(currentLanguage==="en"?(UI_EN[entry.skillName]||entry.skillName):entry.skillName)}${entry.skillChecked?" ✓":""}`);
+      if(entry.domainName)parts.push(`${currentLanguage==="en"?"Domain":"Область"}: ${escapeHtml(currentLanguage==="en"?(UI_EN[entry.domainName]||entry.domainName):entry.domainName)}${entry.domainChecked?" ✓":""}`);
+      if(entry.masteryRequested)parts.push(`${currentLanguage==="en"?"Mastery":"Мастерство"}: ${currentLanguage==="en"?(entry.masteryApplied?"applied":"no"):(entry.masteryApplied?"применено":"нет")}`);
+      if(entry.helpers)parts.push(`${currentLanguage==="en"?"Helpers":"Помощники"}: ${entry.helpers}`);
+      const difficulty=entry.difficultyLabel||"Нормальная";
+      parts.push(`${currentLanguage==="en"?"Difficulty":"Сложность"}: ${escapeHtml(currentLanguage==="en"?(UI_EN[difficulty]||difficulty):difficulty)}`);
+      const resultLabel=currentLanguage==="en"?(UI_EN[entry.resultLabel]||entry.resultLabel||""):(entry.resultLabel||"");
+      const resultText=currentLanguage==="en"?(UI_EN[entry.resultText]||entry.resultText||""):(entry.resultText||"");
       return `
         <div class="roll-history-entry${burstClass}">
-          <div class="roll-history-top">[${escapeHtml(entry.time||"")}] ${escapeHtml(entry.resultLabel||"")}</div>
+          <div class="roll-history-top">[${escapeHtml(entry.time||"")}] ${escapeHtml(resultLabel)}</div>
           <div>${rolls}</div>
           <div class="hint">${parts.join(" · ")}</div>
-          <div class="hint">Максимум: ${entry.maxRoll??maxValue}. Костей: ${entry.diceToRoll??values.length}. Снижение: ${entry.downgradeSteps??0}. ${escapeHtml(entry.resultText||"")}</div>
+          <div class="hint">${currentLanguage==="en"?"Maximum":"Максимум"}: ${entry.maxRoll??maxValue}. ${currentLanguage==="en"?"Dice":"Костей"}: ${entry.diceToRoll??values.length}. ${currentLanguage==="en"?"Downgrades":"Снижение"}: ${entry.downgradeSteps??0}. ${escapeHtml(resultText)}</div>
         </div>
       `;
     }
@@ -3976,7 +4035,7 @@ function importCharacterJSON(event){
       const container=byId("autoRollHistory");
       if(!container)return;
       if(!advancedRollHistory.length){
-        container.innerHTML=`<div class="roll-history-entry">Бросков пока нет.</div>`;
+        container.innerHTML=`<div class="roll-history-entry">${currentLanguage==="en"?"No rolls yet.":"Бросков пока нет."}</div>`;
         return;
       }
       container.innerHTML=advancedRollHistory.map((entry,index)=>{
@@ -4100,7 +4159,6 @@ function closeRulesHelpMenuOnBackdrop(event){
     }
 
     function init(){
-      setLanguage(currentLanguage);
       const saved=readSavedData();
       if(saved)applyCountsFromData(saved);
       buildStaticRows();
@@ -4118,6 +4176,7 @@ function closeRulesHelpMenuOnBackdrop(event){
         renderCounters();
       }
       localizeStaticUi();
+      startUiLocalizationObserver();
       checkThemeAssets();
     }
 
@@ -4131,7 +4190,7 @@ function closeRulesHelpMenuOnBackdrop(event){
       box.style.margin="16px";
       box.style.fontFamily="monospace";
       box.style.whiteSpace="pre-wrap";
-      box.textContent="Ошибка JavaScript:\n"+(error?.name||"Error")+": "+(error?.message||String(error))+"\n\n"+(error?.stack||"");
+      box.textContent=(currentLanguage==="en"?"JavaScript error:\n":"Ошибка JavaScript:\n")+(error?.name||"Error")+": "+(error?.message||String(error))+"\n\n"+(error?.stack||"");
       document.body.prepend(box);
     }
   </script>
