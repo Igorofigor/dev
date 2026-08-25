@@ -383,6 +383,7 @@
 
     .floating-actions{right:18px}
     .floating-actions-left{left:18px}
+    .language-toggle-button{position:fixed;top:16px;right:18px;z-index:1200;min-width:46px;height:32px;border:2px solid var(--accent);border-radius:8px;background:var(--card);color:var(--accent);font-weight:800;cursor:pointer}
 
     .floating-diary-button{
       width:96px;
@@ -1576,6 +1577,7 @@ button.secondary.portrait-mini-button{
       <div class="table-wrap"><table class="table"><thead><tr><th>№</th><th>Ресурс</th><th>Качество</th><th>Свойства / цена / применение</th></tr></thead><tbody id="resourceRows"></tbody></table></div>
     </div>
   </div>
+  <button id="languageToggleButton" class="language-toggle-button" type="button" onclick="toggleLanguage()" aria-label="Переключить язык">EN</button>
 
   <div id="codexModal" class="codex-modal" onclick="closeCodexMenuOnBackdrop(event)" aria-hidden="true">
     <div id="codexPanel" class="codex-panel" onclick="event.stopPropagation()">
@@ -1709,11 +1711,32 @@ button.secondary.portrait-mini-button{
   </div>
 
   <script src="codex-data.js?v=6"></script>
+  <script>window.TOWER_CODEX_RU=window.TOWER_CODEX;</script>
+  <script src="codex-data-en.js?v=1"></script>
   <script>
     const STORAGE_KEY="towerCharacterSheetV14";
     const CHARACTER_PORTRAIT_KEY="towerCharacterPortraitV1";
     let portraitDataUrl="";
     let nationStripeAnimationEnabled=true;
+    let currentLanguage=localStorage.getItem("towerSheetLanguage")||"ru";
+    const UI_EN={"КОДЕКС":"CODEX","СПОСОБНОСТИ":"ABILITIES","ТАКТИКИ":"TACTICS","РЕСУРСЫ":"RESOURCES","ДНЕВНИК":"DIARY","БРОСОК":"ROLL","СПРАВКА":"HELP","МЕНЮ":"MENU","Персонаж":"Character","Портрет":"Portrait","Настройки портрета":"Portrait settings","Загрузить":"Load","Удалить":"Delete","Имя":"Name","Класс":"Class","Народ":"Nation","Другой":"Other","Род Войск":"Military Branch","Описание":"Description","Сопротивления, защита и стресс":"Resistances, Protection and Stress","Сопротивление":"Resistance","Защита":"Protection","Доп. слоты":"Extra Slots","Стресс":"Stress","Итог":"Total","Последствия":"Fallout","Малые":"Minor","Значимые":"Major","Шкалы дружбы":"Friendship Tracks","Заметка":"Note","Навыки и области":"Skills and Domains","Навыки":"Skills","Области":"Domains","Снаряжение":"Equipment","Слот":"Slot","Предмет":"Item","Качество":"Quality","Свойства / заметки":"Properties / Notes","Броня":"Armor","Свойства":"Properties","Контакты":"Contacts","Личные":"Personal","Фракционные":"Faction","Мировые":"World","Персонажи игроков":"Player Characters","Классовые вопросы":"Class Questions","Вопрос 1":"Question 1","Вопрос 2":"Question 2","Вопрос 3":"Question 3","Закрыть":"Close","Базовые":"Basic","Малые":"Minor","Профессиональные":"Professional","Элитные":"Elite","Группы тактик":"Tactic Groups","Группа тактик":"Tactic Group","Связанный навык":"Linked Skill","Тактики / заметки":"Tactics / Notes","Ресурс":"Resource","Свойства / цена / применение":"Properties / Cost / Use","Кодекс":"Codex","Справка":"Rules Help","Дневник":"Diary","Меню листа":"Sheet Menu","Сохранить":"Save","Очистить":"Clear","Анимация полоски: да":"Stripe animation: yes","Экспорт .json":"Export .json","Импорт .json":"Import .json","Автоматический бросок":"Automatic Roll","Навык":"Skill","Страж Врат":"Gate Guard","Светоносец":"Light Bearer","Раствор Души":"Soul Fluid","Росоход":"Dew Walker","Экономант":"Economancer","Неболом":"Skybreaker","Подкодыш":"Codeling","Паратехник":"Paratech","Красный Рукав":"Red Sleeve","Народ Ножей":"People of Knives","Народ Ядов":"People of Poisons","Народ Граней":"People of Facets","Народ Железа":"People of Iron","Тяжёлая пехота":"Heavy Infantry","Мобильная пехота":"Mobile Infantry","Разведка":"Reconnaissance","Военный инженер":"Military Engineer","Штурмовая пехота":"Assault Infantry","Служба безопасности":"Security Service","Мистическая пехота":"Mystical Infantry","Полевой медик":"Field Medic","Отдел исследований":"Research Division","Открыть кодекс":"Open codex","Открыть способности":"Open abilities","Открыть группы тактик":"Open tactics","Открыть ресурсы":"Open resources","Открыть дневник":"Open diary","Открыть меню броска":"Open roll menu","Открыть справку":"Open rules help","Открыть меню листа":"Open sheet menu"};
+    function localizeStaticUi(){
+      document.documentElement.lang=currentLanguage;
+      const button=byId("languageToggleButton"); if(button)button.textContent=currentLanguage==="en"?"RU":"EN";
+      document.querySelectorAll(".floating-action-label").forEach(el=>{if(!el.dataset.ru)el.dataset.ru=el.textContent.trim();el.textContent=currentLanguage==="en"?(UI_EN[el.dataset.ru]||el.dataset.ru):el.dataset.ru});
+      const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT); const nodes=[]; while(walker.nextNode())nodes.push(walker.currentNode);
+      nodes.forEach(node=>{if(!node.__ruText)node.__ruText=node.nodeValue;const ru=node.__ruText.trim();if(!ru)return;const translated=currentLanguage==="en"?(UI_EN[ru]||ru):ru;node.nodeValue=node.nodeValue.replace(ru,translated)});
+      document.querySelectorAll("[aria-label]").forEach(el=>{const ru=el.dataset.ruAria||el.getAttribute("aria-label");if(!el.dataset.ruAria)el.dataset.ruAria=ru;el.setAttribute("aria-label",currentLanguage==="en"?(UI_EN[ru]||ru):ru)});
+    }
+    function setLanguage(language){
+      currentLanguage=language==="en"?"en":"ru"; localStorage.setItem("towerSheetLanguage",currentLanguage);
+      window.TOWER_CODEX=currentLanguage==="en"?window.TOWER_CODEX_EN:window.TOWER_CODEX_RU;
+      if(codexActiveSection?.startsWith("classes:"))codexActiveSection="classes";
+      localizeStaticUi();
+      if(typeof renderCodexTabs==="function"){renderCodexTabs();renderCodexSection()}
+      rulesHelpLoaded=false; if(typeof loadRulesHelp==="function"&&byId("rulesHelpContent"))loadRulesHelp();
+    }
+    function toggleLanguage(){setLanguage(currentLanguage==="en"?"ru":"en")}
 
     const DEFAULT_TACTIC_COUNT=2;
     const DEFAULT_RESOURCE_COUNT=1;
@@ -3478,7 +3501,7 @@ function importCharacterJSON(event){
       if(!container)return;
       const sections=window.TOWER_CODEX?.sections||[];
       const allItems=window.TOWER_CODEX?.items||[];
-      const classNames=[...new Set(allItems.filter(item=>item.section==="classes").map(item=>item.className).filter(Boolean))];
+      const classNames=[...new Set(allItems.filter(item=>item.section==="classes").map(item=>currentLanguage==="en"?(item.classNameEn||item.className):item.className).filter(Boolean))];
       if(codexActiveSection==="classes"&&classNames.length)codexActiveSection=`classes:${classNames[0]}`;
       const tabs=sections.flatMap(section=>section.id==="classes"
         ?classNames.map(className=>({id:`classes:${className}`,title:className}))
@@ -3491,25 +3514,26 @@ function importCharacterJSON(event){
       if(!container)return;
       const items=(window.TOWER_CODEX?.items||[]).filter(item=>{
         const classTab=codexActiveSection.startsWith("classes:");
-        const sectionMatch=classTab?item.section==="classes"&&item.className===codexActiveSection.slice("classes:".length):item.section===codexActiveSection;
+        const className=currentLanguage==="en"?(item.classNameEn||item.className):item.className;
+        const sectionMatch=classTab?item.section==="classes"&&className===codexActiveSection.slice("classes:".length):item.section===codexActiveSection;
         return sectionMatch&&!(item.section==="equipment"&&item.isCategory);
       });
-      const tierLabels={basic:"Базовые",minor:"Малые",professional:"Профессиональные",elite:"Элитные"};
+      const tierLabels=currentLanguage==="en"?{basic:"Basic",minor:"Minor",professional:"Professional",elite:"Elite"}:{basic:"Базовые",minor:"Малые",professional:"Профессиональные",elite:"Элитные"};
       const groups=new Map();
       items.forEach(item=>{
         let label="Снаряжение";
-        if(item.section==="classes")label=item.className||"Класс";
-        if(item.section==="factions")label=item.factionArea||"Фракции";
-        if(item.section==="equipment")label=(item.category||"Снаряжение").replace(/\s*\([Кк]\d+(?:\s+[^)]*)?\)$/," ").trim();
-        if(item.section==="tactics")label=item.skill||"Тактики";
+        if(item.section==="classes")label=currentLanguage==="en"?(item.classNameEn||item.className):item.className||"Класс";
+        if(item.section==="factions")label=currentLanguage==="en"?(item.factionAreaEn||item.factionArea):item.factionArea||"Фракции";
+        if(item.section==="equipment")label=currentLanguage==="en"?(item.categoryEn||item.category):(item.category||"Снаряжение").replace(/\s*\([Кк]\d+(?:\s+[^)]*)?\)$/," ").trim();
+        if(item.section==="tactics")label=currentLanguage==="en"?(item.skillEn||item.skill):item.skill||"Тактики";
         if(!groups.has(label))groups.set(label,[]);
         groups.get(label).push(item);
       });
       container.innerHTML=[...groups.entries()].map(([label,groupItems])=>`<details class="codex-group" open>
         <summary class="codex-group-summary">${escapeCodexHtml(label)} <span class="counter">${groupItems.length}</span></summary>
-        <div class="codex-group-items">${groupItems.map(item=>{const cardTitle=item.section==="classes"?`${item.title} — ${tierLabels[item.tier]||"Способность"}`:item.section==="factions"?`${item.title} — ${item.factionName||"Фракция не указана"}`:item.title;return `<article class="codex-card" draggable="true" data-codex-id="${escapeCodexHtml(item.id)}" title="Перетащить в подходящий слот">
+        <div class="codex-group-items">${groupItems.map(item=>{const cardTitle=item.section==="classes"?`${item.title} — ${tierLabels[item.tier]||"Ability"}`:item.section==="factions"?`${item.title} — ${currentLanguage==="en"?(item.factionNameEn||item.factionName):(item.factionName||"Фракция не указана")}`:item.title;return `<article class="codex-card" draggable="true" data-codex-id="${escapeCodexHtml(item.id)}" title="${currentLanguage==="en"?"Drag to a suitable slot":"Перетащить в подходящий слот"}">
           <h3>${escapeCodexHtml(cardTitle)}</h3>
-          <div class="codex-card-meta">Страницы PDF: ${escapeCodexHtml((item.source?.pdfPages||[]).join(", "))} · ${escapeCodexHtml(item.tier||item.skill||item.dropTarget)}</div>
+          <div class="codex-card-meta">${currentLanguage==="en"?"Rulebook pages":"Страницы PDF"}: ${escapeCodexHtml((item.source?.pdfPages||[]).join(", "))} · ${escapeCodexHtml(currentLanguage==="en"?(item.tier||item.skillEn||item.dropTarget):(item.tier||item.skill||item.dropTarget))}</div>
           <div class="codex-card-text">${escapeCodexHtml(item.text)}</div>
         </article>`}).join("")}</div>
       </details>`).join("");
@@ -3953,10 +3977,11 @@ async function loadRulesHelp(){
     return;
   }
 
-  container.innerHTML="Загрузка справки...";
+  container.innerHTML=currentLanguage==="en"?"Loading rules help...":"Загрузка справки...";
 
   try{
-    const response=await fetch("rules-help.html",{
+    const helpFile=currentLanguage==="en"?"rules-help-en.html":"rules-help.html";
+    const response=await fetch(helpFile,{
       cache:"no-cache"
     });
 
@@ -3971,8 +3996,8 @@ async function loadRulesHelp(){
   }catch(error){
     console.error(error);
     container.innerHTML=
-      `<p><strong>Не удалось загрузить справку.</strong></p>
-       <p>Проверь, что файл <code>rules-help.html</code> лежит рядом с <code>index.html</code>.</p>
+      `<p><strong>${currentLanguage==="en"?"Could not load the rules help.":"Не удалось загрузить справку."}</strong></p>
+       <p>${currentLanguage==="en"?"Make sure the file":"Проверь, что файл"} <code>${currentLanguage==="en"?"rules-help-en.html":"rules-help.html"}</code> ${currentLanguage==="en"?"is next to index.html.":"лежит рядом с index.html."}</p>
        <p class="hint">Если ты открываешь лист как локальный файл через <code>file://</code>, браузер может блокировать загрузку внешних файлов. В таком случае лучше открыть лист через GitHub Pages или локальный сервер.</p>`;
   }
 }
@@ -4055,6 +4080,7 @@ function closeRulesHelpMenuOnBackdrop(event){
     }
 
     function init(){
+      setLanguage(currentLanguage);
       const saved=readSavedData();
       if(saved)applyCountsFromData(saved);
       buildStaticRows();
@@ -4071,6 +4097,7 @@ function closeRulesHelpMenuOnBackdrop(event){
         renderAdvancedRollHistory();
         renderCounters();
       }
+      localizeStaticUi();
     }
 
     try{init()}
