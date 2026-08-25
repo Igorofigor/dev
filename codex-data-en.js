@@ -1,5008 +1,10132 @@
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="images/rulesbutton.svg">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Towerfall — Interactive Character Sheet</title>
-
-  <style>
-    :root{
-      --bg:#fff;
-      --card:#fff;
-      --text:#320216;
-      --muted:#5a0002cc;
-      --line:#5a000244;
-      --accent:#5a0002;
-      --accent-soft:#5a000218;
-      --accent-hover:#7c1836;
-      --accent-hover-soft:#7c183626;
-      --hover-bg:#7c183612;
-      --button:#5a0002;
-      --button-text:#fff;
-      --on-accent:#fff;
-      --on-hover:#fff;
-      --danger:#c40000;
-      --class-bg-image:none;
-      --nation-pattern-image:none;
-      --class-parallax-y:0px;
-      --nation-parallax-y:0px;
-    }
-
-    *{box-sizing:border-box}
-
-    body{
-      margin:0;
-      padding:16px;
-      min-height:100vh;
-      position:relative;
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      background:var(--bg);
-      color:var(--text);
-    }
-
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      z-index:0;
-      pointer-events:none;
-      background-color:transparent;
-      opacity:.18;
-      filter:contrast(1.1);
-      will-change:mask-position,-webkit-mask-position;
-    }
-
-    body.has-class-emblem::before{
-      background-color:var(--accent);
-      -webkit-mask-image:var(--class-bg-image);
-      mask-image:var(--class-bg-image);
-      -webkit-mask-size:cover;
-      mask-size:cover;
-      -webkit-mask-position:center calc(50% + var(--class-parallax-y));
-      mask-position:center calc(50% + var(--class-parallax-y));
-      -webkit-mask-repeat:no-repeat;
-      mask-repeat:no-repeat;
-    }
-
-    body::after{
-      content:"";
-      position:fixed;
-      inset:0;
-      z-index:0;
-      pointer-events:none;
-      background-color:transparent;
-      opacity:.12;
-      will-change:mask-position,-webkit-mask-position;
-    }
-
-    body.has-nation-pattern::after{
-      background-color:var(--accent);
-      -webkit-mask-image:var(--nation-pattern-image);
-      mask-image:var(--nation-pattern-image);
-      -webkit-mask-size:360px 360px;
-      mask-size:360px 360px;
-      -webkit-mask-position:center var(--nation-parallax-y);
-      mask-position:center var(--nation-parallax-y);
-      -webkit-mask-repeat:repeat;
-      mask-repeat:repeat;
-    }
-
-    .nation-theme-stripe{
-      position:fixed;
-      top:0;
-      left:8px;
-      z-index:2;
-      width:14px;
-      height:100vh;
-      pointer-events:none;
-      opacity:.9;
-      background:repeating-linear-gradient(
-        to bottom,
-        var(--nation-stripe-color,var(--accent)) 0,
-        var(--nation-stripe-color,var(--accent)) 18px,
-        transparent 18px,
-        transparent 32px
-      );
-      background-size:100% 64px;
-      animation:nation-stripe-rise var(--nation-stripe-duration,18s) linear infinite;
-      transition:opacity .18s ease,filter .18s ease,background-color .18s ease;
-    }
-
-    body.nation-stripe-animation-disabled .nation-theme-stripe{
-      animation:none;
-    }
-
-    @keyframes nation-stripe-rise{
-      from{background-position:0 0}
-      to{background-position:0 -64px}
-    }
-
-    .app{max-width:1120px;margin:0 auto 80px;position:relative;z-index:1}
-    h1,h2,h3{color:var(--accent);text-transform:uppercase;letter-spacing:.04em}
-    h1{margin:0 0 8px;font-size:30px;line-height:1.1}
-    h2{margin:0;font-size:22px}
-    h3{margin:0;font-size:16px}
-    p{margin-top:0;color:var(--muted);line-height:1.45}
-
-    .card{
-      margin-bottom:16px;
-      padding:16px;
-      border:2px solid var(--accent);
-      border-radius:0;
-      background:rgba(255,255,255,.9);
-      box-shadow:8px 8px 0 var(--accent-soft);
-      transition:background-color .18s ease,color .18s ease,border-color .18s ease,box-shadow .18s ease;
-    }
-
-    .card:hover{box-shadow:8px 8px 0 var(--accent-hover-soft)}
-
-    .title-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
-    .title-actions{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap}
-
-    .card-content{
-      overflow:hidden;
-      max-height:5000px;
-      opacity:1;
-      transition:max-height .28s ease,opacity .18s ease,margin-top .18s ease;
-    }
-
-    .collapsible-card.is-collapsed .card-content{
-      max-height:0;
-      opacity:0;
-      margin-top:0;
-      pointer-events:none;
-    }
-
-    .collapse-section-button{
-      width:34px;
-      min-width:34px;
-      height:34px;
-      padding:0;
-      border:none;
-      background:transparent;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .collapse-section-button::before{
-      content:"";
-      display:block;
-      width:0;
-      height:0;
-      transition:border-color .14s ease,transform .14s ease,opacity .14s ease;
-    }
-
-    .collapse-section-button.up::before{
-      border-left:12px solid transparent;
-      border-right:12px solid transparent;
-      border-bottom:22px solid var(--accent);
-    }
-
-    .collapse-section-button.down::before{
-      border-left:12px solid transparent;
-      border-right:12px solid transparent;
-      border-top:22px solid var(--accent);
-    }
-
-    .collapse-section-button.up:hover::before,
-    .collapse-section-button.up:focus-visible::before{
-      border-bottom-color:var(--accent-hover);
-      transform:scale(1.12);
-    }
-
-    .collapse-section-button.down:hover::before,
-    .collapse-section-button.down:focus-visible::before{
-      border-top-color:var(--accent-hover);
-      transform:scale(1.12);
-    }
-
-    label{display:block;margin-top:10px;margin-bottom:5px;font-size:14px;font-weight:800;color:var(--muted)}
-    input,textarea,select,button{width:100%;border:1px solid var(--accent);border-radius:0;padding:10px;font:inherit;background:#fff;color:var(--text)}
-    input:focus,textarea:focus,select:focus,button:focus{outline:2px solid var(--accent);outline-offset:2px}
-    textarea{min-height:70px;resize:vertical}
-    button{background:var(--button);color:var(--button-text);font-weight:900;cursor:pointer;text-transform:uppercase;letter-spacing:.04em;transition:background-color .14s ease,color .14s ease,border-color .14s ease,box-shadow .14s ease,filter .14s ease,transform .14s ease}
-    button.secondary{background:#fff;color:var(--accent)}
-    button.toggle-button.is-active{background:var(--accent);color:var(--on-accent)}
-
-    input:hover,
-    textarea:hover,
-    select:hover{
-      border-color:var(--accent-hover);
-      background:var(--hover-bg);
-      box-shadow:inset 0 0 0 1px var(--accent-hover-soft);
-    }
-
-    input:focus,
-    textarea:focus,
-    select:focus{
-      border-color:var(--accent-hover);
-      box-shadow:inset 0 0 0 1px var(--accent-hover-soft);
-    }
-
-    button:hover:not(.triangle-button):not(.collapse-section-button):not(.trait-name):not(.floating-roll-button):not(.floating-diary-button):not(.floating-sheet-menu-button):not(.floating-section-button),
-    button:focus-visible:not(.triangle-button):not(.collapse-section-button):not(.trait-name):not(.floating-roll-button):not(.floating-diary-button):not(.floating-sheet-menu-button):not(.floating-section-button){
-      background:var(--accent-hover);
-      color:var(--on-hover);
-      border-color:var(--accent-hover);
-      box-shadow:5px 5px 0 var(--accent-hover-soft);
-      filter:contrast(1.06);
-    }
-
-    button.secondary:hover:not(.triangle-button):not(.collapse-section-button):not(.trait-name),
-    button.secondary:focus-visible:not(.triangle-button):not(.collapse-section-button):not(.trait-name){
-      background:var(--accent-hover);
-      color:var(--on-hover);
-      border-color:var(--accent-hover);
-    }
-
-    button.toggle-button.is-active:hover,
-    button.toggle-button.is-active:focus-visible{
-      background:var(--accent-hover);
-      color:var(--on-hover);
-    }
-
-    .triangle-button{
-      width:34px;
-      min-width:34px;
-      height:34px;
-      padding:0;
-      border:none;
-      background:transparent;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .triangle-button::before{content:"";display:block;width:0;height:0;transition:border-color .14s ease,transform .14s ease,opacity .14s ease}
-    .triangle-button.right::before{border-top:15px solid transparent;border-bottom:15px solid transparent;border-left:26px solid var(--accent)}
-    .triangle-button.left::before{border-top:15px solid transparent;border-bottom:15px solid transparent;border-right:26px solid var(--accent)}
-
-    .triangle-button.right:hover::before,
-    .triangle-button.right:focus-visible::before{
-      border-left-color:var(--accent-hover);
-      transform:scale(1.12);
-    }
-
-    .triangle-button.left:hover::before,
-    .triangle-button.left:focus-visible::before{
-      border-right-color:var(--accent-hover);
-      transform:scale(1.12);
-    }
-
-    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-    .dice-row{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
-    .table-wrap{width:100%;overflow-x:auto}
-    .table{width:100%;min-width:760px;border-collapse:collapse;margin-top:8px}
-    .wide-table{min-width:1040px}
-    .table th,.table td{border:1px solid var(--accent);padding:8px;vertical-align:top;transition:background-color .14s ease,border-color .14s ease,color .14s ease}
-    .table th{text-align:left;color:var(--on-accent);font-size:13px;background:var(--accent);white-space:nowrap;text-transform:uppercase;letter-spacing:.04em}
-    .table th:hover{background:var(--accent-hover);color:var(--on-hover);border-color:var(--accent-hover)}
-    .table td:hover{background:var(--hover-bg);border-color:var(--accent-hover)}
-    .table input,.table textarea,.table select{margin:0;min-height:unset}
-    .table textarea{min-height:54px}
-
-    .counter-row{margin:6px 0 12px}
-    .counter{display:inline-flex;align-items:center;gap:6px;margin:4px 6px 4px 0;padding:7px 10px;border:1px solid var(--accent);background:#fff;color:var(--accent);font-size:14px;font-weight:900;text-transform:uppercase;letter-spacing:.03em;transition:background-color .14s ease,border-color .14s ease,color .14s ease,box-shadow .14s ease}
-    .counter:hover{background:var(--hover-bg);color:var(--accent-hover);border-color:var(--accent-hover);box-shadow:4px 4px 0 var(--accent-hover-soft)}
-    .counter-check{display:inline-flex;flex-direction:column;align-items:stretch;gap:5px;margin:4px 6px 4px 0;padding:7px 10px;border:1px solid var(--accent);background:#fff;color:var(--accent);font-size:14px;font-weight:900;text-transform:uppercase;letter-spacing:.03em;vertical-align:top;min-width:230px;transition:background-color .14s ease,border-color .14s ease,color .14s ease}
-    .counter-check:hover{background:var(--hover-bg);color:var(--accent-hover);border-color:var(--accent-hover)}
-    .counter-check button{width:100%;padding:7px 10px;font-size:13px}
-    .counter-check-result{font-size:13px;color:var(--muted);text-transform:none;letter-spacing:0;font-weight:900}
-    .hint{margin-top:4px;font-size:13px;color:var(--muted)}
-    .small-number{max-width:84px}
-    .inline-total{margin-top:5px;font-size:13px;font-weight:900;color:var(--accent)}
-
-    .stress-count{font-weight:900;color:var(--accent);white-space:nowrap}
-    .stress-scale{display:flex;flex-wrap:nowrap;gap:3px;align-items:flex-start;min-width:260px}
-    .stress-extra-zone{display:flex;flex-wrap:nowrap;gap:3px;align-items:center}
-    .stress-normal-zone{display:grid;gap:3px}
-    .stress-normal-row{display:flex;flex-wrap:nowrap;gap:3px;align-items:center}
-    .stress-total-counter.stress-warning{background:#320216;color:#fff}
-    .stress-total-counter.stress-critical{background:#000;color:#fff;border-color:#000}
-    .stress-divider{width:1px;height:16px;background:var(--accent);margin:0 2px}
-
-    .consequences-card.stress-warning{background:rgba(50,2,22,.18)}
-    .consequences-card.stress-critical{background:#000;color:#fff;border-color:#000;box-shadow:8px 8px 0 rgba(0,0,0,.22)}
-    .consequences-card.stress-critical h2,
-    .consequences-card.stress-critical h3,
-    .consequences-card.stress-critical .hint{color:#fff}
-    .consequences-card.stress-critical .slot-box,
-    .consequences-card.stress-critical .slot-entry{background:rgba(255,255,255,.92);color:var(--text)}
-
-    .tri-check{position:relative;display:inline-flex;align-items:center;justify-content:center;width:auto;min-width:24px;min-height:24px;margin:0;padding:0;color:var(--accent);cursor:pointer;user-select:none}
-    .tri-check input{position:absolute;opacity:0;width:24px;height:24px;margin:0;padding:0}
-    .tri-shape{display:inline-block;width:0;height:0;opacity:.45;transition:opacity .12s ease,transform .12s ease,border-color .12s ease}
-    .tri-check input:checked+.tri-shape{opacity:1;transform:scale(1.12)}
-    .tri-check input:disabled+.tri-shape{opacity:.08;cursor:not-allowed}
-    .tri-check.locked{cursor:not-allowed}
-    .tri-right .tri-shape{border-top:12px solid transparent;border-bottom:12px solid transparent;border-left:22px solid var(--accent)}
-    .stress-scale .tri-right .tri-shape{border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:13px solid var(--accent)}
-    .tri-left .tri-shape{border-top:12px solid transparent;border-bottom:12px solid transparent;border-right:22px solid var(--accent)}
-    .tri-up .tri-shape{border-left:12px solid transparent;border-right:12px solid transparent;border-bottom:22px solid var(--accent)}
-    .tri-down .tri-shape{border-left:12px solid transparent;border-right:12px solid transparent;border-top:22px solid var(--accent)}
-    .stress-triangle{width:26px;height:26px}
-    .stress-scale .stress-triangle{width:15px;height:15px;min-width:15px;min-height:15px}
-    .stress-triangle.extra .tri-shape{opacity:.22}
-    .stress-triangle.extra input:checked+.tri-shape{opacity:1}
-
-    .tri-check:hover .tri-shape,
-    .tri-check.hover-preview .tri-shape{opacity:1;transform:scale(1.16)}
-    .tri-check.tri-right:hover .tri-shape,
-    .tri-check.tri-right.hover-preview .tri-shape{border-left-color:var(--accent-hover)}
-    .tri-check.tri-left:hover .tri-shape,
-    .tri-check.tri-left.hover-preview .tri-shape{border-right-color:var(--accent-hover)}
-    .tri-check.tri-up:hover .tri-shape,
-    .tri-check.tri-up.hover-preview .tri-shape{border-bottom-color:var(--accent-hover)}
-    .tri-check.tri-down:hover .tri-shape,
-    .tri-check.tri-down.hover-preview .tri-shape{border-top-color:var(--accent-hover)}
-    .tri-check.locked:hover .tri-shape{opacity:.08;transform:none}
-
-    .traits-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
-    .trait-column{border:2px solid var(--accent);padding:10px;background:rgba(255,255,255,.9);transition:background-color .14s ease,border-color .14s ease,box-shadow .14s ease}
-    .trait-column:hover{border-color:var(--accent-hover);box-shadow:4px 4px 0 var(--accent-hover-soft)}
-    .trait-list{display:grid;gap:6px}
-    .trait-card{border:1px solid var(--accent);padding:7px;background:rgba(255,255,255,.9);transition:background-color .14s ease,border-color .14s ease,box-shadow .14s ease}
-    .trait-card:hover{background:var(--hover-bg);border-color:var(--accent-hover);box-shadow:3px 3px 0 var(--accent-hover-soft)}
-    .trait-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
-    .trait-name{position:relative;display:inline-block;width:auto;margin:0;padding:0;border:none;background:transparent;color:var(--accent);font-weight:1000;text-align:left;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:4px;text-transform:uppercase;letter-spacing:.04em}
-    .trait-name:hover,.trait-name:focus{background:transparent;color:var(--accent-hover);outline:none;box-shadow:none}
-    .trait-tooltip{display:none;position:absolute;z-index:20;left:0;bottom:calc(100% + 8px);width:min(380px,82vw);padding:10px;border:1px solid var(--accent);background:var(--accent);color:var(--on-accent);font-weight:700;line-height:1.35;text-transform:none;letter-spacing:0;box-shadow:8px 8px 0 var(--accent-soft)}
-    .trait-name:hover .trait-tooltip,.trait-name:focus .trait-tooltip{display:block;background:var(--accent-hover);color:var(--on-hover);border-color:var(--accent-hover);box-shadow:8px 8px 0 var(--accent-hover-soft)}
-    .trait-checks{display:inline-flex;flex-wrap:nowrap;gap:7px;align-items:center}
-    .trait-note{margin-top:6px;padding:7px;font-size:14px}
-    .mastery-note{display:none}
-
-    .slot-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    .slot-box{border:1px solid var(--accent);padding:10px;background:rgba(255,255,255,.9);transition:background-color .14s ease,border-color .14s ease,box-shadow .14s ease}
-    .slot-box:hover{background:var(--hover-bg);border-color:var(--accent-hover);box-shadow:4px 4px 0 var(--accent-hover-soft)}
-    .slot-list{display:grid;gap:8px}
-    .slot-entry{border:1px solid var(--accent);padding:8px;background:rgba(255,255,255,.9);transition:background-color .14s ease,border-color .14s ease,box-shadow .14s ease}
-    .slot-entry:hover{background:var(--hover-bg);border-color:var(--accent-hover);box-shadow:3px 3px 0 var(--accent-hover-soft)}
-    .slot-entry textarea,.slot-entry input{padding:8px;min-height:54px}
-    .log{min-height:110px;white-space:pre-wrap;background:#fff;padding:10px;border:1px solid var(--accent);color:var(--text);font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:14px}
-
-    .quality-cell{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}
-    .quality-die-preview{display:inline-flex;align-items:center;justify-content:center;width:44px;height:34px;min-width:44px;padding:0;background:var(--accent);color:var(--on-accent);border:none;border-radius:0;box-shadow:none;font-weight:1000;font-size:13px;line-height:1;cursor:pointer;transition:background-color .14s ease,color .14s ease,transform .14s ease}
-    .quality-cell:hover .quality-die-preview{background:var(--accent-hover);color:var(--on-hover);transform:scale(1.06)}
-    .quality-die-preview.empty{opacity:.25;clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
-    .quality-die-preview.has-result{background:var(--danger);color:#fff;transform:scale(1.08)}
-    .plain-die-cell select{min-width:76px}
-
-    .floating-actions,
-    .floating-actions-left{
-      position:fixed;
-      bottom:18px;
-      z-index:1300;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:14px;
-    }
-
-    .floating-actions{right:18px}
-    .floating-actions-left{left:18px}
-    .language-toggle-button{position:fixed;top:16px;right:18px;z-index:1200;width:auto!important;min-width:46px;height:32px;padding:4px 10px;border:2px solid var(--accent);border-radius:8px;background:var(--card);color:var(--accent);font-weight:800;cursor:pointer}
-
-    .floating-diary-button{
-      width:96px;
-      height:96px;
-      padding:0;
-      border:none;
-      background-color:var(--accent);
-      -webkit-mask-image:url("images/diarybutton.svg");
-      mask-image:url("images/diarybutton.svg");
-      -webkit-mask-size:contain;
-      mask-size:contain;
-      -webkit-mask-position:center;
-      mask-position:center;
-      -webkit-mask-repeat:no-repeat;
-      mask-repeat:no-repeat;
-      box-shadow:none;
-      font-size:0;
-      color:transparent;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      transition:background-color .14s ease,filter .14s ease,transform .14s ease,opacity .14s ease;
-    }
-
-    .floating-section-button{
-      width:96px;
-      height:96px;
-      padding:0;
-      border:none;
-      background-color:var(--accent);
-      -webkit-mask-size:contain;
-      mask-size:contain;
-      -webkit-mask-position:center;
-      mask-position:center;
-      -webkit-mask-repeat:no-repeat;
-      mask-repeat:no-repeat;
-      box-shadow:none;
-      font-size:0;
-      color:transparent;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      transition:background-color .14s ease,filter .14s ease,transform .14s ease,opacity .14s ease;
-    }
-
-    .floating-ability-button{
-      -webkit-mask-image:url("images/abilitybutton.svg");
-      mask-image:url("images/abilitybutton.svg");
-    }
-
-    .floating-tactics-button{
-      -webkit-mask-image:url("images/tacticsbutton.svg");
-      mask-image:url("images/tacticsbutton.svg");
-    }
-
-    .floating-resources-button{
-      -webkit-mask-image:url("images/resourcebuttonlow.svg");
-      mask-image:url("images/resourcebuttonlow.svg");
-    }
-
-    .floating-codex-button{
-      width:96px;
-      height:96px;
-      padding:0;
-      border:none;
-      background:var(--accent);
-      clip-path:polygon(50% 100%,0 0,100% 0);
-      box-shadow:none;
-      font-size:0;
-      color:transparent;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      transition:background-color .14s ease,filter .14s ease,transform .14s ease,opacity .14s ease;
-    }
-
-    .floating-codex-button:hover,
-    .floating-codex-button:focus-visible{
-      background:var(--accent-hover);
-      filter:contrast(1.15);
-      transform:scale(1.06);
-    }
-
-    .floating-roll-button{
-      width:132px;
-      height:76px;
-      padding:0;
-      border:none;
-      background:var(--button);
-      color:var(--button-text);
-      box-shadow:8px 8px 0 var(--accent-soft);
-      font-size:13px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
-    }
-
-    .floating-roll-button:hover,
-    .floating-roll-button:focus-visible{
-      background:var(--accent-hover);
-      color:var(--on-hover);
-      box-shadow:8px 8px 0 var(--accent-hover-soft);
-      filter:contrast(1.1);
-      transform:scale(1.04);
-    }
-
-    body.has-class-emblem .floating-roll-button{
-      width:104px;
-      height:104px;
-      padding:0;
-      border:none;
-      box-shadow:none;
-      background-color:var(--accent);
-      color:transparent;
-      font-size:0;
-      text-shadow:none;
-      clip-path:none;
-      opacity:.92;
-      filter:contrast(1.12);
-      -webkit-mask-image:var(--class-bg-image);
-      mask-image:var(--class-bg-image);
-      -webkit-mask-size:contain;
-      mask-size:contain;
-      -webkit-mask-position:center;
-      mask-position:center;
-      -webkit-mask-repeat:no-repeat;
-      mask-repeat:no-repeat;
-    }
-
-    body.has-class-emblem .floating-roll-button:hover,
-    body.has-class-emblem .floating-roll-button:focus-visible{
-      background-color:var(--accent-hover);
-      opacity:1;
-      filter:contrast(1.22);
-      transform:scale(1.06);
-      box-shadow:none;
-    }
-
-    body.has-class-emblem .floating-roll-button::after{
-      content:"";
-      position:absolute;
-      inset:-4px;
-      border:1px solid transparent;
-    }
-
-    .floating-sheet-menu-button{
-      width:104px;
-      height:88px;
-      padding:0;
-      border:none;
-      background-color:var(--accent);
-      -webkit-mask-image:url("images/menubutton.svg");
-      mask-image:url("images/menubutton.svg");
-      -webkit-mask-size:contain;
-      mask-size:contain;
-      -webkit-mask-position:center;
-      mask-position:center;
-      -webkit-mask-repeat:no-repeat;
-      mask-repeat:no-repeat;
-      box-shadow:none;
-      font-size:0;
-      color:transparent;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      clip-path:none;
-      transition:background-color .14s ease,filter .14s ease,transform .14s ease,opacity .14s ease;
-    }
-
-    .floating-diary-button:hover,
-    .floating-diary-button:focus-visible,
-    .floating-sheet-menu-button:hover,
-    .floating-sheet-menu-button:focus-visible,
-    .floating-section-button:hover,
-    .floating-section-button:focus-visible{
-      background-color:var(--accent-hover);
-      opacity:1;
-      filter:contrast(1.15);
-      transform:scale(1.06);
-    }
-    body.assets-missing .floating-diary-button,
-    body.assets-missing .floating-section-button,
-    body.assets-missing .floating-sheet-menu-button{mask-image:none!important;-webkit-mask-image:none!important;background:var(--accent);font-size:26px;color:var(--on-accent)}
-    body.assets-missing .floating-diary-button::after{content:"✎"}
-    body.assets-missing .floating-ability-button::after{content:"✦"}
-    body.assets-missing .floating-tactics-button::after{content:"⌁"}
-    body.assets-missing .floating-resources-button::after{content:"◈"}
-    body.assets-missing .floating-sheet-menu-button::after{content:"☰"}
-    body.assets-missing.has-class-emblem::before{mask-image:none;-webkit-mask-image:none;background:var(--accent);opacity:.08}
-    body.assets-missing.has-nation-pattern::after{mask-image:none;-webkit-mask-image:none;background:repeating-linear-gradient(135deg,transparent 0 10px,var(--accent) 10px 12px);opacity:.08}
-    body.assets-missing.has-class-emblem .floating-roll-button{mask-image:none;-webkit-mask-image:none;background:var(--accent);color:var(--on-accent);font-size:13px;clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%)}
-
-    .roll-modal,
-    .diary-modal,
-    .sheet-menu-modal,
-    .abilities-modal,
-    .tactics-modal,
-    .resources-modal{
-      position:fixed;
-      inset:0;
-      z-index:1200;
-      display:none;
-      align-items:flex-start;
-      justify-content:center;
-      padding:18px;
-      overflow:auto;
-      background:transparent;
-    }
-
-    .diary-modal,
-    .abilities-modal,
-    .tactics-modal,
-    .resources-modal{pointer-events:none}
-
-    .diary-panel,
-    .abilities-panel,
-    .tactics-panel,
-    .resources-panel{pointer-events:auto}
-
-    .codex-modal{
-      position:fixed;
-      inset:0;
-      z-index:1200;
-      display:none;
-      align-items:flex-start;
-      justify-content:center;
-      padding:18px;
-      overflow:auto;
-      background:transparent;
-      pointer-events:none;
-    }
-
-    .codex-modal.open{display:flex}
-
-    .codex-panel{
-      width:min(720px,calc(100% - 36px));
-      height:calc(100vh - 36px);
-      min-width:min(360px,calc(100vw - 24px));
-      min-height:260px;
-      max-width:calc(100vw - 24px);
-      max-height:calc(100vh - 24px);
-      margin:0;
-      position:fixed;
-      top:18px;
-      right:18px;
-      box-sizing:border-box;
-      padding:0;
-      border:2px solid var(--accent);
-      background:#fff;
-      box-shadow:10px 10px 0 var(--accent-soft);
-      overflow:hidden;
-      resize:none;
-      display:flex;
-      flex-direction:column;
-      transform:translateY(18px) scale(.985);
-      transition:transform .2s ease,border-color .14s ease,box-shadow .14s ease;
-      pointer-events:auto;
-    }
-
-    .codex-modal.open .codex-panel{transform:translateY(0) scale(1)}
-    .codex-panel.is-moving,
-    .codex-panel.is-resizing{transition:none;user-select:none}
-    .codex-panel:hover{border-color:var(--accent-hover);box-shadow:10px 10px 0 var(--accent-hover-soft)}
-    .codex-resize-handle{
-      position:absolute;
-      z-index:5;
-      right:0;
-      bottom:0;
-      width:24px;
-      height:24px;
-      cursor:nwse-resize;
-      touch-action:none;
-      opacity:.75;
-      background:repeating-linear-gradient(135deg,transparent 0 3px,var(--accent) 3px 5px);
-      clip-path:polygon(100% 0,100% 100%,0 100%);
-    }
-    .codex-title-row{
-      flex:0 0 auto;
-      margin:0;
-      padding:12px 16px 10px;
-      border-bottom:1px solid var(--accent);
-      background:#fff;
-      cursor:move;
-      user-select:none;
-      touch-action:none;
-    }
-    .codex-title-row h2{display:flex;align-items:baseline;gap:10px}
-    .codex-window-hint{font-size:10px;font-weight:800;color:var(--muted);letter-spacing:.04em}
-    .codex-title-row button{cursor:pointer}
-    .codex-content{flex:1;min-height:0;overflow:auto;padding:0 16px 24px}
-    .codex-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
-    .codex-tabs button.is-active{background:var(--accent);color:#fff}
-    .codex-search{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:end;margin:12px 0}
-    .codex-search label{grid-column:1/-1;margin:0}
-    .codex-search-status{min-height:18px;margin:-4px 0 10px;font-size:12px;color:var(--muted)}
-    .codex-items{display:grid;gap:10px}
-    .codex-group{position:relative;isolation:isolate;border:1px solid var(--accent);background:rgba(255,255,255,.86);overflow:hidden}
-    .codex-group>*{position:relative;z-index:1}
-    .codex-group.codex-class-group::before{content:"";position:absolute;z-index:0;inset:42px 8px 8px;pointer-events:none;background-color:var(--accent);opacity:.1;-webkit-mask-image:var(--codex-class-emblem);mask-image:var(--codex-class-emblem);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-position:center;mask-position:center;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
-    .codex-group-summary{cursor:pointer;padding:10px 12px;font-weight:1000;color:var(--accent);list-style:none}
-    .codex-group-summary::-webkit-details-marker{display:none}
-    .codex-group-summary::before{content:"▼";display:inline-block;margin-right:8px;font-size:11px;transition:transform .14s ease}
-    .codex-group:not([open]) .codex-group-summary::before{transform:rotate(-90deg)}
-    .codex-group-items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:0 10px 10px}
-    .codex-card{border:1px solid var(--accent);padding:12px;background:var(--hover-bg);min-width:0}
-    .codex-card h3{margin:0 0 6px;font-size:15px}
-    .codex-card-meta{font-size:11px;color:var(--muted);margin-bottom:8px}
-    .codex-card-text{white-space:pre-wrap;line-height:1.35;font-size:13px;max-height:420px;overflow:auto}
-    .codex-card[draggable="true"]{cursor:grab}
-    .codex-card.is-dragging{opacity:.45}
-    .codex-subgroup{margin-top:10px;border-top:1px dashed var(--accent);padding-top:8px}
-    .codex-subgroup-summary{cursor:pointer;color:var(--accent);font-size:12px;font-weight:1000;list-style:none}
-    .codex-subgroup-summary::-webkit-details-marker{display:none}
-    .codex-subgroup-summary::before{content:"▼";display:inline-block;margin-right:7px;font-size:10px;transition:transform .14s ease}
-    .codex-subgroup:not([open]) .codex-subgroup-summary::before{transform:rotate(-90deg)}
-    .codex-subgroup-items{display:grid;gap:8px;margin-top:8px}
-    .codex-minor-card{background:rgba(255,255,255,.92);padding:9px}
-    .codex-minor-card h3{font-size:13px}
-    .discord-settings{margin-top:16px;padding-top:14px;border-top:1px solid var(--accent)}
-    .discord-settings h3{margin:0 0 10px}
-    .discord-settings .grid-2{align-items:end}
-    .discord-settings-status{min-height:20px;margin-top:8px}
-    .discord-shareable{cursor:pointer}
-    .discord-shareable:hover{outline:1px dashed var(--accent);outline-offset:2px}
-    .discord-toast{position:fixed;left:50%;bottom:24px;z-index:10000;max-width:min(520px,calc(100vw - 32px));transform:translateX(-50%);padding:10px 14px;border:1px solid var(--accent);background:var(--panel);color:var(--text);box-shadow:0 8px 30px rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:opacity .2s ease}
-    .discord-toast.show{opacity:1}
-    .discord-toast.error{border-color:var(--danger)}
-    [data-codex-drop].codex-drop-eligible{
-      outline:2px dashed var(--accent);
-      outline-offset:3px;
-      background:var(--accent-soft);
-      box-shadow:0 0 0 4px var(--accent-hover-soft);
-    }
-    [data-codex-drop].codex-drop-active{
-      outline:3px solid var(--accent-hover);
-      outline-offset:3px;
-      background:var(--accent-hover-soft);
-      box-shadow:0 0 0 5px var(--accent-soft);
-    }
-    [data-codex-drop].codex-drop-invalid{outline:3px dashed var(--danger);outline-offset:3px}
-
-    @media(max-width:760px){
-      .codex-panel{
-        width:calc(100vw - 24px);
-        height:calc(100vh - 24px);
-        top:12px;
-        right:12px;
-      }
-      .codex-group-items{grid-template-columns:1fr}
-      .codex-window-hint{display:none}
-    }
-
-    .roll-modal.open,
-    .diary-modal.open,
-    .sheet-menu-modal.open,
-    .abilities-modal.open,
-    .tactics-modal.open,
-    .resources-modal.open{display:flex}
-
-    .roll-panel,
-    .diary-panel,
-    .sheet-menu-panel,
-    .abilities-panel,
-    .tactics-panel,
-    .resources-panel{
-      width:min(760px,100%);
-      margin-top:28px;
-      padding:16px;
-      border:2px solid var(--accent);
-      background:#fff;
-      box-shadow:10px 10px 0 var(--accent-soft);
-      position:relative;
-      overflow:hidden;
-      transform:translateY(18px) scale(.985);
-      transition:transform .2s ease,border-color .14s ease,box-shadow .14s ease;
-    }
-
-    .abilities-panel{width:min(980px,100%)}
-    .tactics-panel,
-    .resources-panel{width:min(1040px,100%)}
-
-    .roll-panel:hover,
-    .diary-panel:hover,
-    .sheet-menu-panel:hover,
-    .abilities-panel:hover,
-    .tactics-panel:hover,
-    .resources-panel:hover{
-      border-color:var(--accent-hover);
-      box-shadow:10px 10px 0 var(--accent-hover-soft);
-    }
-
-    .floating-action-item{display:flex;flex-direction:column;align-items:center;gap:5px}
-
-    .floating-action-label{
-      display:block;
-      padding:3px 6px;
-      background:rgba(255,255,255,.88);
-      color:var(--accent);
-      border:1px solid var(--accent);
-      font-size:10px;
-      font-weight:1000;
-      line-height:1;
-      text-align:center;
-      text-transform:uppercase;
-      letter-spacing:.06em;
-      box-shadow:4px 4px 0 var(--accent-soft);
-      pointer-events:none;
-      user-select:none;
-      transition:color .14s ease,border-color .14s ease,box-shadow .14s ease,background-color .14s ease;
-    }
-
-    .floating-action-item:hover .floating-action-label{
-      color:var(--accent-hover);
-      border-color:var(--accent-hover);
-      box-shadow:4px 4px 0 var(--accent-hover-soft);
-      background:var(--hover-bg);
-    }
-
-    .roll-modal.open .roll-panel,
-    .diary-modal.open .diary-panel,
-    .sheet-menu-modal.open .sheet-menu-panel,
-    .abilities-modal.open .abilities-panel,
-    .tactics-modal.open .tactics-panel,
-    .resources-modal.open .resources-panel{transform:translateY(0) scale(1)}
-
-    .roll-panel::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      z-index:0;
-      pointer-events:none;
-      background-color:transparent;
-      opacity:.18;
-      filter:contrast(1.1);
-    }
-
-    body.has-class-emblem .roll-panel::before{
-      background-color:var(--accent);
-      -webkit-mask-image:var(--class-bg-image);
-      mask-image:var(--class-bg-image);
-      -webkit-mask-size:contain;
-      mask-size:contain;
-      -webkit-mask-position:center;
-      mask-position:center;
-      -webkit-mask-repeat:no-repeat;
-      mask-repeat:no-repeat;
-    }
-
-    body.has-class-emblem .roll-panel:hover::before{background-color:var(--accent-hover)}
-
-    .diary-panel::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      z-index:0;
-      pointer-events:none;
-      background-color:transparent;
-      opacity:.16;
-    }
-
-    body.has-nation-pattern .diary-panel::before{
-      background-color:var(--accent);
-      -webkit-mask-image:var(--nation-pattern-image);
-      mask-image:var(--nation-pattern-image);
-      -webkit-mask-size:300px 300px;
-      mask-size:300px 300px;
-      -webkit-mask-position:center;
-      mask-position:center;
-      -webkit-mask-repeat:repeat;
-      mask-repeat:repeat;
-    }
-
-    body.has-nation-pattern .diary-panel:hover::before{background-color:var(--accent-hover)}
-
-    .roll-panel>*,
-    .diary-panel>*,
-    .sheet-menu-panel>*,
-    .abilities-panel>*,
-    .tactics-panel>*,
-    .resources-panel>*{position:relative;z-index:1}
-
-    .sheet-menu-actions{display:grid;gap:10px;margin-top:14px}
-
-    .roll-subsection,
-    .diary-subsection{
-      margin-top:16px;
-      padding:12px;
-      border:1px solid var(--accent);
-      background:rgba(255,255,255,.84);
-      transition:background-color .14s ease,border-color .14s ease,box-shadow .14s ease;
-    }
-
-    .roll-subsection:hover,
-    .diary-subsection:hover{background:var(--hover-bg);border-color:var(--accent-hover);box-shadow:4px 4px 0 var(--accent-hover-soft)}
-
-    .roll-result-title{margin:12px 0 8px;padding:10px;border:2px solid var(--accent);font-weight:1000;text-transform:uppercase;color:var(--accent);letter-spacing:.04em;transition:background-color .14s ease,border-color .14s ease,color .14s ease}
-    .roll-result-title:hover{background:var(--hover-bg);border-color:var(--accent-hover);color:var(--accent-hover)}
-    .roll-detail{margin-bottom:10px;color:var(--muted);font-weight:700}
-    .roll-history{display:grid;gap:8px}
-    .roll-history-entry{border:1px solid var(--accent);padding:8px;background:#fff;font-size:14px;transition:background-color .14s ease,border-color .14s ease,box-shadow .14s ease}
-    .roll-history-entry:hover{background:var(--hover-bg);border-color:var(--accent-hover);box-shadow:3px 3px 0 var(--accent-hover-soft)}
-    .roll-history-top{font-weight:900;color:var(--accent);margin-bottom:4px}
-
-    .roll-die{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      width:58px;
-      height:36px;
-      margin:2px 4px 2px 0;
-      padding:0;
-      background:var(--accent);
-      color:var(--on-accent);
-      border:none;
-      clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
-      font-weight:1000;
-      line-height:1;
-      vertical-align:middle;
-      transition:background-color .14s ease,color .14s ease,transform .14s ease;
-    }
-
-    .roll-die:hover{background:var(--accent-hover);color:var(--on-hover);transform:scale(1.1)}
-    .roll-die.max{background:var(--danger);color:#fff;border:none;font-weight:1000}
-    .roll-die.edge{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
-
-    .simple-dice-row{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;align-items:center;justify-items:center;margin:12px 0}
-
-    .die-shape-button{
-      width:78px;
-      height:68px;
-      min-width:0;
-      padding:0;
-      border:2px solid var(--accent);
-      background:var(--button);
-      color:var(--button-text);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      box-shadow:5px 5px 0 var(--accent-soft);
-      font-weight:1000;
-      text-align:center;
-    }
-
-    .die-shape-button:hover,
-    .die-shape-button:focus-visible{
-      background:var(--accent-hover);
-      color:var(--on-hover);
-      border-color:var(--accent-hover);
-      box-shadow:5px 5px 0 var(--accent-hover-soft);
-      filter:contrast(1.12);
-      transform:scale(1.06);
-    }
-
-    .die-d4{clip-path:polygon(50% 0%,100% 100%,0% 100%)}
-    .die-d6{clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
-    .die-d8{clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%)}
-    .die-d10{clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%)}
-    .die-d12{clip-path:polygon(50% 0%,97.55% 34.55%,79.39% 90.45%,20.61% 90.45%,2.45% 34.55%)}
-
-    .die-shape-button.die-d4{padding-top:18px}
-    .die-shape-button.die-d6{width:64px;height:64px}
-    .die-shape-button.die-d8{width:72px;height:72px}
-    .die-shape-button.die-d10{width:100px;height:60px}
-    .die-shape-button.die-d12{width:74px;height:74px}
-
-    .simple-roll-result-line{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0}
-
-    .die-shape-result{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-width:38px;
-      min-height:38px;
-      padding:6px;
-      margin:2px 4px 2px 0;
-      background:var(--accent);
-      color:var(--on-accent);
-      border:none;
-      font-weight:1000;
-      vertical-align:middle;
-      line-height:1;
-      transition:background-color .14s ease,color .14s ease,transform .14s ease;
-    }
-
-    .die-shape-result:hover{background:var(--accent-hover);color:var(--on-hover);transform:scale(1.1)}
-    .die-shape-result.die-d4{width:42px;height:40px;padding-top:12px}
-    .die-shape-result.die-d6{width:38px;height:38px}
-    .die-shape-result.die-d8{width:42px;height:42px}
-    .die-shape-result.die-d10{width:58px;height:36px}
-    .die-shape-result.die-d12{width:44px;height:44px}
-
-    .die-shape-result .die-value{background:transparent !important;color:var(--on-accent);border:none;box-shadow:none;padding:0;margin:0;line-height:1}
-    .die-shape-result:hover .die-value{color:var(--on-hover)}
-    .die-shape-result.edge .die-value{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
-
-    @keyframes roll-pop{0%{transform:scale(.82) rotate(-8deg)}60%{transform:scale(1.14) rotate(5deg)}100%{transform:scale(1) rotate(0deg)}}
-    @keyframes roll-pop-strong{0%{transform:scale(.55) rotate(-18deg)}40%{transform:scale(1.36) rotate(14deg)}70%{transform:scale(.9) rotate(-7deg)}100%{transform:scale(1) rotate(0deg)}}
-
-    .roll-history-entry.roll-new .roll-die,
-    .roll-history-entry.roll-new .die-shape-result{animation:roll-pop .24s ease-out}
-    .roll-history-entry.roll-new-strong .roll-die,
-    .roll-history-entry.roll-new-strong .die-shape-result{animation:roll-pop-strong .48s ease-out}
-
-    @media(max-width:760px){
-      body{padding:12px}
-      .grid-2,.grid-3,.slot-grid{grid-template-columns:1fr}
-      .dice-row{grid-template-columns:repeat(3,1fr)}
-      .traits-grid{grid-template-columns:1fr}
-      .floating-actions,.floating-actions-left{bottom:12px;gap:10px}
-      .floating-actions{right:12px}
-      .floating-actions-left{left:12px}
-      .floating-diary-button{width:76px;height:76px;font-size:0}
-      .floating-section-button{width:76px;height:76px;font-size:0}
-      .floating-roll-button{width:112px;height:64px;font-size:11px}
-      .floating-sheet-menu-button{width:88px;height:74px;font-size:0}
-      .simple-dice-row{grid-template-columns:repeat(3,1fr)}
-      .roll-modal,
-      .diary-modal,
-      .sheet-menu-modal,
-      .abilities-modal,
-      .tactics-modal,
-      .resources-modal{padding:12px}
-    }
-
-    button,
-    .die-shape-button,
-    .floating-roll-button,
-    .floating-diary-button,
-    .floating-sheet-menu-button,
-    .floating-section-button{-webkit-tap-highlight-color: transparent}
-
-    .roll-panel,
-    .diary-panel,
-    .sheet-menu-panel,
-    .abilities-panel,
-    .tactics-panel,
-    .resources-panel{isolation:isolate}
-
-    .roll-history-entry.roll-new .roll-die,
-    .roll-history-entry.roll-new .die-shape-result,
-    .roll-history-entry.roll-new-strong .roll-die,
-    .roll-history-entry.roll-new-strong .die-shape-result{backface-visibility:hidden;will-change:transform}
-
-    body.has-class-emblem .floating-roll-button{width:82px;height:82px}
-    .floating-action-label{font-size:9px;padding:3px 5px;box-shadow:3px 3px 0 var(--accent-soft)}
-
-
-   .character-head-layout{
-  display:grid;
-  grid-template-columns:minmax(160px,240px) 1fr;
-  gap:16px;
-  align-items:start;
-  margin-top:14px;
-}
-
-.character-portrait-column{
-  min-width:0;
-}
-
-.character-fields-column{
-  min-width:0;
-}
-
-.portrait-preview-wrap{
-  width:100%;
-  max-width:240px;
-  border:2px solid var(--accent);
-  background:#fff;
-  aspect-ratio:210 / 297;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-}
-
-.portrait-preview-placeholder{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:12px;
-  color:var(--accent);
-  font-weight:1000;
-  text-align:center;
-  text-transform:uppercase;
-  letter-spacing:.05em;
-  opacity:.45;
-  pointer-events:none;
-}
-
-.portrait-preview{
-  display:none;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center center;
-  background:#fff;
-}
-
-.portrait-preview.has-image{
-  display:block;
-}
-
-.portrait-preview.has-image + .portrait-preview-placeholder{
-  display:none;
-}
-
-.portrait-controls{
-  width:100%;
-  max-width:240px;
-  margin-top:8px;
-  border:1px solid var(--accent);
-  background:rgba(255,255,255,.88);
-}
-
-.portrait-controls summary{
-  padding:6px 8px;
-  color:var(--accent);
-  font-size:11px;
-  font-weight:1000;
-  text-transform:uppercase;
-  letter-spacing:.06em;
-  cursor:pointer;
-  user-select:none;
-}
-
-.portrait-controls summary:hover{
-  color:var(--accent-hover);
-  background:var(--hover-bg);
-}
-
-.portrait-file-input{
-  display:none;
-}
-
-.portrait-mini-actions{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:6px;
-  padding:8px;
-}
-
-.portrait-mini-button{
-  width:100%;
-  min-height:30px;
-  margin:0;
-  padding:6px 7px;
-  border:1px solid var(--accent);
-  background:var(--button);
-  color:var(--button-text);
-  font-size:10px;
-  font-weight:1000;
-  line-height:1;
-  text-align:center;
-  text-transform:uppercase;
-  letter-spacing:.04em;
-  cursor:pointer;
-}
-
-label.portrait-mini-button{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin:0;
-}
-
-.portrait-mini-button.secondary,
-button.secondary.portrait-mini-button{
-  background:#fff;
-  color:var(--accent);
-}
-
-.portrait-mini-button:hover,
-.portrait-mini-button:focus-visible{
-  background:var(--accent-hover);
-  color:var(--on-hover);
-  border-color:var(--accent-hover);
-  box-shadow:3px 3px 0 var(--accent-hover-soft);
-}
-
-@media(max-width:760px){
-  .character-head-layout{
-    grid-template-columns:1fr;
-  }
-
-  .portrait-preview-wrap,
-  .portrait-controls{
-    max-width:320px;
-  }
-}
-    @media(max-width:760px){
-      .portrait-layout{grid-template-columns:1fr}
-      .portrait-preview-wrap{max-width:100%}
-    }
-    .floating-rules-help-button{
-  width:96px;
-  height:96px;
-  padding:0;
-  border:none;
-  background-color:var(--accent);
-  -webkit-mask-image:url("images/rulesbutton.svg");
-  mask-image:url("images/rulesbutton.svg");
-  -webkit-mask-size:contain;
-  mask-size:contain;
-  -webkit-mask-position:center;
-  mask-position:center;
-  -webkit-mask-repeat:no-repeat;
-  mask-repeat:no-repeat;
-  box-shadow:none;
-  font-size:0;
-  color:transparent;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  transition:background-color .14s ease,filter .14s ease,transform .14s ease,opacity .14s ease;
-}
-
-.floating-rules-help-button:hover,
-.floating-rules-help-button:focus-visible{
-  background-color:var(--accent-hover);
-  opacity:1;
-  filter:contrast(1.15);
-  transform:scale(1.06);
-}
-
-@media(max-width:760px){
-  .floating-rules-help-button{
-    width:76px;
-    height:76px;
-    font-size:0;
-  }
-}
-.rules-help-modal{
-  position:fixed;
-  inset:0;
-  z-index:1200;
-  display:none;
-  align-items:flex-start;
-  justify-content:center;
-  padding:18px;
-  overflow:auto;
-  background:transparent;
-}
-
-.rules-help-modal.open{
-  display:flex;
-}
-
-.rules-help-panel{
-  width:min(860px,100%);
-  margin-top:28px;
-  padding:16px;
-  border:2px solid var(--accent);
-  background:#fff;
-  box-shadow:10px 10px 0 var(--accent-soft);
-  position:relative;
-  overflow:hidden;
-  transform:translateY(18px) scale(.985);
-  transition:transform .2s ease,border-color .14s ease,box-shadow .14s ease;
-}
-
-.rules-help-modal.open .rules-help-panel{
-  transform:translateY(0) scale(1);
-}
-
-.rules-help-panel:hover{
-  border-color:var(--accent-hover);
-  box-shadow:10px 10px 0 var(--accent-hover-soft);
-}
-
-.rules-help-content{
-  margin-top:12px;
-  padding:12px;
-  border:1px solid var(--accent);
-  background:rgba(255,255,255,.88);
-  color:var(--text);
-  line-height:1.5;
-}
-
-.rules-help-content h2,
-.rules-help-content h3{
-  margin-top:14px;
-}
-
-.rules-help-content ul{
-  padding-left:22px;
-}
-
-@media(max-width:760px){
-  .rules-help-modal{
-    padding:12px;
-  }
-}
-.rules-tabs{
-  display:grid;
-  gap:12px;
-}
-
-.rules-tabs-nav{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  padding-bottom:8px;
-  border-bottom:2px solid var(--accent);
-}
-
-.rules-tab-button{
-  width:auto;
-  min-width:0;
-  padding:8px 10px;
-  border:1px solid var(--accent);
-  background:#fff;
-  color:var(--accent);
-  font-size:12px;
-  font-weight:1000;
-  text-transform:uppercase;
-  letter-spacing:.05em;
-  box-shadow:none;
-}
-
-.rules-tab-button:hover,
-.rules-tab-button:focus-visible{
-  background:var(--accent-hover);
-  color:var(--on-hover);
-  border-color:var(--accent-hover);
-  box-shadow:3px 3px 0 var(--accent-hover-soft);
-}
-
-.rules-tab-button.is-active{
-  background:var(--accent);
-  color:var(--on-accent);
-}
-
-.rules-tab-button.is-active:hover,
-.rules-tab-button.is-active:focus-visible{
-  background:var(--accent-hover);
-  color:var(--on-hover);
-}
-
-.rules-tab-panel{
-  display:none;
-  padding:12px;
-  border:1px solid var(--accent);
-  background:rgba(255,255,255,.9);
-}
-
-.rules-tab-panel.is-active{
-  display:block;
-}
-
-.rules-tab-panel h2{
-  margin-top:0;
-}
-
-.rules-tab-panel h3{
-  margin-top:16px;
-}
-
-.rules-tab-panel ul{
-  margin-top:8px;
-  padding-left:22px;
-}
-
-@media(max-width:760px){
-  .rules-tabs-nav{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-  }
-
-  .rules-tab-button{
-    width:100%;
-  }
-}
-
-  </style>
-</head>
-
-<body>
-  <div class="nation-theme-stripe" aria-hidden="true"></div>
-  <main class="app">
-    <h1>Башня Упадёт — интерактивный лист персонажа</h1>
-
-   <section id="characterCard" class="card">
-  <h2>Персонаж</h2>
-
-  <div class="character-head-layout">
-    <div class="character-portrait-column">
-      <div class="portrait-preview-wrap">
-        <img id="characterPortraitPreview" class="portrait-preview" alt="Портрет персонажа" />
-        <div class="portrait-preview-placeholder">Портрет<br>А4</div>
-      </div>
-
-      <details class="portrait-controls">
-        <summary>Настройки портрета</summary>
-
-        <input id="characterPortraitUpload" class="portrait-file-input" type="file" accept="image/*" />
-
-        <div class="portrait-mini-actions">
-          <label class="portrait-mini-button" for="characterPortraitUpload">Загрузить</label>
-          <button class="secondary portrait-mini-button" type="button" onclick="removeCharacterPortrait()">Удалить</button>
-          <button class="portrait-mini-button" type="button" onclick="exportCharacterInfoCard('png')">PNG</button>
-          <button class="secondary portrait-mini-button" type="button" onclick="exportCharacterInfoCard('jpeg')">JPEG</button>
-        </div>
-      </details>
-    </div>
-
-    <div class="character-fields-column">
-      <div class="grid-2">
-        <div><label>Имя</label><input id="characterName" placeholder="Имя персонажа" /></div>
-
-        <div>
-          <label>Класс</label>
-          <select id="className">
-            <option></option>
-            <option>Страж Врат</option>
-            <option>Светоносец</option>
-            <option>Раствор Души</option>
-            <option>Экономант</option>
-            <option>Неболом</option>
-            <option>Росоход</option>
-            <option>Подкодыш</option>
-            <option>Паратехник</option>
-            <option>Красный Рукав</option>
-          </select>
-        </div>
-
-        <div>
-          <label>Народ</label>
-          <select id="nationName">
-            <option></option>
-            <option>Народ Ножей</option>
-            <option>Народ Ядов</option>
-            <option>Народ Граней</option>
-            <option>Народ Железа</option>
-            <option>Другой</option>
-          </select>
-        </div>
-
-        <div>
-          <label>Род Войск</label>
-          <select id="serviceBranch">
-            <option></option>
-            <option>Тяжёлая пехота</option>
-            <option>Мобильная пехота</option>
-            <option>Разведка</option>
-            <option>Военный инженер</option>
-            <option>Штурмовая пехота</option>
-            <option>Служба безопасности</option>
-            <option>Мистическая пехота</option>
-            <option>Полевой медик</option>
-            <option>Отдел исследований</option>
-          </select>
-        </div>
-      </div>
-
-      <label>Описание</label>
-      <textarea id="description" placeholder="Внешность, манеры, важные детали, странности, связи..."></textarea>
-    </div>
-  </div>
-</section>
-
-    <section id="resistanceCard" class="card">
-      <div class="title-row"><h2>Сопротивления, защита и стресс</h2></div>
-      <p class="hint">В ячейку защиты можно вписать любое число. Защита от брони суммируется с ним автоматически. То же работает с дополнительными слотами: ручные слоты + слоты от брони.</p>
-      <div id="stressTotalCounters" class="counter-row"></div>
-      <div class="table-wrap"><table class="table wide-table"><thead><tr><th>Сопротивление</th><th>Защита</th><th>Доп. слоты</th><th>Стресс</th><th>Итог</th></tr></thead><tbody id="resistanceRows"></tbody></table></div>
-    </section>
-
-    <section id="consequencesCard" class="card consequences-card">
-      <div class="title-row"><h2>Последствия</h2></div>
-      <div id="consequenceCounters" class="counter-row"></div>
-      <div class="slot-grid">
-        <div class="slot-box"><div class="title-row"><h3>Малые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('consequence','minor')"></button><button class="triangle-button right" type="button" onclick="addSlot('consequence','minor')"></button></div></div><div id="consequence_minor_rows" class="slot-list" data-codex-drop="consequence" data-codex-consequence-severity="minor"></div></div>
-        <div class="slot-box"><div class="title-row"><h3>Значимые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('consequence','major')"></button><button class="triangle-button right" type="button" onclick="addSlot('consequence','major')"></button></div></div><div id="consequence_major_rows" class="slot-list" data-codex-drop="consequence" data-codex-consequence-severity="major"></div></div>
-      </div>
-    </section>
-
-    <section id="partyCard" class="card">
-      <h2>Шкалы дружбы</h2>
-      <p class="hint">Сопротивления дружбы с соратниками, отмечайте в них стресс ради бонусов.</p>
-      <div class="table-wrap"><table class="table"><thead><tr><th>Имя</th><th>Стресс</th><th>Защита</th><th>Заметка</th></tr></thead><tbody id="partyRows"></tbody></table></div>
-    </section>
-
-    <section id="skillsCard" class="card">
-      <h2>Навыки и области</h2>
-      <div id="skillDomainCounters" class="counter-row"></div>
-      <div class="traits-grid">
-        <div class="trait-column"><h3>Навыки</h3><div id="skillRows" class="trait-list"></div></div>
-        <div class="trait-column"><h3>Области</h3><div id="domainRows" class="trait-list"></div></div>
-      </div>
-    </section>
-
-    <section id="gearCard" class="card">
-      <h2>Снаряжение</h2>
-      <h3>4 слота снаряжения</h3>
-      <div class="table-wrap"><table class="table"><thead><tr><th>Слот</th><th>Предмет</th><th>Качество</th><th>Навык</th><th>Причиняемый стресс</th><th>Свойства / заметки</th></tr></thead><tbody id="gearRows"></tbody></table></div>
-
-      <h3 style="margin-top:18px">Броня</h3>
-      <div class="table-wrap"><table class="table"><thead><tr><th>Слот</th><th>Предмет</th><th>Качество</th><th>Навык</th><th>Причиняемый стресс</th><th>Сопротивление</th><th>Защита</th><th>Доп. слоты</th><th>Свойства</th></tr></thead><tbody id="armorRows"></tbody></table></div>
-    </section>
-
-    <section id="contactsCard" class="card">
-      <div class="title-row"><h2>Контакты</h2></div>
-      <div id="contactCounters" class="counter-row"></div>
-      <div class="slot-grid">
-        <div class="slot-box"><div class="title-row"><h3>Личные</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('contact','personal')"></button><button class="triangle-button right" type="button" onclick="addSlot('contact','personal')"></button></div></div><div id="contact_personal_rows" class="slot-list"></div></div>
-        <div class="slot-box"><div class="title-row"><h3>Фракционные</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('contact','faction')"></button><button class="triangle-button right" type="button" onclick="addSlot('contact','faction')"></button></div></div><div id="contact_faction_rows" class="slot-list"></div></div>
-        <div class="slot-box"><div class="title-row"><h3>Мировые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('contact','world')"></button><button class="triangle-button right" type="button" onclick="addSlot('contact','world')"></button></div></div><div id="contact_world_rows" class="slot-list"></div></div>
-        <div class="slot-box"><div class="title-row"><h3>Персонажи игроков</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('contact','players')"></button><button class="triangle-button right" type="button" onclick="addSlot('contact','players')"></button></div></div><div id="contact_players_rows" class="slot-list"></div></div>
-      </div>
-    </section>
-
-    <section id="classQuestionsCard" class="card">
-      <h2>Классовые вопросы</h2>
-      <p class="hint">Три свободные ячейки для важных вопросов класса, личной драмы, долга, странностей или сюжетных крючков.</p>
-      <div class="grid-3">
-        <div>
-          <label>Вопрос 1</label>
-          <textarea id="classQuestion1" placeholder="Ответ"></textarea>
-        </div>
-        <div>
-          <label>Вопрос 2</label>
-          <textarea id="classQuestion2" placeholder="Ответ"></textarea>
-        </div>
-        <div>
-          <label>Вопрос 3</label>
-          <textarea id="classQuestion3" placeholder="Ответ"></textarea>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <div class="floating-actions-left">
-    <div class="floating-action-item">
-      <button id="openCodexButton" class="floating-codex-button" type="button" onclick="openCodexMenu()" aria-label="Открыть кодекс"></button>
-      <span class="floating-action-label">КОДЕКС</span>
-    </div>
-
-    <div class="floating-action-item">
-      <button id="openAbilitiesMenuButton" class="floating-section-button floating-ability-button" type="button" onclick="openAbilitiesMenu()" aria-label="Открыть способности"></button>
-      <span class="floating-action-label">СПОСОБНОСТИ</span>
-    </div>
-
-    <div class="floating-action-item">
-      <button id="openTacticsMenuButton" class="floating-section-button floating-tactics-button" type="button" onclick="openTacticsMenu()" aria-label="Открыть группы тактик"></button>
-      <span class="floating-action-label">ТАКТИКИ</span>
-    </div>
-
-    <div class="floating-action-item">
-      <button id="openResourcesMenuButton" class="floating-section-button floating-resources-button" type="button" onclick="openResourcesMenu()" aria-label="Открыть ресурсы"></button>
-      <span class="floating-action-label">РЕСУРСЫ</span>
-    </div>
-  </div>
-
-  <div class="floating-actions">
-    <div class="floating-action-item">
-      <button id="openDiaryButton" class="floating-diary-button" type="button" onclick="openDiaryMenu()" aria-label="Открыть дневник"></button>
-      <span class="floating-action-label">ДНЕВНИК</span>
-    </div>
-
-    <div class="floating-action-item">
-      <button id="openRollMenuButton" class="floating-roll-button" type="button" onclick="openRollMenu()" aria-label="Открыть меню броска"></button>
-      <span class="floating-action-label">БРОСОК</span>
-    </div>
-<div class="floating-action-item">
-  <button id="openRulesHelpButton" class="floating-rules-help-button" type="button" onclick="openRulesHelpMenu()" aria-label="Открыть справку"></button>
-  <span class="floating-action-label">СПРАВКА</span>
-</div>
-    <div class="floating-action-item">
-      <button id="openSheetMenuButton" class="floating-sheet-menu-button" type="button" onclick="openSheetMenu()" aria-label="Открыть меню листа"></button>
-      <span class="floating-action-label">МЕНЮ</span>
-    </div>
-  </div>
-
-  <div id="abilitiesModal" class="abilities-modal" onclick="closeAbilitiesMenuOnBackdrop(event)" aria-hidden="true">
-    <div class="abilities-panel" onclick="event.stopPropagation()">
-      <div class="title-row">
-        <h2>Способности</h2>
-        <button class="secondary" type="button" onclick="closeAbilitiesMenu()">Закрыть</button>
-      </div>
-      <div id="abilityCounters" class="counter-row"></div>
-      <div class="slot-grid">
-        <div class="slot-box">
-          <div class="title-row">
-            <h3>Базовые</h3>
-            <div class="title-actions">
-              <button class="triangle-button left" type="button" onclick="removeSlot('ability','basic')"></button>
-              <button class="triangle-button right" type="button" onclick="addSlot('ability','basic')"></button>
-            </div>
-          </div>
-          <div id="ability_basic_rows" class="slot-list" data-codex-drop="ability" data-codex-tier="basic"></div>
-        </div>
-        <div class="slot-box"><div class="title-row"><h3>Малые</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('ability','minor')"></button><button class="triangle-button right" type="button" onclick="addSlot('ability','minor')"></button></div></div><div id="ability_minor_rows" class="slot-list" data-codex-drop="ability" data-codex-tier="minor"></div></div>
-        <div class="slot-box"><div class="title-row"><h3>Профессиональные</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('ability','professional')"></button><button class="triangle-button right" type="button" onclick="addSlot('ability','professional')"></button></div></div><div id="ability_professional_rows" class="slot-list" data-codex-drop="ability" data-codex-tier="professional"></div></div>
-        <div class="slot-box"><div class="title-row"><h3>Элитные</h3><div class="title-actions"><button class="triangle-button left" type="button" onclick="removeSlot('ability','elite')"></button><button class="triangle-button right" type="button" onclick="addSlot('ability','elite')"></button></div></div><div id="ability_elite_rows" class="slot-list" data-codex-drop="ability" data-codex-tier="elite"></div></div>
-      </div>
-    </div>
-  </div>
-
-  <div id="tacticsModal" class="tactics-modal" onclick="closeTacticsMenuOnBackdrop(event)" aria-hidden="true">
-    <div class="tactics-panel" onclick="event.stopPropagation()">
-      <div class="title-row">
-        <h2>Группы тактик</h2>
-        <div class="title-actions">
-          <button class="triangle-button left" type="button" onclick="removeTacticRow()" title="Убрать группу тактик"></button>
-          <button class="triangle-button right" type="button" onclick="addTacticRow()" title="Добавить группу тактик"></button>
-          <button class="secondary" type="button" onclick="closeTacticsMenu()">Закрыть</button>
-        </div>
-      </div>
-      <div id="tacticCounters" class="counter-row"></div>
-      <div class="table-wrap"><table class="table"><thead><tr><th>Группа тактик</th><th>Связанный навык</th><th>Тактики / заметки</th></tr></thead><tbody id="tacticRows"></tbody></table></div>
-    </div>
-  </div>
-
-  <div id="resourcesModal" class="resources-modal" onclick="closeResourcesMenuOnBackdrop(event)" aria-hidden="true">
-    <div class="resources-panel" onclick="event.stopPropagation()">
-      <div class="title-row">
-        <h2>Ресурсы</h2>
-        <div class="title-actions">
-          <button class="triangle-button left" type="button" onclick="removeResourceRow()" title="Убрать ресурс"></button>
-          <button class="triangle-button right" type="button" onclick="addResourceRow()" title="Добавить ресурс"></button>
-          <button class="secondary" type="button" onclick="closeResourcesMenu()">Закрыть</button>
-        </div>
-      </div>
-      <div id="resourceCounters" class="counter-row"></div>
-      <div class="table-wrap"><table class="table"><thead><tr><th>№</th><th>Ресурс</th><th>Область</th><th>Качество</th><th>Свойства / цена / применение</th></tr></thead><tbody id="resourceRows"></tbody></table></div>
-    </div>
-  </div>
-  <button id="languageToggleButton" class="language-toggle-button" type="button" onclick="location.href='index.html'" aria-label="Русская версия">RU</button>
-
-  <div id="codexModal" class="codex-modal" onclick="closeCodexMenuOnBackdrop(event)" aria-hidden="true">
-    <div id="codexPanel" class="codex-panel" onclick="event.stopPropagation()">
-      <div id="codexDragHandle" class="title-row codex-title-row" onpointerdown="startCodexPanelDrag(event)" title="Перетащите, чтобы переместить окно">
-        <h2>Кодекс <span class="codex-window-hint">перетащить окно</span></h2>
-        <button class="secondary" type="button" onclick="closeCodexMenu()">Закрыть</button>
-      </div>
-      <div class="codex-content">
-        <p class="hint">Выберите группу, раскройте нужную карточку и перетащите её в подходящий слот листа. Допустимые слоты подсветятся цветом темы. Окно перемещается за шапку и меняет размер за правый нижний угол.</p>
-        <div class="codex-search">
-          <label for="codexSearchInput">Поиск по названию, тексту или категории</label>
-          <input id="codexSearchInput" type="search" placeholder="Например: броня, УБИВАТЬ, Светоносец..." oninput="setCodexSearch(this.value)" />
-          <button class="secondary" type="button" onclick="clearCodexSearch()">Очистить</button>
-        </div>
-        <div id="codexSearchStatus" class="codex-search-status" aria-live="polite"></div>
-        <div id="codexTabs" class="codex-tabs"></div>
-        <div id="codexItems" class="codex-items"></div>
-      </div>
-      <div id="codexResizeHandle" class="codex-resize-handle" onpointerdown="startCodexPanelResize(event)" title="Изменить размер окна" aria-hidden="true"></div>
-    </div>
-  </div>
-<div id="rulesHelpModal" class="rules-help-modal" onclick="closeRulesHelpMenuOnBackdrop(event)" aria-hidden="true">
-  <div class="rules-help-panel" onclick="event.stopPropagation()">
-    <div class="title-row">
-      <h2>Справка</h2>
-      <button class="secondary" type="button" onclick="closeRulesHelpMenu()">Закрыть</button>
-    </div>
-
-    <div id="rulesHelpContent" class="rules-help-content">
-      Загрузка справки...
-    </div>
-  </div>
-</div>
-  <div id="diaryModal" class="diary-modal" onclick="closeDiaryMenuOnBackdrop(event)" aria-hidden="true">
-    <div class="diary-panel" onclick="event.stopPropagation()">
-      <div class="title-row">
-        <h2>Дневник</h2>
-        <div class="title-actions">
-          <button class="triangle-button left" type="button" onclick="removeDiaryEntry()" title="Убрать запись"></button>
-          <button class="triangle-button right" type="button" onclick="addDiaryEntry()" title="Добавить запись"></button>
-          <button class="secondary" type="button" onclick="closeDiaryMenu()">Закрыть</button>
-        </div>
-      </div>
-      <p class="hint">Здесь можно хранить заметки, сцены, долги, обещания, странные находки и всё, что не должно занимать место на основном листе.</p>
-      <div id="diaryCounters" class="counter-row"></div>
-      <div id="diaryRows" class="slot-list" data-codex-drop="diary"></div>
-    </div>
-  </div>
-
-  <div id="sheetMenuModal" class="sheet-menu-modal" onclick="closeSheetMenuOnBackdrop(event)" aria-hidden="true">
-    <div class="sheet-menu-panel" onclick="event.stopPropagation()">
-      <div class="title-row">
-        <h2>Меню листа</h2>
-        <button class="secondary" type="button" onclick="closeSheetMenu()">Закрыть</button>
-      </div>
-
-<div class="sheet-menu-actions">
-  <button type="button" onclick="saveSheet(true)">Сохранить</button>
-  <button class="secondary" type="button" onclick="loadSheet(true)">Загрузить</button>
-  <button class="secondary" type="button" onclick="clearSheet()">Очистить</button>
-
-  <button id="nationStripeAnimationToggle" class="secondary toggle-button" type="button" onclick="toggleNationStripeAnimation()" aria-pressed="true">Анимация полоски: да</button>
-
-  <button type="button" onclick="exportCharacterJSON()">Экспорт .json</button>
-  <button class="secondary" type="button" onclick="triggerImportCharacterJSON()">Импорт .json</button>
-  <input id="importCharacterJsonInput" type="file" accept=".json,application/json" hidden onchange="importCharacterJSON(event)" />
-</div>
-
-<div class="discord-settings">
-  <h3>Discord, Telegram и ВКонтакте</h3>
-  <p class="hint">Адрес моста и защищённая сессия настраиваются автоматически. Токены ботов и общий секрет остаются только на сервере.</p>
-  <div class="sheet-menu-actions" style="margin-top:10px">
-    <button type="button" onclick="createChatConnectCode()">Создать код /connect</button>
-    <button class="secondary" type="button" onclick="refreshChatConnections()">Обновить подключения</button>
-    <button type="button" onclick="testDiscordConnection()">Проверить чаты</button>
-  </div>
-  <div id="chatConnectCode" class="hint discord-settings-status"></div>
-  <div id="chatConnectionsStatus" class="hint discord-settings-status"></div>
-  <div id="discordSettingsStatus" class="hint discord-settings-status"></div>
-</div>
-
-    </div>
-  </div>
-
-  <div id="discordToast" class="discord-toast" role="status" aria-live="polite"></div>
-
-  <div id="rollModal" class="roll-modal" onclick="closeRollMenuOnBackdrop(event)" aria-hidden="true">
-    <div class="roll-panel" onclick="event.stopPropagation()">
-      <div class="title-row">
-        <h2 id="autoRollTitle">Автоматический бросок</h2>
-        <button class="secondary" type="button" onclick="closeRollMenu()">Закрыть</button>
-      </div>
-
-      <div class="roll-subsection">
-        <h3>Автоматический бросок</h3>
-        <div class="grid-2">
-          <div>
-            <label>Навык</label>
-            <select id="autoRollSkill"></select>
-          </div>
-
-          <div>
-            <label>Область</label>
-            <select id="autoRollDomain"></select>
-          </div>
-
-          <div>
-            <label>Мастерство</label>
-            <button id="autoRollMasteryToggle" class="secondary toggle-button" type="button" onclick="toggleRollMastery()">Мастерство: нет</button>
-          </div>
-
-          <div>
-            <label>Количество помощников</label>
-            <input id="autoRollHelpers" type="number" min="0" value="0" />
-          </div>
-
-          <div>
-            <label>Сложность</label>
-            <select id="autoRollDifficulty">
-              <option value="0">Нормальная</option>
-              <option value="1">Рискованная</option>
-              <option value="2">Опасная</option>
-              <option value="3">Роковая</option>
-            </select>
-          </div>
-        </div>
-
-        <button type="button" style="margin-top:14px" onclick="rollAdvancedDice()">Бросить кости</button>
-
-        <div id="autoRollResultTitle" class="roll-result-title">Результат появится здесь</div>
-        <div id="autoRollResultDetails" class="roll-detail"></div>
-      </div>
-
-      <div class="roll-subsection">
-        <h3>Простой бросок</h3>
-        <div class="simple-dice-row">
-          <button class="die-shape-button die-d4" type="button" onclick="rollDie(4)">К4</button>
-          <button class="die-shape-button die-d6" type="button" onclick="rollDie(6)">К6</button>
-          <button class="die-shape-button die-d8" type="button" onclick="rollDie(8)">К8</button>
-          <button class="die-shape-button die-d10" type="button" onclick="rollDie(10)">К10</button>
-          <button class="die-shape-button die-d12" type="button" onclick="rollDie(12)">К12</button>
-        </div>
-        <div class="grid-2">
-          <div><label>Модификатор</label><input id="rollModifier" type="number" value="0" /></div>
-          <div><label>Причина броска</label><input id="rollReason" placeholder="Например: УБИВАТЬ, ИЗБЕГАТЬ, сопротивление..." /></div>
-        </div>
-      </div>
-
-      <h3 style="margin-top:14px">Общий журнал последних 10 бросков</h3>
-      <div id="autoRollHistory" class="roll-history"></div>
-    </div>
-  </div>
-
-  <script src="codex-data-en.js?v=4"></script>
-  <script>window.TOWER_CODEX=window.TOWER_CODEX_EN;</script>
-  <script>
-    const STORAGE_KEY="towerCharacterSheetV14";
-    const CHARACTER_PORTRAIT_KEY="towerCharacterPortraitV1";
-    const CHAT_BRIDGE_URL="https://towersheetbot.na4u.ru";
-    const DISCORD_SETTINGS_KEY="towerChatBridgeV2";
-    const LEGACY_DISCORD_SETTINGS_KEY="towerDiscordBridgeV1";
-    let chatBridgeSessionPromise=null;
-    let portraitDataUrl="";
-    let nationStripeAnimationEnabled=true;
-    const currentLanguage="en";
-    const UI_EN={"КОДЕКС":"CODEX","СПОСОБНОСТИ":"ABILITIES","ТАКТИКИ":"TACTICS","РЕСУРСЫ":"RESOURCES","ДНЕВНИК":"DIARY","БРОСОК":"ROLL","СПРАВКА":"HELP","МЕНЮ":"MENU","Персонаж":"Character","Портрет":"Portrait","Настройки портрета":"Portrait settings","Загрузить":"Load","Удалить":"Delete","Имя":"Name","Класс":"Class","Народ":"Nation","Другой":"Other","Род Войск":"Military Branch","Описание":"Description","Сопротивления, защита и стресс":"Resistances, Protection and Stress","Сопротивление":"Resistance","Защита":"Protection","Доп. слоты":"Extra Slots","Стресс":"Stress","Итог":"Total","Последствия":"Fallout","Малые":"Minor","Значимые":"Major","Шкалы дружбы":"Friendship Tracks","Заметка":"Note","Навыки и области":"Skills and Domains","Навыки":"Skills","Области":"Domains","Снаряжение":"Equipment","Слот":"Slot","Предмет":"Item","Качество":"Quality","Свойства / заметки":"Properties / Notes","Броня":"Armor","Свойства":"Properties","Контакты":"Contacts","Личные":"Personal","Фракционные":"Faction","Мировые":"World","Персонажи игроков":"Player Characters","Классовые вопросы":"Class Questions","Вопрос 1":"Question 1","Вопрос 2":"Question 2","Вопрос 3":"Question 3","Закрыть":"Close","Базовые":"Basic","Малые":"Minor","Профессиональные":"Professional","Элитные":"Elite","Группы тактик":"Tactic Groups","Группа тактик":"Tactic Group","Связанный навык":"Linked Skill","Тактики / заметки":"Tactics / Notes","Ресурс":"Resource","Свойства / цена / применение":"Properties / Cost / Use","Кодекс":"Codex","Справка":"Rules Help","Дневник":"Diary","Меню листа":"Sheet Menu","Сохранить":"Save","Очистить":"Clear","Анимация полоски: да":"Stripe animation: yes","Анимация полоски: нет":"Stripe animation: no","Экспорт .json":"Export .json","Импорт .json":"Import .json","Автоматический бросок":"Automatic Roll","Навык":"Skill","Страж Врат":"Gate Guard","Светоносец":"Light Bearer","Раствор Души":"Soul Fluid","Росоход":"Dew Walker","Экономант":"Economancer","Неболом":"Skybreaker","Подкодыш":"Codeling","Паратехник":"Paratech","Красный Рукав":"Red Sleeve","Народ Ножей":"People of Knives","Народ Ядов":"People of Poisons","Народ Граней":"People of Facets","Народ Железа":"People of Iron","Тяжёлая пехота":"Heavy Infantry","Мобильная пехота":"Mobile Infantry","Разведка":"Reconnaissance","Военный инженер":"Military Engineer","Штурмовая пехота":"Assault Infantry","Служба безопасности":"Security Service","Мистическая пехота":"Mystical Infantry","Полевой медик":"Field Medic","Отдел исследований":"Research Division","Открыть кодекс":"Open codex","Открыть способности":"Open abilities","Открыть группы тактик":"Open tactics","Открыть ресурсы":"Open resources","Открыть дневник":"Open diary","Открыть меню броска":"Open roll menu","Открыть справку":"Open rules help","Открыть меню листа":"Open sheet menu"};
-    Object.assign(UI_EN,{"Башня Упадёт — интерактивный лист персонажа":"Towerfall — Interactive Character Sheet","В ячейку защиты можно вписать любое число. Защита от брони суммируется с ним автоматически. То же работает с дополнительными слотами: ручные слоты + слоты от брони.":"Enter any number in a Protection cell. Armor Protection is added automatically. Extra slots work the same way: manual slots plus armor slots.","Сопротивления дружбы с соратниками, отмечайте в них стресс ради бонусов.":"Friendship resistances with comrades; mark Stress in them to gain benefits.","4 слота снаряжения":"4 equipment slots","Три свободные ячейки для важных вопросов класса, личной драмы, долга, странностей или сюжетных крючков.":"Three free fields for class questions, personal drama, debts, peculiarities, or story hooks.","Способности":"Abilities","Ресурсы":"Resources","перетащить окно":"drag window","Выберите группу, раскройте нужную карточку и перетащите её в подходящий слот листа. Допустимые слоты подсветятся цветом темы. Окно перемещается за шапку и меняет размер за правый нижний угол.":"Choose a group, open a card, and drag it to a suitable sheet slot. Valid slots are highlighted with the theme color. Drag the title bar to move the window and its lower-right corner to resize it.","Загрузка справки...":"Loading rules help...","Здесь можно хранить заметки, сцены, долги, обещания, странные находки и всё, что не должно занимать место на основном листе.":"Keep notes, scenes, debts, promises, strange discoveries, and anything else that should not occupy the main sheet here.","Область":"Domain","Мастерство":"Mastery","Мастерство области":"Domain Mastery","Мастерство: нет":"Mastery: no","Мастерство: да":"Mastery: yes","Количество помощников":"Number of helpers","Сложность":"Difficulty","Нормальная":"Standard","Рискованная":"Risky","Опасная":"Dangerous","Роковая":"Doom","Бросить кости":"Roll dice","Результат появится здесь":"The result will appear here","Бросков пока нет.":"No rolls yet.","Простой бросок":"Simple roll","Модификатор":"Modifier","Причина броска":"Roll reason","Общий журнал последних 10 бросков":"Shared log of the last 10 rolls","Имя персонажа":"Character name","Внешность, манеры, важные детали, странности, связи...":"Appearance, mannerisms, important details, peculiarities, relationships...","Ответ":"Answer","Например: УБИВАТЬ, ИЗБЕГАТЬ, сопротивление...":"For example: KILL, EVADE, resistance...","Например: Тихая ликвидация":"For example: Silent elimination","Конкретные тактики, условия применения, бонусы...":"Specific tactics, conditions, bonuses...","Роль, состояние, опасность...":"Role, condition, danger...","Заметка к мастерству навыка...":"Skill Mastery note...","Заметка к мастерству области...":"Domain Mastery note...","Свойства, поломки, странность...":"Properties, damage, peculiarities...","Свойства, качество, кому нужен...":"Properties, quality, who needs it...","Свойства, штрафы, особые эффекты...":"Properties, penalties, special effects...","Заметка, сцена, долг, обещание, находка, имя, странность...":"Note, scene, debt, promise, discovery, name, peculiarity...","Убрать группу тактик":"Remove tactic group","Добавить группу тактик":"Add tactic group","Убрать ресурс":"Remove resource","Добавить ресурс":"Add resource","Перетащите, чтобы переместить окно":"Drag to move the window","Изменить размер окна":"Resize window","Убрать запись":"Remove entry","Добавить запись":"Add entry","Русская версия":"Russian version"});
-    Object.assign(UI_EN,{"ПУЛИ":"BULLETS","РАЗУМ":"MIND","ДУХ":"SPIRIT","СУДЬБА":"FATE","УБИВАТЬ":"KILL","КОЛДОВАТЬ":"CAST","ЧИНИТЬ":"FIX","ПРОБИВАТЬСЯ":"ASCEND","СКРЫВАТЬСЯ":"HIDE","ТЕХНИЧИТЬ":"TECH","ИЗБЕГАТЬ":"EVADE","УЗНАВАТЬ":"INVESTIGATE","ГОВОРИТЬ":"TALK","ЧАЩА":"THICKET","ПУСТОШЬ":"WASTELAND","ВОЛНЫ":"WAVES","ГОРИЗОНТ":"HORIZON","АРМИЯ":"ARMY","БЕЗУМИЕ":"MADNESS","МИР":"WORLD","КОРПОРАЦИИ":"CORPORATIONS","ДУХИ":"SPIRITS","К4":"D4","К6":"D6","К8":"D8","К10":"D10","К12":"D12","Голова":"Head","Тело":"Body","Особое":"Special","Рюкзак":"Backpack"});
-    Object.assign(UI_EN,{"А4":"A4","Навык, связанный с любым боем или попыткой что-то сломать.":"A Skill used for any kind of combat or an attempt to break something.","Навык, применяемый для любой магии или магического предмета. Если вы имеете этот навык, вы можете создавать простые магические эффекты без проверки, например прикурить сигарету щелчком пальцев или перемешать напиток в кружке, не касаясь его.":"A Skill used for any magic or magical item. With it, you can create simple magical effects without a check, such as lighting a cigarette with a snap of your fingers or stirring a drink without touching it.","Навык, дающий восстановить прежнее состояние чего-то или кого-то.":"A Skill used to restore something or someone to their former condition.","Навык, отвечающий за перемещение в опасных ситуациях, например во время погони или перехода через Башню.":"A Skill used to move through dangerous situations, such as a chase or an Ascent through the Tower.","Навык, отвечающий за скрытное проникновение и перемещение. Незаметные нейтрализации не подозревающих противников — тоже часть этого навыка.":"A Skill used for covert entry and movement. Silently neutralizing unsuspecting enemies is also part of this Skill.","Навык, отвечающий за взаимодействие с технологией, будь то взлом или написание кода. Для создания новых предметов также используется этот навык.":"A Skill used to interact with technology, from hacking to writing code. It is also used to create new items.","Навык, отвечающий за уход от физических и магических атак, например уворот, парирование или чтение короткого заговора.":"A Skill used to avoid physical and magical attacks, such as dodging, parrying, or reciting a short ward.","Навык, который отвечает за поиск вещей, опознание магических предметов или поиск данных в сети.":"A Skill used to find things, identify magical items, or search for information online.","Навык, обозначающий способность красиво и хорошо вести переговоры, торговаться или обманывать.":"A Skill used to negotiate, bargain, persuade, or deceive.","Область, отвечающая за взаимодействие с людьми из народа Ножей и с локациями Башни, похожими на лес или лабиринт.":"A Domain for interacting with the People of Knives and Tower locations resembling forests or labyrinths.","Область, отвечающая за взаимодействие с людьми из народа Ядов, а также за представляющие опасность ядовитые и проклятые локации Башни.":"A Domain for interacting with the People of Poisons and dangerous poisonous or cursed Tower locations.","Область, отвечающая за взаимодействие с людьми из народа Граней и с постоянно меняющимися или разумными локациями.":"A Domain for interacting with the People of Facets and constantly changing or sentient locations.","Область, отвечающая за взаимодействие с людьми из народа Железа и за огромные открытые локации в Башне.":"A Domain for interacting with the People of Iron and enormous open locations in the Tower.","Область для взаимодействия с чем угодно военным: от оружия и техники до людей и компьютерных программ. Ещё она отвечает за укреплённые или патрулируемые локации в Башне.":"A Domain for anything military, from weapons and vehicles to personnel and software. It also covers fortified or patrolled Tower locations.","Область, обозначающая сумасшедшее влияние Башни и всех, кто ей подвергся, а также не связанных с Башней культистов.":"A Domain covering the Tower's maddening influence, everyone affected by it, and cultists unrelated to the Tower.","Область, отвечающая за все не-военные организации, места, людей и занятия, например за разговор с торговцем или готовку. Кроме того, она отвечает за места в Башне, похожие на человеческую городскую застройку.":"A Domain for civilian organizations, places, people, and activities. It also covers Tower locations resembling human urban development.","Область могучих частных компаний, ставших полубожественной силой, и контролируемых ими мест Башни.":"A Domain of powerful private companies that became near-divine forces, and the Tower locations they control.","Область духов природы и компьютерных программ, а также их вотчин: в Башне другие реки и леса, зато встречаются подкодыши и духи предметов.":"A Domain of nature spirits and computer programs, along with their domains, including Codelings and spirits of objects."});
-    Object.assign(UI_EN,{"Критический провал":"Critical Failure","Провал":"Failure","Успех с ценой":"Success at a Cost","Успех":"Success","Критический успех":"Critical Success","Действие не удалось, получите на ступень больше стресса.":"The action fails; take Stress one step higher.","Действие не удалось, получите стресс.":"The action fails; take Stress.","Действие удалось, получите стресс.":"The action succeeds; take Stress.","Действие удалось.":"The action succeeds.","За каждую кость 10 и более стресс, причиняемый вами, повышается на ступень.":"For each die showing 10 or more, increase the Stress you inflict by one step.","Борись за жизнь!":"Fight for your life!","Это уже серьёзно…":"This is getting serious…","Отбить врата!":"Hold the Gate!","Осветим мир!":"Let us light the world!","Вспомни, кем ты был…":"Remember who you were…","Лучшая сделка почти в кармане.":"The best deal is almost in the bag.","Это будет просто просчитать.":"This will be easy to calculate.","Вдохни глубоко и выпусти когти.":"Breathe deep and bare your claws.","Заслужи золотое будущее!":"Earn a golden future!","Победа на крыльях бабочки…":"Victory on butterfly wings…","Взрастим прекраснейший цветок!":"Let us grow the fairest flower!","Малое последствие":"Minor Fallout","Значимое последствие":"Major Fallout","Роковое последствие":"Doom Fallout","Без последствия":"No Fallout","Свернуть / развернуть секцию":"Collapse / expand section"});
-    Object.assign(UI_EN,{"Discord, Telegram и ВКонтакте":"Discord, Telegram and VK","Адрес моста и защищённая сессия настраиваются автоматически. Токены ботов и общий секрет остаются только на сервере.":"The bridge address and secure session are configured automatically. Bot tokens and the shared server secret remain on the server.","Проверить чаты":"Test chats","Отправлено в чаты.":"Sent to chats."});
-    const UI_EN_REPLACEMENTS=[["ОБЩИЙ СТРЕСС","TOTAL STRESS"],["Общий стресс","Total Stress"],["ПРОВЕРКА ПОСЛЕДСТВИЯ","FALLOUT CHECK"],["Проверка последствия","Fallout Check"],["ЗНАЧИМЫХ","MAJOR"],["значимых","major"],["МАЛЫХ","MINOR"],["малых","minor"],["НАВЫКОВ","SKILLS"],["навыков","skills"],["ОБЛАСТЕЙ","DOMAINS"],["областей","domains"],["ЛИЧНЫХ","PERSONAL"],["личных","personal"],["ФРАКЦИОННЫХ","FACTION"],["фракционных","faction"],["МИРОВЫХ","WORLD"],["мировых","world"],["ПЕРСОНАЖЕЙ ИГРОКОВ","PLAYER CHARACTERS"],["персонажей игроков","player characters"],["БАЗОВЫХ","BASIC"],["базовых","basic"],["ПРОФЕССИОНАЛЬНЫХ","PROFESSIONAL"],["профессиональных","professional"],["ЭЛИТНЫХ","ELITE"],["элитных","elite"],["Дополнительный слот","Extra slot"],["Обычный стресс","Regular Stress"],["Персонаж","Character"],["Ячейка","Slot"],["Запись","Entry"]];
-    Object.assign(UI_EN,{"Создать код /connect":"Create /connect code","Обновить подключения":"Refresh connections"});
-    Object.assign(UI_EN,{"Качество":"Quality","Причиняемый стресс":"Inflicted Stress","Поиск по названию, тексту или категории":"Search by title, text, or category","Например: броня, УБИВАТЬ, Светоносец...":"For example: armor, KILL, Light Bearer...","Очистить":"Clear","Бросить причиняемый стресс":"Roll inflicted Stress","Бросить кость качества":"Roll quality die"});
-    const UI_RU_BY_EN=Object.fromEntries(Object.entries(UI_EN).map(([ru,en])=>[en,ru]));
-    function translateUiText(value){
-      const text=String(value??""); const trimmed=text.trim(); if(!trimmed)return text;
-      let translated=UI_EN[trimmed]||trimmed.replace(/^Итого:/,"Total:").replace(/ броня\)/g," armor)").replace(/^Стресс:/,"Stress:");
-      UI_EN_REPLACEMENTS.forEach(([ru,en])=>{translated=translated.replaceAll(ru,en)});
-      return text.replace(trimmed,translated);
-    }
-    function localizeUiSubtree(root=document.body){
-      if(currentLanguage!=="en"||!root)return;
-      if(root.nodeType===Node.ELEMENT_NODE){
-        const options=root.matches("option")?[root]:[...root.querySelectorAll("option")];
-        options.forEach(option=>{
-          if(!option.hasAttribute("value"))option.setAttribute("value",option.textContent.trim());
-        });
-      }
-      const textNodes=[];
-      if(root.nodeType===Node.TEXT_NODE)textNodes.push(root);
-      else{
-        const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
-        while(walker.nextNode())textNodes.push(walker.currentNode);
-      }
-      textNodes.forEach(node=>{
-        const option=node.parentElement?.tagName==="OPTION"?node.parentElement:null;
-        if(option&&!option.hasAttribute("value")&&node.nodeValue.trim())option.setAttribute("value",node.nodeValue.trim());
-        const translated=translateUiText(node.nodeValue);
-        if(translated!==node.nodeValue)node.nodeValue=translated;
-      });
-      const elements=root.nodeType===Node.ELEMENT_NODE?[root,...root.querySelectorAll("*")]:[];
-      elements.forEach(el=>{
-        ["aria-label","placeholder","title"].forEach(attribute=>{
-          if(!el.hasAttribute(attribute))return;
-          const value=el.getAttribute(attribute);
-          const translated=translateUiText(value);
-          if(translated!==value)el.setAttribute(attribute,translated);
-        });
-      });
-    }
-    function localizeStaticUi(){
-      document.documentElement.lang=currentLanguage;
-      const button=byId("languageToggleButton"); if(button)button.textContent=currentLanguage==="en"?"RU":"EN";
-      localizeUiSubtree(document.body);
-    }
-    function startUiLocalizationObserver(){
-      if(currentLanguage!=="en")return;
-      const observer=new MutationObserver(mutations=>mutations.forEach(mutation=>{
-        if(mutation.type==="characterData")localizeUiSubtree(mutation.target);
-        else if(mutation.type==="childList")mutation.addedNodes.forEach(localizeUiSubtree);
-        else if(mutation.type==="attributes")localizeUiSubtree(mutation.target);
-      }));
-      observer.observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:["aria-label","placeholder","title"]});
-    }
-    const DEFAULT_TACTIC_COUNT=2;
-    const DEFAULT_RESOURCE_COUNT=1;
-    const DEFAULT_DIARY_COUNT=1;
-    const MAX_RESOURCE_COUNT=10;
-    const MAX_PROTECTION_PER_RESISTANCE=5;
-    const MAX_ABILITY_COUNTS={professional:5,elite:1};
-
-    let autoSelectedSkills=new Set();
-    let autoSelectedDomains=new Set();
-    let autoSelectedSkillMasteries=new Set();
-    let autoSelectedDomainMasteries=new Set();
-
-    let tacticCount=DEFAULT_TACTIC_COUNT;
-    let resourceCount=DEFAULT_RESOURCE_COUNT;
-    let diaryCount=DEFAULT_DIARY_COUNT;
-    let listenersAttached=false;
-    let parallaxAttached=false;
-    let collapsiblesAttached=false;
-    let stressHoverAttached=false;
-    let rollMasteryEnabled=false;
-    let advancedRollHistory=[];
-    let discordSharingAttached=false;
-    let discordToastTimer=0;
-    let lastConsequenceCheckText="";
-
-    const contactCounts={personal:1,faction:0,world:0,players:3};
-    const consequenceCounts={minor:0,major:0};
-    const abilityCounts={basic:1,minor:3,professional:1,elite:0};
-    const countMaps={contact:contactCounts,consequence:consequenceCounts,ability:abilityCounts};
-
-    const stressTracks=[
-      {id:"bullets",label:"ПУЛИ"},
-      {id:"mind",label:"РАЗУМ"},
-      {id:"spirit",label:"ДУХ"},
-      {id:"fate",label:"СУДЬБА"},
-      {id:"resources",label:"РЕСУРСЫ"}
-    ];
-
-    const dieOptions=["","D4","D6","D8","D10","D12"];
-
-    const defaultSkills=[
-      {name:"УБИВАТЬ",description:"Навык, связанный с любым боем или попыткой что-то сломать."},
-      {name:"КОЛДОВАТЬ",description:"Навык, применяемый для любой магии или магического предмета. Если вы имеете этот навык, вы можете создавать простые магические эффекты без проверки, например прикурить сигарету щелчком пальцев или перемешать напиток в кружке, не касаясь его."},
-      {name:"ЧИНИТЬ",description:"Навык, дающий восстановить прежнее состояние чего-то или кого-то."},
-      {name:"ПРОБИВАТЬСЯ",description:"Навык, отвечающий за перемещение в опасных ситуациях, например во время погони или перехода через Башню."},
-      {name:"СКРЫВАТЬСЯ",description:"Навык, отвечающий за скрытное проникновение и перемещение. Незаметные нейтрализации не подозревающих противников — тоже часть этого навыка."},
-      {name:"ТЕХНИЧИТЬ",description:"Навык, отвечающий за взаимодействие с технологией, будь то взлом или написание кода. Для создания новых предметов также используется этот навык."},
-      {name:"ИЗБЕГАТЬ",description:"Навык, отвечающий за уход от физических и магических атак, например уворот, парирование или чтение короткого заговора."},
-      {name:"УЗНАВАТЬ",description:"Навык, который отвечает за поиск вещей, опознание магических предметов или поиск данных в сети."},
-      {name:"ГОВОРИТЬ",description:"Навык, обозначающий способность красиво и хорошо вести переговоры, торговаться или обманывать."}
-    ];
-
-    const defaultDomains=[
-      {name:"ЧАЩА",description:"Область, отвечающая за взаимодействие с людьми из народа Ножей и с локациями Башни, похожими на лес или лабиринт."},
-      {name:"ПУСТОШЬ",description:"Область, отвечающая за взаимодействие с людьми из народа Ядов, а также за представляющие опасность ядовитые и проклятые локации Башни."},
-      {name:"ВОЛНЫ",description:"Область, отвечающая за взаимодействие с людьми из народа Граней и с постоянно меняющимися или разумными локациями."},
-      {name:"ГОРИЗОНТ",description:"Область, отвечающая за взаимодействие с людьми из народа Железа и за огромные открытые локации в Башне."},
-      {name:"АРМИЯ",description:"Область для взаимодействия с чем угодно военным: от оружия и техники до людей и компьютерных программ. Ещё она отвечает за укреплённые или патрулируемые локации в Башне."},
-      {name:"БЕЗУМИЕ",description:"Область, обозначающая сумасшедшее влияние Башни и всех, кто ей подвергся, а также не связанных с Башней культистов."},
-      {name:"МИР",description:"Область, отвечающая за все не-военные организации, места, людей и занятия, например за разговор с торговцем или готовку. Кроме того, она отвечает за места в Башне, похожие на человеческую городскую застройку."},
-      {name:"КОРПОРАЦИИ",description:"Область могучих частных компаний, ставших полубожественной силой, и контролируемых ими мест Башни."},
-      {name:"ДУХИ",description:"Область духов природы и компьютерных программ, а также их вотчин: в Башне другие реки и леса, зато встречаются подкодыши и духи предметов."}
-    ];
-
-    const nationDomainMap={
-      "Народ Ножей":"ЧАЩА",
-      "Народ Ядов":"ПУСТОШЬ",
-      "Народ Граней":"ВОЛНЫ",
-      "Народ Железа":"ГОРИЗОНТ"
-    };
-
-    const serviceBranchSkillMap={
-      "Тяжёлая пехота":"УБИВАТЬ",
-      "Мобильная пехота":"ПРОБИВАТЬСЯ",
-      "Разведка":"СКРЫВАТЬСЯ",
-      "Военный инженер":"ТЕХНИЧИТЬ",
-      "Штурмовая пехота":"ИЗБЕГАТЬ",
-      "Служба безопасности":"ГОВОРИТЬ",
-      "Мистическая пехота":"КОЛДОВАТЬ",
-      "Полевой медик":"ЧИНИТЬ",
-      "Отдел исследований":"УЗНАВАТЬ"
-    };
-
-    const classDefaultsMap={
-      "Страж Врат":{skill:"УБИВАТЬ",domain:"АРМИЯ"},
-      "Светоносец":{skill:"ПРОБИВАТЬСЯ",domain:"МИР"},
-      "Росоход":{skill:"СКРЫВАТЬСЯ",domain:"ЧАЩА"},
-      "Экономант":{skill:"КОЛДОВАТЬ",domain:"КОРПОРАЦИИ"},
-      "Неболом":{skill:"УЗНАВАТЬ",domain:"ГОРИЗОНТ"},
-      "Красный Рукав":{skill:"УБИВАТЬ",domain:"МИР"},
-      "Раствор Души":{skill:"ГОВОРИТЬ",domain:"БЕЗУМИЕ"},
-      "Подкодыш":{skill:"ПРОБИВАТЬСЯ",domain:"ДУХИ"},
-      "Паратехник":{skill:"ТЕХНИЧИТЬ",domain:"КОРПОРАЦИИ"}
-    };
-
-    const classPromptMap={
-      "Страж Врат":{
-        questions:["Как вы потеряли глаз?","Кто люди в ваших жетонах?","Любимый смешной случай из армии"],
-        contacts:[
-          "Сослуживец из жизни до Башни (Персонаж ведущего)",
-          "Кто-то в составе группы, кому вы даёте ценные советы и рассказываете весёлые истории из армии, кому и какой ваш совет вы считаете лучшим?",
-          "Кто-то из группы вас героически спас, кто и из какой ситуации?",
-          "Кто-то в группе постоянно стреляет у вас сигареты, хотя вы не видели, чтобы он курил. Кто это и что он отвечает, когда вы спрашиваете?"
+window.TOWER_CODEX_EN = {
+  "version": 2,
+  "title": "Codex — Towerfall",
+  "source": {
+    "file": "Tower_Will_Fall_EN.docx",
+    "note": "English card text translated from the supplied English rulebook."
+  },
+  "sections": [
+    {
+      "id": "classes",
+      "title": "Class Abilities",
+      "items": [
+        "classes-card-14-1",
+        "classes-card-14-2",
+        "classes-card-14-3",
+        "classes-card-14-4",
+        "classes-card-14-5",
+        "classes-card-14-6",
+        "classes-card-14-7",
+        "classes-card-14-8",
+        "classes-card-14-9",
+        "classes-card-14-10",
+        "classes-card-15-11",
+        "classes-card-15-12",
+        "classes-card-15-13",
+        "classes-card-15-14",
+        "classes-card-15-15",
+        "classes-card-15-16",
+        "classes-card-15-17",
+        "classes-card-16-18",
+        "classes-card-16-19",
+        "classes-card-16-20",
+        "classes-card-16-21",
+        "classes-card-18-22",
+        "classes-card-18-23",
+        "classes-card-18-24",
+        "classes-card-18-25",
+        "classes-card-18-26",
+        "classes-card-18-27",
+        "classes-card-18-28",
+        "classes-card-18-29",
+        "classes-card-18-30",
+        "classes-card-19-31",
+        "classes-card-19-32",
+        "classes-card-19-33",
+        "classes-card-19-34",
+        "classes-card-19-35",
+        "classes-card-20-36",
+        "classes-card-20-37",
+        "classes-card-20-38",
+        "classes-card-20-39",
+        "classes-card-20-40",
+        "classes-card-22-41",
+        "classes-card-22-42",
+        "classes-card-22-43",
+        "classes-card-22-44",
+        "classes-card-23-45",
+        "classes-card-23-46",
+        "classes-card-23-47",
+        "classes-card-23-48",
+        "classes-card-23-49",
+        "classes-card-23-50",
+        "classes-card-23-51",
+        "classes-card-23-52",
+        "classes-card-23-53",
+        "classes-card-23-54",
+        "classes-card-24-55",
+        "classes-card-24-56",
+        "classes-card-24-57",
+        "classes-card-24-58",
+        "classes-card-24-59",
+        "classes-card-25-60",
+        "classes-card-26-61",
+        "classes-card-27-62",
+        "classes-card-27-63",
+        "classes-card-27-64",
+        "classes-card-27-65",
+        "classes-card-27-66",
+        "classes-card-27-67",
+        "classes-card-27-68",
+        "classes-card-27-69",
+        "classes-card-27-70",
+        "classes-card-27-71",
+        "classes-card-27-72",
+        "classes-card-28-73",
+        "classes-card-28-74",
+        "classes-card-28-75",
+        "classes-card-29-76",
+        "classes-card-29-77",
+        "classes-card-29-78",
+        "classes-card-29-79",
+        "classes-card-31-80",
+        "classes-card-31-81",
+        "classes-card-31-82",
+        "classes-card-31-83",
+        "classes-card-31-84",
+        "classes-card-31-85",
+        "classes-card-31-86",
+        "classes-card-31-87",
+        "classes-card-31-88",
+        "classes-card-32-89",
+        "classes-card-32-90",
+        "classes-card-32-91",
+        "classes-card-32-92",
+        "classes-card-32-93",
+        "classes-card-33-94",
+        "classes-card-33-95",
+        "classes-card-33-96",
+        "classes-card-33-97",
+        "classes-card-34-98",
+        "classes-card-35-99",
+        "classes-card-36-100",
+        "classes-card-36-101",
+        "classes-card-36-102",
+        "classes-card-36-103",
+        "classes-card-36-104",
+        "classes-card-36-105",
+        "classes-card-36-106",
+        "classes-card-36-107",
+        "classes-card-37-108",
+        "classes-card-37-109",
+        "classes-card-37-110",
+        "classes-card-37-111",
+        "classes-card-38-112",
+        "classes-card-38-113",
+        "classes-card-38-114",
+        "classes-card-39-115",
+        "classes-card-39-116",
+        "classes-card-39-117",
+        "classes-card-40-118",
+        "classes-card-41-119",
+        "classes-card-41-120",
+        "classes-card-41-121",
+        "classes-card-41-122",
+        "classes-card-41-123",
+        "classes-card-41-124",
+        "classes-card-41-125",
+        "classes-card-41-126",
+        "classes-card-41-127",
+        "classes-card-42-128",
+        "classes-card-42-129",
+        "classes-card-42-130",
+        "classes-card-42-131",
+        "classes-card-42-132",
+        "classes-card-42-133",
+        "classes-card-43-134",
+        "classes-card-43-135",
+        "classes-card-43-136",
+        "classes-card-43-137",
+        "classes-card-43-138",
+        "classes-card-45-139",
+        "classes-card-45-140",
+        "classes-card-45-141",
+        "classes-card-45-142",
+        "classes-card-46-143",
+        "classes-card-46-144",
+        "classes-card-46-145",
+        "classes-card-46-146",
+        "classes-card-46-147",
+        "classes-card-46-148",
+        "classes-card-46-149",
+        "classes-card-46-150",
+        "classes-card-47-151",
+        "classes-card-47-152",
+        "classes-card-47-153",
+        "classes-card-48-154",
+        "classes-card-48-155",
+        "classes-card-48-156",
+        "classes-card-48-157",
+        "classes-card-50-158",
+        "classes-card-50-159",
+        "classes-card-50-160",
+        "classes-card-50-161",
+        "classes-card-50-162",
+        "classes-card-51-163",
+        "classes-card-51-164",
+        "classes-card-51-165",
+        "classes-card-51-166",
+        "classes-card-51-167",
+        "classes-card-51-168",
+        "classes-card-51-169",
+        "classes-card-52-170",
+        "classes-card-52-171",
+        "classes-card-53-172",
+        "classes-card-53-173",
+        "classes-card-53-174",
+        "classes-card-53-175",
+        "classes-card-53-176"
+      ]
+    },
+    {
+      "id": "equipment",
+      "title": "Equipment",
+      "items": [
+        "equipment-9-1-8-64-177",
+        "equipment-7-62-7-10-64-178",
+        "equipment-8-64-179",
+        "equipment-6-64-180",
+        "equipment-8-64-181",
+        "equipment-10-65-182",
+        "equipment-6-65-183",
+        "equipment-6-65-184",
+        "equipment-6-65-185",
+        "equipment-10-66-186",
+        "equipment-7-66-187",
+        "equipment-15-5-66-188",
+        "equipment-9-1-66-189",
+        "equipment-9-67-190",
+        "equipment-card-67-191",
+        "equipment-card-67-192",
+        "equipment-card-67-193",
+        "equipment-card-67-194",
+        "equipment-7-62-7-68-195",
+        "equipment-11-5-9-68-196",
+        "equipment-5-56-68-197",
+        "equipment-7-62-69-198",
+        "equipment-7-62-69-199",
+        "equipment-7-62-2-69-200",
+        "equipment-5-56-29-70-201",
+        "equipment-11-5-70-202",
+        "equipment-5-56-70-203",
+        "equipment-7-62-70-204",
+        "equipment-11-5-70-205",
+        "equipment-7-62-5-70-206",
+        "equipment-5-56-5-71-207",
+        "equipment-12-7-71-208",
+        "equipment-7-62-71-209",
+        "equipment-8-71-210",
+        "equipment-97-71-211",
+        "equipment-card-72-212",
+        "equipment-card-72-213",
+        "equipment-card-72-214",
+        "equipment-1-72-215",
+        "equipment-8-72-216",
+        "equipment-card-72-217",
+        "equipment-card-72-218",
+        "equipment-card-73-219",
+        "equipment-card-73-220",
+        "equipment-card-73-221",
+        "equipment-2-73-222",
+        "equipment-card-74-223",
+        "equipment-card-74-224",
+        "equipment-card-74-225",
+        "equipment-card-74-226",
+        "equipment-2-75-227",
+        "equipment-6-75-228",
+        "equipment-card-75-229",
+        "equipment-card-75-230",
+        "equipment-card-75-231",
+        "equipment-card-75-232",
+        "equipment-card-75-233",
+        "equipment-card-75-234",
+        "equipment-card-75-235",
+        "equipment-12-76-236",
+        "equipment-4-76-237",
+        "equipment-6-76-238",
+        "equipment-12-76-239",
+        "equipment-800-10-76-240",
+        "equipment-card-76-241",
+        "equipment-card-76-242",
+        "equipment-card-76-243",
+        "equipment-card-77-244",
+        "equipment-card-77-245",
+        "equipment-card-77-246",
+        "equipment-card-77-247",
+        "equipment-card-77-248",
+        "equipment-card-77-249",
+        "equipment-card-77-250",
+        "equipment-card-77-251",
+        "equipment-card-77-252",
+        "equipment-6-77-253",
+        "equipment-10-77-254",
+        "equipment-6-77-255",
+        "equipment-12-77-256",
+        "equipment-card-77-257",
+        "equipment-card-77-258",
+        "equipment-card-78-259",
+        "equipment-card-78-260",
+        "equipment-card-78-261",
+        "equipment-card-78-262",
+        "equipment-card-78-263",
+        "equipment-card-78-264",
+        "equipment-card-78-265",
+        "equipment-card-78-266",
+        "equipment-card-78-267",
+        "equipment-card-78-268",
+        "equipment-card-78-269",
+        "equipment-card-78-270",
+        "equipment-card-78-271",
+        "equipment-card-79-272",
+        "equipment-card-79-273",
+        "equipment-card-79-274"
+      ]
+    },
+    {
+      "id": "factions",
+      "title": "Faction Abilities",
+      "items": [
+        "factions-card-82-275",
+        "factions-card-82-276",
+        "factions-card-82-277",
+        "factions-card-82-278",
+        "factions-card-83-279",
+        "factions-card-83-280",
+        "factions-card-83-281",
+        "factions-card-83-282",
+        "factions-card-83-283",
+        "factions-card-84-284",
+        "factions-card-84-285",
+        "factions-card-84-286",
+        "factions-card-84-287",
+        "factions-card-84-288",
+        "factions-card-84-289",
+        "factions-card-85-290",
+        "factions-card-85-291",
+        "factions-card-85-292",
+        "factions-card-85-293",
+        "factions-card-86-294",
+        "factions-card-86-295",
+        "factions-card-86-296",
+        "factions-card-86-297",
+        "factions-card-86-298",
+        "factions-card-87-299",
+        "factions-card-87-300",
+        "factions-card-87-301",
+        "factions-card-87-302",
+        "factions-card-87-303",
+        "factions-card-87-304",
+        "factions-card-88-305",
+        "factions-card-88-306",
+        "factions-card-88-307",
+        "factions-card-88-308",
+        "factions-380-88-309",
+        "factions-120-88-310",
+        "factions-card-89-311",
+        "factions-card-89-312",
+        "factions-card-89-313",
+        "factions-card-90-314",
+        "factions-card-90-315",
+        "factions-card-90-316",
+        "factions-card-90-317",
+        "factions-card-90-318",
+        "factions-card-91-319",
+        "factions-card-91-320",
+        "factions-card-91-321",
+        "factions-card-91-322",
+        "factions-card-92-323",
+        "factions-card-92-324",
+        "factions-card-92-325",
+        "factions-card-92-326",
+        "factions-card-92-327",
+        "factions-card-92-328",
+        "factions-card-93-329",
+        "factions-card-93-330",
+        "factions-card-93-331",
+        "factions-card-94-332",
+        "factions-card-94-333",
+        "factions-card-94-334",
+        "factions-card-94-335",
+        "factions-card-94-336",
+        "factions-card-94-337",
+        "factions-card-95-338",
+        "factions-card-95-339",
+        "factions-card-95-340",
+        "factions-card-95-341",
+        "factions-card-95-342",
+        "factions-card-95-343",
+        "factions-card-96-344",
+        "factions-card-96-345",
+        "factions-card-96-346",
+        "factions-card-96-347",
+        "factions-card-96-348",
+        "factions-card-96-349",
+        "factions-card-97-350",
+        "factions-card-97-351",
+        "factions-card-97-352",
+        "factions-card-97-353",
+        "factions-card-97-354",
+        "factions-card-98-355"
+      ]
+    },
+    {
+      "id": "tactics",
+      "title": "Tactics",
+      "items": [
+        "tactics-card-111-356",
+        "tactics-card-111-357",
+        "tactics-card-112-358",
+        "tactics-card-112-359",
+        "tactics-card-112-360",
+        "tactics-card-112-361",
+        "tactics-card-113-362",
+        "tactics-card-113-363",
+        "tactics-card-113-364",
+        "tactics-card-113-365",
+        "tactics-card-114-366",
+        "tactics-card-114-367",
+        "tactics-card-114-368",
+        "tactics-card-114-369",
+        "tactics-card-115-370",
+        "tactics-card-115-371",
+        "tactics-card-115-372",
+        "tactics-card-115-373",
+        "tactics-card-116-374",
+        "tactics-card-116-375",
+        "tactics-card-116-376",
+        "tactics-card-116-377",
+        "tactics-card-116-378",
+        "tactics-card-117-379",
+        "tactics-card-117-380",
+        "tactics-card-117-381",
+        "tactics-card-118-382",
+        "tactics-card-118-383",
+        "tactics-card-118-384",
+        "tactics-card-118-385",
+        "tactics-card-118-386",
+        "tactics-card-119-387",
+        "tactics-card-119-388",
+        "tactics-card-119-389",
+        "tactics-card-119-390",
+        "tactics-card-120-391",
+        "tactics-card-120-392",
+        "tactics-card-120-393",
+        "tactics-card-120-394",
+        "tactics-card-121-395",
+        "tactics-card-121-396",
+        "tactics-card-121-397",
+        "tactics-card-121-398"
+      ]
+    },
+    {
+      "id": "consequences",
+      "title": "Fallout",
+      "items": [
+        "consequences-card-1",
+        "consequences-card-2",
+        "consequences-card-3",
+        "consequences-card-4",
+        "consequences-card-5",
+        "consequences-card-6",
+        "consequences-card-7",
+        "consequences-card-8",
+        "consequences-card-9",
+        "consequences-card-10",
+        "consequences-card-11",
+        "consequences-card-12",
+        "consequences-card-13",
+        "consequences-card-14",
+        "consequences-card-15",
+        "consequences-card-16",
+        "consequences-card-17",
+        "consequences-card-18",
+        "consequences-card-19",
+        "consequences-card-20",
+        "consequences-card-21",
+        "consequences-card-22",
+        "consequences-card-23",
+        "consequences-card-24",
+        "consequences-card-25",
+        "consequences-card-26",
+        "consequences-card-27",
+        "consequences-card-28",
+        "consequences-card-29",
+        "consequences-card-30",
+        "consequences-card-31",
+        "consequences-card-32",
+        "consequences-card-33",
+        "consequences-card-34",
+        "consequences-card-35",
+        "consequences-card-36",
+        "consequences-card-37",
+        "consequences-card-38",
+        "consequences-card-39",
+        "consequences-card-40",
+        "consequences-card-41",
+        "consequences-card-42",
+        "consequences-card-43",
+        "consequences-card-44",
+        "consequences-card-45",
+        "consequences-card-46",
+        "consequences-card-47",
+        "consequences-card-48",
+        "consequences-card-49",
+        "consequences-card-50",
+        "consequences-card-51",
+        "consequences-card-52",
+        "consequences-card-53",
+        "consequences-card-54",
+        "consequences-card-55",
+        "consequences-card-56",
+        "consequences-card-57",
+        "consequences-card-58",
+        "consequences-card-59",
+        "consequences-card-60",
+        "consequences-card-61",
+        "consequences-card-62",
+        "consequences-card-63",
+        "consequences-card-64",
+        "consequences-card-65",
+        "consequences-card-66",
+        "consequences-card-67",
+        "consequences-card-68",
+        "consequences-card-69",
+        "consequences-card-70",
+        "consequences-card-71",
+        "consequences-card-72",
+        "consequences-card-73",
+        "consequences-card-74",
+        "consequences-card-75",
+        "consequences-card-76",
+        "consequences-card-77",
+        "consequences-card-78",
+        "consequences-card-79",
+        "consequences-card-80",
+        "consequences-card-81",
+        "consequences-card-82",
+        "consequences-card-83",
+        "consequences-card-84",
+        "consequences-card-85",
+        "consequences-card-86",
+        "consequences-card-87",
+        "consequences-card-88",
+        "consequences-card-89",
+        "consequences-card-90",
+        "consequences-card-91",
+        "consequences-card-92",
+        "consequences-card-93",
+        "consequences-card-94",
+        "consequences-card-95",
+        "consequences-card-96",
+        "consequences-card-97"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "classes-card-14-1",
+      "kind": "ability",
+      "title": "Smoke Break",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          14
         ],
-        questionsEn:["How did you lose your eye?","Who are the people in your tokens?","Your favorite funny story from the army"],
-        contactsEn:[
-          "A fellow soldier from your life before the Tower (GM character)",
-          "Someone in the group to whom you give valuable advice and tell funny army stories. Who are they, and which piece of your advice do you consider the best?",
-          "Someone in the group heroically saved you. Who were they, and what did they save you from?",
-          "Someone in the group keeps bumming cigarettes from you, although you have never seen them smoke. Who are they, and what do they say when you ask?"
-        ]
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "Светоносец":{
-        questions:["Почему вы оставили близких и ушли в монахи?","Ваш любимый источник света","В каком смысле вы понимаете идею «осветить мир»?"],
-        contacts:[
-          "Ваш духовный учитель, недовольный, но любящий (Персонаж ведущего)",
-          "Кто-то в группе безобидно над вами шутит. Кто и какая невинная шутка вас задела?",
-          "Вы помогаете кому-то в группе с духовным ростом и саморазвитием. Кто это и какую духовную практику вы предлагаете?",
-          "Кто-то в группе дарит вам батарейки, конфеты и патроны просто так, кто это и почему вы не спрашиваете о причине подарков?"
+      "text": "Smoke Break\nWhen you smoke a cigarette and spend a minute doing so, you may cast one of the\nancient soldier spells.\nYou receive a cigarette die, D10. To cast a spell, roll D10. If it is lower than\nyour cigarette die, you have a cigarette for the spell, and the resource die\ndecreases by one step. You can restore your cigarettes back to D10 in an oasis.\nAt the start, you know the following spells:\n• Exhale smoke that makes mines and tripwires glow. This lets you automatically\npass a INVESTIGATE check in an area with traps.\n• Create a smoke screen that reduces the Stress your squad receives in ranged\ncombat by 1 step, or masks your movement so you can roll HIDE with Mastery.",
+      "tier": "basic",
+      "className": "Страж Врат",
+      "classNameEn": "Gate Guard"
+    },
+    {
+      "id": "classes-card-14-2",
+      "kind": "ability",
+      "title": "Ghost Eye",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          14
         ],
-        questionsEn:["Why did you leave your loved ones and become a monk?","Your favorite source of light","What does the idea of ‘lighting the world’ mean to you?"],
-        contactsEn:[
-          "Your spiritual teacher, disappointed but loving (GM character)",
-          "Someone in the group makes harmless jokes about you. Who are they, and which innocent joke hurt you?",
-          "You help someone in the group with spiritual growth and self-improvement. Who are they, and which spiritual practice do you suggest?",
-          "Someone in the group gives you batteries, sweets, and ammunition for no reason. Who are they, and why do you not ask about the gifts?"
-        ]
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "Раствор Души":{
-        questions:["По какой возможности до трансформации вы скучаете больше всего?","Какую маленькую радость вы нашли, чтобы не сойти с ума?","Ваше самое успешное произведение после трансформации"],
-        contacts:[
-          "Поклонник вашего творчества (Персонаж ведущего)",
-          "Кто-то в группе занимается тем же видом творчества, но не так умело, и вы ему помогаете. Кто?",
-          "Кто-то в группе вечно рассказывает вам отвлечённые истории про рыбалку. Кто это и чего он пытается достичь?",
-          "В группе кто-то помогает вам делать что-то, чего вы не можете из-за новой формы, например говорит вслух, как сейчас пахнет. Кто это и почему он к вам так добр?"
+      "text": "Ghost Eye\nYour absent eye sees what even sighted eyes cannot. At first, it has one mode:\n• Night vision: you see perfectly with this eye in complete darkness. You perform\nall actions in darkness without penalty.\nThe blinded Fallout cannot affect you, because you cannot be deprived of the\nabsence of an eye.",
+      "tier": "basic",
+      "className": "Страж Врат",
+      "classNameEn": "Gate Guard"
+    },
+    {
+      "id": "classes-card-14-3",
+      "kind": "ability",
+      "title": "Squad",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          14
         ],
-        questionsEn:["Which ability from before your transformation do you miss most?","What small joy did you find to keep yourself from going mad?","Your most successful work since the transformation"],
-        contactsEn:[
-          "A fan of your art (GM character)",
-          "Someone in the group practices the same art as you, but less skillfully, and you help them. Who are they?",
-          "Someone in the group constantly tells you rambling stories about fishing. Who are they, and what are they trying to achieve?",
-          "Someone in the group helps you do something your new form makes impossible, such as describing a smell aloud. Who are they, and why are they so kind to you?"
-        ]
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "Росоход":{
-        questions:["История, в которой вы спаслись в последний момент.","Кто ваш соперник за важную добычу? Назовите их обоих.","Что случилось с вашей первой винтовкой?"],
-        contacts:[
-          "Ваш бывший напарник и его гончая, клянчащая у вас кровь (Персонаж ведущего)",
-          "Кто-то в группе осуждает магию росоходов. Кто и какие аргументы он выдвигает?",
-          "Кто-то из группы интересуется вашими традициями честной охоты, но сам убивать не любит. Кто это и как вы преподносите ему вашу культуру?",
-          "Вы не доверяете кому-то в группе, поскольку он ведёт себя слишком честно и по-доброму. Кто это и какие его правильные действия вы трактуете как обман?"
+      "text": "Squad\nSeveral personalities live in your tags and can help you. At the start, you have\ntwo tags. Choose a name for each, describe each with one word of personality, and\nchoose either a Skill or a Domain for each. You may activate each of them once per\nsession. Activating a tag can give you Mastery in its Skill or Domain until the end\nof the scene; other abilities may give tags additional activations.",
+      "tier": "basic",
+      "className": "Страж Врат",
+      "classNameEn": "Gate Guard"
+    },
+    {
+      "id": "classes-card-14-4",
+      "kind": "ability",
+      "title": "Fiery Trail",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          14
         ],
-        questionsEn:["A story in which you escaped at the last moment.","Who is your rival for an important quarry? Name both of them.","What happened to your first rifle?"],
-        contactsEn:[
-          "Your former partner and their hound, which begs you for blood (GM character)",
-          "Someone in the group condemns Dew Walker magic. Who are they, and what arguments do they make?",
-          "Someone in the group is interested in your traditions of fair hunting but dislikes killing. Who are they, and how do you teach them your culture?",
-          "You distrust someone in the group because they act too honestly and kindly. Who are they, and which good deeds do you interpret as deceit?"
-        ]
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "Экономант":{
-        questions:["Откуда вы взяли стартовый капитал?","Кого вы предали ради наживы?","Расскажите про вашу экономическую теорию, за которую вас считают безумцем."],
-        contacts:[
-          "Ваш бизнес-партнёр, он обманул вас в серьёзной сделке, но его связи стоят риска (Персонаж ведущего)",
-          "Кто-то из группы чересчур альтруистичен и всегда забывает о выгоде для отряда. Кто это и как вы объясняете ему необходимость заработка?",
-          "Кто-то из группы пытается выглядеть официально, но постоянно спотыкается о мелкие детали формального общения. Кто это и почему вы решили помочь ему научиться общению в приличных кругах?",
-          "Вы сговорились с кем-то из команды ради финансовой махинации в одном из оазисов. Кто это был и как вы провернули всё так тонко, что никто не заметил?"
+      "text": "Fiery Trail\nYou can now smoke a cigarette instantly. You gain a new spell when smoking a\ncigarette:\n• Release a fiery arrow with a KILL roll.\nFiery Arrow\nDamage: D10. Properties: Fire, Energy, Powerful, Stable. Range: medium, long.",
+      "tier": "minor",
+      "className": "Страж Врат",
+      "classNameEn": "Gate Guard"
+    },
+    {
+      "id": "classes-card-14-5",
+      "kind": "ability",
+      "title": "Enter Trance",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          14
         ],
-        questionsEn:["Where did you get your starting capital?","Whom did you betray for profit?","Describe the economic theory for which people consider you a madman."],
-        contactsEn:[
-          "Your business partner. They cheated you in a major deal, but their connections are worth the risk (GM character)",
-          "Someone in the group is excessively altruistic and always forgets what benefits the squad. Who are they, and how do you explain the need to make money?",
-          "Someone in the group tries to look official but constantly misses small details of formal etiquette. Who are they, and why did you decide to teach them how to behave in polite circles?",
-          "You conspired with someone in the squad on a financial scheme in an oasis. Who were they, and how did you pull it off so subtly that nobody noticed?"
-        ]
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "Неболом":{
-        questions:["Что в вашей практике поколебало уверенность в том, что всё можно просчитать?","Почему вы хотите отправиться к другим планетам?","Ваш самый удавшийся подсчёт"],
-        contacts:[
-          "Неболом с клятвой мести, ваш напарник, которого вы до недавней встречи считали мёртвым (Персонаж ведущего)",
-          "Кто-то в группе считает межпланетные полёты пустой тратой ресурсов, постоянно вам об этом напоминая. Кто это и как он это объясняет?",
-          "Кто-то в группе пытается освоить гуманитарную науку вроде философии или литературоведения, чей смысл вы не понимаете. Кто это и почему вы не оставляете попыток познать что-то далёкое от вашей сферы?",
-          "Вы спасли жизнь кому-то из группы, заслонив от пуль. Кто это был и чем он обещал вам отплатить?"
+      "text": "Enter Trance\nYou can now hold your breath for an hour. You gain a new spell when smoking a\ncigarette:\n• Calm the mind and magical field with a FIX roll. This restores D6 Stress in\nSPIRIT and MIND.",
+      "tier": "minor",
+      "className": "Страж Врат",
+      "classNameEn": "Gate Guard"
+    },
+    {
+      "id": "classes-card-14-6",
+      "kind": "ability",
+      "title": "Ashen Shield",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          14
         ],
-        questionsEn:["What in your practice shook your confidence that everything can be calculated?","Why do you want to travel to other planets?","Your most successful calculation"],
-        contactsEn:[
-          "A Skybreaker sworn to vengeance, your partner whom you believed dead until your recent meeting (GM character)",
-          "Someone in the group considers interplanetary travel a waste of resources and constantly reminds you of it. Who are they, and how do they explain their view?",
-          "Someone in the group is trying to master a humanities field such as philosophy or literary studies, whose purpose you do not understand. Who are they, and why do you keep trying to learn something so distant from your specialty?",
-          "You saved someone in the group by shielding them from bullets. Who were they, and how did they promise to repay you?"
-        ]
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "Красный Рукав":{
-        questions:["Однажды вы отступили от принципов красных рукавов, но вас не наказали, почему?","Самое необычное свойство, которое вы хотите привить цветку.","Вы участвовали в миссии по ликвидации цели, в которой всё пошло не так, но вы спасли ситуацию в последний момент. Что произошло?"],
-        contacts:[
-          "Ваш напарник, излишне самоуверенный юный рукав с татуировками на всё тело. (Персонаж ведущего)",
-          "Кто-то из группы считает, что честь и принципы на поле боя неуместны. Кто это и как вы пытаетесь его переубедить?",
-          "Кто-то в группе просит у вас цветы, чтобы производить из них красители. Кто это и что он с ними делает?",
-          "Кто-то из группы называет вас отцом, сестрой, или другим членом семьи. Кто это и после какого события вы так сплотились?"
+      "text": "Ashen Shield\nYou can no longer receive a Fallout when casting a spell by smoking a\ncigarette. You gain a new spell:\n• Create a fire barrier with a CAST roll. It prevents either side from entering\nclose combat, or prevents one side from fleeing the fight, until the squad fails\nits first roll.",
+      "tier": "minor",
+      "className": "Страж Врат",
+      "classNameEn": "Gate Guard"
+    },
+    {
+      "id": "classes-card-14-7",
+      "kind": "ability",
+      "title": "Body",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          14
         ],
-        questionsEn:["Once you broke the principles of the Red Sleeves but were not punished. Why?","The most unusual trait you want to graft onto a flower.","You took part in a mission to eliminate a target. Everything went wrong, but you saved the situation at the last moment. What happened?"],
-        contactsEn:[
-          "Your partner, an overly self-confident young Sleeve covered in tattoos (GM character)",
-          "Someone in the group believes honor and principles have no place on the battlefield. Who are they, and how do you try to change their mind?",
-          "Someone in the group asks you for flowers to make dyes. Who are they, and what do they do with them?",
-          "Someone in the group calls you father, sister, or another family title. Who are they, and after what event did you become so close?"
-        ]
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "Подкодыш":{
-        questions:["Кто прошлый владелец вашего тела и почему он сошёл с ума?","Пока вы были бесплотным духом, человечество вас обидело, но вы не держите зла. Что это была за ситуация и почему вы простили людей?","Вы помните чьё-то лицо, но не можете вспомнить ни имени, ни то, кем был этот человек. Что вы делаете, чтобы выяснить, кто это?"],
-        contacts:[
-          "Охотник на тела, нанятый родственниками предыдущего владельца вашего тела, но ставший вам другом (Персонаж ведущего)",
-          "Кто-то в группе считает, что вы не понимаете человеческих шуток и идиом и всегда вам их объясняет. Кто это и что самое очевидное он вам рассказал?",
-          "Кто-то в группе углубился в изучение связанной с духами магии и обсуждает её с вами. Кто это и в чём он заблуждается?",
-          "Кто-то из группы готовит вместе с вами еду, кто это, и какому ставшему любимым рецепту он вас научил?"
+      "text": "Body\nYour empty eye now sees traces of human hands and feet and allows you to quickly\ntell them apart. This gives Mastery on a INVESTIGATE roll, for example during an\ninvestigation.",
+      "tier": "minor",
+      "className": "Страж Врат",
+      "classNameEn": "Gate Guard"
+    },
+    {
+      "id": "classes-card-14-8",
+      "kind": "ability",
+      "title": "Mind",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          14
         ],
-        questionsEn:["Who previously owned your body, and why did they go mad?","While you were a bodiless spirit, humanity wronged you, but you bear no grudge. What happened, and why did you forgive people?","You remember someone’s face but cannot recall their name or who they were. What are you doing to find out?"],
-        contactsEn:[
-          "A body hunter hired by the relatives of your body’s previous owner, who later became your friend (GM character)",
-          "Someone in the group thinks you do not understand human jokes and idioms and always explains them. Who are they, and what was the most obvious thing they explained?",
-          "Someone in the group has delved into spirit-related magic and discusses it with you. Who are they, and what are they mistaken about?",
-          "Someone in the group cooks with you. Who are they, and which recipe that became your favorite did they teach you?"
-        ]
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "Паратехник":{
-        questions:["Самый вам ненавистный способ корпораций ограничить свободу","В отличие от многих паратехников, вы часто идёте в открытый бой, почему?","В долгих хакерских сессиях вы привыкли питаться чем попало. Расскажите ваш любимый рецепт блюда из полуфабрикатов."],
-        contacts:[
-          "Предатель корпорации, работающий на паратехников (Персонаж ведущего)",
-          "Кто-то в группе любит спрашивать у вас о методах взлома защиты сериалов и видеоигр. Кто это, и какую неочевидную цель он преследует?",
-          "Кто-то в группе подвергся вашему взлому на службе до Башни. Кто это и почему вы от него этого не скрываете?",
-          "Кто-то в группе подозрительно хорошо общается с миром информации, при этом ничего не зная про духов и цифровые технологии. Кто это и в чём его секрет?"
+      "text": "Mind\nYour empty eye now sees threads of computer code. This gives Mastery on a TECH roll\nwhen dealing with a computer or network, and Mastery on an EVADE roll if you fight\na drone or turret.",
+      "tier": "minor",
+      "className": "Страж Врат",
+      "classNameEn": "Gate Guard"
+    },
+    {
+      "id": "classes-card-14-9",
+      "kind": "ability",
+      "title": "Feelings",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          14
         ],
-        questionsEn:["The corporate method of limiting freedom that you hate most","Unlike many Paratechnicians, you often fight openly. Why?","During long hacking sessions you grew used to eating whatever was available. Describe your favorite dish made from convenience foods."],
-        contactsEn:[
-          "A corporate defector working for the Paratechnicians (GM character)",
-          "Someone in the group likes asking you how to crack the protection on shows and video games. Who are they, and what non-obvious goal are they pursuing?",
-          "Someone in the group was hacked by you while you served before the Tower. Who are they, and why do you not hide it from them?",
-          "Someone in the group communicates suspiciously well with the Information World despite knowing nothing about spirits or digital technology. Who are they, and what is their secret?"
-        ]
-      }
-    };
-
-    const classRollTitleMap={
-      "Страж Врат":"Отбить врата!",
-      "Светоносец":"Осветим мир!",
-      "Раствор Души":"Вспомни, кем ты был…",
-      "Экономант":"Лучшая сделка почти в кармане.",
-      "Неболом":"Это будет просто просчитать.",
-      "Росоход":"Вдохни глубоко и выпусти когти.",
-      "Подкодыш":"Заслужи золотое будущее!",
-      "Паратехник":"Победа на крыльях бабочки…",
-      "Красный Рукав":"Взрастим прекраснейший цветок!"
-    };
-
-    const classRollTitleMapEn={
-      "Страж Врат":"Hold the Gate!",
-      "Светоносец":"Let us light the world!",
-      "Раствор Души":"Remember who you were…",
-      "Экономант":"The best deal is almost in the bag.",
-      "Неболом":"This will be easy to calculate.",
-      "Росоход":"Breathe deep and bare your claws.",
-      "Подкодыш":"Earn a golden future!",
-      "Паратехник":"Victory on butterfly wings…",
-      "Красный Рукав":"Let us grow the fairest flower!"
-    };
-
-    const classBackgroundMap={
-      "Страж Врат":"images/class-gate-guard.svg",
-      "Светоносец":"images/class-lightbearer.svg",
-      "Раствор Души":"images/class-soul-fluid.svg",
-      "Экономант":"images/class-economancer.svg",
-      "Неболом":"images/class-skybreaker.svg",
-      "Росоход":"images/class-dew-walker.svg",
-      "Подкодыш":"images/class-codeling.svg",
-      "Паратехник":"images/class-paratech.svg",
-      "Красный Рукав":"images/class-red-sleeve.svg"
-    };
-
-    const nationPatternMap={
-      "Народ Ножей":"images/pattern-knives.svg",
-      "Народ Ядов":"images/pattern-poisons.svg",
-      "Народ Граней":"images/pattern-edges.svg",
-      "Народ Железа":"images/pattern-iron.svg"
-    };
-
-    const DEFAULT_THEME_COLOR="#5a0002";
-
-    const nationThemeMap={
-      "Народ Ножей":"#4F818D",
-      "Народ Граней":"#7D7452",
-      "Народ Железа":"#597376",
-      "Народ Ядов":"#6a0002"
-    };
-
-    function checkThemeAssets(){
-      if(location.protocol==="file:")return;
-      const paths=[...Object.values(classBackgroundMap),...Object.values(nationPatternMap),"images/diarybutton.svg","images/abilitybutton.svg","images/tacticsbutton.svg","images/resourcebuttonlow.svg","images/menubutton.svg","images/rulesbutton.svg"];
-      Promise.all(paths.map(path=>fetch(`./${path}`,{cache:"no-cache"}).then(response=>response.ok).catch(()=>false))).then(results=>document.body.classList.toggle("assets-missing",results.some(ok=>!ok)));
-    }
-
-    const skillOptions=["",...defaultSkills.map(skill=>skill.name)];
-    const domainOptions=["",...defaultDomains.map(domain=>domain.name)];
-    const armorSlots=["Голова","Тело","Особое","Рюкзак"];
-
-    const resultLevels=[
-      {label:"Критический провал",labelEn:"Critical Failure",text:"Действие не удалось, получите на ступень больше стресса.",textEn:"The action fails; take Stress one step higher."},
-      {label:"Провал",labelEn:"Failure",text:"Действие не удалось, получите стресс.",textEn:"The action fails; take Stress."},
-      {label:"Успех с ценой",labelEn:"Success at a Cost",text:"Действие удалось, получите стресс.",textEn:"The action succeeds; take Stress."},
-      {label:"Успех",labelEn:"Success",text:"Действие удалось.",textEn:"The action succeeds."},
-      {label:"Критический успех",labelEn:"Critical Success",text:"За каждую кость 10 и более стресс, причиняемый вами, повышается на ступень.",textEn:"For each die showing 10 or more, increase the Stress you inflict by one step."}
-    ];
-
-    function byId(id){return document.getElementById(id)}
-    function escapeHtml(text){return String(text).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
-
-    function makeOptions(options,selected=""){return options.map(option=>`<option value="${escapeHtml(option)}" ${option===selected?"selected":""}>${escapeHtml(option)}</option>`).join("")}
-    function makeDieOptions(selected=""){
-      return dieOptions.map(option=>{
-        const label=option?option.replace("D","К"):"";
-        return `<option value="${escapeHtml(option)}" ${option===selected?"selected":""}>${escapeHtml(label)}</option>`;
-      }).join("");
-    }
-    function makeResistanceOptions(selected=""){return `<option value=""></option>`+stressTracks.map(track=>`<option value="${track.id}" ${track.id===selected?"selected":""}>${track.label}</option>`).join("")}
-
-    function findSkillIndex(skillName){return defaultSkills.findIndex(skill=>skill.name===skillName)+1}
-    function findDomainIndex(domainName){return defaultDomains.findIndex(domain=>domain.name===domainName)+1}
-    function getSkillCheckbox(skillName){const index=findSkillIndex(skillName);return index?byId(`skill${index}HasSkill`):null}
-    function getSkillMasteryCheckbox(skillName){const index=findSkillIndex(skillName);return index?byId(`skill${index}HasMastery`):null}
-    function getDomainCheckbox(domainName){const index=findDomainIndex(domainName);return index?byId(`domain${index}HasDomain`):null}
-    function getDomainMasteryCheckbox(domainName){const index=findDomainIndex(domainName);return index?byId(`domain${index}HasMastery`):null}
-
-    function hexToRgb(hex){
-      const normalized=String(hex||"").replace("#","").trim();
-      if(!/^[0-9a-fA-F]{6}$/.test(normalized))return{r:90,g:0,b:2};
-      return{r:parseInt(normalized.slice(0,2),16),g:parseInt(normalized.slice(2,4),16),b:parseInt(normalized.slice(4,6),16)};
-    }
-
-    function rgbToHex(r,g,b){
-      return "#"+[r,g,b].map(value=>{
-        const clamped=Math.max(0,Math.min(255,Math.round(value)));
-        return clamped.toString(16).padStart(2,"0");
-      }).join("");
-    }
-
-    function mixColor(hex,targetHex,ratio){
-      const base=hexToRgb(hex);
-      const target=hexToRgb(targetHex);
-      return rgbToHex(base.r+(target.r-base.r)*ratio,base.g+(target.g-base.g)*ratio,base.b+(target.b-base.b)*ratio);
-    }
-
-    function getReadableTextColor(hex){
-      const {r,g,b}=hexToRgb(hex);
-      const luminance=(0.299*r+0.587*g+0.114*b)/255;
-      return luminance>0.58?"#320216":"#fff";
-    }
-
-    function getHoverThemeColor(hex){
-      const {r,g,b}=hexToRgb(hex);
-      const luminance=(0.299*r+0.587*g+0.114*b)/255;
-      return luminance>0.46?mixColor(hex,"#000000",0.18):mixColor(hex,"#ffffff",0.22);
-    }
-
-    function updateClassBackground(){
-      const className=byId("className")?.value||"";
-      const imagePath=classBackgroundMap[className];
-      document.body.style.setProperty("--class-bg-image",imagePath?`url("${imagePath}")`:"none");
-      document.body.classList.toggle("has-class-emblem",Boolean(imagePath));
-    }
-
-    function updateNationPattern(){
-      const nationName=byId("nationName")?.value||"";
-      const imagePath=nationPatternMap[nationName];
-      document.body.style.setProperty("--nation-pattern-image",imagePath?`url("${imagePath}")`:"none");
-      document.body.classList.toggle("has-nation-pattern",Boolean(imagePath));
-    }
-
-    function updateNationTheme(){
-      const nationName=byId("nationName")?.value||"";
-      const themeColor=nationThemeMap[nationName]||DEFAULT_THEME_COLOR;
-      const hoverColor=getHoverThemeColor(themeColor);
-      const onAccent=getReadableTextColor(themeColor);
-      const onHover=getReadableTextColor(hoverColor);
-
-      document.documentElement.style.setProperty("--accent",themeColor);
-      document.documentElement.style.setProperty("--button",themeColor);
-      document.documentElement.style.setProperty("--text",themeColor);
-      document.documentElement.style.setProperty("--muted",`${themeColor}cc`);
-      document.documentElement.style.setProperty("--line",`${themeColor}44`);
-      document.documentElement.style.setProperty("--accent-soft",`${themeColor}22`);
-      document.documentElement.style.setProperty("--accent-hover",hoverColor);
-      document.documentElement.style.setProperty("--accent-hover-soft",`${hoverColor}26`);
-      document.documentElement.style.setProperty("--hover-bg",`${hoverColor}12`);
-      document.documentElement.style.setProperty("--button-text",onAccent);
-      document.documentElement.style.setProperty("--on-accent",onAccent);
-      document.documentElement.style.setProperty("--on-hover",onHover);
-    }
-
-    function updateNationStripeAnimation(){
-      document.body.classList.toggle("nation-stripe-animation-disabled",!nationStripeAnimationEnabled);
-      const button=byId("nationStripeAnimationToggle");
-      if(!button)return;
-      button.classList.toggle("is-active",nationStripeAnimationEnabled);
-      button.textContent=currentLanguage==="en"
-        ?`Stripe animation: ${nationStripeAnimationEnabled?"on":"off"}`
-        :`Анимация полоски: ${nationStripeAnimationEnabled?"да":"нет"}`;
-      button.setAttribute("aria-pressed",nationStripeAnimationEnabled?"true":"false");
-    }
-
-    function updateNationStripeContext(){
-      const minorConsequences=countFilledSlots("consequence","minor");
-      const majorConsequences=countFilledSlots("consequence","major");
-      const duration=Math.max(1,18-minorConsequences-majorConsequences*2);
-      const totalStress=getCurrentStressTotals().totalStress;
-      const dangerDarkening=totalStress>=17 ? 0.48 : totalStress>=6 ? 0.25 : 0;
-      const nationName=byId("nationName")?.value||"";
-      const themeColor=nationThemeMap[nationName]||DEFAULT_THEME_COLOR;
-      const stripeColor=dangerDarkening?mixColor(themeColor,"#000000",dangerDarkening):themeColor;
-      document.documentElement.style.setProperty("--nation-stripe-duration",`${duration}s`);
-      document.documentElement.style.setProperty("--nation-stripe-color",stripeColor);
-      const stripe=document.querySelector(".nation-theme-stripe");
-      if(stripe)stripe.dataset.cycleSeconds=String(duration);
-    }
-
-    function toggleNationStripeAnimation(){
-      nationStripeAnimationEnabled=!nationStripeAnimationEnabled;
-      updateNationStripeAnimation();
-      saveSheet(false);
-    }
-
-    function updateParallaxBackground(){
-      const scrollY=window.scrollY||document.documentElement.scrollTop||0;
-      document.body.style.setProperty("--class-parallax-y",`${Math.round(scrollY*-0.07)}px`);
-      document.body.style.setProperty("--nation-parallax-y",`${Math.round(scrollY*-0.18)}px`);
-    }
-
-    function attachParallax(){
-      if(parallaxAttached)return;
-      let ticking=false;
-      function requestParallaxUpdate(){
-        if(ticking)return;
-        ticking=true;
-        window.requestAnimationFrame(()=>{ticking=false;updateParallaxBackground()});
-      }
-      window.addEventListener("scroll",requestParallaxUpdate,{passive:true});
-      window.addEventListener("resize",requestParallaxUpdate);
-      updateParallaxBackground();
-      parallaxAttached=true;
-    }
-
-    function setButtonMaskImage(buttonId,imagePath){
-      const button=byId(buttonId);
-      if(!button||!imagePath)return;
-      button.style.webkitMaskImage=`url("${imagePath}")`;
-      button.style.maskImage=`url("${imagePath}")`;
-    }
-
-    function updateFloatingMenuButtons(){
-      let diaryImage="images/diarybutton.svg";
-      if(diaryCount>=7)diaryImage="images/diarybuttonfull.svg";
-      else if(diaryCount>=4)diaryImage="images/diarybuttonmedium.svg";
-
-      let tacticsImage="images/tacticsbutton.svg";
-      if(tacticCount>=10)tacticsImage="images/tacticsbuttonfull.svg";
-      else if(tacticCount>=5)tacticsImage="images/tacticsbuttonmedium.svg";
-
-      let resourcesImage="images/resourcebuttonlow.svg";
-      if(resourceCount>=8)resourcesImage="images/resourcebuttonfull.svg";
-      else if(resourceCount>=4)resourcesImage="images/resourcebuttonmedium.svg";
-
-      setButtonMaskImage("openDiaryButton",diaryImage);
-      setButtonMaskImage("openTacticsMenuButton",tacticsImage);
-      setButtonMaskImage("openResourcesMenuButton",resourcesImage);
-      setButtonMaskImage("openAbilitiesMenuButton","images/abilitybutton.svg");
-    }
-
-
-    function showCharacterPortrait(imageData){
-      const preview=byId("characterPortraitPreview");
-
-      portraitDataUrl=imageData||"";
-
-      if(!preview)return;
-
-      if(!portraitDataUrl){
-        preview.removeAttribute("src");
-        preview.classList.remove("has-image");
-        return;
-      }
-
-      preview.src=portraitDataUrl;
-      preview.classList.add("has-image");
-    }
-
-    function attachCharacterPortraitUpload(){
-      const input=byId("characterPortraitUpload");
-      if(!input)return;
-
-      const savedImage=localStorage.getItem(CHARACTER_PORTRAIT_KEY);
-      if(savedImage)showCharacterPortrait(savedImage);
-
-      input.addEventListener("change",event=>{
-        const file=event.target.files?.[0];
-        if(!file)return;
-
-        if(!file.type.startsWith("image/")){
-          alert(currentLanguage==="en"?"Only image files can be uploaded.":"Можно загружать только изображения.");
-          input.value="";
-          return;
-        }
-
-        const reader=new FileReader();
-
-        reader.onload=()=>{
-          const imageData=String(reader.result||"");
-
-          try{
-            localStorage.setItem(CHARACTER_PORTRAIT_KEY,imageData);
-          }catch(error){
-            alert(currentLanguage==="en"?"The image is too large for browser storage. Try a smaller file.":"Изображение слишком большое для локального сохранения браузера. Попробуй файл меньшего размера.");
-            console.error(error);
-          }
-
-          showCharacterPortrait(imageData);
-        };
-
-        reader.onerror=()=>alert(currentLanguage==="en"?"Could not read the image file.":"Не удалось прочитать файл изображения.");
-        reader.readAsDataURL(file);
-      });
-    }
-
-    function removeCharacterPortrait(){
-      const input=byId("characterPortraitUpload");
-      if(input)input.value="";
-
-      localStorage.removeItem(CHARACTER_PORTRAIT_KEY);
-      showCharacterPortrait("");
-
-      const exportPreview=byId("exportPreview");
-      if(exportPreview){
-        exportPreview.removeAttribute("src");
-        exportPreview.classList.remove("has-image");
-      }
-
-      saveSheet(false);
-    }
-
-    function loadImageForExport(src){
-      return new Promise((resolve,reject)=>{
-        if(!src){
-          resolve(null);
-          return;
-        }
-
-        const image=new Image();
-        image.onload=()=>resolve(image);
-        image.onerror=reject;
-        image.src=src;
-      });
-    }
-
-    function drawImageCover(ctx,image,x,y,w,h){
-      if(!image)return;
-
-      const imageWidth=image.naturalWidth||image.width;
-      const imageHeight=image.naturalHeight||image.height;
-      const imageRatio=imageWidth/imageHeight;
-      const targetRatio=w/h;
-
-      let sx=0;
-      let sy=0;
-      let sw=imageWidth;
-      let sh=imageHeight;
-
-      if(imageRatio>targetRatio){
-        sw=imageHeight*targetRatio;
-        sx=(imageWidth-sw)/2;
-      }else{
-        sh=imageWidth/targetRatio;
-        sy=(imageHeight-sh)/2;
-      }
-
-      ctx.drawImage(image,sx,sy,sw,sh,x,y,w,h);
-    }
-
-    function wrapCanvasText(ctx,text,x,y,maxWidth,lineHeight,maxLines){
-      const words=String(text||"").replace(/\s+/g," ").trim().split(" ").filter(Boolean);
-      const lines=[];
-      let line="";
-
-      words.forEach(word=>{
-        const testLine=line?line+" "+word:word;
-        if(ctx.measureText(testLine).width>maxWidth&&line){
-          lines.push(line);
-          line=word;
-        }else{
-          line=testLine;
-        }
-      });
-
-      if(line)lines.push(line);
-
-      const visibleLines=maxLines?lines.slice(0,maxLines):lines;
-
-      visibleLines.forEach((visibleLine,index)=>{
-        let output=visibleLine;
-
-        if(maxLines&&index===maxLines-1&&lines.length>maxLines){
-          while(ctx.measureText(output+"…").width>maxWidth&&output.length>0){
-            output=output.slice(0,-1);
-          }
-          output+="…";
-        }
-
-        ctx.fillText(output,x,y+index*lineHeight);
-      });
-
-      return visibleLines.length*lineHeight;
-    }
-
-    function getCssVar(name,fallback){
-      const value=getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-      return value||fallback;
-    }
-
-    function safeFileName(text){
-      return String(text||"character")
-        .trim()
-        .replace(/[\\/:*?"<>|]+/g,"")
-        .replace(/\s+/g,"_")
-        .slice(0,64)||"character";
-    }
-
-    async function exportCharacterInfoCard(format="png"){
-      saveSheet(false);
-
-      const characterName=byId("characterName")?.value.trim()||"Без имени";
-      const className=byId("className")?.value.trim()||"—";
-      const nationName=byId("nationName")?.value.trim()||"—";
-      const serviceBranch=byId("serviceBranch")?.value.trim()||"—";
-      const description=byId("description")?.value.trim()||"—";
-
-      const nationPatternPath=nationPatternMap[nationName]||"";
-const classEmblemPath=classBackgroundMap[className]||"";
-
-
-const [image,nationPatternImage,classEmblemImage]=await Promise.all([
-  loadImageForExport(portraitDataUrl).catch(error=>{
-    console.error(error);
-    return null;
-  }),
-  loadImageForExport(nationPatternPath).catch(error=>{
-    console.warn("Не удалось загрузить национальный узор:", error);
-    return null;
-  }),
-  loadImageForExport(classEmblemPath).catch(error=>{
-    console.warn("Не удалось загрузить эмблему класса:", error);
-    return null;
-  })
-]);
-
-      const canvas=document.createElement("canvas");
-      canvas.width=1240;
-      canvas.height=1754;
-
-      const ctx=canvas.getContext("2d");
-      const accent=getCssVar("--accent","#320216");
-      const muted=getCssVar("--muted","#5a0002cc");
-      const soft=getCssVar("--accent-soft","#5a000218");
-      const white="#ffffff";
-
-      ctx.fillStyle=white;
-      ctx.fillRect(0,0,canvas.width,canvas.height);
-      
-
-      ctx.fillStyle=soft;
-      ctx.fillRect(64,64,canvas.width-128,canvas.height-128);
-
-      ctx.fillStyle=white;
-      ctx.fillRect(48,48,canvas.width-128,canvas.height-128);
-
-      ctx.strokeStyle=accent;
-      ctx.lineWidth=8;
-      ctx.strokeRect(48,48,canvas.width-128,canvas.height-128);
-
-      drawTintedPattern(
-  ctx,
-  nationPatternImage,
-  0,
-  0,
-  canvas.width,
-  canvas.height,
-  360,
-  accent,
-  .16
-);
-
-      ctx.fillStyle=accent;
-      ctx.font="1000 54px system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
-      ctx.fillText("БАШНЯ УПАДЁТ",96,132);
-
-
-
-      const portraitX=96;
-      const portraitY=230;
-      const portraitW=420;
-      const portraitH=594;
-
-      ctx.fillStyle=accent;
-      ctx.fillRect(portraitX-16,portraitY-16,portraitW+32,portraitH+32);
-
-      ctx.fillStyle=white;
-      ctx.fillRect(portraitX,portraitY,portraitW,portraitH);
-
-      if(image){
-        drawImageCover(ctx,image,portraitX,portraitY,portraitW,portraitH);
-      }else{
-        ctx.fillStyle=soft;
-        ctx.fillRect(portraitX,portraitY,portraitW,portraitH);
-
-        ctx.fillStyle=accent;
-        ctx.font="1000 42px system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
-        ctx.textAlign="center";
-        ctx.fillText("ПОРТРЕТ",portraitX+portraitW/2,portraitY+portraitH/2-8);
-        ctx.font="900 28px system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
-        ctx.fillText("A4",portraitX+portraitW/2,portraitY+portraitH/2+38);
-        ctx.textAlign="left";
-      }
-
-      const textX=580;
-      const textW=530;
-      let y=244;
-      
-      drawTintedImageContain(
-  ctx,
-  classEmblemImage,
-  textX-20,
-  220,
-  textW+40,
-  560,
-  accent,
-  .18
-);
-
-      ctx.fillStyle=accent;
-      ctx.font="1000 64px system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
-      y+=wrapCanvasText(ctx,characterName,textX,y,textW,70,3)+54;
-function drawImageContain(ctx,image,x,y,w,h){
-  if(!image)return;
-
-  const imageWidth=image.naturalWidth||image.width;
-  const imageHeight=image.naturalHeight||image.height;
-
-  const imageRatio=imageWidth/imageHeight;
-  const targetRatio=w/h;
-
-  let dw=w;
-  let dh=h;
-  let dx=x;
-  let dy=y;
-
-  if(imageRatio>targetRatio){
-    dh=w/imageRatio;
-    dy=y+(h-dh)/2;
-  }else{
-    dw=h*imageRatio;
-    dx=x+(w-dw)/2;
-  }
-
-  ctx.drawImage(image,dx,dy,dw,dh);
-}
-
-function makeTintedImageCanvas(image,width,height,color,mode="contain"){
-  const canvas=document.createElement("canvas");
-  canvas.width=Math.max(1,Math.round(width));
-  canvas.height=Math.max(1,Math.round(height));
-
-  const ctx=canvas.getContext("2d");
-
-  if(mode==="cover"){
-    drawImageCover(ctx,image,0,0,canvas.width,canvas.height);
-  }else{
-    drawImageContain(ctx,image,0,0,canvas.width,canvas.height);
-  }
-
-  ctx.globalCompositeOperation="source-in";
-  ctx.fillStyle=color;
-  ctx.fillRect(0,0,canvas.width,canvas.height);
-  ctx.globalCompositeOperation="source-over";
-
-  return canvas;
-}
-
-function drawTintedImageContain(ctx,image,x,y,w,h,color,alpha=.12){
-  if(!image)return;
-
-  const tinted=makeTintedImageCanvas(image,w,h,color,"contain");
-
-  ctx.save();
-  ctx.globalAlpha=alpha;
-  ctx.drawImage(tinted,x,y,w,h);
-  ctx.restore();
-}
-
-function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
-  if(!image)return;
-
-  const tile=makeTintedImageCanvas(image,tileSize,tileSize,color,"cover");
-  const pattern=ctx.createPattern(tile,"repeat");
-
-  if(!pattern)return;
-
-  ctx.save();
-  ctx.beginPath();
-  ctx.rect(x,y,w,h);
-  ctx.clip();
-
-  ctx.globalAlpha=alpha;
-  ctx.fillStyle=pattern;
-  ctx.translate(x,y);
-  ctx.fillRect(0,0,w,h);
-
-  ctx.restore();
-}
-      function drawInfo(label,value){
-        ctx.fillStyle=muted;
-        ctx.font="900 26px system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
-        ctx.fillText(label.toUpperCase(),textX,y);
-
-        ctx.fillStyle=accent;
-        ctx.font="900 42px system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
-        y+=wrapCanvasText(ctx,value||"—",textX,y+48,textW,48,2)+62;
-      }
-
-      drawInfo("Класс",className);
-      drawInfo("Народ",nationName);
-      drawInfo("Род войск",serviceBranch);
-
-      const descX=96;
-      const descY=910;
-      const descW=1048;
-
-      ctx.fillStyle=accent;
-      ctx.font="1000 36px system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
-      ctx.fillText("ОПИСАНИЕ",descX,descY);
-
-      ctx.fillStyle=accent;
-      ctx.globalAlpha=.13;
-      ctx.fillRect(descX,descY+24,descW,520);
-      ctx.globalAlpha=1;
-
-      ctx.fillStyle=accent;
-      ctx.font="700 32px system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
-      wrapCanvasText(ctx,description,descX+28,descY+80,descW-56,44,10);
-
-      ctx.strokeStyle=accent;
-      ctx.lineWidth=4;
-      ctx.strokeRect(descX,descY+24,descW,520);
-
-     
-
-      const isJpeg=format==="jpeg"||format==="jpg";
-      const mimeType=isJpeg?"image/jpeg":"image/png";
-      const extension=isJpeg?"jpg":"png";
-      const quality=isJpeg?0.92:undefined;
-      const dataUrl=canvas.toDataURL(mimeType,quality);
-
-      const exportPreview=byId("exportPreview");
-      if(exportPreview){
-        exportPreview.src=dataUrl;
-        exportPreview.classList.add("has-image");
-      }
-
-      const link=document.createElement("a");
-      link.href=dataUrl;
-      link.download=`${safeFileName(characterName)}_towerfall_card.${extension}`;
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-    }
-
-    function clearStressHoverPreviews(){
-      document.querySelectorAll(".stress-triangle.hover-preview").forEach(label=>{label.classList.remove("hover-preview")});
-    }
-
-    function highlightStressHover(trackId,input){
-      if(!trackId||!input)return;
-      const totals=updateProtectionAndExtraSlots();
-      const totalExtraSlots=totals?.[trackId]?.extraSlots||0;
-      const slots=getTrackStressSlots(trackId,totalExtraSlots);
-      const index=slots.indexOf(input);
-      if(index<0)return;
-      for(let i=0;i<=index;i++){
-        const label=slots[i]?.closest(".stress-triangle");
-        if(label&&!label.classList.contains("locked"))label.classList.add("hover-preview");
-      }
-    }
-
-    function attachStressHoverEffects(){
-      if(stressHoverAttached)return;
-      document.addEventListener("pointerover",event=>{
-        const label=event.target.closest?.(".stress-triangle");
-        if(!label)return;
-        const input=label.querySelector("input[data-track]");
-        if(!input||input.disabled)return;
-        clearStressHoverPreviews();
-        highlightStressHover(input.dataset.track,input);
-      });
-      document.addEventListener("pointerout",event=>{
-        const fromLabel=event.target.closest?.(".stress-triangle");
-        if(!fromLabel)return;
-        const toLabel=event.relatedTarget?.closest?.(".stress-triangle");
-        if(toLabel)return;
-        clearStressHoverPreviews();
-      });
-      document.addEventListener("pointercancel",clearStressHoverPreviews);
-      document.addEventListener("scroll",clearStressHoverPreviews,{passive:true});
-      stressHoverAttached=true;
-    }
-
-    function enhanceCollapsibleCards(){
-      if(collapsiblesAttached)return;
-      const cards=Array.from(document.querySelectorAll("main.app > section.card"));
-      cards.forEach((card,index)=>{
-        if(card.dataset.collapsibleProcessed==="true")return;
-        card.classList.add("collapsible-card");
-        if(!card.id)card.id=`card_${index+1}`;
-        card.dataset.collapseId=card.id;
-        let header=Array.from(card.children).find(child=>child.classList?.contains("title-row")||child.tagName==="H2");
-        if(!header)return;
-        if(header.tagName==="H2"){
-          const titleRow=document.createElement("div");
-          titleRow.className="title-row";
-          card.insertBefore(titleRow,header);
-          titleRow.appendChild(header);
-          header=titleRow;
-        }
-        let actions=header.querySelector(":scope > .title-actions");
-        if(!actions){
-          actions=document.createElement("div");
-          actions.className="title-actions";
-          header.appendChild(actions);
-        }
-        const collapseButton=document.createElement("button");
-        collapseButton.type="button";
-        collapseButton.className="collapse-section-button up";
-        collapseButton.title="Свернуть / развернуть секцию";
-        collapseButton.setAttribute("aria-label","Свернуть / развернуть секцию");
-        collapseButton.onclick=function(){toggleCardCollapse(this)};
-        actions.appendChild(collapseButton);
-        const content=document.createElement("div");
-        content.className="card-content";
-        let node=header.nextSibling;
-        while(node){
-          const next=node.nextSibling;
-          content.appendChild(node);
-          node=next;
-        }
-        card.appendChild(content);
-        card.dataset.collapsibleProcessed="true";
-      });
-      collapsiblesAttached=true;
-    }
-
-    function toggleCardCollapse(button){
-      const card=button.closest(".collapsible-card");
-      if(!card)return;
-      const isCollapsed=!card.classList.contains("is-collapsed");
-      card.classList.toggle("is-collapsed",isCollapsed);
-      button.classList.toggle("up",!isCollapsed);
-      button.classList.toggle("down",isCollapsed);
-      saveSheet(false);
-    }
-
-    function collectCollapsedCards(){
-      return Array.from(document.querySelectorAll(".collapsible-card.is-collapsed")).map(card=>card.dataset.collapseId||card.id).filter(Boolean);
-    }
-
-    function applyCollapsedCards(collapsedCards){
-      const collapsedSet=new Set(collapsedCards||[]);
-      document.querySelectorAll(".collapsible-card").forEach(card=>{
-        const id=card.dataset.collapseId||card.id;
-        const collapsed=collapsedSet.has(id);
-        card.classList.toggle("is-collapsed",collapsed);
-        const button=card.querySelector(".collapse-section-button");
-        if(button){
-          button.classList.toggle("up",!collapsed);
-          button.classList.toggle("down",collapsed);
-        }
-      });
-    }
-
-    function getDesiredAutomaticSelections(){
-      const desiredSkills=new Set();
-      const desiredDomains=new Set();
-      const desiredSkillMasteries=new Set();
-      const desiredDomainMasteries=new Set();
-      const skillSourceCounts={};
-      const domainSourceCounts={};
-
-      function addSkillSource(skillName){
-        if(!skillName)return;
-        desiredSkills.add(skillName);
-        skillSourceCounts[skillName]=(skillSourceCounts[skillName]||0)+1;
-        if(skillSourceCounts[skillName]>=2)desiredSkillMasteries.add(skillName);
-      }
-
-      function addDomainSource(domainName){
-        if(!domainName)return;
-        desiredDomains.add(domainName);
-        domainSourceCounts[domainName]=(domainSourceCounts[domainName]||0)+1;
-        if(domainSourceCounts[domainName]>=2)desiredDomainMasteries.add(domainName);
-      }
-
-      addSkillSource(serviceBranchSkillMap[byId("serviceBranch")?.value]);
-      const classDefaults=classDefaultsMap[byId("className")?.value];
-      if(classDefaults){
-        addSkillSource(classDefaults.skill);
-        addDomainSource(classDefaults.domain);
-      }
-      addDomainSource(nationDomainMap[byId("nationName")?.value]);
-      return{desiredSkills,desiredDomains,desiredSkillMasteries,desiredDomainMasteries};
-    }
-
-    function applyAutomaticSelections(){
-      const{desiredSkills,desiredDomains,desiredSkillMasteries,desiredDomainMasteries}=getDesiredAutomaticSelections();
-      autoSelectedSkills.forEach(skillName=>{
-        if(!desiredSkills.has(skillName)){
-          const checkbox=getSkillCheckbox(skillName);
-          if(checkbox)checkbox.checked=false;
-        }
-      });
-      autoSelectedSkillMasteries.forEach(skillName=>{
-        if(!desiredSkillMasteries.has(skillName)){
-          const checkbox=getSkillMasteryCheckbox(skillName);
-          if(checkbox)checkbox.checked=false;
-        }
-      });
-      autoSelectedDomains.forEach(domainName=>{
-        if(!desiredDomains.has(domainName)){
-          const checkbox=getDomainCheckbox(domainName);
-          if(checkbox)checkbox.checked=false;
-        }
-      });
-      autoSelectedDomainMasteries.forEach(domainName=>{
-        if(!desiredDomainMasteries.has(domainName)){
-          const checkbox=getDomainMasteryCheckbox(domainName);
-          if(checkbox)checkbox.checked=false;
-        }
-      });
-      desiredSkills.forEach(skillName=>{const checkbox=getSkillCheckbox(skillName);if(checkbox)checkbox.checked=true});
-      desiredSkillMasteries.forEach(skillName=>{const checkbox=getSkillMasteryCheckbox(skillName);if(checkbox)checkbox.checked=true});
-      desiredDomains.forEach(domainName=>{const checkbox=getDomainCheckbox(domainName);if(checkbox)checkbox.checked=true});
-      desiredDomainMasteries.forEach(domainName=>{const checkbox=getDomainMasteryCheckbox(domainName);if(checkbox)checkbox.checked=true});
-      autoSelectedSkills=new Set(desiredSkills);
-      autoSelectedDomains=new Set(desiredDomains);
-      autoSelectedSkillMasteries=new Set(desiredSkillMasteries);
-      autoSelectedDomainMasteries=new Set(desiredDomainMasteries);
-    }
-
-    function buildResistanceRows(){
-      const container=byId("resistanceRows");
-      container.innerHTML="";
-      stressTracks.forEach(track=>{
-        let extraDots="";
-        let normalDotsFirst="";
-        let normalDotsSecond="";
-        for(let i=1;i<=5;i++){
-          extraDots+=`
-            <label class="tri-check tri-right stress-triangle extra" id="extraDot_${track.id}_${i}" title="Дополнительный слот ${i}">
-              <input id="stressExtra_${track.id}_${i}" type="checkbox" data-track="${track.id}" data-kind="extra" data-index="${i}" />
-              <span class="tri-shape"></span>
-            </label>
-          `;
-        }
-        for(let i=1;i<=10;i++){
-          normalDotsFirst+=`
-            <label class="tri-check tri-right stress-triangle" title="Обычный стресс ${i}">
-              <input id="stressNormal_${track.id}_${i}" type="checkbox" data-track="${track.id}" data-kind="normal" data-index="${i}" />
-              <span class="tri-shape"></span>
-            </label>
-          `;
-          normalDotsSecond+=`
-            <label class="tri-check tri-right stress-triangle" title="Обычный стресс ${i+10}">
-              <input id="stressNormal2_${track.id}_${i}" type="checkbox" data-track="${track.id}" data-kind="normal2" data-index="${i}" />
-              <span class="tri-shape"></span>
-            </label>
-          `;
-        }
-        container.innerHTML+=`
-          <tr>
-            <td><strong>${track.label}</strong></td>
-            <td>
-              <input id="protectionManual_${track.id}" class="small-number" type="number" value="0" />
-              <div id="protectionTotal_${track.id}" class="inline-total">Итого: 0</div>
-            </td>
-            <td>
-              <input id="extraSlotsManual_${track.id}" class="small-number" type="number" min="0" max="5" value="0" />
-              <div id="extraSlotsTotal_${track.id}" class="inline-total">Итого: 0/5</div>
-            </td>
-            <td>
-              <div class="stress-scale">
-                <div class="stress-extra-zone">${extraDots}</div>
-                <span class="stress-divider"></span>
-                <div class="stress-normal-zone">
-                  <div class="stress-normal-row">${normalDotsFirst}</div>
-                  <div class="stress-normal-row">${normalDotsSecond}</div>
-                </div>
-              </div>
-            </td>
-            <td><span id="stressCount_${track.id}" class="stress-count">0/20</span></td>
-          </tr>
-        `;
-      });
-    }
-
-    function buildPartyRows(){
-      const container=byId("partyRows");
-      container.innerHTML="";
-      for(let i=1;i<=5;i++){
-        container.innerHTML+=`<tr><td><input id="party${i}Name" placeholder="Персонаж ${i}" /></td><td><input id="party${i}Stress" type="number" min="0" value="0" /></td><td><input id="party${i}Protection" type="number" value="0" /></td><td><input id="party${i}Note" placeholder="Роль, состояние, опасность..." /></td></tr>`;
-      }
-    }
-
-    function buildSkillRows(){
-      const container=byId("skillRows");
-      container.innerHTML="";
-      defaultSkills.forEach((skill,index)=>{
-        const i=index+1;
-        const name=escapeHtml(skill.name);
-        const description=escapeHtml(skill.description);
-        container.innerHTML+=`<div class="trait-card"><div class="trait-top"><button type="button" class="trait-name">${name}<span class="trait-tooltip">${description}</span></button><div class="trait-checks"><label class="tri-check tri-up" title="Навык"><input id="skill${i}HasSkill" type="checkbox" /><span class="tri-shape"></span></label><label class="tri-check tri-up" title="Мастерство"><input id="skill${i}HasMastery" type="checkbox" /><span class="tri-shape"></span></label></div></div><input id="skill${i}Note" class="trait-note mastery-note" placeholder="Заметка к мастерству навыка..." /></div>`;
-      });
-    }
-
-    function buildDomainRows(){
-      const container=byId("domainRows");
-      container.innerHTML="";
-      defaultDomains.forEach((domain,index)=>{
-        const i=index+1;
-        const name=escapeHtml(domain.name);
-        const description=escapeHtml(domain.description);
-        container.innerHTML+=`<div class="trait-card"><div class="trait-top"><button type="button" class="trait-name">${name}<span class="trait-tooltip">${description}</span></button><div class="trait-checks"><label class="tri-check tri-down" title="Область"><input id="domain${i}HasDomain" type="checkbox" /><span class="tri-shape"></span></label><label class="tri-check tri-down" title="Мастерство области"><input id="domain${i}HasMastery" type="checkbox" /><span class="tri-shape"></span></label></div></div><input id="domain${i}Note" class="trait-note mastery-note" placeholder="Заметка к мастерству области..." /></div>`;
-      });
-    }
-
-    function appendTacticRow(index){
-      byId("tacticRows").insertAdjacentHTML("beforeend",`<tr data-codex-drop="tactic" data-codex-target-index="${index}"><td><input id="tactic${index}Name" placeholder="Например: Тихая ликвидация" /></td><td><select id="tactic${index}Skill">${makeOptions(skillOptions)}</select></td><td><textarea id="tactic${index}Notes" placeholder="Конкретные тактики, условия применения, бонусы..."></textarea></td></tr>`);
-    }
-
-    function buildTacticRows(){
-      const container=byId("tacticRows");
-      container.innerHTML="";
-      for(let i=1;i<=tacticCount;i++)appendTacticRow(i);
-      attachCodexDragHandlers();
-    }
-
-    function addTacticRow(){preserveDataAndRebuild(()=>{tacticCount+=1;buildTacticRows()})}
-    function removeTacticRow(){if(tacticCount<=0)return;preserveDataAndRebuild(()=>{tacticCount-=1;buildTacticRows()})}
-
-    function buildGearRows(){
-      const container=byId("gearRows");
-      container.innerHTML="";
-      for(let i=1;i<=4;i++){
-        container.innerHTML+=`
-            <tr data-codex-drop="gear" data-codex-target-index="${i}">
-            <td>${i}</td>
-            <td><input id="gear${i}Name" placeholder="Предмет" /></td>
-            <td class="plain-die-cell"><select id="gear${i}Quality">${makeDieOptions()}</select></td>
-            <td><select id="gear${i}Skill">${makeOptions(skillOptions)}</select></td>
-            <td>
-              <div class="quality-cell">
-                <select id="gear${i}Stress">${makeDieOptions()}</select>
-                <button id="gear${i}StressPreview" class="quality-die-preview empty" type="button" onclick="rollCardDie('gear',${i},event)" title="Бросить причиняемый стресс">—</button>
-              </div>
-            </td>
-            <td><input id="gear${i}Note" placeholder="Свойства, поломки, странность..." /></td>
-          </tr>
-        `;
-      }
-      attachCodexDragHandlers();
-    }
-
-    function appendResourceRow(index){
-      byId("resourceRows").insertAdjacentHTML("beforeend",`
-        <tr data-resource-index="${index}">
-          <td>${index}</td>
-          <td><input id="resource${index}Name" placeholder="Ресурс" /></td>
-          <td><select id="resource${index}Domain">${makeOptions(domainOptions)}</select></td>
-          <td>
-            <div class="quality-cell">
-              <select id="resource${index}Quality">${makeDieOptions()}</select>
-              <button id="resource${index}QualityPreview" class="quality-die-preview empty" type="button" onclick="rollCardDie('resource',${index},event)" title="Бросить кость качества">—</button>
-            </div>
-          </td>
-          <td><input id="resource${index}Note" placeholder="Свойства, качество, кому нужен..." /></td>
-        </tr>
-      `);
-    }
-
-    function buildResourceRows(){
-      const container=byId("resourceRows");
-      container.innerHTML="";
-      for(let i=1;i<=resourceCount;i++)appendResourceRow(i);
-    }
-
-    function addResourceRow(){
-      if(resourceCount>=MAX_RESOURCE_COUNT){
-        alert(currentLanguage==="en"?"You cannot add more than 10 resources.":"Нельзя добавить больше 10 ресурсов.");
-        return;
-      }
-      preserveDataAndRebuild(()=>{resourceCount+=1;buildResourceRows()});
-    }
-
-    function removeResourceRow(){
-      if(resourceCount<=0)return;
-      preserveDataAndRebuild(()=>{resourceCount-=1;buildResourceRows()});
-    }
-
-    function buildArmorRows(){
-      const container=byId("armorRows");
-      container.innerHTML="";
-      armorSlots.forEach((slot,index)=>{
-        const i=index+1;
-        container.innerHTML+=`<tr data-codex-drop="armor" data-codex-armor-slot="${slot}" data-codex-target-index="${i}"><td>${slot}</td><td><input id="armor${i}Name" placeholder="${slot}" /></td><td class="plain-die-cell"><select id="armor${i}Quality">${makeDieOptions()}</select></td><td><select id="armor${i}Skill">${makeOptions(skillOptions)}</select></td><td><div class="quality-cell"><select id="armor${i}Stress">${makeDieOptions()}</select><button id="armor${i}StressPreview" class="quality-die-preview empty" type="button" onclick="rollCardDie('armor',${i},event)" title="Бросить причиняемый стресс">—</button></div></td><td><select id="armor${i}Resistance">${makeResistanceOptions()}</select></td><td><input id="armor${i}Protection" type="number" min="0" value="0" /></td><td><input id="armor${i}ExtraSlots" type="number" min="0" max="5" value="0" /></td><td><input id="armor${i}Note" placeholder="Свойства, штрафы, особые эффекты..." /></td></tr>`;
-      });
-      attachCodexDragHandlers();
-    }
-
-    function getSelectedClassPrompts(){
-      const prompts=classPromptMap[byId("className")?.value||""];
-      if(!prompts)return{questions:[],contacts:[]};
-      return currentLanguage==="en"
-        ?{questions:prompts.questionsEn||prompts.questions,contacts:prompts.contactsEn||prompts.contacts}
-        :{questions:prompts.questions,contacts:prompts.contacts};
-    }
-
-    function getSlotPlaceholder(kind,type,index){
-      if(kind!=="contact")return `${currentLanguage==="en"?"Slot":"Ячейка"} ${index}`;
-      const contacts=getSelectedClassPrompts().contacts;
-      if(type==="personal"&&index===1)return contacts[0]||`${currentLanguage==="en"?"Slot":"Ячейка"} ${index}`;
-      if(type==="players"&&index<=3)return contacts[index]||`${currentLanguage==="en"?"Slot":"Ячейка"} ${index}`;
-      return `${currentLanguage==="en"?"Slot":"Ячейка"} ${index}`;
-    }
-
-    function updateClassPromptPlaceholders(){
-      const prompts=getSelectedClassPrompts();
-      for(let i=1;i<=3;i++){
-        const field=byId(`classQuestion${i}`);
-        if(field)field.placeholder=prompts.questions[i-1]||(currentLanguage==="en"?"Answer":"Ответ");
-      }
-      ["personal","faction","world","players"].forEach(type=>{
-        const count=Number(contactCounts[type]||0);
-        for(let i=1;i<=count;i++){
-          const field=byId(`contact_${type}_${i}`);
-          if(field)field.placeholder=getSlotPlaceholder("contact",type,i);
-        }
-      });
-    }
-
-    function buildSlotRows(kind,type){
-      const container=byId(`${kind}_${type}_rows`);
-      if(!container)return;
-      const count=Number(countMaps[kind]?.[type]||0);
-      container.innerHTML="";
-      for(let i=1;i<=count;i++){
-        container.innerHTML+=`<div class="slot-entry"><textarea id="${kind}_${type}_${i}" placeholder="${escapeHtml(getSlotPlaceholder(kind,type,i))}"></textarea></div>`;
-      }
-    }
-
-    function buildAllSlotRows(){
-      ["personal","faction","world","players"].forEach(type=>buildSlotRows("contact",type));
-      ["minor","major"].forEach(type=>buildSlotRows("consequence",type));
-      ["basic","minor","professional","elite"].forEach(type=>buildSlotRows("ability",type));
-      attachCodexDragHandlers();
-    }
-
-    function buildDiaryRows(){
-      const container=byId("diaryRows");
-      if(!container)return;
-      container.innerHTML="";
-      for(let i=1;i<=diaryCount;i++){
-        container.innerHTML+=`
-          <div class="slot-entry">
-            <label>${currentLanguage==="en"?"Entry":"Запись"} ${i}</label>
-            <textarea id="diaryEntry${i}" placeholder="Заметка, сцена, долг, обещание, находка, имя, странность..."></textarea>
-          </div>
-        `;
-      }
-      renderDiaryCounters();
-      attachCodexDragHandlers();
-    }
-
-    function addDiaryEntry(){preserveDataAndRebuild(()=>{diaryCount+=1;buildDiaryRows()})}
-    function removeDiaryEntry(){if(diaryCount<=0)return;preserveDataAndRebuild(()=>{diaryCount-=1;buildDiaryRows()})}
-
-    function renderDiaryCounters(){
-      const container=byId("diaryCounters");
-      if(!container)return;
-      let filled=0;
-      for(let i=1;i<=diaryCount;i++){
-        if(byId(`diaryEntry${i}`)?.value.trim())filled++;
-      }
-      container.innerHTML=currentLanguage==="en"
-        ?`<span class="counter">${countLabelEn(diaryCount,"slot","slots")}</span><span class="counter">${filled} filled</span>`
-        :`<span class="counter">${diaryCount} ${plural(diaryCount,"ячейка","ячейки","ячеек")}</span><span class="counter">${filled} ${plural(filled,"заполнена","заполнены","заполнено")}</span>`;
-    }
-
-    function addSlot(kind,type){
-      if(!countMaps[kind])return;
-      if(countMaps[kind][type]===undefined)countMaps[kind][type]=0;
-      if(kind==="ability"){
-        const max=MAX_ABILITY_COUNTS[type];
-        if(max!==undefined&&countMaps[kind][type]>=max){
-          if(type==="professional")alert(currentLanguage==="en"?"You cannot add more than 5 professional abilities.":"Нельзя добавить больше 5 профессиональных способностей.");
-          else if(type==="elite")alert(currentLanguage==="en"?"You cannot add more than 1 elite ability.":"Нельзя добавить больше 1 элитной способности.");
-          else alert(currentLanguage==="en"?"The slot limit has been reached.":"Достигнут предел ячеек.");
-          return;
-        }
-      }
-      preserveDataAndRebuild(()=>{countMaps[kind][type]+=1;buildSlotRows(kind,type)});
-    }
-
-    function removeSlot(kind,type){
-      if(!countMaps[kind]||!countMaps[kind][type])return;
-      preserveDataAndRebuild(()=>{countMaps[kind][type]-=1;buildSlotRows(kind,type)});
-    }
-
-    function preserveDataAndRebuild(rebuildAction){
-      const data=collectData();
-      rebuildAction();
-      applyData(data);
-      saveSheet(false);
-    }
-
-    function countFilledSlots(kind,type){
-      let filled=0;
-      const count=Number(countMaps[kind]?.[type]||0);
-      for(let i=1;i<=count;i++){
-        const element=byId(`${kind}_${type}_${i}`);
-        if(element&&element.value.trim())filled++;
-      }
-      return filled;
-    }
-
-    function plural(number,one,few,many){
-      const mod10=number%10;
-      const mod100=number%100;
-      if(mod10===1&&mod100!==11)return one;
-      if(mod10>=2&&mod10<=4&&(mod100<12||mod100>14))return few;
-      return many;
-    }
-
-    function countLabelEn(number,one,many){return `${number} ${number===1?one:many}`}
-
-    function clampProtection(value){
-      const number=Number(value||0);
-      if(Number.isNaN(number)||number<0)return 0;
-      if(number>MAX_PROTECTION_PER_RESISTANCE)return MAX_PROTECTION_PER_RESISTANCE;
-      return number;
-    }
-
-    function clampExtraSlots(value){
-      const number=Number(value||0);
-      if(Number.isNaN(number)||number<0)return 0;
-      if(number>5)return 5;
-      return number;
-    }
-
-    function getArmorBonuses(){
-      const bonuses={};
-      stressTracks.forEach(track=>{bonuses[track.id]={protection:0,extraSlots:0}});
-      for(let i=1;i<=armorSlots.length;i++){
-        const resistance=byId(`armor${i}Resistance`)?.value;
-        const protection=Number(byId(`armor${i}Protection`)?.value||0);
-        const extraSlots=Number(byId(`armor${i}ExtraSlots`)?.value||0);
-        if(resistance&&bonuses[resistance]){
-          bonuses[resistance].protection+=protection;
-          bonuses[resistance].extraSlots+=extraSlots;
-        }
-      }
-      return bonuses;
-    }
-
-    function updateProtectionAndExtraSlots(){
-      const armorBonuses=getArmorBonuses();
-      const totals={};
-      stressTracks.forEach(track=>{
-        const manualProtection=clampProtection(byId(`protectionManual_${track.id}`).value);
-        const armorProtection=Number(armorBonuses[track.id].protection||0);
-        const totalProtection=clampProtection(manualProtection+armorProtection);
-        byId(`protectionManual_${track.id}`).value=manualProtection;
-
-        const manualExtraSlots=clampExtraSlots(Number(byId(`extraSlotsManual_${track.id}`).value||0));
-        const armorExtraSlots=armorBonuses[track.id].extraSlots;
-        const totalExtraSlots=clampExtraSlots(manualExtraSlots+armorExtraSlots);
-        byId(`extraSlotsManual_${track.id}`).value=manualExtraSlots;
-
-        byId(`protectionTotal_${track.id}`).textContent=`Итого: ${totalProtection}/5 (${manualProtection} + ${armorProtection} броня)`;
-        byId(`extraSlotsTotal_${track.id}`).textContent=`Итого: ${totalExtraSlots}/5 (${manualExtraSlots} + ${armorExtraSlots} броня)`;
-        totals[track.id]={protection:totalProtection,extraSlots:totalExtraSlots};
-      });
-      return totals;
-    }
-
-    function getTrackStressSlots(trackId,totalExtraSlots){
-      const slots=[];
-      for(let i=1;i<=totalExtraSlots;i++)slots.push(byId(`stressExtra_${trackId}_${i}`));
-      for(let i=1;i<=10;i++)slots.push(byId(`stressNormal_${trackId}_${i}`));
-      for(let i=1;i<=10;i++)slots.push(byId(`stressNormal2_${trackId}_${i}`));
-      return slots.filter(Boolean);
-    }
-
-    function normalizeTrackStress(trackId,totalExtraSlots){
-      const slots=getTrackStressSlots(trackId,totalExtraSlots);
-      let highestChecked=-1;
-      slots.forEach((slot,index)=>{if(slot.checked)highestChecked=index});
-      slots.forEach((slot,index)=>{slot.checked=highestChecked>=0&&index<=highestChecked});
-    }
-
-    function setTrackStressUpTo(trackId,clickedSlot){
-      const totals=updateProtectionAndExtraSlots();
-      const totalExtraSlots=totals[trackId].extraSlots;
-      const slots=getTrackStressSlots(trackId,totalExtraSlots);
-      const clickedIndex=slots.indexOf(clickedSlot);
-      if(clickedIndex===-1)return;
-      const shouldFill=clickedSlot.checked;
-      slots.forEach((slot,index)=>{slot.checked=shouldFill?index<=clickedIndex:index<clickedIndex});
-      renderCounters();
-      saveSheet(false);
-    }
-
-    function getCurrentStressTotals(){
-      let normalStress=0;
-      let extraStress=0;
-      stressTracks.forEach(track=>{
-        for(let i=1;i<=5;i++){
-          if(byId(`stressExtra_${track.id}_${i}`)?.checked)extraStress++;
-        }
-        for(let i=1;i<=10;i++){
-          if(byId(`stressNormal_${track.id}_${i}`)?.checked)normalStress++;
-          if(byId(`stressNormal2_${track.id}_${i}`)?.checked)normalStress++;
-        }
-      });
-      return{normalStress,extraStress,totalStress:normalStress};
-    }
-
-    function updateConsequenceCardStressState(totalNormalStress){
-      const card=byId("consequencesCard");
-      if(!card)return;
-      card.classList.toggle("stress-warning",totalNormalStress>=6&&totalNormalStress<17);
-      card.classList.toggle("stress-critical",totalNormalStress>=17);
-    }
-
-    function updateStressScales(){
-      const totals=updateProtectionAndExtraSlots();
-      let totalNormalStress=0;
-      stressTracks.forEach(track=>{
-        const unlockedExtraSlots=totals[track.id].extraSlots;
-        for(let i=1;i<=5;i++){
-          const checkbox=byId(`stressExtra_${track.id}_${i}`);
-          const dot=byId(`extraDot_${track.id}_${i}`);
-          if(!checkbox||!dot)continue;
-          const isUnlocked=i<=unlockedExtraSlots;
-          checkbox.disabled=!isUnlocked;
-          dot.classList.toggle("locked",!isUnlocked);
-          if(!isUnlocked)checkbox.checked=false;
-        }
-        normalizeTrackStress(track.id,unlockedExtraSlots);
-        let normalStress=0;
-        for(let i=1;i<=10;i++){
-          if(byId(`stressNormal_${track.id}_${i}`)?.checked)normalStress++;
-          if(byId(`stressNormal2_${track.id}_${i}`)?.checked)normalStress++;
-        }
-        totalNormalStress+=normalStress;
-        byId(`stressCount_${track.id}`).textContent=`${normalStress}/20`;
-      });
-      let stressClass="";
-      if(totalNormalStress>=17)stressClass="stress-critical";
-      else if(totalNormalStress>=6)stressClass="stress-warning";
-      updateConsequenceCardStressState(totalNormalStress);
-      byId("stressTotalCounters").innerHTML=`
-        <span class="counter stress-total-counter ${stressClass}">Общий стресс: ${totalNormalStress}/100</span>
-        <button type="button" onclick="checkConsequence()">Проверка последствия</button>
-        <div id="consequenceCheckResult" class="hint">${escapeHtml(lastConsequenceCheckText)}</div>
-      `;
-    }
-
-    function checkConsequence(){
-      const totals=getCurrentStressTotals();
-      const totalStress=totals.totalStress;
-      const roll=Math.floor(Math.random()*10)+1;
-      let consequence=currentLanguage==="en"?"No Fallout":"Без последствия";
-      if(roll<totalStress){
-        consequence=currentLanguage==="en"?"Minor Fallout":"Малое последствие";
-        if(totalStress>=16)consequence=currentLanguage==="en"?"Doom Fallout":"Роковое последствие";
-        else if(totalStress>=6)consequence=currentLanguage==="en"?"Major Fallout":"Значимое последствие";
-        lastConsequenceCheckText=`${currentLanguage==="en"?"D10":"К10"}: ${roll}, ${currentLanguage==="en"?"Stress":"стресс"}: ${totalStress} — ${consequence}`;
-      }else{
-        lastConsequenceCheckText=`${currentLanguage==="en"?"D10":"К10"}: ${roll}, ${currentLanguage==="en"?"Stress":"стресс"}: ${totalStress} — ${consequence}`;
-      }
-      renderCounters();
-      saveSheet(false);
-      sendDiscordRoll({type:"consequence",roll,totalStress,consequence});
-    }
-
-    function updateMasteryNoteVisibility(){
-      for(let i=1;i<=defaultSkills.length;i++){
-        const masteryCheckbox=byId(`skill${i}HasMastery`);
-        const noteInput=byId(`skill${i}Note`);
-        if(!masteryCheckbox||!noteInput)continue;
-        noteInput.style.display=masteryCheckbox.checked?"block":"none";
-      }
-      for(let i=1;i<=defaultDomains.length;i++){
-        const masteryCheckbox=byId(`domain${i}HasMastery`);
-        const noteInput=byId(`domain${i}Note`);
-        if(!masteryCheckbox||!noteInput)continue;
-        noteInput.style.display=masteryCheckbox.checked?"block":"none";
-      }
-    }
-
-    function getRollMenuTitleText(){
-      const totalStress=getCurrentStressTotals().totalStress;
-      const significantConsequences=countFilledSlots("consequence","major");
-      if(significantConsequences>=3||totalStress>10)return currentLanguage==="en"?"Fight for your life!":"Борись за жизнь!";
-      if((significantConsequences>=1&&significantConsequences<=2)||(totalStress>=5&&totalStress<=10))return currentLanguage==="en"?"This is getting serious…":"Это уже серьёзно…";
-      const className=byId("className")?.value||"";
-      return (currentLanguage==="en"?classRollTitleMapEn[className]:classRollTitleMap[className])||(currentLanguage==="en"?"Automatic Roll":"Автоматический бросок");
-    }
-
-    function updateRollMenuTitle(){
-      const title=byId("autoRollTitle");
-      if(title)title.textContent=getRollMenuTitleText();
-    }
-
-    function updateQualityDiePreview(selectId,previewId){
-      const select=byId(selectId);
-      const preview=byId(previewId);
-      if(!select||!preview)return;
-      const value=select.value||"";
-      if(preview.dataset.lastDie!==value){
-        delete preview.dataset.lastDie;
-        delete preview.dataset.lastRoll;
-      }
-      preview.className="quality-die-preview empty";
-      preview.textContent="—";
-      const match=value.match(/^D(4|6|8|10|12)$/);
-      if(!match)return;
-      const sides=match[1];
-      preview.className=`quality-die-preview die-d${sides}`;
-      const lastRoll=Number(preview.dataset.lastRoll||0);
-      if(lastRoll>0&&preview.dataset.lastDie===value){
-        preview.textContent=String(lastRoll);
-        preview.classList.add("has-result");
-        preview.title=`${currentLanguage==="en"?"D":"К"}${sides}: ${lastRoll}`;
-      }else{
-        preview.textContent=`${currentLanguage==="en"?"D":"К"}${sides}`;
-      }
-    }
-
-    function updateQualityDiePreviews(){
-      for(let i=1;i<=4;i++)updateQualityDiePreview(`gear${i}Stress`,`gear${i}StressPreview`);
-      for(let i=1;i<=armorSlots.length;i++)updateQualityDiePreview(`armor${i}Stress`,`armor${i}StressPreview`);
-      for(let i=1;i<=resourceCount;i++)updateQualityDiePreview(`resource${i}Quality`,`resource${i}QualityPreview`);
-    }
-
-    function getCardDieConfig(kind,index){
-      if(kind==="gear")return{selectId:`gear${index}Stress`,previewId:`gear${index}StressPreview`,labelRu:"Причиняемый стресс",labelEn:"Inflicted Stress"};
-      if(kind==="armor")return{selectId:`armor${index}Stress`,previewId:`armor${index}StressPreview`,labelRu:"Причиняемый стресс",labelEn:"Inflicted Stress"};
-      if(kind==="resource")return{selectId:`resource${index}Quality`,previewId:`resource${index}QualityPreview`,labelRu:"Качество",labelEn:"Quality"};
-      return null;
-    }
-
-    function rollCardDie(kind,index,event){
-      event?.preventDefault();
-      event?.stopPropagation();
-      const config=getCardDieConfig(kind,index);
-      const select=config?byId(config.selectId):null;
-      const preview=config?byId(config.previewId):null;
-      const match=String(select?.value||"").match(/^D(4|6|8|10|12)$/);
-      if(!match){
-        showDiscordToast(currentLanguage==="en"?"Choose a die first.":"Сначала выберите кость.",true);
-        return;
-      }
-      const sides=Number(match[1]);
-      const result=Math.floor(Math.random()*sides)+1;
-      preview.dataset.lastDie=`D${sides}`;
-      preview.dataset.lastRoll=String(result);
-      updateQualityDiePreview(config.selectId,config.previewId);
-
-      const settings=getDiscordSettings();
-      if(!settings.roomId||!settings.roomToken)return;
-      const cardPayload=getDiscordSharePayload(preview);
-      if(!cardPayload)return;
-      const rollLabel=currentLanguage==="en"?config.labelEn:config.labelRu;
-      const rollLine=`${rollLabel}: D${sides} = ${result}`;
-      discordBridgeRequest({...cardPayload,kind:`${cardPayload.kind||kind}-roll`,text:[cardPayload.text,rollLine].filter(Boolean).join("\n")})
-        .catch(error=>showDiscordToast(error.message,true));
-    }
-
-    function renderCounters(){
-      applyAutomaticSelections();
-      updateNationTheme();
-      updateNationStripeAnimation();
-      updateClassBackground();
-      updateNationPattern();
-      updateMasteryNoteVisibility();
-      updateStressScales();
-      updateNationStripeContext();
-      updateQualityDiePreviews();
-      renderSkillDomainCounters();
-      renderTacticCounters();
-      renderResourceCounters();
-      renderContactCounters();
-      renderConsequenceCounters();
-      renderAbilityCounters();
-      renderDiaryCounters();
-      updateClassPromptPlaceholders();
-      updateRollMenuTitle();
-      updateFloatingMenuButtons();
-    }
-
-    function renderSkillDomainCounters(){
-      let skills=0;
-      let domains=0;
-      for(let i=1;i<=defaultSkills.length;i++)if(byId(`skill${i}HasSkill`).checked)skills++;
-      for(let i=1;i<=defaultDomains.length;i++)if(byId(`domain${i}HasDomain`).checked)domains++;
-      byId("skillDomainCounters").innerHTML=currentLanguage==="en"
-        ?`<span class="counter">${countLabelEn(skills,"skill","skills")}</span><span class="counter">${countLabelEn(domains,"domain","domains")}</span>`
-        :`<span class="counter">${skills} ${plural(skills,"навык","навыка","навыков")}</span><span class="counter">${domains} ${plural(domains,"область","области","областей")}</span>`;
-    }
-
-    function renderTacticCounters(){
-      let tacticGroups=0;
-      let tacticLines=0;
-      for(let i=1;i<=tacticCount;i++){
-        const group=byId(`tactic${i}Name`)?.value.trim()||"";
-        const notes=byId(`tactic${i}Notes`)?.value.trim()||"";
-        if(group)tacticGroups++;
-        if(notes)tacticLines+=notes.split("\n").map(line=>line.trim()).filter(Boolean).length;
-      }
-      byId("tacticCounters").innerHTML=currentLanguage==="en"
-        ?`<span class="counter">${countLabelEn(tacticCount,"slot","slots")}</span><span class="counter">${countLabelEn(tacticGroups,"tactic group","tactic groups")}</span><span class="counter">${countLabelEn(tacticLines,"recorded tactic","recorded tactics")}</span>`
-        :`<span class="counter">${tacticCount} ${plural(tacticCount,"ячейка","ячейки","ячеек")}</span><span class="counter">${tacticGroups} ${plural(tacticGroups,"группа","группы","групп")} тактик</span><span class="counter">${tacticLines} ${plural(tacticLines,"записанная тактика","записанные тактики","записанных тактик")}</span>`;
-    }
-
-    function renderResourceCounters(){
-      let filledResources=0;
-      for(let i=1;i<=resourceCount;i++)if(byId(`resource${i}Name`)?.value.trim())filledResources++;
-      byId("resourceCounters").innerHTML=currentLanguage==="en"
-        ?`<span class="counter">${countLabelEn(resourceCount,"resource slot","resource slots")}</span><span class="counter">${filledResources} filled</span>`
-        :`<span class="counter">${resourceCount} ${plural(resourceCount,"ячейка","ячейки","ячеек")} ресурсов</span><span class="counter">${filledResources} ${plural(filledResources,"заполнена","заполнены","заполнено")}</span>`;
-    }
-
-    function renderContactCounters(){
-      const personal=countFilledSlots("contact","personal");
-      const faction=countFilledSlots("contact","faction");
-      const world=countFilledSlots("contact","world");
-      const players=countFilledSlots("contact","players");
-      byId("contactCounters").innerHTML=currentLanguage==="en"
-        ?`<span class="counter">${personal}/${contactCounts.personal} personal</span><span class="counter">${faction}/${contactCounts.faction} faction</span><span class="counter">${world}/${contactCounts.world} world</span><span class="counter">${players}/${contactCounts.players} player characters</span>`
-        :`<span class="counter">${personal}/${contactCounts.personal} личных</span><span class="counter">${faction}/${contactCounts.faction} фракционных</span><span class="counter">${world}/${contactCounts.world} мировых</span><span class="counter">${players}/${contactCounts.players} персонажей игроков</span>`;
-    }
-
-    function renderConsequenceCounters(){
-      const minor=countFilledSlots("consequence","minor");
-      const major=countFilledSlots("consequence","major");
-      byId("consequenceCounters").innerHTML=currentLanguage==="en"
-        ?`<span class="counter">${minor}/${consequenceCounts.minor} minor</span><span class="counter">${major}/${consequenceCounts.major} major</span>`
-        :`<span class="counter">${minor}/${consequenceCounts.minor} малых</span><span class="counter">${major}/${consequenceCounts.major} значимых</span>`;
-    }
-
-    function renderAbilityCounters(){
-      const basic=countFilledSlots("ability","basic");
-      const minor=countFilledSlots("ability","minor");
-      const professional=countFilledSlots("ability","professional");
-      const elite=countFilledSlots("ability","elite");
-      byId("abilityCounters").innerHTML=currentLanguage==="en"
-        ?`<span class="counter">${basic}/${abilityCounts.basic} basic</span><span class="counter">${minor}/${abilityCounts.minor} minor</span><span class="counter">${professional}/${abilityCounts.professional} professional</span><span class="counter">${elite}/${abilityCounts.elite} elite</span>`
-        :`<span class="counter">${basic}/${abilityCounts.basic} базовых</span>`+`<span class="counter">${minor}/${abilityCounts.minor} малых</span>`+`<span class="counter">${professional}/${abilityCounts.professional} профессиональных</span>`+`<span class="counter">${elite}/${abilityCounts.elite} элитных</span>`;
-    }
-
-    function getAllInputs(){return Array.from(document.querySelectorAll("input, textarea, select"))}
-    function cloneObject(object){return JSON.parse(JSON.stringify(object))}
-
-    function collectData(){
-      const data={
-        tacticCount,
-        resourceCount,
-        diaryCount,
-        contactCounts:cloneObject(contactCounts),
-        consequenceCounts:cloneObject(consequenceCounts),
-        abilityCounts:cloneObject(abilityCounts),
-        autoSelectedSkills:[...autoSelectedSkills],
-        autoSelectedDomains:[...autoSelectedDomains],
-        autoSelectedSkillMasteries:[...autoSelectedSkillMasteries],
-        autoSelectedDomainMasteries:[...autoSelectedDomainMasteries],
-        rollMasteryEnabled,
-        nationStripeAnimationEnabled,
-        advancedRollHistory,
-        lastConsequenceCheckText,
-        collapsedCards:collectCollapsedCards()
-      };
-      getAllInputs().forEach(element=>{
-        if(!element.id)return;
-        if(element.type==="file")return;
-        if(element.dataset.sheetIgnore)return;
-        data[element.id]=element.type==="checkbox"?element.checked:element.value;
-      });
-      data.rollLog=byId("rollLog")?.textContent||"";
-      return data;
-    }
-
-    function convertLegacySimpleLog(logText){
-      if(!logText)return[];
-      return String(logText).split("\n").map(line=>line.trim()).filter(Boolean).slice(0,10).map(line=>({type:"legacy",text:line}));
-    }
-
-    function migrateLegacyEquipmentDice(data){
-      const migrated={...data};
-      for(let i=1;i<=4;i++){
-        const qualityId=`gear${i}Quality`;
-        const stressId=`gear${i}Stress`;
-        if(migrated[stressId]===undefined&&migrated[qualityId]!==undefined){
-          migrated[stressId]=migrated[qualityId];
-          migrated[qualityId]="";
-        }
-      }
-      for(let i=1;i<=armorSlots.length;i++){
-        const qualityId=`armor${i}Quality`;
-        const stressId=`armor${i}Stress`;
-        if(migrated[stressId]===undefined&&migrated[qualityId]!==undefined){
-          migrated[stressId]=migrated[qualityId];
-          migrated[qualityId]="";
-        }
-      }
-      return migrated;
-    }
-
-    function migrateLocalizedSelectValues(data){
-      const migrated={...data};
-      ["className","nationName","serviceBranch"].forEach(id=>{
-        const value=migrated[id];
-        if(typeof value==="string"&&UI_RU_BY_EN[value])migrated[id]=UI_RU_BY_EN[value];
-      });
-      return migrated;
-    }
-
-    function applyData(data){
-      data=migrateLocalizedSelectValues(migrateLegacyEquipmentDice(data||{}));
-      autoSelectedSkills=new Set(data.autoSelectedSkills||[]);
-      autoSelectedDomains=new Set(data.autoSelectedDomains||[]);
-      autoSelectedSkillMasteries=new Set(data.autoSelectedSkillMasteries||[]);
-      autoSelectedDomainMasteries=new Set(data.autoSelectedDomainMasteries||[]);
-      rollMasteryEnabled=Boolean(data.rollMasteryEnabled);
-      nationStripeAnimationEnabled=data.nationStripeAnimationEnabled===undefined?true:Boolean(data.nationStripeAnimationEnabled);
-      advancedRollHistory=Array.isArray(data.advancedRollHistory)?data.advancedRollHistory.slice(0,10):[];
-      if(data.rollLog&&!advancedRollHistory.length)advancedRollHistory=convertLegacySimpleLog(data.rollLog);
-      lastConsequenceCheckText=data.lastConsequenceCheckText||"";
-      getAllInputs().forEach(element=>{
-        if(!element.id||data[element.id]===undefined)return;
-        if(element.type==="file")return;
-        if(element.dataset.sheetIgnore)return;
-        if(element.type==="checkbox")element.checked=Boolean(data[element.id]);
-        else element.value=data[element.id];
-      });
-      const legacyRollLog=byId("rollLog");
-      if(legacyRollLog)legacyRollLog.textContent=data.rollLog||"";
-      updateRollMasteryButton();
-      renderAdvancedRollHistory();
-      renderCounters();
-      applyCollapsedCards(data.collapsedCards||[]);
-    }
-
-    function applyCountsFromData(data){
-      tacticCount=Math.max(0,Number(data?.tacticCount??DEFAULT_TACTIC_COUNT));
-      resourceCount=Math.min(Math.max(0,Number(data?.resourceCount??DEFAULT_RESOURCE_COUNT)),MAX_RESOURCE_COUNT);
-      diaryCount=Math.max(0,Number(data?.diaryCount??DEFAULT_DIARY_COUNT));
-      Object.assign(contactCounts,{personal:1,faction:0,world:0,players:3},data?.contactCounts||{});
-      contactCounts.players=Math.max(3,Number(contactCounts.players||0));
-      consequenceCounts.minor=Number(data?.consequenceCounts?.minor??consequenceCounts.minor??0);
-      consequenceCounts.major=Number(data?.consequenceCounts?.major??consequenceCounts.major??0);
-      delete consequenceCounts.fatal;
-      delete consequenceCounts.deadly;
-      delete consequenceCounts.doom;
-      delete consequenceCounts.critical;
-      delete consequenceCounts.rock;
-      Object.assign(abilityCounts,{basic:1,minor:3,professional:1,elite:0},data?.abilityCounts||{});
-      abilityCounts.professional=Math.min(Math.max(0,Number(abilityCounts.professional)),MAX_ABILITY_COUNTS.professional);
-      abilityCounts.elite=Math.min(Math.max(0,Number(abilityCounts.elite)),MAX_ABILITY_COUNTS.elite);
-    }
-
-    function readSavedData(){
-      const raw=localStorage.getItem(STORAGE_KEY);
-      if(!raw)return null;
-      try{return JSON.parse(raw)}
-      catch(error){console.error(error);return null}
-    }
-
-    function saveSheet(showAlert=false){
-      renderCounters();
-      const data=collectData();
-      localStorage.setItem(STORAGE_KEY,JSON.stringify(data));
-      if(showAlert)alert(currentLanguage==="en"?"The sheet has been saved on this device.":"Лист сохранён на этом устройстве.");
-    }
-
-    function loadSheet(showAlert=false){
-      const data=readSavedData();
-      if(!data){
-        renderCounters();
-        if(showAlert)alert(currentLanguage==="en"?"No saved sheet was found.":"Сохранённый лист не найден.");
-        return;
-      }
-      applyCountsFromData(data);
-      buildDynamicRows();
-      applyData(data);
-      if(showAlert)alert(currentLanguage==="en"?"The sheet has been loaded.":"Лист загружен.");
-    }
-
-    function clearSheet(){
-      const confirmed=confirm(currentLanguage==="en"?"Clear the saved sheet and restore the default values?":"Очистить сохранённый лист и вернуть значения по умолчанию?");
-      if(!confirmed)return;
-      localStorage.removeItem(STORAGE_KEY);
-      location.reload();
-    }
-
-    function makeCharacterExportPackage(){
-  renderCounters();
-
-  return {
-    app:"bashnya-character-sheet",
-    version:1,
-    exportedAt:new Date().toISOString(),
-    data:collectData(),
-    portraitDataUrl:portraitDataUrl||localStorage.getItem(CHARACTER_PORTRAIT_KEY)||""
-  };
-}
-
-function exportCharacterJSON(){
-  const characterName=byId("characterName")?.value?.trim()||"character";
-  const packageData=makeCharacterExportPackage();
-  const json=JSON.stringify(packageData,null,2);
-  const blob=new Blob([json],{type:"application/json"});
-  const url=URL.createObjectURL(blob);
-
-  const link=document.createElement("a");
-  link.href=url;
-  link.download=`${safeFileName(characterName)}_towerfall_sheet.json`;
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-
-  setTimeout(()=>URL.revokeObjectURL(url),1000);
-}
-
-function triggerImportCharacterJSON(){
-  const input=byId("importCharacterJsonInput");
-  if(!input)return;
-  input.value="";
-  input.click();
-}
-
-function importCharacterJSON(event){
-  const file=event.target.files?.[0];
-  if(!file)return;
-
-  const reader=new FileReader();
-
-  reader.onload=()=>{
-    try{
-      const parsed=JSON.parse(String(reader.result||"{}"));
-
-      const importedData=parsed.data||parsed;
-      const importedPortrait=parsed.portraitDataUrl;
-
-      applyCountsFromData(importedData);
-      buildDynamicRows();
-      applyData(importedData);
-
-      if(importedPortrait!==undefined){
-        if(importedPortrait){
-          localStorage.setItem(CHARACTER_PORTRAIT_KEY,importedPortrait);
-          showCharacterPortrait(importedPortrait);
-        }else{
-          localStorage.removeItem(CHARACTER_PORTRAIT_KEY);
-          showCharacterPortrait("");
-        }
-      }
-
-      saveSheet(false);
-      closeSheetMenu();
-      alert(currentLanguage==="en"?"The sheet has been imported from .json.":"Лист импортирован из .json.");
-    }catch(error){
-      console.error(error);
-      alert(currentLanguage==="en"?"Could not import the file. Make sure it is a character-sheet JSON file.":"Не удалось импортировать файл. Проверь, что это JSON-файл листа персонажа.");
-    }
-  };
-
-  reader.onerror=()=>{
-    alert(currentLanguage==="en"?"Could not read the file.":"Не удалось прочитать файл.");
-  };
-
-  reader.readAsText(file);
-}
-
-function getDiscordSettings(){
-  try{
-    const saved=JSON.parse(localStorage.getItem(DISCORD_SETTINGS_KEY)||"{}");
-    const legacy=JSON.parse(localStorage.getItem(LEGACY_DISCORD_SETTINGS_KEY)||"{}");
-    return {
-      bridgeUrl:CHAT_BRIDGE_URL,
-      roomId:String(saved.roomId||legacy.roomId||""),
-      roomToken:String(saved.roomToken||""),
-      legacySecret:String(legacy.secret||saved.secret||"").trim()
-    };
-  }catch(error){return {bridgeUrl:CHAT_BRIDGE_URL,roomId:"",roomToken:"",legacySecret:""}}
-}
-
-function storeDiscordSettings(settings){
-  localStorage.setItem(DISCORD_SETTINGS_KEY,JSON.stringify({roomId:settings.roomId,roomToken:settings.roomToken}));
-}
-
-function loadDiscordSettings(){
-  const settings=getDiscordSettings();
-  const status=byId("discordSettingsStatus");
-  if(status)status.textContent=settings.roomToken?(currentLanguage==="en"?"The secure session for this sheet is saved on this device.":"Защищённая сессия этого листа сохранена на устройстве."):(currentLanguage==="en"?"The bridge will configure itself when you create a /connect code.":"Мост настроится автоматически при создании кода /connect.");
-}
-
-function saveDiscordSettings(){
-  loadDiscordSettings();
-}
-
-async function requestChatBridgeSession(roomId="",legacySecret=""){
-  const headers={"Content-Type":"application/json"};
-  if(legacySecret)headers.Authorization=`Bearer ${legacySecret}`;
-  const response=await fetch(`${CHAT_BRIDGE_URL}/api/session`,{method:"POST",headers,body:JSON.stringify(roomId?{roomId}:{})});
-  let result={};
-  try{result=await response.json()}catch(error){}
-  if(!response.ok)throw new Error(result.error||`${currentLanguage==="en"?"Chat bridge error":"Ошибка моста чатов"}: HTTP ${response.status}`);
-  return result;
-}
-
-async function ensureChatBridgeSession(){
-  const saved=getDiscordSettings();
-  if(saved.roomId&&saved.roomToken)return saved;
-  if(chatBridgeSessionPromise)return chatBridgeSessionPromise;
-  chatBridgeSessionPromise=(async()=>{
-    let session;
-    if(saved.roomId&&saved.legacySecret){
-      try{session=await requestChatBridgeSession(saved.roomId,saved.legacySecret)}
-      catch(error){console.warn("Не удалось перенести старую комнату, создаётся новая сессия.",error);session=await requestChatBridgeSession()}
-    }else session=await requestChatBridgeSession();
-    const next={bridgeUrl:CHAT_BRIDGE_URL,roomId:String(session.roomId||""),roomToken:String(session.roomToken||""),legacySecret:""};
-    if(!next.roomId||!next.roomToken)throw new Error(currentLanguage==="en"?"The bridge did not return a secure sheet session.":"Мост не вернул защищённую сессию листа.");
-    storeDiscordSettings(next);
-    localStorage.removeItem(LEGACY_DISCORD_SETTINGS_KEY);
-    loadDiscordSettings();
-    return next;
-  })().finally(()=>{chatBridgeSessionPromise=null});
-  return chatBridgeSessionPromise;
-}
-
-function showDiscordToast(message,isError=false){
-  const toast=byId("discordToast");
-  if(!toast)return;
-  clearTimeout(discordToastTimer);
-  toast.textContent=message;
-  toast.classList.toggle("error",isError);
-  toast.classList.add("show");
-  discordToastTimer=setTimeout(()=>toast.classList.remove("show"),3200);
-}
-
-function getDiscordSheetName(){
-  return byId("characterName")?.value.trim()||(currentLanguage==="en"?"Unnamed character":"Безымянный персонаж");
-}
-
-async function chatBridgeRequest(endpoint,payload={}){
-  const settings=await ensureChatBridgeSession();
-  const response=await fetch(`${settings.bridgeUrl}${endpoint}`,{
-    method:"POST",
-    headers:{"Content-Type":"application/json","Authorization":`Bearer ${settings.roomToken}`},
-    body:JSON.stringify({roomId:settings.roomId,sheetName:getDiscordSheetName(),language:currentLanguage,...payload})
-  });
-  let result={};
-  try{result=await response.json()}catch(error){}
-  if(!response.ok)throw new Error(result.error||`${currentLanguage==="en"?"Discord bridge error":"Ошибка Discord-моста"}: HTTP ${response.status}`);
-  return result;
-}
-
-function renderChatConnections(status={}){
-  const names={discord:"Discord",telegram:"Telegram",vk:"ВКонтакте"};
-  const parts=Object.entries(names).map(([key,name])=>`${name}: ${(status[key]||[]).map(chat=>chat.label).join(", ")||"—"}`);
-  if(byId("chatConnectionsStatus"))byId("chatConnectionsStatus").textContent=parts.join(" · ");
-}
-
-async function createChatConnectCode(){
-  saveDiscordSettings();
-  try{
-    const result=await chatBridgeRequest("/api/connect");
-    if(byId("chatConnectCode"))byId("chatConnectCode").textContent=`В течение 15 минут отправьте ботам команду /connect ${result.code}`;
-    renderChatConnections(result.status);
-  }catch(error){showDiscordToast(error.message,true)}
-}
-
-async function refreshChatConnections(){
-  try{renderChatConnections((await chatBridgeRequest("/api/status")).status)}
-  catch(error){showDiscordToast(error.message,true)}
-}
-
-async function discordBridgeRequest(payload){return chatBridgeRequest("/api/message",payload)}
-
-async function testDiscordConnection(){
-  saveDiscordSettings();
-  const status=byId("discordSettingsStatus");
-  if(status)status.textContent=currentLanguage==="en"?"Sending a test message…":"Отправляю тестовое сообщение…";
-  try{
-    await discordBridgeRequest({kind:"test",title:currentLanguage==="en"?"Connection test":"Проверка подключения",text:currentLanguage==="en"?"The character sheet is connected successfully.":"Лист персонажа успешно подключён."});
-    if(status)status.textContent=currentLanguage==="en"?"The test message was sent to the configured chats.":"Тестовое сообщение отправлено в настроенные чаты.";
-    showDiscordToast(currentLanguage==="en"?"Sent to chats.":"Отправлено в чаты.");
-  }catch(error){
-    if(status)status.textContent=error.message;
-    showDiscordToast(error.message,true);
-  }
-}
-
-function formatDiscordRoll(entry){
-  if(entry.type==="consequence"){
-    return {
-      kind:"consequence",
-      title:currentLanguage==="en"?"Fallout Check":"Проверка последствия",
-      text:`${currentLanguage==="en"?"D10":"К10"}: ${entry.roll}\n${currentLanguage==="en"?"Stress":"Стресс"}: ${entry.totalStress}\n${currentLanguage==="en"?"Result":"Результат"}: ${entry.consequence}`
-    };
-  }
-  if(entry.type==="simple"){
-    const die=`D${entry.sides}`;
-    const modifier=Number(entry.modifier||0);
-    const calculation=modifier?`${entry.result} ${modifier>0?"+":"−"} ${Math.abs(modifier)} = ${entry.total}`:`${entry.result}`;
-    return {kind:"roll",title:currentLanguage==="en"?`Simple ${die} roll`:`Простой бросок ${die}`,text:`${die}: ${calculation}${entry.reason?`\n${entry.reason}`:""}`};
-  }
-  const difficulty=currentLanguage==="en"?(UI_EN[entry.difficultyLabel]||entry.difficultyLabel):entry.difficultyLabel;
-  const result=currentLanguage==="en"?(UI_EN[entry.resultLabel]||entry.resultLabel):entry.resultLabel;
-  const details=[];
-  if(entry.skillName)details.push(`${currentLanguage==="en"?"Skill":"Навык"}: ${currentLanguage==="en"?(UI_EN[entry.skillName]||entry.skillName):entry.skillName}${entry.skillChecked?" ✓":""}`);
-  if(entry.domainName)details.push(`${currentLanguage==="en"?"Domain":"Область"}: ${currentLanguage==="en"?(UI_EN[entry.domainName]||entry.domainName):entry.domainName}${entry.domainChecked?" ✓":""}`);
-  details.push(`${currentLanguage==="en"?"Difficulty":"Сложность"}: ${difficulty}`);
-  details.push(`${currentLanguage==="en"?"Dice":"Кости"}: ${(entry.rolls||[]).join(", ")}`);
-  return {kind:"roll",title:result||"Roll",text:details.join("\n")};
-}
-
-function sendDiscordRoll(entry){
-  const settings=getDiscordSettings();
-  if(!settings.roomId||!settings.roomToken)return;
-  discordBridgeRequest(formatDiscordRoll(entry)).catch(error=>showDiscordToast(error.message,true));
-}
-
-function discordValue(id){
-  const element=byId(id);
-  if(!element)return"";
-  if(currentLanguage==="en"&&element.tagName==="SELECT")return element.options[element.selectedIndex]?.textContent.trim()||"";
-  return element.value.trim()||"";
-}
-
-function discordDetail(labelRu,labelEn,value){return value?`${currentLanguage==="en"?labelEn:labelRu}: ${value}`:""}
-
-function getDiscordSharePayload(target){
-  const card=target.closest?.(".codex-card[data-codex-id]");
-  if(card){
-    const item=getCodexItem(card.dataset.codexId);
-    if(!item)return null;
-    return {kind:item.kind||item.section||"card",title:item.title,text:formatCodexText(item.text,item.title)};
-  }
-  const gearRow=target.closest?.("#gearRows tr[data-codex-target-index]");
-  if(gearRow){
-    const index=gearRow.dataset.codexTargetIndex;
-    const title=discordValue(`gear${index}Name`);
-    if(!title)return null;
-    const details=[
-      discordDetail("Качество","Quality",discordValue(`gear${index}Quality`)),
-      discordDetail("Навык","Skill",discordValue(`gear${index}Skill`)),
-      discordDetail("Причиняемый стресс","Inflicted Stress",discordValue(`gear${index}Stress`)),
-      discordValue(`gear${index}Note`)
-    ].filter(Boolean);
-    return {kind:"item",title,text:details.join("\n")};
-  }
-  const armorRow=target.closest?.("#armorRows tr[data-codex-target-index]");
-  if(armorRow){
-    const index=armorRow.dataset.codexTargetIndex;
-    const title=discordValue(`armor${index}Name`);
-    if(!title)return null;
-    const details=[
-      discordDetail("Качество","Quality",discordValue(`armor${index}Quality`)),
-      discordDetail("Навык","Skill",discordValue(`armor${index}Skill`)),
-      discordDetail("Причиняемый стресс","Inflicted Stress",discordValue(`armor${index}Stress`)),
-      discordDetail("Сопротивление","Resistance",discordValue(`armor${index}Resistance`)),
-      discordDetail("Защита","Protection",discordValue(`armor${index}Protection`)),
-      discordDetail("Доп. слоты","Extra Slots",discordValue(`armor${index}ExtraSlots`)),
-      discordValue(`armor${index}Note`)
-    ].filter(Boolean);
-    return {kind:"item",title,text:details.join("\n")};
-  }
-  const resourceRow=target.closest?.("#resourceRows tr[data-resource-index]");
-  if(resourceRow){
-    const index=resourceRow.dataset.resourceIndex;
-    const title=discordValue(`resource${index}Name`);
-    if(!title)return null;
-    const details=[
-      discordDetail("Область","Domain",discordValue(`resource${index}Domain`)),
-      discordDetail("Качество","Quality",discordValue(`resource${index}Quality`)),
-      discordValue(`resource${index}Note`)
-    ].filter(Boolean);
-    return {kind:"resource",title,text:details.join("\n")};
-  }
-  const tacticRow=target.closest?.("#tacticRows tr[data-codex-target-index]");
-  if(tacticRow){
-    const index=tacticRow.dataset.codexTargetIndex;
-    const title=discordValue(`tactic${index}Name`);
-    if(!title)return null;
-    return {kind:"tactic",title,text:[discordDetail("Навык","Skill",discordValue(`tactic${index}Skill`)),discordValue(`tactic${index}Notes`)].filter(Boolean).join("\n")};
-  }
-  const field=target.closest?.("textarea");
-  if(!field||!field.value.trim())return null;
-  let match=field.id.match(/^ability_(basic|minor|professional|elite)_(\d+)$/);
-  if(match){
-    const labels=currentLanguage==="en"?{basic:"Basic Ability",minor:"Minor Ability",professional:"Professional Ability",elite:"Elite Ability"}:{basic:"Базовая способность",minor:"Малая способность",professional:"Профессиональная способность",elite:"Элитная способность"};
-    return {kind:"ability",title:labels[match[1]],text:field.value.trim()};
-  }
-  match=field.id.match(/^consequence_(minor|major)_(\d+)$/);
-  if(match)return {kind:"consequence",title:currentLanguage==="en"?(match[1]==="minor"?"Minor Fallout":"Major Fallout"):(match[1]==="minor"?"Малое последствие":"Значимое последствие"),text:field.value.trim()};
-  match=field.id.match(/^diaryEntry(\d+)$/);
-  if(match)return {kind:"diary",title:`${currentLanguage==="en"?"Diary entry":"Запись дневника"} ${match[1]}`,text:field.value.trim()};
-  return null;
-}
-
-function attachDiscordSharing(){
-  if(discordSharingAttached)return;
-  document.addEventListener("dblclick",event=>{
-    if(event.target.closest?.("#discordToast, .discord-settings, button"))return;
-    const payload=getDiscordSharePayload(event.target);
-    if(!payload)return;
-    discordBridgeRequest(payload).then(()=>showDiscordToast(currentLanguage==="en"?"Sent to chats.":"Отправлено в чаты.")).catch(error=>showDiscordToast(error.message,true));
-  });
-  discordSharingAttached=true;
-}
-
-
-    function rollDie(sides){
-      const modifier=Number(byId("rollModifier")?.value||0);
-      const reason=byId("rollReason")?.value.trim()||"";
-      const result=Math.floor(Math.random()*sides)+1;
-      const total=result+modifier;
-      const time=new Date().toLocaleTimeString(currentLanguage==="en"?"en-GB":"ru-RU",{hour:"2-digit",minute:"2-digit"});
-      const entry={type:"simple",time,sides,result,modifier,total,reason};
-      advancedRollHistory.unshift(entry);
-      advancedRollHistory=advancedRollHistory.slice(0,10);
-      renderAdvancedRollHistory();
-      saveSheet(false);
-      sendDiscordRoll(entry);
-    }
-
-    function isFormElement(element){return element&&["INPUT","TEXTAREA","SELECT"].includes(element.tagName)}
-
-    function attachAutoSave(){
-      if(listenersAttached)return;
-      document.addEventListener("input",event=>{
-        const element=event.target;
-        if(!isFormElement(element))return;
-        if(element.type==="file")return;
-        if(element.dataset.sheetIgnore)return;
-        if(element.type==="checkbox")return;
-        renderCounters();
-        saveSheet(false);
-      });
-      document.addEventListener("change",event=>{
-        const element=event.target;
-        if(!isFormElement(element))return;
-        if(element.type==="file")return;
-        if(element.dataset.sheetIgnore)return;
-        if(element.type==="checkbox"&&element.dataset.track){
-          setTrackStressUpTo(element.dataset.track,element);
-          return;
-        }
-        renderCounters();
-        saveSheet(false);
-      });
-      document.addEventListener("keydown",event=>{
-        if(event.key==="Escape"){
-          closeRollMenu();
-          closeDiaryMenu();
-          closeSheetMenu();
-          closeAbilitiesMenu();
-          closeTacticsMenu();
-          closeResourcesMenu();
-          closeRulesHelpMenu();
-          closeCodexMenu();
-        }
-      });
-      listenersAttached=true;
-    }
-
-    function populateAutoRollSelects(){
-      byId("autoRollSkill").innerHTML=makeOptions(skillOptions);
-      byId("autoRollDomain").innerHTML=makeOptions(domainOptions);
-    }
-
-    function openRollMenu(){
-      updateRollMenuTitle();
-      byId("rollModal").classList.add("open");
-      byId("rollModal").setAttribute("aria-hidden","false");
-      renderAdvancedRollHistory();
-      updateRollMasteryButton();
-    }
-
-    function closeRollMenu(){
-      const modal=byId("rollModal");
-      if(!modal)return;
-      modal.classList.remove("open");
-      modal.setAttribute("aria-hidden","true");
-    }
-
-    function closeRollMenuOnBackdrop(event){if(event.target.id==="rollModal")closeRollMenu()}
-
-    function openDiaryMenu(){
-      const modal=byId("diaryModal");
-      if(!modal)return;
-      renderDiaryCounters();
-      updateFloatingMenuButtons();
-      modal.classList.add("open");
-      modal.setAttribute("aria-hidden","false");
-    }
-
-    function closeDiaryMenu(){
-      const modal=byId("diaryModal");
-      if(!modal)return;
-      modal.classList.remove("open");
-      modal.setAttribute("aria-hidden","true");
-    }
-
-    function closeDiaryMenuOnBackdrop(event){if(event.target.id==="diaryModal")closeDiaryMenu()}
-
-    function openSheetMenu(){
-      const modal=byId("sheetMenuModal");
-      if(!modal)return;
-      modal.classList.add("open");
-      modal.setAttribute("aria-hidden","false");
-    }
-
-    function closeSheetMenu(){
-      const modal=byId("sheetMenuModal");
-      if(!modal)return;
-      modal.classList.remove("open");
-      modal.setAttribute("aria-hidden","true");
-    }
-
-    function closeSheetMenuOnBackdrop(event){if(event.target.id==="sheetMenuModal")closeSheetMenu()}
-
-    function openAbilitiesMenu(){
-      const modal=byId("abilitiesModal");
-      if(!modal)return;
-      renderAbilityCounters();
-      modal.classList.add("open");
-      modal.setAttribute("aria-hidden","false");
-    }
-
-    function closeAbilitiesMenu(){
-      const modal=byId("abilitiesModal");
-      if(!modal)return;
-      modal.classList.remove("open");
-      modal.setAttribute("aria-hidden","true");
-    }
-
-    function closeAbilitiesMenuOnBackdrop(event){if(event.target.id==="abilitiesModal")closeAbilitiesMenu()}
-
-    function openTacticsMenu(){
-      const modal=byId("tacticsModal");
-      if(!modal)return;
-      renderTacticCounters();
-      updateFloatingMenuButtons();
-      modal.classList.add("open");
-      modal.setAttribute("aria-hidden","false");
-    }
-
-    function closeTacticsMenu(){
-      const modal=byId("tacticsModal");
-      if(!modal)return;
-      modal.classList.remove("open");
-      modal.setAttribute("aria-hidden","true");
-    }
-
-    function closeTacticsMenuOnBackdrop(event){if(event.target.id==="tacticsModal")closeTacticsMenu()}
-
-    function openResourcesMenu(){
-      const modal=byId("resourcesModal");
-      if(!modal)return;
-      renderResourceCounters();
-      updateQualityDiePreviews();
-      updateFloatingMenuButtons();
-      modal.classList.add("open");
-      modal.setAttribute("aria-hidden","false");
-    }
-
-    function closeResourcesMenu(){
-      const modal=byId("resourcesModal");
-      if(!modal)return;
-      modal.classList.remove("open");
-      modal.setAttribute("aria-hidden","true");
-    }
-
-    function closeResourcesMenuOnBackdrop(event){if(event.target.id==="resourcesModal")closeResourcesMenu()}
-
-    let codexActiveSection="classes";
-    let codexSearchQuery="";
-    let codexDraggedItemId="";
-    let codexPanelDragState=null;
-    let codexPanelResizeState=null;
-    const codexRuntimeItems=new Map();
-    const CODEX_PANEL_MARGIN=12;
-
-    function escapeCodexHtml(value){
-      return String(value??"").replace(/[&<>\"']/g,character=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;", "'":"&#39;"}[character]));
-    }
-
-    function cleanCodexSourceLines(value){
-      return String(value??"")
-        .replace(/\r\n?/g,"\n")
-        .split("\n")
-        .map(line=>line.replace(/[\t ]+/g," ").trim())
-        .filter(line=>!/^\d{1,3}$/.test(line));
-    }
-
-    function formatCodexText(value,title=""){
-      const webText=String(value??"").replace(/\s+(?=(?:Урон|Стресс|Свойства|Дистанция|Качество|Ячейки модификации|Damage|Stress|Properties|Range|Distance|Quality|Modification Slots)\s*:)/gi,"\n");
-      const lines=cleanCodexSourceLines(webText);
-      if(lines.length&&title){
-        const first=lines[0].replace(/^\d+\)\s*/,"").trim();
-        const firstLower=first.toLocaleLowerCase();
-        const titleLower=String(title).trim().toLocaleLowerCase();
-        if(firstLower===titleLower)lines.shift();
-        else if(firstLower.startsWith(`${titleLower}:`))lines[0]=first.slice(title.length+1).trim();
-      }
-      const blocks=[];
-      let current="";
-      const flush=()=>{if(current.trim())blocks.push(current.trim());current=""};
-      lines.forEach(line=>{
-        if(!line){flush();return}
-        const startsBlock=/^(?:[►•▪◦]|[—–-]\s|\d+\)\s|(?:Урон|Стресс|Свойства|Дистанция|Качество|Damage|Stress|Properties|Range|Distance|Quality)\s*:|(?:Малые|Minor)\s*$)/i.test(line);
-        if(startsBlock)flush();
-        if(!current)current=line;
-        else if(current.endsWith("-"))current+=line;
-        else current+=` ${line}`;
-      });
-      flush();
-      return blocks.join("\n")
-        .replace(/([:;,])(?=[A-Za-zА-Яа-яЁё])/g,"$1 ")
-        .replace(/([A-Za-zА-Яа-яЁё0-9])\(/g,"$1 (")
-        .replace(/\n{3,}/g,"\n\n")
-        .trim();
-    }
-
-    function normalizeCodexSearchText(value){
-      return String(value??"").toLocaleLowerCase(currentLanguage==="en"?"en-GB":"ru-RU").replace(/ё/g,"е").replace(/\s+/g," ").trim();
-    }
-
-    function isEnglishCodexHeadingLine(line){
-      if(currentLanguage!=="en"||line.length<2||line.length>64||/[.:;!?]$/.test(line))return false;
-      const smallWords=new Set(["a","an","and","at","by","for","from","in","of","on","or","the","to","with"]);
-      return line.split(/\s+/).every((word,index)=>{
-        const clean=word.replace(/^[“‘(]|[”’)]+$/g,"");
-        return (index>0&&smallWords.has(clean.toLowerCase()))||/^[A-Z][A-Za-zÀ-ÖØ-öø-ÿ’'\-]*$/.test(clean);
-      });
-    }
-
-    function parseProfessionalMinorAbilities(item){
-      if(item.section!=="classes"||item.tier!=="professional")return{baseText:item.text||"",children:[]};
-      const lines=cleanCodexSourceLines(item.text);
-      const explicitMarkerIndex=lines.findIndex(line=>/^(?:малые|minor(?: abilities)?)\s*:?$/i.test(line));
-      const fallbackMarkerIndex=lines.findIndex(line=>/^[►•▪◦]\s*.+/.test(line)||/^Minor\s*:\s*.+/i.test(line));
-      const markerIndex=explicitMarkerIndex>=0?explicitMarkerIndex:fallbackMarkerIndex;
-      if(markerIndex<0)return{baseText:item.text||"",children:[]};
-      const childStartIndex=explicitMarkerIndex>=0?markerIndex+1:markerIndex;
-      const children=[];
-      let active=null;
-      const finish=()=>{
-        if(!active)return;
-        const childText=[active.title+(active.inlineText?`: ${active.inlineText}`:""),...active.lines].join("\n").trim();
-        children.push({...item,id:`${item.id}-professional-minor-${children.length+1}`,title:active.title,text:childText,tier:"minor",isProfessionalMinor:true,parentAbilityId:item.id});
-        active=null;
-      };
-      lines.slice(childStartIndex).forEach(line=>{
-        const bullet=line.match(/^[►•▪◦]\s*(.+)$/);
-        const dashHeading=currentLanguage==="en"?line.match(/^[—–-]\s+(.+)$/):null;
-        const prefixedMinor=currentLanguage==="en"?line.match(/^Minor\s*:\s*(.+)$/i):null;
-        const englishHeading=currentLanguage==="en"?line.match(/^([A-Z][^:]{1,64}):\s*(.*)$/):null;
-        const excludedHeading=englishHeading&&/^(?:Stress|Damage|Properties|Range|Distance|Quality|Fallout|Resistance|For example|Example|Result)$/i.test(englishHeading[1].trim());
-        const plainEnglishHeading=isEnglishCodexHeadingLine(line)?line:null;
-        const startsChild=bullet||dashHeading||prefixedMinor||(englishHeading&&!excludedHeading)||plainEnglishHeading;
-        if(startsChild&&(!active||children.length<2)){
-          finish();
-          const content=(bullet?.[1]||dashHeading?.[1]||prefixedMinor?.[1]||englishHeading?.[1]||plainEnglishHeading||"").trim();
-          const split=content.match(/^(.{1,80}?):\s*(.*)$/);
-          active={title:(split?.[1]||content).trim(),inlineText:(split?.[2]||englishHeading?.[2]||"").trim(),lines:[]};
-          return;
-        }
-        if(active)active.lines.push(line);
-      });
-      finish();
-      return{baseText:lines.slice(0,markerIndex).join("\n"),children};
-    }
-
-    function getCodexSearchHaystack(item){
-      const sectionTitle=(window.TOWER_CODEX?.sections||[]).find(section=>section.id===item.section)?.title||item.section;
-      return normalizeCodexSearchText([
-        item.title,item.text,item.category,item.categoryEn,item.className,item.classNameEn,
-        item.factionName,item.factionNameEn,item.factionArea,item.factionAreaEn,item.skill,item.skillEn,
-        item.resistance,item.resistanceEn,item.severityLabel,item.severityLabelEn,item.tier,sectionTitle
-      ].filter(Boolean).join(" "));
-    }
-
-    function setCodexSearch(value){
-      codexSearchQuery=String(value||"");
-      renderCodexSection();
-    }
-
-    function clearCodexSearch(){
-      codexSearchQuery="";
-      const input=byId("codexSearchInput");
-      if(input)input.value="";
-      renderCodexSection();
-      input?.focus();
-    }
-
-    function renderCodexTabs(){
-      const container=byId("codexTabs");
-      if(!container)return;
-      const sections=window.TOWER_CODEX?.sections||[];
-      const allItems=window.TOWER_CODEX?.items||[];
-      const classNames=[...new Set(allItems.filter(item=>item.section==="classes").map(item=>currentLanguage==="en"?(item.classNameEn||item.className):item.className).filter(Boolean))];
-      if(codexActiveSection==="classes"&&classNames.length)codexActiveSection=`classes:${classNames[0]}`;
-      const tabs=sections.flatMap(section=>section.id==="classes"
-        ?classNames.map(className=>({id:`classes:${className}`,title:className}))
-        :[{id:section.id,title:section.title}]);
-      container.innerHTML=tabs.map(tab=>`<button class="toggle-button${tab.id===codexActiveSection?" is-active":""}" type="button" onclick="selectCodexSection('${escapeCodexHtml(tab.id)}')">${escapeCodexHtml(tab.title)}</button>`).join("");
-    }
-
-    function getCodexGroupLabel(item){
-      if(item.section==="classes")return currentLanguage==="en"?(item.classNameEn||item.className):(item.className||"Класс");
-      if(item.section==="factions")return currentLanguage==="en"?(item.factionAreaEn||item.factionArea):(item.factionArea||"Фракции");
-      if(item.section==="equipment")return currentLanguage==="en"?(item.categoryEn||item.category):(item.category||"Снаряжение");
-      if(item.section==="tactics")return currentLanguage==="en"?(item.skillEn||item.skill):(item.skill||"Тактики");
-      if(item.section==="consequences")return currentLanguage==="en"?(item.resistanceEn||item.resistance):(item.resistance||"Сопротивление");
-      return item.section||"Кодекс";
-    }
-
-    function renderCodexCard(item,{nested=false}={}){
-      codexRuntimeItems.set(item.id,item);
-      const tierLabels=currentLanguage==="en"?{basic:"Basic",minor:"Minor",professional:"Professional",elite:"Elite"}:{basic:"Базовая",minor:"Малая",professional:"Профессиональная",elite:"Элитная"};
-      const severityLabel=currentLanguage==="en"?(item.severityLabelEn||item.severityLabel):item.severityLabel;
-      const cardTitle=nested?item.title:item.section==="classes"?`${item.title} — ${tierLabels[item.tier]||"Ability"}`:item.section==="factions"?`${item.title} — ${currentLanguage==="en"?(item.factionNameEn||item.factionName):(item.factionName||"Фракция не указана")}`:item.section==="consequences"?`${item.title} — ${severityLabel}`:item.title;
-      const professional=parseProfessionalMinorAbilities(item);
-      professional.children.forEach(child=>codexRuntimeItems.set(child.id,child));
-      const displayText=formatCodexText(professional.baseText,item.title);
-      const metaLabel=currentLanguage==="en"?(item.severityLabelEn||item.tier||item.skillEn||item.dropTarget):(item.severityLabel||item.tier||item.skill||item.dropTarget);
-      const query=normalizeCodexSearchText(codexSearchQuery);
-      const nestedMatches=query&&professional.children.some(child=>getCodexSearchHaystack(child).includes(query));
-      const nestedHtml=professional.children.length?`<details class="codex-subgroup"${nestedMatches?" open":""}>
-        <summary class="codex-subgroup-summary">${currentLanguage==="en"?"Minor abilities":"Малые способности"} <span class="counter">${professional.children.length}</span></summary>
-        <div class="codex-subgroup-items">${professional.children.map(child=>renderCodexCard(child,{nested:true})).join("")}</div>
-      </details>`:"";
-      return `<article class="codex-card${nested?" codex-minor-card":""}" draggable="true" data-codex-id="${escapeCodexHtml(item.id)}" title="${currentLanguage==="en"?"Drag to a suitable slot or the diary":"Перетащить в подходящий слот или дневник"}">
-        <h3>${escapeCodexHtml(cardTitle)}</h3>
-        <div class="codex-card-meta">${currentLanguage==="en"?"Rulebook pages":"Страницы PDF"}: ${escapeCodexHtml((item.source?.pdfPages||[]).join(", "))} · ${escapeCodexHtml(metaLabel)}</div>
-        <div class="codex-card-text">${escapeCodexHtml(displayText)}</div>
-        ${nestedHtml}
-      </article>`;
-    }
-
-    function renderCodexSection(){
-      const container=byId("codexItems");
-      if(!container)return;
-      codexRuntimeItems.clear();
-      const allItems=(window.TOWER_CODEX?.items||[]).filter(item=>!(item.section==="equipment"&&item.isCategory));
-      allItems.forEach(item=>codexRuntimeItems.set(item.id,item));
-      const query=normalizeCodexSearchText(codexSearchQuery);
-      const items=allItems.filter(item=>{
-        if(query)return getCodexSearchHaystack(item).includes(query);
-        const classTab=codexActiveSection.startsWith("classes:");
-        const className=currentLanguage==="en"?(item.classNameEn||item.className):item.className;
-        return classTab?item.section==="classes"&&className===codexActiveSection.slice("classes:".length):item.section===codexActiveSection;
-      });
-      const status=byId("codexSearchStatus");
-      if(status)status.textContent=query?(currentLanguage==="en"?`${items.length} cards found`:`Найдено карточек: ${items.length}`):"";
-      if(!items.length){
-        container.innerHTML=`<div class="codex-card"><h3>${currentLanguage==="en"?"Nothing found":"Ничего не найдено"}</h3><div class="codex-card-text">${currentLanguage==="en"?"Try a different title, phrase, or category.":"Попробуйте другое название, фразу или категорию."}</div></div>`;
-        return;
-      }
-      const sectionTitles=new Map((window.TOWER_CODEX?.sections||[]).map(section=>[section.id,section.title]));
-      const groups=new Map();
-      items.forEach(item=>{
-        const baseLabel=getCodexGroupLabel(item);
-        const label=query?`${sectionTitles.get(item.section)||item.section} · ${baseLabel}`:baseLabel;
-        const key=`${item.section}\u0000${label}`;
-        if(!groups.has(key))groups.set(key,{label,items:[]});
-        groups.get(key).items.push(item);
-      });
-      container.innerHTML=[...groups.values()].map(group=>{
-        const groupItems=group.items;
-        const emblemPath=groupItems[0]?.section==="classes"?classBackgroundMap[groupItems[0].className]:"";
-        return `<details class="codex-group${emblemPath?" codex-class-group":""}"${query?" open":""}${emblemPath?` style="--codex-class-emblem:url(${escapeCodexHtml(emblemPath)})"`:""}>
-          <summary class="codex-group-summary">${escapeCodexHtml(group.label)} <span class="counter">${groupItems.length}</span></summary>
-          <div class="codex-group-items">${groupItems.map(item=>renderCodexCard(item)).join("")}</div>
-        </details>`;
-      }).join("");
-      attachCodexDragHandlers();
-    }
-
-    function getCodexItem(itemId){return codexRuntimeItems.get(itemId)||(window.TOWER_CODEX?.items||[]).find(item=>item.id===itemId)}
-
-    function codexItemFitsTarget(item,target){
-      if(!item||!target)return false;
-      if(target.dataset.codexDrop==="diary")return true;
-      if(item.dropTarget!==target.dataset.codexDrop)return false;
-      if(target.dataset.codexTier&&item.tier!==target.dataset.codexTier)return false;
-      if(target.dataset.codexConsequenceSeverity&&item.severity!==target.dataset.codexConsequenceSeverity)return false;
-      if(target.dataset.codexDrop==="armor"&&item.armorSlots?.length&&!item.armorSlots.includes(target.dataset.codexArmorSlot))return false;
-      return true;
-    }
-
-    function clearCodexDropHighlights(){
-      document.querySelectorAll("[data-codex-drop]").forEach(target=>{
-        target.classList.remove("codex-drop-eligible","codex-drop-active","codex-drop-invalid");
-      });
-    }
-
-    function highlightCodexDropTargets(item){
-      clearCodexDropHighlights();
-      document.querySelectorAll("[data-codex-drop]").forEach(target=>{
-        if(codexItemFitsTarget(item,target))target.classList.add("codex-drop-eligible");
-      });
-    }
-
-    function dispatchCodexFieldUpdates(fields){
-      fields.filter(Boolean).forEach(element=>{
-        element.dispatchEvent(new Event("input",{bubbles:true}));
-        element.dispatchEvent(new Event("change",{bubbles:true}));
-      });
-    }
-
-    function extractCodexDie(value){
-      const match=String(value||"").match(/(?:^|[\s(])(?:D|К|к)(4|6|8|10|12)(?=\b|\))/);
-      return match?`D${match[1]}`:"";
-    }
-
-    function getCodexItemQuality(item){
-      return item.itemQuality||item.qualityDie
-        ||extractCodexDie(currentLanguage==="en"?(item.categoryEn||item.category):(item.category||item.categoryEn))
-        ||extractCodexDie(item.category)||extractCodexDie(item.categoryEn)
-        ||extractCodexDie(item.title)||extractCodexDie(item.text);
-    }
-
-    function getCodexItemStress(item){
-      if(item.stress)return item.stress;
-      const text=String(item.text||"");
-      const causesStress=Boolean(item.skill)||/(?:^|\n)\s*(?:Урон|Стресс|Damage|Stress)\s*:/i.test(text);
-      if(!causesStress)return"";
-      return item.quality||extractCodexDie(text);
-    }
-
-    function getCodexItemNotes(item){
-      const raw=currentLanguage==="en"?(item.notesEn??item.text):(item.notes??item.text);
-      return formatCodexText(raw,item.title).replace(/\n+/g," · ");
-    }
-
-    function getCodexEntryText(item){
-      const body=formatCodexText(item.text,item.title);
-      return[item.title,body].filter(Boolean).join("\n");
-    }
-
-    function fillCodexTarget(item,target){
-      if(!codexItemFitsTarget(item,target))return false;
-      const targetType=target.dataset.codexDrop;
-      if(targetType==="ability"||targetType==="consequence"){
-        const field=[...target.querySelectorAll("textarea")].find(element=>!element.value.trim());
-        if(!field){alert(currentLanguage==="en"?"There are no empty slots in this category.":"В этой категории нет свободной ячейки.");return false}
-        field.value=getCodexEntryText(item);
-        field.dispatchEvent(new Event("input",{bubbles:true}));
-        return true;
-      }
-      if(targetType==="diary"){
-        let field=[...target.querySelectorAll("textarea")].find(element=>!element.value.trim());
-        if(!field){
-          addDiaryEntry();
-          field=byId(`diaryEntry${diaryCount}`);
-        }
-        if(!field)return false;
-        field.value=getCodexEntryText(item);
-        field.dispatchEvent(new Event("input",{bubbles:true}));
-        return true;
-      }
-      const index=target.dataset.codexTargetIndex;
-      if(targetType==="tactic"){
-        const name=byId(`tactic${index}Name`);
-        const skill=byId(`tactic${index}Skill`);
-        const notes=byId(`tactic${index}Notes`);
-        if(name)name.value=item.title;
-        if(skill&&item.skill)skill.value=item.skill;
-        if(notes)notes.value=formatCodexText(item.text,item.title);
-        dispatchCodexFieldUpdates([name,skill,notes]);
-        return true;
-      }
-      if(targetType==="gear"){
-        const name=byId(`gear${index}Name`);
-        const skill=byId(`gear${index}Skill`);
-        const quality=byId(`gear${index}Quality`);
-        const stress=byId(`gear${index}Stress`);
-        const note=byId(`gear${index}Note`);
-        if(name)name.value=item.title;
-        if(skill)skill.value=item.skill||"";
-        if(quality)quality.value=getCodexItemQuality(item);
-        if(stress)stress.value=getCodexItemStress(item);
-        if(note)note.value=getCodexItemNotes(item);
-        dispatchCodexFieldUpdates([name,quality,skill,stress,note]);
-        updateQualityDiePreview(`gear${index}Stress`,`gear${index}StressPreview`);
-        return true;
-      }
-      if(targetType==="armor"){
-        const name=byId(`armor${index}Name`);
-        const skill=byId(`armor${index}Skill`);
-        const quality=byId(`armor${index}Quality`);
-        const stress=byId(`armor${index}Stress`);
-        const resistance=byId(`armor${index}Resistance`);
-        const protection=byId(`armor${index}Protection`);
-        const extraSlots=byId(`armor${index}ExtraSlots`);
-        const note=byId(`armor${index}Note`);
-        if(name)name.value=item.title;
-        if(skill)skill.value=item.skill||"";
-        if(quality)quality.value=getCodexItemQuality(item);
-        if(stress)stress.value=getCodexItemStress(item);
-        if(resistance)resistance.value=item.resistance||"";
-        if(protection)protection.value=Number(item.protection||0);
-        if(extraSlots)extraSlots.value=Number(item.extraSlots||0);
-        if(note)note.value=getCodexItemNotes(item);
-        dispatchCodexFieldUpdates([name,quality,skill,stress,resistance,protection,extraSlots,note]);
-        updateQualityDiePreview(`armor${index}Stress`,`armor${index}StressPreview`);
-        renderCounters();
-        return true;
-      }
-      return false;
-    }
-
-    function attachCodexDragHandlers(){
-      document.querySelectorAll(".codex-card[draggable='true']").forEach(card=>{
-        card.addEventListener("dragstart",event=>{
-          codexDraggedItemId=card.dataset.codexId;
-          event.dataTransfer.setData("application/x-tower-codex",card.dataset.codexId);
-          event.dataTransfer.effectAllowed="copy";
-          card.classList.add("is-dragging");
-          highlightCodexDropTargets(getCodexItem(codexDraggedItemId));
-        });
-        card.addEventListener("dragend",()=>{
-          codexDraggedItemId="";
-          card.classList.remove("is-dragging");
-          clearCodexDropHighlights();
-        });
-      });
-      document.querySelectorAll("[data-codex-drop]").forEach(target=>{
-        if(target.dataset.codexHandlersAttached)return;
-        target.dataset.codexHandlersAttached="true";
-        target.addEventListener("dragover",event=>{
-          const item=getCodexItem(event.dataTransfer.getData("application/x-tower-codex")||codexDraggedItemId);
-          if(!codexItemFitsTarget(item,target))return;
-          event.preventDefault();
-          event.dataTransfer.dropEffect="copy";
-          target.classList.add("codex-drop-active");
-        });
-        target.addEventListener("dragleave",()=>target.classList.remove("codex-drop-active"));
-        target.addEventListener("drop",event=>{
-          event.preventDefault();
-          clearCodexDropHighlights();
-          const item=getCodexItem(event.dataTransfer.getData("application/x-tower-codex")||codexDraggedItemId);
-          fillCodexTarget(item,target);
-        });
-      });
-    }
-
-    function positionCodexPanel(){
-      const panel=byId("codexPanel");
-      if(!panel)return;
-      const margin=CODEX_PANEL_MARGIN;
-      if(!panel.dataset.codexPositioned){
-        const rightDockReserve=window.innerWidth>900?132:0;
-        const width=Math.min(panel.offsetWidth,Math.max(1,window.innerWidth-margin*2-rightDockReserve));
-        const height=Math.min(panel.offsetHeight,Math.max(1,window.innerHeight-margin*2));
-        panel.style.width=`${width}px`;
-        panel.style.height=`${height}px`;
-        panel.style.left=`${Math.max(margin,window.innerWidth-width-margin-rightDockReserve)}px`;
-        panel.style.top=`${margin}px`;
-        panel.style.right="auto";
-        panel.style.bottom="auto";
-        panel.dataset.codexPositioned="true";
-      }
-      keepCodexPanelInViewport();
-    }
-
-    function keepCodexPanelInViewport(){
-      const panel=byId("codexPanel");
-      if(!panel||!panel.dataset.codexPositioned)return;
-      const margin=CODEX_PANEL_MARGIN;
-      const maxWidth=Math.max(1,window.innerWidth-margin*2);
-      const maxHeight=Math.max(1,window.innerHeight-margin*2);
-      if(panel.offsetWidth>maxWidth)panel.style.width=`${maxWidth}px`;
-      if(panel.offsetHeight>maxHeight)panel.style.height=`${maxHeight}px`;
-      const width=panel.offsetWidth;
-      const height=panel.offsetHeight;
-      const currentLeft=Number.parseFloat(panel.style.left)||margin;
-      const currentTop=Number.parseFloat(panel.style.top)||margin;
-      const maxLeft=Math.max(margin,window.innerWidth-width-margin);
-      const maxTop=Math.max(margin,window.innerHeight-height-margin);
-      panel.style.left=`${Math.min(Math.max(margin,currentLeft),maxLeft)}px`;
-      panel.style.top=`${Math.min(Math.max(margin,currentTop),maxTop)}px`;
-    }
-
-    function startCodexPanelDrag(event){
-      if(event.button!==0||event.target.closest("button,a,input,select,textarea"))return;
-      const panel=byId("codexPanel");
-      if(!panel)return;
-      positionCodexPanel();
-      const rect=panel.getBoundingClientRect();
-      panel.style.left=`${rect.left}px`;
-      panel.style.top=`${rect.top}px`;
-      panel.style.width=`${rect.width}px`;
-      panel.style.height=`${rect.height}px`;
-      panel.style.right="auto";
-      panel.style.bottom="auto";
-      codexPanelDragState={
-        pointerId:event.pointerId,
-        startX:event.clientX,
-        startY:event.clientY,
-        startLeft:rect.left,
-        startTop:rect.top,
-        width:rect.width,
-        height:rect.height,
-        handle:event.currentTarget
-      };
-      panel.classList.add("is-moving");
-      event.currentTarget.setPointerCapture?.(event.pointerId);
-      event.preventDefault();
-    }
-
-    function moveCodexPanel(event){
-      if(!codexPanelDragState||event.pointerId!==codexPanelDragState.pointerId)return;
-      const panel=byId("codexPanel");
-      if(!panel)return;
-      const margin=CODEX_PANEL_MARGIN;
-      const maxLeft=Math.max(margin,window.innerWidth-codexPanelDragState.width-margin);
-      const maxTop=Math.max(margin,window.innerHeight-codexPanelDragState.height-margin);
-      const left=Math.min(Math.max(margin,codexPanelDragState.startLeft+event.clientX-codexPanelDragState.startX),maxLeft);
-      const top=Math.min(Math.max(margin,codexPanelDragState.startTop+event.clientY-codexPanelDragState.startY),maxTop);
-      panel.style.left=`${left}px`;
-      panel.style.top=`${top}px`;
-    }
-
-    function stopCodexPanelDrag(event){
-      if(!codexPanelDragState||event.pointerId!==codexPanelDragState.pointerId)return;
-      const panel=byId("codexPanel");
-      codexPanelDragState.handle?.releasePointerCapture?.(event.pointerId);
-      codexPanelDragState=null;
-      panel?.classList.remove("is-moving");
-      keepCodexPanelInViewport();
-    }
-
-    function startCodexPanelResize(event){
-      if(event.button!==0)return;
-      const panel=byId("codexPanel");
-      if(!panel)return;
-      positionCodexPanel();
-      const rect=panel.getBoundingClientRect();
-      codexPanelResizeState={
-        pointerId:event.pointerId,
-        startX:event.clientX,
-        startY:event.clientY,
-        startWidth:rect.width,
-        startHeight:rect.height,
-        left:rect.left,
-        top:rect.top,
-        handle:event.currentTarget
-      };
-      panel.classList.add("is-resizing");
-      event.currentTarget.setPointerCapture?.(event.pointerId);
-      event.stopPropagation();
-      event.preventDefault();
-    }
-
-    function resizeCodexPanel(event){
-      if(!codexPanelResizeState||event.pointerId!==codexPanelResizeState.pointerId)return;
-      const panel=byId("codexPanel");
-      if(!panel)return;
-      const maxWidth=Math.max(1,window.innerWidth-codexPanelResizeState.left-CODEX_PANEL_MARGIN);
-      const maxHeight=Math.max(1,window.innerHeight-codexPanelResizeState.top-CODEX_PANEL_MARGIN);
-      const minWidth=Math.min(360,maxWidth);
-      const minHeight=Math.min(260,maxHeight);
-      const width=Math.min(Math.max(minWidth,codexPanelResizeState.startWidth+event.clientX-codexPanelResizeState.startX),maxWidth);
-      const height=Math.min(Math.max(minHeight,codexPanelResizeState.startHeight+event.clientY-codexPanelResizeState.startY),maxHeight);
-      panel.style.width=`${width}px`;
-      panel.style.height=`${height}px`;
-    }
-
-    function stopCodexPanelResize(event){
-      if(!codexPanelResizeState||event.pointerId!==codexPanelResizeState.pointerId)return;
-      const panel=byId("codexPanel");
-      codexPanelResizeState.handle?.releasePointerCapture?.(event.pointerId);
-      codexPanelResizeState=null;
-      panel?.classList.remove("is-resizing");
-      keepCodexPanelInViewport();
-    }
-
-    function closeWorkspaceWindowsOnOutsidePointer(event){
-      const sharedSelector=[
-        "#codexPanel",".abilities-panel",".tactics-panel",".resources-panel",".diary-panel",
-        "#openCodexButton","#openAbilitiesMenuButton","#openTacticsMenuButton","#openResourcesMenuButton","#openDiaryButton"
-      ].join(",");
-      if(event.target.closest?.(sharedSelector))return;
-      closeCodexMenu();
-      closeAbilitiesMenu();
-      closeTacticsMenu();
-      closeResourcesMenu();
-      closeDiaryMenu();
-    }
-
-    function initCodexWindowInteractions(){
-      document.addEventListener("pointermove",moveCodexPanel);
-      document.addEventListener("pointermove",resizeCodexPanel);
-      document.addEventListener("pointerup",stopCodexPanelDrag);
-      document.addEventListener("pointerup",stopCodexPanelResize);
-      document.addEventListener("pointercancel",stopCodexPanelDrag);
-      document.addEventListener("pointercancel",stopCodexPanelResize);
-      document.addEventListener("pointerdown",closeWorkspaceWindowsOnOutsidePointer,true);
-      window.addEventListener("resize",keepCodexPanelInViewport);
-    }
-
-    function selectCodexSection(sectionId){
-      codexActiveSection=sectionId;
-      codexSearchQuery="";
-      const input=byId("codexSearchInput");
-      if(input)input.value="";
-      renderCodexTabs();
-      renderCodexSection();
-    }
-
-    function openCodexMenu(){
-      const modal=byId("codexModal");
-      if(!modal)return;
-      const input=byId("codexSearchInput");
-      if(input)input.value=codexSearchQuery;
-      renderCodexTabs();
-      renderCodexSection();
-      modal.classList.add("open");
-      modal.setAttribute("aria-hidden","false");
-      requestAnimationFrame(positionCodexPanel);
-    }
-
-    function closeCodexMenu(){
-      const modal=byId("codexModal");
-      if(!modal)return;
-      modal.classList.remove("open");
-      modal.setAttribute("aria-hidden","true");
-      clearCodexDropHighlights();
-    }
-
-    function closeCodexMenuOnBackdrop(event){if(event.target.id==="codexModal")closeCodexMenu()}
-
-    function toggleRollMastery(){
-      rollMasteryEnabled=!rollMasteryEnabled;
-      updateRollMasteryButton();
-      saveSheet(false);
-    }
-
-    function updateRollMasteryButton(){
-      const button=byId("autoRollMasteryToggle");
-      if(!button)return;
-      button.classList.toggle("is-active",rollMasteryEnabled);
-      button.textContent=currentLanguage==="en"?(rollMasteryEnabled?"Mastery: yes":"Mastery: no"):(rollMasteryEnabled?"Мастерство: да":"Мастерство: нет");
-      button.setAttribute("aria-pressed",rollMasteryEnabled?"true":"false");
-    }
-
-    function getResultIndex(maxRoll){
-      if(maxRoll<=1)return 0;
-      if(maxRoll<=5)return 1;
-      if(maxRoll<=7)return 2;
-      if(maxRoll<=9)return 3;
-      return 4;
-    }
-
-    function getDifficultyLabel(value){
-      if(value===1)return "Рискованная";
-      if(value===2)return "Опасная";
-      if(value===3)return "Роковая";
-      return "Нормальная";
-    }
-
-    function rollAdvancedDice(){
-      renderCounters();
-      const skillName=byId("autoRollSkill").value;
-      const domainName=byId("autoRollDomain").value;
-      const helpers=Math.max(0,Math.floor(Number(byId("autoRollHelpers").value||0)));
-      const difficultyPenalty=Number(byId("autoRollDifficulty").value||0);
-      const difficultyLabel=getDifficultyLabel(difficultyPenalty);
-      const skillChecked=skillName?Boolean(getSkillCheckbox(skillName)?.checked):false;
-      const domainChecked=domainName?Boolean(getDomainCheckbox(domainName)?.checked):false;
-      const masteryApplied=rollMasteryEnabled;
-      const baseDice=1;
-      const intendedDice=baseDice+(skillChecked?1:0)+(domainChecked?1:0)+(masteryApplied?1:0)+helpers;
-      const rawDiceAfterDifficulty=intendedDice-difficultyPenalty;
-      const diceToRoll=Math.max(1,rawDiceAfterDifficulty);
-      const downgradeSteps=Math.max(0,1-rawDiceAfterDifficulty);
-      const rolls=[];
-      for(let i=0;i<diceToRoll;i++)rolls.push(Math.floor(Math.random()*10)+1);
-      const maxRoll=Math.max(...rolls);
-      const naturalIndex=getResultIndex(maxRoll);
-      const finalIndex=Math.max(0,naturalIndex-downgradeSteps);
-      const finalResult=resultLevels[finalIndex];
-      const criticalTens=rolls.filter(value=>value>=10).length;
-      const time=new Date().toLocaleTimeString(currentLanguage==="en"?"en-GB":"ru-RU",{hour:"2-digit",minute:"2-digit"});
-      const entry={type:"advanced",time,skillName,domainName,skillChecked,domainChecked,masteryRequested:rollMasteryEnabled,masteryApplied,helpers,difficultyLabel,difficultyPenalty,intendedDice,diceToRoll,downgradeSteps,rolls,maxRoll,criticalTens,resultLabel:finalResult.label,resultText:finalResult.text};
-      advancedRollHistory.unshift(entry);
-      advancedRollHistory=advancedRollHistory.slice(0,10);
-      byId("autoRollResultTitle").textContent=currentLanguage==="en"?`${finalResult.labelEn}: ${finalResult.textEn}`:`${finalResult.label}: ${finalResult.text}`;
-      byId("autoRollResultDetails").textContent=currentLanguage==="en"
-        ?`Dice before difficulty: ${intendedDice}. Difficulty: ${UI_EN[difficultyLabel]||difficultyLabel} (-${difficultyPenalty}). Dice rolled: ${diceToRoll}. Success downgrades: ${downgradeSteps}. Tens: ${criticalTens}.`
-        :`Костей до сложности: ${intendedDice}. Сложность: ${difficultyLabel} (-${difficultyPenalty}). Брошено костей: ${diceToRoll}. Снижение степени успеха: ${downgradeSteps}. Десяток: ${criticalTens}.`;
-      renderAdvancedRollHistory();
-      saveSheet(false);
-      sendDiscordRoll(entry);
-    }
-
-    function renderSimpleRollEntry(entry,isNewest=false){
-      const sides=Number(entry.sides||0);
-      const result=Number(entry.result||0);
-      const modifier=Number(entry.modifier||0);
-      const total=Number(entry.total??(result+modifier));
-      const reason=entry.reason||"";
-      const isEdge=result===1||result===sides;
-      const edgeClass=isEdge?" edge":"";
-      const burstClass=isNewest?(result===sides?" roll-new-strong":" roll-new"):"";
-      let detail=`${currentLanguage==="en"?"D":"К"}${sides}: ${result}`;
-      if(modifier!==0)detail+=` ${modifier>0?"+":""}${modifier} = ${total}`;
-      if(reason)detail+=` — ${escapeHtml(reason)}`;
-      return `
-        <div class="roll-history-entry${burstClass}">
-          <div class="roll-history-top">[${escapeHtml(entry.time||"")}] ${currentLanguage==="en"?`Simple D${sides} roll`:`Простой бросок К${sides}`}</div>
-          <div class="simple-roll-result-line">
-            <span class="die-shape-result die-d${sides}${edgeClass}"><span class="die-value">${result}</span></span>
-            <span>${detail}</span>
-          </div>
-        </div>
-      `;
-    }
-
-    function renderLegacyRollEntry(entry,isNewest=false){
-      const burstClass=isNewest?" roll-new":"";
-      return `<div class="roll-history-entry${burstClass}"><div class="roll-history-top">${currentLanguage==="en"?"Old simple roll":"Старый простой бросок"}</div><div class="hint">${escapeHtml(entry.text||"")}</div></div>`;
-    }
-
-    function renderAdvancedRollEntry(entry,isNewest=false){
-      const values=Array.isArray(entry.rolls)?entry.rolls:[];
-      const maxValue=values.length?Math.max(...values):0;
-      const isCriticalSuccess=entry.resultLabel==="Критический успех";
-      const burstClass=isNewest?(isCriticalSuccess?" roll-new-strong":" roll-new"):"";
-      const rolls=values.map(value=>{
-        const classes=["roll-die"];
-        if(value===maxValue)classes.push("max");
-        if(value===1||value===10)classes.push("edge");
-        return `<span class="${classes.join(" ")}">${value}</span>`;
-      }).join("");
-      const parts=[];
-      if(entry.skillName)parts.push(`${currentLanguage==="en"?"Skill":"Навык"}: ${escapeHtml(currentLanguage==="en"?(UI_EN[entry.skillName]||entry.skillName):entry.skillName)}${entry.skillChecked?" ✓":""}`);
-      if(entry.domainName)parts.push(`${currentLanguage==="en"?"Domain":"Область"}: ${escapeHtml(currentLanguage==="en"?(UI_EN[entry.domainName]||entry.domainName):entry.domainName)}${entry.domainChecked?" ✓":""}`);
-      if(entry.masteryRequested)parts.push(`${currentLanguage==="en"?"Mastery":"Мастерство"}: ${currentLanguage==="en"?(entry.masteryApplied?"applied":"no"):(entry.masteryApplied?"применено":"нет")}`);
-      if(entry.helpers)parts.push(`${currentLanguage==="en"?"Helpers":"Помощники"}: ${entry.helpers}`);
-      const difficulty=entry.difficultyLabel||"Нормальная";
-      parts.push(`${currentLanguage==="en"?"Difficulty":"Сложность"}: ${escapeHtml(currentLanguage==="en"?(UI_EN[difficulty]||difficulty):difficulty)}`);
-      const resultLabel=currentLanguage==="en"?(UI_EN[entry.resultLabel]||entry.resultLabel||""):(entry.resultLabel||"");
-      const resultText=currentLanguage==="en"?(UI_EN[entry.resultText]||entry.resultText||""):(entry.resultText||"");
-      return `
-        <div class="roll-history-entry${burstClass}">
-          <div class="roll-history-top">[${escapeHtml(entry.time||"")}] ${escapeHtml(resultLabel)}</div>
-          <div>${rolls}</div>
-          <div class="hint">${parts.join(" · ")}</div>
-          <div class="hint">${currentLanguage==="en"?"Maximum":"Максимум"}: ${entry.maxRoll??maxValue}. ${currentLanguage==="en"?"Dice":"Костей"}: ${entry.diceToRoll??values.length}. ${currentLanguage==="en"?"Downgrades":"Снижение"}: ${entry.downgradeSteps??0}. ${escapeHtml(resultText)}</div>
-        </div>
-      `;
-    }
-
-    function renderAdvancedRollHistory(){
-      const container=byId("autoRollHistory");
-      if(!container)return;
-      if(!advancedRollHistory.length){
-        container.innerHTML=`<div class="roll-history-entry">${currentLanguage==="en"?"No rolls yet.":"Бросков пока нет."}</div>`;
-        return;
-      }
-      container.innerHTML=advancedRollHistory.map((entry,index)=>{
-        const isNewest=index===0;
-        if(entry.type==="simple")return renderSimpleRollEntry(entry,isNewest);
-        if(entry.type==="legacy")return renderLegacyRollEntry(entry,isNewest);
-        return renderAdvancedRollEntry(entry,isNewest);
-      }).join("");
-    }
-let rulesHelpLoaded=false;
-
-async function loadRulesHelp(){
-  const container=byId("rulesHelpContent");
-  if(!container)return;
-
-  if(rulesHelpLoaded){
-    initRulesHelpTabs();
-    return;
-  }
-
-  container.innerHTML=currentLanguage==="en"?"Loading rules help...":"Загрузка справки...";
-
-  try{
-    const helpFile=currentLanguage==="en"?"rules-help-en.html":"rules-help.html";
-    const response=await fetch(helpFile,{
-      cache:"no-cache"
-    });
-
-    if(!response.ok){
-      throw new Error(`HTTP ${response.status}`);
-    }
-
-    const html=await response.text();
-    container.innerHTML=html;
-    rulesHelpLoaded=true;
-    initRulesHelpTabs();
-  }catch(error){
-    console.error(error);
-    container.innerHTML=
-      `<p><strong>${currentLanguage==="en"?"Could not load the rules help.":"Не удалось загрузить справку."}</strong></p>
-       <p>${currentLanguage==="en"?"Make sure the file":"Проверь, что файл"} <code>${currentLanguage==="en"?"rules-help-en.html":"rules-help.html"}</code> ${currentLanguage==="en"?"is next to index.html.":"лежит рядом с index.html."}</p>
-       <p class="hint">Если ты открываешь лист как локальный файл через <code>file://</code>, браузер может блокировать загрузку внешних файлов. В таком случае лучше открыть лист через GitHub Pages или локальный сервер.</p>`;
-  }
-}
-
-function initRulesHelpTabs(){
-  const tabsRoot=byId("rulesHelpContent")?.querySelector("[data-rules-tabs]");
-  if(!tabsRoot)return;
-
-  const buttons=Array.from(tabsRoot.querySelectorAll("[data-rules-tab]"));
-  const panels=Array.from(tabsRoot.querySelectorAll("[data-rules-panel]"));
-
-  function activateTab(tabId){
-    buttons.forEach(button=>{
-      const isActive=button.dataset.rulesTab===tabId;
-      button.classList.toggle("is-active",isActive);
-      button.setAttribute("aria-selected",isActive?"true":"false");
-    });
-
-    panels.forEach(panel=>{
-      const isActive=panel.dataset.rulesPanel===tabId;
-      panel.classList.toggle("is-active",isActive);
-      panel.hidden=!isActive;
-    });
-  }
-
-  buttons.forEach(button=>{
-    button.setAttribute("role","tab");
-    button.setAttribute("aria-selected",button.classList.contains("is-active")?"true":"false");
-
-    button.addEventListener("click",()=>{
-      activateTab(button.dataset.rulesTab);
-    });
-  });
-
-  panels.forEach(panel=>{
-    panel.setAttribute("role","tabpanel");
-    panel.hidden=!panel.classList.contains("is-active");
-  });
-
-  const initiallyActive=buttons.find(button=>button.classList.contains("is-active"))||buttons[0];
-  if(initiallyActive)activateTab(initiallyActive.dataset.rulesTab);
-}
-
-function openRulesHelpMenu(){
-  const modal=byId("rulesHelpModal");
-  if(!modal)return;
-
-  modal.classList.add("open");
-  modal.setAttribute("aria-hidden","false");
-
-  loadRulesHelp();
-}
-
-function closeRulesHelpMenu(){
-  const modal=byId("rulesHelpModal");
-  if(!modal)return;
-
-  modal.classList.remove("open");
-  modal.setAttribute("aria-hidden","true");
-}
-
-function closeRulesHelpMenuOnBackdrop(event){
-  if(event.target.id==="rulesHelpModal")closeRulesHelpMenu();
-}
-    function buildStaticRows(){
-      buildResistanceRows();
-      buildPartyRows();
-      buildSkillRows();
-      buildDomainRows();
-      buildGearRows();
-      buildArmorRows();
-      populateAutoRollSelects();
-    }
-
-    function buildDynamicRows(){
-      buildTacticRows();
-      buildResourceRows();
-      buildAllSlotRows();
-      buildDiaryRows();
-    }
-
-    function init(){
-      const saved=readSavedData();
-      if(saved)applyCountsFromData(saved);
-      buildStaticRows();
-      buildDynamicRows();
-      enhanceCollapsibleCards();
-      attachAutoSave();
-      attachParallax();
-      attachStressHoverEffects();
-      attachCharacterPortraitUpload();
-      loadDiscordSettings();
-      attachDiscordSharing();
-      initCodexWindowInteractions();
-      if(saved)applyData(saved);
-      else{
-        updateRollMasteryButton();
-        renderAdvancedRollHistory();
-        renderCounters();
-      }
-      localizeStaticUi();
-      startUiLocalizationObserver();
-      checkThemeAssets();
-    }
-
-    try{init()}
-    catch(error){
-      console.error(error);
-      const box=document.createElement("div");
-      box.style.background="#5a0002";
-      box.style.color="#ffffff";
-      box.style.padding="16px";
-      box.style.margin="16px";
-      box.style.fontFamily="monospace";
-      box.style.whiteSpace="pre-wrap";
-      box.textContent=(currentLanguage==="en"?"JavaScript error:\n":"Ошибка JavaScript:\n")+(error?.name||"Error")+": "+(error?.message||String(error))+"\n\n"+(error?.stack||"");
-      document.body.prepend(box);
-    }
-  </script>
-</body>
-</html>
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Feelings\nYour empty eye now sees flows and clots of human emotion. This gives you TALK\nMastery during an emotional conversation, and allows you to detect enemies\nexperiencing strong emotions before they detect you.",
+      "tier": "minor",
+      "className": "Страж Врат",
+      "classNameEn": "Gate Guard"
+    },
+    {
+      "id": "classes-card-14-10",
+      "kind": "ability",
+      "title": "Sentry",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          14,
+          15
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Sentry\nYou gain an additional tag. Now, when you enter a new zone, you may activate a tag\nso it notices dangers you do not see: you may ask the GM a question about\nan ambush, trap, or escape route, and they must answer honestly.",
+      "tier": "minor",
+      "className": "Страж Врат",
+      "classNameEn": "Gate Guard"
+    },
+    {
+      "id": "classes-card-15-11",
+      "kind": "ability",
+      "title": "Fencing Navigator",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          15
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Fencing Navigator\nYou gain an additional tag. When you fight in close combat, your tag acts as an\nadditional organ of coordination. You may activate it to reroll a check die or the\nStress die of a melee attack.",
+      "tier": "minor",
+      "className": "Страж Врат",
+      "classNameEn": "Gate Guard"
+    },
+    {
+      "id": "classes-card-15-12",
+      "kind": "ability",
+      "title": "Second Number",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          15
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Second Number\nYou gain an additional tag. When you inflict Stress on an enemy at medium or long\nrange, you may activate a tag so the spirit of a fallen soldier briefly moves into\nthe bullet and guides it directly to the target. The result of your Stress die on\nthis roll is always treated as the maximum.",
+      "tier": "minor",
+      "className": "Страж Врат",
+      "classNameEn": "Gate Guard"
+    },
+    {
+      "id": "classes-card-15-13",
+      "kind": "ability",
+      "title": "Military Glory",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          15
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Military Glory\nYou served in a very famous unit and took part in a significant conflict.\nOnce per session, you may mention this in a conversation with a military Game\nMaster character to ask for something they normally would not do. Make a TALK +\nARMY check. You always receive a favor from the impressed fighter, but may receive\nStress on a failure.",
+      "tier": "minor",
+      "className": "Страж Врат",
+      "classNameEn": "Gate Guard"
+    },
+    {
+      "id": "classes-card-15-14",
+      "kind": "ability",
+      "title": "Paramedic",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          15
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Paramedic\nA short amount of time spent stabilizing a wounded person no longer increases the\ndifficulty of the check.\nMinor\nWords of encouragement: once per scene, without a roll, you may restore D6 in\nBULLETS or MIND to another character.\nIn Spite Of It: giving aid to yourself no longer increases the difficulty of the\ncheck.\nSoldierly ingenuity: once per session, when using the FIX Skill, you may\nautomatically gain a success. You can use duct tape to heal living organisms.",
+      "tier": "professional",
+      "className": "Страж Врат",
+      "classNameEn": "Gate Guard"
+    },
+    {
+      "id": "classes-card-15-15",
+      "kind": "ability",
+      "title": "Martial Art: EAB",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          15
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Martial Art: EAB\nYou gain Mastery in the KILL Skill, triggered when you fight unarmed, with a combat\nknife, or with a heavy melee weapon. Your unarmed attacks now cause D6 Stress. On a\nsuccessful unarmed attack or combat-knife attack, you may disarm or otherwise\nweaken the opponent, reducing the target's danger by 1.\nMinor\nSeries of blows: your attack in close combat gains the Spread property.\nBetween the joints: your attacks with combat knives or heavy melee weapons gain\nthe Armor-Piercing (4) property.\nThrow: on a successful attack in close combat, you may throw a human opponent to\nthe ground. The next attack against them will not bring Stress to the attacker\non a failure.",
+      "tier": "professional",
+      "className": "Страж Врат",
+      "classNameEn": "Gate Guard"
+    },
+    {
+      "id": "classes-card-15-16",
+      "kind": "ability",
+      "title": "Conversation by the Fire",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          15
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Conversation by the Fire\nOnce per session, when you have made camp and conditions allow it, you may say that\nanother squad of Ascenders passes by and stops to talk, trade, and compare maps.\nMinor\nFull pockets: they are ready to sell an item of D12 value or provide an\nequivalent service, such as restoring Stress or removing a Fallout.\nWanderers: this squad needs to go to the same place as you, so on the way they\nprovide what help they can, giving a help die on KILL and ASCEND checks.\nWild Tower: the squad you meet may, if you wish, be as strange as possible,\nthough still seemingly harmless. They freely buy and sell items with the\nForbidden property.",
+      "tier": "professional",
+      "className": "Страж Врат",
+      "classNameEn": "Gate Guard"
+    },
+    {
+      "id": "classes-card-15-17",
+      "kind": "ability",
+      "title": "Veteran Tricks",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          15
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Veteran Tricks\nIf you smoked a cigarette at the beginning of a passage, you know for certain\nwhether you will meet enemies farther along the route, so you always catch them by\nsurprise - even if they appeared from nowhere.\nMinor\nExogrenades: once per session during rest, you may convert any grenades into\nexogrenades. Each one requires two uses of cigarettes and D4 Stress in RESOURCES\nfor the generous use of duct tape.\nExogrenade\nDamage: D6. Properties: Spread. All enemies who receive Stress lose magical properties until the\nend of the scene. Range: medium.\nCounter-drone: enemy drones cannot detect you. When attacking them, you roll\nwith Mastery.\nShow off your knowledge: you know the operating principles, history, and\ntechnical characteristics of every weapon on the market. When speaking with\nsomeone who loves weapons, you roll with Mastery. By sound, you can identify\nexactly which weapon is firing and at what distance.",
+      "tier": "professional",
+      "className": "Страж Врат",
+      "classNameEn": "Gate Guard"
+    },
+    {
+      "id": "classes-card-16-18",
+      "kind": "ability",
+      "title": "Rifle of Bonds",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          16
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Rifle of Bonds\nYou receive an assault rifle or long-range rifle of your choice, spiritually bound\nto you. When you lose it against your will, killing any sentient being returns it\nto you after a short time.\nMinor\nUnbreakable bond: you attune yourself more finely to your faithful rifle. Record\nit as a personal-level contact. Mark D4 Stress in it to gain one of the\nfollowing options:\n• Until the end of the scene, attack a certain type of enemy with Mastery.\n• Increase the Stress of your next successful attack by 1 step.\n• Until the end of the scene, the weapon does not need to reload and loses all\nUncomfortable properties.\nMutuality: when you first install a new module on the rifle, restore D6 in any\ntrack. When you spend a rest caring for the rifle, restore D4 in any track and\nD4 in the rifle contact track.\nClank: you can control your faithful rifle remotely, move it, and reload it. You\ncan continue attacking with it even if disarmed, or use it together with another\nweapon: on a successful KILL or HIDE check, you may inflict Stress both with\nthis rifle and with the weapon in your hands.",
+      "tier": "professional",
+      "className": "Страж Врат",
+      "classNameEn": "Gate Guard"
+    },
+    {
+      "id": "classes-card-16-19",
+      "kind": "ability",
+      "title": "Brotherhood",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          16
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Brotherhood\nYou merge with the tags into a single whole, turning from a madman with voices in\nyour head into a new being greater than the sum of its parts.\nYou gain all Skills and Domains of your tags permanently. Active tag abilities are\nnow permanent. Receive the slandered Fallout and the contact Fallout\nconflict with all human contacts. You can regain an understanding of people by the\nnormal rules for gaining new contacts, but you can never become your old self\nagain.\nRoleplaying examples for a Gate Guard who has lost humanity: - Your body still needs food, but\nyou constantly forget this because you no longer connect hunger with the need to eat. - You\nbegin taking jokes literally. - You begin connecting unrelated things much more strongly. - You\nbegin fearing pleasant feelings, such as warmth or recognition. - In conversation, you easily\njump from topic to topic, forgetting what you were talking about before.",
+      "tier": "elite",
+      "className": "Страж Врат",
+      "classNameEn": "Gate Guard"
+    },
+    {
+      "id": "classes-card-16-20",
+      "kind": "ability",
+      "title": "Fateful Eye",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          16
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Fateful Eye\nOnce per session, by opening your absent eye, you doom the first being you look at\nto die within twenty-four hours. The process can only be reversed if you are killed\nor a large part of your body is sacrificed. If you look with the fateful eye at a\ndivine entity of the Tower, you erase it from existence, but from that moment on,\nyou never existed either.",
+      "tier": "elite",
+      "className": "Страж Врат",
+      "classNameEn": "Gate Guard"
+    },
+    {
+      "id": "classes-card-16-21",
+      "kind": "ability",
+      "title": "Cigarette Dragoon",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          16
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Cigarette Dragoon\nYou no longer spend cigarettes, creating smoke directly from your lungs. You can\nenter any cloud of cigarette smoke in the Tower and emerge from any other. You are\naccepted into the inner circle of the Gate Guards, and may now give orders to\nrank-and-file Guards. Once per session, you may exhale signal smoke, from which a\nsquad of excellently equipped Guards from the inner circle emerges. They destroy a\nthreat, or help with supplies and medicine.",
+      "tier": "elite",
+      "className": "Страж Врат",
+      "classNameEn": "Gate Guard"
+    },
+    {
+      "id": "classes-card-18-22",
+      "kind": "ability",
+      "title": "Bending Light",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          18
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Bending Light\nYou can alter the behavior of photons, precisely affecting quantum probabilities\nand gravity through breathing techniques of dynamic meditation.\nIf you can breathe calmly (you do not have the OUT OF BREATH Fallout, you are\nnot underwater, you are not wearing a respirator, and so on), then on a successful\nASCEND check you may perform one of the light techniques. At the start, you\nhave the following:\nBending\nFor one scene, you may bend the paths of light, giving the whole group Mastery on\nHIDE checks.\nFlash\nYou create unbearable brightness. All enemies at close range without special eye\nprotection lose one step of threat until the end of the scene.\nAmplification\nYou amplify a light source. Until the end of the scene, your light-emitting items\nand light techniques become 1 step more effective, including both flashlights and\nweapons.",
+      "tier": "basic",
+      "className": "Светоносец",
+      "classNameEn": "Light Bearer"
+    },
+    {
+      "id": "classes-card-18-23",
+      "kind": "ability",
+      "title": "Light Technique: Holy Laser",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          18
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Light Technique: Holy Laser\nYou gain the ability to fire a beam of burning light.\nHoly Laser\nDamage: D8. Properties: Accurate, Energy. Range: medium, long.",
+      "tier": "minor",
+      "className": "Светоносец",
+      "classNameEn": "Light Bearer"
+    },
+    {
+      "id": "classes-card-18-24",
+      "kind": "ability",
+      "title": "Light Technique: Mirage",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          18
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Light Technique: Mirage\nYou gain the ability to weave clever illusions out of light. The next time, once per\nscene, when you would receive Stress, you do not receive it.",
+      "tier": "minor",
+      "className": "Светоносец",
+      "classNameEn": "Light Bearer"
+    },
+    {
+      "id": "classes-card-18-25",
+      "kind": "ability",
+      "title": "Light Technique: Mirror",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          18
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Light Technique: Mirror\nYou build a complex system of one-way magical mirrors to peek into a place up to one\npassage between locations away, no matter how many turns stand between you and it.",
+      "tier": "minor",
+      "className": "Светоносец",
+      "classNameEn": "Light Bearer"
+    },
+    {
+      "id": "classes-card-18-26",
+      "kind": "ability",
+      "title": "Photosynthesis",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          18
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Photosynthesis\nA sacred modification with symbiotic photosensitive cells that allows light and\nwater to be processed into nutrients. In ancient times, this required a long ritual\nof eating a wild Hoti beast, in which such organisms live, and extensive tattooing;\nwith the arrival of artificial skin and nanomachines, the ritual now takes only a\nday.\nWhen you rest under a bright light source, you restore D6 in BULLETS and SPIRIT.\nYour skin becomes noticeably darker.",
+      "tier": "minor",
+      "className": "Светоносец",
+      "classNameEn": "Light Bearer"
+    },
+    {
+      "id": "classes-card-18-27",
+      "kind": "ability",
+      "title": "Wave Bridge",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          18
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Wave Bridge\nWave, particle - everything is relative...\nOnce per session, you may move to any radio station up to one passage between\nlocations away. You may take one person or a load you can carry in your hands, but\nthis requires an ASCEND check.",
+      "tier": "minor",
+      "className": "Светоносец",
+      "classNameEn": "Light Bearer"
+    },
+    {
+      "id": "classes-card-18-28",
+      "kind": "ability",
+      "title": "All Answers Are in Gravity",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          18
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "All Answers Are in Gravity\nYou are part of the Brotherhood of Attraction, followers of the teacher Roaring\nThird Son. He believed that the attraction of celestial bodies is the main factor in\nthe development of living organisms, and that only by overcoming it can one rise\nspiritually. By directing breath and bodily motion correctly, the Brotherhood of\nAttraction can alter the paths of gravitons, the quanta of gravity. All members of\nthe brotherhood wear a small anvil on the chest as a symbol of the harm gravity\nbrings to humankind.\nGain a new Tactic in the ASCEND Skill - running against.\nRunning Against\nYou move to an unreachable point along a wall, liquid, ceiling, or passing rockets.",
+      "tier": "minor",
+      "className": "Светоносец",
+      "classNameEn": "Light Bearer"
+    },
+    {
+      "id": "classes-card-18-29",
+      "kind": "ability",
+      "title": "Speed of Light",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          18
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Speed of Light\nYour breathing training and mastery of your body, together with the ability to\ndirect gravity, allow you to reach blinding speed.\nYou roll with Mastery on all tactics related to speed - from running to drawing a\nweapon.",
+      "tier": "minor",
+      "className": "Светоносец",
+      "classNameEn": "Light Bearer"
+    },
+    {
+      "id": "classes-card-18-30",
+      "kind": "ability",
+      "title": "Friend of Optics",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          18,
+          19
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Friend of Optics\nYou understand optical devices on a subtler level. Reflected light is the language\nof your soul.\nIf you are breathing freely, you may make a CAST check to, until the end of the\nscene, reduce Stress caused by enemies with optical implants, smart glasses, or\nsniper rifle sights by 1 step, and increase Stress caused by allies with the same\nequipment by 1 step.",
+      "tier": "minor",
+      "className": "Светоносец",
+      "classNameEn": "Light Bearer"
+    },
+    {
+      "id": "classes-card-19-31",
+      "kind": "ability",
+      "title": "Sun-Blooded",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          19
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Sun-Blooded\nPure energy - that is what humanity is destined to become.\nWhile you are breathing freely, you may make a CAST check to charge an electrical\ndevice with energy. One successful check is enough for a dozen small devices, the\nbattery of an energy weapon, a huge bunker door, or an hour of computer operation.",
+      "tier": "minor",
+      "className": "Светоносец",
+      "classNameEn": "Light Bearer"
+    },
+    {
+      "id": "classes-card-19-32",
+      "kind": "ability",
+      "title": "Blessed Aroma",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          19
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Blessed Aroma\nYou may use a bundle of incense three times per session.\nGain a new Tactic in the CAST Skill - inhale smoke.\nInhale Smoke\nIf you can breathe freely, choose one Fallout. You ignore its effect until the end of the\nscene. You spend one use of a bundle of incense.",
+      "tier": "minor",
+      "className": "Светоносец",
+      "classNameEn": "Light Bearer"
+    },
+    {
+      "id": "classes-card-19-33",
+      "kind": "ability",
+      "title": "Light Blade",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          19
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Light Blade\nAt any moment, you may weave a melee weapon out of solid light with a CAST check. It\nexists until the end of the scene and cannot be handed to anyone else. To create it,\nyou must be able to breathe freely.\nLight Weapon\nDamage: D10. Properties: Armor-Piercing (1), Energy. Range: close combat.\nMinor\nOverload: you may create an overloaded light weapon with damage D12 and the\nadditional properties Fire and Unreliable.\nQuantum bonds: you may attack an opponent with a light weapon at any range if you\nhave attacked them with it during this session or know their name. You still\nneed to see them.\nHarmony: with one check, you create both a light weapon and a ballistic shield\noccupying the second hand, granting 3 Protection and 3 slots in BULLETS.",
+      "tier": "professional",
+      "className": "Светоносец",
+      "classNameEn": "Light Bearer"
+    },
+    {
+      "id": "classes-card-19-34",
+      "kind": "ability",
+      "title": "Vestment of the Altar Guard",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          19
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Vestment of the Altar Guard\nFor your merits, the order of light bearers grants you special full armor.\nFull Armor (basic)\n+4 Protection in BULLETS. +4 slots in BULLETS. All your ASCEND and HIDE Skill rolls become 1\nstep harder.\nThanks to an ingenious system of force-application points, this armor modification\nreflects all energy attacks: against attacks from energy weapons, you receive +5\nProtection.\nMinor\nGravi-frame: once per session, you use your abilities to manipulate gravity in\norder to lighten your gear. Until the end of the scene, you may treat all ASCEND and HIDE Skill checks as checks of standard difficulty.\nLight behind steel: once per scene, when you receive a Fallout in BULLETS,\nyou may use any light technique without a check.\nPhoto-parry: when you are attacked with a beam weapon, the enemy receives Stress\ninstead of you.",
+      "tier": "professional",
+      "className": "Светоносец",
+      "classNameEn": "Light Bearer"
+    },
+    {
+      "id": "classes-card-19-35",
+      "kind": "ability",
+      "title": "No Eyes - No Regrets",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          19,
+          20
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "No Eyes - No Regrets\nYou find another Light Bearer to remove your eyes according to all the rules. After\nhealing, the eye sockets are filled with wax and inlaid with precious stones. You\nnow see the essence of things, not reflected light: in darkness, you take no penalty\nto actions.\nMinor\nDead light: you may temporarily remove the wax plug and insert a dead person's\neye into the socket in order to see the surrounding location as they saw it\nbefore death. This also works with artificial eyes. The dead person's vision\nlasts for as long as you can hold your breath.\nNameless: you see above people the names they are called by. This ability does\nnot reveal a true name, but it can tell whether the one before you is human:\nabove a machine or spawn of the Tower, there will be no name. It also exposes\nhidden squads.\nCry of one lost in the mountain forest: you may share the picture of what you see\nwith your allies; they see as if through your eyes. Vision in darkness, through\ndead eyes, and of names is preserved.",
+      "tier": "professional",
+      "className": "Светоносец",
+      "classNameEn": "Light Bearer"
+    },
+    {
+      "id": "classes-card-20-36",
+      "kind": "ability",
+      "title": "Martial Art: Khatar-Sha",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          20
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Martial Art: Khatar-Sha\nYou gain Mastery in the KILL Skill, triggered when you fight unarmed. Your unarmed\nattacks now cause D6 Stress. On a successful unarmed attack, you may damage an enemy\nlimb, depriving them of the extra advantages of a cyber-arm or chitin blade.\nMinor\nUncompromising strike: your unarmed attacks gain the Powerful property.\nA thousand flashes of light: your unarmed attacks gain the Fire property.\nOvercome pain: once per scene, when you receive a Fallout after a KILL roll\nin close combat, you may completely remove that Fallout (the Stress in the\ntrack remains).",
+      "tier": "professional",
+      "className": "Светоносец",
+      "classNameEn": "Light Bearer"
+    },
+    {
+      "id": "classes-card-20-37",
+      "kind": "ability",
+      "title": "Light Construction",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          20
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Light Construction\nOnce per session, you may make an ASCEND check to create a structure out of\nsolid light. This takes noticeable time. Structures allow a passage between\nlocations without an ASCEND check. The structure exists while you remain in\nthe location.\nMinor\nSolar fuel: you may spend a D6 or better resource from the WORLD or SPIRITS\nDomain to try to create the structure again in case of failure.\nReplenishment: you may spend a D10 or better resource from the WORLD or SPIRITS\nDomain to create a light construction without a check.\nCharged photons: the light construction now exists until the end of the session,\neven if you leave the location.",
+      "tier": "professional",
+      "className": "Светоносец",
+      "classNameEn": "Light Bearer"
+    },
+    {
+      "id": "classes-card-20-38",
+      "kind": "ability",
+      "title": "Son of the Sun",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          20
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Son of the Sun\nYou awaken a shard of the sun within yourself, having reached the height of bodily\nand spiritual perfection.\nYou no longer need to breathe for your magic, and you roll light techniques with\nMastery. You may illuminate an entire location or deprive it of light; in either\ncase, all opponents without special protection who rely on sight reduce their\ndanger by one step.",
+      "tier": "elite",
+      "className": "Светоносец",
+      "classNameEn": "Light Bearer"
+    },
+    {
+      "id": "classes-card-20-39",
+      "kind": "ability",
+      "title": "Glove of the Antiprince",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          20
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Glove of the Antiprince\nYou receive one of the four right-hand gloves of the order's founder, the Antiprince\nof the Sky, Roaring. Legend says he could strip tyrant-kings of sight and sanity\nwith a wave of his hand, breaking all protective charms, and by one version this led\nto the separation of the Peoples of Knives and Poisons.\nNow you possess such power as well: once per session, you may permanently blind and\ndrive mad an enemy you can see. You may neutralize even a divine entity of the Tower\nin this way, but in that case you yourself will be doomed to madness and darkness.",
+      "tier": "elite",
+      "className": "Светоносец",
+      "classNameEn": "Light Bearer"
+    },
+    {
+      "id": "classes-card-20-40",
+      "kind": "ability",
+      "title": "Buried Light",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          20
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Buried Light\nYou enter a secret society within the light bearers that believes darkness is more\nimportant than light, and that cold and calm matter a hundred times more than vain\nheat.\nYou now automatically pass HIDE checks. You may also speak with people's shadows;\nthey answer you even if their owner does not want them to. The answer is always\ngiven as a hazy metaphor, and each question asked causes D6 Stress in MIND. With a\nCAST check, you may take a person's shadow; misfortune will begin to follow them,\nand they will become much easier to curse.",
+      "tier": "elite",
+      "className": "Светоносец",
+      "classNameEn": "Light Bearer"
+    },
+    {
+      "id": "classes-card-22-41",
+      "kind": "ability",
+      "title": "Liquid Form",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          22
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Liquid Form\nAt the beginning of a scene, you restore all Stress in BULLETS. You cannot restore\nStress in BULLETS by other means. Fallout connected to wounded limbs and loss\nof consciousness do not apply to you, and you can fall from heights of up to 50\nmeters without injury.\nYou can leave your spacesuit. In this form you cannot use items or speak, but you\ncan enter places no human could squeeze into. When you enter this form, and at the\nbeginning of every scene while in it, you receive D6 Stress in MIND.",
+      "tier": "basic",
+      "className": "Раствор Души",
+      "classNameEn": "Soul Fluid"
+    },
+    {
+      "id": "classes-card-22-42",
+      "kind": "ability",
+      "title": "New Passion",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          22
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "New Passion\nOnce per scene, you may try to contribute to a work of art. It has Resistance 16. A\nsuccessful TALK check fills its Resistance track; your items can speed up this\nprocess. When you finish it, name it. You may either sell it as a D12 item (a\nconnoisseur may give even more for it), or reflect on it alone and restore D12 in\nMIND. You may accumulate an unlimited number of works.",
+      "tier": "basic",
+      "className": "Раствор Души",
+      "classNameEn": "Soul Fluid"
+    },
+    {
+      "id": "classes-card-22-43",
+      "kind": "ability",
+      "title": "Not-Gurgling",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          22
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Not-Gurgling\nWhile in liquid form, you gain Mastery in the HIDE Skill. You may receive D6 Stress\nin MIND to dissolve an enemy corpse and its equipment. This effect is too slow for a\ndirect attack.",
+      "tier": "minor",
+      "className": "Раствор Души",
+      "classNameEn": "Soul Fluid"
+    },
+    {
+      "id": "classes-card-22-44",
+      "kind": "ability",
+      "title": "Water Blade",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          22
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Water Blade\nBy forcing your own body through the valves of the suit under enormous pressure, you\ncan attack enemies. Each attack additionally causes you D6 Stress in BULLETS, even\non a success. You may also receive D6 Stress in BULLETS to quickly cut through\nsomething sturdy, such as a welded door or a weapon.\nWater Blade\nDamage: D10. Properties: Armor-Piercing (2). Range: close.",
+      "tier": "minor",
+      "className": "Раствор Души",
+      "classNameEn": "Soul Fluid"
+    },
+    {
+      "id": "classes-card-23-45",
+      "kind": "ability",
+      "title": "Water Cannon",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          23
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Water Cannon\nYou release your body fluid from your hands, pushing enemies back. Each attack\nadditionally causes you D6 Stress in BULLETS, even on a success. You may also\nreceive D6 Stress in BULLETS to quickly fly up a short height and reach an elevated\nposition.\nWater Cannon\nDamage: D6. Properties: Powerful; pushes the target back by one range. Range: close, medium.",
+      "tier": "minor",
+      "className": "Раствор Души",
+      "classNameEn": "Soul Fluid"
+    },
+    {
+      "id": "classes-card-23-46",
+      "kind": "ability",
+      "title": "New Voices",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          23
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "New Voices\nOnce per session during an Ascent, you may say that you meet a group of\nAscenders who have made camp or are moving in the opposite direction. They share an\ninteresting story from their adventures: the next roll to create a work of art is\nmade with Mastery and causes one step more Stress.",
+      "tier": "minor",
+      "className": "Раствор Души",
+      "classNameEn": "Soul Fluid"
+    },
+    {
+      "id": "classes-card-23-47",
+      "kind": "ability",
+      "title": "New Face",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          23
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "New Face\nYou no longer have a face. Your voice is an AI in the spacesuit translating the\nvibrations of your liquid into speech, and your movements have become lifelessly\nsmooth. But not all is lost.\nYou cover your spacesuit with quotations from your works, your drawings, or other\nadornments. On a critical success, your TALK rolls cause the maximum possible\nStress on the die; on a critical failure, you always receive only 1 Stress.",
+      "tier": "minor",
+      "className": "Раствор Души",
+      "classNameEn": "Soul Fluid"
+    },
+    {
+      "id": "classes-card-23-48",
+      "kind": "ability",
+      "title": "Bright Performance",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          23
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Bright Performance\nOnce per session, you gather a crowd in a square by reciting poems or playing music.\nYour performance has a Resistance track of 8, and when you fill it you restore D10\nin RESOURCES. You gain fans: once per session, when you arrive in a new place, you\nmay declare that a fan of your art is here and ready to share information.",
+      "tier": "minor",
+      "className": "Раствор Души",
+      "classNameEn": "Soul Fluid"
+    },
+    {
+      "id": "classes-card-23-49",
+      "kind": "ability",
+      "title": "Dissolve",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          23
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Dissolve\nFor loyal friends, much can be sacrificed...\nYou stop resisting your new liquid nature, at least for a time. Any Stress in MIND\ncaused by your abilities may be moved to BULLETS. You distance yourself from\nhumanity so much that once per session you may attempt to speak with creatures of\nthe Tower; this additionally causes you D6 Stress in MIND.",
+      "tier": "minor",
+      "className": "Раствор Души",
+      "classNameEn": "Soul Fluid"
+    },
+    {
+      "id": "classes-card-23-50",
+      "kind": "ability",
+      "title": "New Sources",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          23
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "New Sources\nYou gradually forget the events and people of your own life and now greedily throw\nyourself onto the memories of others. You may receive D6 Stress in MIND to make a\nCAST check and gain recent memories from a dead opponent. They will always turn out\nto be important.",
+      "tier": "minor",
+      "className": "Раствор Души",
+      "classNameEn": "Soul Fluid"
+    },
+    {
+      "id": "classes-card-23-51",
+      "kind": "ability",
+      "title": "Tempered Mind",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          23
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Tempered Mind\nYou receive +2 Resistance slots and +2 Protection in MIND.",
+      "tier": "minor",
+      "className": "Раствор Души",
+      "classNameEn": "Soul Fluid"
+    },
+    {
+      "id": "classes-card-23-52",
+      "kind": "ability",
+      "title": "Presence",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          23
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Presence\nYou are no longer human, and that frightens everyone around you. When you try to\nintimidate an opponent, you make TALK checks with Mastery.\nSkill Advancement\nChoose a new Skill, a new Domain, a new set of Tactics, or receive +1 Protection in\nany Resistance.",
+      "tier": "minor",
+      "className": "Раствор Души",
+      "classNameEn": "Soul Fluid"
+    },
+    {
+      "id": "classes-card-23-53",
+      "kind": "ability",
+      "title": "Change of Composition",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          23
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Change of Composition\nOnce per session, over the course of an hour, you may change the composition of the\nliquid you are made of by adding reagents and performing a special ritual.\nInitially, you have the rock crystal composition: after a long ritual with rock\ncrystal mirrors, the liquid in your body becomes healing. Your body works as a D6\nFIX BULLETS item. You may receive D6 Stress in MIND for it to work as a D8 FIX\nBULLETS item until the end of the scene.\nMinor\n• Flesh Eater: after absorbing industrial acid and a set of poisons, the liquid in\nyour body becomes a chemical weapon. When you attack an opponent with water\nattacks, or when you receive Stress in BULLETS while near an enemy, you cause D4\nStress with the Powerful and Armor-Piercing (1) properties.\n• Ballistic Composition: thanks to thickeners and additional additives, the liquid\nin your body becomes dense and heavy. You receive +3 Protection in BULLETS. You\ncannot be moved from your place against your will.\n• Incendiary Mixture: you add fuel and oils to your liquid body. When you attack an\nopponent with water attacks, or when you receive Stress in BULLETS while near an\nenemy, you cover them in incendiary mixture: until the end of the scene, attacks\nwith the Fire property deal one step more damage to them.",
+      "tier": "professional",
+      "className": "Раствор Души",
+      "classNameEn": "Soul Fluid"
+    },
+    {
+      "id": "classes-card-23-54",
+      "kind": "ability",
+      "title": "Spacesuit Tuning",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          23,
+          24
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Spacesuit Tuning\nYou build additional modules into your spacesuit, expanding your tactical\npossibilities. Once per session, for one scene, you may gain access to one Skill.\nMinor\n• At the Limit: when gaining access to a Skill through spacesuit tuning, you may\nreceive D6 Stress to increase the Stress it causes by one step until the end of\nthe scene.\n• Improvisation: you easily invent upgrades for the spacesuit on the fly. You may\nspend a D8 or more valuable resource from the WORLD, ARMY, or CORPORATIONS Domain\nto use spacesuit tuning again.\n• Adaptive Armor: you cover the spacesuit with an esoteric layer that adapts to\nattacks. When you gain a Skill through spacesuit tuning, you may choose a\nResistance and receive +1 Protection in it until the end of the scene.",
+      "tier": "professional",
+      "className": "Раствор Души",
+      "classNameEn": "Soul Fluid"
+    },
+    {
+      "id": "classes-card-24-55",
+      "kind": "ability",
+      "title": "Resonance",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          24
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Resonance\nYou are touched by the Tower and feel Her far more subtly than the others...\nOnce per session, when you arrive at a new location, you may ask the GM\nwhere the nearest source of anomalous activity is and what its properties are. They\nmust answer honestly.\nMinor\n• Subdue with Kindness: you may use the TALK Skill and appropriate equipment\ninstead of ASCEND during Ascents.\n• Heavy Gaze: you always sense when a spawn of the Tower is watching you, and its\napproximate location.\n• Not the First Time: you have been taught by bitter experience with anomalies.\nOnce per session, you may interact with an anomaly without a check and without\nFallout.",
+      "tier": "professional",
+      "className": "Раствор Души",
+      "classNameEn": "Soul Fluid"
+    },
+    {
+      "id": "classes-card-24-56",
+      "kind": "ability",
+      "title": "Singer of an Idea",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          24
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Singer of an Idea\nYou are the voice of an entire movement or people. Gain one Domain of your choice.\nOnce per session, you may say that a representative of that Domain meets you and\nasks you to create a commissioned work. If sold, that work restores the entire\nRESOURCES track and removes all Fallout in it.\nMinor\n• Order: your art calms and directs people. You may make a TALK check against\nResistance 12 and spend a work to, for example, stop a firefight or a raging\ncrowd.\n• Chaos: your art causes a surge of emotion and desire to act. You may make a TALK\ncheck against Resistance 12 and spend a work to, for example, raise a crowd to\nbattle or instill fear in enemies.\n• Reflection: you become part of an idea larger than yourself. Once per scene, when\nyou would receive a Fallout in MIND, you may refuse it. The Stress in the\ntrack remains.",
+      "tier": "professional",
+      "className": "Раствор Души",
+      "classNameEn": "Soul Fluid"
+    },
+    {
+      "id": "classes-card-24-57",
+      "kind": "ability",
+      "title": "Martial Art: Rivers and Mountains",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          24
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Martial Art: Rivers and Mountains\nYou gain Mastery in the KILL Skill, triggered when you fight unarmed. Your unarmed\nattacks now cause D6 Stress. On a failed unarmed attack, you may counterattack a\nhuman opponent, causing them the same amount of Stress that you received for failing\nthis action.\nMinor\n• Hydraulic Press: your hand-to-hand attacks cause one step more Stress to immobile\nor slow enemies.\n• Shock Absorption: you may jump down onto an opponent from a great height,\ncrushing them with your weight. This counts as a hand-to-hand attack; it always\nkills a human enemy and reduces the danger of an enemy tougher than a human by 1\nstep, but you become vulnerable.\n• Grab: with a hand-to-hand attack check, you may grab a human opponent. The next\nattack against them is made with Mastery.",
+      "tier": "professional",
+      "className": "Раствор Души",
+      "classNameEn": "Soul Fluid"
+    },
+    {
+      "id": "classes-card-24-58",
+      "kind": "ability",
+      "title": "Return",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          24
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "1) Return\nYou find a way to become human again, whether through a long ritual on the upper levels of the Tower or by transferring your wave-copy into an artificial body made by a megacorporation.\nYou keep your Skills, Domains, Protection, equipment, and Tactics, but lose your Soul Fluid abilities. Take the same number of Tactics, Skill Upgrades, and cyberimplants as the number of Soul Fluid Minor and Professional Abilities you had.\nYou become a symbol of hope to other Soul Fluids. Any of them will join you on an Ascent without requiring a TALK check.",
+      "tier": "elite",
+      "className": "Раствор Души",
+      "classNameEn": "Soul Fluid"
+    },
+    {
+      "id": "classes-card-24-59",
+      "kind": "ability",
+      "title": "Dissolve",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          24
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "2) Dissolve\nYou embrace your new anomalous nature. You should not exist, and that is precisely what makes you beautiful.\nYou may speak freely with creatures of the Tower, and once per session you may ask the Tower Herself one question. The Tower answers truthfully, but always in the form of a riddle. You may persuade an entity of the Tower to retreat or disappear, but at that moment you become ordinary water.",
+      "tier": "elite",
+      "className": "Раствор Души",
+      "classNameEn": "Soul Fluid"
+    },
+    {
+      "id": "classes-card-25-60",
+      "kind": "ability",
+      "title": "Accept",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          25
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "3) Accept\nYou find inner peace. Your pursuit of a body blinded you, but now you understand that you must live in the present; worrying about what has not yet happened is foolish.\nYou take MIND Stress one step lower and cannot be caught by surprise or frightened. Any works you create from now on are worth twice as much, thanks to the extraordinary depth your new perspective has revealed in them.",
+      "tier": "elite",
+      "className": "Раствор Души",
+      "classNameEn": "Soul Fluid"
+    },
+    {
+      "id": "classes-card-26-61",
+      "kind": "ability",
+      "title": "Paraengineer",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          26
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Paraengineer\nYou gain the resource human blood (D12, WORLD). Each time you spend blood, roll D12. If the result is lower than the resource die, the resource die decreases by one step. When the die drops\nbelow D4, you can no longer use items that consume blood.\nYou can collect blood from each recently dead human. Roll D12; if the result is higher than the\nresource die, the resource die increases by one step. You or a companion may wound yourself for\nD6 Stress in BULLETS, which armor does not reduce, to increase the blood die by one step.\nWhen you spend blood to create or repair a mechanism, you make TECH and FIX checks with Mastery.",
+      "tier": "basic",
+      "className": "Росоход",
+      "classNameEn": "Dew Walker"
+    },
+    {
+      "id": "classes-card-27-62",
+      "kind": "ability",
+      "title": "Paraengineer Apotheosis",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          27
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Paraengineer Apotheosis\nYou delve deeper into the brutal esoterics of Dew walkers. You can now exalt a mechanism by\nfeeding it blood and wrapping it in vessels of plastic tubing. Any item with moving parts or a\nbattery increases its effectiveness by one step, but after each use it spends blood. It also\ngains the Hungry property.",
+      "tier": "minor",
+      "className": "Росоход",
+      "classNameEn": "Dew Walker"
+    },
+    {
+      "id": "classes-card-27-63",
+      "kind": "ability",
+      "title": "Terror in the Dark",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          27
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Terror in the Dark\nYou glide through darkness like a beast that frightens monsters. Each time you kill an enemy\nwhile unseen or with special cruelty, other enemies become frightened and retreat to worse positions. If you kill an enemy leader this way, the enemies stop being combat-ready: they might\nflee in terror or start fighting over command positions.",
+      "tier": "minor",
+      "className": "Росоход",
+      "classNameEn": "Dew Walker"
+    },
+    {
+      "id": "classes-card-27-64",
+      "kind": "ability",
+      "title": "Skin the Prey",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          27
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Skin the Prey\nYou know how to gain maximum profit from game. When you loot bodies, in addition to any items\ngained, you restore D6 in Resources.",
+      "tier": "minor",
+      "className": "Росоход",
+      "classNameEn": "Dew Walker"
+    },
+    {
+      "id": "classes-card-27-65",
+      "kind": "ability",
+      "title": "Sweetness",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          27
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Sweetness\nBy tasting blood, you can determine its owner's name, physical characteristics, and approximate\nlocation. This does not work with the golden blood of Economancers.",
+      "tier": "minor",
+      "className": "Росоход",
+      "classNameEn": "Dew Walker"
+    },
+    {
+      "id": "classes-card-27-66",
+      "kind": "ability",
+      "title": "Hunter's Feast",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          27
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Hunter's Feast\nDown with foolish ideas of morality. There is only hunter and prey. Once per session, you may\neat part of a human or animal; they must have been taken in an honorable hunt and killed just\nnow. Until the end of the session, you gain a Skill the target had, such as KILL from a soldier\nor HIDE from a night beast.",
+      "tier": "minor",
+      "className": "Росоход",
+      "classNameEn": "Dew Walker"
+    },
+    {
+      "id": "classes-card-27-67",
+      "kind": "ability",
+      "title": "Yeri Pits",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          27
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Yeri Pits\nYou are a master of ambushes and traps. If you prepared an ambush in advance, during a combat\nscene you may declare once, without a check, that everything is going according to your plan:\nfor example, the ceiling collapses behind the enemies after an explosion and cuts off their retreat, or a Tower creature breaks out of a cage and attacks them.",
+      "tier": "minor",
+      "className": "Росоход",
+      "classNameEn": "Dew Walker"
+    },
+    {
+      "id": "classes-card-27-68",
+      "kind": "ability",
+      "title": "Tangled Tracks",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          27
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Tangled Tracks\nYou are the best at following tracks and hiding your own. You can use HIDE instead of INVESTIGATE\nrolls aimed at tracking, and instead of ASCEND rolls aimed at escaping pursuit. You cannot be tracked.",
+      "tier": "minor",
+      "className": "Росоход",
+      "classNameEn": "Dew Walker"
+    },
+    {
+      "id": "classes-card-27-69",
+      "kind": "ability",
+      "title": "Breaking Lines",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          27
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Breaking Lines\nYou know exactly along which energetic lines power flows inside people and beasts. After successfully dealing damage with a combat knife or a heavy bladed melee weapon, you deprive the\nopponent of active magic. This works only while the weapon remains in the body, so you lose it\nfor that time.",
+      "tier": "minor",
+      "className": "Росоход",
+      "classNameEn": "Dew Walker"
+    },
+    {
+      "id": "classes-card-27-70",
+      "kind": "ability",
+      "title": "Techno-caller",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          27
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Techno-caller\nThanks to acting skills and special cyberimplants in your vocal cords, you can perfectly imitate the voice of a human or animal, down to intonation and accent. When you try to pass yourself off as someone else, you make TALK checks with Mastery.",
+      "tier": "minor",
+      "className": "Росоход",
+      "classNameEn": "Dew Walker"
+    },
+    {
+      "id": "classes-card-27-71",
+      "kind": "ability",
+      "title": "The True Reason",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          27
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "The True Reason\nEveryone knows people go hunting largely so they can drink something strong. You can drink a\ngreat deal of alcohol without poisoning yourself or getting drunk; by taste, you can also distinguish the smallest details of composition and storage conditions. Once per session, when you\ndo this in company, gain a personal-level contact.\nSkill Improvement\nChoose a new Skill, a new Domain, a new set of Tactics, or gain +1 Protection in any Resistance.",
+      "tier": "minor",
+      "className": "Росоход",
+      "classNameEn": "Dew Walker"
+    },
+    {
+      "id": "classes-card-27-72",
+      "kind": "ability",
+      "title": "Hound",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          27,
+          28
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Hound\nTerrible four-legged machines, created to track beasts and chew them out of their burrows.\nBlood-hungry hounds differ from military drones in their ability to sense emotions and in their\nendless loyalty to their master.\nThe hound spends blood whenever it uses an attack, help, or ability. No checks are made for the\nhound's attacks or abilities. Choose a name for it.\nHound\nDamage: D6, Powerful, close-medium range.\nGives Mastery on INVESTIGATE rolls connected to tracking a target.\nThe hound can grab an opponent: the next attack against that opponent causes one step more\nStress.\nFallout: Hound Damaged (BULLETS). If you attacked with the hound, you receive this Fallout instead of the one that would have damaged the character. Until the hound is repaired\nwith a FIX check and a D8 or more valuable resource, it can only move beside the Dew Walker.\nMinor Abilities\nTracked Platform\nSpend an hour and pass a TECH check to rebuild the hound into this variant. This direct-attack\nbuild is popular with urban Dew walkers who hunt people and city beasts.\nIts attack is replaced with Damage D8, close-medium-long range, Automatic, Spread. The attack\nis made with two machine guns, so the Jam and Out of Ammo Fallout can affect it.\nInstead of grabbing enemies, it has active protection that knocks down enemy projectiles with a\nsystem of invisible lasers and rocket bursts guided by high-speed cameras. When you are attacked by a grenade or another projectile larger than a bullet, you can activate it to receive\nno Stress.\nAerial Chassis\nSpend an hour and pass a TECH check to rebuild the hound into this variant. This build resembles hunting birds of the past, including a massive leather glove in the kit.\nIts attack is replaced with the ability to use any grenade in your inventory at long range and\nin unreachable areas, such as the far side of a chasm.\nInstead of grabbing enemies, it can scan the surroundings: you may ask a question about the location and receive an honest answer from the GM.\nHumanoid Frame\nSpend an hour and pass a TECH check to rebuild the hound into this variant. A cold humanoid robot whose artificial heart pumps stolen blood; it is useful for its versatility and mobility.\nIts attack is replaced with the ability to use any weapon intended for humans.\nInstead of grabbing enemies, it can help with a FIX, TECH, KILL, or ASCEND check.",
+      "tier": "professional",
+      "className": "Росоход",
+      "classNameEn": "Dew Walker"
+    },
+    {
+      "id": "classes-card-28-73",
+      "kind": "ability",
+      "title": "Bestiary",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          28
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Bestiary\nYou enter the Brotherhood of the Twin Claws, an inner sect of Dew walkers that keeps a guide to\nthe most dangerous prey and the ways to hunt it. To mark your membership, you wear anomalous\nbeast parts openly: for example, a split claw or a curling horn.\nWhen you kill a monster from the Tower, you make an entry in the bestiary. You gain Mastery on\nKILL and HIDE rolls against that type of monster.\nMinor Abilities\nCold Hunter\nYou add not only monsters to the bestiary, but people as well. This must be one type of opponent or representatives of one faction.\nExoterics\nYou share notes with other Dew walkers and receive information from them. Once per session,\nwhen you come to an oasis, you may say that you meet another Dew Walker from the Twin Claws.\nYou may spend a D8 resource to gain an entry on any common enemy of your choice. If you have an\nentry on a rare monster, you may share it and gain a D8 resource.\nReconciliation\nAgainst targets about which you have entries, you also gain Mastery on TALK checks.",
+      "tier": "professional",
+      "className": "Росоход",
+      "classNameEn": "Dew Walker"
+    },
+    {
+      "id": "classes-card-28-74",
+      "kind": "ability",
+      "title": "Hunting Season",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          28
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Hunting Season\nOnce per session, you may say that you see traces of a monster in this place: acid-melted\nwalls, for example, or several human bodies arranged by height. You have time to prepare: you\nmight study the traces with a INVESTIGATE check to improve your chances, or set traps using Yeri\nPits. At the beginning of the next scene, you encounter this monster. It is always very dangerous, but defeating it brings a benefit: perhaps the creature itself is valuable to science, or\nits lair was located in a warehouse whose information someone will pay richly for.\nMinor Abilities\nHungry Names\nYou may burn any of your names gained by adding the name of prey during play to clear Stress in\nall Resistances, remove any Major Fallout, or remove four instances of Minor Fallout.\nWeight of Steel\nYou gain a rail rifle modified by Dew walkers for hunting especially large game.\nBlood Strike\nDamage: D12. Properties: Accurate, Powerful, Heavy, Loud, Single-shot. You may add a roll of\nyour blood die to this weapon's Stress; this spends blood a second time. Range: long.\nHeroism\nWhen you have 5 or more Stress in the BULLETS Resistance, you cause one step more Stress.",
+      "tier": "professional",
+      "className": "Росоход",
+      "classNameEn": "Dew Walker"
+    },
+    {
+      "id": "classes-card-28-75",
+      "kind": "ability",
+      "title": "Dashing Pack",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          28,
+          29
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Dashing Pack\nAs in ancient times, you hunt together with other Dew walkers. When you meet one or more Dew\nwalkers, you can convince them without a check to go with you if you know exactly where an interesting target is. They will help you, but you must split the prey\nequally.\nMinor: Corner the Prey\nWhen you help with KILL, HIDE, or ASCEND checks, their effectiveness increases by one step.\nMinor: Sniper Team\nWhile someone is helping you, you may accept success at a cost on any attack check made with a long-range rifle.\nMinor: Whirlwind of Fangs\nYou synchronize your hounds with other hunters. While a Dew Walker GM character is with you, you may use the hound ability twice per scene.",
+      "tier": "professional",
+      "className": "Росоход",
+      "classNameEn": "Dew Walker"
+    },
+    {
+      "id": "classes-card-29-76",
+      "kind": "ability",
+      "title": "Martial Art: Apex Predator",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          29
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "5) Martial Art: Apex Predator\nYou gain Mastery in KILL when fighting unarmed or with a combat knife. Your unarmed attacks now deal D6 Stress. Once per scene, you may distract an opponent with a wide strike; the next attack against them deals Stress one step higher.\nMinor: Pounce\nWhen you use HIDE, you still gain the benefits of this martial art.\nMinor: Recklessness\nOnce per scene, while fighting unarmed or with a combat knife, you may accept success at a cost instead of making a check.\nMinor: Finishing Blow\nYou deal Stress one step higher to slow or immobilized opponents.",
+      "tier": "professional",
+      "className": "Росоход",
+      "classNameEn": "Dew Walker"
+    },
+    {
+      "id": "classes-card-29-77",
+      "kind": "ability",
+      "title": "Spring-King",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          29
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "1) Spring-King\nYou take the title of Spring-King, leader of one of the five Dew Walker lodges. With it, you receive a crown of constantly flowing magical blood.\nYou have the right to gather the entire lodge. Once per session, you may order it to clear a chosen location of enemies; by the beginning of the next scene, this will be done. The lodge counts as a faction-level Contact.",
+      "tier": "elite",
+      "className": "Росоход",
+      "classNameEn": "Dew Walker"
+    },
+    {
+      "id": "classes-card-29-78",
+      "kind": "ability",
+      "title": "Lovers",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          29
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "2) Lovers\nYou hid in the shadows for so long that you heard their beautiful song. You answered with a sorrowful song of your own.\nYou and the shadows become lovers. You cannot receive a result worse than success at a cost on a HIDE check, you can see in the dark, and once per scene you may ask a shadow for any information about the location; it answers truthfully. You may throw a corpse into a shadow, where it quickly dissolves.\nThe shadow counts as a world-level Contact.",
+      "tier": "elite",
+      "className": "Росоход",
+      "classNameEn": "Dew Walker"
+    },
+    {
+      "id": "classes-card-29-79",
+      "kind": "ability",
+      "title": "Black Arrow",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          29
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "3) Black Arrow\nAs one of the most skilled hunters, you are given the bow of the first Spring-King and the Black Arrow said to have killed the Riir beast, from whose blood grew the Black Forest of the People of Knives.\nThe Black Arrow always returns to your quiver. It can kill an entity of the Tower, but if you do so, you will never be able to kill anyone again: after such a great hunt, fate will resist lesser accomplishments.\nDamage: Instantly kills a human target on a success; D12 against all other enemies. Properties: Accurate, Powerful, Quiet, Single-Shot; for each of the opponent's names you know, roll one additional attack die. Range: Medium, Long.",
+      "tier": "elite",
+      "className": "Росоход",
+      "classNameEn": "Dew Walker"
+    },
+    {
+      "id": "classes-card-31-80",
+      "kind": "ability",
+      "title": "The Great Exchange",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          31
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "The Great Exchange\nYou give up your living blood in exchange for the cold certainty of gold.\nWhen you bargain, you may use the CAST Skill instead of TALK, because you understand the metaphysical foundation of exchange.\nWhen you receive Stress to pay for something or use a spell, you may take it in BULLETS instead of RESOURCES, spending golden blood from your wounds. Roll the die twice and choose the lower result in any case.\nYou become very heavy because of the gold in your body.",
+      "tier": "basic",
+      "className": "Экономант",
+      "classNameEn": "Economancer"
+    },
+    {
+      "id": "classes-card-31-81",
+      "kind": "ability",
+      "title": "Displacement",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          31
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Displacement\nYou gratefully accept your new, inhuman nature. You gain +5 Protection in BULLETS, which applies when someone tries to poison you. Alcohol and drugs no longer affect you.",
+      "tier": "minor",
+      "className": "Экономант",
+      "classNameEn": "Economancer"
+    },
+    {
+      "id": "classes-card-31-82",
+      "kind": "ability",
+      "title": "Friend of Finance",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          31
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Friend of Finance\nYou can sense money at a distance. By touching it, you can determine the last people who interacted with it and what transactions it was involved in. You can move money at a distance without touching it.",
+      "tier": "minor",
+      "className": "Экономант",
+      "classNameEn": "Economancer"
+    },
+    {
+      "id": "classes-card-31-83",
+      "kind": "ability",
+      "title": "Bodyguard",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          31
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Bodyguard\nA bodyguard follows you. Give them a callsign and a distinctive trait. This is a personal-level contact with D8 damage and Protection 3. They cannot betray you and will always come to your aid because of irrational, insane loyalty. If you lose them to a Doom Fallout, you may take this ability again.",
+      "tier": "minor",
+      "className": "Экономант",
+      "classNameEn": "Economancer"
+    },
+    {
+      "id": "classes-card-31-84",
+      "kind": "ability",
+      "title": "Expropriation",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          31
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Expropriation\nBy making a CAST check with an appropriate Domain, you attack enemies or objects with golden flame. It burns harder the more expensive its fuel is. The table below shows how much Stress it deals to different targets.\nBefore the roll, you may take the same amount of Stress in RESOURCES to spend your own money on the spell and give it the Powerful property.",
+      "tier": "minor",
+      "className": "Экономант",
+      "classNameEn": "Economancer"
+    },
+    {
+      "id": "classes-card-31-85",
+      "kind": "ability",
+      "title": "Opposition",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          31
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Opposition\nYou have an opponent in business and economic theory. Give them a name. Once per session, you may say that they appear in a scene of trade or negotiations and replace the current threat, but now you will have to deal with them. If they can no longer continue acting, remove this ability and gain Skill Improvement.",
+      "tier": "minor",
+      "className": "Экономант",
+      "classNameEn": "Economancer"
+    },
+    {
+      "id": "classes-card-31-86",
+      "kind": "ability",
+      "title": "Stock Exchange Jockey",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          31
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Stock Exchange Jockey\nEconomancers are supernaturally lucky, as if their fate is not as worn out as that of ordinary soldiers and workers.\nYou gain a fate die, which may be added to checks or to damage. It begins as a D12, and each time you use it, it decreases by one step. After it decreases from D4, you cannot use it again. The fate die increases by one step each time you gain Skill Improvement or fulfill a Recovery condition.",
+      "tier": "minor",
+      "className": "Экономант",
+      "classNameEn": "Economancer"
+    },
+    {
+      "id": "classes-card-31-87",
+      "kind": "ability",
+      "title": "Continuation of the Path",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          31
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Continuation of the Path\nYou continue turning your body into money, for steel sometimes rusts, but gold remains. Cryptocurrency is written into your neurons, and a special virus has sewn economic treatises from different schools into your genetic code.\nWhen trading, you may receive Stress in SPIRIT or MIND instead of RESOURCES.",
+      "tier": "minor",
+      "className": "Экономант",
+      "classNameEn": "Economancer"
+    },
+    {
+      "id": "classes-card-31-88",
+      "kind": "ability",
+      "title": "Made by a Master",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          31,
+          32
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Made by a Master\nYou commission a pistol made perfectly for you. It accounts for your height, the shape of your palm, and your astrological parameters. The pistol is so bound to you that if you lose it against your will, it returns to you after your first human kill.",
+      "tier": "minor",
+      "className": "Экономант",
+      "classNameEn": "Economancer"
+    },
+    {
+      "id": "classes-card-32-89",
+      "kind": "ability",
+      "title": "Personal Brand",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          32
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Personal Brand\nYou are the face of a major company, and the price of securities across an entire sector of the economy depends directly on your actions.\nWhen you or your contact receives a Fallout connected to reputation or good name, you receive D6 Stress in RESOURCES. When you or your contact does something that presents you in a good light, remove all Fallout and Stress in RESOURCES.\nYou are required to wear a logo in a visible place, hold bottles with the label facing outward, and immediately mention your sponsor the moment anyone starts filming you.",
+      "tier": "minor",
+      "className": "Экономант",
+      "classNameEn": "Economancer"
+    },
+    {
+      "id": "classes-card-32-90",
+      "kind": "ability",
+      "title": "Cold",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          32
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Cold\nYour implants are protected by three layers of high-grade encryption, and your emotions by a crust of ice over your heart and a frighteningly calm face.\nEnemies find it difficult to predict your actions. Your first action in a scene becomes one step easier.\nSkill Improvement\nChoose a new Skill, a new Domain, a new set of Tactics, or gain +1 Protection in any Resistance.",
+      "tier": "minor",
+      "className": "Экономант",
+      "classNameEn": "Economancer"
+    },
+    {
+      "id": "classes-card-32-91",
+      "kind": "ability",
+      "title": "All for Profit",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          32
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "All for Profit\nCrime is just a crude word used to brand people free from the limits of the state, limits that restrain the blazing flame of the market...\nYou establish firm ties with bandits, preferring to do business through organized crime. Gain a faction-level contact: a large gang. Once per session, while in an oasis, you may use a gang informant to find any illegal goods you want, such as a thermonuclear warhead, an experimental combat drug, or a black magic artifact. You will always need additional effort to buy or obtain it.\nMinor:\n— Been Everywhere\nYou yourself were part of the criminal world before becoming an important entrepreneur. You speak thieves’ slang fluently, and once per session you may find an illegal service in any oasis. You will always need additional effort to receive it. Decide who your cellmate was.\n— Politeness\nYou are a master of bribery. When you try to bribe someone, roll TALK with Mastery. If that someone is a representative of the state or a corporation, the result of the roll increases by one step. Decide which overly principled opponent caused you problems.\n— Protection of the Antiprince\nThe Antiprince, founder of the order of Light Bearers, defended himself in court. We all know the result, but the attempt was good.\nIn a gray zone like the Tower, you are excellent at shielding yourself, your contacts, and your comrades from legal persecution, virtuoso in your use of a volatile mixture of legal knowledge, bribery, and rhetorical traps. When you, your comrade, or your contact would receive a Fallout connected to distrust, exile, or another social punishment, you reduce it by one step without needing a check. Each time you defend someone, you must invent a new precedent case or a new law; if you repeat yourself, you must make a normal TALK check.",
+      "tier": "professional",
+      "className": "Экономант",
+      "classNameEn": "Economancer"
+    },
+    {
+      "id": "classes-card-32-92",
+      "kind": "ability",
+      "title": "Cultural Leisure",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          32
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Cultural Leisure\nYou know how to relax beautifully with the right people. Once per session, when you fulfill a Recovery condition, you may invite an important contact or their representative to a party luxurious by the standards of the Tower. You and your contact remove one step more Stress and always agree on a new profitable deal.\nMinor:\n— By the Way!\nYou are extremely skilled at talking people’s ears off, so you always arrange two new profitable deals instead of one.\n— Pleasure in the Details\nAt the beginning of the session, invent an additional Recovery condition. It works until the end of the session.\n— Invited Guests\nYour comrades may remove Stress through your Recovery if they find a role they can play at the celebration, such as arena wrestler, musician, or bartender.",
+      "tier": "professional",
+      "className": "Экономант",
+      "classNameEn": "Economancer"
+    },
+    {
+      "id": "classes-card-32-93",
+      "kind": "ability",
+      "title": "Ambassador",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          32,
+          33
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Ambassador\nYou are part of the management of a major company. Choose any corporation. Once per session in an oasis, its representatives may give you a D8 or lower item or resource for free, and also restore D8 in any Resistance. Once per session, you receive an assignment from the corporation, coupled with additional difficulties. If you do not complete it during the session, you lose access to the corporation’s services until you finish the task.\nMinor:\n— Security Service\nOnce per session in an oasis, corporate representatives may give you shelter, or provide you with a fighter with D8 damage and Protection 3 until the beginning of the next session. Invent a nickname you use for all security service agents.\n— Plutonium Card\nThe corporation approves you for a loan of any amount. In a haven, from a company representative, you may once per session take an item of D12 value or lower for free. You must repay D12 in the form of Stress in RESOURCES or an item by the end of the next session, otherwise you lose access to the corporation’s services until you pay the debt.\n— At the Last Second\nIf you are captured or end up in a monster’s lair, a company representative ransoms you out or rescues you as part of an assault team.",
+      "tier": "professional",
+      "className": "Экономант",
+      "classNameEn": "Economancer"
+    },
+    {
+      "id": "classes-card-33-94",
+      "kind": "ability",
+      "title": "Deal",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          33
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Deal\nYou can buy and sell anything, even the immaterial. Shadow, fame, voice — everything has a price. Does an exchange where hopes and promises are bought and sold see any difference?\nYou may spend a D12 item or resource, or receive D12 Stress in RESOURCES, to buy something conceptual from a person who knows your intentions. You may either use it yourself, for example changing your appearance to the one you bought; spend it to restore any Fallout in SPIRIT, FATE, or RESOURCES; or sell it as a resource to another economancer.\nYou may also sell something of your own. In that case, you receive a Major Fallout in SPIRIT until you pay off the debt, and in exchange you may take a D12 resource or item as if you had bartered for it.\nMinor:\n— Thorny Path\nFor 2 D12 resources or items, or a guaranteed Major Fallout in RESOURCES, you may buy a person’s fate from them. You may sell it to another economancer, or make that person into a contact who cannot betray you. You may also exchange fates with this person at a deadly moment, so that they die instead of you. You do not receive a Doom Fallout and remove the most recent Major Fallout you received.\n— Break the Argument!\nInstead of a deal, you may make a wager. If you succeed, the reward is a minor or professional ability. If you lose, you must give up a D10 or D12 resource or item. Examples of wagers are listed below.\nMinor (D10): defeat a dangerous enemy; reach an oasis without injuries; peacefully resolve a conflict with bandits threatening the area.\nSignificant (D12): buy an oasis for one pistol; deceive a corporation and remain legally correct in the documents; fight to the death in an arena while drunk.\n— Debtors\nYou may sell a resource or item without naming the price immediately, saying that you will demand a service later. You may come to collect the service no earlier than the next session, but in exchange it will have an effectiveness one step higher than the die of the item you gave away.",
+      "tier": "professional",
+      "className": "Экономант",
+      "classNameEn": "Economancer"
+    },
+    {
+      "id": "classes-card-33-95",
+      "kind": "ability",
+      "title": "Martial Art: Strike of the Third",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          33
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Martial Art: Strike of the Third\nA self-defense system developed for corporate security services and the upper management of the Island Firms, later adapted by most corporations.\nYou gain Mastery in the KILL Skill, triggered when you fight unarmed. Your unarmed attacks now deal D6 Stress. Once per scene, you may ignore an opponent’s positional advantage, such as attacking from ambush, being above you, or you being tied up.\nMinor:\n— Freedom\nIf you are shackled in handcuffs, a dozen plastic zip ties, or ropes, you may free yourself loudly without a check, or quietly with a HIDE check.\n— Clever Feint\nYou virtuously slip out of the path of an enemy attack by putting your comrades in the way. Once per scene, you may pass Stress received from an attack to an ally or contact.\n— Captive\nYou know how to take a person prisoner with threats, blows to pain points, and simply having a pistol aimed at the right moment. If there are fewer enemies than there are of you, your TALK checks connected to demands for surrender are made with Mastery.",
+      "tier": "professional",
+      "className": "Экономант",
+      "classNameEn": "Economancer"
+    },
+    {
+      "id": "classes-card-33-96",
+      "kind": "ability",
+      "title": "Black Man",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          33
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Black Man\nYou lose the last scraps of humanity in pursuit of profit. You can no longer receive Stress or Fallout in MIND. Once per session, you may sell something that does not belong to you, including something immaterial, or buy something without a person’s consent.",
+      "tier": "elite",
+      "className": "Экономант",
+      "classNameEn": "Economancer"
+    },
+    {
+      "id": "classes-card-33-97",
+      "kind": "ability",
+      "title": "I Am the Economy",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          33
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "I Am the Economy\nYou connect with corporate representatives and are judged worthy of becoming part of the board of directors. Your essence, merging with bank accounts and cryptocurrency code, becomes part of the world of information. For the group, you count as a world-level contact, and once per session you may buy something that would normally be impossible to obtain, without needing resources or checks.",
+      "tier": "elite",
+      "className": "Экономант",
+      "classNameEn": "Economancer"
+    },
+    {
+      "id": "classes-card-34-98",
+      "kind": "ability",
+      "title": "The One Who Sold a God",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          34
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "The One Who Sold a God\nThrough cunning, you buy something important to an entire large group, for example the memory of a hero of the People of Iron, or the martial glory of those who fought for Hashahsot. You may turn it into money, making it impossible to receive Stress and Fallout in RESOURCES, or buy off one of the entities of the Tower. It will leave the world, but the world will forever lose something valuable.",
+      "tier": "elite",
+      "className": "Экономант",
+      "classNameEn": "Economancer"
+    },
+    {
+      "id": "classes-card-35-99",
+      "kind": "ability",
+      "title": "Book of Oaths",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          35
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Book of Oaths\nChoose a Great Oath: mourning, duty, vengeance, or repentance. When you receive a Fallout, you may refuse to accept it, but give up one of your Recovery conditions instead. A Minor Fallout removes the condition until the end of the session, a Major Fallout removes it until the next time you gain an ability, and a Doom Fallout removes it forever.\nAt the beginning of the session, you may swear a lesser oath: a special task that can be completed within one game meeting, such as killing the bandit leader or reaching a distant oasis. It functions as a Recovery condition and exists until you complete it. After that, you receive a reward in the form of a resource or piece of equipment.\nIf you lose this Recovery condition, something negative happens to the oath: for example, the road to the oasis becomes longer, or the bandits fortify their outpost. You may have up to three lesser oaths at the same time. At the beginning of each session, you may replace one unfulfilled oath with a new one, but in that case the rule that creates a negative effect for the cancelled oath applies.",
+      "tier": "basic",
+      "className": "Неболом",
+      "classNameEn": "Skybreaker"
+    },
+    {
+      "id": "classes-card-36-100",
+      "kind": "ability",
+      "title": "Calculate Trajectory",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          36
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Calculate Trajectory\nYou apply your frightening analytical abilities to calculate the trajectory of a blade, an opponent’s well-aimed words, or a bullet.\nDuring any action, you may declare that, thanks to your calculations, you avoided an enemy attack, directed your own strike perfectly, or predicted an insult. Accept success at a cost; the Stress always goes to MIND. You may use this ability any number of times per scene, but each additional use in the same scene costs one Stress step more.",
+      "tier": "minor",
+      "className": "Неболом",
+      "classNameEn": "Skybreaker"
+    },
+    {
+      "id": "classes-card-36-101",
+      "kind": "ability",
+      "title": "Logical Prophecy",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          36
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Logical Prophecy\nTaking every factor into account, you know the future even in this insane place.\nOnce per session, when an unexpected plot twist occurs, you may declare that you foresaw it and change the conditions of the scene accordingly. For example, if an employer cheated you out of money, you may say that you tricked him into signing an economancer magical contract without noticing; or if an ambush catches you by surprise, you may declare that this was an operation to catch the attackers “with live bait,” and that while they take you prisoner, a large squad of Ascenders is surrounding the enemy.",
+      "tier": "minor",
+      "className": "Неболом",
+      "classNameEn": "Skybreaker"
+    },
+    {
+      "id": "classes-card-36-102",
+      "kind": "ability",
+      "title": "Accountant’s Patience",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          36
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Accountant’s Patience\nYou keep everything in your head constantly, from the number of rounds in enemy magazines to the charge levels of your comrades’ batteries.\nOnce per scene, you may reduce the Stress dealt by one opponent or another threat to zero, saying, for example, that the enemy’s weapon ran out of ammunition at the critical moment, or that the merchant trying to barter with you miscounted your supplies.",
+      "tier": "minor",
+      "className": "Неболом",
+      "classNameEn": "Skybreaker"
+    },
+    {
+      "id": "classes-card-36-103",
+      "kind": "ability",
+      "title": "Body Control",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          36
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Body Control\nThrough long meditations and the tempering of body and spirit, you control your bodily processes at an unattainable level.\nOnce per session, you may ignore the effect of a Minor or Major Fallout in BULLETS or MIND until the end of the scene.",
+      "tier": "minor",
+      "className": "Неболом",
+      "classNameEn": "Skybreaker"
+    },
+    {
+      "id": "classes-card-36-104",
+      "kind": "ability",
+      "title": "Unorthodox Cooling",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          36
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Unorthodox Cooling\nYou redirect the cooling systems that stabilize your brain as it overheats from calculation.\nYou may take D6 Stress in MIND to attack enemies with a stream of liquefied gas without a check, extinguish a fire, or create a bridge over water. Each additional use during the same scene increases the die required to activate the ability by one step.",
+      "tier": "minor",
+      "className": "Неболом",
+      "classNameEn": "Skybreaker"
+    },
+    {
+      "id": "classes-card-36-105",
+      "kind": "ability",
+      "title": "Correct",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          36
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Correct\nYou stabilize reality, making the more probable into the guaranteed. No luck, only the cosmos.\nOnce per session, until the end of the scene, you and your entire group gain +2 Protection in SPIRIT, and all your equipment gains the Stable trait.",
+      "tier": "minor",
+      "className": "Неболом",
+      "classNameEn": "Skybreaker"
+    },
+    {
+      "id": "classes-card-36-106",
+      "kind": "ability",
+      "title": "World Without Borders",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          36
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "World Without Borders\nYou have been in space and seen the true Zeyneyn: without states, without peoples, fragile and in need.\nYou gain Mastery on TALK checks when you try to persuade someone toward peaceful negotiations without violence. When you do something harmful to yourself but beneficial to a contact, as described in the Hands of a Friend rule, you automatically succeed instead of receiving Mastery.",
+      "tier": "minor",
+      "className": "Неболом",
+      "classNameEn": "Skybreaker"
+    },
+    {
+      "id": "classes-card-36-107",
+      "kind": "ability",
+      "title": "Cosmic Chaos",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          36
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Cosmic Chaos\nYou have come close to generating truly random numbers from your own mind, using quantum connections in your brain. Through magic, you manifest them in reality.\nOnce per session, you may make all probabilities chaotic and tangled until the end of the scene. To tame the chaos and return everything to normal, pass a CAST check with an appropriate Domain, or use the Correct ability. Now, on check dice, instead of normal failures and successes, you and your allies receive the following results:",
+      "tier": "minor",
+      "className": "Неболом",
+      "classNameEn": "Skybreaker"
+    },
+    {
+      "id": "classes-card-37-108",
+      "kind": "ability",
+      "title": "Secret Archives",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          37
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Secret Archives\nYou are granted access to the protocols of the order’s sages, created as part of the study of interplanetary travel. Once per session, you may remove a mental block from your memories of them, taking D8 Stress in MIND, to gain secret information about a chosen location, a chosen person, or one faction.",
+      "tier": "minor",
+      "className": "Неболом",
+      "classNameEn": "Skybreaker"
+    },
+    {
+      "id": "classes-card-37-109",
+      "kind": "ability",
+      "title": "Interception",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          37
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Interception\nYou are ready to protect those with whom you will have to fly to the stars. Once per scene, you may take Stress that another player character would have received, for example by shielding them from bullets, paying for them in trade, or calming them with an inspiring speech.",
+      "tier": "minor",
+      "className": "Неболом",
+      "classNameEn": "Skybreaker"
+    },
+    {
+      "id": "classes-card-37-110",
+      "kind": "ability",
+      "title": "Incorrect",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          37
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Incorrect\nYou distort probabilities so that events that seemed impossible become the only outcome. Once per session, you may take D8 Stress in MIND so that until the end of the scene all your checks can only result in a critical success on 5–10, or a critical failure on 1–4.\nMinor:\n— Tunnel Through\nYou increase the quantum probability of particles tunneling through matter on a macro level. Once per scene, you may take D8 Stress in MIND to pass through a wall or avoid Stress in BULLETS. You may duplicate this effect for a player character or GM contact, but you must pass an ASCEND check; otherwise, they receive D10 Stress in BULLETS.\n— Impossible Shot\nYou distort probabilities so that a bullet ignores any cover the opponent has. Once per scene, you may take D8 Stress in MIND so that until the end of the scene the difficulty of your ranged attacks is not increased by the enemy’s positional advantage.\n— Luck Calculation\nWhen you receive a critical success on a check, you may instead accept a normal success. Later, after any check result, you may replace it with a critical success. You may store one critical success.",
+      "tier": "professional",
+      "className": "Неболом",
+      "classNameEn": "Skybreaker"
+    },
+    {
+      "id": "classes-card-37-111",
+      "kind": "ability",
+      "title": "Martial Art: Strike and Three Repeating",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          37,
+          38
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Martial Art: Strike and Three Repeating\nA hand-to-hand combat system created for battles in zero gravity, so as not to damage the fragile hulls of space stations; it often proves useful in the constantly changing Tower.\nYou gain Mastery in the KILL Skill, triggered when you fight unarmed, with a combat knife, or with a heavy melee weapon. Your unarmed attacks now deal D6 Stress. Once per scene, you may orient yourself in any rapidly changing space: the next check does not have its difficulty increased, even if you are jumping across concrete fragments falling into an abyss, or racing upward in a geometrically impossible elevator.\nMinor:\n— Gently and Gracefully\nYou fight in a way that damages neither the environment nor your inventory. Fragile items will not be harmed in this fight, no matter what Fallout you receive.\n— Like an Orbital Strike\nYou use the full mass of your heavy armor and an impeccably calculated point of support to move one range band after a successful KILL check and take one target at the same range as you along with you.\n— Study Movements\nYou calculate the enemy’s actions at a deeper level than they can imagine. Instead of trying to recognize their technique, you descend to the biomechanics of muscles and the mass of equipment models, taking the entire complex into account within your elaborate virtual system. The same applies to your route through the Tower, and even to attempts to heal a comrade.\nOnce per scene, you may study the situation. Your next critical success, instead of increasing the Stress die by one step, adds an additional Stress die; you sum the results. Your next critical failure, instead of increasing the Stress die by one step, adds an additional Stress die; you sum the results.",
+      "tier": "professional",
+      "className": "Неболом",
+      "classNameEn": "Skybreaker"
+    },
+    {
+      "id": "classes-card-38-112",
+      "kind": "ability",
+      "title": "Silence",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          38
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Silence\nYou calm your constantly working brain through a special method. Even an artificial nervous system reinforced by special mental practices cannot endure such a number of operations.\nFour times per session, you may enter meditation to restore D8 in MIND or remove Minor or Major Fallout. Until the end of the scene, you cannot take complex actions that require checks. Each time you kill a person, or commit another act just as terrible, the number of uses of this ability decreases by 1.\nMinor:\n— Feast of Hatred\nInstead of the usual rules for this ability, you begin with 0 uses of the ability in a session, and each time you kill a person or commit another act just as terrible, you gain 1 use of the ability. These can accumulate up to four, but do not carry over into the next session.\n— Calm the Soul\nYou sink into deeper levels of meditation to let your very essence rest. You may restore Stress and remove Fallout in the SPIRIT scale with this ability.\n— Battle Trance\nAfter using this ability, you may make KILL checks, and when you receive Stress in BULLETS while it is active, you roll two dice for the Fallout check and choose the higher result.",
+      "tier": "professional",
+      "className": "Неболом",
+      "classNameEn": "Skybreaker"
+    },
+    {
+      "id": "classes-card-38-113",
+      "kind": "ability",
+      "title": "Soul Code",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          38
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Soul Code\nYou can process special programs in your head, similar to computer programs, created specifically for the environment of a trained Skybreaker brain in a separate programming language.\nOnce per scene, you may do without a computer in situations where one is necessary: for example, entering a local network by counting lines of code in your head, or creating a three-dimensional model and then outputting it to a screen through a neurojack.\nMinor:\n— Second Soul\nYou run another mind on your own neurons: a military analytical neural network. For your corrupt union with an inhuman consciousness, the Gate Guards dislike you.\nOnce per session, you may take D8 Stress in MIND to gain all Skills and Domains until the end of the scene. All failures become critical failures because of the neural network’s tendency to lie. When you need to understand the psychology and logic of artificial intelligence, you make checks with Mastery in this state.\n— Memo-Strike\nYou use a special combination of psychoactive movements and sounds to affect consciousness directly, beyond the limits of words.\nOnce per session, with a INVESTIGATE check, you may change the thoughts of an interlocutor or an opponent in battle, for example by instilling terror or forcing them to forget an important detail. This ability works at close and medium range and affects all targets at one range band. The difficulty of human opponents is reduced by 1 until they receive Stress.\n— Simulation\nOnce per session, you may sink into a virtual world inside your own consciousness. With your imagination, you feel any taste and smell you can picture as if they were real. Until the end of the scene, you cannot perform complex actions requiring checks, but you gain Mastery on INVESTIGATE checks until the end of the session.",
+      "tier": "professional",
+      "className": "Неболом",
+      "classNameEn": "Skybreaker"
+    },
+    {
+      "id": "classes-card-38-114",
+      "kind": "ability",
+      "title": "Commander",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          38
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Commander\nYou have learned to apply exceptional analytical abilities to military tactics.\nYou gain an orders die, D10. Each time you help an ally, you may add the orders die to the Stress they deal; after that, the orders die decreases by one step. The orders die fully restores at the beginning of the session and increases by one step when you fulfill a Recovery condition.\nMinor:\n— Together\nWhen an ally helps you, you may add the orders die to the Stress you deal. After that, the orders die decreases by one step.\n— Strategist\nYou may add the orders die to a Skill check roll, not only to Stress. It works as a bonus to the highest die result. You may add it both to the check and to the Stress, but after the check it decreases by one step and only then is added to the Stress.\n— Skilled Maneuvers\nYou may add the orders die to a Fallout check and sum the die results; after that, the orders die decreases by one step.",
+      "tier": "professional",
+      "className": "Неболом",
+      "classNameEn": "Skybreaker"
+    },
+    {
+      "id": "classes-card-39-115",
+      "kind": "ability",
+      "title": "Dragon",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          39
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Dragon\nYour human mind limited the precision of your calculations too much. You find a dragon block, a corporate AI specifically created to differ from human thinking as much as possible, and absorb its databases and thought patterns, abandoning your own past.\nYou lose all personal-level contacts, gain all Skills and Domains, and Mastery dice can now be added any number of times to a single check. Once per scene, when you receive Stress in MIND, you may overclock your brain’s computational power to add the same Stress die to any Stress you deal.",
+      "tier": "elite",
+      "className": "Неболом",
+      "classNameEn": "Skybreaker"
+    },
+    {
+      "id": "classes-card-39-116",
+      "kind": "ability",
+      "title": "Dreamer",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          39
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Dreamer\nYou withdraw entirely into the world of your own subconscious, only rarely returning to reality.\nYou do not receive Stress or Fallout in MIND or SPIRIT. Once per session, when you or your comrade would die, you may say that these events are only something you dreamed, and in reality they never happened: remove all Fallout and all Stress from the one who was about to die.",
+      "tier": "elite",
+      "className": "Неболом",
+      "classNameEn": "Skybreaker"
+    },
+    {
+      "id": "classes-card-39-117",
+      "kind": "ability",
+      "title": "Last Calculation",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          39
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Last Calculation\nYou solve the Great Equation and find the Great Unknown, humanity’s key to countless planets. You may pass it to the order to open the path into space and gain a world-level contact, or say it aloud to banish one of the entities of the Tower, but close the road to the stars for decades.",
+      "tier": "elite",
+      "className": "Неболом",
+      "classNameEn": "Skybreaker"
+    },
+    {
+      "id": "classes-card-40-118",
+      "kind": "ability",
+      "title": "Red Laws",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          40
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Red Laws\nYou obey the code of the Red Sleeves, which requires you to capture or eliminate a target honestly. These measures were adopted so the organization would be accepted by both authorities and common people. In addition, by the right of wearing the red sleeve, you may receive target-elimination jobs in oases.\nWhen you attack a contract target from ambush, deceive them into coming with you, hide your red sleeve, or attack them while they are unarmed, you receive D8 Stress in SPIRIT, MIND, or RESOURCES. This die is added to any Stress received on a failure.\nOnce per session, when you arrive in an oasis, you may say that the locals have announced a bounty on a dangerous person’s head. They will give twice as many resources as usual if you bring the target in alive, and resources one step higher if you bring proof of death. The target is always very dangerous, and the job always has some catch: for example, corporations are already hunting the target, or the target tries to buy you off.",
+      "tier": "basic",
+      "className": "Красный Рукав",
+      "classNameEn": "Red Sleeve"
+    },
+    {
+      "id": "classes-card-41-119",
+      "kind": "ability",
+      "title": "Greenhouse",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          41
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Greenhouse\nThe greenhouse always occupies a backpack slot. If you put on another backpack, you lose this ability. Once per scene, you may spend a resource from the THICKET, WASTELAND, WAVES, or HORIZON Domains to create a magical flower with the same die as the resource. Possible flower properties:\nWithout a check, it restores Stress in BULLETS, MIND, or SPIRIT.\nWithout a check, it deals Stress with the Powerful property to an enemy or Ascent.\nIt gives a Skill or Domain until the end of the scene.\nIt restores Stress to a contact.\nIt lets you ask the GM a question about the location; they must answer honestly.\nIt reduces one opponent’s danger by 1 step until the end of the scene.\nThe flower exists indefinitely, but flowers cannot be stockpiled. The flower is spent after use. Describe what the flower looks like and the magical effect it applies.",
+      "tier": "basic",
+      "className": "Красный Рукав",
+      "classNameEn": "Red Sleeve"
+    },
+    {
+      "id": "classes-card-41-120",
+      "kind": "ability",
+      "title": "Combat Adaptation",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          41
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Combat Adaptation\nYou are a master of weapons, capable of miracles through a set of shooting stances, special reload techniques, and recoil-control methods. When you attack with a weapon, you may add one property of your choice to it through gunner’s or fencer’s Mastery. For example, by sweeping a pistol to the side while firing, you gain the Spread property; by shooting the same point, you gain the Powerful property; and by charging a sword with magic, you gain the Fire property.",
+      "tier": "basic",
+      "className": "Красный Рукав",
+      "classNameEn": "Red Sleeve"
+    },
+    {
+      "id": "classes-card-41-121",
+      "kind": "ability",
+      "title": "Tongue with a Steel Core",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          41
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Tongue with a Steel Core\nYou can speak with weapons. Whether this is madness or not, they answer you in kind.\nOne weapon of your choice becomes a contact. You may give it D6 Stress to gain Mastery on attacks with it against a certain type of opponent until the end of the scene, restore D6 Stress in your SPIRIT or MIND, or remove any Fallout connected to the weapon breaking, being lost, running out of ammunition, or anything else preventing its use. Once per session, you may change the contact to another weapon, but the Stress in the old weapon remains.\nYou may make TALK checks directed at weapons. A weapon is not fully sapient, but it can transmit individual feelings and images.",
+      "tier": "minor",
+      "className": "Красный Рукав",
+      "classNameEn": "Red Sleeve"
+    },
+    {
+      "id": "classes-card-41-122",
+      "kind": "ability",
+      "title": "Master’s Vow",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          41
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Master’s Vow\nYou follow the ancient traditions of the Red Sleeves, which require taking a minor vow before every mission, restraining the dark impulses of human nature.\nWhen you take a mission normally, or through the Red Laws ability, you may accept a restriction from the list below, or invent your own with the GM’s approval. As a reward, you gain +2 Protection and +2 slots in MIND, SPIRIT, and RESOURCES until you successfully complete or fail the mission.\n— Kill no human beings.\n— Take nothing valuable from the mission target.\n— Use no medical services or drugs.\n— Accept no help from comrades.\n— For every wounded person during the mission, donate to their treatment: a D6 item or D6 Stress in RESOURCES for each.\n— Hold a prayer service for every person killed: D6 Stress in MIND for each.\nIf you break the vow, you lose the Protection from this ability.",
+      "tier": "minor",
+      "className": "Красный Рукав",
+      "classNameEn": "Red Sleeve"
+    },
+    {
+      "id": "classes-card-41-123",
+      "kind": "ability",
+      "title": "Patch",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          41
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Patch\nYou are a representative of every official branch of authority that has made arrangements with the Red Sleeves. When you need to convince someone by appealing to legality and law, you make a TALK check with advantage. When you bring in a mission target arrested instead of bringing proof of their death, you fully restore Stress in all scales.",
+      "tier": "minor",
+      "className": "Красный Рукав",
+      "classNameEn": "Red Sleeve"
+    },
+    {
+      "id": "classes-card-41-124",
+      "kind": "ability",
+      "title": "Duel",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          41
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Duel\nOnce per scene, you may make a TALK check to challenge any human enemy, or a creature with human-like thinking, to a duel. On a success, you always defeat them with a single exemplary shot or strike, but you always receive a Major Fallout; two Major Fallout if the opponent is risky difficulty; and three if the opponent is dangerous difficulty.\nYou may choose whether to hold back in the duel or fight seriously. In the first case, besides the Fallout, you receive the Stress that this opponent would have dealt, but you can neutralize them without killing them.",
+      "tier": "minor",
+      "className": "Красный Рукав",
+      "classNameEn": "Red Sleeve"
+    },
+    {
+      "id": "classes-card-41-125",
+      "kind": "ability",
+      "title": "Paired Weapons",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          41
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Paired Weapons\nYou have mastered the art of fighting with a weapon in each hand. They must be identical weapons, must be intended for one-handed use, and must not have the Heavy property. When you deal Stress with paired weapons, you roll the Stress die one additional time and choose the higher result.",
+      "tier": "minor",
+      "className": "Красный Рукав",
+      "classNameEn": "Red Sleeve"
+    },
+    {
+      "id": "classes-card-41-126",
+      "kind": "ability",
+      "title": "Red Speech",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          41
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Red Speech\nYou can speak with the color red. Once per session, you may ask it a question about the location you are in, and the GM must answer honestly. This requires any red object; if you do not have your sleeve, a pool of blood will do.",
+      "tier": "minor",
+      "className": "Красный Рукав",
+      "classNameEn": "Red Sleeve"
+    },
+    {
+      "id": "classes-card-41-127",
+      "kind": "ability",
+      "title": "Combat Acrobatics",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          41
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Combat Acrobatics\nYou move like a dancer, or a bird of prey. When you make an ASCEND check, in addition to the result of that check, you may also deal Stress as if it were a KILL, HIDE, or CAST roll.",
+      "tier": "minor",
+      "className": "Красный Рукав",
+      "classNameEn": "Red Sleeve"
+    },
+    {
+      "id": "classes-card-42-128",
+      "kind": "ability",
+      "title": "Walk on Rumors",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          42
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Walk on Rumors\nYou are used to gnawing information out of witnesses’ throats. Once per session, when you arrive in a new location, you may say there is someone here who knows exactly where the mission target is. They are always willing to share with you, but they always demand something in return: resources, the killing of another nearby target, or a favor they will name later.",
+      "tier": "minor",
+      "className": "Красный Рукав",
+      "classNameEn": "Red Sleeve"
+    },
+    {
+      "id": "classes-card-42-129",
+      "kind": "ability",
+      "title": "Clever Tricks",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          42
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Clever Tricks\nThe Red Sleeves’ code of honor is strict, but it does not consider battlefield dirtiness or cunning manipulation in dialogue to be a vice. Once per session, when you get a critical failure on a KILL, HIDE, ASCEND, or TALK roll, you may say it was a feint and receive a critical success instead.",
+      "tier": "minor",
+      "className": "Красный Рукав",
+      "classNameEn": "Red Sleeve"
+    },
+    {
+      "id": "classes-card-42-130",
+      "kind": "ability",
+      "title": "Friend of Weapons",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          42
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Friend of Weapons\nTo weapons, you are a close friend. Perhaps they would kill for you.\nWhen you attack with a weapon, you may remove one of its negative properties. For example, you compensate for the Awkward property with a special grip, and the Unreliable property by measuring the burst length perfectly.",
+      "tier": "minor",
+      "className": "Красный Рукав",
+      "classNameEn": "Red Sleeve"
+    },
+    {
+      "id": "classes-card-42-131",
+      "kind": "ability",
+      "title": "Martial Art: Hireyn-Mayon",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          42
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Martial Art: Hireyn-Mayon\nAn ancient martial art of the People of Shards, once practiced by killers from the semi-mythic order Kararir-Eyn. This hand-to-hand system focuses on mental preparation and the use of poisons.\nYou gain Mastery in the KILL Skill, triggered when you fight unarmed, with a combat knife, or with a heavy melee weapon. Your unarmed attacks now deal D6 Stress. When you deal Stress with a weapon that has the Lingering property, the poison deals D6 Stress to the enemy instead of D4 thanks to your skillful poisons made from magical flowers.\nMinor:\n— Cloud\nWhen a target that received Stress from your poison in this scene is neutralized, all opponents at the same range receive Stress from your poison.\n— Adrenaline Control\nYou can calm the production of stress hormones.\nWhen you receive Stress in BULLETS or MIND, you may roll the Fallout check die twice and choose the lower result. If you receive a Fallout this way, choose a Skill. Until the end of the scene, checks using that Skill cannot have difficulty higher than standard.\n— Dance of Birds of Prey\nWhen you neutralize an opponent, you may move to another opponent and immediately attack them, even if they are in an unreachable place that could not normally be approached.",
+      "tier": "professional",
+      "className": "Красный Рукав",
+      "classNameEn": "Red Sleeve"
+    },
+    {
+      "id": "classes-card-42-132",
+      "kind": "ability",
+      "title": "Fame",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          42
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Fame\nCriminals know and fear you, and clients rely on you. When you arrive in a new location, you may say that people here already know about you. If so, it becomes harder for you to find the mission target — all INVESTIGATE checks against them become one step more difficult — but local people or plants are ready to help you. All resources you spend to buy goods or grow flowers count as one step more valuable.\nMinor:\n— Out of the Way!\nWhen you arrive in a new location, you may say the locals are afraid of you. If so, they will be afraid, for example, to deny you entry into a restricted area, or will not dare refuse you information, but the mission target is definitely not in this location, even if they were there originally.\n— Red Guide\nWhen you arrive in a new location, you may say that a Red Sleeve there is ready to guide you to a neighboring location for free. During the Ascent, they add a help die to all KILL and ASCEND checks.\n— Center of the Target\nWhen you reach the mission target, you may say they prepared for your arrival, but are extremely frightened. All your KILL, HIDE, and ASCEND rolls in this scene become one step harder, while TALK, FIX, and CAST checks become one step easier.",
+      "tier": "professional",
+      "className": "Красный Рукав",
+      "classNameEn": "Red Sleeve"
+    },
+    {
+      "id": "classes-card-42-133",
+      "kind": "ability",
+      "title": "Species Diversity",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          42
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Species Diversity\nYou expand the possible applications of magical plants. You may turn a resource into a flower that restores Stress in RESOURCES or FATE when used.\nMinor:\n— Flash Toxin\nUse a flower to add its die to the die of Stress dealt or restored by a weapon or tool. It gains the Lingering property.\n— Petals of Change\nYou may spend a flower to appear in a scene where you should not be. You receive 10 Stress in FATE, subtracting the flower die roll from that Stress.\n— Tree Wisdom\nYou may spend a flower to receive an honest answer from the GM to a question about a location or character. You receive 10 Stress in SPIRIT, subtracting the flower die roll from that Stress.",
+      "tier": "professional",
+      "className": "Красный Рукав",
+      "classNameEn": "Red Sleeve"
+    },
+    {
+      "id": "classes-card-43-134",
+      "kind": "ability",
+      "title": "Shooter’s Supplies",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          43
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Shooter’s Supplies\nYou are ready for anything, even the thing you did not know about. Especially for that.\nOnce per session, for one scene, you may say that you have any pistol or combat knife of your choice with you, without modifications, even if you could not have it, such as after being searched. You may present this not only as a weapon hidden on your person, but also, for example, as a weapon quickly taken from a guard, or one recovered from a Red Sleeve cache marked with a secret sign. This weapon disappears at the end of the scene, for example because it breaks, or because you must retreat and abandon it.\nMinor:\n— Expanded Holster\nWhen calling forth a weapon, you may choose one modification for it.\n— Bottomless Pockets\nYou may call forth an assault rifle or a heavy melee weapon.\n— Element of Surprise\nThe first attack in a scene made with such a weapon is made with Mastery.",
+      "tier": "professional",
+      "className": "Красный Рукав",
+      "classNameEn": "Red Sleeve"
+    },
+    {
+      "id": "classes-card-43-135",
+      "kind": "ability",
+      "title": "Flower Bond",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          43
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Flower Bond\nYour flowers bind your group as tightly as your shared adventures do. You give each comrade a flower reflecting their individuality; describe it. When one of your comrades helps another, they may add more than one help die if they have both an appropriate Skill and an appropriate Domain.\nMinor:\n— Unbreakable Friendship\nWhen one of your comrades receives a Fallout in MIND or SPIRIT, another comrade may take it instead.\n— Brave Wind\nWhen one of your comrades makes a risky or dangerous check and fails, those who helped them on that check do not receive Stress.\n— Guiding Vine\nTogether with other Red Sleeves, you cover the passage from one location to another with reality-stabilizing flowers. When you pass through an Ascent, you may spend a flower made from a resource whose die is greater than or equal to its Resistance. Starting next session, that Ascent has a fixed Resistance of 6 and no Protection.",
+      "tier": "professional",
+      "className": "Красный Рукав",
+      "classNameEn": "Red Sleeve"
+    },
+    {
+      "id": "classes-card-43-136",
+      "kind": "ability",
+      "title": "Head of the Order",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          43
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Head of the Order\nNow you are on the other side of the pointing gesture: the high priest of the Cartridge King.\nYou gain a world-level contact: the Order of the Red Sleeves. Once per session, you may name any person, from the head of a corporation or dangerous cartel to the leader of a powerful cult. During this session, the target will be brought to you alive and ready to cooperate.",
+      "tier": "elite",
+      "className": "Красный Рукав",
+      "classNameEn": "Red Sleeve"
+    },
+    {
+      "id": "classes-card-43-137",
+      "kind": "ability",
+      "title": "First Red",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          43
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "First Red\nYou became the first person able to surprise the color Red in conversation. Once per scene, you may use its wisdom to receive a cryptic but always truthful answer to absolutely any question. You may persuade Red to fight an entity of the Tower; the entity will be defeated, but all red color will vanish from the world for centuries.",
+      "tier": "elite",
+      "className": "Красный Рукав",
+      "classNameEn": "Red Sleeve"
+    },
+    {
+      "id": "classes-card-43-138",
+      "kind": "ability",
+      "title": "Wonder at the World",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          43
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Wonder at the World\nYou have preserved a child’s immediacy in your heart, and an assassin’s steadiness in your hand. When you use a flower, instead of disappearing, it lowers its die by one step. You may also weave any mass-produced equipment out of flowers, immediately filling all of its modification slots. It exists until the end of the scene. Once per session, you may turn any location into a flower garden: all checks there become standard.",
+      "tier": "elite",
+      "className": "Красный Рукав",
+      "classNameEn": "Red Sleeve"
+    },
+    {
+      "id": "classes-card-45-139",
+      "kind": "ability",
+      "title": "Nonhuman",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          45
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Nonhuman\nYou are other, and people will never forgive you for it. Your body is visibly changed by your otherworldly nature and warded by protective spells that humans used to safeguard themselves.\nWhen creating your character, choose a Domain to which your spirit belonged. Usually these are guardians of a forest, a lake, or a city district, but other options are possible: for example, in the case of the ARMY Domain, this may be the spirit of a regimental banner; in the case of CORPORATIONS, it may be a combat neural-network analyzer or the mascot of a sports team.\nYou gain this Domain in addition to those you already have. Once per scene, you may replace the Domain relevant to a check with this Domain, and if this Domain was already present, you gain a help die from it. You may spend a D8 or higher resource to add this Domain to all other Domains relevant to the scene until the end of that scene.\nYou cannot lie or say the number four aloud.",
+      "tier": "basic",
+      "className": "Подкодыш",
+      "classNameEn": "Codeling"
+    },
+    {
+      "id": "classes-card-45-140",
+      "kind": "ability",
+      "title": "Why Have You Fallen Silent, Wind?",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          45
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Why Have You Fallen Silent, Wind?\nPeople are not wiser than a thousand-year-old forest, or a city that has seen a million faces.\nOnce per scene, you may ask the GM a question about the location, and they must answer honestly. This location always has a problem, which it communicates through vague images and complicated riddles. If you help solve it, all Ascents leading from this location receive D6 Stress and lose their Protection.",
+      "tier": "minor",
+      "className": "Подкодыш",
+      "classNameEn": "Codeling"
+    },
+    {
+      "id": "classes-card-45-141",
+      "kind": "ability",
+      "title": "True Face",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          45
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "True Face\nOnce per session, you may transform your body until the end of the scene into something corresponding to your spirit’s nature: for example, growing gills and fins if you were a river spirit.\nIf the Domain you chose when gaining your basic ability applies to the roll, you deal or restore one Stress step more.",
+      "tier": "minor",
+      "className": "Подкодыш",
+      "classNameEn": "Codeling"
+    },
+    {
+      "id": "classes-card-45-142",
+      "kind": "ability",
+      "title": "Friends from the Past",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          45
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Friends from the Past\nYou remember faces, and you remember that they smiled at you in dreams. Seeing them again, you see the same smiles and the same weariness in their eyes.\nOnce per session, when you meet a new human GM Character, even an enemy, you may say that your body’s previous owner was their friend. This character will always cooperate with you, but will always demand unpleasant additional conditions. If you fulfill those conditions, record them as a personal-level contact.",
+      "tier": "minor",
+      "className": "Подкодыш",
+      "classNameEn": "Codeling"
+    },
+    {
+      "id": "classes-card-46-143",
+      "kind": "ability",
+      "title": "Virus",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          46
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Virus\nFluctuations of magic, electricity flickering through silicon, or nucleic acids — there is no difference. These are only forms of information.\nOnce per scene, you may transmit part of your modified genome through blood or tears, or take part of someone else’s genes. In battle, doing so requires a KILL check and being at the same range. Until the end of the session, that creature counts as you for all forms of magic and genetic tests, or you count as them. For example, this can deceive a prophecy or confuse a curse.",
+      "tier": "minor",
+      "className": "Подкодыш",
+      "classNameEn": "Codeling"
+    },
+    {
+      "id": "classes-card-46-144",
+      "kind": "ability",
+      "title": "Deathproof",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          46
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Deathproof\nThis body is yours now. To feel the warmth of touch, a breeze on the skin, hunger satisfied... Oh yes, you would kill for this.\nWhen you receive a Minor or Major Fallout in BULLETS, you may refuse it by taking the corresponding amount of Stress in SPIRIT: D6 for a Minor Fallout, D8 for a significant one. If you wish, the Spirit Stress may instead be received by anyone who counts as you for magic.",
+      "tier": "minor",
+      "className": "Подкодыш",
+      "classNameEn": "Codeling"
+    },
+    {
+      "id": "classes-card-46-145",
+      "kind": "ability",
+      "title": "Weapon of Antiquity",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          46
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Weapon of Antiquity\nSympathetic magic works with missile launchers and quick drones too, but you prefer the classics.\nChoose a target you attacked during this session with a bow, knife, or heavy melee weapon. By coating the weapon in poison or placing it near a fire, you remotely deal that weapon’s Stress to that enemy. If the enemy is very far away, you find them dead only in the next session. If the target counts as you for magic, until the end of the session, Stress received by one is also received by the other.",
+      "tier": "minor",
+      "className": "Подкодыш",
+      "classNameEn": "Codeling"
+    },
+    {
+      "id": "classes-card-46-146",
+      "kind": "ability",
+      "title": "Secret Paths",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          46
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Secret Paths\nEven in this insane place, you are sure that a good route matters more to battle than an expensive weapon.\nWhen dealing Stress to an Ascent, you gain the Armor-Piercing (3) property. Your body functions as a D6 ASCEND tool.",
+      "tier": "minor",
+      "className": "Подкодыш",
+      "classNameEn": "Codeling"
+    },
+    {
+      "id": "classes-card-46-147",
+      "kind": "ability",
+      "title": "Noonday Shadow",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          46
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Noonday Shadow\nYou can steal something that cannot be held in the hands or even seen.\nYou may attempt, with a HIDE check, to steal something abstract from a target, such as a voice, shadow, or name. For more complex things, such as martial glory, the check may be risky or dangerous. You possess it until the end of the session, after which it returns to its owner. While you have it, the target cannot use it.\nYou cannot use it yourself, since it does not belong to you, except if magic considers you the lawful owner of that essence. In that case you may use it; after the end of the scene, it returns to its owner.",
+      "tier": "minor",
+      "className": "Подкодыш",
+      "classNameEn": "Codeling"
+    },
+    {
+      "id": "classes-card-46-148",
+      "kind": "ability",
+      "title": "Elder",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          46
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Elder\nYou are an old and mighty spirit, and you can show pranksters and pests their place.\nWith a CAST check, or by spending a lot of time and a D8 or more valuable resource, you may banish evil spirits from one body at medium or close range. This disables drones and turrets, deals D12 Stress with the Powerful property to a Codeling, Gate Guard, or Soul Fluid, and for an ally functions as D10 FIX for SPIRIT or MIND.",
+      "tier": "minor",
+      "className": "Подкодыш",
+      "classNameEn": "Codeling"
+    },
+    {
+      "id": "classes-card-46-149",
+      "kind": "ability",
+      "title": "Ancient Divination",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          46
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Ancient Divination\nYou may spend a D6 or more valuable resource and a lot of time on divination. Invent one situation that will occur during this session: for example, a miraculous rescue from battle, or the discovery of a new mysterious place. At any moment you may introduce this situation into the narrative, but there will always be something wrong with it. For example, you really do find a mountain of supplies, but it belongs to bandits, so you must flee with it under enemy fire. When this situation occurs, until the end of the scene you roll, in addition to all other dice for the check, a die equal to the resource die spent on the divination.",
+      "tier": "minor",
+      "className": "Подкодыш",
+      "classNameEn": "Codeling"
+    },
+    {
+      "id": "classes-card-46-150",
+      "kind": "ability",
+      "title": "Especially Dangerous",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          46,
+          47
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Especially Dangerous\nYou are being hunted. And, it must be said, they have something to demand from you.\nOnce per session, you may replace the check result of any group member with a critical success. In the scene where you use this ability, you encounter a squad of body hunters who want to arrest you, and if you resist, kill you on the spot. Use the PMC fighter stats from the appendix. If you kill the squad, a new one will be sent after you.\nIf you use several branches of this ability in one scene, the enemies following your trail work together. However, when introducing a new pursuer, you may take D10 Stress in FATE to make them a rival of another squad.\nMinor:\n— A Moment of Joy\nOnce per session, at any moment, you find or receive as a reward a D12 resource. In the same scene, you encounter debt collectors demanding that you, as the new owner of the body, pay the previous owner’s loan interest plus downtime. You may pay them with four D12 resources, take D12 Stress in RESOURCES four times, or perform their task, which is always extremely difficult and immoral. If you kill the squad or hide from them, a new one is sent after you — this time ready to kill.\n— Eternal Bonds\nOnce per session, you may replace the result of Stress dealt or restored with the maximum possible result on the die. In the same scene, you meet a former relative or lover of your body’s previous owner, who tries to reach them. On their own, they do no harm, but until you flee, deceive them, or get rid of them some other way, they will accidentally interfere with everything you do. If you break their heart or kill them, all your GM Character contacts receive D8 Stress, and the body gains a new old friend.\n— See the Unseen\nOnce per session, you may remove a Minor or Major Fallout. In the same scene, you meet scientists with armed guards who want to take you as a test subject. If you get rid of them, the next squad will be larger and will try to capture you by force.",
+      "tier": "professional",
+      "className": "Подкодыш",
+      "classNameEn": "Codeling"
+    },
+    {
+      "id": "classes-card-47-151",
+      "kind": "ability",
+      "title": "Helper Spirits",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          47
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Helper Spirits\nYou were a wise and mighty spirit, and mischievous minor beings served under you. They followed you as soon as you gained a body. If, for example, you were the king of a forest, with you might be a guardian of mushrooms, a spirit that sings lullabies to beasts, or the one responsible for evenly distributing snow across tree crowns. Now they are with you in the form of information, usually on a solid-state drive.\nYou gain a personal-level contact: “Younger Brothers.” In addition to normal contact uses, you may ask them to protect you. Once per scene, until the end of that scene, you gain +3 slots and +3 Protection in any Resistance of your choice.\nMinor:\n— Kind Ruler\nThis contact gains Protection 3.\n— Ambassador of the Noble Court\nYou may ask the spirits to protect your comrade or another GM Character contact.\n— Diligent Official\nOne of the spirits with you used to oversee accounting: for example, controlling the population of predatory fish in a lake. When you would receive Stress in RESOURCES, you may instead receive Stress in this contact.",
+      "tier": "professional",
+      "className": "Подкодыш",
+      "classNameEn": "Codeling"
+    },
+    {
+      "id": "classes-card-47-152",
+      "kind": "ability",
+      "title": "Heavy Modification",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          47
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Heavy Modification\nUnder its previous owner, your body was a long-trained combat machine filled with cyberimplants, biological modifications, and magical modifications. This is fairly common among Codelings. Such soldiers go mad more often than others. The reason is not the pressure of implants on the nervous system, as commanders say. No — the whole problem is that those are the people sent on the cruelest and most dangerous missions. However, you might have done this to the body after obtaining it, in order to anchor yourself in it more firmly.\nYou gain a modifications die, D8. Each time you use the ability, it decreases by one step. The modifications die restores by one step each time you fulfill a Recovery condition, or fully at the beginning of the session.\nDuring any check, before seeing its result, you may say that you use your altered body in it. Describe what this looks like. Add the modifications die to the roll; it functions as a bonus to the highest result.\nMinor:\n— Limiters Removed\nWhen you receive a Major Fallout, the modifications die restores by one step.\n— Light-Alloy Mastery\nWhen, as the result of a check using this ability, you deal or restore Stress, you may add a roll of the modifications die to it.\n— At the Limit\nIf the result of a check using this ability is higher than 10, you may avoid spending the modifications die use, and instead take as much Stress in BULLETS as you gained from adding it to the roll.",
+      "tier": "professional",
+      "className": "Подкодыш",
+      "classNameEn": "Codeling"
+    },
+    {
+      "id": "classes-card-47-153",
+      "kind": "ability",
+      "title": "Paranormal Grin",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          47
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Paranormal Grin\nYou should remind others more often that you are not human.\nIn battle or negotiations, you may behave strangely or especially cruelly; describe the action. Take any Stress die of your choice in SPIRIT. Your monstrous behavior functions as a weapon with the Nonlethal, Stable, and Spread properties, works at close and medium range, and its Stress die is equal to the die you took in SPIRIT.\nMinor:\n— Other Methods\nYou may take Stress in SPIRIT not only in battle, but also to add your strangeness to any other check. The die result is added to the highest result on the check die. Describe what this looks like: for example, on a CAST roll, you begin speaking in an incomprehensible language.\n— Wash in Blood\nYou may use this ability each time you receive a Fallout in BULLETS. For a Minor Fallout, the Stress is D6; for a Major Fallout, D8; for a Doom Fallout, D12.\n— Bent Bones\nYou change your body so it better suits your desires. In addition to SPIRIT, you may also take Stress in BULLETS; it ignores Protection from worn armor.",
+      "tier": "professional",
+      "className": "Подкодыш",
+      "classNameEn": "Codeling"
+    },
+    {
+      "id": "classes-card-48-154",
+      "kind": "ability",
+      "title": "Martial Art: Boundary Step",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          48
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Martial Art: Boundary Step\nCodelings adapted human combat systems to altered bodies. You are more place than person, and you remember this well.\nYou gain Mastery in the KILL Skill, triggered when you fight unarmed, with a combat knife, or with a heavy melee weapon. Your unarmed attacks now deal D6 Stress. When an enemy deals Stress to you, you may force them to move by one range band, or forbid them from moving until they receive Stress.\nMinor:\n— Prison\nWhen you deal Stress to an enemy who was moved or restrained in this scene, you may roll the Stress die one additional time and choose the best result.\n— Mercy Strike\nYou must prove every second that you are not a beast, even when people are already shooting at you.\nYour unarmed attacks, combat-knife attacks, and heavy-melee-weapon attacks may have the Nonlethal property. You must declare this before the check. When you nonlethally neutralize an opponent, restore D6 in RESOURCES.\n— Prophetic Parry\nOnce per scene, when you make an EVADE check, on a success you not only avoid receiving Stress, but also deal the same Stress die to the opponent.",
+      "tier": "professional",
+      "className": "Подкодыш",
+      "classNameEn": "Codeling"
+    },
+    {
+      "id": "classes-card-48-155",
+      "kind": "ability",
+      "title": "Demesne",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          48
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Demesne\nYou are no longer a spirit fleeing from problems in someone else’s body. You are a place again.\nChoose a Domain. All locations with this same Domain count as your demesne: you and your group do not receive Fallout on ASCEND checks while in them. Once per scene, you may say that the place recognizes and protects you. Choose an effect:\n— Move between this location and a neighboring one without needing an Ascent.\n— Deal D12 Stress with the Powerful property to all opponents.\n— Restore D8 in SPIRIT or MIND to all allies.\n— Hide the entire group from enemies until the end of the scene without requiring a check.\n— Ask three questions about the location; the GM answers honestly and with absolute precision.\nOnce, when your body dies, you are reborn in any demesne-location you have visited at least once, in the body of a passing madman or a sufficiently intact corpse. You keep all Skills, but not equipment. All contacts receive D6 Stress, because they find it difficult to get used to your new face.",
+      "tier": "elite",
+      "className": "Подкодыш",
+      "classNameEn": "Codeling"
+    },
+    {
+      "id": "classes-card-48-156",
+      "kind": "ability",
+      "title": "Fourth Generation",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          48
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Fourth Generation\nThe end of the world stands on the threshold, and you are one of the first spirits of the fourth generation — the one prophecy says is preparing to bring it. But an end is always the beginning of something new, and old laws no longer apply.\nThe restrictions of protective spells no longer affect you: you can lie and say the number four aloud. Once per scene, until the end of that scene, you may cancel any rule established by humans: for example, make money worthless, force a sentry to let everyone through, or remove the very idea of slavery from the minds of the People of Shards. You may cancel the reality of one of the Tower’s entities this way, but you yourself become bodiless forever, with no possibility of returning to a body.",
+      "tier": "elite",
+      "className": "Подкодыш",
+      "classNameEn": "Codeling"
+    },
+    {
+      "id": "classes-card-48-157",
+      "kind": "ability",
+      "title": "Fusion",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          48
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Fusion\nThe world of spirits and the world of people are as united around you as you are with your new body.\nYou receive one step less Stress from all sources, and killing you requires fire, silver, or mercury: you may refuse a Doom Fallout, but in that case your comrades will have to save you.",
+      "tier": "elite",
+      "className": "Подкодыш",
+      "classNameEn": "Codeling"
+    },
+    {
+      "id": "classes-card-50-158",
+      "kind": "ability",
+      "title": "Hack",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          50
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "1) Hack\nThrough your mastery of digital technology and your interactions with spirits, you can interfere with electronics.\nYou may make a TECH check to affect an enemy or an Ascent in one of the following ways:\n— Remove its Protection in one Resistance.\n— Remove its enemy move.\n— Force it to move one range band.\n— The next Stress it receives is automatically the maximum possible result on the die.\n— Reduce the Stress it deals by one step.\n— Reduce its danger by one step.\n— Increase the value of its loot by one step.\n— Ask a question about the character or location; the GM must answer honestly.\n— Deal D8 Stress with the Energy, Powerful, and Accurate properties.\nEach effect may only be used once during the same scene.",
+      "tier": "basic",
+      "className": "Паратехник",
+      "classNameEn": "Paratech"
+    },
+    {
+      "id": "classes-card-50-159",
+      "kind": "ability",
+      "title": "Chat with the Dead",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          50
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "1) Chat with the Dead\nOnce per scene, you may communicate with the recently deceased through text or voice chat.\nAsk them any question about what killed them or about their area of expertise. They always answer truthfully and grant you a help die on all INVESTIGATE checks until the end of the scene by giving you advice through the chat.\nNo check is required, but you always receive D8 Stress in SPIRIT if, by the end of the session, you have not found a way to lay the dead to rest or otherwise repay them.",
+      "tier": "minor",
+      "className": "Паратехник",
+      "classNameEn": "Paratech"
+    },
+    {
+      "id": "classes-card-50-160",
+      "kind": "ability",
+      "title": "Rebel",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          50
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "2) Rebel\nSome say being an enemy of corporations is stupid. You are convinced that it is even more stupid to call someone a friend when they give you work and then take both the result and most of the money.\nOnce per scene, when acting against a megacorporation — whether in direct combat, inciting security personnel to mutiny, or hacking a server — you do not receive Stress.\nOnce per session, after you have already seen signs of an enemy’s presence but before their identity has been declared, you may say that they are representatives of one of the corporations.",
+      "tier": "minor",
+      "className": "Паратехник",
+      "classNameEn": "Paratech"
+    },
+    {
+      "id": "classes-card-50-161",
+      "kind": "ability",
+      "title": "Custom Program",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          50
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "3) Custom Program\nYou prefer to write separate code for every task.\nWhen hacking a target at risky difficulty, on a success you may apply two Hack effects. At dangerous difficulty, you may apply three. On a failure, however, you receive twice as much Stress.\nEach time you succeed at such a hack, you gain the resource Security System Data, D10 CORPORATIONS. It has the Expensive property when sold to Paratechs.\nEach time you fail such a hack, other Paratechs learn from your mistakes and become willing to perform one favor for you. These favors accumulate without limit.",
+      "tier": "minor",
+      "className": "Паратехник",
+      "classNameEn": "Paratech"
+    },
+    {
+      "id": "classes-card-50-162",
+      "kind": "ability",
+      "title": "Mutual Aid",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          50,
+          51
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "4) Mutual Aid\nParatechs are extremely close-knit, and their specialized networks make it easy to find records of mutual-aid caches left behind in the Tower.\nOnce per scene, upon entering a location, you may say that you know where Paratechs hid a supply crate. You may either restore D10 in RESOURCES, or spend a D10 resource, item, or D10 Stress in RESOURCES to leave something there yourselves.\nIn the latter case, grateful Paratechs share information with you. The next time you enter a location, you may say that a Paratech is present there and ready to tell you about a profitable job.",
+      "tier": "minor",
+      "className": "Паратехник",
+      "classNameEn": "Paratech"
+    },
+    {
+      "id": "classes-card-51-163",
+      "kind": "ability",
+      "title": "Smart Weapon Master",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          51
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "5) Smart Weapon Master\nEvery weapon in your hands gains the Smart property.\nWhen using a weapon with this property, you may first make the check and deal Stress, and only afterward choose the target.\nA weapon that already had the Smart property deals one step more Stress.",
+      "tier": "minor",
+      "className": "Паратехник",
+      "classNameEn": "Paratech"
+    },
+    {
+      "id": "classes-card-51-164",
+      "kind": "ability",
+      "title": "Repel Spirits",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          51
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "6) Repel Spirits\nWith a TECH check, or by spending a great deal of time and a D8 or more valuable resource, you may drive evil spirits out of a single body at medium or close range.\nThis disables drones and turrets, deals D12 Stress with the Energy and Powerful properties to a Codeling, Gate Guard, or Soul Fluid, and functions as D10 FIX for SPIRIT or MIND when used on an ally.",
+      "tier": "minor",
+      "className": "Паратехник",
+      "classNameEn": "Paratech"
+    },
+    {
+      "id": "classes-card-51-165",
+      "kind": "ability",
+      "title": "Name Under Lock",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          51
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "7) Name Under Lock\nYou are securely protected from hacking and curses by layers of protective spells and complex software.\nOnce per scene, when you receive a Fallout in MIND or SPIRIT, you may refuse it and deal corresponding Stress to the enemy or Ascent that caused it:\n— D6 for a Minor Fallout.\n— D8 for a Major Fallout.\n— D12 for a Doom Fallout.\nThe Stress that caused the Fallout remains.\nYour name cannot be discovered through magical or technological means.",
+      "tier": "minor",
+      "className": "Паратехник",
+      "classNameEn": "Paratech"
+    },
+    {
+      "id": "classes-card-51-166",
+      "kind": "ability",
+      "title": "On Butterfly Wings",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          51
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "8) On Butterfly Wings\nYou receive the training and equipment required to fully enter the World of Information.\nOnce per scene, you may enter cyberspace. While in this state, you cannot perform actions in the real world that require checks, but you gain Mastery on all checks related to hacking or communicating with spirits.\nYou may leave this state whenever you wish, and automatically leave it whenever you receive a Fallout.",
+      "tier": "minor",
+      "className": "Паратехник",
+      "classNameEn": "Paratech"
+    },
+    {
+      "id": "classes-card-51-167",
+      "kind": "ability",
+      "title": "Digital Signature",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          51
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "9) Digital Signature\nYou enjoy leaving your calling card on hacked targets so they know exactly who they dealt with.\nWhenever you successfully use an ability related to hacking, you may leave a distinctive digital mark. Describe it.\nYou receive Stress in RESOURCES appropriate to the threat, representing your growing infamy among your enemies, but other Paratechs are delighted by your exploits and will perform one favor for you.\nThese favors accumulate without limit.",
+      "tier": "minor",
+      "className": "Паратехник",
+      "classNameEn": "Paratech"
+    },
+    {
+      "id": "classes-card-51-168",
+      "kind": "ability",
+      "title": "Coordinator",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          51
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "10) Coordinator\nYou served as an operational Paratech, a soldier of network-centric warfare.\nYou can see everything your comrades see through action cameras mounted on helmets or body armor, cybernetic eyes, or other devices.\nYou may give and receive help at any range.",
+      "tier": "minor",
+      "className": "Паратехник",
+      "classNameEn": "Paratech"
+    },
+    {
+      "id": "classes-card-51-169",
+      "kind": "ability",
+      "title": "Drone Backpack",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          51,
+          52
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "1) Drone Backpack\nYou carry a backpack containing a particular type of drone. It serves as their docking station, carrying fuel and ammunition reserves as well as communications equipment.\nIt occupies one backpack slot. You may change the drone type in any oasis.\nYour basic drone is a Pentacopter Swarm.\nRecon Pentacopter\nOnce per scene, when you enter a new location, you may launch a pentacopter and ask the GM one question about traps, hidden passages, surveillance, security systems, or strange activity. They must answer honestly.\nYou may order the pentacopter to make a ramming attack, destroying itself on impact. You receive an additional D10 Stress in RESOURCES even if the attack succeeds.\nRamming Attack\nMinor: Strike Drone\nA large winged drone with a built-in assault rifle, spotlight, and aiming-assistance systems.\nOnce per scene, it may illuminate a target with an infrared beam. The next attack against that target is made with Mastery. If the attacking weapon has the Smart property, it also deals one step more Stress.\nMinor: Cargo Drone Swarm\nSeveral larger pentacopters with improved rotors, manipulators, and magnetic clamps.\nYou ignore resource properties that make them harder to carry, as the drones transport them for you.\nOnce per scene, you may move yourself or an ally with a cargo drone without a check, for example to cross a chasm or reach a high platform.\nMinor: Esoteric Drone\nA swarm of drones resembling fireflies, with wings made of nanopolymer film and carbon-fiber shells.\nOnce per scene, you may release the esodrones at a place of death, anomaly, artifact, spirit, damaged computer, or strange mechanism and ask the GM one question:\n— Who or what acted here recently?\n— What does this place want?\n— What here is most dangerous to the soul, mind, or technology?\n— What price must be paid to interact safely with this object?\n— What is hidden here not physically, but spiritually or informationally?\nIn addition, when making a CAST, INVESTIGATE, or TECH check to understand a spirit, anomaly, ghost, or magical item, you roll with Mastery.",
+      "tier": "professional",
+      "className": "Паратехник",
+      "classNameEn": "Paratech"
+    },
+    {
+      "id": "classes-card-52-170",
+      "kind": "ability",
+      "title": "Shamanic Dances",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          52
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "2) Shamanic Dances\nYou know ritual sequences of movements, gestures, drumbeats, and interface flashes that make the World of Information respond faster.\nIf you are able to move and are not trying to remain silent, you may spend one minute and make a TECH check to enter the dance.\nUntil the end of the scene, your Hack may apply two different effects instead of one.\nMinor: Squad Rhythm\nWhen you enter the dance, choose an ally. Their next ASCEND, EVADE, or KILL check is made with Mastery. You guide them through the correct motions with gestures, interface flashes, and dancing red butterflies.\nMinor: Reverse Beat\nOnce per scene while dancing, when an enemy or Ascent uses a magical, technological, or anomalous ability, you may immediately make a TECH check.\nOn a success, the ability still takes effect, but its source receives D8 Stress with the Energy property.\nMinor: Dance on the Wires\nYou may enter a shamanic dance even while fighting, running, falling, or exchanging fire.\nThe first Stress you receive from failing a Hack during the scene is reduced by one step.",
+      "tier": "professional",
+      "className": "Паратехник",
+      "classNameEn": "Paratech"
+    },
+    {
+      "id": "classes-card-52-171",
+      "kind": "ability",
+      "title": "Master of Charms",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          52,
+          53
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "3) Master of Charms\nYou know how to create and enchant protective charms.\nLight-alloy animal figurines, carbon-fiber arrowheads, circuit boards with secret names soldered into their traces — all of these are useful in the Tower.\nYou may spend a D8 or more valuable resource to create a minor charm, and a D10 or more valuable resource to create a major charm.\nThey occupy a miscellaneous armor slot and allow you to refuse one Fallout in SPIRIT per scene: a Minor Fallout with a minor charm, or a Major Fallout with a major charm.\nMinor: Personal Proxy\nCharms may now be attached to weapons. They occupy a modification slot.\nOnce per scene, a minor charm allows you to refuse a Minor Fallout related to the weapon becoming unusable, while a major charm may refuse a Major Fallout.\nMinor: Eye for an Eye\nWhen you accept a Fallout that you could have prevented with a charm, you deal the same amount of Stress back to the source that dealt it to you.\nMinor: Invisible Threads\nYou may spend a charm’s use to protect an ally from a Fallout instead of yourself.\nYou always know the emotions experienced by allies wearing your charms.",
+      "tier": "professional",
+      "className": "Паратехник",
+      "classNameEn": "Paratech"
+    },
+    {
+      "id": "classes-card-53-172",
+      "kind": "ability",
+      "title": "Wisdom of the Data World",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          53
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "4) Wisdom of the Data World\nOnce per session, while in an oasis, you may say that someone comes to you seeking advice.\nYou receive a D8 resource as payment, but you must give genuinely useful advice.\nMinor: Do Not Whisper\nPeople fear you as a shaman because of your connection to spirits.\nOnce per session, until the end of that session, you may declare that nervous rumors about you are circulating in the oasis you are currently in.\nWhile there, you gain +4 slots and +3 Protection in RESOURCES.\nMinor: Friendly Advice\nYou may grant wisdom, but not abuse it. The spirits will answer another person’s question, but not your own.\nWhen helping an ally with INVESTIGATE, TECH, FIX, or TALK checks, you grant them two help dice instead of one.\nMinor: Shamanic Circle\nYou may consult other wise Paratechs, remotely or by gathering in person as a shamanic circle.\nOnce per session, you may declare that whenever you deal Stress to a target whose Resistance can be reduced by INVESTIGATE, TECH, FIX, or TALK, that Resistance is also reduced by D4.\nThis represents your preparation against the threat.",
+      "tier": "professional",
+      "className": "Паратехник",
+      "classNameEn": "Paratech"
+    },
+    {
+      "id": "classes-card-53-173",
+      "kind": "ability",
+      "title": "Martial Art: Kiron Kirayn Kiret",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          53
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "5) Martial Art: Kiron Kirayn Kiret\nYou gain Mastery in the KILL Skill when fighting unarmed or with a combat knife.\nYour unarmed attacks now deal D6 Stress.\nWhenever you deal Stress with an unarmed attack or combat knife attack, you may apply one Hack effect to the enemy.\nMinor: Virus in the Wound\nIf the target has already been affected by your Hack during this scene, your attacks against it deal one step more Stress.\nMinor: Quick Hack\nYou may take D6 Stress in SPIRIT to treat any Hack check as standard difficulty.\nMinor: Automatic Protocols\nOnce per scene, when an enemy moves into close-combat range with you, you may apply one Hack effect to them without making a check.",
+      "tier": "professional",
+      "className": "Паратехник",
+      "classNameEn": "Paratech"
+    },
+    {
+      "id": "classes-card-53-174",
+      "kind": "ability",
+      "title": "Enter the World of Information",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          53
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "1) Enter the World of Information\nYou leave your body behind and enter the World of Information, weaving yourself into the dance of program code.\nAfter every check, even a failed one, you may additionally apply a Hack effect as though you had performed it separately.\nYou ignore Stress and Fallout in MIND.\nOnce per scene, without a check, you may order a machine — for example a drone, camera, or turret — to come under your control.",
+      "tier": "elite",
+      "className": "Паратехник",
+      "classNameEn": "Paratech"
+    },
+    {
+      "id": "classes-card-53-175",
+      "kind": "ability",
+      "title": "Infostrike",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          53
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "2) Infostrike\nThe power of the corporations will fall, and very soon. You have done a great deal to make that happen.\nYour entire group ignores Stress and Fallout in RESOURCES, as corporations withdraw from the Tower following the nationalization of their assets.\nGoods and services in oases are now free. You may only occasionally need to convince merchants that you truly need them.\nOnce per session, you may say that a grateful Paratech you meet agrees to perform a highly useful service for you free of charge.",
+      "tier": "elite",
+      "className": "Паратехник",
+      "classNameEn": "Paratech"
+    },
+    {
+      "id": "classes-card-53-176",
+      "kind": "ability",
+      "title": "Neither Truth nor Lies",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          53
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "3) Neither Truth nor Lies\nInformation, matter — none of it means anything. There is not even illusion. Not even a mirage.\nYour Hack effect may now be applied to any number of targets in a scene.\nYou ignore Stress and Fallout in SPIRIT.\nOnce per session, you may erase any idea from a GM Character’s past by declaring that it was staged and that all evidence was fabricated.\nYou may erase one of the entities of the Tower by declaring that it was merely the invention of several fringe cults. It ceases to exist — but memories of you are now fake as well, and every piece of evidence proving you ever existed was generated by a neural network.\nNations\nBelow is a list of some of the peoples of Zeyneyn. They are the largest and most influential, but there are dozens of such ethnic groups in the world, not to mention regional differences within the larger peoples.\nPeople of Knives\nDomain: THICKET\n“This is the greatest trial we could have been given. You’ll see — flowers will bloom on the black oaks.” First Son of the Third Daughter, acclaimed writer of the People of Knives.\nHistory\nHow humanity came to be — whether created by God, arriving from other planets, or evolving from a local beast — no longer matters at all.\nAs ancient humans wandered, they carved out a path to survival with spear and bow, until eventually they reached the Black Forest, a part of the continent separated from the rest of the land by a mountain range.\nThe Black Forest is densely covered in trees that let almost no light through. In their shadows lurk magical monsters whose sheer variety of ways to kill is enough to stagger the imagination.\nBut humanity did not give up.\nThe spear was followed by the sword, the sword by the musket, the musket by the assault rifle. The Black Forest never intended to retreat or submit, but people still won themselves a place within beacon-cities, which pour out as much light as they possibly can.\nCulture\nWarriors of the People of Knives who have devoted themselves to battle use the war cry “Dli ikt farir!”, which in modern language means “The Knives are coming!”\nThe language of the People of Knives is growling, short, and precise.\nThe People of Knives address men and women, regardless of age, as Kit and Leir respectively.\nMembers of other military formations are addressed as Riidi.\nMembers of one’s own organization, regardless of rank, are addressed as Riida.\nReligion\nThe People of Knives believe in a single God who died in battle against Evil at the dawn of time and was shattered into countless pieces.\nAnything can be considered one of these fragments: a powerful magical artifact, a person of extraordinary genius, or even a song that moves someone deeply.\nThe sacred symbol of the God of the People of Knives is an oil lamp.\nAccording to their doctrine, humanity was born from one such fragment — specifically, from God’s combat knife.\nEvil in the religion of the People of Knives is universal, abstract, and impersonal. It is not represented by dark spirits or demons, but by something entirely devoid of consciousness.\nThe People of Knives spend longer in prayer than any of the other peoples. They spread their traditional Lart cloak across the floor and sit upon it, blindfolding themselves so that they may sink into complete darkness.\nNames\nNames among the People of Knives are simple and practical: every person is named according to their birth order within the family.\nIn informal speech, a person might simply be called First, Third, or Two-Three.\nA full name adds the birth order of the person’s father. For example:\nThird Daughter of the First Son\nAmong noble families whose genealogies have been preserved for centuries, a name may consist of an entire numerical sequence.\nFor example, 112311232 would mean:\nFirst Son of the First Son of the Second Son of the Third Son, and so on.\nThe People of Knives greet one another and say farewell by wishing good health upon the other person’s family.\nAppearance\nThe People of Knives have pale skin and white hair. Their eyes are usually blue or gray.\nMore than any other people, they wear the protective charm known as a Tla: a cube, sphere, and pyramid carried on a cord or braided into the hair.\nThey always wear the traditional Lart cloak, made from extremely durable waterproof gray fabric. It can be used as a blanket for the night, as material for starting a fire, or even as an improvised bandage when necessary.\nThe Lart is fastened with a sword-shaped fibula.\nPeople of Iron\nDomain: HORIZON\n“Live tomorrow, or die today.” — propaganda poster of the People of Iron\nHistory\nThe People of Iron have been highly developed since ancient times. Mathematics, medicine, and black powder spread from their lands, and it was here that the first great states arose and survived into the modern age, eventually uniting into what is now known as the People of Iron.\nCentered around oases, these states communicate by means of armored trains capable of fighting off both the monsters of the deserts and their bandits. In honor of this, the People of Iron cover themselves in elaborate tattoos depicting railway tracks.\nCulture\nThe People of Iron address others by name, or simply use the informal “you.”\nTheir culture contains a widespread belief that humanity originated from veins of ore. This is the source of their own name — the People of Iron — and even their language is called the Iron Language when translated into the common tongue.\nReligion\nThe People of Iron are not superstitious. Their religious practice contains neither gods nor omens. They do, however, still carry charms, fully aware of their practical magical power.\nInstead, the people of the deserts revere ancient heroes with an almost fanatical devotion. Children and armored trains are named after them, and their deeds are adapted into films even thousands of years later.\nEvery week, to honor the heroes, people bake a traditional flatbread called sitikh, made from flour, water, and spices. It is believed that on this day the heroes return to see what is happening among the living and to share their meal.\nThe last true heroes are believed to have died roughly four hundred years ago, during the Sashat War, at the height of the age of line infantry tactics or shortly afterward.\nRevered Heroes\nHonor of the Wisdom of Strength\nA hero from the northern deserts, once regarded as barbaric lands famous for their harsh people and rich metal deposits.\nWisdom lived a thousand years ago. Beginning as a simple handler of shtish, he rose to become king of the northern deserts. An ancient prophecy of a shepherd-king, a dynastic crisis, and his tremendous physical strength all came together, allowing him and his loyal band of warriors to seize and hold power.\nHe made peace with the southern deserts, the coastal kingdom, and the People of Mountains, creating the People of Iron much as they exist today.\nHe died during a campaign of conquest in the south.\nSecond Son of the Second Son\nThe only foreigner revered as one of their heroes.\n“Two-Two” was a foreign military adviser during the Sashat War, serving the king of the People of Iron. He became famous for tactical genius bordering on prophecy, as well as an extraordinary gift for showing off. On one occasion, Two-Two shocked an artillery commander by lighting a cigarette from a cannon.\nHis greatest feat is considered the capture of Sashat, which brought the war to an end. Through a nighttime maneuver and flawlessly calculated sapper tunnels, he lost no more than a dozen soldiers during the entire assault.\nIn old age, while serving as a general in the army of the People of Knives, he was assassinated by conspirators. They loaded the cannon he used to light his cigarette with ten times the normal amount of powder. The explosion killed Second Son as well as two artillerymen.\nThe newest text also lists other revered names, including Truth of Pride, The Man in the Shining Helmet, Readiness to Praise, Peace of Courage, and Joy of Rebirth, though the retrieved fragment does not preserve their complete descriptions well enough for me to translate them without inventing missing material.\nNames\nNames among the People of Iron consist of lofty words such as Honest, Wise, or Noble.\nA full name consists of two parts: the chosen name of one parent followed by the person’s own name. Thus, a name such as Confidence of Truth means that the person themself is called Truth, while one of their parents is called Confidence.\nPeople of Poisons\nDomain: WASTELAND\n“Death is the easy path. Heroes do not seek it.” — Calling Whistle, hero of the People of Poisons\nHistory\nThe People of Poisons broke away from the People of Knives many thousands of years ago. After an exhausting war within what had once been a single people, the Lamp-King cursed the People of Poisons and exiled them to the endless steppes of the West. Because of his curse, they are doomed to wander forever. They cannot find a home or stop along their endless road without illness and misfortune beginning to plague them.\nFor many years they roamed the steppes, raising the RRR bird and fighting both among themselves and against other peoples. A warlike people, they often served as mercenaries—or as entire mercenary armies—in conflicts throughout the rest of the world.\nIn the new technological age, the People of Poisons constructed massive walking cities that travel from place to place.\nCulture\nThe language of the People of Poisons has no vowels, and its consonants are often repeated. No other sounds are placed between them, but other peoples frequently insert an arbitrary repeated vowel to make borrowed words easier to pronounce. Thus, the RRR bird becomes the RERERE bird or the RARARA bird.\nThe People of the Steppes address children as GGG, adults as NNN, and parents—not only their own—as TTT.\nReligion\nThe People of Poisons believe in spirits that inhabit every object surrounding a person. Interaction with the spirits of places and abstract concepts forms the basis of many of their technologies. For example, they create interactive displays upon which spirits can produce text, as well as cybernetic implants whose control can be transferred to a spirit through a special chip after an appropriate ritual.\nNo one disputes the existence of spirits, but only the People of Poisons worship them, feed them from their own meals, and dedicate songs to them.\nTo protect themselves against evil spirits, the People of Poisons practice scarification across their entire bodies. Once healed, these scars usually take the form of raised bumps or long lines.\nNames\nMembers of the People of Poisons have four names.\nThe first is the true name. It is given at birth and known only to the person and their parents. This is believed to protect them from the influence of evil spirits.\nThe second is the childhood name, received at the same time. A person bears it until undergoing an initiation rite, during which they earn the right to use an adult name.\nThe final name is the clan name, taken after marriage. A person may choose the clan name of either their father or their mother.\nAccording to etiquette, a person may only be addressed by the name that is currently appropriate to them. In close relationships, however, an earlier name may be used. Parents might call an initiated daughter by her childhood name, for example, while one spouse might address the other by their adult name rather than their clan name.\nEach name consists of two words metaphorically connected to nature, such as Wind of Change or Winged Fire.\nAppearance\nMetallic-gray hair is most common among the People of Poisons and does not change with age. Their eyes are usually the same color, though they sometimes have a blue or greenish tint. Scarification is used for protection against spirits.\nThe clothing of the People of Poisons—including those who venture into the Tower—always incorporates plenty of leather and fur.\nMechanics who maintain the walking cities wear ritual black coveralls covered in dozens of different patches awarded for achievements of varying importance. Ten years of service, for example, earns a golden square patch bearing a gear, while rescuing a comrade from danger earns a turquoise triangular patch bearing a feather.\nThe People of Poisons carry small bags of soil gathered from places they have visited. These are attached to a special belt known as an RVP.\nThe TsTsTs is the national two-handed sword of the People of Poisons. Its length and the thrusting shape of its blade allow it to be used both on horseback and on foot. Traditionally, its grip is wrapped in cord made from medicinal herbs.\nPeople of Edges\nDomain: WAVES\n“The sea can be forded, and the ocean is only knee-deep!” — battle cry of the People of Edges\nHistory\nSince ancient times, the People of Edges have been the driving force behind civilization’s trade, transporting goods both over land and across the sea. Stereotypes often portray them as greedy merchants, but many among them value a worthy adventure more highly than a well-stuffed purse.\nIn the new age, the People of Edges have become the driving force behind the entertainment industry. The finest games, films, and books are created in their lands. Many authors even venture into the Tower in search of inspiration.\nCulture\nThe People of Edges have never had a traditional warrior aristocracy. Through personal achievement, a warrior brought glory to their ancestors rather than to their descendants.\nTheir language contains many vowels, as well as numerous hissing and whistling sounds.\nAs a greeting, members of the People of Edges silently bow while maintaining eye contact. They must bow to everyone of equal or higher status, always proceeding from left to right.\nBecause of their fixation on luck, the People of Edges observe countless minor omens. They can interpret almost any small detail as a sign of Lady Luck’s favor or displeasure.\nA greeting bow performed from right to left\nBad luck. This is usually associated with disgraced ancestors who send curses upon the living.\nA lost fork\nGood luck. The People of Edges once used single-tined forks to pierce hardtack.\nOversalted food\nBad luck. It is believed that salt brings food closer to the dangerous, untamed sea, thereby spending upon the meal the luck meant for a voyage.\nA weapon misfiring\nGood luck. Folklore historians associate this with another tradition that forbids killing an enemy whose weapon has broken.\nHearing birds when none can be seen\nBad luck. Many believe this omen comes from coastal fogs, which carry sound while concealing the shore.\nA sudden change in the weather\nGood luck. This belief almost certainly arose because rain was the primary source of clean fresh water for sailors in ancient times.\nRust on a weapon\nBad luck. According to tradition, a properly maintained weapon will only rust when a ship has sprung a leak and the moisture in the air has risen.\nA headache\nGood luck. No one knows why.\nA medicinal brew tasting sweet\nBad luck. Sweet flavors are considered strange and unpleasant in the culture of the People of Edges.\nA child greeting guests instead of the head of the household\nGood luck. It surely means that the hosts are preparing a magnificent feast.\nGM Advice\nInvent new omens together with the players as you go. Write them down and bring them back again and again!\nReligion\nThe People of Edges believe in Lady Luck, the patron goddess of probability.\nIn ancient times, sailors dedicated songs to her and played ritual games with dice and cards. Today, they pray to her before every wager or coordinate calculation. Members of the People of Edges often wear dice consecrated in seawater in a visible place as lucky charms.\nThey believe that after death, people enter an endless gambling hall where they celebrate, play games of chance, and spend time with one another. Every significant deed performed by one of their descendants adds more chips to their account for future wagers.\nNames\nThe names of the People of Edges consist of numerous indeclinable words that should have as little connection to one another as possible. This is believed to frighten away evil spirits.\nOne such name might be Reverse Spiralberry Dash.\nIn ordinary life, this lengthy name is usually replaced by a short nickname based on a person’s appearance or personality, such as Squeaky, Scarred, or Beanpole.\nEnslaved people are deprived of their names but continue to bear their nicknames.\nAppearance\nMembers of the People of Edges have tanned skin, large eyes, a prominent straight nose, and a square chin.\nThe People of Edges wear their hair long, weaving charms and medicinal herbs into its strands. Their hair is the color of hay, while their eyes are yellow or green.\nAmong the People of Edges, long hair represents not only wealth and moral virtue but also legal status. Slavery continues to flourish in their society, and enslaved people have their heads shaved or their hair cut short. Cutting one’s hair is therefore an act that strips a citizen of their rights.\nThe People of Edges prefer revealing clothing with openings that can be closed by flaps if the wind rises. They rarely wear sleeves, preferring to leave their arms free. All their traditional clothing is close-fitting, preventing it from catching on anything aboard a ship. Because of the climate and their practicality, the People of Edges also favor shorts.\nTo protect their faces from the sea wind, the People of Edges wear masks shaped like the skulls of coastal birds, made from wood or plastic. Over time, these masks became traditional charms. Even far from the Sea or inside the Tower, they are often carried on the shoulder, chest, or belt.\nThe Sirivirst is the traditional bladed weapon of the People of Edges. It is traditionally carried by ship crews, though it is also common in the military and among civilians. It has an elaborate basket hilt and a grip assembled from strips of leather.\nThe Sirivirst is paired with a flexible shield known as a Sastakh. Attached to the belt, it is wrapped around the arm and used for parrying.\nRed threads are another common national charm.\nEquipment\nCorporate Equipment Styles\nThe appearance of equipment differs between companies, as do their typical names and the properties that frequently—though not necessarily—appear on their products.\nRti Kti Dann\nProducts: All sectors.\nSharp angles, pronounced protrusions, clean edges, large amounts of metal, and bright-red accents.\nProducts are named using alphanumeric codes such as U-1, S-12, or V-9.\nTypical Properties: Reliable, Accurate.\nIsland Companies\nProducts: All sectors.\nRounded forms that flow into one another, neutral light colors, and monolithic polymer housings.\nProducts receive dreamy, abstract, poetic names such as Devotion, Significance, or Youth.\nTypical Properties: Automatic, Dueling.\nWeapons of the World\nProducts: Weapons, implants, and military equipment.\nLarge, straight silhouettes composed of broad squares, usually in dark colors.\nProducts receive excessively serious and painfully pompous names that often have little connection to the item itself, such as Warrior-King, Incinerator, or Watchful Terror.\nTypical Properties: Heavy, Powerful.\nDVCZ\nProducts: Weapons, implants, and military equipment.\nRefined traditional forms with wooden and bone inserts.\nProducts receive simple but evocative single-word names such as Expedition, Parry, or Bandolier.\nTypical Properties: Stable, Balanced.\nSirivirst Fakhir\nProducts: Melee weapons and assault shields.\nGilded components, black metal, and thickened grips.\nProducts are named after herbs, animals, and traditional weapons, such as Ikt, Khokhskhekh, or Sirivirst.\nTypical Properties: Dueling, Armor-Piercing.\nEngineering Solutions Systems\nProducts: Construction tools and engineering equipment.\nSimple silhouettes with very few decorative details. Instructions are printed directly onto the tools.\nProducts have literal functional names such as Siege Hammer, Fortification Kit, or Belt-Fed Nailgun.\nTypical Properties: Powerful, Stable.\nSecond Sun\nProducts: Energy weapons, batteries, and lighting equipment.\nElongated, distorted forms made from colored metal and incorporating hollow components.\nProducts are named after theatrical and dramatic terms, such as Intermission, Study, or Premiere.\nTypical Properties: Energy, Spread.\nUnified Protective Equipment\nProducts: Personal protection and rapidly deployed fortifications.\nNeutral professional forms with ergonomic, adjustable components.\nProducts receive concise names symbolizing strength and durability, such as Rock, Tree, or Surf.\nTypical Properties: Reliable, Camouflage.\nElbow Sound Systems\nProducts: Headphones, radios, and microphones.\nColored polymers, gilded inserts, and large quantities of printed text.\nProducts are named with unexplained abbreviations such as OBRA, ZSAMRV, or YAOVE-3.\nTypical Properties: Energy, Reliable.\nTwo Hundred\nProducts: Bioimplants, food, medicine, and chemical weapons.\nAll packaging follows the same design: white with a red stripe and plain lettering. Bioimplants also bear a red stripe.\nProducts receive entirely literal names without embellishment, such as Arm, Eye, Energy Drink, or Cough Tablets.\nTypical Properties: Lingering, Fire.\nPrecision and Nobility\nProducts: Trains, implants, and repair tools.\nLarge, grotesque forms made from black metal, with exposed mechanisms and elements resembling antique armor.\nProducts are named after train components or respected personal qualities, such as Whistle, Valor, Boiler, or Courage.\nTypical Properties: Heavy, Powerful.\nParashtruk Lisirist\nProducts: Equipment and implants for Paratechs, digital technology, and navigation equipment.\nThe company copies the designs of other manufacturers, allowing Paratechs to combine its products with implants from different companies.\nProducts are named after local spirits, such as Leshy, Vodyanoy, Gorodovoy, or Polevik.\nTypical Properties: Unreliable, Powerful.\nBasic Equipment\nIf you do not want to spend time selecting equipment in detail, use the basic loadout below. Rules for fully customizing a character’s inventory follow afterward.\nWeapons\nRti Kti Dann 9 mm A-1 — D8\nDamage: D6 Range: Close combat, medium Properties: Reliable Modification Slots: 2\nA standard 9 mm pistol.\nRti Kti Dann 7.62 mm V-7 — D10\nDamage: D8 Range: Close combat, medium, long Properties: Automatic, Awkward at close combat Modification Slots: 2\nA standard assault rifle popular among the private armies of the People of Knives.\nEquipment\nParashtruk Lisirist Portable Radar — D8\nD8 ASCEND Modification Slots: 2\nMedical Pouch — D6\nD6 FIX BULLETS\nSimple equipment used to stabilize a wounded person.\nArmor\nPlate Carrier with Polymer Plates — D8\n+1 Protection and +1 slot in BULLETS.\nA protective vest covering the chest.\nAssault Backpack — D10\n+1 Protection and +1 slot in RESOURCES.\nA compact pack designed to be worn during combat.\nSpecial Clothing — D6\nClothing with the Camouflage (X) Property.\nFor most Domains, this means literal military camouflage. For certain Domains, it may instead be another appropriate type of clothing: an ornate and luxurious traditional costume for the WORLD Domain, for example, or formal attire for the CORPORATIONS Domain.\nOccupies a special armor slot.\nResources\nGold Coins — D6 WORLD\nA simple and easily exchanged Resource.\nModification Kit — D6 ARMY\nAllows you to add a Property to a piece of equipment or remove one of its negative Properties.\nDetailed Equipment Selection\nIf you want to build your character’s inventory in greater detail, choose:\nTwo D10 items.\nThree D8 items.\nFour D6 items.\nYou may combine two dice to obtain an item one die step more valuable. You may also spend D6 dice to purchase modifications for equipment.\nCreating an Item\nFirst, choose the item’s value die, from D6 to D12. This determines both its effectiveness and its purchase price.\nAn item usually—but not always—deals or restores Stress equal to its value die.\nIf it is a weapon or another item limited by distance, choose the Ranges at which it can be used: close combat, medium, or long.\nChoose the Skill used with the item, such as ASCEND or FIX. Certain Skills require an additional choice. FIX equipment, for example, must specify the Resistance in which it restores Stress.\nNext, take a D6 Property Die.\nReduce this die by one step for every positive Property added to the item. Increase it by one step for every negative Property.\nThere is no strict limit to the number of Properties an item may have, but an excessive number will become difficult to track and will almost certainly slow down scenes.\nFor each step by which you reduce the Property Die, you may choose one of the following:\nIncrease the item’s Stress by one step.\nAdd another Range.\nAdd another Property.\nAdd two Modification Slots.\nAdd another Skill with which the item can be used.\nAdd another Resistance to a FIX item.\nTo increase the Property Die by one step, you may:\nAdd a negative Property.\nReduce the item’s Stress by one step.\nThese rules apply to mass-produced and master-crafted items. Improvised equipment may work differently—for example, beginning with a D4 Property Die instead of D6, or possessing an Unreliable Property that cannot be removed.\nIf you do not want to spend time creating new items, use the extensive Equipment List in the following chapter.\nCreation Example\nParashtruk Lisirist Portable Radar “King of the Feather Clouds”\nThe radar will have D10 effectiveness and a D10 price. Without any Properties, it is a D10 ASCEND item.\nI reduce its ASCEND die to D8 in exchange for an additional Property. This increases the Property Die, allowing me to add Reliable, leaving D6, and Powerful, leaving D4.\nI also want the radar to scan machinery, so I represent this by adding the TECH Skill. The Property Die is now exhausted.\nMiscellaneous Equipment\nYour character is assumed to carry a large amount of miscellaneous equipment useful in different situations.\nThese items have D4 effectiveness and allow actions that would normally be impossible without appropriate tools. Checks may still be attempted without them at D4 effectiveness.\nExamples include:\nKILL\nTactical gloves, boxing wraps, a switchblade, or a figurine of a patron spirit clutched inside the fist.\nCAST\nMetal occult tattoos, an enchanted smartphone, a box filled with wooden berries, or a flask containing a decoction of mushrooms and fish.\nFIX\nRed electrical tape, an individual field dressing and tourniquet, plastic cable ties, painkillers, a hemostatic bandage, herbs for a censer, or an anti-curse flute.\nASCEND\nA chemical light, flare, flashlight, wrist-mounted radar, dowsing rod, divination cards, a coin used to choose between branching paths, or a grappling hook.\nHIDE\nA flexible camera, throwing stone, garrote, directional microphone, sound-emitting beacon, or camouflage face paint.\nTECH\nA carabiner and paracord, a smartphone with professional applications, a pocketknife, multitool, or smart glasses.\nTALK\nA musical instrument, joke book, or makeup kit.\nEquipment List\nEach character may carry up to:\n10 Resources.\n4 pieces of Equipment, such as weapons, medical kits, or navigation tools.\n4 pieces of Protection equipment.\nProtection assigned to the same slot cannot be duplicated. For example, you cannot wear two helmets or two sets of charms.\nThe value shown in parentheses is the item’s price when buying or selling it.\nSome items have Modification Slots. While in an oasis, you may spend a D6 item or take D6 Stress in RESOURCES to add another Property to an item. The number of added Properties cannot exceed the item’s number of Modification Slots.\nA suppressor might add the Quiet Property, for example, while an extended barrel might add Accurate.\nA modification can also occupy a slot to remove a negative Property. A lightweight polymer frame might remove Heavy, while an assault grip might remove Awkward.\nPistols — D8\nCompact weapons intended for medium distances.\nIsland Companies 10 mm “Deprivation”\nDamage: D6 Range: Close combat, medium Properties: Quiet, Powerful\nA suppressed pistol chambered for a large 10 mm cartridge and equipped with a system that traps the propellant gases.\nA selector allows it to operate in two modes: semiautomatic fire or manual cycling. The second mode prevents the weapon’s automatic mechanism from producing any sound.\nIsland Companies 7 mm “Devotion”\nDamage: D6 Range: Close combat, medium Properties: Automatic Modification Slots: 2\nA submachine gun equipped with a recoil-balancing system.\nRti Kti Dann 15 mm A-5\nDamage: D8 Range: Close combat, medium Properties: Awkward at close combat, Powerful\nAt the beginning of combat or after using a Reload Tactic, choose one additional keyword for the weapon:\nArmor-Piercing (2).\nFire.\nEnergy.\nAn imposing semiautomatic smoothbore pistol chambered for a short 15 mm cartridge.\nOptimized combustion allows it to use a minimal propellant charge while retaining the caliber of a full-sized hunting shotgun from ancient times. An exceptionally broad selection of ammunition is produced for this pistol.\nRti Kti Dann 9 mm A-1 — Standard and Self-Defense Models\nDamage: D6 Range: Close combat, medium Properties: Reliable Modification Slots: 2\nThe self-defense model instead has the following Properties:\nReliable, Concealable, Awkward at medium range.\nA semiautomatic 9 mm pistol. A smaller self-defense version is also available, distinguished by its reduced ammunition capacity and shorter barrel.\nDVCZ 9 mm “Anticipation”\nDamage: D10 Range: Close combat, medium Properties: Burst\nReload Tactics performed with this weapon are one step harder.\nA small-production-run pistol made from premium materials, with wooden or bone grip panels. Its defining feature is its ability to fire five-round bursts.\nInstead of a magazine, the pistol uses a large replaceable barrel assembly preloaded with caseless cartridges. The rounds are stacked one behind another and fired using electrical ignition.\nCombat Knives — D8\nSmall melee weapons.\nIsland Companies “Pride”\nDamage: D8 Range: Close combat Properties: Armor-Piercing (2) Modification Slots: 2\nA ceramic knife with a 15 cm diamond-coated blade, especially effective for cutting attacks. It remains sharp for a long time but cannot be resharpened.\nThe grip is made from gray plastic and includes a lanyard hole. The knife comes with a plastic sheath that can be attached to a load-bearing rig.\nRti Kti Dann “Ikt”\nDamage: D8 Range: Close combat Properties: Powerful Modification Slots: 2\nA modern version of the traditional combat knife of the People of Knives. It is made from complex powdered alloys combining exceptional strength and hardness.\nIts weight and 40 cm blade allow it to deliver serious chopping blows. The grip and sheath are made from stabilized wood. Customers can specify the engraving they want on the Ikt when ordering it through the company website.\nThis model’s vibration drive cycles through frequencies more quickly, allowing it to cut materials of differing densities more effectively.\nSirivirst Fakhir “Sirivirst”\nDamage: D8 Range: Close combat Properties: Dueling, Balanced\nA shortened version of the traditional bladed weapon of the People of Edges. Its slightly curved 30 cm blade contains a standard vibration drive that increases the effectiveness of its strikes.\nSirivirst Fakhir vibration drives use a patented extended frequency range, making it easier to cut both extremely hard and extremely soft targets.\nAn elaborate basket guard protects the wielder’s hand.\nSirivirst Fakhir “Khokhskhekh”\nDamage: D10 Range: Close combat Modification Slots: 2\nA combat version of a broad reed-cutting knife, named after a plant found in the bays of the People of Edges.\nIts 50 cm recurved blade and thick spine make it capable of delivering powerful chopping blows, but the weapon is unsuitable for fencing or elaborate martial arts.\nInstead of a vibration drive, it contains an inertial fluid inside the grip and part of the blade. This improves its balance and allows faster attacks.\nAssault Rifles — D10\nPrimary combat weapons.\nRti Kti Dann 7.62 mm V-7\nDamage: D8 Range: Close combat, medium, long Properties: Automatic, Awkward at close combat Modification Slots: 2\nA standard assault rifle popular among the private armies of the People of Knives. It is distinguished by its long effective range and tremendous stopping power.\nImproved propellant and a polymer cartridge case allow the ammunition to be smaller while increasing bullet velocity.\nThe grip, stock, and handguard are traditionally made from stabilized wood, although lighter versions with nanopolymer furniture are also available.\nThe V-7 is highly modular. Many companies manufacture replacement grips, receiver covers, trigger assemblies, and other components for it.\nRti Kti Dann 11.5 mm V-9\nDamage: D10 Range: Close combat, medium, long Properties: Automatic, Powerful, Awkward at close combat, Heavy\nA reinforced assault rifle chambered for the 11.5×46 mm cartridge. It is normally fired semiautomatically against targets in medium or heavy infantry armor, though it also possesses an automatic mode.\nIts recoil is considerable, so automatic fire is usually limited to short bursts.\nExcept for the grip and handguard, the V-9 is made entirely from metal. A polymer receiver cover proved unable to withstand the vibration of the mechanisms designed for its large cartridge.\nAn upper inertial rail is connected to the weapon by a movable track. This protects mounted optics from the rifle’s powerful recoil.\nDVCZ 5.56 mm “Expedition”\nDamage: D6 Range: Close combat, medium, long Properties: Automatic, Accurate Modification Slots: 2\nA bullpup rifle with a top-mounted helical magazine. The magazine’s enormous capacity and a recoil-stabilization system make it easier to fire long bursts at any Range.\nThe body is made entirely from nanopolymer, significantly reducing the rifle’s weight even with a full magazine. The grip and handguard are made from wood with horn inlays.\nIts thickened barrel can be replaced easily.\nWeapons of the World 7.62 mm “Doom Diamond”\nDamage: D8 Range: Close combat, medium, long Properties: Automatic, Smart, Awkward at close combat\nA smart assault rifle equipped with targeting systems, cameras, and a target-recognition AI.\nIt has two trigger systems. The slower but more reliable backup is a conventional trigger. The faster option is remotely activated through an implant-control system.\nA smart visor, smart lenses, or cybernetic eyes can connect to the rifle’s cameras, allowing the user to see from the weapon’s perspective.\nThe rifle requires extremely careful maintenance.\nIsland Companies 7.62 mm “Significance”\nDamage: D8 Range: Close combat, medium, long Properties: Automatic, Awkward at long range Modification Slots: 2\nA shortened full-caliber rifle intended for storming buildings.\nIts metal body makes it useful in close combat. The standard magazine holds relatively few rounds, though this is usually sufficient at short distances.\nThe detachable folding stock is secured at several points, increasing its reliability.\nLight Machine Guns — D12\nAutomatic weapons intended for fire support.\nRti Kti Dann 7.62 mm S-2\nDamage: D8 Range: Medium, long Properties: Automatic, Suppression Modification Slots: 2\nA modification of the V-7 assault rifle with a long, reinforced, replaceable barrel, a reinforced receiver cover, and integrated bipods.\nMagazine feeding allows it to be reloaded more quickly. Unlike most light machine guns, it also possesses a semiautomatic mode.\nRti Kti Dann 5.56 mm S-29\nDamage: D6 Range: Close combat, medium, long Properties: Automatic, Awkward at close combat, Suppression, Bipod Modification Slots: 2\nA lightweight box-fed machine gun. Its 3D-printed nanopolymer ammunition belt makes a loaded box considerably lighter.\nThe S-29 is highly accurate at medium Range and is frequently fitted with optical sights.\nBipods are included but can be attached or removed easily.\nIsland Companies 11.5 mm “Youth”\nDamage: D10 Range: Medium, long Properties: Automatic, Awkward at medium range, Powerful, Suppression, Heavy Modification Slots: 2\nA general-purpose machine gun most often used from a fixed mount.\nIts tremendous recoil and noise are offset by considerable firepower. Some users fit the already-heavy weapon with an active suppressor that uses microphones and speakers to cancel the sound of firing and mechanical operation.\nThe company produces a proprietary backpack containing a belt of either 750 or 1,500 rounds, depending on the model.\nDVCZ 5.56 mm “Shield”\nDamage: D6 Range: Close combat, medium, long Properties: Automatic, Awkward at close combat, Suppression, Burst Modification Slots: 2\nA lightweight machine gun built around a coordinated twin-barrel system. While one barrel fires, the other reloads, producing an extraordinary density of fire.\nIt has almost no vertical recoil but sways noticeably from side to side during long bursts.\nAmmunition is fed from two high-capacity magazines. Shorter barrels can also be installed.\nWeapons of the World 7.62 mm “Warrior-King”\nDamage: D8 Range: Medium, long Properties: Automatic, Smart, Suppression\nA widely used smart light machine gun, made lighter with nanopolymers so that it can be carried during mobile operations and used inside buildings.\nIt feeds from a drum magazine. Its smart systems allow the user to see through its cameras and activate it through an implant-control system as though it were an extension of their own body.\nCombined with a remotely controlled mount, the Warrior-King becomes a remote-operated turret.\nLong-Range Rifles — D12\nWeapons designed to engage targets at long distances.\nWeapons of the World 11.5 mm “Watchful Terror”\nDamage: D10 Range: Medium, long Properties: Smart, Powerful, Heavy Modification Slots: 2\nA sniper rifle with a smart scope and ballistic processor.\nIts bolt-action mechanism provides maximum accuracy at long Range. Integrated computers and cameras calculate the correct lead based on distance, wind, and other conditions.\nThe built-in scope displays an image on a nanodisplay and supports infrared, night, and spiritual vision.\nRti Kti Dann 7.62 mm X-5\nDamage: D10 Range: Medium, long Properties: Quiet Modification Slots: 2\nA sniper rifle with systems that conceal both muzzle flash and sound.\nActive noise cancellation suppresses the report and mechanical noise. A barrel shroud and muzzle attachment made from polymer metamaterial absorb heat and release it slowly and evenly.\nAs a result, the firing rifle cannot be seen through thermal optics, while combat neural networks do not recognize it as a weapon.\nThe X-5 is semiautomatic, allowing its user to exploit the lack of noise and temperature fluctuations more effectively.\nRti Kti Dann 5.56 mm E-5\nDamage: D6 Range: Close combat, medium, long Properties: Accurate, Dueling, Awkward at close combat Modification Slots: 4\nA highly modular scout rifle.\nThis lightweight long-range rifle is quick to aim and can be fired easily without support. Its modular system allows the mechanism to be reconfigured into almost any weapon form without tools.\nSecond Sun 12.7 mm “Intermission”\nDamage: D12 Range: Long Properties: Accurate, Powerful, Heavy, Loud, Single-Shot Modification Slots: 2\nA heavy rifle that accelerates its projectile electromagnetically. It is designed to defeat heavily armored infantry and light vehicles.\nA heavy tungsten projectile is loaded from above. The weapon has no magazine, as one would further increase its already enormous weight and accelerate mechanical wear.\nA massive battery attaches beneath the rifle.\nIts extremely loud shot is accompanied by a plasma flash, but can strike targets at tremendous distances.\nDVCZ 7.62 mm “Hissing Leaf”\nDamage: D8 Range: Close combat, medium, long Properties: Automatic, Accurate, Awkward at close combat Modification Slots: 2\nAn automatic sniper rifle named after its designer.\nThe first model in the family was intended for hunting. Its automatic mode allowed a hunter who missed their first shot to stop an enraged animal with a burst.\nThe accurate, long-range rifle proved popular with the free armies of the People of the Steppes. It is traditionally decorated with horn and wood.\nA nonlethal conversion using tranquilizer ammunition is also available.\nBallistic Shields — D8\nBallistic shields occupy an Equipment Slot rather than an Armor Slot, but provide Protection during combat.\nRti Kti Dann O-8\n+3 Protection in BULLETS. +5 Protection in BULLETS against melee weapons.\nA small mobile shield made from transparent polymer. It protects the torso and was designed for police and close-combat fighters.\nRti Kti Dann O-97\n+4 Protection in BULLETS.\nASCEND checks involving speed are one step harder.\nOnce per scene, the shield can blind opponents. One subsequent action cannot cause Fallout, even if its check fails.\nA medium shield made from ultra-high-molecular-weight plastic and light alloys. Protective plates unfold from its sides and lower edge.\nFlash lamps built into the shield blind targets without eye protection.\nSirivirst Fakhir “Zalazaziz”\n+5 Protection in BULLETS.\nAllies at the same Range as you receive +4 Protection in BULLETS.\nYour HIDE and ASCEND checks are one step harder.\nA heavy assault shield named after a plant found in the bays of the People of Edges.\nIt is made from durable special alloys and enclosed in a protective fabric cover to prevent fragmentation.\nOccupies a Backpack Slot.\nHeavy Melee Weapons — D10\nSirivirst Fakhir “Benchmark”\nDamage: D10 Range: Close combat Properties: Armor-Piercing (2), Dueling\nA modernized version of the traditional bladed weapon of the People of Edges.\nIts extended-range vibration drive allows it to thrust, chop, and cut effectively. It has a slightly curved blade and a basket hilt made from gilded special alloys. The grip is wrapped in traditional medicinal herbs.\nPerfectly balanced for fencing, the Benchmark is a powerful argument in a sword-against-sword duel.\nSirivirst Fakhir “TsTsTs”\nDamage: D10 Range: Close combat Properties: Stable, Powerful\nA modern interpretation of the national two-handed sword of the People of Poisons.\nIts long grip and straight blade, set at an angle to one another, generate tremendous chopping force.\nA protected reservoir inside the sword contains a balancing fluid that accelerates attacks and makes the TsTsTs more difficult to parry.\nIn keeping with tradition, Sirivirst Fakhir makes its sheath from wood wrapped in leather.\nRti Kti Dann U-1\nDamage: D10 Range: Close combat Properties: Accurate Modification Slots: 2\nA straight, long vibration sword used as a standard weapon by many armies.\nIts patented rapid frequency-cycling system makes it effective under almost any conditions.\nThe U-1 is incorporated into numerous military combat systems, allowing its user to fight in many styles and even switch between them during combat to adapt to an opponent.\nRti Kti Dann U-8\nDamage: D10 Range: Close combat Properties: Energy, Nonlethal\nA telescopic electroshock baton, particularly dangerous against machines and cyborgs. It is often used in pairs.\nA reinforced battery and adjustable capacitors allow the strength of the shock to be controlled. The weapon can stun a target or burn them—and their implants—to death.\nWeapons of the World “Chosen One”\nDamage: D10 Range: Close combat Properties: Armor-Piercing (2) Modification Slots: 2\nA combat axe designed to defeat armored targets and modeled after the traditional Kits axe.\nIts flexible shaft bends slightly on impact, preventing the full force of the blow from being transferred into the wielder’s hand.\nThe narrow head is made from hard special alloys and designed to crack ceramic and metal armor. It may become lodged in polymer or compressed-plastic armor.\nEngineering Solutions Systems “Siege Hammer”\nDamage: D12 Range: Close combat Properties: Awkward when fighting a moving enemy, Powerful, Armor-Piercing (2)\nA massive sledgehammer with a linear drive powered by a battery inside the grip.\nIt can break through even the thickest walls and is equally useful against heavily armored enemies.\nTactical Weapons — D12\nHeavy shoulder-fired weapons.\nA Tactical Weapon and its ammunition together occupy a Backpack Slot. If you are carrying another backpack, you may attack with the Tactical Weapon only once.\nWeapons of the World “Conqueror of Kings”\nDamage: D12 Range: Long Properties: Stable, Smart, Spread, Single-Shot, Heavy Modification Slots: 2\nAn anti-tank launcher equipped with extremely advanced guidance systems.\nIt is loaded with an anti-tank missile inside a protective polymer casing. The missile carries a powerful shaped charge, while its modern nanofuel engine accelerates it beyond the speed of sound to defeat active protection systems.\nAfter launch, the weapon’s computers and cameras communicate with the systems aboard the missile, creating a fire-and-forget effect.\nThe tremendous cost of each shot makes the launcher unpopular. It became more common among small mercenary groups and even gangs only after cheaper unguided missiles entered production.\nWeapons of the World “Frightener of Monsters”\nDamage: D12 Range: Long Properties: Spread, Powerful, Automatic, Loud, Heavy Modification Slots: 2\nA repeating launcher intended to attack heavily armored infantry and enemies behind cover.\nIt uses a four-round drum magazine loaded with rocket-propelled grenades and can fire them in rapid succession.\nFragmentation grenades are most common, though shaped-charge ammunition is also widely used.\nIsland Companies “Carefreeness”\nDamage: D12 Range: Long Properties: Spread, Fire, Bipod, Loud, Heavy Modification Slots: 2\nA rocket flamethrower designed to attack targets inside buildings and lightly armored vehicles.\nIts incendiary projectile rapidly consumes oxygen even in open spaces. The burning temperature is sufficient to melt armor-grade metal and crack structural concrete.\nCarefreeness is loaded from above with a projectile in a protective polymer casing. This supports a two-person crew: one operator keeps the weapon aimed while the second reloads it.\nRti Kti Dann K-2\nDamage: D12 Range: Medium, long Properties: Powerful, Spread, Single-Shot, Heavy, Loud Modification Slots: 2\nAt the beginning of a combat scene and after using a Reload Tactic, you may add one additional Property to the weapon.\nA recoilless weapon firing 120 mm ammunition.\nBecause its shells are extremely heavy, a K-2 team normally consists of two fighters: a gunner and a loader carrying the ammunition.\nCommon ammunition includes high-explosive, shaped-charge, illumination, submunition, and flechette shells.\nCompact nuclear rounds also exist. They are not officially sold to civilians but can always be found on the black market for the right price.\nEnergy Weapons — D10\nSecond Sun “Role”\nDamage: D6 Range: Close combat, medium Properties: Energy, Powerful, Nonlethal Modification Slots: 2\nAn electrical pistol designed to fight drones and cyborgs.\nIt first emits an invisible laser that ionizes the air, then sends an electrical charge along the beam, burning flesh and electronics.\nIts Range is limited but sufficient to fire several times at an approaching enemy.\nThe weapon was originally nonlethal and intended for police use. As violence involving gangs intensified, police forces gradually abandoned such merciful weapons.\nSecond Sun “Full House”\nDamage: D8 Range: Medium, long Properties: Awkward at medium range, Accurate, Fire, Energy Modification Slots: 2\nA long-range laser rifle powered by a battery mounted beneath the barrel.\nIt produces neither recoil nor the sound of a shot. Its invisible beam reaches farther than conventional sniper bullets, though it is considerably more dependent on atmospheric conditions.\nSecond Sun “Premiere”\nDamage: D10 Range: Close combat, medium Properties: Energy, Spread, Balanced, Heavy, Loud\nA rifle-sized microwave cannon designed to destroy electronics.\nIt projects a cone of microwaves that burns out electrical circuits and is especially effective against drones.\nWith sufficient power and prolonged exposure, it can damage even heavily shielded machines and armor.\nAt close Range it affects a broad area and can strike several targets at once.\nSecond Sun “Study”\nDamage: D10 Range: Close combat, medium Properties: Spread, Energy, Heavy, Loud, Nonlethal Modification Slots: 2\nWhen the Damage Die rolls its maximum result, the weapon loses the Nonlethal Property.\nA shoulder-fired sonic cannon of “practically nonlethal” effect. It requires a power pack that occupies a Backpack Slot.\nIt emits sound across shifting frequencies that humans find unbearable, allowing it to disperse crowds. Active noise-canceling headphones synchronized with the weapon are included.\nProlonged exposure can destroy hearing and damage the eyes and bones. After several people died from internal bleeding, the company changed the product description to “a weapon of practically nonlethal effect.”\nThe phrase became popular online and is now frequently used as a joke.\nGrenades — D8\nRti Kti Dann RT-2\nDamage: D10 Range: Medium Properties: Spread, Single-Shot Modification Slots: 2\nA standard fragmentation grenade with a customizable casing.\nRti Kti Dann RT-6\nDamage: D4 Range: Medium Properties: Single-Shot, Energy, Lingering\nBlinds opponents: one subsequent action cannot cause Fallout, even if its check fails.\nA flashbang grenade that temporarily blinds and deafens targets without eye and ear protection.\nIts pyramidal shape allows it to produce a louder sound.\nIsland Companies “Focus”\nDamage: D8 Range: Medium Properties: Spread, Stable, Single-Shot\nA cluster grenade that releases highly explosive submunitions when it detonates. Particularly useful in open spaces.\nIsland Companies “Dreamer”\nDamage: D8 Range: Medium Properties: Spread, Single-Shot, Fire\nAn incendiary grenade filled with a burning compound and intended for storming buildings.\nDVCZ “Bandolier”\nDamage: D10 Range: Medium Properties: Spread, Single-Shot, Suppression\nA small grenade that bounces after impact when metal plates unfold from its casing.\nIt is highly effective against enemies behind cover but is less predictable than a conventional grenade and requires extensive training.\nDVCZ “Conquest”\nDamage: D8 Range: Medium Properties: Lingering, Fire, Single-Shot\nA sticky thermite grenade intended for use against armor.\nIt must be removed from its protective casing before being thrown.\nDVCZ “Knife”\nDamage: D6 to everyone without a gas mask Range: Close combat, medium Properties: Single-Shot\nGrants Mastery on HIDE and ASCEND checks made while escaping or storming a position.\nA smoke grenade that produces clouds previously achievable only by tanks.\nIts burning red phosphorus creates smoke that blocks scanners and thermal optics. The smoke is extremely toxic.\nSecond Sun “Understudy”\nDamage: D8 Range: Medium Properties: Spread, Single-Shot, Energy, Nonlethal\nAn electrical grenade that scatters electrodes around its landing point, transforming itself into a trap.\nIt functions as a powerful taser and, with a well-placed throw, can temporarily incapacitate an entire squad.\nWeapons of the World “Incinerator”\nRange: Medium\nDistracts an opponent, compelling them to investigate the location where the grenade was thrown.\nA decoy grenade that creates the signature of a soldier on enemy scanners.\nIts name has nothing to do with its function because the Weapons of the World marketing department sends developers a list of mandatory names before the proposed weapons even exist on paper.\nRare Weapons\nDVCZ Large-Caliber “Parry” Shotgun — D12\nDamage: D12 Range: Close combat, medium, long Properties: Spread, Powerful, Awkward at long range, Loud\nProtection is twice as effective against this weapon.\nA 25 mm shotgun firing either large buckshot or a solid projectile.\nOver the past quarter-century, extremely durable military clothing and technologically reinforced skin have reduced conventional shotguns from weapons for storming trenches and buildings to hunting weapons and tools of home defense.\nDVCZ therefore replaced its traditional shotgun line with a single model.\nParry combines pump-action and semiautomatic mechanisms. Locking the pump and changing the fire-mode selector switches between them.\nHeavy and reliable, it can tear limbs through military clothing and knock armored fighters to the ground at close Range.\nPolymer Weapon — D4\nChoose the statistics of any pistol or assault rifle.\nThe weapon gains the following Properties:\nUnreliable, Loud, Concealable.\nThese weapons are manufactured by independent craftspeople on 3D printers.\nThe unusual properties of nanopolymers allow even automatic mechanisms to be printed. When combined with polymer-cased ammunition and polymer bullets, the resulting weapon becomes almost invisible to scanners.\nPolymer weapons are often concealed inside cybernetic implant holsters. They have poor reliability but extraordinary availability, sometimes being sold by the crate or by weight rather than individually.\nBow or Crossbow — D6\nDamage: D6 Range: Medium Properties: Quiet, Single-Shot; cannot receive the Out of Ammunition Fallout Modification Slots: 2\nA modern form of the traditional weapons of the People of Edges and the People of Poisons.\nIt incorporates pulleys, sight and targeting rails, an ergonomic grip, a counterweight, and arrow guides.\nIn a major war it is considered sporting equipment, but it remains popular on the streets among daredevils eager to demonstrate their coordination.\nInside the Tower, where arrows and bolts can be improvised from available materials, it is extremely useful during persistent ammunition shortages.\nMost are produced by Rti Kti Dann and DVCZ.\nWeapons of the World “Third Witness” — D12\nDamage: D8 Range: Medium, long Properties: Smart, Accurate, Automatic\nAfter a successful attack, the weapon records incontrovertible proof of the hit. When you eliminate a mission target, gain a D10 CORPORATIONS Resource.\nAn assault rifle with an integrated legal recorder, created for corporate operations where it is important not merely to kill someone, but to prove that the correct person was killed in the correct place and under the correct contractual clause.\nAscenders use it more simply: shoot a monster, then sell the recording to scientists, insurers, cultists, or the victim’s relatives—whichever offers the most money first.\nRti Kti Dann A-800 — D10\nDamage: D8 Range: Close combat, medium Properties: Accurate, Smart\nWhen dealing Stress with this weapon, you may maximize it and take D8 Stress in BULLETS.\nAn assault pistol with an aggressive stabilization system that forcibly corrects the shooter’s hand after a failed shot.\nSometimes it aims better than its owner. Sometimes it twists the owner’s wrist hard enough to make them reconsider their shooting stance.\nBody Armor — D8\nAlmost all armor is produced by Unified Protective Equipment, though major corporations also operate their own internal production lines.\nArmor normally provides Protection in BULLETS. Less obvious equipment protects other Resistances, from charms protecting SPIRIT to backpacks protecting RESOURCES.\nPlate Carrier\nSimple chest armor carrying one of several kinds of ballistic insert.\nUnlike heavier armor, it can be repaired during combat by inserting a new ballistic package. A replacement insert counts as a D6 ARMY Resource stored in the backpack.\nPolymer Plate — D6\nA basic insert that does not alter the vest’s other Properties.\n+1 Protection and +1 slot in BULLETS.\nMetal Plate — D6\nA heavier insert offering better Protection but slowing rapid hand movements.\n+2 Protection and +2 slots in BULLETS.\nInteracting with extremely fast targets is one step harder.\nCeramic Plate — D6\nProvides the greatest Protection but has poor durability.\n+3 Protection in BULLETS.\nYour first BULLETS Fallout in each scene is Shattered Plate.\nHigh-Mobility Plate — D6\nAn insert with enlarged cutouts that allows faster arm movement. Its construction prevents it from sinking in water.\n+1 Protection in BULLETS.\nOnce per scene, you may Reroll an ASCEND check.\nShielded Insert — D6\nDesigned to protect against thermal and energy attacks while still offering limited Protection from bullets and fragments.\n+3 Protection in BULLETS against Energy attacks.\n+1 Protection in BULLETS against everything else.\nAssault Body Armor\n+3 Protection and +3 slots in BULLETS.\nIf you have a BULLETS Fallout, your ASCEND, EVADE, and HIDE checks become one step harder.\nHeavy armor protecting the chest, abdomen, groin, arms, and legs.\nFull Armor\n+4 Protection and +4 slots in BULLETS.\nAll ASCEND, EVADE, and HIDE checks are one step harder.\nExtremely heavy armor that makes movement difficult.\nOther Armor — D12\nMelee Armor\n+5 Protection in BULLETS against melee attacks.\n+2 Protection in BULLETS against everything else.\nArmor intended to be worn alongside conventional protection. Occupies an Other Armor Slot.\nIt may be rigid composite armor made from ultra-high-molecular-weight plastic, chainmail, or traditional clothing reinforced with carbon fiber and boiled leather.\nStealth Suit\n+1 Protection and +1 slot in BULLETS.\nOnce per scene, you may Reroll a HIDE or ASCEND check.\nQuiet items deal one additional step of Stress while enemies remain unaware of you.\nOccupies an Other Armor Slot.\nA tight-fitting suit that redistributes body heat and reduces noise through active cancellation and soft soles.\nCameras and colored electronic ink provide active camouflage.\nPower Suit\n+1 Protection and +1 slot in BULLETS.\nOnce per scene, you may Reroll a KILL or ASCEND check.\nIncrease the Stress Die of your melee attacks by one step.\nA combined combat suit consisting of a titanium exoskeleton and carbon-nanotube muscles. It enhances the wearer’s physical strength and draws power from the wearer’s internal energy.\nCourier Exoskeleton\nIgnore Properties that would make carried Equipment or Resources inconvenient to transport.\nOnce per session, you may reject one ASCEND Fallout.\nOccupies an Other Armor Slot.\nAn active metal-framed exoskeleton with vibration compensation and a smart balancing system that corrects for wind and loss of balance.\nHalf Helmet — D6\n+2 Protection in BULLETS.\nIt can be donned quickly when danger appears or discarded quickly if damaged. Unlike an integrated helmet, it can be repaired in the field.\nProtects the upper half of the head.\nIntegrated Helmet — D10\n+3 Protection in BULLETS.\n+5 Protection in BULLETS against gas and smoke.\nA complete helmet with a visor, integrated radio, and gas mask.\nSpiritual Protection\nCharms — D6\n+2 Protection and +2 slots in SPIRIT.\nLight-alloy animal figurines, enchanted feathers, geometric shapes, bark boxes, pierced coins, or bundles of medicinal herbs—almost anything can serve as spiritual protection.\nOccupies an Other Armor Slot.\nReality Anchor — D12\nOnce per session, gain +5 Protection and +5 slots in SPIRIT until the end of the scene.\nA backpack-like machine based on an artifact recovered from the depths of the Tower. When activated, it weakens the Tower’s influence.\nOccupies a Backpack Slot.\nBackpacks — D10\nEquipment worn on the back.\nAssault Backpack\n+1 Protection and +1 slot in RESOURCES.\nA compact pack intended for use during combat.\nRaid Backpack\n+3 Protection and +3 slots in RESOURCES. Heavy.\nA large expedition backpack.\nBelt-Feed Pack\nChoose one firearm with the Automatic Property at any time. That weapon is unaffected by the Out of Ammunition Fallout.\nChanging the selected weapon during combat or other difficult circumstances requires a Reload Tactic or a KILL check.\nA backpack holding ammunition and a flexible universal belt that feeds rounds directly into the weapon. Especially popular with machine gunners.\nMedical Pack\nD10 FIX BULLETS Properties: Powerful, Stable\nA complete field medic’s kit worn on the back.\nCommunications Rig\nYou cannot receive the Severed Bonds Fallout.\nRemote communications with allies and contacts cannot be detected or intercepted.\nA large portable radio based on a Tower artifact, an array of protected microcomputers, and transmitters operating across multiple frequencies.\nField Kitchen\nD8 FIX MIND Properties: Balanced, Stable, Powerful\nEquipment for preparing hot meals that are considerably better for the stomach and nerves than a constant diet of field rations.\nAssisted Harness\nOnce per scene, gain Mastery on a check requiring precise or rapid hand movements.\nAdditional mechanical arms worn on the back and controlled through an external terminal or a cybernetic implant in the spine.\nField Laboratory\nD10 INVESTIGATE\nA set of tools and reagents for field analysis.\nIt is normally associated with a single specialty, such as forensics or botany, but remains useful whenever you attempt to learn more.\nManeuvering Systems\nD10 ASCEND\nUntil the end of the scene, you may reduce this item’s die by one step to make an ASCEND check at normal difficulty.\nOccupies both an Other Armor Slot and a Backpack Slot.\nA lightweight carbon-fiber exoskeleton with magnets in the palms and soles, paired automatic grappling hooks, and a fuel pack connected to several multidirectional jet engines.\nDesigned for rapid operations, wall-running, and dizzying leaps. Civilian models are extremely popular among extreme athletes.\nRestorative Equipment — D8\nMedkit\nD8 FIX BULLETS Properties: Calibrated\nMedical tools and medicines for field surgery.\nMusical Instrument\nD8 FIX MIND Properties: Accurate\nA musical instrument used during rest.\nExamples include the Isr of the People of Knives, which is braced against the ground and played with two bows, and the KhZNNN of the People of Poisons, a wind keyboard instrument with an elaborate valve system.\nBitter Herbs\nD8 FIX SPIRIT Properties: Balanced\nMedicinal herbs burned to cleanse a patient’s supernatural essence.\nRitual Money\nD8 FIX FATE Properties: Powerful\nSacrificial money that can be brought into temples.\nIt is used both as a donation and as an independent element of prayer. When burned, the money is believed to pass into the hands of the ancestors.\nSupply Container\nD8 FIX RESOURCES Properties: Stable\nA metal or plastic container. Soldiers normally use these to store ammunition, rations, or batteries.\nTravel Equipment — D8\nDVCZ Tactical Flashlight\nD8 ASCEND Properties: Powerful, Calibrated, Overheating\nA flashlight with an adjustable light spectrum. It can be attached to a load-bearing rig.\nParashtruk Lisirist Portable Radar\nD8 ASCEND Modification Slots: 2\nA smartphone-sized portable radar with a screen and several adjustable antennas.\nParashtruk Lisirist Automatic Oracle\nD4 ASCEND Properties: Accurate, Powerful, Stable\nA clothing-mounted scanner containing a constantly updated map of predictions.\nKheiseit Bird — D10\nD10 ASCEND Properties: Accurate, Loud\nOnce per session, you must feed the bird by taking D4 Stress in RESOURCES. Otherwise, it dies.\nA small six-eyed bird with the gift of prophecy. Miners of the People of Salt carry them underground to avoid becoming lost.\nEquipment Properties\nAutomatic\nWhen firing this weapon, you may Reroll both the KILL check and the Stress Die once. You must accept the new results.\nAfterward, receive the Out of Ammunition Fallout.\nAdaptive\nWhen the item deals Stress to the same target several times in succession, increase its die by one step after each use, to a maximum of D12.\nThe increase resets when the item deals Stress to another target.\nArmor-Piercing (X)\nIgnores X points of Protection possessed by an enemy or Ascent.\nWhen this Property is added through a modification, its rating is 2.\nSudden\nOn a critical failure, increase the Stress you receive by two steps instead of one.\nOn a critical success, increase the Stress you deal by two steps instead of one.\nProphetic\nOnce per scene, before making a check with this item, you may ask the GM:\n“What will go wrong here?”\nThe GM must answer honestly but briefly. You must still make the check afterward.\nHungry\nTake D4 Stress in BULLETS to increase the item’s effectiveness by one step for a single check.\nA Dew Walker may spend one use of their Blood Die instead.\nThis technology was developed by Dew Walkers and uses blood to enhance other technologies.\nDeaf\nChecks made with this item are unaffected by external factors.\nA difficult opponent cannot increase the check’s Difficulty, but abilities and other favorable effects cannot improve its result either.\nLoud\nWhen you roll the maximum possible Stress with this item, take D6 Stress in FATE.\nCheap\nThe item cannot be sold for more than D4, even if its effectiveness is higher.\nCannot be combined with Expensive.\nDebt-Bound\nThe item can be used even if it is broken, lost, depleted, or otherwise unavailable.\nAt the end of the scene, take D6 Stress in FATE for every such use.\nLingering\nAfter the item deals or restores Stress, the target continues to receive or restore D4 Stress whenever it acts until the end of the scene.\nFor a hostile GM character, this effect triggers when a player character fails a roll against it.\nThe effect does not stack.\nThis Property is commonly granted to weapons by poisons and to travel equipment by smart systems.\nExpensive\nThe item’s price is one step higher when bought or sold.\nCannot be combined with Cheap.\nDueling\nThe item deals one additional step of Stress when fighting an opponent using a weapon of the same class, such as another sniper rifle or sword.\nGreedy (X)\nOn a critical success, the item deals or restores one additional step of Stress.\nIt then demands payment: D6 Stress in FATE, SPIRIT, or MIND.\nGrounding\nWhen you receive Stress in SPIRIT, you may reduce it by one step and take it in BULLETS instead.\nExhausting\nAfter a failed check using this item, reduce its die by one step.\nCalibrated\nWhen used for an INVESTIGATE, ASCEND, TECH, or FIX check, the item provides precise measurements.\nOn a critical success, you may ask the GM one additional technical question.\nCamouflage (X)\nThis armor grants Mastery on HIDE checks within the specified Domain.\nOathbound\nOnce per session, declare a prohibition, such as:\nNever retreat.\nNever kill.\nNever lie.\nNever use another weapon.\nNever accept help.\nThe prohibition remains until the end of the session.\nWhile you obey it, the item deals or restores one additional step of Stress.\nIf you violate the prohibition, take D8 Stress in MIND or SPIRIT.\nLoving\nThe item may be used to help an ally without risking taking Stress alongside them if a group action fails.\nIf the ally receives Fallout, the item breaks.\nPowerful\nRoll the Stress Die twice and choose the higher result.\nMultiple instances of Powerful do not stack, though Stress Dice from other sources may still be added.\nReliable\nThe weapon is unaffected by the Jammed Fallout.\nUnnatural\nWhenever you use this equipment, take D4 Stress in MIND.\nWhile you have more than 5 Stress in MIND, this item’s die always produces its maximum result.\nNonlethal\nWhen this weapon deals Stress, it incapacitates enemies without killing them.\nUnreliable\nWhen you roll the minimum possible Stress with this item, take D6 Stress in BULLETS.\nAwkward (X)\nIncreases the check’s Difficulty by one step under the specified conditions.\nFire\nAn opponent who receives Stress from this weapon must move.\nWarding\nGrants +3 Protection in SPIRIT.\nSingle-Shot\nEnough time passes between uses of this item for an opponent or the environment to act.\nSiege\nAlways deals maximum Stress to buildings, doors, bridges, other structures, and armored vehicles.\nBurst\nExtremely fast enemies and enemies with blurred silhouettes do not increase the Difficulty of KILL checks made with this weapon.\nGuardian (X)\nOnce per scene, when one of the owner’s allies would receive Stress in one of their Resistances, the item may cancel that Stress.\nThe item then breaks and can only be repaired in an oasis.\nRemembering\nAfter a critical failure, the item deals or restores one additional step of Stress to the target of the failed check.\nOverheating\nAfter a critical success, the item cannot be used again until the end of the scene unless it is cooled.\nSuppression\nAn opponent who receives Stress from this weapon cannot move until the weapon’s owner receives Stress.\nConduit\nYou may add your current Stress in MIND to the amount of Stress dealt by the item.\nSpread\nDeals Stress to every target at the same Range.\nRepairable\nFIX checks made to repair this item gain Mastery.\nNative\nIf the item was created by your people, faction, or class, you gain Mastery on one check made with it per scene.\nBalanced\nCritical failures made with this equipment count as ordinary failures.\nCritical successes count as ordinary successes.\nLight\nBy attacking an enemy’s shadow, this weapon can deal Stress while ignoring their armor.\nShadows are only visible in brightly lit locations.\nAn attack against a shadow deals one step less Stress.\nShaming\nIf the owner acts cowardly, dishonorably, or against their own principles, reduce the item’s effectiveness by one step until the end of the scene.\nIf the owner acts against their own interests but remains true to their principles, increase the item’s effectiveness by one step until the end of the scene.\nNetworked\nSeveral Networked items can exchange data over short distances.\nIf an ally has already used a Networked item successfully during the scene, you may use their result as Help once during that scene.\nConcealable\nThe item can be carried into places where it would normally be prohibited.\nBipod\nThe item deals one additional step of Stress if you did not move before using it.\nStable\nThe item always deals Stress, even when its check fails.\nQuiet\nEnemies do not notice the item being used unless they can see you.\nAccurate\nOn a critical success, instead of increasing the Stress by one step, roll the item’s die twice and add the results together.\nDemanding\nBefore a scene, the item must be configured, charged, lubricated, sighted in, calibrated, or otherwise prepared.\nWithout preparation, all checks involving it are one step harder.\nHeavy\nWhile carrying this item, HIDE and ASCEND checks requiring you to act extremely quickly are one step harder.\nSmart\nWhen using a Smart item, make the check first and choose its target afterward.\nCeremonial\nThe item looks excessively solemn, expensive, or sacred.\nTALK checks made while displaying it gain Mastery, but HIDE checks made while carrying it are one step harder.\nName-Reading\nThe first time the item deals Stress to an enemy, it reveals the enemy’s name to the attacker.\nCAST checks against that enemy become one step easier.\nMonsters of the Tower may possess extremely dangerous names. When the item first deals Stress to such a creature, the attacker takes D6 Stress in MIND.\nAssault\nAfter a successful check with this item, you may move by one Range without making another check.\nEnergy\nDeals one additional step of Stress to machines and heavily augmented people.\nResource Properties\nProperties that are not exclusive to Resources may also be applied to them, including Expensive and Warding.\nStinking\nThe Resource is difficult to conceal: spices, chemicals, animal blood, ozone batteries, wet wool, or something similar.\nWhile it remains in your inventory, HIDE checks against creatures with a strong sense of smell or advanced sensors are one step harder.\nDocumented\nThe Resource possesses invoices, certificates, seals, blessings, or a documented legal history.\nWhen bought or sold legally, it counts as one step more valuable.\nDuring an illegal transaction, it counts as one step less valuable.\nForbidden\nThe Resource cannot be sold in an oasis, and you may not even be permitted to bring it inside.\nTempting\nAt the beginning of every scene, the Resource deals D6 Stress to MIND.\nBeacon\nThe Resource attracts trouble.\nYou receive one additional step of Stress in FATE.\nOversized\nThe Resource occupies four inventory slots instead of one.\nNiche (X)\nOnly members of one specific group or profession are willing to accept the Resource.\nDangerous\nAfter you receive your first Major Fallout, the Resource explodes.\nIt deals D8 Stress in either BULLETS or SPIRIT to its carrier.\nDefiled\nThe Resource is powerful but deeply unpleasant: money taken from a funeral, a traitor’s blood, a battery stolen from a temple, or food harvested from a sentient garden.\nWhen used, it counts as one step more valuable but deals D4 Stress to MIND or SPIRIT.\nQuestionable\nWhen you use this Resource to purchase something, the seller asks an uncomfortable question, demands an additional favor, or calls for a witness.\nIf you agree, the Resource counts as one step more valuable, though the arrangement may create problems later.\nFragile\nAfter the first critical failure on any check, the Resource is ruined and loses all value.\nFactions\nFactions of the THICKET\nBurning Steel Battalion\nWidows, widowers, and orphans of fallen soldiers who avenge them on battlefields and in the Tower.\nA drone-worshipping cult has emerged among them, since drones help prevent unnecessary casualties. They are known as the kindest of friends, pouring the love they could not give their families into their comrades instead. The widows go into battle wearing a mixture of military gear and wedding attire.\nMinor Abilities\nThe Love That Will Save the World\nWhen you take Stress to your relationship track with a comrade under the friendship rules, that comrade chooses an effect of the same tier toward you without having to take Stress.\nProtect What Remains\nWhen you restore a comrade’s Stress with a FIX check, you roll with Mastery if they already have Fallout in the track being restored.\nCeremonial Drone\nA support drone adorned with ribbons constantly flies beside you, marking targets and conducting aerial reconnaissance.\nOnce per scene, you may use it either to gain Mastery on an attack against an enemy or to learn the truthful answer to one question of your choice about the location.\nHighborn of the Blue Tree\nPersonal agents of the Council of Lamps, searching for the first shard of their dead God and wielding gigantic Riir swords. They are obsessed with the idea of heroic deeds.\nMinor Abilities\nThe Sword That Saw God\nYou gain a Riir, a colossal vibrosword requiring special training to use. In addition to a weapon slot, it also occupies a backpack slot.\nRiir\nStress: D12\nProperties: Heavy, Exhausting, One-Shot\nSpecial: Kills opponents of standard difficulty without needing to deal Stress. Against enemies of dangerous or greater difficulty, it always deals maximum Stress.\nRange: Close Combat\nBook of Deeds\nRecords of your exploits are kept and discussed by the other Highborn.\nGain a new recovery condition: triumph in a situation that appeared hopeless.\nInexhaustible Courage\nYour bravery frightens even the otherworldly creatures of the Tower.\nBefore rolling in a risky or more difficult situation, you may choose to act desperately. If you do, all your successes and failures become critical.\nTemple Antisoldiers\nWhile other peoples tried to create supersoldiers by suppressing their subjects’ emotions to improve control and decision-making, the People of Knives chemically maximized the emotions of their special forces so that they would approach battle with complete sincerity and creativity.\nTemple Antisoldiers always carry a lamp whose shape makes it impossible to set down: someone in the squad must hold it at all times.\nMinor Abilities\nSacred Lamp\nYour squad gains the right to carry the sacred lamp of the Only Son.\nSomeone in the squad must carry the lamp, occupying one hand. In return, the entire squad gains +3 Protection and three additional slots in both SPIRIT and FATE.\nA Supersoldier’s Sincerity\nIf you have Minor Fallout in MIND, you take Stress one step lower in BULLETS.\nIf you have Major Fallout in MIND, your close-combat attacks deal Stress one step higher.\nZealous\nOnce per scene, when making a check, you may add your current MIND Stress to the highest result on one of your dice.\nFactions of the WASTELAND\nPoison Hats PMC\nThe national PMC of the People of Poisons, distinguished by its soldiers’ belief in the cycle of day and night and by its traditional poisoned RPRTR hats.\nMinor Abilities\nSunrises and Sunsets\nEvery even-numbered scene during a session metaphorically counts as day, while every odd-numbered scene counts as night.\nAt the beginning of every day scene, restore D8 Stress in SPIRIT or MIND. At the beginning of every night scene, restore D8 Stress in BULLETS or FATE.\nRPRTR KRRR\nYou gain a traditional hat soaked in the sap of poisonous herbs, protecting you from parasites that live on the head.\nOnce per session, you may declare that someone you are speaking to recognizes your hat and respects your faction. Until the end of the scene, all TALK checks against them are made with Advantage.\nDouble Strike\nWhen you incapacitate an enemy, your next KILL or HIDE check may be made with Mastery.\nSinging Thunders\nA movement of avengers from the People of Poisons who rebelled against corporate rule. Because of their limited numbers, they favor ambush tactics and long-range rifles.\nEvery free shooter bears the same name—Singing Thunder—in honor of a hero whom the corporations erased from the information space.\nMinor Abilities\nI Am Singing Thunder!\nYou have adopted the shared name.\nWhen you receive Fallout in RESOURCES connected to public condemnation or persecution, you may refuse it. If you do, take Stress to a Contact chosen by the GM: D6 for Minor Fallout, D8 for Major Fallout, or D12 for Doom Fallout.\nAmbush Tactics\nWhen you attack from an ambush, you deal Stress one step higher until the end of the scene, in addition to gaining Mastery.\nOblivion System\nOnce per session, you may introduce yourself under someone else’s name. You will be accepted as one of their own without needing a TALK check.\nHowever, your first failure during the scene becomes a critical failure and destroys your cover.\nBBBB Exohounds\nA steppe order of mage hunters. The Exohounds are armed and equipped to the highest military standards and are especially fond of shoulder-fired rocket launchers, which can overcome protective enchantments when loaded with the correct ammunition.\nThey develop resistance to serious magical attacks by accepting minor curses and possess the secret of a song that mixes people’s names together.\nMinor Abilities\nMinor Curses\nYou receive Major Fallout in SPIRIT: a collection of voluntarily accepted curses.\nOnce per session, the GM may declare that one of these curses interferes with you and reduce the degree of success of a roll by one step.\nIn return, you gain five additional slots and +4 Protection in SPIRIT for as long as you retain this Fallout.\nHound Song\nOnce per session, you may perform a prolonged ritual chant that mixes the names of everyone participating. Exchange the names written on the characters’ sheets.\nUntil the end of the scene, whenever one of the singers would take Stress or Fallout in SPIRIT or BULLETS from hostile magic, another singer may take it instead.\nHunter’s Arsenal\nYou gain a specially modified rocket launcher loaded with anti-magic ammunition.\nZKhDDShch Sickle\nStress: D12\nProperties: Scatter, Powerful, Automatic, Loud, Heavy\nRange: Long\nWhenever this weapon deals Stress, the injured enemy loses its Enemy Turn until the end of the scene.\nFactions of the WAVES\nBerry Guard\nEco-terrorist swordsmen and alchemists searching for extraterrestrial life.\nMinor Abilities\nTrial by Saber\nWhen you attack with a heavy close-combat weapon, you deal Stress one step higher to enemies wielding similar weapons.\nBerry Brew\nMany varieties of berries are on the brink of extinction because of corporate activity, but you preserve them.\nOnce per session, you may prepare an alchemical brew. This requires no check but takes a significant amount of time. Anyone who drinks it gains Mastery in one Skill of their choice until the end of the scene.\nThe brews do not expire, but each occupies a resource slot.\nTheory of Life\nWhen you encounter an unknown creature, you gain Mastery on all rolls connected with capturing it alive, interrogating it, or studying it.\nIt never turns out to be a real alien—only a monster from the Tower, an escaped corporate experiment, or a human mutated by possessing spirits.\nFatalists PMC\nA free army of the People of Edges composed of old believers who reject Lady Luck and instead worship an ancient deity of their people: the Zero Anchor.\nThe Zero Anchor is the god of death, cold, and predestination. The Fatalists believe that humanity’s purpose lies in dying as worthily as possible. For the same reason, they regard belief in Lady Luck, patroness of probability, as foolish.\nConsecrated dice, the symbol of Lady Luck, are particularly prized by Fatalists as trophies.\nMinor Abilities\nA Worthy Death\nOnce per session, when fighting a powerful enemy or an ASCENT, you may declare that it respects your right to die with dignity.\nUntil the end of the scene, whenever it deals Stress to you, you deal Stress to it using a die of the same size.\nTrophy of Fate’s Slave\nAt the beginning of the scene, roll a D6. Once before the end of the scene, you may replace the result of any die you roll with this result.\nWinter at Your Back\nYou are closer to the world of the dead than most. When a person dies nearby, you may restore D6 Stress in MIND, SPIRIT, or FATE.\nYou are always extremely cold.\nMartyrs of Hashahsot\nWarriors of a cult of vengeance secretly supported by the governments of the People of Edges. These terrorists live in post-nuclear Hashahsot and assemble nuclear bombs.\nWhen a bomb destroyed Hashahsot’s temple of Lady Luck, the temple shattered into countless fragments. These fragments make their bearer’s fate harsher but also more rewarding. The Martyrs carry them as a reminder.\nCorporations tested their finest radioprotective treatments on the Martyrs, leaving them almost immune to radiation. Thermal imaging cannot detect them either: their radiation simply disappears, and nobody knows where it goes.\nMinor Abilities\nSecret Testing\nYou emit no radiation. You make HIDE checks with Mastery against machines, cameras, and heavily cybernetic fighters.\nThe Shard\nThe temple shard occupies one equipment slot.\nWhile carrying it, you take FATE Stress one step higher and cannot benefit from Protection or additional slots in that Resistance.\nOnce per scene, choose another Resistance. Until the end of the scene, you take Stress to it one step lower.\nDesiccated\nYou take Stress one step lower from hostile environmental conditions, including extreme heat, cold, and poisonous gas.\nFactions of the HORIZON\nBureaumancers of the Two-Tailed Serpent\nDegenerate descendants of the ancient heroes of the People of Iron who now perform office work and magical rituals based on accounting.\nThey normally operate shops in the Tower, but occasionally accompany Ascenders into its depths.\nMinor Abilities\nBackdate the Paperwork\nOnce per session, when you would have to spend a resource, you may keep it by declaring that the second identical item was simply omitted from the invoice.\n“Not Urgent” Classification\nOnce per scene, choose one of your Fallout effects. It remains with you, but does not take effect until the beginning of the next scene.\nDetailed Documentation\nOnce per session, you may rapidly prepare a clear plan of action and explain it to your comrades.\nUntil the end of the scene, you make every check with Mastery until you fail your first check. After that failure, you take Stress one step higher until the end of the scene.\nNew Heroes\nGlory-seeking warriors who walk in the shadow of their great ancestors.\nEvery urban district or village outfits one such fighter, spending all the money it can spare to impress its neighbors and honor the heroes of old. Relics of past heroes are implanted into them, granting strength, the ability to see the past and future, or incredible luck, depending on what made the original hero famous.\nOnly their arrogance and constant dissatisfaction can rival the combat mastery they have honed throughout their lives.\nMinor Abilities\nWorthy Heir\nChoose a Skill in which you have Mastery.\nThe Mastery die for that Skill is no longer added to the general dice pool. Instead, its result is added to the die with the highest result.\nShame Before the Ancestors\nOnce per scene, after failing a check, you may declare that you hear the condemning echo of an ancestor in your mind.\nReroll the check and take D6 Stress in MIND. You may use this ability any number of times during a session, but the MIND Stress die increases by one step with every use.\nNew Legends\nOnce per session, when performing a dangerous or doom action, you may accept a success with a cost. Describe this action as part of a legend about your hero.\nChoose who in your homeland will tell the story of this deed: your younger sister, a schoolteacher, a retired soldier, a hermit sage, or someone else.\nCut to the scene in which the story is told and describe the listeners’ reactions.\nHungry Hundred\nMages of theater and heavy artillery who protect the oases of the People of Iron from bandits and otherworldly threats.\nTheir famous cube-shaped helmets are given to friends of the order as a sign of recognition.\nMinor Abilities\nCube Helmet\nYou gain a full helmet providing +3 Protection and three additional slots in BULLETS.\nIts heavy-weapon targeting systems and ballistic computers give all your tactical weapons and artillery strikes the Stable property.\n380 mm Reprise\nYou gain a piece of equipment: a red transreality beacon fired from a flare pistol, which uses an artifact from the Tower to guide artillery.\nYou may use it once per scene with a KILL check, always taking an additional D8 Stress in RESOURCES. During the attack, you must weave both yourself and your enemies into part of a performance intended for an outside observer. Otherwise, the additional RESOURCES Stress increases by one step.\nHeavy Artillery\nStress: D12\nProperties: Powerful, Scatter, Armor-Piercing (6), Suppression, Siege, Loud\nRange: Long\n120 mm Divertissement\nYou gain a piece of equipment: a green transreality beacon fired from a flare pistol, which uses an artifact from the Tower to guide artillery.\nYou may use it once per scene with a KILL check, always taking an additional D8 Stress in RESOURCES. During the attack, you must weave both yourself and your enemies into part of a performance intended for an outside observer. Otherwise, the additional RESOURCES Stress increases by one step.\nPrecision Shot\nStress: D12\nProperties: Powerful, Armor-Piercing (8), Siege, Accurate, Automatic, Dueling, Loud\nRange: Long\nFactions of the ARMY\nStargazers PMC\nAn international mercenary army made famous by a unique form of magic based on ritual cannibalism and observation of stars that do not exist.\nMinor Abilities\nAcross Lands and Seas\nWhen you work for factions with opposing interests, you take Stress in FATE and RESOURCES one step lower.\nBone Constellation\nDuring a scene in which another person has died or been severely wounded, you may conduct a ritual involving song, the consumption of flesh, and the construction of constellations in a strange galaxy visible only to you and your comrades-in-arms.\nOnce per session, roll a D10.\nOn an odd result, failure awaits you, and you are prepared for it. Until the end of the session, whenever you receive a failure or critical failure, you may declare that you foresaw it and replace it with a success with a cost.\nOn an even result, success awaits you. Until the end of the session, whenever you receive a success or success with a cost, you may replace it with a critical success.\nClairvoyant Flesh\nDuring a session in which you have eaten human flesh, you may once learn which GM character in the scene is the most dangerous, wounded, frightened, or important to the scene.\nCrowned Strikes\nAn army of cybernetic undead wandering the world after their armored unit was forgotten and abandoned without supplies during the War in the South.\nTo avenge themselves upon their terrible commanders and honor the fury that guides them, they forged enormous two-handed keys from the hulls of the vehicles that became their tombs. These keys can open any door.\nTogether with their ability to summon parts of spectral tanks in battle, this makes them formidable warriors.\nInside the Tower, they rescue those who have become lost and work as mercenaries to earn money for new tanks and eventually destroy the headquarters of the PMC that betrayed them.\nMinor Abilities\nKey to Every Door\nYou carry a gigantic key forged from a tank. It occupies one equipment slot.\nIt can open any door without requiring a check, but doing so always causes you D8 Stress in FATE.\nSpiteful Vengeance\nYou can intensify the rage that keeps you alive.\nOnce per scene, you may increase the difficulty of an action by one step to increase the Stress it deals by two steps.\nSpectral Tank\nOnce per scene, you may make a CAST check to summon part of a spectral tank, such as its tracks, headlight, armor plate, or gun.\nYou may try again after a failure, but the ability cannot be used successfully more than once per scene.\nChoose one effect:\nMake a D12 attack with Loud, Powerful, Scatter, and Siege.\nMake a D10 attack with Loud, Powerful, Automatic, and Suppression.\nGive one chosen character in the group +5 Protection and two additional slots in BULLETS until the end of the scene.\nPerform a D10 ASCEND action with Loud, Powerful, and Stable.\nMake disabled machinery function without fuel.\nThe Chains Society\nA community of combat video bloggers.\nPeople with combat experience and charisma who want to make money often enter metaphysical contracts with corporations. These contracts grant them spells sealed inside sponsor logos but make them incapable of breaking promises made to their bosses.\nThey film raids into the Tower and battles, review weapons and rations, produce their own recurring segments, and collaborate with other creators.\nMinor Abilities\nCommercial Break\nOnce per scene, you may loudly shout a sponsor’s slogan, perform a trademark gesture, or display an intro sequence on your cybereyes.\nThe enemies become confused for a moment. One ally may change position, reload, or make another noncombat check at normal difficulty.\nSponsor’s Seal\nWhen performing a risky or more difficult action, you may recite an advertising slogan.\nOn a success, the sponsor’s magic causes you to deal Stress one step higher.\nOn a failure, footage of your mistake becomes extremely popular, and you restore D10 Stress in RESOURCES.\nExpert Reviewer\nYou are highly knowledgeable about military equipment and have produced video reviews of many different items.\nWhen buying or selling equipment, a successful TALK check allows you to sell it at one value step higher or purchase it at one value step lower.\nFactions of MADNESS\nDark Builders\nA sect of construction workers driven insane and architects who have touched black magic. They seek to erase the boundary between buildings and human beings.\nThey are well trained and equipped and can erect structures in record time.\nA schism recently divided the sect. Some believe that the Tower represents the ideal structure; others believe that it is inherently cursed and should not exist.\nMinor Abilities\nRapid Masonry\nAfter passing a TECH check and spending a D8 or more valuable resource, you may use the magic of the Dark Builders to rapidly erect a structure.\nThe structure grants Mastery to relevant rolls until the first failed roll. For example, it might be a barricade that assists KILL or a ladder that assists ASCEND.\nImportant Construction\nAfter passing a TECH check and spending a D12 resource, you may use the complex rituals of the Dark Builders to erect an elaborate structure in an oasis.\nIt will not be ready until the beginning of the next session, though your work takes only one scene.\nChoose a type of product or service sold in the oasis, such as MIND treatment, weapons, or travel equipment. Purchasing goods from that category in this oasis now costs one value step less.\nUnion\nYou erase the boundary between human and building.\nYou gain +1 Protection and one additional slot in BULLETS. You can also hear through thick walls and use an ASCEND check to pass through concrete walls without harming yourself or the wall.\nSecrets of the King\nMysterious creatures that appear to have lived inside the Tower between cycles.\nThey resemble humans and almost always carry human equipment, either taken from corpses or purchased honestly. They particularly prize gloves, buying them by the dozen.\nThey worship the King-in-Camouflage, an entity beyond the Tower and a post-deity of war and secrets. Each of the Secrets carries one such secret and dies immediately if it is revealed.\nSome interpreters among the Secrets have learned human languages. Their communities accept humans and trade with them as equals, but frequent armed clashes demonstrate that the Secrets are far from peaceful.\nThey are ruled by the Council of Gloves, which meets in the Inner Tower and maintains connections with corporations in the human world. Which side exerts the darker influence upon the other remains a mystery.\nMinor Abilities\nMediator\nYou possess a limited ability to understand creatures of the Tower, particularly those attempting to appear human.\nWithout making a check, you can establish simple mutual understanding: a truce until the end of the scene, permission to pass in exchange for payment, or the opportunity to ask one question.\nAdoptive Glove\nYou have been accepted into the community. Over time, this has given you an instinctive understanding of secrets and riddles.\nWhenever someone in the group asks the GM a question through a character ability, you restore D8 Stress in both SPIRIT and MIND.\nBlessing of the King\nThe King-in-Camouflage grants you the power to hide from sight.\nOnce per scene, you may reroll a HIDE check. You have developed an addiction to collecting gloves.\nCounter-Shamans of the Sunset Queen\nThese battle mages despise the spirits of nature and place. They believe that all chaos must be expelled from the world of information and replaced with the serenity of program code.\nTheir techniques for fighting spirits and the possessed are as impressive as their combat skills.\nIn an act of inexhaustible devotion, the Counter-Shamans sold their destinies to the Sunset Queen, an entity of the Tower. They are now less fortunate than most, but neither their past nor future can be discovered through magic. Deprived of destiny, they exist only in the present.\nThe names of unborn children are written on the inside of their armor, redirecting the force of impacts and bullets into the future.\nMinor Abilities\nTranschronal Armor\nThe names of unborn children are written inside your armor.\nOnce per scene, when you take Stress in BULLETS, you may transfer it to FATE and reduce it by one step.\nEmpty Prophecy\nYou exist only in the present moment, and clairvoyance does not account for you.\nOnce per session, when someone in the group uses a prediction, you may declare that the prediction failed to see your contribution and increase the divination’s degree of success by one step.\nFight the Immaterial!\nOnce per scene, you may declare that you sense a local spirit nearby.\nIt interferes with you, increasing the difficulty of your checks by one step. Once the spirit is captured, you gain one D8 resource for every check failed because of this interference.\nFactions of the WORLD\nTowerfall\nA major organization dedicated to destroying the Tower that has caused so much suffering.\nIts symbol is an angular red fish.\nMinor Abilities\nWe Will Call—and All Will Follow\nThe Tower is the greatest threat to the world, and you never tire of reminding people of it.\nYou make TALK checks intended to recruit temporary helpers with Mastery.\nUnbreakable Spirit\nCosmic horror is powerless against the miracles of human will.\nOnce per scene, when you would take Stress in MIND, you may refuse it and deal the same amount of Stress to whoever attacked you.\nRed Fish\nOnce per session, when you discover information useful in the struggle against the Tower, you may add it to the organization’s databases.\nThis might include discovering a weakness of a species of Tower creature, finding a safe route, or locating a cult’s meeting place.\nFrom then on, you cannot critically fail against the subject of that information.\nKra Sir Courier Service\nA courier service of the People of Forests that connects the Tower’s settlements. Large Kra Sir teams transport ammunition, food, and medicine.\nTheir religion glorifies ordinary working people and the water from which all living organisms are made.\nMinor Abilities\nUrgent Delivery\nOnce per session, upon arriving at an oasis, you may declare that someone wants you to make a delivery to a neighboring location.\nThe delivery always has a complication: the object might be explosive, or corporations may be searching for it.\nIf you complete the delivery, you receive three times as many resources as you normally would for such a mission. If the delivery fails, you take RESOURCES Stress equal to the die of the item you were carrying.\nCold Water\nYou know how to treat water properly.\nOnce per session during an ASCENT, you may declare that you have found a source of relatively clean water. Everyone in the group restores D6 Stress in both BULLETS and MIND.\nDo not forget to thank the water afterward.\nWorker’s Oath\nThe world rests upon the shoulders of its workers.\nOnce per scene, you may reroll a TECH check.\nExpedition of the Blind Queen’s Gunner\nA polar expedition that, before the Tower appeared, excavated mysterious technological complexes at the pole. These structures may have belonged to an ancient vanished people—or perhaps to aliens.\nAlready familiar with the concept of anomalous zones, the polar explorers quickly adapted to the Tower. Numerous gates also opened at the pole, so encountering scientists or soldiers from the expedition is not uncommon.\nMinor Abilities\nPolar Night\nYou gain +5 Protection in BULLETS and MIND against cold, darkness, isolation, and prolonged waiting.\nYou make INVESTIGATE checks with Mastery in anomalous zones that resemble something made by humans.\nWe Have Seen This Before\nOnce per session, you may declare that you encountered a similar anomaly at the pole.\nAsk the GM two questions about how an anomaly or artifact functions. One answer will be precise; the other will be useful but incomplete.\nThrough Storms and Hurricanes\nA doom ASCENT counts as dangerous while you are leading the group.\nFactions of the CORPORATIONS\nRti Kti Dann\nOne of the largest megacorporations, manufacturing virtually everything. Its name means “Hands of a Friend” in the old language of the People of Knives.\nThe corporation enforces friendship throughout its ranks. Its soldiers, known as Friends, are ready to inflict love and harmony upon anyone who opposes the will of Rti Kti.\nAs a sign of friendship and loyalty, every employee sacrifices their right hand to the company’s bosses and then works off the debt incurred by having it restored.\nMinor Abilities\nEnforcer of Friendship\nWhen you help a comrade using friendship abilities, you may choose two effects appropriate to the die’s tier.\nIn addition to taking Stress to the friendship track, you take the same die of Stress in RESOURCES.\nCover-Model Smile\nWhen helping a comrade, if you say something excessively friendly, promotional, or insincerely caring, they gain Mastery in addition to the assistance die.\nIf the ally fails the roll, both of you take D8 Stress in MIND.\nStandardized Training\nYou were taught a little of everything.\nOnce per session, choose a group of Tactics you do not possess. You must still have the required Skill. Until the end of the session, you may use those Tactics.\nIsland Firms\nRti Kti Dann’s principal competitor: an enormous conglomerate of the People of Edges composed of countless small companies.\nThe “No-Moon” Division, an esoteric special-forces unit employed by Island Firms, believes that there was once a second moon in the sky. It disappeared after the first murder committed by a human being.\nThey can use pieces of this now nonexistent Moon in battle, creating fields of low gravity, filling an area with vacuum, or drawing heat away from enemies.\nMinor Abilities\nSubsidiary Company\nOnce per session, you may declare that a minor service, spare part, document, or specialist you need belongs to one of the conglomerate’s companies.\nThis does not solve the problem outright, but it reduces the difficulty of the next TALK, TECH, or INVESTIGATE check by one step.\nCold of Lunar Shame\nOnce per scene, you may make a CAST check to summon part of the Moon that became ashamed of humanity.\nYou may attempt the check any number of times, but the ability can be used successfully only once per scene.\nChoose one effect:\nLow Gravity: Enemies lose bonuses from positioning, or you reduce the difficulty of an ASCENT by one step until the end of the scene.\nCosmic Vacuum: Deal D6 Stress with Powerful and Scatter, or remove a property that makes a resource easier to carry until the end of the scene.\nSong of the Dead Moon: Deal D6 Stress with Stable and Suppression, or make an obstacle fragile so that attempts to destroy it deal maximum Stress.\nHatred\nYou deal Stress one step higher to the property of other corporations, but not to their personnel.\nLeft-Handers’ Protest\nEnemies of copyright and corporate power who have made digital piracy the center of their ideology.\nThey replace their left hands with massive clumps of programmable polymer capable of temporarily copying the properties of equipment manufactured by large companies.\nThey are prepared to pay generously for blueprints of new products—or for a movie currently available on a streaming platform.\nMinor Abilities\nEnemy of Licenses\nOnce per scene, you may make a TECH check to create an illegal copy of a piece of corporate equipment until the end of the scene.\nYou may attempt the check any number of times, but the ability may be used successfully only once per scene.\nThe copy has the same properties and characteristics as the original, as well as Dangerous and Unreliable.\nCorporate equipment means either prepared equipment from the book’s equipment list or equipment created by the GM and players and introduced into the story as a mass-produced product.\nLeft-Handed\nWhen you receive a second instance of the Damaged Arm Fallout, it disappears at the beginning of the next scene as the programmable polymer restructures itself.\nNew Movie\nYou have access to an information channel where illegal copies of movies, animated films, and video games can be obtained long before release.\nOnce per session while in an oasis, you may spend a D10 resource or item—or take D10 Stress in RESOURCES—to acquire pirated content.\nWatching it restores D10 Stress in MIND without a check. The die then decreases by one step, after which the content may be used again.\nA spoiler concerning a major franchise may grant Mastery in TALK when speaking to one of its fans.\nFactions of the SPIRITS\nShepherds\nAn organization of mages studying the otherworldly nature of dreams. Prophetic, nightmarish, or beautiful—no dream is meaningless.\nThey compete successfully with corporations by selling recorded dreams and are widely employed by the military. Shepherds reliably free veterans from the nightmares haunting them, allowing them to return to civilian life.\nThey carry acid sprayers as their symbol. Such sprayers are used to clean the metal shells of riding shans.\nMinor Abilities\nCatch a Nightmare\nWhen you or an ally takes Stress in MIND, you may make an EVADE check to trap part of the terror inside a small vessel, a piece of cloth, a bone, or a clay figurine.\nReduce the Stress by one step. Later, you may break the vessel to deal D6 Stress to an enemy without making a check.\nA Dream for Two\nOnce per session during a rest, you may lie beside an ally and guide them through a safe dream.\nBoth of you restore D8 Stress in MIND and SPIRIT. The GM then asks you a question about a fear, desire, or memory belonging to the ally whose dream you shared. You must answer truthfully.\nDescribe the dream.\nErased Boundary\nYou deal and restore Stress one step higher while you have more than 5 Stress in SPIRIT.\nWhile in this state, you cannot distinguish dreams from reality.\nLinkcutters\nCorporate-trained and exceptionally well-equipped criminals who enforce informational purity across the networks.\nWhen someone makes negative statements about a company, the Linkcutters are hired to identify the offender and deal with them in a way that leaves nothing usable as evidence in court.\nThe organization later grew into an armed power controlling many parts of the network. Linkcutters are also more prominent than any other group among the gangs of the physical world that entered the Tower.\nThey love arguing online even when nobody pays them for it. When they meet as friends, they are always eager to discuss a new series or video game.\nA significant number of Linkcutters are Paratechs. They attach a keyboard key to their load-bearing gear for every online battle they win.\nMinor Abilities\nInformation Purge\nOnce per session, you may erase all traces of the squad’s actions from networks, cameras, reports, and rumors.\nThis does not alter the memories of eyewitnesses, but it renders the evidence useless.\nShield of the Industry\nOnce per session, at an important moment, you may begin arguing with an online hater through the location’s networks.\nAll other checks in the scene become one step harder until you pass a TALK check and outargue the troublemaker.\nAs a reward, the next time you reach an oasis, you may receive two D6 items or resources. Their dice increase by one step for every check failed during the online argument.\nCyber Jargon\nYou combine criminal slang with fashionable expressions drawn from network memes and popular videos.\nYour radio conversations with your comrades can be intercepted, allowing someone to determine your location, but their contents cannot be deciphered.\nSilver Spears\nWarriors whose hearts have been broken by unrequited love join this monastic order, which hunts wild spirits and aids the wounded on the battlefield.\nMinor Abilities\nBroken Heart\nWhen protecting someone who is wounded, rejected, frightened, or possessed, gain Mastery on FIX, EVADE, or KILL.\nAfter the scene, you may restore D6 Stress in MIND if you honestly tell your comrades whom that person reminded you of.\nHoly Silver\nYou gain the order’s silver spear, used for hunting spirits.\nSilver Spear\nStress: D10\nRange: Close Combat\nProperties: Armor-Piercing (2), Accurate\nSpecial: When attacking something immaterial, you always deal maximum Stress and may ask the GM one question about its nature.\nNot Again!\nWhen one of your Contact NPCs or another player character would receive Doom Fallout, they do not leave play immediately. They remain until the end of the scene.\nUntil then, you have an opportunity to save them. This normally requires a doom FIX check and a D12 item.\nAscents and Locations\nTravel between locations requires one member of the squad to make an ASCEND check. Together with the appropriate equipment, that character deals Stress to the Ascent. The fewer Resistance slots the Ascent has remaining, the closer the group is to the next location.\nAscents are normally associated with one Domain, though some may have two. Assigning more than two relevant Domains to a single Ascent is not recommended.\nA passage between locations normally has 12 Resistance, or 24 Resistance within the Inner Tower. An Ascent may also possess Protection, which is subtracted from the Stress dealt by a player character’s ASCEND check.\nPlayers have many tools for improving their chances of success, so most Ascents deal large amounts of Stress—usually D10 or D12.\nWhenever a player character deals Stress to an Ascent, an Ascent Event occurs. The GM may select one from the following list, invent a new one, or roll for it. Individual Ascents may also have their own additional event lists.\nThe same Ascent Event cannot occur more than once during a session.\nWhen creating an Ascent Event, make sure that it presents the player characters with both a danger and a potential benefit.\nAscent Events\nSeverance\nThe direct route back is cut off. The characters can no longer return to the location they came from without finding a detour and completing another passage.\nAlong the way, they discover a seam left by the Tower’s rearrangement. It has considerable scientific value, and researchers will pay generously if escorted to it.\nThe Water Is Coming!\nThe squad encounters a Kra Sir trading caravan.\nThe caravan has three D6 items, two D8 items, and one D10 item for sale. It can also provide an equivalent amount of recovery in BULLETS or MIND.\nThe caravan’s members warn that something was pursuing them. The characters are certain to encounter the threat if they continue.\nBandit Ambush\nThe characters encounter a group of criminals demanding a D6 resource or item from each person as payment for passage.\nIf refused, the bandits resort to force. They never kill the characters, instead taking their most valuable possessions and dragging them to the nearest oasis.\nDark Ritual\nThe characters stumble upon a horrifying ritual performed by a Tower cult. A perfectly geometric, faceted creature wearing a porcelain human mask asks the squad to make an offering.\nDepending on this part of the Tower, the ritual may honor the Queen of Five Masks, the King-in-Camouflage, the Antiparadox, the Great Red, the number four, the False Void, or the Cyclonaut.\nThe characters may participate in the ritual. Each participant spends a D6 resource or item and then makes an EVADE + MADNESS check.\nOn a success, the character gains the MADNESS Domain. On a failure, they take Stress in MIND and gain the EVADE Skill.\nPrank\nThe characters become victims of a prank secretly filmed by bloggers from the Chains Society. It might involve a suitcase filled with gold bars and rigged to deliver an electric shock, or a ladder designed to collapse.\nIf the characters fall for the prank, they take D8 Stress in RESOURCES because of the humiliation but are paid with a D8 resource.\nIf they expose the trick, they restore D8 Stress in RESOURCES.\nCorporate Testing\nA corporation is testing a new weapon, combat stimulant, or cybernetic implant in this secluded part of the Tower.\nThe characters were not included in the test plan, and corporate security has orders to shoot to kill. However, the squad may be able to seize an experimental prototype during the fighting.\nCache\nThe squad discovers concealed and protected containers in which Ascenders leave food, ammunition, and sometimes equipment for their colleagues.\nEach player character may take up to D8 Stress in RESOURCES to retrieve an item rated D8 or lower.\nAlternatively, they may leave an item rated D8 or lower in the cache to restore an equal amount of RESOURCES Stress.\nNavigation Failure\nThe last item the squad used for travel stops providing any benefit until the end of the scene. A map’s image shifts while being viewed, or a portable radar displays signatures from the distant past.\nThe squad will need different equipment to proceed. However, the malfunction reveals an interesting hidden route: any future journey back along this passage has half its normal Resistance.\nRemains\nThe squad discovers a dead group of Ascenders.\nThe characters may loot the bodies or carry them to the nearest oasis. Carrying them increases the difficulty of all the group’s ASCEND checks by one step.\nIf the bodies are returned for burial, their comrades restore D10 Stress in the group’s RESOURCES and promise one service. Gain the temporary personal Contact Funeral Debtors.\nUnusual Terrain\nAn extraordinary type of terrain lies ahead, requiring ingenuity or preparation to cross.\nIt might be a river whose liquid possesses reversed buoyancy, requiring an extremely heavy raft, or a vertical cliff twisted into a fractal whose repeating patterns must be understood before it can be climbed.\nSuch places always conceal at least one valuable resource.\nReverse Hashahsot Duel\nThe squad encounters two factions fighting one another.\nThe characters may attempt to reconcile them, join one side, or wait and finish off the victors.\nThe Great Hunt\nAn enormous Tower monster picks up the squad’s trail.\nIt attacks as soon as someone separates from the group or attempts a task requiring concentration. The monster is extremely dangerous, but killing it may yield valuable resources.\nExample Ascents\nTreat every Ascent as a battle in which the environment acts in place of enemies.\nAscents should constantly present the players with choices. Offer one whenever the group deals Stress to the Ascent.\nSewers\nDomain: WAVES\nDifficulty: Standard\nResistance: 12\nProtection: 0\nStress: D10\nPotential Choices\nTake the short route through the sewage?\nIf the squad takes the shortcut, everyone takes D6 Stress in MIND, but the Ascent takes D8 Stress.\nGather the glowing mushrooms?\nThe squad gains a D6 WAVES resource but encounters a mushroom monster.\nMap every branching passage?\nThe squad gains a D8 WORLD resource, but the Ascent gains D6 Resistance.\nAscent Event: Waste Wave\nA towering wave of sewage, rot, hydraulic fluid, and rust rises ahead.\nEveryone must make an EVADE check. On a failure, a character takes D8 Stress in BULLETS but discovers a D6 resource in one of their pockets.\nDescription\nMultidimensional pipes and labyrinths assembled from sewer systems. A low hum fills the air, and the walls are covered in symbols written in an unknown language.\nCheckpoint\nDomain: ARMY\nDifficulty: Risky\nResistance: 8\nProtection: 2\nStress: D12\nPotential Choices\nShut off the power at the switchboard?\nThe Ascent’s Protection falls to 0, but the squad must find another way to open the sealed door blocking the route.\nUse access codes taken from a captured officer of this faction?\nReduce the Ascent’s Resistance by D10. The character who uses the codes receives Minor Fallout in RESOURCES.\nAscent Event: Patrol\nThe squad encounters three fighters. Each has risky difficulty, 8 Resistance, 2 Protection, and a D8 weapon.\nThey order the squad to turn around and find another route. Obeying them restores D8 Stress in RESOURCES. Continuing requires the characters to fight or negotiate.\nDescription\nA fortified military zone equipped with machine guns, cameras, and regular patrols.\nFractal Gardens\nDomain: THICKET\nDifficulty: Standard\nResistance: 12\nProtection: 2\nStress: D10\nPotential Choices\nTrust the mysterious traveler in the red cloak?\nIf the squad agrees, the traveler offers them a drink brewed from strange petals. It restores D10 Stress in MIND but deals D6 Stress in SPIRIT.\nIf the squad refuses, the traveler offers to gather flowers with them instead, becoming a temporary personal Contact.\nRetrieve an Ascender’s body from the boiling lake?\nThis requires a risky ASCEND check. In return, the squad obtains a map fragment that can remove all Protection from any Ascent until the end of the scene.\nCut directly through the tall growths of pale flowers?\nThis requires a risky EVADE check but deals D12 Stress to the Ascent.\nAscent Event: Change of Season\nThe plants suddenly wither and then rapidly bloom. The same process begins affecting the characters.\nThe squad may continue, taking D8 Stress in SPIRIT but automatically completing the Ascent while the threat sleeps.\nAlternatively, the squad may stop to rest and admire the otherworldly landscape, restoring D10 Stress in MIND. If it does, the Ascent’s Protection increases to 3.\nDescription\nTwisting, endlessly branching terraces covered in abundant vegetation.\nThe plants are either pale or poisonously bright, with unnaturally shaped stems and asymmetrical flowers. They are as mesmerizing as they are frightening.\nAn impossibly large tree rises on the horizon, but no matter how long the characters walk toward it, it never comes any closer.\nThe Red Sleeves normally pay well for new specimens collected in the Fractal Gardens.\nKChRRR Fields\nDomain: WASTELAND\nDifficulty: Risky\nResistance: 10\nProtection: 0\nStress: D10\nPotential Choices\nDrink from the well standing in the middle of a thorn-covered field?\nDrinking requires an EVADE check.\nOn a success, the character gains +5 Protection in SPIRIT until the end of the scene. On a failure, the character takes Stress and gains +5 Protection in FATE until the end of the scene.\nStop to collect spores from the local mold?\nScientists at an oasis will pay well for them, but everyone who remains to gather the spores takes D8 Stress in BULLETS.\nHelp a passing funeral procession of the People of Poisons gather enough native soil to bury a comrade?\nThis requires a separate mission. In return, the warriors become the faction Contact Grave Lights.\nAscent Event: KChRRR Justice\nTwo Tower monsters—a crystalline creature dripping acid from its jaws and a fungal colony floating on a magnetic field—are fighting over human prey.\nThe squad may wait for one creature to defeat the other and finish off the survivor. If it does, the monsters have enough time to tear apart the body and its equipment.\nAlternatively, the squad may fight both creatures at once and retrieve one D12 item and one D10 resource from the Ascender’s body.\nDescription\nAccording to some traditions of the People of Poisons, KChRRR is an afterlife resembling the poisonous wastelands of the living world, only even more terrifying.\nThis part of the Tower closely resembles those legends. Gray earth exudes low-lying fog, mold grows in perfectly geometric patterns, and monsters prowl in every direction. The terrain is exceptionally cruel to travelers.\nEndless Staircase\nDomain: MADNESS\nDifficulty: Standard\nResistance: 12\nProtection: 0\nStress: D8\nPotential Choices\nThe squad may climb in absolute silence or count the landings and stairs aloud.\nIf it chooses silence, the characters cannot speak to one another, but they gain Mastery on HIDE checks until the end of the scene.\nIf they count aloud, they must announce the total amount of Stress dealt to the Ascent after every successful advance. If they make a mistake or take too long to answer, the entire squad takes D8 Stress in SPIRIT.\nIf the squad reaches its destination while keeping the correct count, everyone restores D8 Stress in SPIRIT.\nAscent Event: The Extra Number\nAfter the squad makes progress, a stair appears bearing a number that should not exist.\nStepping on it reveals a D8 MADNESS resource, but the direct route back disappears.\nAvoiding the stair makes the next ASCEND check risky.\nDescription\nA concrete staircase inside a shaft with no visible end.\nA number has been scratched into every step, but the numbers sometimes repeat, contradict one another, or use an entirely different numerical system.\nIf the characters listen carefully, they can hear the center of the bottomless shaft quietly singing a mournful song.\nBreathing Corridor\nDomain: SPIRITS\nDifficulty: Risky\nResistance: 12\nProtection: 1\nStress: D10\nPotential Choice\nHelp the corridor remove the parasites crawling along its inner walls?\nThis requires a FIX check. On a success, reduce the Ascent’s Resistance by D12.\nAscent Event: Inhalation\nThe corridor inhales with tremendous force.\nEveryone must make an EVADE check. On a failure, the squad loses one item or resource of its choice.\nThe rising dust reveals every trap and hidden cache. One member of the group may declare either that they found a trap whose disarming will immediately complete the Ascent or that they found a cache containing one D8 item or resource.\nDescription\nA soft, warm corridor made from flesh-concrete. Its walls expand and contract almost imperceptibly.\nSometimes it holds its breath at the same moment as the squad.\nForward Office\nDomain: CORPORATIONS\nDifficulty: Dangerous\nResistance: 6\nProtection: 0\nStress: D8\nPotential Choice\nProceed with exceptional care or make as much noise as possible?\nIf the squad acts carefully, it makes HIDE checks with Mastery until the end of the scene.\nIf it proceeds loudly, it makes KILL checks with Mastery instead.\nAscent Event: Surprise Inspection\nA corporate inspection team arrives at the lightly guarded office.\nThe inspectors are certain to take an interest in strangers, even if the squad has already convinced the guards to let them pass.\nHowever, if the characters possess information about a competing corporation, the inspectors will purchase it and allow them to complete the Ascent without another roll.\nDescription\nAn office complex established by a corporation inside the Tower.\nSuch offices are often built far from oases to preserve secrecy. In addition to security personnel and clerks, they contain large amounts of valuable information—assuming the characters are willing to cross a megacorporation.\nShadow Above the Abyss\nDomain: HORIZON\nDifficulty: Dangerous\nResistance: 6\nProtection: 2\nStress: D8\nPotential Choice\nReinforce the bridge with your own shadow?\nOn a successful CAST check, reduce the Ascent’s difficulty by one step.\nUntil the end of the session, however, the character casts no shadow and takes SPIRIT Stress one step higher.\nAscent Event: A Comrade’s Shadow\nOne character’s shadow separates from them and helps the squad proceed. It provides an assistance die to the next ASCEND check.\nThe shadow then asks for a service: steal someone else’s shadow, lie to someone close to you, or extinguish a source of light in a safe place.\nDescription\nHuman shadows have been stretched across an abyss.\nThey intertwine like ropes and whisper ordinary phrases from everyday life whenever someone steps on them.\nLocations\nThe following are examples of locations that may be encountered inside the Tower. Recommendations for creating original locations appear afterward.\nLocations differ from Ascents in two important ways: they often contain friendly people, and the characters are expected to spend time there and return more than once.\nAlmost every location is an oasis.\nHushed City\nDomain: THICKET\nRecovery: D6 MIND / D8 BULLETS / D10 RESOURCES\nMissions\nThe commander of a military force based here asks the characters to find a source of clean water.\nReward: A D12 weapon.\nA scientist living some distance from the military base, accompanied by a team of bodyguards, asks the characters to collect samples of the fog that gathers inside the rooms.\nReward: Free D10 SPIRIT recovery for the entire group.\nProblems\nThe fog periodically rises and sometimes abducts people.\nThe scientist can construct devices that protect against it, but in addition to fog samples, he must reach an agreement with the PMC commander. The two are involved in a conflict over gambling.\nLaughter, arguments, and music have been heard inside some of the empty rooms on the outskirts, though nobody has been seen there. The number of such rooms is steadily increasing.\nDescription\nSkyscrapers resembling human architecture rise from boiling fog.\nMilitary engineers have constructed bridges between them. Soldiers, merchants, and passing travelers have settled inside the bare concrete rooms.\nLabyrinth of Heroes\nDomain: SPIRITS\nRecovery: D8 FATE / D6 BULLETS / D8 RESOURCES\nMissions\nThe captain of a company of leprous warriors came here seeking a cure for an artificial combat disease.\nShe asks the characters to find a supplier and workers for the construction of a paramedical center. She believes the location’s fate-altering power will help her treat those afflicted by magical diseases.\nReward: D8 FATE recovery becomes free in this location, and the RESOURCES recovery die increases to D12.\nA woman who runs a Kra Sir shop here exchanges letters with a friend through couriers, but the letters recently stopped arriving. She asks the characters to discover whether her friend is safe.\nReward: The location’s RESOURCES recovery die increases to D10.\nProblems\nA Tower monster has entered the labyrinth, but it cannot be killed. It must be neutralized without lethal force or trapped by sealing particular passages.\nThe settlement’s food reserves are running low, and hunting Tower monsters cannot feed the entire population.\nDescription\nA four-dimensional labyrinth where fate and fortune themselves can be placed beneath a scalpel.\nA large settlement of people seeking treatment occupies its center. It even has a bar and a small cinema.\nFearlessness\nDomain: MADNESS\nRecovery: D10 MIND / D6 BULLETS / D8 RESOURCES\nMissions\nThe characters speak to a ghostly voice coming from a large tree.\nIt asks them to find a way to kill it and end its suffering, though it knows that destroying a single tree will not be enough.\nReward: The location’s BULLETS recovery die increases to D10.\nThe characters may participate in a celebration marking the death of the CEO of Corporation Two Hundred.\nThe festivities include shooting at a firing range, playing dodgeball, and competing to display the most unusual trophy brought back from the depths of the Tower.\nReward: Every participant restores D10 Stress in MIND for free.\nProblems\nCorporate scouts and assault troops have been sighted at the forest’s outskirts, along with Tower monsters resembling plasma spheres pulsing with ultraviolet light.\nThe two sides are currently occupied with one another, but one will probably win soon and turn its attention toward the camp.\nThe settlement lacks hygiene supplies, and the Kra Sir do not yet know about this route.\nDescription\nA forest of geometrically perfect faceted trees. Their crowns merge with those of trees growing down from the ceiling.\nHalfway between the mirrored forests, gravity fractures. Ascenders begin falling upward toward the new floor.\nSome property of this forest causes people to relax, become calm, and forget their anxieties. A spontaneous settlement has therefore formed here, populated by Ascenders resting between brutal adventures.\nStalls in the center of the tent camp sell nuts fried in sugar and meals made from canned meat. Flower wreaths decorate the machine-gun positions around the perimeter, while the central announcement system plays cheerful music.\nWhen the group first arrives in Fearlessness, it encounters a celebration of the death of an important corporate director.\nThe Shoal\nDomain: CORPORATIONS\nRecovery: D10 SPIRIT / D6 BULLETS / D8 RESOURCES\nMissions\nA Red Sleeve wearing a steel mask asks the characters to help find a fugitive criminal who stole exceptionally valuable salt.\nReward: A pouch of gold functioning as a D8 WORLD resource and the temporary one-service Contact Red Sleeve Valor.\nA worker at the water desalination facility wants to publish a book written inside the Tower. He will give a copy stored on a memory card to anyone willing to act as his literary agent.\nThe head of the salt works asks the characters to negotiate with a representative of Corporation Two Hundred and postpone an upcoming salt shipment.\nReward: The location’s BULLETS and RESOURCES recovery dice increase to D10.\nProblems\nThirty-sided monsters living in the water sometimes attack the complex’s workers.\nCorporate security cannot suppress them by force and suspects that another method must be found.\nWell-equipped bandits from a unit that broke away from the regular army are raiding the salt-mining complex.\nSecurity does nothing about them. It may consider the bandits a lesser threat, or the head of the works may be cooperating with them and recording the stolen salt as losses from raids.\nDescription\nA placid ocean no deeper than a person’s height, dotted with islands of magical salt.\nSeveral platforms operated by Corporation Two Hundred mine the salt. Officially, its ability to sense truth and lies makes it useful for forensic examinations in the outside world.\nMany believe, however, that Corporation Two Hundred uses the salt in its supersoldier program. The treatment supposedly prevents a soldier from distinguishing truth from lies, leaving them incapable of either disobeying orders or blaming themselves for the evil they commit.\nRobbers have also established themselves somewhere in the endless waters. A small Ascender camp can be seen on an island far from the mining platform.\nThe salt remains solid beneath a person who speaks the truth. The moment they lie, it collapses beneath their feet and plunges them into freezing, caustic water.\nBlind Field\nDomain: WORLD\nRecovery: D10 MIND / D8 BULLETS / D6 RESOURCES\nMissions\nThe characters help another group of Ascenders gather local flowers.\nThe task seems simple until warriors of the People of Edges attack both groups, intending to burn the entire location.\nReward: A pouch of yellow petals functioning as a D10 WASTELAND resource.\nAn alchemist from the Berry Guard asks the characters to help investigate a floating island. A voice resembling his sister’s can be heard coming from it.\nReward: A single-use D8 alchemical brew with HEAL BULLETS, Powerful, Stable, and Accurate.\nProblems\nAscenders sometimes come here to collect flowers that help them endure the loss of a loved one without forgetting them.\nWarriors of the People of Edges—one of the Fatalists PMC’s companies—believe that the death of a friend is an inevitable and joyous part of life and that the pain of loss provides strength for future deeds.\nThe Fatalists currently rely on negotiation and nonlethal weapons, but with every cycle they make increasingly aggressive attempts to burn or poison the field.\nOne floating island remains suspiciously still while all the others drift slowly around it, almost as if observing them.\nThe Ascenders drying flowers nearby believe something must be done about it.\nDescription\nFloating islands covered in fields of red flowers.\nA missing or blind eye can see much farther and perceive far more here than a healthy one.\nThere are no permanent settlements, but Ascenders sometimes come to gather flowers that reconcile them with the sorrows of their past.\nEstates of King DDSSB\nDomain: WASTELAND\nRecovery: D8 BULLETS / D10 RESOURCES\nMissions\nNoble Thunder, a Dew Walker, and his squad propose a wager.\nWhichever group defeats the subterranean DDSSB beast receives a D12 resource or item from the loser.\nMysterious Paratechs of the People of Knives are hiding here from the corporations but cannot repair a communications tower that would allow them to contact neighboring locations.\nWhether the characters help establish an illegal broadcast or betray the cell to the corporations, they receive a D10 ARMY resource.\nProblems\nConcretequakes have awakened the DDSSB beast.\nOnce it finishes feeding on the parasites and mold living within the concrete, it will begin hunting Ascenders.\nDescription\nA scarred concrete wasteland dotted with the skeletons of buildings constructed in incomprehensible, spiral-shaped architectural styles.\nAn obviously recent communications tower stands upon one of them.\nWhen the group first arrives, it encounters the Dew Walker Noble Thunder and his squad. They intend to destroy the colossal DDSSB so it cannot threaten a Kra Sir caravan.\nIf they succeed, a small Ascender settlement will exist here when the player characters next return. Its inhabitants recover artifacts from the buildings and study the DDSSB and other forms of life inhabiting the concrete wasteland.\nThe Drum\nDomain: WAVES\nRecovery: D10 BULLETS / D10 RESOURCES\nMissions\nThe characters help a group of gamblers who lost everything rob the casino. The gamblers do not want anyone killed.\nReward: The personal Contact Squad of Debtors.\nOne of the drums has jammed and begun producing horrifying sounds.\nIt must be repaired, but not mechanically: something is wrong on a subtler level.\nReward: The location gains D8 SPIRIT recovery.\nProblems\nThe commander of the Fatalist forces has quarreled with the casino director. The conflict may soon erupt into open violence.\nThe Kra Sir refuse to deliver alcohol or narcotics here because they fear damage to their reputation.\nDescription\nA rotating metal disk several kilometers across.\nConstantly spinning drums cover its inner surface, rearranging their facets into new combinations with every rotation.\nA casino assembled from modular blocks stands upon the upper surface. Members of the People of Edges built it to evade the outside world’s prohibition on gambling, and a settlement quickly grew around it.\nThe location also contains a DVCZ research station that trains true-randomness algorithms using the drums’ movements, as well as a Fatalists PMC unit that protects the oasis and recruits gamblers who have lost everything of value.\nEnemies\nMost potential enemies can not only be dealt with peacefully but may even become comrades. The following profiles are intended for situations in which that has proven impossible.\nAfter a player fails a check, an enemy may perform its Enemy Move instead of dealing Stress.\nPlayers have many ways to deal large amounts of Stress and improve their chances of success. Consequently, many enemies have high Resistance and deal considerable Stress.\nAscender\nOrdinary adventurers who enter the Tower, ranging from bandits and cultists to scientists and artists.\nResistance: 6\nProtection: 1\nStress: D10\nDifficulty: Standard\nEnemy Move — Knowledge of the Paths\nThe Ascender changes position, negating your positional advantage. Ambushes, attacks from above, encirclement, and similar advantages no longer provide a bonus.\nCallsigns and Appearance: Nail, Fool, Valve, Blue. Several pairs of shoes fastened to a backpack, a worn weapon, camping mugs attached to a load-bearing rig, an exhausted expression, ropes wrapped across the chest, a cybernetic arm covered in wood.\nLoot: One D8 ASCEND item for the entire group, one D8 weapon per Ascender, and a map pointing toward an interesting location.\nPMC Operative\nProfessional mercenaries. They cannot navigate the Tower as well as Ascenders but compensate with superior combat training and equipment.\nResistance: 8\nProtection: 2\nStress: D10\nDifficulty: Risky\nEnemy Move — Adaptation\nThe PMC identifies your group’s fighting style.\nWhen a player fails a check made to harm the PMC, it may prevent that player’s character from achieving a critical success until the end of the scene.\nCallsigns and Appearance: Parhelion, Penumbra, Ebb, Buttress. Camouflage uniforms, clean boots, identical sleeve patches, necklaces made from battle trophies, richly decorated silk belts.\nLoot: One D8 weapon and one D6 resource per operative. The group also carries orders to eliminate a target, deliver cargo, or defend a location. The player characters may complete the assignment in the PMC’s place and demand payment from its employer.\nElite Fighter\nExceptionally skilled warriors equipped with high-quality gear and implants, ranging from snipers to swordsmen.\nEach carries an especially valuable personal weapon with a unique name.\nResistance: 10\nProtection: 3\nStress: D10\nDifficulty: Dangerous\nEnemy Move — Superior Skill\nThe elite fighter performs a specialized attack that complicates the situation, such as knocking a blade from someone’s hands or forcing an opponent toward a precipice.\nCallsigns and Appearance: Fatal Diamond, Riir Beast, Butcher of ChChChCh. A long coat, a personal weapon richly decorated with golden images, a tactical helmet painted like a skull, visible traces of cybernetic implants beneath the skin.\nLoot: Any D10 weapon. All its module slots are occupied by modules with the Expensive property.\nShieldbearer\nFighters employed to storm buildings and protect important individuals.\nResistance: 6\nProtection: 4\nStress: D10\nDifficulty: Risky\nEnemy Move — The Line Holds\nUntil the Shieldbearer takes Stress, the group cannot freely change Range or move past them.\nAny check made to bypass the Shieldbearer becomes one step more difficult.\nCallsigns and Appearance: Wall, Threshold, Barrier, Boot. An enormous ballistic shield, reinforced kneepads, a shotgun, protective charms made from bolts worn around the neck.\nLoot: A ballistic shield and a pass granting access to a fortified position.\nElectronic Warfare Operator\nA fighter carrying equipment designed to suppress electronics. Electronic Warfare Operators are constantly arguing with Paratechs.\nResistance: 8\nProtection: 1\nStress: D6\nDifficulty: Risky\nEnemy Move — Dead Zone\nUntil the end of the scene, one category of the squad’s electronic devices stops functioning: drones, smart weapons, radios, or night-vision equipment.\nThe devices may be restored during the same scene, but each individual item requires a separate FIX check.\nCallsigns and Appearance: Somersault, Roundoff, Flic-Flac, Splits. A backpack with an antenna mast, cables in place of hair, a helmet without eye openings, frequencies of dead channels handwritten across the armor.\nLoot: A D8 weapon, a D6 CORPORATIONS resource called Intercepted Keys, and a recording of a strange signal from the Tower.\nSecurity Service\nCorporate soldiers accustomed to protecting valuable employees and expensive property.\nResistance: 10\nProtection: 1\nStress: D10\nDifficulty: Risky\nEnemy Move — On Guard\nThe soldiers cover one another. This fighter grants one comrade +3 Protection until the end of the scene.\nCallsigns and Appearance: Tie, Cufflinks, Pedant, Case.\nAppearance varies by corporation. Rti Kti soldiers, for example, wear helmets with visors shaped like birds’ heads, while agents of Island Firms wear uniforms divided into red and turquoise halves.\nLoot: One D8 weapon and one D6 resource per fighter, as well as a keycard to a corporate storage facility. Very little time remains before the card is deactivated.\nBlack Guardian\nGate Guardians who have decided that, instead of protecting the outside world from the Tower, they should release Her and allow the two worlds to merge.\nResistance: 8\nProtection: 2\nStress: D12\nDifficulty: Dangerous\nEnemy Move — Last Cigarette\nThe Black Guardian smokes a cigarette and exhales hallucinogenic fumes.\nEveryone at the same Range sees the most horrifying memory of their life reflected in the Guardian and retreats if able.\nCallsigns and Appearance: Knife, Grenade, Machine Gun, Buckshot. They resemble ordinary Gate Guardians but mark their sleeves with black electrical tape.\nLoot: Cigarettes, allowing a Gate Guardian to replenish their cigarette counter; a D10 weapon; and a broken Guardian badge that can be exchanged for valuables among the Gate Guardians.\nCommunicant\nMages who have established contact with one of the entities beyond the Tower.\nTheir patron can be identified by their appearance, from the completely red eyes of the Great Red’s worshippers to the suit made from tactical gloves worn by followers of the King-in-Camouflage.\nResistance: 8\nProtection: 0\nStress: D10\nDifficulty: Standard\nEnemy Move — Dialogue\nThe Communicant calls upon the Tower, altering the surrounding location.\nUntil the end of the scene, every attempt to move during combat requires an ASCEND check.\nCallsigns and Appearance: Name, Nickname, Handle, Callsign. Worn military uniforms, cult symbols, long staffs, crooked sacrificial knives, smoking pipes decorated with red stone.\nLoot: A D8 weapon and an otherworldly artifact functioning as a D10 MADNESS resource with the Forbidden property.",
+      "tier": "elite",
+      "className": "Паратехник",
+      "classNameEn": "Paratech"
+    },
+    {
+      "id": "equipment-9-1-8-64-177",
+      "kind": "gear",
+      "title": "Rti Kti Dann 9 mm A-1",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          64
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Rti Kti Dann 9 mm A-1 — D8\nDamage: D6 Range: Close combat, medium Properties: Reliable Modification Slots: 2\nA standard 9 mm pistol.",
+      "category": "Базовое снаряжение",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D6",
+      "notes": "Дистанция: Ближний бой, средняя\nСвойства: Надёжный\n2 ячейки модификации\nСтандартный 9мм пистолет.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Basic Equipment",
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium Properties: Reliable Modification Slots: 2\nA standard 9 mm pistol."
+    },
+    {
+      "id": "equipment-7-62-7-10-64-178",
+      "kind": "gear",
+      "title": "Rti Kti Dann 7.62 mm V-7",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          64
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Rti Kti Dann 7.62 mm V-7 — D10\nDamage: D8 Range: Close combat, medium, long Properties: Automatic, Awkward at close combat Modification Slots: 2\nA standard assault rifle popular among the private armies of the People of Knives.",
+      "category": "Базовое снаряжение",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Свойства: Автоматический, Неудобный(ближний бой)\nДистанция: Ближний бой, средняя,дальняя\n2 ячейки модификации\nСтандартная штурмовая винтовка, популярная у частных армий народа Ножей.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Basic Equipment",
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium, long Properties: Automatic, Awkward at close combat Modification Slots: 2\nA standard assault rifle popular among the private armies of the People of Knives."
+    },
+    {
+      "id": "equipment-8-64-179",
+      "kind": "gear",
+      "title": "Parashtruk Lisirist Portable Radar",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          64
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Parashtruk Lisirist Portable Radar — D8\nD8 ASCEND Modification Slots: 2",
+      "category": "Базовое снаряжение",
+      "isCategory": false,
+      "skill": "ПРОБИВАТЬСЯ",
+      "quality": "D8",
+      "notes": "2 слота модификации",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Basic Equipment",
+      "skillEn": "ASCEND",
+      "notesEn": "Modification Slots: 2"
+    },
+    {
+      "id": "equipment-6-64-180",
+      "kind": "gear",
+      "title": "Medical Pouch",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          64
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Medical Pouch — D6\nD6 FIX BULLETS\nSimple equipment used to stabilize a wounded person.",
+      "category": "Базовое снаряжение",
+      "isCategory": false,
+      "skill": "ЧИНИТЬ",
+      "quality": "D6",
+      "notes": "Простое снаряжение для стабилизации раненого.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Basic Equipment",
+      "skillEn": "FIX",
+      "notesEn": "BULLETS\nSimple equipment used to stabilize a wounded person."
+    },
+    {
+      "id": "equipment-8-64-181",
+      "kind": "gear",
+      "title": "Plate Carrier with Polymer Plates",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          64
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Plate Carrier with Polymer Plates — D8\n+1 Protection and +1 slot in BULLETS.\nA protective vest covering the chest.",
+      "category": "Базовое снаряжение",
+      "isCategory": false,
+      "skill": null,
+      "quality": "D8",
+      "notes": "+1 защиты и +1 слот в ПУЛИ\nБронежилет, защищающий грудь.",
+      "resistance": "bullets",
+      "protection": 1,
+      "extraSlots": 1,
+      "armorSlots": [
+        "Тело"
+      ],
+      "categoryEn": "Basic Equipment",
+      "notesEn": "+1 Protection and +1 slot in BULLETS.\nA protective vest covering the chest."
+    },
+    {
+      "id": "equipment-10-65-182",
+      "kind": "gear",
+      "title": "Assault Backpack",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          65
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Assault Backpack — D10\n+1 Protection and +1 slot in RESOURCES.\nA compact pack designed to be worn during combat.",
+      "category": "Базовое снаряжение",
+      "isCategory": false,
+      "skill": null,
+      "quality": "D10",
+      "notes": "+1 защиты и +1 слот в ресурсы\nКомпактный ранец, используемый непосредственно в сражениях.",
+      "resistance": "resources",
+      "protection": 1,
+      "extraSlots": 1,
+      "armorSlots": [
+        "Рюкзак"
+      ],
+      "categoryEn": "Basic Equipment",
+      "notesEn": "+1 Protection and +1 slot in RESOURCES.\nA compact pack designed to be worn during combat."
+    },
+    {
+      "id": "equipment-6-65-183",
+      "kind": "gear",
+      "title": "Special Clothing",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          65
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Special Clothing — D6\nClothing with the Camouflage (X) Property.\nFor most Domains, this means literal military camouflage. For certain Domains, it may instead be another appropriate type of clothing: an ornate and luxurious traditional costume for the WORLD Domain, for example, or formal attire for the CORPORATIONS Domain.\nOccupies a special armor slot.",
+      "category": "Базовое снаряжение",
+      "isCategory": false,
+      "skill": null,
+      "quality": "D6",
+      "notes": "Одежда со свойством Камуфляж (Х). В случае с большинством областей, это обычно\nбуквальный военный камуфляж, но в случае с некоторыми областями это может быть\nдругая одежда, например роскошный украшенный орнаментами национальный костюм для\nобласти МИР, или формальная одежда для области КОРПОРАЦИИ. Занимает слот особой\nброни.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Особое"
+      ],
+      "categoryEn": "Basic Equipment",
+      "notesEn": "Clothing with the Camouflage (X) Property.\nFor most Domains, this means literal military camouflage. For certain Domains, it may instead be another appropriate type of clothing: an ornate and luxurious traditional costume for the WORLD Domain, for example, or formal attire for the CORPORATIONS Domain.\nOccupies a special armor slot."
+    },
+    {
+      "id": "equipment-6-65-184",
+      "kind": "gear",
+      "title": "Gold Coins",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          65
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Gold Coins — D6 WORLD\nA simple and easily exchanged Resource.",
+      "category": "Базовое снаряжение",
+      "isCategory": false,
+      "skill": null,
+      "quality": "D6",
+      "notes": "Простой и самый легко конвертируемый ресурс.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Basic Equipment",
+      "notesEn": "A simple and easily exchanged Resource."
+    },
+    {
+      "id": "equipment-6-65-185",
+      "kind": "gear",
+      "title": "Modification Kit",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          65,
+          66
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Modification Kit — D6 ARMY\nAllows you to add a Property to a piece of equipment or remove one of its negative Properties.",
+      "category": "Базовое снаряжение",
+      "isCategory": false,
+      "skill": "ПРОБИВАТЬСЯ",
+      "quality": "D10",
+      "notes": "Позволяет добавить снаряжению свойство, или убрать негативное свойство.\nЕсли вы хотите собрать персонажа подробнее, выберите по два предмета К10, три\nпредмета К8 и четыре предмета К6. Вы можете объединить две кости, чтобы получить\nпредмет на кость дороже. Вы можете тратить кости К6, чтобы покупать модификации к\nснаряжению.\nЧтобы придумать предмет, выберите его кость ценности от К6 до К12. Это будет мерой его\nэффективности и ценой покупки. Обычно, но не всегда, он причиняет или восстанавливает\nстресс, равный его кости ценности. Если это оружие или другой зависимый от дистанции\nпредмет, выберите дистанцию, на которой он применим, например ближний бой, средняя,\nили дальняя. Выберите также навык, с которым этот предмет применяется, например\nПРОБИВАТЬСЯ, или ЧИНИТЬ. В случае с некоторыми навыками, выберите\nдополнительные условия, например ЧИНИТЬ требует выбрать сопротивление, стресс в\nкотором восстанавливает.\nЗатем возьмите К6, это кость свойств. Она понижается на ступень за каждое\nположительное свойство, что вы возьмёте для оружия и повышается за каждое негативное.\nНа это нет ограничений, но если вы возьмёте очень много свойств, их может стать\nнеудобно подсчитывать, а сцены наверняка замедлятся! За одно понижение кости свойств\nвы можете получить:\n► Повышение стресса на ступень\n► Дополнительная дистанция применения\n► Дополнительное свойство\n► Две ячейки модификаций (Для добавления свойств за ресурсы в будущем)\n► Добавить дополнительный навык применения\n► Добавить дополнительное сопротивление к снаряжению ЧИНИТЬ\nЧтобы повысить кость свойств на ступень, вы можете:\n► Взять негативное свойство\n► Понизить стресс на ступень\nЭти правила применимы к серийным или сделанным мастером предметам, кустарные\nподелки могут иметь, например, кость свойств К4 вместо К6, или неисправляемое свойство\nненадёжный. Если вы не хотите тратить время на придумывание предметов, обратитесь к\nглаве с обширным списком снаряжения.\nПример создания\nПараштрук Лисирист — портативный радар «Царь перьевых облаков»\nПусть он будет иметь эффективность и цену К10. Без свойств это предмет К10\nПРОБИВАТЬСЯ\nЯ хочу понизить его стресс при восхождении до к8, чтобы взять дополнительное свойство.\nТеперь я добавляю свойства надёжный (Осталось К6) и мощный (Осталось К4). Ещё я хочу,\nчтобы радар мог сканировать механизмы, я отражу это через дополнительный навык\nТЕХНИЧИТЬ (Кость иссякла).\nСчитается, что ваш персонаж всегда несёт много снаряжения, полезного в разных\nситуациях, оно имеют эффективность К4 и позволяют совершать действия, которые\nобычно невозможны без посторонних предметов. Вы можете выполнять проверки с\nэффективностью к4 и без них. Ниже приведены примеры таких предметов.\nУБИВАТЬ\nТактические перчатки, боксёрские бинты, выкидной нож, зажатая в кулаке фигурка духа-\nпокровителя\nКОЛДОВАТЬ\nОккультные татуировки из металла, зачарованный смартфон, шкатулка с деревянными\nягодами, фляга с отваром из грибов и рыбы\nЧИНИТЬ\nКрасная изолента, индивидуальный перевязочный пакет и жгут, пластиковые стяжки,\nболеутоляющие, повязка-гемостатик, травы для курильницы, флейта против проклятий\nПРОБИВАТЬСЯ\nХимсвет, фальшфейер, фонарик, наручный радар, жезл лозоходца, гадальные карты,\nмонетка для выбора развилок, крюк-кошка\nСКРЫВАТЬСЯ\nГибкая камера, метательный камень, удавка, направленный микрофон, издающий звуки\nмаячок, камуфляжная краска для лица\nТЕХНИЧИТЬ\nКарабин и паракорд, смартфон с профессиональными приложениями, карманный нож,\nмультитул, смарт-очки\nГОВОРИТЬ\nМузыкальный инструмент, книга анекдотов, набор для макияжа\nСписок снаряжения\nКаждый персонаж может носить до 10 ресурсов, 4 единиц снаряжения (Например, оружия,\nнаборов медика или инструментов для навигации) и 4 единиц защиты, при этом защита в\nодном слоте не может повторяться (например, вы не можете надеть два шлема или два\nнабора оберегов). В скобках указана ценность предмета при покупке и продаже.\nУ некоторых предметов есть ячейки модификации. За к6 предмет или стресс в РЕСУРСЫ, в\nоазисе вы можете добавить к предмету дополнительное свойство, числом не больше, чем\nслотов модификаций. Например это может быть глушитель для свойства тихий, или\nудлинённый ствол для свойства точный.\nКроме того, с помощью модификации, заняв ячейку, вы можете убрать негативное\nсвойство, например облегчённая полимерная рамка может убрать свойство тяжёлый, а\nштурмовая рукоять — свойство неудобный.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Basic Equipment",
+      "skillEn": "ASCEND",
+      "notesEn": "Allows you to add a Property to a piece of equipment or remove one of its negative Properties."
+    },
+    {
+      "id": "equipment-10-66-186",
+      "kind": "gear",
+      "title": "Island Companies 10 mm “Deprivation”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          66
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Island Companies 10 mm “Deprivation”\nDamage: D6 Range: Close combat, medium Properties: Quiet, Powerful\nA suppressed pistol chambered for a large 10 mm cartridge and equipped with a system that traps the propellant gases.\nA selector allows it to operate in two modes: semiautomatic fire or manual cycling. The second mode prevents the weapon’s automatic mechanism from producing any sound.",
+      "category": "Пистолеты (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D6",
+      "notes": "Дистанция: Ближний бой, средняя\nСвойства: Тихий, мощный\nЗаглушённый пистолет под крупный 10 мм патрон с отсечкой пороховых газов. Работает в\nдвух переключаемых флажком режимах: полуавтоматическом и режиме ручного\nдосылания, нужном, чтобы исключить звуки работы автоматики.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Pistols",
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium Properties: Quiet, Powerful\nA suppressed pistol chambered for a large 10 mm cartridge and equipped with a system that traps the propellant gases.\nA selector allows it to operate in two modes: semiautomatic fire or manual cycling. The second mode prevents the weapon’s automatic mechanism from producing any sound."
+    },
+    {
+      "id": "equipment-7-66-187",
+      "kind": "gear",
+      "title": "Island Companies 7 mm “Devotion”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          66
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Island Companies 7 mm “Devotion”\nDamage: D6 Range: Close combat, medium Properties: Automatic Modification Slots: 2\nA submachine gun equipped with a recoil-balancing system.",
+      "category": "Пистолеты (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D6",
+      "notes": "Дистанция: Ближний бой, средняя\nСвойства: Автоматический\n2 ячейки модификации\nПистолет-пулемёт с системой балансирования отдачи.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Pistols",
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium Properties: Automatic Modification Slots: 2\nA submachine gun equipped with a recoil-balancing system."
+    },
+    {
+      "id": "equipment-15-5-66-188",
+      "kind": "gear",
+      "title": "Rti Kti Dann 15 mm A-5",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          66
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Rti Kti Dann 15 mm A-5\nDamage: D8 Range: Close combat, medium Properties: Awkward at close combat, Powerful\nAt the beginning of combat or after using a Reload Tactic, choose one additional keyword for the weapon:\nArmor-Piercing (2).\nFire.\nEnergy.\nAn imposing semiautomatic smoothbore pistol chambered for a short 15 mm cartridge.\nOptimized combustion allows it to use a minimal propellant charge while retaining the caliber of a full-sized hunting shotgun from ancient times. An exceptionally broad selection of ammunition is produced for this pistol.",
+      "category": "Пистолеты (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Дистанция: Ближний бой, средняя\nСвойства: Неудобный (Ближний бой), мощный. В начале боя или после тактики\nперезарядки, вы можете выбрать дополнительное ключевое слово для оружия —\nбронебойный (2), огонь, или энергетический.\nПолуавтоматический гладкоствольный пистолет внушительных размеров под короткий\n15мм патрон. Оптимизация горения химических веществ позволила положить\nминимальную навеску пороха при сохранении калибра полноразмерного охотничьего ружья\nстарины. Под этот же пистолет имеется широчайшая номенклатура патронов.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Pistols",
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium Properties: Awkward at close combat, Powerful\nAt the beginning of combat or after using a Reload Tactic, choose one additional keyword for the weapon:\nArmor-Piercing (2).\nFire.\nEnergy.\nAn imposing semiautomatic smoothbore pistol chambered for a short 15 mm cartridge.\nOptimized combustion allows it to use a minimal propellant charge while retaining the caliber of a full-sized hunting shotgun from ancient times. An exceptionally broad selection of ammunition is produced for this pistol."
+    },
+    {
+      "id": "equipment-9-1-66-189",
+      "kind": "gear",
+      "title": "Rti Kti Dann 9 mm A-1 — Standard and Self-Defense Models",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          66
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Rti Kti Dann 9 mm A-1 — Standard and Self-Defense Models\nDamage: D6 Range: Close combat, medium Properties: Reliable Modification Slots: 2\nThe self-defense model instead has the following Properties:\nReliable, Concealable, Awkward at medium range.\nA semiautomatic 9 mm pistol. A smaller self-defense version is also available, distinguished by its reduced ammunition capacity and shorter barrel.",
+      "category": "Пистолеты (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D6",
+      "notes": "Дистанция: Ближний бой, средняя\nСвойства: Надёжный, у версии для самообороны — Надёжный, Скрываемый и Неудобный\n(средняя дистанция)\n2 ячейки модификации\nПолуавтоматический 9 мм пистолет. Имеется и его уменьшенная версия для самообороны,\nотличающаяся меньшим боезапасом и длиной ствола.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Pistols",
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium Properties: Reliable Modification Slots: 2\nThe self-defense model instead has the following Properties:\nReliable, Concealable, Awkward at medium range.\nA semiautomatic 9 mm pistol. A smaller self-defense version is also available, distinguished by its reduced ammunition capacity and shorter barrel."
+    },
+    {
+      "id": "equipment-9-67-190",
+      "kind": "gear",
+      "title": "DVCZ 9 mm “Anticipation”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          67
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "DVCZ 9 mm “Anticipation”\nDamage: D10 Range: Close combat, medium Properties: Burst\nReload Tactics performed with this weapon are one step harder.\nA small-production-run pistol made from premium materials, with wooden or bone grip panels. Its defining feature is its ability to fire five-round bursts.\nInstead of a magazine, the pistol uses a large replaceable barrel assembly preloaded with caseless cartridges. The rounds are stacked one behind another and fired using electrical ignition.",
+      "category": "Пистолеты (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D10",
+      "notes": "Дистанция: Ближний бой, средняя\nСвойства: Отсечка. Тактики перезарядки с этим оружием на ступень тяжелее.\nМелкосерийный пистолет из премиальных материалов с деревянными или костяными\nнакладками на рукоять, его отличительной чертой является способность вести огонь\nочередью по пять выстрелов. Вместо магазина в пистолете используется крупный сменный\nствол, сразу снаряжённый безгильзовыми патронами с инициацией по электрическому\nимпульсу, расположенными один за другим.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Pistols",
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium Properties: Burst\nReload Tactics performed with this weapon are one step harder.\nA small-production-run pistol made from premium materials, with wooden or bone grip panels. Its defining feature is its ability to fire five-round bursts.\nInstead of a magazine, the pistol uses a large replaceable barrel assembly preloaded with caseless cartridges. The rounds are stacked one behind another and fired using electrical ignition."
+    },
+    {
+      "id": "equipment-card-67-191",
+      "kind": "gear",
+      "title": "Island Companies “Pride”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          67
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Island Companies “Pride”\nDamage: D8 Range: Close combat Properties: Armor-Piercing (2) Modification Slots: 2\nA ceramic knife with a 15 cm diamond-coated blade, especially effective for cutting attacks. It remains sharp for a long time but cannot be resharpened.\nThe grip is made from gray plastic and includes a lanyard hole. The knife comes with a plastic sheath that can be attached to a load-bearing rig.",
+      "category": "Боевые ножи (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Свойства: Бронебойный (2)\nДистанция: Ближний бой\n2 ячейки модификации\nКерамический нож с 15см клинком и алмазным напылением, особенно удобен для режущих\nударов. Долго не тупится, но заточить его невозможно. Рукоять выполнена из серого\nпластика, имеется отверстие для темляка. Поставляется с пластиковыми ножнами, которые\nможно закрепить на разгрузке.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Combat Knives",
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat Properties: Armor-Piercing (2) Modification Slots: 2\nA ceramic knife with a 15 cm diamond-coated blade, especially effective for cutting attacks. It remains sharp for a long time but cannot be resharpened.\nThe grip is made from gray plastic and includes a lanyard hole. The knife comes with a plastic sheath that can be attached to a load-bearing rig."
+    },
+    {
+      "id": "equipment-card-67-192",
+      "kind": "gear",
+      "title": "Rti Kti Dann “Ikt”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          67
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Rti Kti Dann “Ikt”\nDamage: D8 Range: Close combat Properties: Powerful Modification Slots: 2\nA modern version of the traditional combat knife of the People of Knives. It is made from complex powdered alloys combining exceptional strength and hardness.\nIts weight and 40 cm blade allow it to deliver serious chopping blows. The grip and sheath are made from stabilized wood. Customers can specify the engraving they want on the Ikt when ordering it through the company website.\nThis model’s vibration drive cycles through frequencies more quickly, allowing it to cut materials of differing densities more effectively.",
+      "category": "Боевые ножи (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Свойства: Мощный\nДистанция: Ближний бой\n2 ячейки модификации\nСовременная версия традиционного боевого ножа народа Ножей, выполнен из сложных\nпорошковых сплавов, обеспечивающих прочность вместе с твёрдостью. Тяжесть ножа и его\n40см клинок делают его способным наносить серьёзные рубящие удары. Рукоять и ножны\nсделаны из стабилизированного дерева, на сайте можно указать, какую гравировку вы\nхотите на икте. Вибропривод этой модели быстрее перебирает скорости, благодаря чему\nнож лучше режет разнородные материалы.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Combat Knives",
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat Properties: Powerful Modification Slots: 2\nA modern version of the traditional combat knife of the People of Knives. It is made from complex powdered alloys combining exceptional strength and hardness.\nIts weight and 40 cm blade allow it to deliver serious chopping blows. The grip and sheath are made from stabilized wood. Customers can specify the engraving they want on the Ikt when ordering it through the company website.\nThis model’s vibration drive cycles through frequencies more quickly, allowing it to cut materials of differing densities more effectively."
+    },
+    {
+      "id": "equipment-card-67-193",
+      "kind": "gear",
+      "title": "Sirivirst Fakhir “Sirivirst”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          67
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Sirivirst Fakhir “Sirivirst”\nDamage: D8 Range: Close combat Properties: Dueling, Balanced\nA shortened version of the traditional bladed weapon of the People of Edges. Its slightly curved 30 cm blade contains a standard vibration drive that increases the effectiveness of its strikes.\nSirivirst Fakhir vibration drives use a patented extended frequency range, making it easier to cut both extremely hard and extremely soft targets.\nAn elaborate basket guard protects the wielder’s hand.",
+      "category": "Боевые ножи (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Свойства: Дуэльный, сбалансированный\nДистанция: Ближний бой\nУкороченная версия национального холодного оружия народа Граней, 30см чуть изогнутый\nклинок снабжён стандартным виброприводом, увеличивающим эффективность ударов.\nВиброприводы оружия компании Сиривирст Фахир работают по запатентованной схеме\nрасширенного диапазона вибрации, дающей возможность легче резать очень твёрдые и\nочень мягкие цели. Имеет развитую корзинчатую гарду, защищающую руку.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Combat Knives",
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat Properties: Dueling, Balanced\nA shortened version of the traditional bladed weapon of the People of Edges. Its slightly curved 30 cm blade contains a standard vibration drive that increases the effectiveness of its strikes.\nSirivirst Fakhir vibration drives use a patented extended frequency range, making it easier to cut both extremely hard and extremely soft targets.\nAn elaborate basket guard protects the wielder’s hand."
+    },
+    {
+      "id": "equipment-card-67-194",
+      "kind": "gear",
+      "title": "Sirivirst Fakhir “Khokhskhekh”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          67,
+          68
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Sirivirst Fakhir “Khokhskhekh”\nDamage: D10 Range: Close combat Modification Slots: 2\nA combat version of a broad reed-cutting knife, named after a plant found in the bays of the People of Edges.\nIts 50 cm recurved blade and thick spine make it capable of delivering powerful chopping blows, but the weapon is unsuitable for fencing or elaborate martial arts.\nInstead of a vibration drive, it contains an inertial fluid inside the grip and part of the blade. This improves its balance and allows faster attacks.",
+      "category": "Боевые ножи (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D10",
+      "notes": "Дистанция: Ближний бой\n2 ячейки модификации\nБоевая версия широкого ножа для рубки тростника, названного в честь растения из бухт\nнарода Граней. 50см клинок с обратным изгибом и толстый обух дают возможность\nнаносить сильные рубящие удары, но для фехтования и изощрённых боевых искусств этот\nнож не годится. Вибропривод заменён в нём на инерционную жидкость внутри рукояти и\nчасти клинка, улучшающую баланс и позволяющую быстрее наносить удары.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Combat Knives",
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat Modification Slots: 2\nA combat version of a broad reed-cutting knife, named after a plant found in the bays of the People of Edges.\nIts 50 cm recurved blade and thick spine make it capable of delivering powerful chopping blows, but the weapon is unsuitable for fencing or elaborate martial arts.\nInstead of a vibration drive, it contains an inertial fluid inside the grip and part of the blade. This improves its balance and allows faster attacks."
+    },
+    {
+      "id": "equipment-7-62-7-68-195",
+      "kind": "gear",
+      "title": "Rti Kti Dann 7.62 mm V-7",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          68
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Rti Kti Dann 7.62 mm V-7\nDamage: D8 Range: Close combat, medium, long Properties: Automatic, Awkward at close combat Modification Slots: 2\nA standard assault rifle popular among the private armies of the People of Knives. It is distinguished by its long effective range and tremendous stopping power.\nImproved propellant and a polymer cartridge case allow the ammunition to be smaller while increasing bullet velocity.\nThe grip, stock, and handguard are traditionally made from stabilized wood, although lighter versions with nanopolymer furniture are also available.\nThe V-7 is highly modular. Many companies manufacture replacement grips, receiver covers, trigger assemblies, and other components for it.",
+      "category": "Штурмовые винтовки (к10)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Свойства: Автоматический, Неудобный(ближний бой)\nДистанция: Ближний бой, средняя,дальняя\n2 ячейки модификации\nСтандартная штурмовая винтовка, популярная у частных армий народа Ножей. Отличается\nвысокой дальностью стрельбы и огромной останавливающей силой. Более совершенная\nформа пороха и полимерная гильза дали возможность сделать патрон меньше и увеличить\nскорость полёта пули. Рукоять, приклад и цевьё по традиции сделаны из\nстабилизированного дерева, однако имеются и более лёгкие версии с наноплимерной\nфурнитурой. Модульность В-7 позволяет модифицировать винтовку на свой вкус, многие\nкомпании выпускают к ней собственные дополнения вроде сменных рукояток, крышек\nствольной коробки и спусковых механизмов.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Assault Rifles",
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium, long Properties: Automatic, Awkward at close combat Modification Slots: 2\nA standard assault rifle popular among the private armies of the People of Knives. It is distinguished by its long effective range and tremendous stopping power.\nImproved propellant and a polymer cartridge case allow the ammunition to be smaller while increasing bullet velocity.\nThe grip, stock, and handguard are traditionally made from stabilized wood, although lighter versions with nanopolymer furniture are also available.\nThe V-7 is highly modular. Many companies manufacture replacement grips, receiver covers, trigger assemblies, and other components for it."
+    },
+    {
+      "id": "equipment-11-5-9-68-196",
+      "kind": "gear",
+      "title": "Rti Kti Dann 11.5 mm V-9",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          68
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Rti Kti Dann 11.5 mm V-9\nDamage: D10 Range: Close combat, medium, long Properties: Automatic, Powerful, Awkward at close combat, Heavy\nA reinforced assault rifle chambered for the 11.5×46 mm cartridge. It is normally fired semiautomatically against targets in medium or heavy infantry armor, though it also possesses an automatic mode.\nIts recoil is considerable, so automatic fire is usually limited to short bursts.\nExcept for the grip and handguard, the V-9 is made entirely from metal. A polymer receiver cover proved unable to withstand the vibration of the mechanisms designed for its large cartridge.\nAn upper inertial rail is connected to the weapon by a movable track. This protects mounted optics from the rifle’s powerful recoil.",
+      "category": "Штурмовые винтовки (к10)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D10",
+      "notes": "Свойства: Автоматический, Мощный, Неудобный(ближний бой), Тяжёлый.\nДистанция:Ближний бой, средняя,дальняя\nУсиленная штурмовая винтовка под патрон 11.5х46 мм, обычно используется в\nполуавтоматическом режиме для стрельбы по целям в средней или тяжёлой пехотной\nброне, но имеет и автоматический режим стрельбы. Отдача в нём очень заметна, так что\nобычно из В-9 ведут огонь короткими очередями. В-9 выполнена, не считая рукояти и\nцевья, целиком в металле, полимерная крышка ствольной коробки не выдерживала\nвибрации механизмов, рассчитанных на крупный патрон. Винтовка снабжена верхней\nинерционной планкой, соединённой с оружием подвижной шиной. Такая конструкция\nпозволяет при всей мощи патрона оставить целым установленный прицел.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Assault Rifles",
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium, long Properties: Automatic, Powerful, Awkward at close combat, Heavy\nA reinforced assault rifle chambered for the 11.5×46 mm cartridge. It is normally fired semiautomatically against targets in medium or heavy infantry armor, though it also possesses an automatic mode.\nIts recoil is considerable, so automatic fire is usually limited to short bursts.\nExcept for the grip and handguard, the V-9 is made entirely from metal. A polymer receiver cover proved unable to withstand the vibration of the mechanisms designed for its large cartridge.\nAn upper inertial rail is connected to the weapon by a movable track. This protects mounted optics from the rifle’s powerful recoil."
+    },
+    {
+      "id": "equipment-5-56-68-197",
+      "kind": "gear",
+      "title": "DVCZ 5.56 mm “Expedition”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          68
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "DVCZ 5.56 mm “Expedition”\nDamage: D6 Range: Close combat, medium, long Properties: Automatic, Accurate Modification Slots: 2\nA bullpup rifle with a top-mounted helical magazine. The magazine’s enormous capacity and a recoil-stabilization system make it easier to fire long bursts at any Range.\nThe body is made entirely from nanopolymer, significantly reducing the rifle’s weight even with a full magazine. The grip and handguard are made from wood with horn inlays.\nIts thickened barrel can be replaced easily.",
+      "category": "Штурмовые винтовки (к10)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D6",
+      "notes": "Свойства: Автоматический, Точный\nДистанция: Ближний бой, средняя,дальняя\n2 ячейки модификации\nВинтовка по системе булл-пап с расположенным сверху шнековым магазином. Огромная\nвместительность магазина и механизм стабилизации отдачи облегчает стрельбу длинными\nочередями на любые дистанции. Корпус целиком сделан из нанополимера, что делает\nвинтовку со снаряжённым магазином заметно легче. Рукоять и цевьё сделаны из дерева с\nнакладками из рога. Утолщённый ствол легко заменяется.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Assault Rifles",
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium, long Properties: Automatic, Accurate Modification Slots: 2\nA bullpup rifle with a top-mounted helical magazine. The magazine’s enormous capacity and a recoil-stabilization system make it easier to fire long bursts at any Range.\nThe body is made entirely from nanopolymer, significantly reducing the rifle’s weight even with a full magazine. The grip and handguard are made from wood with horn inlays.\nIts thickened barrel can be replaced easily."
+    },
+    {
+      "id": "equipment-7-62-69-198",
+      "kind": "gear",
+      "title": "Weapons of the World 7.62 mm “Doom Diamond”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          69
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Weapons of the World 7.62 mm “Doom Diamond”\nDamage: D8 Range: Close combat, medium, long Properties: Automatic, Smart, Awkward at close combat\nA smart assault rifle equipped with targeting systems, cameras, and a target-recognition AI.\nIt has two trigger systems. The slower but more reliable backup is a conventional trigger. The faster option is remotely activated through an implant-control system.\nA smart visor, smart lenses, or cybernetic eyes can connect to the rifle’s cameras, allowing the user to see from the weapon’s perspective.\nThe rifle requires extremely careful maintenance.",
+      "category": "Штурмовые винтовки (к10)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Свойства: Автоматический, Умный, Неудобный(ближний бой)\nДистанция:Ближний бой, средняя,дальняя\nУмная штурмовая винтовка с системами целеуказания, камерами и линком с\nраспознающим цели ИИ. Обладает дублированным спуском: более надёжный запасной\nвариант — использовать спусковой крючок, а более быстрый — активировать удалённый\nспуск через систему управления киберимплантами. При наличии смарт визора, линз или\nкиберглаз можно подключиться к камерам винтовки и смотреть от её лица. Нуждается в\nочень тщательном обслуживании.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Assault Rifles",
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium, long Properties: Automatic, Smart, Awkward at close combat\nA smart assault rifle equipped with targeting systems, cameras, and a target-recognition AI.\nIt has two trigger systems. The slower but more reliable backup is a conventional trigger. The faster option is remotely activated through an implant-control system.\nA smart visor, smart lenses, or cybernetic eyes can connect to the rifle’s cameras, allowing the user to see from the weapon’s perspective.\nThe rifle requires extremely careful maintenance."
+    },
+    {
+      "id": "equipment-7-62-69-199",
+      "kind": "gear",
+      "title": "Island Companies 7.62 mm “Significance”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          69
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Island Companies 7.62 mm “Significance”\nDamage: D8 Range: Close combat, medium, long Properties: Automatic, Awkward at long range Modification Slots: 2\nA shortened full-caliber rifle intended for storming buildings.\nIts metal body makes it useful in close combat. The standard magazine holds relatively few rounds, though this is usually sufficient at short distances.\nThe detachable folding stock is secured at several points, increasing its reliability.",
+      "category": "Штурмовые винтовки (к10)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Свойства: Автоматический, Неудобный(дальняя)\nДистанция:Ближний бой, средняя,дальняя\n2 ячейки модификации\nУкороченная винтовка для штурма зданий, выполненная в полноценном винтовочном\nкалибре. Корпус оружия выполнен в металле, это помогает использовать его в ближнем\nбою. Штатный магазин вмещает немного патронов, но на близкой дистанции этого вполне\nхватает. Съёмный складной приклад закреплён в нескольких местах, что повышает его\nнадёжность.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Assault Rifles",
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium, long Properties: Automatic, Awkward at long range Modification Slots: 2\nA shortened full-caliber rifle intended for storming buildings.\nIts metal body makes it useful in close combat. The standard magazine holds relatively few rounds, though this is usually sufficient at short distances.\nThe detachable folding stock is secured at several points, increasing its reliability."
+    },
+    {
+      "id": "equipment-7-62-2-69-200",
+      "kind": "gear",
+      "title": "Rti Kti Dann 7.62 mm S-2",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          69,
+          70
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Rti Kti Dann 7.62 mm S-2\nDamage: D8 Range: Medium, long Properties: Automatic, Suppression Modification Slots: 2\nA modification of the V-7 assault rifle with a long, reinforced, replaceable barrel, a reinforced receiver cover, and integrated bipods.\nMagazine feeding allows it to be reloaded more quickly. Unlike most light machine guns, it also possesses a semiautomatic mode.",
+      "category": "Ручные пулемёты (к12)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Свойства: Автоматический, Подавление\nДистанция: Средняя,дальняя\n2 ячейки модификации\nМодификация штурмовой винтовки В-7 с длинным усиленным заменяемым стволом и\nкрышкой ствольной коробки, а так же интегрированными сошками. Питание от магазина\nпозволяет быстрее осуществлять перезарядку. В отличие от других ручных пулемётов\nимеет полуавтоматический режим стрельбы.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Light Machine Guns",
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium, long Properties: Automatic, Suppression Modification Slots: 2\nA modification of the V-7 assault rifle with a long, reinforced, replaceable barrel, a reinforced receiver cover, and integrated bipods.\nMagazine feeding allows it to be reloaded more quickly. Unlike most light machine guns, it also possesses a semiautomatic mode."
+    },
+    {
+      "id": "equipment-5-56-29-70-201",
+      "kind": "gear",
+      "title": "Rti Kti Dann 5.56 mm S-29",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          70
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Rti Kti Dann 5.56 mm S-29\nDamage: D6 Range: Close combat, medium, long Properties: Automatic, Awkward at close combat, Suppression, Bipod Modification Slots: 2\nA lightweight box-fed machine gun. Its 3D-printed nanopolymer ammunition belt makes a loaded box considerably lighter.\nThe S-29 is highly accurate at medium Range and is frequently fitted with optical sights.\nBipods are included but can be attached or removed easily.",
+      "category": "Ручные пулемёты (к12)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D6",
+      "notes": "Свойства: Автоматический, Неудобный(ближний бой), Подавление, Сошки\nДистанция: Ближний бой, средняя, дальняя\n2 ячейки модификации\nЛёгкий ручной пулемёт с питанием от короба. Напечатанная на 3д принтере лента из\nнанополимеров делает снаряжённый короб заметно легче. Очень точный на средних\nдистанциях, на С-29 часто устанавливают оптические прицелы. Сошки идут в комплекте, но\nпри этом легко прищёлкиваются и отщёлкиваются.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Light Machine Guns",
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium, long Properties: Automatic, Awkward at close combat, Suppression, Bipod Modification Slots: 2\nA lightweight box-fed machine gun. Its 3D-printed nanopolymer ammunition belt makes a loaded box considerably lighter.\nThe S-29 is highly accurate at medium Range and is frequently fitted with optical sights.\nBipods are included but can be attached or removed easily."
+    },
+    {
+      "id": "equipment-11-5-70-202",
+      "kind": "gear",
+      "title": "Island Companies 11.5 mm “Youth”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          70
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Island Companies 11.5 mm “Youth”\nDamage: D10 Range: Medium, long Properties: Automatic, Awkward at medium range, Powerful, Suppression, Heavy Modification Slots: 2\nA general-purpose machine gun most often used from a fixed mount.\nIts tremendous recoil and noise are offset by considerable firepower. Some users fit the already-heavy weapon with an active suppressor that uses microphones and speakers to cancel the sound of firing and mechanical operation.\nThe company produces a proprietary backpack containing a belt of either 750 or 1,500 rounds, depending on the model.",
+      "category": "Ручные пулемёты (к12)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D10",
+      "notes": "Свойства: Автоматический, Неудобный(Средняя), Мощный, Подавление, Тяжёлый\nДистанция: Средняя, дальняя\n2 ячейки модификации\nЕдиный пулемёт, применяемый чаще как станковый. Серьёзные отдача и громкость\nкомпенсируются значительной огневой мощью. На и так тяжёлый пулемёт иногда\nустанавливается активный глушитель, подавляющий шум стрельбы и работы механизмов с\nпомощью системы микрофонов и динамиков. К Юности подходит фирменный рюкзак от\nкомпании, вмещающий присоединяемую к пулемёту ленту на 750 или 1500 выстрелов в\nзависимости от модели.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Light Machine Guns",
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium, long Properties: Automatic, Awkward at medium range, Powerful, Suppression, Heavy Modification Slots: 2\nA general-purpose machine gun most often used from a fixed mount.\nIts tremendous recoil and noise are offset by considerable firepower. Some users fit the already-heavy weapon with an active suppressor that uses microphones and speakers to cancel the sound of firing and mechanical operation.\nThe company produces a proprietary backpack containing a belt of either 750 or 1,500 rounds, depending on the model."
+    },
+    {
+      "id": "equipment-5-56-70-203",
+      "kind": "gear",
+      "title": "DVCZ 5.56 mm “Shield”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          70
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "DVCZ 5.56 mm “Shield”\nDamage: D6 Range: Close combat, medium, long Properties: Automatic, Awkward at close combat, Suppression, Burst Modification Slots: 2\nA lightweight machine gun built around a coordinated twin-barrel system. While one barrel fires, the other reloads, producing an extraordinary density of fire.\nIt has almost no vertical recoil but sways noticeably from side to side during long bursts.\nAmmunition is fed from two high-capacity magazines. Shorter barrels can also be installed.",
+      "category": "Ручные пулемёты (к12)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D6",
+      "notes": "Свойства: Автоматический, Неудобный(ближний бой), Подавление, Отсечка\nДистанция: Ближний бой, средняя, дальняя\n2 ячейки модификации\nЛёгкий ручной пулемёт, отличающийся двуствольной координированной системой: пока из\nодного ствола производится выстрел, другой перезаряжается, что обеспечивает\nколоссальную плотность огня. Почти не имеет вертикальной отдачи, но обладает заметным\nраскачиванием в сторону при стрельбе длинными очередями. Боепитание производится от\nдвух вместительных магазинов. Имеет возможность установки более коротких стволов.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Light Machine Guns",
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium, long Properties: Automatic, Awkward at close combat, Suppression, Burst Modification Slots: 2\nA lightweight machine gun built around a coordinated twin-barrel system. While one barrel fires, the other reloads, producing an extraordinary density of fire.\nIt has almost no vertical recoil but sways noticeably from side to side during long bursts.\nAmmunition is fed from two high-capacity magazines. Shorter barrels can also be installed."
+    },
+    {
+      "id": "equipment-7-62-70-204",
+      "kind": "gear",
+      "title": "Weapons of the World 7.62 mm “Warrior-King”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          70
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Weapons of the World 7.62 mm “Warrior-King”\nDamage: D8 Range: Medium, long Properties: Automatic, Smart, Suppression\nA widely used smart light machine gun, made lighter with nanopolymers so that it can be carried during mobile operations and used inside buildings.\nIt feeds from a drum magazine. Its smart systems allow the user to see through its cameras and activate it through an implant-control system as though it were an extension of their own body.\nCombined with a remotely controlled mount, the Warrior-King becomes a remote-operated turret.",
+      "category": "Ручные пулемёты (к12)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Свойства: Автоматический, Умный, Подавление\nДистанция: Средняя, дальняя\nОчень распространённый ручной смарт пулемёт, специально облегчённый с помощью\nнанополимеров для активного перемещения и использования в зданиях. Боепитание\nпроизводится от барабанного магазина. Смарт системы дают возможность смотреть через\nкамеры пулемёта и активировать его через систему контроля имплантов как продолжение\nтела. Вместе с управляемым дистанционно станком, Короля-Воина можно превратить в\nдистанционно управляемую турель.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Light Machine Guns",
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium, long Properties: Automatic, Smart, Suppression\nA widely used smart light machine gun, made lighter with nanopolymers so that it can be carried during mobile operations and used inside buildings.\nIt feeds from a drum magazine. Its smart systems allow the user to see through its cameras and activate it through an implant-control system as though it were an extension of their own body.\nCombined with a remotely controlled mount, the Warrior-King becomes a remote-operated turret."
+    },
+    {
+      "id": "equipment-11-5-70-205",
+      "kind": "gear",
+      "title": "Weapons of the World 11.5 mm “Watchful Terror”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          70
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Weapons of the World 11.5 mm “Watchful Terror”\nDamage: D10 Range: Medium, long Properties: Smart, Powerful, Heavy Modification Slots: 2\nA sniper rifle with a smart scope and ballistic processor.\nIts bolt-action mechanism provides maximum accuracy at long Range. Integrated computers and cameras calculate the correct lead based on distance, wind, and other conditions.\nThe built-in scope displays an image on a nanodisplay and supports infrared, night, and spiritual vision.",
+      "category": "Дальнобойные винтовки (к12)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D10",
+      "notes": "Свойства: Умный, Мощный, Тяжёлый.\nДистанция: Средняя, дальняя\n2 ячейки модификации\nСнайперская винтовка с умным прицелом и баллистическим процессором. Продольно-\nскользящий затвор обеспечивает максимальную точность на дальней дистанции.\nВстроенные компьютеры в сочетании с камерами позволяют брать верное упреждение,\nзависящее от расстояния, ветра и прочих условий. Интегрированный в корпус прицел\nотображает картинку на нанодисплее в режимах инфракрасного, ночного, или духовного\nвидения.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Long-Range Rifles",
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium, long Properties: Smart, Powerful, Heavy Modification Slots: 2\nA sniper rifle with a smart scope and ballistic processor.\nIts bolt-action mechanism provides maximum accuracy at long Range. Integrated computers and cameras calculate the correct lead based on distance, wind, and other conditions.\nThe built-in scope displays an image on a nanodisplay and supports infrared, night, and spiritual vision."
+    },
+    {
+      "id": "equipment-7-62-5-70-206",
+      "kind": "gear",
+      "title": "Rti Kti Dann 7.62 mm X-5",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          70
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Rti Kti Dann 7.62 mm X-5\nDamage: D10 Range: Medium, long Properties: Quiet Modification Slots: 2\nA sniper rifle with systems that conceal both muzzle flash and sound.\nActive noise cancellation suppresses the report and mechanical noise. A barrel shroud and muzzle attachment made from polymer metamaterial absorb heat and release it slowly and evenly.\nAs a result, the firing rifle cannot be seen through thermal optics, while combat neural networks do not recognize it as a weapon.\nThe X-5 is semiautomatic, allowing its user to exploit the lack of noise and temperature fluctuations more effectively.",
+      "category": "Дальнобойные винтовки (к12)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D10",
+      "notes": "Свойства: Тихий\nДистанция: Средняя, Дальняя\n2 ячейки модификации\nСнайперская винтовка с системами маскировки вспышек и звука. Активное\nшумоподавление скрывает звук выстрела и работу механизмов, а ствольный кожух и\nдульная насадка из полимерного метаматериала поглощают тепло и медленно равномерно\nего распределяют, так что на тепловизорах винтовка при стрельбе не видна, а боевые\nнейросети не распознают её как оружие. Чтобы извлечь из тишины и отсутствия\nтемпературных перепадов максимальную выгоду, винтовку сделали полуавтоматической.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Long-Range Rifles",
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium, long Properties: Quiet Modification Slots: 2\nA sniper rifle with systems that conceal both muzzle flash and sound.\nActive noise cancellation suppresses the report and mechanical noise. A barrel shroud and muzzle attachment made from polymer metamaterial absorb heat and release it slowly and evenly.\nAs a result, the firing rifle cannot be seen through thermal optics, while combat neural networks do not recognize it as a weapon.\nThe X-5 is semiautomatic, allowing its user to exploit the lack of noise and temperature fluctuations more effectively."
+    },
+    {
+      "id": "equipment-5-56-5-71-207",
+      "kind": "gear",
+      "title": "Rti Kti Dann 5.56 mm E-5",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          71
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Rti Kti Dann 5.56 mm E-5\nDamage: D6 Range: Close combat, medium, long Properties: Accurate, Dueling, Awkward at close combat Modification Slots: 4\nA highly modular scout rifle.\nThis lightweight long-range rifle is quick to aim and can be fired easily without support. Its modular system allows the mechanism to be reconfigured into almost any weapon form without tools.",
+      "category": "Дальнобойные винтовки (к12)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D6",
+      "notes": "Свойства: Точный, Дуэльный, Неудобный(ближний бой)\nДистанция: Ближний бой, средняя, дальняя\n4 ячейки модификации\nСкаутская винтовка с высокой модульностью. Лёгкая дальнобойная винтовка позволяет\nбыстро целиться и вести огонь с рук, а её модульная система даёт собрать вокруг\nмеханизма оружие любого форм-фактора, даже не имея при себе инструментов.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Long-Range Rifles",
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium, long Properties: Accurate, Dueling, Awkward at close combat Modification Slots: 4\nA highly modular scout rifle.\nThis lightweight long-range rifle is quick to aim and can be fired easily without support. Its modular system allows the mechanism to be reconfigured into almost any weapon form without tools."
+    },
+    {
+      "id": "equipment-12-7-71-208",
+      "kind": "gear",
+      "title": "Second Sun 12.7 mm “Intermission”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          71
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Second Sun 12.7 mm “Intermission”\nDamage: D12 Range: Long Properties: Accurate, Powerful, Heavy, Loud, Single-Shot Modification Slots: 2\nA heavy rifle that accelerates its projectile electromagnetically. It is designed to defeat heavily armored infantry and light vehicles.\nA heavy tungsten projectile is loaded from above. The weapon has no magazine, as one would further increase its already enormous weight and accelerate mechanical wear.\nA massive battery attaches beneath the rifle.\nIts extremely loud shot is accompanied by a plasma flash, but can strike targets at tremendous distances.",
+      "category": "Дальнобойные винтовки (к12)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D12",
+      "notes": "Свойства: Точный, Мощный, Тяжёлый, Громкий, Однозарядный\nДистанция: Дальняя\n2 ячейки модификации\nТяжёлая винтовка с электромагнитным разгоном пули, предназначена для поражения\nпехоты в тяжёлой броне и лёгкой техники. Тяжёлая вольфрамовая пуля заряжается сверху,\nмагазина у винтовки нет, это увеличило бы её и так огромный вес и ускорило бы износ\nмеханизмов. Снизу присоединяется массивный аккумулятор. Очень громкий\nсопровождающийся плазменной вспышкой выстрел позволяет поразить цель на огромной\nдистанции.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Long-Range Rifles",
+      "skillEn": "KILL",
+      "notesEn": "Range: Long Properties: Accurate, Powerful, Heavy, Loud, Single-Shot Modification Slots: 2\nA heavy rifle that accelerates its projectile electromagnetically. It is designed to defeat heavily armored infantry and light vehicles.\nA heavy tungsten projectile is loaded from above. The weapon has no magazine, as one would further increase its already enormous weight and accelerate mechanical wear.\nA massive battery attaches beneath the rifle.\nIts extremely loud shot is accompanied by a plasma flash, but can strike targets at tremendous distances."
+    },
+    {
+      "id": "equipment-7-62-71-209",
+      "kind": "gear",
+      "title": "DVCZ 7.62 mm “Hissing Leaf”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          71
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "DVCZ 7.62 mm “Hissing Leaf”\nDamage: D8 Range: Close combat, medium, long Properties: Automatic, Accurate, Awkward at close combat Modification Slots: 2\nAn automatic sniper rifle named after its designer.\nThe first model in the family was intended for hunting. Its automatic mode allowed a hunter who missed their first shot to stop an enraged animal with a burst.\nThe accurate, long-range rifle proved popular with the free armies of the People of the Steppes. It is traditionally decorated with horn and wood.\nA nonlethal conversion using tranquilizer ammunition is also available.",
+      "category": "Дальнобойные винтовки (к12)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Свойства: Автоматический, Точный, Неудобный(ближний бой)\nДистанция: Ближний бой, средняя, дальняя\n2 ячейки модификации\nНазванная в честь конструктора снайперская винтовка с автоматическим режимом огня.\nПервая модель этого семейства винтовок предназначалась для охоты, был рассчёт на то,\nчто при промахе разъярённого зверя можно будет остановить очередью. Однако\nдальнобойная и точная винтовка, дающая возможность стрелять очередями пришлась по\nвкусу вольным армиям народа Степей. По традиции отделана рогом и деревом. Имеет\nнелетальную конверсию под патрон с транквилизатором.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Long-Range Rifles",
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium, long Properties: Automatic, Accurate, Awkward at close combat Modification Slots: 2\nAn automatic sniper rifle named after its designer.\nThe first model in the family was intended for hunting. Its automatic mode allowed a hunter who missed their first shot to stop an enraged animal with a burst.\nThe accurate, long-range rifle proved popular with the free armies of the People of the Steppes. It is traditionally decorated with horn and wood.\nA nonlethal conversion using tranquilizer ammunition is also available."
+    },
+    {
+      "id": "equipment-8-71-210",
+      "kind": "gear",
+      "title": "Rti Kti Dann O-8",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          71
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Rti Kti Dann O-8\n+3 Protection in BULLETS. +5 Protection in BULLETS against melee weapons.\nA small mobile shield made from transparent polymer. It protects the torso and was designed for police and close-combat fighters.",
+      "category": "Баллистический щит (к8)",
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "+3 защиты в ПУЛИ, +5 защиты в ПУЛИ от оружия ближнего боя\nНебольшой мобильный щит из прозрачного полимера, защищающий корпус,\nпредназначался для полицейских и бойцов ближнего боя.",
+      "resistance": "bullets",
+      "protection": 3,
+      "extraSlots": 0,
+      "categoryEn": "Ballistic Shields",
+      "notesEn": "+3 Protection in BULLETS. +5 Protection in BULLETS against melee weapons.\nA small mobile shield made from transparent polymer. It protects the torso and was designed for police and close-combat fighters."
+    },
+    {
+      "id": "equipment-97-71-211",
+      "kind": "gear",
+      "title": "Rti Kti Dann O-97",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          71,
+          72
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Rti Kti Dann O-97\n+4 Protection in BULLETS.\nASCEND checks involving speed are one step harder.\nOnce per scene, the shield can blind opponents. One subsequent action cannot cause Fallout, even if its check fails.\nA medium shield made from ultra-high-molecular-weight plastic and light alloys. Protective plates unfold from its sides and lower edge.\nFlash lamps built into the shield blind targets without eye protection.",
+      "category": "Баллистический щит (к8)",
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "+4 защиты в ПУЛИ, ваши проверки ПРОБИВАТЬСЯ, связанные со скоростью, становятся на\nступень тяжелее. Раз в сцену может ослепить противников: одно следующее действие не\nможет принести последствия даже при провале.\nСредний щит из свервысокомолекулярного пластика и лёгких сплавов, имеет\nраскладываемые по бокам и снизу защитные пластины, а так же вспышковые лампы,\nослепляющие цели без защиты глаз.",
+      "resistance": "bullets",
+      "protection": 4,
+      "extraSlots": 0,
+      "categoryEn": "Ballistic Shields",
+      "notesEn": "+4 Protection in BULLETS.\nASCEND checks involving speed are one step harder.\nOnce per scene, the shield can blind opponents. One subsequent action cannot cause Fallout, even if its check fails.\nA medium shield made from ultra-high-molecular-weight plastic and light alloys. Protective plates unfold from its sides and lower edge.\nFlash lamps built into the shield blind targets without eye protection."
+    },
+    {
+      "id": "equipment-card-72-212",
+      "kind": "gear",
+      "title": "Sirivirst Fakhir “Zalazaziz”",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          72
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Sirivirst Fakhir “Zalazaziz”\n+5 Protection in BULLETS.\nAllies at the same Range as you receive +4 Protection in BULLETS.\nYour HIDE and ASCEND checks are one step harder.\nA heavy assault shield named after a plant found in the bays of the People of Edges.\nIt is made from durable special alloys and enclosed in a protective fabric cover to prevent fragmentation.\nOccupies a Backpack Slot.",
+      "category": "Баллистический щит (к8)",
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "+5 защиты в ПУЛИ, +4 защиты в ПУЛИ стоящим на одной дистанции с вами союзникам.\nВаши проверки СКРЫВАТЬСЯ и ПРОБИВАТЬСЯ становятся на ступень тяжелее.\nТяжёлый штурмовой щит, названный в честь растения из бухт народа Морей. Выполнен из\nпрочных спецсплавов и затянут в кожух из защитной ткани, чтобы избежать осколков. Щит\nзанимает ячейку рюкзака.",
+      "resistance": "bullets",
+      "protection": 4,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Рюкзак"
+      ],
+      "categoryEn": "Ballistic Shields",
+      "notesEn": "+5 Protection in BULLETS.\nAllies at the same Range as you receive +4 Protection in BULLETS.\nYour HIDE and ASCEND checks are one step harder.\nA heavy assault shield named after a plant found in the bays of the People of Edges.\nIt is made from durable special alloys and enclosed in a protective fabric cover to prevent fragmentation.\nOccupies a Backpack Slot."
+    },
+    {
+      "id": "equipment-card-72-213",
+      "kind": "gear",
+      "title": "Sirivirst Fakhir “Benchmark”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          72
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Sirivirst Fakhir “Benchmark”\nDamage: D10 Range: Close combat Properties: Armor-Piercing (2), Dueling\nA modernized version of the traditional bladed weapon of the People of Edges.\nIts extended-range vibration drive allows it to thrust, chop, and cut effectively. It has a slightly curved blade and a basket hilt made from gilded special alloys. The grip is wrapped in traditional medicinal herbs.\nPerfectly balanced for fencing, the Benchmark is a powerful argument in a sword-against-sword duel.",
+      "category": "Тяжёлое оружие ближнего боя (к10)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D10",
+      "notes": "Свойства: Бронебойный (2), дуэльный\nДистанция: Ближний бой\nОсовременненная версия традиционного холодного оружия народа Граней. Обладает\nвиброприводом с расширенным диапазоном, хорошо колет, рубит и режет. Чуть изогнутый\nклинок и выполненная из позолоченных спецсплавов корзинчатая рукоять. Обмотка рукояти\nвыполнена из традиционных целебных трав. Сбалансированный Эталон идеально\nподходит для фехтования и является очень серьёзным аргументом в сражении ”Меч на\nмеч”.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Heavy Melee Weapons",
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat Properties: Armor-Piercing (2), Dueling\nA modernized version of the traditional bladed weapon of the People of Edges.\nIts extended-range vibration drive allows it to thrust, chop, and cut effectively. It has a slightly curved blade and a basket hilt made from gilded special alloys. The grip is wrapped in traditional medicinal herbs.\nPerfectly balanced for fencing, the Benchmark is a powerful argument in a sword-against-sword duel."
+    },
+    {
+      "id": "equipment-card-72-214",
+      "kind": "gear",
+      "title": "Sirivirst Fakhir “TsTsTs”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          72
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Sirivirst Fakhir “TsTsTs”\nDamage: D10 Range: Close combat Properties: Stable, Powerful\nA modern interpretation of the national two-handed sword of the People of Poisons.\nIts long grip and straight blade, set at an angle to one another, generate tremendous chopping force.\nA protected reservoir inside the sword contains a balancing fluid that accelerates attacks and makes the TsTsTs more difficult to parry.\nIn keeping with tradition, Sirivirst Fakhir makes its sheath from wood wrapped in leather.",
+      "category": "Тяжёлое оружие ближнего боя (к10)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D10",
+      "notes": "Свойства: Стабильный, мощный\nДистанция: Ближний бой\nСовременный взгляд на национальный двуручный меч народа Ядов. Длинная рукоять и\nрасположенный под углом от неё прямой клинок дают огромную силу при рубке, внутри\nмеча и рукояти расположен защищённый резервуар с жидкостью-балансиром, ускоряющей\nатаки и усложняющей парирование ЦЦЦ. Верная традициям Сиривирст Фахир делает\nножны для меча из дерева с обмоткой из кожи, как в древности.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Heavy Melee Weapons",
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat Properties: Stable, Powerful\nA modern interpretation of the national two-handed sword of the People of Poisons.\nIts long grip and straight blade, set at an angle to one another, generate tremendous chopping force.\nA protected reservoir inside the sword contains a balancing fluid that accelerates attacks and makes the TsTsTs more difficult to parry.\nIn keeping with tradition, Sirivirst Fakhir makes its sheath from wood wrapped in leather."
+    },
+    {
+      "id": "equipment-1-72-215",
+      "kind": "gear",
+      "title": "Rti Kti Dann U-1",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          72
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Rti Kti Dann U-1\nDamage: D10 Range: Close combat Properties: Accurate Modification Slots: 2\nA straight, long vibration sword used as a standard weapon by many armies.\nIts patented rapid frequency-cycling system makes it effective under almost any conditions.\nThe U-1 is incorporated into numerous military combat systems, allowing its user to fight in many styles and even switch between them during combat to adapt to an opponent.",
+      "category": "Тяжёлое оружие ближнего боя (к10)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D10",
+      "notes": "Свойства: Точный\nДистанция: Ближний бой\n2 ячейки модификаций\nСтандартный для многих армий прямой длинный меч с виброприводом. Хорош практически\nво всех условиях, с чем помогает запатентованная система ускоренной переборки частот\nвибрации. У-1 включён во многие боевые системы, разработанные для армий, так что с его\nпомощью можно сражаться во многих стилях, и даже переключаться между ними во время\nбоя, чтобы адаптироваться к стилю оппонента.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Heavy Melee Weapons",
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat Properties: Accurate Modification Slots: 2\nA straight, long vibration sword used as a standard weapon by many armies.\nIts patented rapid frequency-cycling system makes it effective under almost any conditions.\nThe U-1 is incorporated into numerous military combat systems, allowing its user to fight in many styles and even switch between them during combat to adapt to an opponent."
+    },
+    {
+      "id": "equipment-8-72-216",
+      "kind": "gear",
+      "title": "Rti Kti Dann U-8",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          72
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Rti Kti Dann U-8\nDamage: D10 Range: Close combat Properties: Energy, Nonlethal\nA telescopic electroshock baton, particularly dangerous against machines and cyborgs. It is often used in pairs.\nA reinforced battery and adjustable capacitors allow the strength of the shock to be controlled. The weapon can stun a target or burn them—and their implants—to death.",
+      "category": "Тяжёлое оружие ближнего боя (к10)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D10",
+      "notes": "Свойства: Энергетический, нелетальный\nДистанция: Ближний бой\nТелескопическая дубинка с электрошоком, особо опасная в борьбе с механизмами и\nкиборгами. Часто используется в паре. Усиленный аккумулятор и регулируемые\nконденсаторы дают управлять силой электрошока, он может как оглушать цель, так и жечь\nеё насмерть вместе с имплантами.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Heavy Melee Weapons",
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat Properties: Energy, Nonlethal\nA telescopic electroshock baton, particularly dangerous against machines and cyborgs. It is often used in pairs.\nA reinforced battery and adjustable capacitors allow the strength of the shock to be controlled. The weapon can stun a target or burn them—and their implants—to death."
+    },
+    {
+      "id": "equipment-card-72-217",
+      "kind": "gear",
+      "title": "Weapons of the World “Chosen One”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          72
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Weapons of the World “Chosen One”\nDamage: D10 Range: Close combat Properties: Armor-Piercing (2) Modification Slots: 2\nA combat axe designed to defeat armored targets and modeled after the traditional Kits axe.\nIts flexible shaft bends slightly on impact, preventing the full force of the blow from being transferred into the wielder’s hand.\nThe narrow head is made from hard special alloys and designed to crack ceramic and metal armor. It may become lodged in polymer or compressed-plastic armor.",
+      "category": "Тяжёлое оружие ближнего боя (к10)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D10",
+      "notes": "Свойства: Бронебойный (2)\nДистанция: Ближний бой\n2 ячейки модификаций\nБоевой топор, предназначенный для борьбы с целями в броне, сделанный в форме\nнародного топора киц. Рукоять на гибком стержне чуть изгибается при ударе, не передавая\nв руку всей отдачи. Узкое топорище из твёрдых спецсплавов предназначено, чтобы колоть\nкерамическую и металлическую броню, но может застрять в броне из полимеров или\nпресованного пластика.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Heavy Melee Weapons",
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat Properties: Armor-Piercing (2) Modification Slots: 2\nA combat axe designed to defeat armored targets and modeled after the traditional Kits axe.\nIts flexible shaft bends slightly on impact, preventing the full force of the blow from being transferred into the wielder’s hand.\nThe narrow head is made from hard special alloys and designed to crack ceramic and metal armor. It may become lodged in polymer or compressed-plastic armor."
+    },
+    {
+      "id": "equipment-card-72-218",
+      "kind": "gear",
+      "title": "Engineering Solutions Systems “Siege Hammer”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          72
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Engineering Solutions Systems “Siege Hammer”\nDamage: D12 Range: Close combat Properties: Awkward when fighting a moving enemy, Powerful, Armor-Piercing (2)\nA massive sledgehammer with a linear drive powered by a battery inside the grip.\nIt can break through even the thickest walls and is equally useful against heavily armored enemies.",
+      "category": "Тяжёлое оружие ближнего боя (к10)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D12",
+      "notes": "Свойства: Неудобный (Сражение с перемещающимся врагом), мощный, бронебойный (2)\nДистанция: Ближний бой\nМассивная кувалда с линейным приводом, питающимся от аккумулятора в рукояти,\nспособна проламывать даже самые толстые стены, но и в битве с тяжелобронированными\nврагами пригодится.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Heavy Melee Weapons",
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat Properties: Awkward when fighting a moving enemy, Powerful, Armor-Piercing (2)\nA massive sledgehammer with a linear drive powered by a battery inside the grip.\nIt can break through even the thickest walls and is equally useful against heavily armored enemies."
+    },
+    {
+      "id": "equipment-card-73-219",
+      "kind": "gear",
+      "title": "Weapons of the World “Conqueror of Kings”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          73
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Weapons of the World “Conqueror of Kings”\nDamage: D12 Range: Long Properties: Stable, Smart, Spread, Single-Shot, Heavy Modification Slots: 2\nAn anti-tank launcher equipped with extremely advanced guidance systems.\nIt is loaded with an anti-tank missile inside a protective polymer casing. The missile carries a powerful shaped charge, while its modern nanofuel engine accelerates it beyond the speed of sound to defeat active protection systems.\nAfter launch, the weapon’s computers and cameras communicate with the systems aboard the missile, creating a fire-and-forget effect.\nThe tremendous cost of each shot makes the launcher unpopular. It became more common among small mercenary groups and even gangs only after cheaper unguided missiles entered production.",
+      "category": "Тактическое оружие (к12)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D12",
+      "notes": "Свойства: Стабильный, умный, разброс, однозарядный, тяжёлый\nДистанция: Дальняя\n2 ячейки модификаций\nПротивотанковая пусковая установка с крайне совершенными системами наведения.\nЗаряжается установка находящейся в полимерном защитном корпусе противотанковой\nракетой. Ракета несёт мощный кумулятивный заряд, а её новейший нанотопливный\nдвигатель выводит снаряд на сверхзвуковую скорость, нужно это чтобы обойти системы\nактивной защиты танков. После выстрела, компьютеры и камеры установки сверяются с\nсистемами связи и камерами на ракете, давая эффект “выстрелил и забыл”: оружие\nнаведётся на цель само. Колоссальная стоимость выстрела делает эту установку\nнепопулярной, хотя после начала выпуска более дешёвых неуправляемых ракет, она\nнашла себе место среди мелких наёмников и даже банд.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Tactical Weapons",
+      "skillEn": "KILL",
+      "notesEn": "Range: Long Properties: Stable, Smart, Spread, Single-Shot, Heavy Modification Slots: 2\nAn anti-tank launcher equipped with extremely advanced guidance systems.\nIt is loaded with an anti-tank missile inside a protective polymer casing. The missile carries a powerful shaped charge, while its modern nanofuel engine accelerates it beyond the speed of sound to defeat active protection systems.\nAfter launch, the weapon’s computers and cameras communicate with the systems aboard the missile, creating a fire-and-forget effect.\nThe tremendous cost of each shot makes the launcher unpopular. It became more common among small mercenary groups and even gangs only after cheaper unguided missiles entered production."
+    },
+    {
+      "id": "equipment-card-73-220",
+      "kind": "gear",
+      "title": "Weapons of the World “Frightener of Monsters”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          73
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Weapons of the World “Frightener of Monsters”\nDamage: D12 Range: Long Properties: Spread, Powerful, Automatic, Loud, Heavy Modification Slots: 2\nA repeating launcher intended to attack heavily armored infantry and enemies behind cover.\nIt uses a four-round drum magazine loaded with rocket-propelled grenades and can fire them in rapid succession.\nFragmentation grenades are most common, though shaped-charge ammunition is also widely used.",
+      "category": "Тактическое оружие (к12)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D12",
+      "notes": "Свойства: Разброс, мощный, автоматический, громкий, тяжёлый\nДистанция: Дальняя\n2 ячейки модификаций\nМногозарядная пусковая установка для борьбы с пехотой в тяжёлой броне и за укрытиями.\nТяжёлая установка заряжается барабанным магазином на четыре реактивных гранаты, она\nможет выпустить их с минимальным промежутком. Обычно в этой установке применяются\nосколочно-фугасные гранаты, но кумулятивные встречаются так же нередко.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Tactical Weapons",
+      "skillEn": "KILL",
+      "notesEn": "Range: Long Properties: Spread, Powerful, Automatic, Loud, Heavy Modification Slots: 2\nA repeating launcher intended to attack heavily armored infantry and enemies behind cover.\nIt uses a four-round drum magazine loaded with rocket-propelled grenades and can fire them in rapid succession.\nFragmentation grenades are most common, though shaped-charge ammunition is also widely used."
+    },
+    {
+      "id": "equipment-card-73-221",
+      "kind": "gear",
+      "title": "Island Companies “Carefreeness”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          73
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Island Companies “Carefreeness”\nDamage: D12 Range: Long Properties: Spread, Fire, Bipod, Loud, Heavy Modification Slots: 2\nA rocket flamethrower designed to attack targets inside buildings and lightly armored vehicles.\nIts incendiary projectile rapidly consumes oxygen even in open spaces. The burning temperature is sufficient to melt armor-grade metal and crack structural concrete.\nCarefreeness is loaded from above with a projectile in a protective polymer casing. This supports a two-person crew: one operator keeps the weapon aimed while the second reloads it.",
+      "category": "Тактическое оружие (к12)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D12",
+      "notes": "Свойства: Разброс, огонь, сошки, громкий, тяжёлый\nДистанция: Дальняя\n2 ячейки модификаций\nРеактивный огнемёт для поражения целей в зданиях и легкобронированной техники.\nВыпускает ззажигательный снаряд со смесью, быстро выжигающей кислород даже на\nоткрытых пространствах. Температура горения снаряда Беззаботности достаточна, чтобы\nплавить броневой металл и раскалывать бетон зданий. Заряжается Беззаботность сверху\nснарядом в полимерном защитном корпусе, это было сделано для работы в расчёте: так\nпервый номер может наводить огнемёт, не отрываясь от него, а второй — быстро его\nзаряжать.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Tactical Weapons",
+      "skillEn": "KILL",
+      "notesEn": "Range: Long Properties: Spread, Fire, Bipod, Loud, Heavy Modification Slots: 2\nA rocket flamethrower designed to attack targets inside buildings and lightly armored vehicles.\nIts incendiary projectile rapidly consumes oxygen even in open spaces. The burning temperature is sufficient to melt armor-grade metal and crack structural concrete.\nCarefreeness is loaded from above with a projectile in a protective polymer casing. This supports a two-person crew: one operator keeps the weapon aimed while the second reloads it."
+    },
+    {
+      "id": "equipment-2-73-222",
+      "kind": "gear",
+      "title": "Rti Kti Dann K-2",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          73,
+          74
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Rti Kti Dann K-2\nDamage: D12 Range: Medium, long Properties: Powerful, Spread, Single-Shot, Heavy, Loud Modification Slots: 2\nAt the beginning of a combat scene and after using a Reload Tactic, you may add one additional Property to the weapon.\nA recoilless weapon firing 120 mm ammunition.\nBecause its shells are extremely heavy, a K-2 team normally consists of two fighters: a gunner and a loader carrying the ammunition.\nCommon ammunition includes high-explosive, shaped-charge, illumination, submunition, and flechette shells.\nCompact nuclear rounds also exist. They are not officially sold to civilians but can always be found on the black market for the right price.",
+      "category": "Тактическое оружие (к12)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D12",
+      "notes": "Свойства: Мощный, разброс, однозарядный, тяжёлый, громкий. В начале сцены боя и\nпосле тактики перезярядки, можете добавить дополнительное свойство.\nДистанция: Средняя, Дальняя\n2 ячейки модификации\nБезоткатное орудие для стрельбы различными типами боеприпасов. Выпускает оно 120 мм\nснаряды, из-за их большого веса, расчёт К-2 состоит обычно из двух бойцов — стрелка и\nзаряжающего, несущего боезапас.\nСамые популярные виды снарядов для К-2 — фугасные, кумулятивные, осветительные, с\nразделяющейся боеголовкой и флешетные. Как необычные можно отметить компактные\nядерные боеприпасы, такие не продают гражданским официально, но за приличные суммы\nтакие всегда обнаруживаются на чёрном рынке.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Tactical Weapons",
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium, long Properties: Powerful, Spread, Single-Shot, Heavy, Loud Modification Slots: 2\nAt the beginning of a combat scene and after using a Reload Tactic, you may add one additional Property to the weapon.\nA recoilless weapon firing 120 mm ammunition.\nBecause its shells are extremely heavy, a K-2 team normally consists of two fighters: a gunner and a loader carrying the ammunition.\nCommon ammunition includes high-explosive, shaped-charge, illumination, submunition, and flechette shells.\nCompact nuclear rounds also exist. They are not officially sold to civilians but can always be found on the black market for the right price."
+    },
+    {
+      "id": "equipment-card-74-223",
+      "kind": "gear",
+      "title": "Second Sun “Role”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          74
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Second Sun “Role”\nDamage: D6 Range: Close combat, medium Properties: Energy, Powerful, Nonlethal Modification Slots: 2\nAn electrical pistol designed to fight drones and cyborgs.\nIt first emits an invisible laser that ionizes the air, then sends an electrical charge along the beam, burning flesh and electronics.\nIts Range is limited but sufficient to fire several times at an approaching enemy.\nThe weapon was originally nonlethal and intended for police use. As violence involving gangs intensified, police forces gradually abandoned such merciful weapons.",
+      "category": "Энергетическое оружие (к10)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D6",
+      "notes": "Свойства: Энергетический, мощный, нелетальный\nДистанция: Ближний бой, средняя\n2 ячейки модификации\nЭлектрический пистолет для борьбы с дронами и киборгами. Амплуа выпускает сначала\nневидимый лазерный луч, ионизирующий воздух, а затем — идущий ровно по линии лазера\nзаряд электричества, сжигающего плоть и электронику. Дальность стрельбы Амплуа\nневелика, но её хватает для нескольких выстрелов по сближающемуся врагу. Изначально\nпистолет был нелетальным и предназначался для полиции народов, но те из-за всё\nожесточающейся обстановки с бандами постепенно стали отказываться от щадящего\nоружия.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Energy Weapons",
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium Properties: Energy, Powerful, Nonlethal Modification Slots: 2\nAn electrical pistol designed to fight drones and cyborgs.\nIt first emits an invisible laser that ionizes the air, then sends an electrical charge along the beam, burning flesh and electronics.\nIts Range is limited but sufficient to fire several times at an approaching enemy.\nThe weapon was originally nonlethal and intended for police use. As violence involving gangs intensified, police forces gradually abandoned such merciful weapons."
+    },
+    {
+      "id": "equipment-card-74-224",
+      "kind": "gear",
+      "title": "Second Sun “Full House”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          74
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Second Sun “Full House”\nDamage: D8 Range: Medium, long Properties: Awkward at medium range, Accurate, Fire, Energy Modification Slots: 2\nA long-range laser rifle powered by a battery mounted beneath the barrel.\nIt produces neither recoil nor the sound of a shot. Its invisible beam reaches farther than conventional sniper bullets, though it is considerably more dependent on atmospheric conditions.",
+      "category": "Энергетическое оружие (к10)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Дистанция: Средняя, дальняя\nСвойства: Неудобный (средняя), точный, огонь, энергетический\n2 ячейки модификации\nДальнобойная лазерная винтовка. Работает от аккумулятора, крепящегося под стволом.\nВинтовка не имеет отдачи и звука выстрела, а её невидимый луч бьёт на расстояния\nбольше, чем пулевые снайперские винтовки, пусть и гораздо сильнее зависит от\nатмосферных условий.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Energy Weapons",
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium, long Properties: Awkward at medium range, Accurate, Fire, Energy Modification Slots: 2\nA long-range laser rifle powered by a battery mounted beneath the barrel.\nIt produces neither recoil nor the sound of a shot. Its invisible beam reaches farther than conventional sniper bullets, though it is considerably more dependent on atmospheric conditions."
+    },
+    {
+      "id": "equipment-card-74-225",
+      "kind": "gear",
+      "title": "Second Sun “Premiere”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          74
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Second Sun “Premiere”\nDamage: D10 Range: Close combat, medium Properties: Energy, Spread, Balanced, Heavy, Loud\nA rifle-sized microwave cannon designed to destroy electronics.\nIt projects a cone of microwaves that burns out electrical circuits and is especially effective against drones.\nWith sufficient power and prolonged exposure, it can damage even heavily shielded machines and armor.\nAt close Range it affects a broad area and can strike several targets at once.",
+      "category": "Энергетическое оружие (к10)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D10",
+      "notes": "Дистанция: Ближний бой, средняя\nСвойства: Энергетический, разброс, сбалансированный, тяжёлый, громкий\nМикроволновая пушка в форм-факторе винтовки для борьбы с электроникой. Выпускает\nконус микроволн, сжигающих электрические схемы, особенно полезна против дронов. При\nхорошей мощности и долгом воздействии может сжечь даже серьёзно экранированные от\nэтого машины и доспехи. Работает в широком диапазоне на ближней дистанции, что даёт\nвозможность задеть сразу несколько целей.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Energy Weapons",
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium Properties: Energy, Spread, Balanced, Heavy, Loud\nA rifle-sized microwave cannon designed to destroy electronics.\nIt projects a cone of microwaves that burns out electrical circuits and is especially effective against drones.\nWith sufficient power and prolonged exposure, it can damage even heavily shielded machines and armor.\nAt close Range it affects a broad area and can strike several targets at once."
+    },
+    {
+      "id": "equipment-card-74-226",
+      "kind": "gear",
+      "title": "Second Sun “Study”",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          74
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Second Sun “Study”\nDamage: D10 Range: Close combat, medium Properties: Spread, Energy, Heavy, Loud, Nonlethal Modification Slots: 2\nWhen the Damage Die rolls its maximum result, the weapon loses the Nonlethal Property.\nA shoulder-fired sonic cannon of “practically nonlethal” effect. It requires a power pack that occupies a Backpack Slot.\nIt emits sound across shifting frequencies that humans find unbearable, allowing it to disperse crowds. Active noise-canceling headphones synchronized with the weapon are included.\nProlonged exposure can destroy hearing and damage the eyes and bones. After several people died from internal bleeding, the company changed the product description to “a weapon of practically nonlethal effect.”\nThe phrase became popular online and is now frequently used as a joke.",
+      "category": "Энергетическое оружие (к10)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D10",
+      "notes": "Дистанция: Ближний бой, средняя\nСвойства: Разброс, энергетический, тяжёлый, громкий, нелетальный. При максимальном\nрезультате на кости урона, теряет свойство нелетальный.\n2 ячейки модификации.\nНаплечная звуковая пушка практически нелетального действия. Требует для работы\nзанимающий слот рюкзака ранец. Издаёт звук на меняющихся неприятных человеку\nчастотах, чтобы разогнать толпу. В комплекте идут наушники с активным\nшумоподавлением, синхронизированные с переборщиком частот оружия. При длительном\nвоздействии может не только лишить слуха, но и повредить глаза и кости. После\nнескольких случаев смерти от внутреннего кровотечения, компания заменила описание на\n“оружие практически нелетального действия”. Эта фраза понравилась пользователям сети,\nона часто используется в качестве шутки.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Рюкзак"
+      ],
+      "categoryEn": "Energy Weapons",
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium Properties: Spread, Energy, Heavy, Loud, Nonlethal Modification Slots: 2\nWhen the Damage Die rolls its maximum result, the weapon loses the Nonlethal Property.\nA shoulder-fired sonic cannon of “practically nonlethal” effect. It requires a power pack that occupies a Backpack Slot.\nIt emits sound across shifting frequencies that humans find unbearable, allowing it to disperse crowds. Active noise-canceling headphones synchronized with the weapon are included.\nProlonged exposure can destroy hearing and damage the eyes and bones. After several people died from internal bleeding, the company changed the product description to “a weapon of practically nonlethal effect.”\nThe phrase became popular online and is now frequently used as a joke."
+    },
+    {
+      "id": "equipment-2-75-227",
+      "kind": "gear",
+      "title": "Rti Kti Dann RT-2",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          75
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Rti Kti Dann RT-2\nDamage: D10 Range: Medium Properties: Spread, Single-Shot Modification Slots: 2\nA standard fragmentation grenade with a customizable casing.",
+      "category": "Гранаты (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D10",
+      "notes": "Дистанция: средняя\nСвойства: Разброс, однозарядный\n2 ячейки модификации\nСтандартная осколочная граната с модифицируемым корпусом.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Grenades",
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium Properties: Spread, Single-Shot Modification Slots: 2\nA standard fragmentation grenade with a customizable casing."
+    },
+    {
+      "id": "equipment-6-75-228",
+      "kind": "gear",
+      "title": "Rti Kti Dann RT-6",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          75
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Rti Kti Dann RT-6\nDamage: D4 Range: Medium Properties: Single-Shot, Energy, Lingering\nBlinds opponents: one subsequent action cannot cause Fallout, even if its check fails.\nA flashbang grenade that temporarily blinds and deafens targets without eye and ear protection.\nIts pyramidal shape allows it to produce a louder sound.",
+      "category": "Гранаты (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D4",
+      "notes": "Дистанция: Средняя\nСвойства: Однозарядный, энергетический, длящийся, ослепляет противников: одно\nследующее действие не может принести последствия даже при провале.\nСветошумовая граната, временно ослепляющая и оглушающая цели без защиты глаз и\nушей. Выполнена в форме пирамидки, это помогает конструкции издавать более громкий\nзвук.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Grenades",
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium Properties: Single-Shot, Energy, Lingering\nBlinds opponents: one subsequent action cannot cause Fallout, even if its check fails.\nA flashbang grenade that temporarily blinds and deafens targets without eye and ear protection.\nIts pyramidal shape allows it to produce a louder sound."
+    },
+    {
+      "id": "equipment-card-75-229",
+      "kind": "gear",
+      "title": "Island Companies “Focus”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          75
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Island Companies “Focus”\nDamage: D8 Range: Medium Properties: Spread, Stable, Single-Shot\nA cluster grenade that releases highly explosive submunitions when it detonates. Particularly useful in open spaces.",
+      "category": "Гранаты (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Дистанция: Средняя\nСвойства: Разброс, стабильный, однозарядный\nКластерная граната, при детонации выпускающая особо взрывоопасные элементы,\nполезна на открытых пространствах.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Grenades",
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium Properties: Spread, Stable, Single-Shot\nA cluster grenade that releases highly explosive submunitions when it detonates. Particularly useful in open spaces."
+    },
+    {
+      "id": "equipment-card-75-230",
+      "kind": "gear",
+      "title": "Island Companies “Dreamer”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          75
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Island Companies “Dreamer”\nDamage: D8 Range: Medium Properties: Spread, Single-Shot, Fire\nAn incendiary grenade filled with a burning compound and intended for storming buildings.",
+      "category": "Гранаты (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Дистанция: средняя\nСвойства: Разброс, однозарядный, огонь\nЗажигательная граната с огнесмесью внутри, предназначена для штурма зданий.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Grenades",
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium Properties: Spread, Single-Shot, Fire\nAn incendiary grenade filled with a burning compound and intended for storming buildings."
+    },
+    {
+      "id": "equipment-card-75-231",
+      "kind": "gear",
+      "title": "DVCZ “Bandolier”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          75
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "DVCZ “Bandolier”\nDamage: D10 Range: Medium Properties: Spread, Single-Shot, Suppression\nA small grenade that bounces after impact when metal plates unfold from its casing.\nIt is highly effective against enemies behind cover but is less predictable than a conventional grenade and requires extensive training.",
+      "category": "Гранаты (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D10",
+      "notes": "Дистанция: средняя\nСвойства: Разброс, однозарядный, подавление\nНебольшая граната, отскакивающая от места столкновения благодаря разгибающимся\nметаллическим пластинам на корпусе. Такие гранаты оказываются особенно полезны в\nпоражении противника за укрытием, но они менее предсказуемы и требуют серьёзной\nтренировки.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Grenades",
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium Properties: Spread, Single-Shot, Suppression\nA small grenade that bounces after impact when metal plates unfold from its casing.\nIt is highly effective against enemies behind cover but is less predictable than a conventional grenade and requires extensive training."
+    },
+    {
+      "id": "equipment-card-75-232",
+      "kind": "gear",
+      "title": "DVCZ “Conquest”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          75
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "DVCZ “Conquest”\nDamage: D8 Range: Medium Properties: Lingering, Fire, Single-Shot\nA sticky thermite grenade intended for use against armor.\nIt must be removed from its protective casing before being thrown.",
+      "category": "Гранаты (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Дистанция: средняя\nСвойства: Длящийся, огонь, однозарядный\nЛипкая термитная граната, предназначенная для борьбы с бронёй. Перед броском гранату\nнеобходимо извлечь из защитного чехла.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Grenades",
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium Properties: Lingering, Fire, Single-Shot\nA sticky thermite grenade intended for use against armor.\nIt must be removed from its protective casing before being thrown."
+    },
+    {
+      "id": "equipment-card-75-233",
+      "kind": "gear",
+      "title": "DVCZ “Knife”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          75
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "DVCZ “Knife”\nDamage: D6 to everyone without a gas mask Range: Close combat, medium Properties: Single-Shot\nGrants Mastery on HIDE and ASCEND checks made while escaping or storming a position.\nA smoke grenade that produces clouds previously achievable only by tanks.\nIts burning red phosphorus creates smoke that blocks scanners and thermal optics. The smoke is extremely toxic.",
+      "category": "Гранаты (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D6",
+      "notes": "Дистанция: Ближний бой, средняя\nСвойства: Даёт мастерство на проверки СКРЫВАТЬСЯ и ПРОБИВАТЬСЯ при побеге или\nштурме, однозарядный\nДымовая граната, создающая облака дыма, которые несколько десятилетий назад могли\nсгенерировать разве что танки. Через дым, получающийся от жжёного красного фосфора\nне видят сканеры и тепловизоры, он крайне токсичен.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Grenades",
+      "skillEn": "KILL",
+      "notesEn": "to everyone without a gas mask Range: Close combat, medium Properties: Single-Shot\nGrants Mastery on HIDE and ASCEND checks made while escaping or storming a position.\nA smoke grenade that produces clouds previously achievable only by tanks.\nIts burning red phosphorus creates smoke that blocks scanners and thermal optics. The smoke is extremely toxic."
+    },
+    {
+      "id": "equipment-card-75-234",
+      "kind": "gear",
+      "title": "Second Sun “Understudy”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          75
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Second Sun “Understudy”\nDamage: D8 Range: Medium Properties: Spread, Single-Shot, Energy, Nonlethal\nAn electrical grenade that scatters electrodes around its landing point, transforming itself into a trap.\nIt functions as a powerful taser and, with a well-placed throw, can temporarily incapacitate an entire squad.",
+      "category": "Гранаты (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Дистанция: средняя\nСвойства: Разброс, однозарядный, энергетический, нелетальный\nЭлектрическая граната, разбрасывающая вокруг места падения электроды, превращаясь в\nловушку. Работает граната как мощный тазер и при удачном броске может на время\nвывести из строя целый отряд.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Grenades",
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium Properties: Spread, Single-Shot, Energy, Nonlethal\nAn electrical grenade that scatters electrodes around its landing point, transforming itself into a trap.\nIt functions as a powerful taser and, with a well-placed throw, can temporarily incapacitate an entire squad."
+    },
+    {
+      "id": "equipment-card-75-235",
+      "kind": "gear",
+      "title": "Weapons of the World “Incinerator”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          75
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Weapons of the World “Incinerator”\nRange: Medium\nDistracts an opponent, compelling them to investigate the location where the grenade was thrown.\nA decoy grenade that creates the signature of a soldier on enemy scanners.\nIts name has nothing to do with its function because the Weapons of the World marketing department sends developers a list of mandatory names before the proposed weapons even exist on paper.",
+      "category": "Гранаты (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": null,
+      "notes": "Дистанция: средняя\nСвойства: Отвлекает противника, заставляя того проверить место броска гранаты\nОтвлекающая граната, создающая на сканерах противника сигнатуру, напоминающую\nсолдата. Несоответствие названия эффекту объясняется тем, что в Оружии Мира отдел\nмаркетинга спускает в отдел разработок список названий, которые необходимо применить,\nещё до того, как вооружение было создано хотя бы на бумаге.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Grenades",
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium\nDistracts an opponent, compelling them to investigate the location where the grenade was thrown.\nA decoy grenade that creates the signature of a soldier on enemy scanners.\nIts name has nothing to do with its function because the Weapons of the World marketing department sends developers a list of mandatory names before the proposed weapons even exist on paper."
+    },
+    {
+      "id": "equipment-12-76-236",
+      "kind": "gear",
+      "title": "DVCZ Large-Caliber “Parry” Shotgun",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          76
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "DVCZ Large-Caliber “Parry” Shotgun — D12\nDamage: D12 Range: Close combat, medium, long Properties: Spread, Powerful, Awkward at long range, Loud\nProtection is twice as effective against this weapon.\nA 25 mm shotgun firing either large buckshot or a solid projectile.\nOver the past quarter-century, extremely durable military clothing and technologically reinforced skin have reduced conventional shotguns from weapons for storming trenches and buildings to hunting weapons and tools of home defense.\nDVCZ therefore replaced its traditional shotgun line with a single model.\nParry combines pump-action and semiautomatic mechanisms. Locking the pump and changing the fire-mode selector switches between them.\nHeavy and reliable, it can tear limbs through military clothing and knock armored fighters to the ground at close Range.",
+      "category": "Редкое оружие",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D12",
+      "notes": "Дистанция: Ближний бой, средняя, дальняя\nСвойства: Разброс, мощный, неудобный (дальняя), громкий. Защита вдвое эффективнее\nпротив этого оружия.\n25 мм ружьё под патрон с крупной дробью или пулей. Развитие сверхпрочной военной\nодежды и технологически усиленной кожи за последние четверть века сделало\nтрадиционные дробовики из мощного оружия для штурма зданий и окопов — средством\nобороны дома или выбором охотника. Поэтому компания ДВЦЖ и решила заменить\nклассическую линейку ружей одной моделью, “Парирование” действительно оказалось\nнеплохим техническим решением, сочетающим помповую и полуавтоматическую схему,\nпереключение между которыми производится фиксацией помпы и переключением режимов\nогня. Тяжёлое и надёжное, оно способно отрывать конечности в военной одежде и ронять\nна землю бойцов в броне при выстреле с небольшого расстояния.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Rare Weapons",
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium, long Properties: Spread, Powerful, Awkward at long range, Loud\nProtection is twice as effective against this weapon.\nA 25 mm shotgun firing either large buckshot or a solid projectile.\nOver the past quarter-century, extremely durable military clothing and technologically reinforced skin have reduced conventional shotguns from weapons for storming trenches and buildings to hunting weapons and tools of home defense.\nDVCZ therefore replaced its traditional shotgun line with a single model.\nParry combines pump-action and semiautomatic mechanisms. Locking the pump and changing the fire-mode selector switches between them.\nHeavy and reliable, it can tear limbs through military clothing and knock armored fighters to the ground at close Range."
+    },
+    {
+      "id": "equipment-4-76-237",
+      "kind": "gear",
+      "title": "Polymer Weapon",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          76
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Polymer Weapon — D4\nChoose the statistics of any pistol or assault rifle.\nThe weapon gains the following Properties:\nUnreliable, Loud, Concealable.\nThese weapons are manufactured by independent craftspeople on 3D printers.\nThe unusual properties of nanopolymers allow even automatic mechanisms to be printed. When combined with polymer-cased ammunition and polymer bullets, the resulting weapon becomes almost invisible to scanners.\nPolymer weapons are often concealed inside cybernetic implant holsters. They have poor reliability but extraordinary availability, sometimes being sold by the crate or by weight rather than individually.",
+      "category": "Редкое оружие",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D4",
+      "notes": "Возьмите параметры любого пистолета или штурмовой винтовки. Это оружие обладает ими\nи свойствами ненадёжный, громкий и скрываемый.\nСоздаваемый народными умельцами на 3д принтерах вид оружия, благодаря способности\nнанополимеров принимать необычные свойства, для полимерного оружия можно сделать\nдаже механизм, дающий вести автоматический огонь, а вместе с патронами в полимерной\nгильзе и с полимерной пулей, оружие становится совершенно незаметным для сканеров.\nЧасто прячется во внутренних кобурах киберимплантов, имеет низкую надёжность и\nфантастическую доступность: такие часто продают не штуками, а сразу ящиками, или\nкилограммами.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Rare Weapons",
+      "skillEn": "KILL",
+      "notesEn": "Choose the statistics of any pistol or assault rifle.\nThe weapon gains the following Properties:\nUnreliable, Loud, Concealable.\nThese weapons are manufactured by independent craftspeople on 3D printers.\nThe unusual properties of nanopolymers allow even automatic mechanisms to be printed. When combined with polymer-cased ammunition and polymer bullets, the resulting weapon becomes almost invisible to scanners.\nPolymer weapons are often concealed inside cybernetic implant holsters. They have poor reliability but extraordinary availability, sometimes being sold by the crate or by weight rather than individually."
+    },
+    {
+      "id": "equipment-6-76-238",
+      "kind": "gear",
+      "title": "Bow or Crossbow",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          76
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Bow or Crossbow — D6\nDamage: D6 Range: Medium Properties: Quiet, Single-Shot; cannot receive the Out of Ammunition Fallout Modification Slots: 2\nA modern form of the traditional weapons of the People of Edges and the People of Poisons.\nIt incorporates pulleys, sight and targeting rails, an ergonomic grip, a counterweight, and arrow guides.\nIn a major war it is considered sporting equipment, but it remains popular on the streets among daredevils eager to demonstrate their coordination.\nInside the Tower, where arrows and bolts can be improvised from available materials, it is extremely useful during persistent ammunition shortages.\nMost are produced by Rti Kti Dann and DVCZ.",
+      "category": "Редкое оружие",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D6",
+      "notes": "Дистанция: средняя\nСвойства: Тихий, однозарядный, не может получить последствие «Закончились патроны»\n2 ячейки модификации\nТрадиционное оружие народов Граней и Ядов в новом исполнении: блоки, планки для\nприцела и целеуказателя, удобная рукоять, противовес, направляющие для стрел. По\nмеркам большой войны является спортивным снарядом, но на улицах встречается у многих\nудальцов, решивших похвастать координацией. В Башне вместе с возможностью создавать\nстрелы или болты из подручных средств оказывается очень полезен в условиях постоянной\nнехватки патронов. Производятся в основном компаниями Рти Кти Данн и ДВЦЖ.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Rare Weapons",
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium Properties: Quiet, Single-Shot; cannot receive the Out of Ammunition Fallout Modification Slots: 2\nA modern form of the traditional weapons of the People of Edges and the People of Poisons.\nIt incorporates pulleys, sight and targeting rails, an ergonomic grip, a counterweight, and arrow guides.\nIn a major war it is considered sporting equipment, but it remains popular on the streets among daredevils eager to demonstrate their coordination.\nInside the Tower, where arrows and bolts can be improvised from available materials, it is extremely useful during persistent ammunition shortages.\nMost are produced by Rti Kti Dann and DVCZ."
+    },
+    {
+      "id": "equipment-12-76-239",
+      "kind": "gear",
+      "title": "Weapons of the World “Third Witness”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          76
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Weapons of the World “Third Witness” — D12\nDamage: D8 Range: Medium, long Properties: Smart, Accurate, Automatic\nAfter a successful attack, the weapon records incontrovertible proof of the hit. When you eliminate a mission target, gain a D10 CORPORATIONS Resource.\nAn assault rifle with an integrated legal recorder, created for corporate operations where it is important not merely to kill someone, but to prove that the correct person was killed in the correct place and under the correct contractual clause.\nAscenders use it more simply: shoot a monster, then sell the recording to scientists, insurers, cultists, or the victim’s relatives—whichever offers the most money first.",
+      "category": "Редкое оружие",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Дистанция: Средняя, дальняя\nСвойства: Умный, точный, автоматический. После успешной атаки оружие записывает\nнеопровержимое доказательство попадания: при ликвидации цели задания получите\nресурс К10 КОРПОРАЦИИ.\nШтурмовая винтовка со встроенным юридическим регистратором, созданная для\nкорпоративных операций, где важно не только убить, но и доказать, что убили правильного\nчеловека, в правильном месте и по правильной статье договора. Восходящие используют\nеё проще: стреляют в чудовище, потом продают запись учёным, страховщикам, культистам\nили родственникам погибших, смотря кто первым предложит больше.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Rare Weapons",
+      "skillEn": "KILL",
+      "notesEn": "Range: Medium, long Properties: Smart, Accurate, Automatic\nAfter a successful attack, the weapon records incontrovertible proof of the hit. When you eliminate a mission target, gain a D10 CORPORATIONS Resource.\nAn assault rifle with an integrated legal recorder, created for corporate operations where it is important not merely to kill someone, but to prove that the correct person was killed in the correct place and under the correct contractual clause.\nAscenders use it more simply: shoot a monster, then sell the recording to scientists, insurers, cultists, or the victim’s relatives—whichever offers the most money first."
+    },
+    {
+      "id": "equipment-800-10-76-240",
+      "kind": "gear",
+      "title": "Rti Kti Dann A-800",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          76
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Rti Kti Dann A-800 — D10\nDamage: D8 Range: Close combat, medium Properties: Accurate, Smart\nWhen dealing Stress with this weapon, you may maximize it and take D8 Stress in BULLETS.\nAn assault pistol with an aggressive stabilization system that forcibly corrects the shooter’s hand after a failed shot.\nSometimes it aims better than its owner. Sometimes it twists the owner’s wrist hard enough to make them reconsider their shooting stance.",
+      "category": "Редкое оружие",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Дистанция: Ближний бой, средняя\nСвойства: Точный, умный. Причиняя стресс из этого оружия, вы можете сделать его\nмаксимальным и получить К8 стресса в ПУЛИ.\nШтурмовой пистолет с агрессивной системой стабилизации, которая доводит руку стрелка\nпосле неудачного выстрела. Иногда она попадает лучше самого владельца. Иногда\nвыворачивает кисть так, что владелец поневоле задумывается о выборе другой стрелковой\nстойки.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Rare Weapons",
+      "skillEn": "KILL",
+      "notesEn": "Range: Close combat, medium Properties: Accurate, Smart\nWhen dealing Stress with this weapon, you may maximize it and take D8 Stress in BULLETS.\nAn assault pistol with an aggressive stabilization system that forcibly corrects the shooter’s hand after a failed shot.\nSometimes it aims better than its owner. Sometimes it twists the owner’s wrist hard enough to make them reconsider their shooting stance."
+    },
+    {
+      "id": "equipment-card-76-241",
+      "kind": "gear",
+      "title": "Plate Carrier",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          76
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Plate Carrier\nSimple chest armor carrying one of several kinds of ballistic insert.\nUnlike heavier armor, it can be repaired during combat by inserting a new ballistic package. A replacement insert counts as a D6 ARMY Resource stored in the backpack.",
+      "category": "Нательная броня (К8)",
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "Простая броня, защищающая грудь, несёт баллистические пакеты разных видов. В отличие\nот более тяжёлой брони, можно починить прямо в бою, вставив баллистический пакет\n(считается в рюкзаке ресурсом к6 армия).",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Тело"
+      ],
+      "categoryEn": "Body Armor",
+      "notesEn": "Simple chest armor carrying one of several kinds of ballistic insert.\nUnlike heavier armor, it can be repaired during combat by inserting a new ballistic package. A replacement insert counts as a D6 ARMY Resource stored in the backpack."
+    },
+    {
+      "id": "equipment-card-76-242",
+      "kind": "gear",
+      "title": "Polymer Plate",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          76
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Polymer Plate — D6\nA basic insert that does not alter the vest’s other Properties.\n+1 Protection and +1 slot in BULLETS.",
+      "category": "Баллистические пакеты (К6)",
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "Базовая пластина, не меняющая свойств жилета.\n+1 защиты и +1 слот в ПУЛИ",
+      "resistance": "bullets",
+      "protection": 1,
+      "extraSlots": 1,
+      "armorSlots": [
+        "Тело"
+      ],
+      "categoryEn": "Ballistic Packs",
+      "notesEn": "A basic insert that does not alter the vest’s other Properties.\n+1 Protection and +1 slot in BULLETS."
+    },
+    {
+      "id": "equipment-card-76-243",
+      "kind": "gear",
+      "title": "Metal Plate",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          76
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Metal Plate — D6\nA heavier insert offering better Protection but slowing rapid hand movements.\n+2 Protection and +2 slots in BULLETS.\nInteracting with extremely fast targets is one step harder.",
+      "category": "Баллистические пакеты (К6)",
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "Более тяжёлая пластина, даёт лучшую защиту, но замедляет\nдействия руками.\n+2 защиты и +2 слота в ПУЛИ, взаимодействие с очень быстрыми целями становится на 1\nступень сложнее",
+      "resistance": "bullets",
+      "protection": 2,
+      "extraSlots": 2,
+      "armorSlots": [
+        "Тело"
+      ],
+      "categoryEn": "Ballistic Packs",
+      "notesEn": "A heavier insert offering better Protection but slowing rapid hand movements.\n+2 Protection and +2 slots in BULLETS.\nInteracting with extremely fast targets is one step harder."
+    },
+    {
+      "id": "equipment-card-77-244",
+      "kind": "gear",
+      "title": "Ceramic Plate",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          77
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Ceramic Plate — D6\nProvides the greatest Protection but has poor durability.\n+3 Protection in BULLETS.\nYour first BULLETS Fallout in each scene is Shattered Plate.",
+      "category": "Баллистические пакеты (К6)",
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "Плита, дающая самую большую защиту, но имеющая низкую\nпрочность сама по себе.\n+3 защиты в ПУЛИ, вашим первым последствием в ПУЛИ за сцену будет последствие\nрасколота плита",
+      "resistance": "bullets",
+      "protection": 3,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Тело"
+      ],
+      "categoryEn": "Ballistic Packs",
+      "notesEn": "Provides the greatest Protection but has poor durability.\n+3 Protection in BULLETS.\nYour first BULLETS Fallout in each scene is Shattered Plate."
+    },
+    {
+      "id": "equipment-card-77-245",
+      "kind": "gear",
+      "title": "High-Mobility Plate",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          77
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "High-Mobility Plate — D6\nAn insert with enlarged cutouts that allows faster arm movement. Its construction prevents it from sinking in water.\n+1 Protection in BULLETS.\nOnce per scene, you may Reroll an ASCEND check.",
+      "category": "Баллистические пакеты (К6)",
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "Бронеплита с увеличенным вырезом позволяет быстрее\nоперировать руками,и, благодаря составу плиты и пакета, не тонет в воде.\n+1 защиты в ПУЛИ, раз в сцену вы можете перебросить проверку ПРОБИВАТЬСЯ",
+      "resistance": "bullets",
+      "protection": 1,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Тело"
+      ],
+      "categoryEn": "Ballistic Packs",
+      "notesEn": "An insert with enlarged cutouts that allows faster arm movement. Its construction prevents it from sinking in water.\n+1 Protection in BULLETS.\nOnce per scene, you may Reroll an ASCEND check."
+    },
+    {
+      "id": "equipment-card-77-246",
+      "kind": "gear",
+      "title": "Shielded Insert",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          77
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Shielded Insert — D6\nDesigned to protect against thermal and energy attacks while still offering limited Protection from bullets and fragments.\n+3 Protection in BULLETS against Energy attacks.\n+1 Protection in BULLETS against everything else.",
+      "category": "Баллистические пакеты (К6)",
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "Пакет с защитой от термальных и энергетических атак, так же даёт\nнебольшую защиту от пуль и осколков.\n+3 защиты в ПУЛИ от энергетических атак, +1 от остальных",
+      "resistance": "bullets",
+      "protection": 3,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Тело"
+      ],
+      "categoryEn": "Ballistic Packs",
+      "notesEn": "Designed to protect against thermal and energy attacks while still offering limited Protection from bullets and fragments.\n+3 Protection in BULLETS against Energy attacks.\n+1 Protection in BULLETS against everything else."
+    },
+    {
+      "id": "equipment-card-77-247",
+      "kind": "gear",
+      "title": "Assault Body Armor",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          77
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Assault Body Armor\n+3 Protection and +3 slots in BULLETS.\nIf you have a BULLETS Fallout, your ASCEND, EVADE, and HIDE checks become one step harder.\nHeavy armor protecting the chest, abdomen, groin, arms, and legs.",
+      "category": "Нательная броня (К8)",
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "+3 защиты в ПУЛИ. +3 слота в ПУЛИ. Ваши броски навыков ПРОБИВАТЬСЯ, ИЗБЕГАТЬ и\nСКРЫВАТЬСЯ становятся на 1 ступень тяжелее, если у вас есть последствие в ПУЛЯХ.\nТяжёлая броня, защищающая грудь, живот, пах, руки и ноги.",
+      "resistance": "bullets",
+      "protection": 3,
+      "extraSlots": 3,
+      "armorSlots": [
+        "Тело"
+      ],
+      "categoryEn": "Body Armor",
+      "notesEn": "+3 Protection and +3 slots in BULLETS.\nIf you have a BULLETS Fallout, your ASCEND, EVADE, and HIDE checks become one step harder.\nHeavy armor protecting the chest, abdomen, groin, arms, and legs."
+    },
+    {
+      "id": "equipment-card-77-248",
+      "kind": "gear",
+      "title": "Full Armor",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          77
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Full Armor\n+4 Protection and +4 slots in BULLETS.\nAll ASCEND, EVADE, and HIDE checks are one step harder.\nExtremely heavy armor that makes movement difficult.",
+      "category": "Нательная броня (К8)",
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "+4 защиты в ПУЛИ. +4 слота в ПУЛИ. Все ваши броски навыков ПРОБИВАТЬСЯ, ИЗБЕГАТЬ\nи СКРЫВАТЬСЯ становятся на 1 ступень тяжелее.\nОчень тяжёлая броня, в которой сложно перемещаться.",
+      "resistance": "bullets",
+      "protection": 4,
+      "extraSlots": 4,
+      "armorSlots": [
+        "Тело"
+      ],
+      "categoryEn": "Body Armor",
+      "notesEn": "+4 Protection and +4 slots in BULLETS.\nAll ASCEND, EVADE, and HIDE checks are one step harder.\nExtremely heavy armor that makes movement difficult."
+    },
+    {
+      "id": "equipment-card-77-249",
+      "kind": "gear",
+      "title": "Melee Armor",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          77
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Melee Armor\n+5 Protection in BULLETS against melee attacks.\n+2 Protection in BULLETS against everything else.\nArmor intended to be worn alongside conventional protection. Occupies an Other Armor Slot.\nIt may be rigid composite armor made from ultra-high-molecular-weight plastic, chainmail, or traditional clothing reinforced with carbon fiber and boiled leather.",
+      "category": "Прочая броня (к12)",
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "+5 защиты в ПУЛИ от атак рукопашным оружием, +2 защиты в ПУЛИ от всего остального.\nБроня для ближнего боя, носимая в комбинации с обычной (занимает ячейку прочей\nброни). Обычно это твёрдая комбинированная броня из сверхвысокомолекулярного\nпластика, или кольчуга, или национальный костюм, усиленный углеродным волокном и\nвываренной кожей.",
+      "resistance": "bullets",
+      "protection": 2,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Особое"
+      ],
+      "categoryEn": "Other Armor",
+      "notesEn": "+5 Protection in BULLETS against melee attacks.\n+2 Protection in BULLETS against everything else.\nArmor intended to be worn alongside conventional protection. Occupies an Other Armor Slot.\nIt may be rigid composite armor made from ultra-high-molecular-weight plastic, chainmail, or traditional clothing reinforced with carbon fiber and boiled leather."
+    },
+    {
+      "id": "equipment-card-77-250",
+      "kind": "gear",
+      "title": "Stealth Suit",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          77
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Stealth Suit\n+1 Protection and +1 slot in BULLETS.\nOnce per scene, you may Reroll a HIDE or ASCEND check.\nQuiet items deal one additional step of Stress while enemies remain unaware of you.\nOccupies an Other Armor Slot.\nA tight-fitting suit that redistributes body heat and reduces noise through active cancellation and soft soles.\nCameras and colored electronic ink provide active camouflage.",
+      "category": "Прочая броня (к12)",
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "+1 защиты и +1 слот в ПУЛИ, один раз в сцену позволяет перебросить проверку\nСКРЫВАТЬСЯ или ПРОБИВАТЬСЯ. Бесшумные предметы причиняют на ступень стресса\nбольше, пока враги о вас не знают. Занимает слот прочей брони.\nОбтягивающий костюм, распределяющий тепло тела, снижающий шум через системы\nактивного шумоподавления и мягкие подошвы. Обладает системами активного камуфляжа,\nработающего с помощью камер и цветных электронных чернил.",
+      "resistance": "bullets",
+      "protection": 1,
+      "extraSlots": 1,
+      "armorSlots": [
+        "Особое"
+      ],
+      "categoryEn": "Other Armor",
+      "notesEn": "+1 Protection and +1 slot in BULLETS.\nOnce per scene, you may Reroll a HIDE or ASCEND check.\nQuiet items deal one additional step of Stress while enemies remain unaware of you.\nOccupies an Other Armor Slot.\nA tight-fitting suit that redistributes body heat and reduces noise through active cancellation and soft soles.\nCameras and colored electronic ink provide active camouflage."
+    },
+    {
+      "id": "equipment-card-77-251",
+      "kind": "gear",
+      "title": "Power Suit",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          77
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Power Suit\n+1 Protection and +1 slot in BULLETS.\nOnce per scene, you may Reroll a KILL or ASCEND check.\nIncrease the Stress Die of your melee attacks by one step.\nA combined combat suit consisting of a titanium exoskeleton and carbon-nanotube muscles. It enhances the wearer’s physical strength and draws power from the wearer’s internal energy.",
+      "category": "Прочая броня (к12)",
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "+1 защиты и +1 слот в ПУЛИ, один раз в сцену позволяет перебросить проверку УБИВАТЬ\nили ПРОБИВАТЬСЯ. Повышает кость стресса от рукопашных атак на одну ступень.\nКомбинированный боевой костюм из титанового экзоскелета и мышц из углеродных трубок\nповышает силовые показатели бойца. Работает от внутренней энергии носителя.",
+      "resistance": "bullets",
+      "protection": 1,
+      "extraSlots": 1,
+      "armorSlots": [
+        "Особое"
+      ],
+      "categoryEn": "Other Armor",
+      "notesEn": "+1 Protection and +1 slot in BULLETS.\nOnce per scene, you may Reroll a KILL or ASCEND check.\nIncrease the Stress Die of your melee attacks by one step.\nA combined combat suit consisting of a titanium exoskeleton and carbon-nanotube muscles. It enhances the wearer’s physical strength and draws power from the wearer’s internal energy."
+    },
+    {
+      "id": "equipment-card-77-252",
+      "kind": "gear",
+      "title": "Courier Exoskeleton",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          77
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Courier Exoskeleton\nIgnore Properties that would make carried Equipment or Resources inconvenient to transport.\nOnce per session, you may reject one ASCEND Fallout.\nOccupies an Other Armor Slot.\nAn active metal-framed exoskeleton with vibration compensation and a smart balancing system that corrects for wind and loss of balance.",
+      "category": "Прочая броня (к12)",
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "Снаряжение и ресурсы, чьи черты делают их неудобными для переноски вы носите,\nигнорируя эти черты. Раз в сессию, вы можете отказаться от последствия в шкале\nПРОБИВАТЬСЯ. Занимает слот прочей брони.\nАктивный экзоскелет на металлической раме с системами компенсации вибраций и умным\nбалансиром, компенсирующим ветер или потерю равновесия.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Особое"
+      ],
+      "categoryEn": "Other Armor",
+      "notesEn": "Ignore Properties that would make carried Equipment or Resources inconvenient to transport.\nOnce per session, you may reject one ASCEND Fallout.\nOccupies an Other Armor Slot.\nAn active metal-framed exoskeleton with vibration compensation and a smart balancing system that corrects for wind and loss of balance."
+    },
+    {
+      "id": "equipment-6-77-253",
+      "kind": "gear",
+      "title": "Half Helmet",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          77
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Half Helmet — D6\n+2 Protection in BULLETS.\nIt can be donned quickly when danger appears or discarded quickly if damaged. Unlike an integrated helmet, it can be repaired in the field.\nProtects the upper half of the head.",
+      "category": "Шлемы",
+      "isCategory": false,
+      "skill": null,
+      "quality": "D6",
+      "notes": "+2 защиты в ПУЛИ, можно быстро сбросить при поломке или быстро надеть в случае\nопасности. В отличие от единого шлема, подвержен полевому ремонту.\nШлем, защищающий верхнюю половину головы.",
+      "resistance": "bullets",
+      "protection": 2,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Голова"
+      ],
+      "categoryEn": "Helmets",
+      "notesEn": "+2 Protection in BULLETS.\nIt can be donned quickly when danger appears or discarded quickly if damaged. Unlike an integrated helmet, it can be repaired in the field.\nProtects the upper half of the head."
+    },
+    {
+      "id": "equipment-10-77-254",
+      "kind": "gear",
+      "title": "Integrated Helmet",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          77
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Integrated Helmet — D10\n+3 Protection in BULLETS.\n+5 Protection in BULLETS against gas and smoke.\nA complete helmet with a visor, integrated radio, and gas mask.",
+      "category": "Шлемы",
+      "isCategory": false,
+      "skill": null,
+      "quality": "D10",
+      "notes": "+3 защиты в ПУЛИ, +5 защиты в ПУЛИ от газа и дыма\nПолный шлем с визором, встроенными рацией и противогазом.",
+      "resistance": "bullets",
+      "protection": 3,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Голова"
+      ],
+      "categoryEn": "Helmets",
+      "notesEn": "+3 Protection in BULLETS.\n+5 Protection in BULLETS against gas and smoke.\nA complete helmet with a visor, integrated radio, and gas mask."
+    },
+    {
+      "id": "equipment-6-77-255",
+      "kind": "gear",
+      "title": "Charms",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          77
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Charms — D6\n+2 Protection and +2 slots in SPIRIT.\nLight-alloy animal figurines, enchanted feathers, geometric shapes, bark boxes, pierced coins, or bundles of medicinal herbs—almost anything can serve as spiritual protection.\nOccupies an Other Armor Slot.",
+      "category": "Духовная защита",
+      "isCategory": false,
+      "skill": null,
+      "quality": "D6",
+      "notes": "+2 защиты и +2 слота в ДУХ\nЛегкосплавные фигурки зверей, заговорённые перья, геометрические фигуры, коробочки из\nкоры, пробитые монеты, пучки целебных трав — всё сгодится для защиты. Занимает ячейку\nпрочей брони.",
+      "resistance": "spirit",
+      "protection": 2,
+      "extraSlots": 2,
+      "armorSlots": [
+        "Особое"
+      ],
+      "categoryEn": "Spiritual Protection",
+      "notesEn": "+2 Protection and +2 slots in SPIRIT.\nLight-alloy animal figurines, enchanted feathers, geometric shapes, bark boxes, pierced coins, or bundles of medicinal herbs—almost anything can serve as spiritual protection.\nOccupies an Other Armor Slot."
+    },
+    {
+      "id": "equipment-12-77-256",
+      "kind": "gear",
+      "title": "Reality Anchor",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          77
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Reality Anchor — D12\nOnce per session, gain +5 Protection and +5 slots in SPIRIT until the end of the scene.\nA backpack-like machine based on an artifact recovered from the depths of the Tower. When activated, it weakens the Tower’s influence.\nOccupies a Backpack Slot.",
+      "category": "Духовная защита",
+      "isCategory": false,
+      "skill": null,
+      "quality": "D12",
+      "notes": "Раз в сессию +5 защиты и +5 слотов в ДУХ до конца сцены\nПохожая на ранец машина, основанная на артефакте из глубин Башни, ослабляющая Её\nвлияние при включении. Занимает ячейку рюкзака.",
+      "resistance": "spirit",
+      "protection": 5,
+      "extraSlots": 5,
+      "armorSlots": [
+        "Рюкзак"
+      ],
+      "categoryEn": "Spiritual Protection",
+      "notesEn": "Once per session, gain +5 Protection and +5 slots in SPIRIT until the end of the scene.\nA backpack-like machine based on an artifact recovered from the depths of the Tower. When activated, it weakens the Tower’s influence.\nOccupies a Backpack Slot."
+    },
+    {
+      "id": "equipment-card-77-257",
+      "kind": "gear",
+      "title": "Assault Backpack",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          77
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Assault Backpack\n+1 Protection and +1 slot in RESOURCES.\nA compact pack intended for use during combat.",
+      "category": "Рюкзаки (К10)",
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "+1 защиты и +1 слот в РЕСУРСЫ\nКомпактный ранец, используемый непосредственно в сражениях.",
+      "resistance": "resources",
+      "protection": 1,
+      "extraSlots": 1,
+      "armorSlots": [
+        "Рюкзак"
+      ],
+      "categoryEn": "Backpacks",
+      "notesEn": "+1 Protection and +1 slot in RESOURCES.\nA compact pack intended for use during combat."
+    },
+    {
+      "id": "equipment-card-77-258",
+      "kind": "gear",
+      "title": "Raid Backpack",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          77
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Raid Backpack\n+3 Protection and +3 slots in RESOURCES. Heavy.\nA large expedition backpack.",
+      "category": "Рюкзаки (К10)",
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "+3 защиты и +3 слота в РЕСУРСЫ, тяжёлый.\nБольшой рюкзак для походов.",
+      "resistance": "resources",
+      "protection": 3,
+      "extraSlots": 3,
+      "armorSlots": [
+        "Рюкзак"
+      ],
+      "categoryEn": "Backpacks",
+      "notesEn": "+3 Protection and +3 slots in RESOURCES. Heavy.\nA large expedition backpack."
+    },
+    {
+      "id": "equipment-card-78-259",
+      "kind": "gear",
+      "title": "Belt-Feed Pack",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          78
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Belt-Feed Pack\nChoose one firearm with the Automatic Property at any time. That weapon is unaffected by the Out of Ammunition Fallout.\nChanging the selected weapon during combat or other difficult circumstances requires a Reload Tactic or a KILL check.\nA backpack holding ammunition and a flexible universal belt that feeds rounds directly into the weapon. Especially popular with machine gunners.",
+      "category": "Рюкзаки (К10)",
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "В любой момент выберите огнестрельное оружие со свойством автоматический, на него не\nбудет влиять последствие закончились патроны. Чтобы поменять выбранное оружие в бою\nили других трудных условиях, потребуется тактика перезарядки, или проверка УБИВАТЬ.\nРюкзак с патронами и гибкой универсальной лентой, подающий патроны в оружие,\nособенно популярен у пулемётчиков.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Рюкзак"
+      ],
+      "categoryEn": "Backpacks",
+      "notesEn": "Choose one firearm with the Automatic Property at any time. That weapon is unaffected by the Out of Ammunition Fallout.\nChanging the selected weapon during combat or other difficult circumstances requires a Reload Tactic or a KILL check.\nA backpack holding ammunition and a flexible universal belt that feeds rounds directly into the weapon. Especially popular with machine gunners."
+    },
+    {
+      "id": "equipment-card-78-260",
+      "kind": "gear",
+      "title": "Medical Pack",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          78
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Medical Pack\nD10 FIX BULLETS Properties: Powerful, Stable\nA complete field medic’s kit worn on the back.",
+      "category": "Рюкзаки (К10)",
+      "isCategory": false,
+      "skill": "ЧИНИТЬ",
+      "quality": "D10",
+      "notes": "ПУЛИ, мощный, стабильный\nНосимый на спине набор полевого медика со всем необходимым.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Рюкзак"
+      ],
+      "categoryEn": "Backpacks",
+      "skillEn": "FIX",
+      "notesEn": "BULLETS Properties: Powerful, Stable\nA complete field medic’s kit worn on the back."
+    },
+    {
+      "id": "equipment-card-78-261",
+      "kind": "gear",
+      "title": "Communications Rig",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          78
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Communications Rig\nYou cannot receive the Severed Bonds Fallout.\nRemote communications with allies and contacts cannot be detected or intercepted.\nA large portable radio based on a Tower artifact, an array of protected microcomputers, and transmitters operating across multiple frequencies.",
+      "category": "Рюкзаки (К10)",
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "Вы не можете получить последствие разорванные узы, и ваши дистанционные переговоры\nс соратниками и контактами нельзя обнаружить или подслушать.\nКрупная портативная радиостанция, основанная на артефакте из Башни, массиве\nзащищённых микрокомпьютеров и излучателях волн разной частоты.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Рюкзак"
+      ],
+      "categoryEn": "Backpacks",
+      "notesEn": "You cannot receive the Severed Bonds Fallout.\nRemote communications with allies and contacts cannot be detected or intercepted.\nA large portable radio based on a Tower artifact, an array of protected microcomputers, and transmitters operating across multiple frequencies."
+    },
+    {
+      "id": "equipment-card-78-262",
+      "kind": "gear",
+      "title": "Field Kitchen",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          78
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Field Kitchen\nD8 FIX MIND Properties: Balanced, Stable, Powerful\nEquipment for preparing hot meals that are considerably better for the stomach and nerves than a constant diet of field rations.",
+      "category": "Рюкзаки (К10)",
+      "isCategory": false,
+      "skill": "ЧИНИТЬ",
+      "quality": "D8",
+      "notes": "РАЗУМ, Сбалансированный, стабильный, мощный\nНабор для приготовления горячих блюд, более полезных для нервов и желудка, чем\nпостоянное питание пайками.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Рюкзак"
+      ],
+      "categoryEn": "Backpacks",
+      "skillEn": "FIX",
+      "notesEn": "MIND Properties: Balanced, Stable, Powerful\nEquipment for preparing hot meals that are considerably better for the stomach and nerves than a constant diet of field rations."
+    },
+    {
+      "id": "equipment-card-78-263",
+      "kind": "gear",
+      "title": "Assisted Harness",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          78
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Assisted Harness\nOnce per scene, gain Mastery on a check requiring precise or rapid hand movements.\nAdditional mechanical arms worn on the back and controlled through an external terminal or a cybernetic implant in the spine.",
+      "category": "Рюкзаки (К10)",
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "Раз в сцену, вы можете получить мастерство на бросок, требующий точности или скорости\nрук.\nДополнительные механические руки, носимые на спине и управляемые через внешний\nтерминал или киберимплант в позвоночнике.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Рюкзак"
+      ],
+      "categoryEn": "Backpacks",
+      "notesEn": "Once per scene, gain Mastery on a check requiring precise or rapid hand movements.\nAdditional mechanical arms worn on the back and controlled through an external terminal or a cybernetic implant in the spine."
+    },
+    {
+      "id": "equipment-card-78-264",
+      "kind": "gear",
+      "title": "Field Laboratory",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          78
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Field Laboratory\nD10 INVESTIGATE\nA set of tools and reagents for field analysis.\nIt is normally associated with a single specialty, such as forensics or botany, but remains useful whenever you attempt to learn more.",
+      "category": "Рюкзаки (К10)",
+      "isCategory": false,
+      "skill": "УЗНАВАТЬ",
+      "quality": "D10",
+      "notes": "Набор инструментов и реагентов для полевого анализа. Обычно он связан с одной\nспециальностью, например, криминалиста или ботаника, но пригодится при любых\nпопытках узнать больше.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Рюкзак"
+      ],
+      "categoryEn": "Backpacks",
+      "skillEn": "INVESTIGATE",
+      "notesEn": "A set of tools and reagents for field analysis.\nIt is normally associated with a single specialty, such as forensics or botany, but remains useful whenever you attempt to learn more."
+    },
+    {
+      "id": "equipment-card-78-265",
+      "kind": "gear",
+      "title": "Maneuvering Systems",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          78
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Maneuvering Systems\nD10 ASCEND\nUntil the end of the scene, you may reduce this item’s die by one step to make an ASCEND check at normal difficulty.\nOccupies both an Other Armor Slot and a Backpack Slot.\nA lightweight carbon-fiber exoskeleton with magnets in the palms and soles, paired automatic grappling hooks, and a fuel pack connected to several multidirectional jet engines.\nDesigned for rapid operations, wall-running, and dizzying leaps. Civilian models are extremely popular among extreme athletes.",
+      "category": "Рюкзаки (К10)",
+      "isCategory": false,
+      "skill": "ПРОБИВАТЬСЯ",
+      "quality": "D10",
+      "notes": "вы можете до конца сцены снизить кость этого снаряжения на одну\nступень, чтобы ваш бросок ПРОБИВАТЬСЯ получил нормальную сложность. Занимает\nслоты прочей брони и рюкзака.\nЛёгкий углепластиковый экзоскелет с магнитами в стопах и ладонях, парными\nавтоматическими крюками-кошками и ранцем с топливом и несколькими\nразнонаправленными реактивными двигателями. Предназначен для стремительных\nопераций, бега по стенам и головокружительных прыжков, гражданские модели очень\nпопулярны у спортсменов-экстремалов.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Особое",
+        "Рюкзак"
+      ],
+      "categoryEn": "Backpacks",
+      "skillEn": "ASCEND",
+      "notesEn": "Until the end of the scene, you may reduce this item’s die by one step to make an ASCEND check at normal difficulty.\nOccupies both an Other Armor Slot and a Backpack Slot.\nA lightweight carbon-fiber exoskeleton with magnets in the palms and soles, paired automatic grappling hooks, and a fuel pack connected to several multidirectional jet engines.\nDesigned for rapid operations, wall-running, and dizzying leaps. Civilian models are extremely popular among extreme athletes."
+    },
+    {
+      "id": "equipment-card-78-266",
+      "kind": "gear",
+      "title": "Medkit",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          78
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Medkit\nD8 FIX BULLETS Properties: Calibrated\nMedical tools and medicines for field surgery.",
+      "category": "Восстанавливающее снаряжение (К8)",
+      "isCategory": false,
+      "skill": "ЧИНИТЬ",
+      "quality": "D8",
+      "notes": "ПУЛИ, калиброванный\nНабор медицинских инструментов и лекарств для полевой хирургии.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Restorative Equipment",
+      "skillEn": "FIX",
+      "notesEn": "BULLETS Properties: Calibrated\nMedical tools and medicines for field surgery."
+    },
+    {
+      "id": "equipment-card-78-267",
+      "kind": "gear",
+      "title": "Musical Instrument",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          78
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Musical Instrument\nD8 FIX MIND Properties: Accurate\nA musical instrument used during rest.\nExamples include the Isr of the People of Knives, which is braced against the ground and played with two bows, and the KhZNNN of the People of Poisons, a wind keyboard instrument with an elaborate valve system.",
+      "category": "Восстанавливающее снаряжение (К8)",
+      "isCategory": false,
+      "skill": "ЧИНИТЬ",
+      "quality": "D8",
+      "notes": "РАЗУМ, точный\nМузыкальный инструмент для моментов отдыха. Например, Иср народа ножей, который\nнужно упереть в землю и играть двумя смычками, или ХЗННН народа ядов, духовой\nклавишный инструмент с хитрой системой клапанов.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Restorative Equipment",
+      "skillEn": "FIX",
+      "notesEn": "MIND Properties: Accurate\nA musical instrument used during rest.\nExamples include the Isr of the People of Knives, which is braced against the ground and played with two bows, and the KhZNNN of the People of Poisons, a wind keyboard instrument with an elaborate valve system."
+    },
+    {
+      "id": "equipment-card-78-268",
+      "kind": "gear",
+      "title": "Bitter Herbs",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          78
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Bitter Herbs\nD8 FIX SPIRIT Properties: Balanced\nMedicinal herbs burned to cleanse a patient’s supernatural essence.",
+      "category": "Восстанавливающее снаряжение (К8)",
+      "isCategory": false,
+      "skill": "ЧИНИТЬ",
+      "quality": "D8",
+      "notes": "ДУХ, сбалансированный\nНабор поджигаемых целебных трав, очищающий потустороннюю суть пациента.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Restorative Equipment",
+      "skillEn": "FIX",
+      "notesEn": "SPIRIT Properties: Balanced\nMedicinal herbs burned to cleanse a patient’s supernatural essence."
+    },
+    {
+      "id": "equipment-card-78-269",
+      "kind": "gear",
+      "title": "Ritual Money",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          78
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Ritual Money\nD8 FIX FATE Properties: Powerful\nSacrificial money that can be brought into temples.\nIt is used both as a donation and as an independent element of prayer. When burned, the money is believed to pass into the hands of the ancestors.",
+      "category": "Восстанавливающее снаряжение (К8)",
+      "isCategory": false,
+      "skill": "ЧИНИТЬ",
+      "quality": "D8",
+      "notes": "СУДЬБА, мощный\nЖертвенные деньги, которые можно проносить в храмы, используются как для\nпожертвований, так и в качестве самостоятельного элемента молитвы: считается, что при\nсжигании, они уходят предкам.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Restorative Equipment",
+      "skillEn": "FIX",
+      "notesEn": "FATE Properties: Powerful\nSacrificial money that can be brought into temples.\nIt is used both as a donation and as an independent element of prayer. When burned, the money is believed to pass into the hands of the ancestors."
+    },
+    {
+      "id": "equipment-card-78-270",
+      "kind": "gear",
+      "title": "Supply Container",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          78
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Supply Container\nD8 FIX RESOURCES Properties: Stable\nA metal or plastic container. Soldiers normally use these to store ammunition, rations, or batteries.",
+      "category": "Восстанавливающее снаряжение (К8)",
+      "isCategory": false,
+      "skill": "ЧИНИТЬ",
+      "quality": "D8",
+      "notes": "РЕСУРСЫ, стабильный\nМеталлический или пластиковый контейнер, обычно военные хранят в таких боеприпасы,\nпайки или аккумуляторы.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Restorative Equipment",
+      "skillEn": "FIX",
+      "notesEn": "RESOURCES Properties: Stable\nA metal or plastic container. Soldiers normally use these to store ammunition, rations, or batteries."
+    },
+    {
+      "id": "equipment-card-78-271",
+      "kind": "gear",
+      "title": "DVCZ Tactical Flashlight",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          78
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "DVCZ Tactical Flashlight\nD8 ASCEND Properties: Powerful, Calibrated, Overheating\nA flashlight with an adjustable light spectrum. It can be attached to a load-bearing rig.",
+      "category": "Снаряжение для путешествия (к8)",
+      "isCategory": false,
+      "skill": "ПРОБИВАТЬСЯ",
+      "quality": "D8",
+      "notes": "мощный, калиброванный, перегрев\nФонарик с настраиваемым спектром света, может крепиться на разгрузке.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Travel Equipment",
+      "skillEn": "ASCEND",
+      "notesEn": "Properties: Powerful, Calibrated, Overheating\nA flashlight with an adjustable light spectrum. It can be attached to a load-bearing rig."
+    },
+    {
+      "id": "equipment-card-79-272",
+      "kind": "gear",
+      "title": "Parashtruk Lisirist Portable Radar",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          79
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Parashtruk Lisirist Portable Radar\nD8 ASCEND Modification Slots: 2\nA smartphone-sized portable radar with a screen and several adjustable antennas.",
+      "category": "Снаряжение для путешествия (к8)",
+      "isCategory": false,
+      "skill": "ПРОБИВАТЬСЯ",
+      "quality": "D8",
+      "notes": "2 слота модификации\nПортативный радар размером со смартфон, оснащён экраном и несколькими\nрегулируемыми антеннами.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Travel Equipment",
+      "skillEn": "ASCEND",
+      "notesEn": "Modification Slots: 2\nA smartphone-sized portable radar with a screen and several adjustable antennas."
+    },
+    {
+      "id": "equipment-card-79-273",
+      "kind": "gear",
+      "title": "Parashtruk Lisirist Automatic Oracle",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          79
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Parashtruk Lisirist Automatic Oracle\nD4 ASCEND Properties: Accurate, Powerful, Stable\nA clothing-mounted scanner containing a constantly updated map of predictions.",
+      "category": "Снаряжение для путешествия (к8)",
+      "isCategory": false,
+      "skill": "ПРОБИВАТЬСЯ",
+      "quality": "D4",
+      "notes": "точный, мощный, стабильный\nНосимый на одежде сканер с загруженной и постоянно обновляемой картой предсказаний.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Travel Equipment",
+      "skillEn": "ASCEND",
+      "notesEn": "Properties: Accurate, Powerful, Stable\nA clothing-mounted scanner containing a constantly updated map of predictions."
+    },
+    {
+      "id": "equipment-card-79-274",
+      "kind": "gear",
+      "title": "Kheiseit Bird",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          79
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Kheiseit Bird — D10\nD10 ASCEND Properties: Accurate, Loud\nOnce per session, you must feed the bird by taking D4 Stress in RESOURCES. Otherwise, it dies.\nA small six-eyed bird with the gift of prophecy. Miners of the People of Salt carry them underground to avoid becoming lost.",
+      "category": "Снаряжение для путешествия (к8)",
+      "isCategory": false,
+      "skill": "ПРОБИВАТЬСЯ",
+      "quality": "D10",
+      "notes": "точный, громкий. Раз в сессию вы должны покормить птицу,\nполучив К4 стресса в РЕСУРСЫ, иначе она погибнет.\nНебольшая шестиглазая птица с даром предсказания, шахтёры народа Соли носят такую в\nшахтах, чтобы не заблудиться.\nСписок свойств снаряжения\nАвтоматический — Вы можете один раз перебросить проверку УБИВАТЬ и кость стресса,\nстреляя из этого оружия и обязаны принять новый результат, но после этого получите\nпоследствие закончились патроны.\nАдаптивный – Когда предмет причиняет стресс одной и той же цели подряд, его кость\nповышается на одну ступень, но не больше К12. При причинении стресса другой цели,\nповышение кости сбрасывается.\nБронебойный (Х) — Игнорирует Х единиц защиты врага или восхождения. Если вы\nприобретаете эту черту как часть модификации, её показатель равен 2.\nВнезапный — При критическом провале повышает получаемый стресс на две ступени\nвместо одной. При критическом успехе повышает причиняемый стресс на две ступени\nвместо одной.\nВещий — Раз в сцену перед проверкой с этим предметом можно спросить ведущего: “что\nздесь пойдёт не так?” Ведущий отвечает честно, но коротко. После этого проверка всё\nравно проводится.\nГолодный — Можете получить к4 стресса в ПУЛИ, чтобы на одну проверку повысить\nэффективность предмета на 1 ступень. Росоход может вместо этого потратить\nиспользование кости крови. Разработанная росоходами технология, усиливающая\nтехнологии с помощью крови.\nГлухой — На проверки с этим предметом не влияют никакие факторы, например сложный\nпротивник не повышает сложности проверки, но и способности не позволяют улучшить\nрезультат.\nГромкий — Когда вы выбрасываете максимальный стресс этого предмета, вы получаете\n1к6 стресса в СУДЬБУ.\nДешёвый — Предмет нельзя продать дороже к4, даже если его эффективность выше. Не\nможет сочетаться со свойством дорогой.\nДолговой — Предмет можно применить, даже если он сломан, потерян, разряжен или\nнедоступен. В конце сцены получите К6 стресса в СУДЬБУ за каждое такое применение.\nДлящийся — После получения или восстановления стресса от этого предмета, цель до\nконца сцены начинает получать или восстанавливать 1к4 стресса каждый раз, когда\nдействует (при провале броска от персонажа игрока в случае с персонажем ведущего-\nпротивником). Эффект не суммируется. Обычно этот эффект дают оружию различные яды,\nа, например, снаряжению для путешествий — умные системы.\nДорогой — Этот предмет стоит на 1 ступень больше при покупке или продаже. Не может\nсочетаться со свойством дешёвый.\nДуэльный — Этот предмет причиняет на ступень больше стресса при сражении с другим\nврагом с оружием такого же класса, например снайперской винтовкой, или мечом.\nЖадный (Х) — При критическом успехе предмет причиняет или восстанавливает на\nступень больше стресса, но после этого требует плату: к6 стресса в СУДЬБУ, ДУХ, или\nРАЗУМ.\nЗаземляющий – При получении стресса в ДУХ, вы можете снизить его на одну ступень и\nпринять его в ПУЛИ.\nИзнуряющий — После провала проверки с использованием этого предмета, его кость\nпонижается на 1 ступень.\nКалиброванный — При проверке УЗНАВАТЬ,ПРОБИВАТЬСЯ, ТЕХНИЧИТЬ или ЧИНИТЬ\nпредмет выдаёт точные измерения. На критическом успехе можно задать ведущему один\nдополнительный технический вопрос.\nКамуфляж (Х) — Эта броня даёт мастерство при проверках СКРЫВАТЬСЯ в определённой\nобласти.\nКлятвенный — Раз в сессию назовите запрет: не отступать, не убивать, не лгать, не\nиспользовать другое оружие, не принимать помощь. Запрет работает до конца сессии, пока\nон соблюдается, предмет причиняет или восстанавливает на ступень больше стресса. При\nнарушении запрета получите к8 стресса в РАЗУМ или ДУХ.\nЛюбящий — Предмет можно использовать для помощи союзнику без риска получить\nстресс вместе с ним при провале группового действия. Если союзник получает\nпоследствие, предмет выходит из строя.\nМощный — Вы бросаете кость стресса два раза и выбираете больший результат.\nНесколько свойств мощный не суммируются, но вы всё ещё можете добавлять к этому\nстрессу кости от других источников.\nНадёжный — На это оружие не распространяется последствие клин.\nНеестественный — Каждый раз, когда вы применяете это снаряжение, вы получаете 1к4\nстресса в разум. Пока у вас больше 5 стресса в разуме, результат на кости этого\nснаряжения всегда максимально возможный.\nНелетальный — Это оружие при причинении стресса выводит врагов из строя, не убивая\nих.\nНенадёжный — Когда вы выбрасываете минимальный стресс этого предмета, вы\nполучаете 1к6 стресса в ПУЛИ.\nНеудобный (Х) — Повышает сложность броска на 1 ступень в определённых условиях.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "categoryEn": "Travel Equipment",
+      "skillEn": "ASCEND",
+      "notesEn": "Properties: Accurate, Loud\nOnce per session, you must feed the bird by taking D4 Stress in RESOURCES. Otherwise, it dies.\nA small six-eyed bird with the gift of prophecy. Miners of the People of Salt carry them underground to avoid becoming lost."
+    },
+    {
+      "id": "factions-card-82-275",
+      "kind": "ability",
+      "title": "The Love That Will Save the World",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          82
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "The Love That Will Save the World\nWhen you take Stress to your relationship track with a comrade under the friendship rules, that comrade chooses an effect of the same tier toward you without having to take Stress.",
+      "factionName": "Стальной горящий батальон",
+      "factionArea": "Фракции ЧАЩИ",
+      "tier": "minor",
+      "factionNameEn": "Burning Steel Battalion",
+      "factionAreaEn": "Factions of the THICKET"
+    },
+    {
+      "id": "factions-card-82-276",
+      "kind": "ability",
+      "title": "Protect What Remains",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          82
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Protect What Remains\nWhen you restore a comrade’s Stress with a FIX check, you roll with Mastery if they already have Fallout in the track being restored.",
+      "factionName": "Стальной горящий батальон",
+      "factionArea": "Фракции ЧАЩИ",
+      "tier": "minor",
+      "factionNameEn": "Burning Steel Battalion",
+      "factionAreaEn": "Factions of the THICKET"
+    },
+    {
+      "id": "factions-card-82-277",
+      "kind": "ability",
+      "title": "Ceremonial Drone",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          82
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Ceremonial Drone\nA support drone adorned with ribbons constantly flies beside you, marking targets and conducting aerial reconnaissance.\nOnce per scene, you may use it either to gain Mastery on an attack against an enemy or to learn the truthful answer to one question of your choice about the location.",
+      "factionName": "Стальной горящий батальон",
+      "factionArea": "Фракции ЧАЩИ",
+      "tier": "minor",
+      "factionNameEn": "Burning Steel Battalion",
+      "factionAreaEn": "Factions of the THICKET"
+    },
+    {
+      "id": "factions-card-82-278",
+      "kind": "ability",
+      "title": "The Sword That Saw God",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          82
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "The Sword That Saw God\nYou gain a Riir, a colossal vibrosword requiring special training to use. In addition to a weapon slot, it also occupies a backpack slot.",
+      "factionName": "Высокородные Синего Древа",
+      "factionArea": "Фракции ЧАЩИ",
+      "tier": "minor",
+      "factionNameEn": "Highborn of the Blue Tree",
+      "factionAreaEn": "Factions of the THICKET"
+    },
+    {
+      "id": "factions-card-83-279",
+      "kind": "ability",
+      "title": "Riir",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          83
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Riir\nStress: D12\nProperties: Heavy, Exhausting, One-Shot\nSpecial: Kills opponents of standard difficulty without needing to deal Stress. Against enemies of dangerous or greater difficulty, it always deals maximum Stress.\nRange: Close Combat",
+      "factionName": "Рийр",
+      "factionArea": "Фракции ЧАЩИ",
+      "tier": "minor",
+      "factionNameEn": "Highborn of the Blue Tree",
+      "factionAreaEn": "Factions of the THICKET"
+    },
+    {
+      "id": "factions-card-83-280",
+      "kind": "ability",
+      "title": "Book of Deeds",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          83
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Book of Deeds\nRecords of your exploits are kept and discussed by the other Highborn.\nGain a new recovery condition: triumph in a situation that appeared hopeless.",
+      "factionName": "Рийр",
+      "factionArea": "Фракции ЧАЩИ",
+      "tier": "minor",
+      "factionNameEn": "Highborn of the Blue Tree",
+      "factionAreaEn": "Factions of the THICKET"
+    },
+    {
+      "id": "factions-card-83-281",
+      "kind": "ability",
+      "title": "Sacred Lamp",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          83
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Sacred Lamp\nYour squad gains the right to carry the sacred lamp of the Only Son.\nSomeone in the squad must carry the lamp, occupying one hand. In return, the entire squad gains +3 Protection and three additional slots in both SPIRIT and FATE.",
+      "factionName": "Храмовые антисолдаты",
+      "factionArea": "Фракции ЧАЩИ",
+      "tier": "minor",
+      "factionNameEn": "Temple Antisoldiers",
+      "factionAreaEn": "Factions of the THICKET"
+    },
+    {
+      "id": "factions-card-83-282",
+      "kind": "ability",
+      "title": "A Supersoldier’s Sincerity",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          83
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "A Supersoldier’s Sincerity\nIf you have Minor Fallout in MIND, you take Stress one step lower in BULLETS.\nIf you have Major Fallout in MIND, your close-combat attacks deal Stress one step higher.",
+      "factionName": "Храмовые антисолдаты",
+      "factionArea": "Фракции ЧАЩИ",
+      "tier": "minor",
+      "factionNameEn": "Temple Antisoldiers",
+      "factionAreaEn": "Factions of the THICKET"
+    },
+    {
+      "id": "factions-card-83-283",
+      "kind": "ability",
+      "title": "Zealous",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          83
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Zealous\nOnce per scene, when making a check, you may add your current MIND Stress to the highest result on one of your dice.",
+      "factionName": "Храмовые антисолдаты",
+      "factionArea": "Фракции ЧАЩИ",
+      "tier": "minor",
+      "factionNameEn": "Temple Antisoldiers",
+      "factionAreaEn": "Factions of the THICKET"
+    },
+    {
+      "id": "factions-card-84-284",
+      "kind": "ability",
+      "title": "Sunrises and Sunsets",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          84
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Sunrises and Sunsets\nEvery even-numbered scene during a session metaphorically counts as day, while every odd-numbered scene counts as night.\nAt the beginning of every day scene, restore D8 Stress in SPIRIT or MIND. At the beginning of every night scene, restore D8 Stress in BULLETS or FATE.",
+      "factionName": "ЧВК Ядовитые Шляпы",
+      "factionArea": "Фракции ПУСТОШИ",
+      "tier": "minor",
+      "factionNameEn": "Poison Hats PMC",
+      "factionAreaEn": "Factions of the WASTELAND"
+    },
+    {
+      "id": "factions-card-84-285",
+      "kind": "ability",
+      "title": "RPRTR KRRR",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          84
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "RPRTR KRRR\nYou gain a traditional hat soaked in the sap of poisonous herbs, protecting you from parasites that live on the head.\nOnce per session, you may declare that someone you are speaking to recognizes your hat and respects your faction. Until the end of the scene, all TALK checks against them are made with Advantage.",
+      "factionName": "ЧВК Ядовитые Шляпы",
+      "factionArea": "Фракции ПУСТОШИ",
+      "tier": "minor",
+      "factionNameEn": "Poison Hats PMC",
+      "factionAreaEn": "Factions of the WASTELAND"
+    },
+    {
+      "id": "factions-card-84-286",
+      "kind": "ability",
+      "title": "Double Strike",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          84
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Double Strike\nWhen you incapacitate an enemy, your next KILL or HIDE check may be made with Mastery.",
+      "factionName": "ЧВК Ядовитые Шляпы",
+      "factionArea": "Фракции ПУСТОШИ",
+      "tier": "minor",
+      "factionNameEn": "Poison Hats PMC",
+      "factionAreaEn": "Factions of the WASTELAND"
+    },
+    {
+      "id": "factions-card-84-287",
+      "kind": "ability",
+      "title": "I Am Singing Thunder!",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          84
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "I Am Singing Thunder!\nYou have adopted the shared name.\nWhen you receive Fallout in RESOURCES connected to public condemnation or persecution, you may refuse it. If you do, take Stress to a Contact chosen by the GM: D6 for Minor Fallout, D8 for Major Fallout, or D12 for Doom Fallout.",
+      "factionName": "Поющие Громы",
+      "factionArea": "Фракции ПУСТОШИ",
+      "tier": "minor",
+      "factionNameEn": "Singing Thunders",
+      "factionAreaEn": "Factions of the WASTELAND"
+    },
+    {
+      "id": "factions-card-84-288",
+      "kind": "ability",
+      "title": "Ambush Tactics",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          84
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Ambush Tactics\nWhen you attack from an ambush, you deal Stress one step higher until the end of the scene, in addition to gaining Mastery.",
+      "factionName": "Поющие Громы",
+      "factionArea": "Фракции ПУСТОШИ",
+      "tier": "minor",
+      "factionNameEn": "Singing Thunders",
+      "factionAreaEn": "Factions of the WASTELAND"
+    },
+    {
+      "id": "factions-card-84-289",
+      "kind": "ability",
+      "title": "Oblivion System",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          84
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Oblivion System\nOnce per session, you may introduce yourself under someone else’s name. You will be accepted as one of their own without needing a TALK check.\nHowever, your first failure during the scene becomes a critical failure and destroys your cover.",
+      "factionName": "Поющие Громы",
+      "factionArea": "Фракции ПУСТОШИ",
+      "tier": "minor",
+      "factionNameEn": "Singing Thunders",
+      "factionAreaEn": "Factions of the WASTELAND"
+    },
+    {
+      "id": "factions-card-85-290",
+      "kind": "ability",
+      "title": "Minor Curses",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          85
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Minor Curses\nYou receive Major Fallout in SPIRIT: a collection of voluntarily accepted curses.\nOnce per session, the GM may declare that one of these curses interferes with you and reduce the degree of success of a roll by one step.\nIn return, you gain five additional slots and +4 Protection in SPIRIT for as long as you retain this Fallout.",
+      "factionName": "Эзогончие ББББ",
+      "factionArea": "Фракции ПУСТОШИ",
+      "tier": "minor",
+      "factionNameEn": "BBBB Exohounds",
+      "factionAreaEn": "Factions of the WASTELAND"
+    },
+    {
+      "id": "factions-card-85-291",
+      "kind": "ability",
+      "title": "Hound Song",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          85
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Hound Song\nOnce per session, you may perform a prolonged ritual chant that mixes the names of everyone participating. Exchange the names written on the characters’ sheets.\nUntil the end of the scene, whenever one of the singers would take Stress or Fallout in SPIRIT or BULLETS from hostile magic, another singer may take it instead.",
+      "factionName": "Эзогончие ББББ",
+      "factionArea": "Фракции ПУСТОШИ",
+      "tier": "minor",
+      "factionNameEn": "BBBB Exohounds",
+      "factionAreaEn": "Factions of the WASTELAND"
+    },
+    {
+      "id": "factions-card-85-292",
+      "kind": "ability",
+      "title": "Hunter’s Arsenal",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          85
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Hunter’s Arsenal\nYou gain a specially modified rocket launcher loaded with anti-magic ammunition.",
+      "factionName": "Эзогончие ББББ",
+      "factionArea": "Фракции ПУСТОШИ",
+      "tier": "minor",
+      "factionNameEn": "BBBB Exohounds",
+      "factionAreaEn": "Factions of the WASTELAND"
+    },
+    {
+      "id": "factions-card-85-293",
+      "kind": "ability",
+      "title": "Trial by Saber",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          85
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Trial by Saber\nWhen you attack with a heavy close-combat weapon, you deal Stress one step higher to enemies wielding similar weapons.",
+      "factionName": "Ягодная Стража",
+      "factionArea": "Фракции ВОЛН",
+      "tier": "minor",
+      "factionNameEn": "Berry Guard",
+      "factionAreaEn": "Factions of the WAVES"
+    },
+    {
+      "id": "factions-card-86-294",
+      "kind": "ability",
+      "title": "Berry Brew",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          86
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Berry Brew\nMany varieties of berries are on the brink of extinction because of corporate activity, but you preserve them.\nOnce per session, you may prepare an alchemical brew. This requires no check but takes a significant amount of time. Anyone who drinks it gains Mastery in one Skill of their choice until the end of the scene.\nThe brews do not expire, but each occupies a resource slot.",
+      "factionName": "Ягодная Стража",
+      "factionArea": "Фракции ВОЛН",
+      "tier": "minor",
+      "factionNameEn": "Berry Guard",
+      "factionAreaEn": "Factions of the WAVES"
+    },
+    {
+      "id": "factions-card-86-295",
+      "kind": "ability",
+      "title": "Theory of Life",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          86
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Theory of Life\nWhen you encounter an unknown creature, you gain Mastery on all rolls connected with capturing it alive, interrogating it, or studying it.\nIt never turns out to be a real alien—only a monster from the Tower, an escaped corporate experiment, or a human mutated by possessing spirits.",
+      "factionName": "Ягодная Стража",
+      "factionArea": "Фракции ВОЛН",
+      "tier": "minor",
+      "factionNameEn": "Berry Guard",
+      "factionAreaEn": "Factions of the WAVES"
+    },
+    {
+      "id": "factions-card-86-296",
+      "kind": "ability",
+      "title": "A Worthy Death",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          86
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "A Worthy Death\nOnce per session, when fighting a powerful enemy or an ASCENT, you may declare that it respects your right to die with dignity.\nUntil the end of the scene, whenever it deals Stress to you, you deal Stress to it using a die of the same size.",
+      "factionName": "ЧВК Фаталисты",
+      "factionArea": "Фракции ВОЛН",
+      "tier": "minor",
+      "factionNameEn": "Fatalists PMC",
+      "factionAreaEn": "Factions of the WAVES"
+    },
+    {
+      "id": "factions-card-86-297",
+      "kind": "ability",
+      "title": "Trophy of Fate’s Slave",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          86
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Trophy of Fate’s Slave\nAt the beginning of the scene, roll a D6. Once before the end of the scene, you may replace the result of any die you roll with this result.",
+      "factionName": "ЧВК Фаталисты",
+      "factionArea": "Фракции ВОЛН",
+      "tier": "minor",
+      "factionNameEn": "Fatalists PMC",
+      "factionAreaEn": "Factions of the WAVES"
+    },
+    {
+      "id": "factions-card-86-298",
+      "kind": "ability",
+      "title": "Winter at Your Back",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          86
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Winter at Your Back\nYou are closer to the world of the dead than most. When a person dies nearby, you may restore D6 Stress in MIND, SPIRIT, or FATE.\nYou are always extremely cold.",
+      "factionName": "ЧВК Фаталисты",
+      "factionArea": "Фракции ВОЛН",
+      "tier": "minor",
+      "factionNameEn": "Fatalists PMC",
+      "factionAreaEn": "Factions of the WAVES"
+    },
+    {
+      "id": "factions-card-87-299",
+      "kind": "ability",
+      "title": "Secret Testing",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          87
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Secret Testing\nYou emit no radiation. You make HIDE checks with Mastery against machines, cameras, and heavily cybernetic fighters.",
+      "factionName": "Хашахсотские мученики",
+      "factionArea": "Фракции ВОЛН",
+      "tier": "minor",
+      "factionNameEn": "Martyrs of Hashahsot",
+      "factionAreaEn": "Factions of the WAVES"
+    },
+    {
+      "id": "factions-card-87-300",
+      "kind": "ability",
+      "title": "The Shard",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          87
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "The Shard\nThe temple shard occupies one equipment slot.\nWhile carrying it, you take FATE Stress one step higher and cannot benefit from Protection or additional slots in that Resistance.\nOnce per scene, choose another Resistance. Until the end of the scene, you take Stress to it one step lower.",
+      "factionName": "Хашахсотские мученики",
+      "factionArea": "Фракции ВОЛН",
+      "tier": "minor",
+      "factionNameEn": "Martyrs of Hashahsot",
+      "factionAreaEn": "Factions of the WAVES"
+    },
+    {
+      "id": "factions-card-87-301",
+      "kind": "ability",
+      "title": "Desiccated",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          87
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Desiccated\nYou take Stress one step lower from hostile environmental conditions, including extreme heat, cold, and poisonous gas.",
+      "factionName": "Хашахсотские мученики",
+      "factionArea": "Фракции ВОЛН",
+      "tier": "minor",
+      "factionNameEn": "Martyrs of Hashahsot",
+      "factionAreaEn": "Factions of the WAVES"
+    },
+    {
+      "id": "factions-card-87-302",
+      "kind": "ability",
+      "title": "Backdate the Paperwork",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          87
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Backdate the Paperwork\nOnce per session, when you would have to spend a resource, you may keep it by declaring that the second identical item was simply omitted from the invoice.",
+      "factionName": "Бюроманты Двухвостой Змеи",
+      "factionArea": "Фракции Горизонта",
+      "tier": "minor",
+      "factionNameEn": "Bureaumancers of the Two-Tailed Serpent",
+      "factionAreaEn": "Factions of the HORIZON"
+    },
+    {
+      "id": "factions-card-87-303",
+      "kind": "ability",
+      "title": "“Not Urgent” Classification",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          87
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "“Not Urgent” Classification\nOnce per scene, choose one of your Fallout effects. It remains with you, but does not take effect until the beginning of the next scene.",
+      "factionName": "Бюроманты Двухвостой Змеи",
+      "factionArea": "Фракции Горизонта",
+      "tier": "minor",
+      "factionNameEn": "Bureaumancers of the Two-Tailed Serpent",
+      "factionAreaEn": "Factions of the HORIZON"
+    },
+    {
+      "id": "factions-card-87-304",
+      "kind": "ability",
+      "title": "Detailed Documentation",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          87
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Detailed Documentation\nOnce per session, you may rapidly prepare a clear plan of action and explain it to your comrades.\nUntil the end of the scene, you make every check with Mastery until you fail your first check. After that failure, you take Stress one step higher until the end of the scene.",
+      "factionName": "Бюроманты Двухвостой Змеи",
+      "factionArea": "Фракции Горизонта",
+      "tier": "minor",
+      "factionNameEn": "Bureaumancers of the Two-Tailed Serpent",
+      "factionAreaEn": "Factions of the HORIZON"
+    },
+    {
+      "id": "factions-card-88-305",
+      "kind": "ability",
+      "title": "Worthy Heir",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          88
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Worthy Heir\nChoose a Skill in which you have Mastery.\nThe Mastery die for that Skill is no longer added to the general dice pool. Instead, its result is added to the die with the highest result.",
+      "factionName": "Новые Герои",
+      "factionArea": "Фракции Горизонта",
+      "tier": "minor",
+      "factionNameEn": "New Heroes",
+      "factionAreaEn": "Factions of the HORIZON"
+    },
+    {
+      "id": "factions-card-88-306",
+      "kind": "ability",
+      "title": "Shame Before the Ancestors",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          88
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Shame Before the Ancestors\nOnce per scene, after failing a check, you may declare that you hear the condemning echo of an ancestor in your mind.\nReroll the check and take D6 Stress in MIND. You may use this ability any number of times during a session, but the MIND Stress die increases by one step with every use.",
+      "factionName": "Новые Герои",
+      "factionArea": "Фракции Горизонта",
+      "tier": "minor",
+      "factionNameEn": "New Heroes",
+      "factionAreaEn": "Factions of the HORIZON"
+    },
+    {
+      "id": "factions-card-88-307",
+      "kind": "ability",
+      "title": "New Legends",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          88
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "New Legends\nOnce per session, when performing a dangerous or doom action, you may accept a success with a cost. Describe this action as part of a legend about your hero.\nChoose who in your homeland will tell the story of this deed: your younger sister, a schoolteacher, a retired soldier, a hermit sage, or someone else.\nCut to the scene in which the story is told and describe the listeners’ reactions.",
+      "factionName": "Новые Герои",
+      "factionArea": "Фракции Горизонта",
+      "tier": "minor",
+      "factionNameEn": "New Heroes",
+      "factionAreaEn": "Factions of the HORIZON"
+    },
+    {
+      "id": "factions-card-88-308",
+      "kind": "ability",
+      "title": "Cube Helmet",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          88
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Cube Helmet\nYou gain a full helmet providing +3 Protection and three additional slots in BULLETS.\nIts heavy-weapon targeting systems and ballistic computers give all your tactical weapons and artillery strikes the Stable property.",
+      "factionName": "Голодная Сотня",
+      "factionArea": "Фракции Горизонта",
+      "tier": "minor",
+      "factionNameEn": "Hungry Hundred",
+      "factionAreaEn": "Factions of the HORIZON"
+    },
+    {
+      "id": "factions-380-88-309",
+      "kind": "ability",
+      "title": "380 mm Reprise",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          88
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "380 mm Reprise\nYou gain a piece of equipment: a red transreality beacon fired from a flare pistol, which uses an artifact from the Tower to guide artillery.\nYou may use it once per scene with a KILL check, always taking an additional D8 Stress in RESOURCES. During the attack, you must weave both yourself and your enemies into part of a performance intended for an outside observer. Otherwise, the additional RESOURCES Stress increases by one step.",
+      "factionName": "Голодная Сотня",
+      "factionArea": "Фракции Горизонта",
+      "tier": "minor",
+      "factionNameEn": "Hungry Hundred",
+      "factionAreaEn": "Factions of the HORIZON"
+    },
+    {
+      "id": "factions-120-88-310",
+      "kind": "ability",
+      "title": "Heavy Artillery",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          88
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Heavy Artillery\nStress: D12\nProperties: Powerful, Scatter, Armor-Piercing (6), Suppression, Siege, Loud\nRange: Long",
+      "factionName": "Голодная Сотня",
+      "factionArea": "Фракции Горизонта",
+      "tier": "minor",
+      "factionNameEn": "Hungry Hundred",
+      "factionAreaEn": "Factions of the HORIZON"
+    },
+    {
+      "id": "factions-card-89-311",
+      "kind": "ability",
+      "title": "Across Lands and Seas",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          89
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Across Lands and Seas\nWhen you work for factions with opposing interests, you take Stress in FATE and RESOURCES one step lower.",
+      "factionName": "ЧВК Звездочёты",
+      "factionArea": "Фракции АРМИИ",
+      "tier": "minor",
+      "factionNameEn": "Stargazers PMC",
+      "factionAreaEn": "Factions of the ARMY"
+    },
+    {
+      "id": "factions-card-89-312",
+      "kind": "ability",
+      "title": "Bone Constellation",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          89
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Bone Constellation\nDuring a scene in which another person has died or been severely wounded, you may conduct a ritual involving song, the consumption of flesh, and the construction of constellations in a strange galaxy visible only to you and your comrades-in-arms.\nOnce per session, roll a D10.\nOn an odd result, failure awaits you, and you are prepared for it. Until the end of the session, whenever you receive a failure or critical failure, you may declare that you foresaw it and replace it with a success with a cost.\nOn an even result, success awaits you. Until the end of the session, whenever you receive a success or success with a cost, you may replace it with a critical success.",
+      "factionName": "ЧВК Звездочёты",
+      "factionArea": "Фракции АРМИИ",
+      "tier": "minor",
+      "factionNameEn": "Stargazers PMC",
+      "factionAreaEn": "Factions of the ARMY"
+    },
+    {
+      "id": "factions-card-89-313",
+      "kind": "ability",
+      "title": "Clairvoyant Flesh",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          89
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Clairvoyant Flesh\nDuring a session in which you have eaten human flesh, you may once learn which GM character in the scene is the most dangerous, wounded, frightened, or important to the scene.",
+      "factionName": "ЧВК Звездочёты",
+      "factionArea": "Фракции АРМИИ",
+      "tier": "minor",
+      "factionNameEn": "Stargazers PMC",
+      "factionAreaEn": "Factions of the ARMY"
+    },
+    {
+      "id": "factions-card-90-314",
+      "kind": "ability",
+      "title": "Key to Every Door",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          90
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Key to Every Door\nYou carry a gigantic key forged from a tank. It occupies one equipment slot.\nIt can open any door without requiring a check, but doing so always causes you D8 Stress in FATE.",
+      "factionName": "Коронованные Удары",
+      "factionArea": "Фракции АРМИИ",
+      "tier": "minor",
+      "factionNameEn": "Crowned Strikes",
+      "factionAreaEn": "Factions of the ARMY"
+    },
+    {
+      "id": "factions-card-90-315",
+      "kind": "ability",
+      "title": "Spiteful Vengeance",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          90
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Spiteful Vengeance\nYou can intensify the rage that keeps you alive.\nOnce per scene, you may increase the difficulty of an action by one step to increase the Stress it deals by two steps.",
+      "factionName": "Коронованные Удары",
+      "factionArea": "Фракции АРМИИ",
+      "tier": "minor",
+      "factionNameEn": "Crowned Strikes",
+      "factionAreaEn": "Factions of the ARMY"
+    },
+    {
+      "id": "factions-card-90-316",
+      "kind": "ability",
+      "title": "Spectral Tank",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          90
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Spectral Tank\nOnce per scene, you may make a CAST check to summon part of a spectral tank, such as its tracks, headlight, armor plate, or gun.\nYou may try again after a failure, but the ability cannot be used successfully more than once per scene.\nChoose one effect:\nMake a D12 attack with Loud, Powerful, Scatter, and Siege.\nMake a D10 attack with Loud, Powerful, Automatic, and Suppression.\nGive one chosen character in the group +5 Protection and two additional slots in BULLETS until the end of the scene.\nPerform a D10 ASCEND action with Loud, Powerful, and Stable.\nMake disabled machinery function without fuel.",
+      "factionName": "Коронованные Удары",
+      "factionArea": "Фракции АРМИИ",
+      "tier": "minor",
+      "factionNameEn": "Crowned Strikes",
+      "factionAreaEn": "Factions of the ARMY"
+    },
+    {
+      "id": "factions-card-90-317",
+      "kind": "ability",
+      "title": "Commercial Break",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          90
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Commercial Break\nOnce per scene, you may loudly shout a sponsor’s slogan, perform a trademark gesture, or display an intro sequence on your cybereyes.\nThe enemies become confused for a moment. One ally may change position, reload, or make another noncombat check at normal difficulty.",
+      "factionName": "Общество «Цепи»",
+      "factionArea": "Фракции АРМИИ",
+      "tier": "minor",
+      "factionNameEn": "The Chains Society",
+      "factionAreaEn": "Factions of the ARMY"
+    },
+    {
+      "id": "factions-card-90-318",
+      "kind": "ability",
+      "title": "Sponsor’s Seal",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          90
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Sponsor’s Seal\nWhen performing a risky or more difficult action, you may recite an advertising slogan.\nOn a success, the sponsor’s magic causes you to deal Stress one step higher.\nOn a failure, footage of your mistake becomes extremely popular, and you restore D10 Stress in RESOURCES.",
+      "factionName": "Общество «Цепи»",
+      "factionArea": "Фракции АРМИИ",
+      "tier": "minor",
+      "factionNameEn": "The Chains Society",
+      "factionAreaEn": "Factions of the ARMY"
+    },
+    {
+      "id": "factions-card-91-319",
+      "kind": "ability",
+      "title": "Expert Reviewer",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          91
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Expert Reviewer\nYou are highly knowledgeable about military equipment and have produced video reviews of many different items.\nWhen buying or selling equipment, a successful TALK check allows you to sell it at one value step higher or purchase it at one value step lower.",
+      "factionName": "Общество «Цепи»",
+      "factionArea": "Фракции АРМИИ",
+      "tier": "minor",
+      "factionNameEn": "The Chains Society",
+      "factionAreaEn": "Factions of the ARMY"
+    },
+    {
+      "id": "factions-card-91-320",
+      "kind": "ability",
+      "title": "Rapid Masonry",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          91
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Rapid Masonry\nAfter passing a TECH check and spending a D8 or more valuable resource, you may use the magic of the Dark Builders to rapidly erect a structure.\nThe structure grants Mastery to relevant rolls until the first failed roll. For example, it might be a barricade that assists KILL or a ladder that assists ASCEND.",
+      "factionName": "Тёмные строители",
+      "factionArea": "Фракции БЕЗУМИЯ",
+      "tier": "minor",
+      "factionNameEn": "Dark Builders",
+      "factionAreaEn": "Factions of MADNESS"
+    },
+    {
+      "id": "factions-card-91-321",
+      "kind": "ability",
+      "title": "Important Construction",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          91
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Important Construction\nAfter passing a TECH check and spending a D12 resource, you may use the complex rituals of the Dark Builders to erect an elaborate structure in an oasis.\nIt will not be ready until the beginning of the next session, though your work takes only one scene.\nChoose a type of product or service sold in the oasis, such as MIND treatment, weapons, or travel equipment. Purchasing goods from that category in this oasis now costs one value step less.",
+      "factionName": "Тёмные строители",
+      "factionArea": "Фракции БЕЗУМИЯ",
+      "tier": "minor",
+      "factionNameEn": "Dark Builders",
+      "factionAreaEn": "Factions of MADNESS"
+    },
+    {
+      "id": "factions-card-91-322",
+      "kind": "ability",
+      "title": "Union",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          91
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Union\nYou erase the boundary between human and building.\nYou gain +1 Protection and one additional slot in BULLETS. You can also hear through thick walls and use an ASCEND check to pass through concrete walls without harming yourself or the wall.",
+      "factionName": "Тёмные строители",
+      "factionArea": "Фракции БЕЗУМИЯ",
+      "tier": "minor",
+      "factionNameEn": "Dark Builders",
+      "factionAreaEn": "Factions of MADNESS"
+    },
+    {
+      "id": "factions-card-92-323",
+      "kind": "ability",
+      "title": "Mediator",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          92
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Mediator\nYou possess a limited ability to understand creatures of the Tower, particularly those attempting to appear human.\nWithout making a check, you can establish simple mutual understanding: a truce until the end of the scene, permission to pass in exchange for payment, or the opportunity to ask one question.",
+      "factionName": "Секреты Короля",
+      "factionArea": "Фракции БЕЗУМИЯ",
+      "tier": "minor",
+      "factionNameEn": "Secrets of the King",
+      "factionAreaEn": "Factions of MADNESS"
+    },
+    {
+      "id": "factions-card-92-324",
+      "kind": "ability",
+      "title": "Adoptive Glove",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          92
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Adoptive Glove\nYou have been accepted into the community. Over time, this has given you an instinctive understanding of secrets and riddles.\nWhenever someone in the group asks the GM a question through a character ability, you restore D8 Stress in both SPIRIT and MIND.",
+      "factionName": "Секреты Короля",
+      "factionArea": "Фракции БЕЗУМИЯ",
+      "tier": "minor",
+      "factionNameEn": "Secrets of the King",
+      "factionAreaEn": "Factions of MADNESS"
+    },
+    {
+      "id": "factions-card-92-325",
+      "kind": "ability",
+      "title": "Blessing of the King",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          92
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Blessing of the King\nThe King-in-Camouflage grants you the power to hide from sight.\nOnce per scene, you may reroll a HIDE check. You have developed an addiction to collecting gloves.",
+      "factionName": "Секреты Короля",
+      "factionArea": "Фракции БЕЗУМИЯ",
+      "tier": "minor",
+      "factionNameEn": "Secrets of the King",
+      "factionAreaEn": "Factions of MADNESS"
+    },
+    {
+      "id": "factions-card-92-326",
+      "kind": "ability",
+      "title": "Transchronal Armor",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          92
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Transchronal Armor\nThe names of unborn children are written inside your armor.\nOnce per scene, when you take Stress in BULLETS, you may transfer it to FATE and reduce it by one step.",
+      "factionName": "Контр-шаманы Царицы-закат",
+      "factionArea": "Фракции БЕЗУМИЯ",
+      "tier": "minor",
+      "factionNameEn": "Counter-Shamans of the Sunset Queen",
+      "factionAreaEn": "Factions of MADNESS"
+    },
+    {
+      "id": "factions-card-92-327",
+      "kind": "ability",
+      "title": "Empty Prophecy",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          92
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Empty Prophecy\nYou exist only in the present moment, and clairvoyance does not account for you.\nOnce per session, when someone in the group uses a prediction, you may declare that the prediction failed to see your contribution and increase the divination’s degree of success by one step.",
+      "factionName": "Контр-шаманы Царицы-закат",
+      "factionArea": "Фракции БЕЗУМИЯ",
+      "tier": "minor",
+      "factionNameEn": "Counter-Shamans of the Sunset Queen",
+      "factionAreaEn": "Factions of MADNESS"
+    },
+    {
+      "id": "factions-card-92-328",
+      "kind": "ability",
+      "title": "Fight the Immaterial!",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          92
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Fight the Immaterial!\nOnce per scene, you may declare that you sense a local spirit nearby.\nIt interferes with you, increasing the difficulty of your checks by one step. Once the spirit is captured, you gain one D8 resource for every check failed because of this interference.",
+      "factionName": "Контр-шаманы Царицы-закат",
+      "factionArea": "Фракции БЕЗУМИЯ",
+      "tier": "minor",
+      "factionNameEn": "Counter-Shamans of the Sunset Queen",
+      "factionAreaEn": "Factions of MADNESS"
+    },
+    {
+      "id": "factions-card-93-329",
+      "kind": "ability",
+      "title": "We Will Call—and All Will Follow",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          93
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "We Will Call—and All Will Follow\nThe Tower is the greatest threat to the world, and you never tire of reminding people of it.\nYou make TALK checks intended to recruit temporary helpers with Mastery.",
+      "factionName": "Башня Упадёт",
+      "factionArea": "Фракции МИРА",
+      "tier": "minor",
+      "factionNameEn": "Towerfall",
+      "factionAreaEn": "Factions of the WORLD"
+    },
+    {
+      "id": "factions-card-93-330",
+      "kind": "ability",
+      "title": "Unbreakable Spirit",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          93
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Unbreakable Spirit\nCosmic horror is powerless against the miracles of human will.\nOnce per scene, when you would take Stress in MIND, you may refuse it and deal the same amount of Stress to whoever attacked you.",
+      "factionName": "Башня Упадёт",
+      "factionArea": "Фракции МИРА",
+      "tier": "minor",
+      "factionNameEn": "Towerfall",
+      "factionAreaEn": "Factions of the WORLD"
+    },
+    {
+      "id": "factions-card-93-331",
+      "kind": "ability",
+      "title": "Red Fish",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          93
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Red Fish\nOnce per session, when you discover information useful in the struggle against the Tower, you may add it to the organization’s databases.\nThis might include discovering a weakness of a species of Tower creature, finding a safe route, or locating a cult’s meeting place.\nFrom then on, you cannot critically fail against the subject of that information.",
+      "factionName": "Башня Упадёт",
+      "factionArea": "Фракции МИРА",
+      "tier": "minor",
+      "factionNameEn": "Towerfall",
+      "factionAreaEn": "Factions of the WORLD"
+    },
+    {
+      "id": "factions-card-94-332",
+      "kind": "ability",
+      "title": "Urgent Delivery",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          94
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Urgent Delivery\nOnce per session, upon arriving at an oasis, you may declare that someone wants you to make a delivery to a neighboring location.\nThe delivery always has a complication: the object might be explosive, or corporations may be searching for it.\nIf you complete the delivery, you receive three times as many resources as you normally would for such a mission. If the delivery fails, you take RESOURCES Stress equal to the die of the item you were carrying.",
+      "factionName": "Курьерская служба Кра Сир",
+      "factionArea": "Фракции МИРА",
+      "tier": "minor",
+      "factionNameEn": "Kra Sir Courier Service",
+      "factionAreaEn": "Factions of the WORLD"
+    },
+    {
+      "id": "factions-card-94-333",
+      "kind": "ability",
+      "title": "Cold Water",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          94
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Cold Water\nYou know how to treat water properly.\nOnce per session during an ASCENT, you may declare that you have found a source of relatively clean water. Everyone in the group restores D6 Stress in both BULLETS and MIND.\nDo not forget to thank the water afterward.",
+      "factionName": "Курьерская служба Кра Сир",
+      "factionArea": "Фракции МИРА",
+      "tier": "minor",
+      "factionNameEn": "Kra Sir Courier Service",
+      "factionAreaEn": "Factions of the WORLD"
+    },
+    {
+      "id": "factions-card-94-334",
+      "kind": "ability",
+      "title": "Worker’s Oath",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          94
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Worker’s Oath\nThe world rests upon the shoulders of its workers.\nOnce per scene, you may reroll a TECH check.",
+      "factionName": "Курьерская служба Кра Сир",
+      "factionArea": "Фракции МИРА",
+      "tier": "minor",
+      "factionNameEn": "Kra Sir Courier Service",
+      "factionAreaEn": "Factions of the WORLD"
+    },
+    {
+      "id": "factions-card-94-335",
+      "kind": "ability",
+      "title": "Polar Night",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          94
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Polar Night\nYou gain +5 Protection in BULLETS and MIND against cold, darkness, isolation, and prolonged waiting.\nYou make INVESTIGATE checks with Mastery in anomalous zones that resemble something made by humans.",
+      "factionName": "Экспедиция Канонира Слепой Королевы",
+      "factionArea": "Фракции МИРА",
+      "tier": "minor",
+      "factionNameEn": "Expedition of the Blind Queen’s Gunner",
+      "factionAreaEn": "Factions of the WORLD"
+    },
+    {
+      "id": "factions-card-94-336",
+      "kind": "ability",
+      "title": "We Have Seen This Before",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          94
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "We Have Seen This Before\nOnce per session, you may declare that you encountered a similar anomaly at the pole.\nAsk the GM two questions about how an anomaly or artifact functions. One answer will be precise; the other will be useful but incomplete.",
+      "factionName": "Экспедиция Канонира Слепой Королевы",
+      "factionArea": "Фракции МИРА",
+      "tier": "minor",
+      "factionNameEn": "Expedition of the Blind Queen’s Gunner",
+      "factionAreaEn": "Factions of the WORLD"
+    },
+    {
+      "id": "factions-card-94-337",
+      "kind": "ability",
+      "title": "Through Storms and Hurricanes",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          94
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Through Storms and Hurricanes\nA doom ASCENT counts as dangerous while you are leading the group.",
+      "factionName": "Экспедиция Канонира Слепой Королевы",
+      "factionArea": "Фракции МИРА",
+      "tier": "minor",
+      "factionNameEn": "Expedition of the Blind Queen’s Gunner",
+      "factionAreaEn": "Factions of the WORLD"
+    },
+    {
+      "id": "factions-card-95-338",
+      "kind": "ability",
+      "title": "Enforcer of Friendship",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          95
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Enforcer of Friendship\nWhen you help a comrade using friendship abilities, you may choose two effects appropriate to the die’s tier.\nIn addition to taking Stress to the friendship track, you take the same die of Stress in RESOURCES.",
+      "factionName": "Рти Кти Данн",
+      "factionArea": "Фракции Корпораций",
+      "tier": "minor",
+      "factionNameEn": "Rti Kti Dann",
+      "factionAreaEn": "Factions of the CORPORATIONS"
+    },
+    {
+      "id": "factions-card-95-339",
+      "kind": "ability",
+      "title": "Cover-Model Smile",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          95
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Cover-Model Smile\nWhen helping a comrade, if you say something excessively friendly, promotional, or insincerely caring, they gain Mastery in addition to the assistance die.\nIf the ally fails the roll, both of you take D8 Stress in MIND.",
+      "factionName": "Рти Кти Данн",
+      "factionArea": "Фракции Корпораций",
+      "tier": "minor",
+      "factionNameEn": "Rti Kti Dann",
+      "factionAreaEn": "Factions of the CORPORATIONS"
+    },
+    {
+      "id": "factions-card-95-340",
+      "kind": "ability",
+      "title": "Standardized Training",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          95
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Standardized Training\nYou were taught a little of everything.\nOnce per session, choose a group of Tactics you do not possess. You must still have the required Skill. Until the end of the session, you may use those Tactics.",
+      "factionName": "Рти Кти Данн",
+      "factionArea": "Фракции Корпораций",
+      "tier": "minor",
+      "factionNameEn": "Rti Kti Dann",
+      "factionAreaEn": "Factions of the CORPORATIONS"
+    },
+    {
+      "id": "factions-card-95-341",
+      "kind": "ability",
+      "title": "Subsidiary Company",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          95
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Subsidiary Company\nOnce per session, you may declare that a minor service, spare part, document, or specialist you need belongs to one of the conglomerate’s companies.\nThis does not solve the problem outright, but it reduces the difficulty of the next TALK, TECH, or INVESTIGATE check by one step.",
+      "factionName": "Островные фирмы",
+      "factionArea": "Фракции Корпораций",
+      "tier": "minor",
+      "factionNameEn": "Island Firms",
+      "factionAreaEn": "Factions of the CORPORATIONS"
+    },
+    {
+      "id": "factions-card-95-342",
+      "kind": "ability",
+      "title": "Cold of Lunar Shame",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          95
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Cold of Lunar Shame\nOnce per scene, you may make a CAST check to summon part of the Moon that became ashamed of humanity.\nYou may attempt the check any number of times, but the ability can be used successfully only once per scene.\nChoose one effect:\nLow Gravity: Enemies lose bonuses from positioning, or you reduce the difficulty of an ASCENT by one step until the end of the scene.\nCosmic Vacuum: Deal D6 Stress with Powerful and Scatter, or remove a property that makes a resource easier to carry until the end of the scene.\nSong of the Dead Moon: Deal D6 Stress with Stable and Suppression, or make an obstacle fragile so that attempts to destroy it deal maximum Stress.",
+      "factionName": "Островные фирмы",
+      "factionArea": "Фракции Корпораций",
+      "tier": "minor",
+      "factionNameEn": "Island Firms",
+      "factionAreaEn": "Factions of the CORPORATIONS"
+    },
+    {
+      "id": "factions-card-95-343",
+      "kind": "ability",
+      "title": "Hatred",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          95
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Hatred\nYou deal Stress one step higher to the property of other corporations, but not to their personnel.",
+      "factionName": "Островные фирмы",
+      "factionArea": "Фракции Корпораций",
+      "tier": "minor",
+      "factionNameEn": "Island Firms",
+      "factionAreaEn": "Factions of the CORPORATIONS"
+    },
+    {
+      "id": "factions-card-96-344",
+      "kind": "ability",
+      "title": "Enemy of Licenses",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          96
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Enemy of Licenses\nOnce per scene, you may make a TECH check to create an illegal copy of a piece of corporate equipment until the end of the scene.\nYou may attempt the check any number of times, but the ability may be used successfully only once per scene.\nThe copy has the same properties and characteristics as the original, as well as Dangerous and Unreliable.\nCorporate equipment means either prepared equipment from the book’s equipment list or equipment created by the GM and players and introduced into the story as a mass-produced product.",
+      "factionName": "Протест левшей",
+      "factionArea": "Фракции Корпораций",
+      "tier": "minor",
+      "factionNameEn": "Left-Handers’ Protest",
+      "factionAreaEn": "Factions of the CORPORATIONS"
+    },
+    {
+      "id": "factions-card-96-345",
+      "kind": "ability",
+      "title": "Left-Handed",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          96
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Left-Handed\nWhen you receive a second instance of the Damaged Arm Fallout, it disappears at the beginning of the next scene as the programmable polymer restructures itself.",
+      "factionName": "Протест левшей",
+      "factionArea": "Фракции Корпораций",
+      "tier": "minor",
+      "factionNameEn": "Left-Handers’ Protest",
+      "factionAreaEn": "Factions of the CORPORATIONS"
+    },
+    {
+      "id": "factions-card-96-346",
+      "kind": "ability",
+      "title": "New Movie",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          96
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "New Movie\nYou have access to an information channel where illegal copies of movies, animated films, and video games can be obtained long before release.\nOnce per session while in an oasis, you may spend a D10 resource or item—or take D10 Stress in RESOURCES—to acquire pirated content.\nWatching it restores D10 Stress in MIND without a check. The die then decreases by one step, after which the content may be used again.\nA spoiler concerning a major franchise may grant Mastery in TALK when speaking to one of its fans.",
+      "factionName": "Протест левшей",
+      "factionArea": "Фракции Корпораций",
+      "tier": "minor",
+      "factionNameEn": "Left-Handers’ Protest",
+      "factionAreaEn": "Factions of the CORPORATIONS"
+    },
+    {
+      "id": "factions-card-96-347",
+      "kind": "ability",
+      "title": "Catch a Nightmare",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          96
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Catch a Nightmare\nWhen you or an ally takes Stress in MIND, you may make an EVADE check to trap part of the terror inside a small vessel, a piece of cloth, a bone, or a clay figurine.\nReduce the Stress by one step. Later, you may break the vessel to deal D6 Stress to an enemy without making a check.",
+      "factionName": "Пастухи",
+      "factionArea": "Фракции ДУХОВ",
+      "tier": "minor",
+      "factionNameEn": "Shepherds",
+      "factionAreaEn": "Factions of the SPIRITS"
+    },
+    {
+      "id": "factions-card-96-348",
+      "kind": "ability",
+      "title": "A Dream for Two",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          96
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "A Dream for Two\nOnce per session during a rest, you may lie beside an ally and guide them through a safe dream.\nBoth of you restore D8 Stress in MIND and SPIRIT. The GM then asks you a question about a fear, desire, or memory belonging to the ally whose dream you shared. You must answer truthfully.\nDescribe the dream.",
+      "factionName": "Пастухи",
+      "factionArea": "Фракции ДУХОВ",
+      "tier": "minor",
+      "factionNameEn": "Shepherds",
+      "factionAreaEn": "Factions of the SPIRITS"
+    },
+    {
+      "id": "factions-card-96-349",
+      "kind": "ability",
+      "title": "Erased Boundary",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          96
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Erased Boundary\nYou deal and restore Stress one step higher while you have more than 5 Stress in SPIRIT.\nWhile in this state, you cannot distinguish dreams from reality.",
+      "factionName": "Пастухи",
+      "factionArea": "Фракции ДУХОВ",
+      "tier": "minor",
+      "factionNameEn": "Shepherds",
+      "factionAreaEn": "Factions of the SPIRITS"
+    },
+    {
+      "id": "factions-card-97-350",
+      "kind": "ability",
+      "title": "Information Purge",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          97
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Information Purge\nOnce per session, you may erase all traces of the squad’s actions from networks, cameras, reports, and rumors.\nThis does not alter the memories of eyewitnesses, but it renders the evidence useless.",
+      "factionName": "Узорезы",
+      "factionArea": "Фракции ДУХОВ",
+      "tier": "minor",
+      "factionNameEn": "Linkcutters",
+      "factionAreaEn": "Factions of the SPIRITS"
+    },
+    {
+      "id": "factions-card-97-351",
+      "kind": "ability",
+      "title": "Shield of the Industry",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          97
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Shield of the Industry\nOnce per session, at an important moment, you may begin arguing with an online hater through the location’s networks.\nAll other checks in the scene become one step harder until you pass a TALK check and outargue the troublemaker.\nAs a reward, the next time you reach an oasis, you may receive two D6 items or resources. Their dice increase by one step for every check failed during the online argument.",
+      "factionName": "Узорезы",
+      "factionArea": "Фракции ДУХОВ",
+      "tier": "minor",
+      "factionNameEn": "Linkcutters",
+      "factionAreaEn": "Factions of the SPIRITS"
+    },
+    {
+      "id": "factions-card-97-352",
+      "kind": "ability",
+      "title": "Cyber Jargon",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          97
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Cyber Jargon\nYou combine criminal slang with fashionable expressions drawn from network memes and popular videos.\nYour radio conversations with your comrades can be intercepted, allowing someone to determine your location, but their contents cannot be deciphered.",
+      "factionName": "Узорезы",
+      "factionArea": "Фракции ДУХОВ",
+      "tier": "minor",
+      "factionNameEn": "Linkcutters",
+      "factionAreaEn": "Factions of the SPIRITS"
+    },
+    {
+      "id": "factions-card-97-353",
+      "kind": "ability",
+      "title": "Broken Heart",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          97
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Broken Heart\nWhen protecting someone who is wounded, rejected, frightened, or possessed, gain Mastery on FIX, EVADE, or KILL.\nAfter the scene, you may restore D6 Stress in MIND if you honestly tell your comrades whom that person reminded you of.",
+      "factionName": "Узорезы",
+      "factionArea": "Фракции ДУХОВ",
+      "tier": "minor",
+      "factionNameEn": "Silver Spears",
+      "factionAreaEn": "Factions of the SPIRITS"
+    },
+    {
+      "id": "factions-card-97-354",
+      "kind": "ability",
+      "title": "Holy Silver",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          97
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Holy Silver\nYou gain the order’s silver spear, used for hunting spirits.",
+      "factionName": "Узорезы",
+      "factionArea": "Фракции ДУХОВ",
+      "tier": "minor",
+      "factionNameEn": "Silver Spears",
+      "factionAreaEn": "Factions of the SPIRITS"
+    },
+    {
+      "id": "factions-card-98-355",
+      "kind": "ability",
+      "title": "Silver Spear",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          98
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Silver Spear\nStress: D10\nRange: Close Combat\nProperties: Armor-Piercing (2), Accurate\nSpecial: When attacking something immaterial, you always deal maximum Stress and may ask the GM one question about its nature.",
+      "factionName": "Серебряное копьё",
+      "factionArea": "Фракции ДУХОВ",
+      "tier": "minor",
+      "factionNameEn": "Silver Spears",
+      "factionAreaEn": "Factions of the SPIRITS"
+    },
+    {
+      "id": "tactics-card-111-356",
+      "kind": "tactic",
+      "title": "Advanced Reloading",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          111
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "1. Advanced Reloading\nDrop-Mag Reload: Make a reload check with Mastery, but always take D4 Stress in RESOURCES.\nOne-Handed Reload: Your reload check does not become more difficult if your other hand is injured or holding something.\nTactical Reload: Reload before emptying the magazine. If you attacked with a firearm during this scene, you may make a reload check without the corresponding Fallout. After reloading, the weapon cannot suffer the Out of Ammunition Fallout until the end of the scene.\nHashahsot Reload: Fighters in protective suits used this method after the nuclear attack on Hashahsot. The precise actions vary between weapons but minimize contamination of the mechanism. After reloading, the weapon cannot suffer the Jam Fallout until the end of the scene.\nIntimidating Reload: You reload in an exceptionally threatening manner. Even though the enemies know you are vulnerable, they will not advance.",
+      "skill": "УБИВАТЬ",
+      "skillEn": "KILL"
+    },
+    {
+      "id": "tactics-card-111-357",
+      "kind": "tactic",
+      "title": "Assault",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          111
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "2. Assault\nSlice the Pie: Gradually expand your field of view while inspecting a room. Once per scene, you may ignore Stress received while examining a room this way.\nPolite Grenade: According to proper etiquette, the grenade enters before you. Make a grenade-throwing check with Mastery.\nDisarm: You know how to neutralize tripwires, mines, and magical defenses. The Tactic always disarms the trap, though you may take Stress on a failure.\nPendulum: Sway out from behind a corner and immediately return to cover. A check against a target controlling a room or corridor does not become more difficult.\nHuman Shield: On a success, use a human-sized enemy to shield yourself from hostile attacks. Gain BULLETS Protection equal to their Protection. The Human Shield occupies one hand.",
+      "skill": "УБИВАТЬ",
+      "skillEn": "KILL"
+    },
+    {
+      "id": "tactics-card-112-358",
+      "kind": "tactic",
+      "title": "Brute Force",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          112
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "3. Brute Force\nOpen Up: Force open even a large sealed door, or kick down an ordinary door without a check. On a critical success, enemies on the other side become frightened and retreat to less advantageous positions.\nMerciless Blow: A close-combat attack deals the maximum possible Stress on its die. On a failure, you also take the maximum possible Stress.\nTear Apart: Brutally finish off an opponent. If the attack kills them, restore D6 Stress in MIND or SPIRIT. Describe the killing blow vividly. If you repeat a finishing move during the same scene, you cannot use this Tactic again until the scene ends.\nShove: On a successful close-combat attack, push the opponent one Range band away.\nOutmatch: Briefly wrestle an enormous monster or break through a concrete wall without tools. Increase the check’s difficulty by one step.",
+      "skill": "УБИВАТЬ",
+      "skillEn": "KILL"
+    },
+    {
+      "id": "tactics-card-112-359",
+      "kind": "tactic",
+      "title": "Close Combat",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          112
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "4. Close Combat\nExemplary Strike: Reduce both the close-combat attack’s Stress die and its difficulty by one step.\nFeint: Roll the close-combat attack first, then choose its target.\nHunt: If you have Mastery on a check against the target, reduce the difficulty of this close-combat attack by one step.\nDangerous Trick: If you take Stress during this close-combat attack, gain Mastery on your next action against the source of that Stress.\nWhirlwind: Attack in close combat with incredible speed. An enemy that takes Stress cannot use an Enemy Move until the end of the scene.",
+      "skill": "УБИВАТЬ",
+      "skillEn": "KILL"
+    },
+    {
+      "id": "tactics-card-112-360",
+      "kind": "tactic",
+      "title": "Masterful Shooting",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          112
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "5. Masterful Shooting\nQuick Draw: Draw and aim a ranged weapon before the enemies can pull their triggers, even if they are already aiming at you. This does not work with Heavy weapons.\nRiir Aiming: Make a check that deals no Stress. On a success, the Stress of your next successful ranged attack increases by one step, plus another step for every increase applied to the aiming check’s difficulty.\nDisarm: Target an enemy’s limbs even during battle. Your ranged attacks may be nonlethal. This does not work with weapons possessing Powerful or Scatter.\nRed Shot: Hit something normally impossible to strike during combat, such as a grenade flying toward you or an irritating insect. Critical Stress from this Tactic increases by two steps instead of one.\nRicochet: Make a ranged attack that deals Stress one step lower. Fighting an enemy in cover does not increase this attack’s difficulty.",
+      "skill": "УБИВАТЬ",
+      "skillEn": "KILL"
+    },
+    {
+      "id": "tactics-card-112-361",
+      "kind": "tactic",
+      "title": "Household Magic",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          112
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "1. Household Magic\nSnap Your Fingers: Instantly perform a small, harmless magical act without a check: light a fire, stop a leak, dry clothes, or cool a weapon barrel. If the action nevertheless requires a check, reduce its difficulty by one step.\nHouse-Spirit Order: Make small objects move, stack themselves, rise, or remain in place. On a success, you might clear a path, close a door, collect scattered resources, or prevent a fragile object from falling.\nMinor Blessing: Whisper good fortune into an item. Until the end of the scene, ignore the first Fallout involving that item breaking, becoming lost, jamming, becoming dirty, or proving inconvenient.\nPurify Water: Instead of purification tablets, perform an ancient ritual asking water to separate itself from contaminants. Once per scene while resting, declare that you found and purified a water source to restore D6 Stress in BULLETS.\nWarm Belonging: Charge an item with a sense of comfort. Until the end of the scene, one character gains +4 Protection in MIND or SPIRIT, but only against fear, exhaustion, cold, loneliness, or the influence of a strange location.",
+      "skill": "КОЛДОВАТЬ",
+      "skillEn": "CAST"
+    },
+    {
+      "id": "tactics-card-113-362",
+      "kind": "tactic",
+      "title": "Combat Magic",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          113
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "2. Combat Magic\nSpell Strike: Attack with raw magical force, a curse, fire, light, a gravitational jolt, or another effect. The attack deals D4 Stress with Energy at Close or Medium Range.\nBindings: Restrain an enemy with magic, such as a Red Sleeve’s instantly growing flower or a Gate Guardian’s cigarette smoke. On a success, the target cannot move until it takes or deals Stress.\nCounterstrike: After taking Stress in SPIRIT, deal the same amount of Stress to its source.\nSorcerous Stance: Adopt a firing stance that allows you to use magic and weapons simultaneously. Until the end of the scene, CAST and KILL checks suffer no penalty against extremely fast targets.\nBurn Through Protection: Strike body armor, protective charms, distortion fields, or blessings. On a success, the target loses 2 Protection until the end of the scene.",
+      "skill": "КОЛДОВАТЬ",
+      "skillEn": "CAST"
+    },
+    {
+      "id": "tactics-card-113-363",
+      "kind": "tactic",
+      "title": "Divination",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          113
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "3. Divination\nCast the Bones: Cast dice, coins, or cartridges, or run a predictive algorithm. On a success, ask the GM one question about an imminent danger, trap, ambush, or the price of an action. The answer is truthful but may be expressed through a symbol or riddle.\nSee the Branching Path: Before a risky or more difficult action, examine several possible outcomes. On a success, either reduce the check’s difficulty by one step or take Stress one step lower if the check fails.\nName the Trouble: Name where the danger will come from: above, below, a friend, the past, technology, spirits, money, or weapons. Until the end of the scene, you may replace one Fallout matching that source with different Fallout of the same severity.\nCalculate Death: Divine the fate of an enemy you can see or whose name you know. On a success, learn which Skill is currently most effective against them, such as TALK or HIDE. One check using that Skill against the target gains Mastery before the scene ends.\nIt Was Obvious in Advance: Once per scene, after an obstacle appears, declare that you foresaw it and prepared a minor precaution: the correct charm, a password, bait, an alternative route, or a warning for an ally. Surprise does not increase this check’s difficulty.",
+      "skill": "КОЛДОВАТЬ",
+      "skillEn": "CAST"
+    },
+    {
+      "id": "tactics-card-113-364",
+      "kind": "tactic",
+      "title": "Communing with the Otherworld",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          113
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "4. Communing with the Otherworld\nPolite Address: Speak to a spirit, dead person, or strange program according to shamanic etiquette. On a success, it answers one question or performs a small request that does not contradict its nature. It gains an additional D10 when carrying out that request.\nAddress by Office: You do not know the entity’s true name but correctly identify its role: Guardian, Hunger, Archive, Mother of the Elevator, Senior Patron, Orphan of the Substation. On a success, reduce the difficulty of further TALK and CAST checks against it by one step until the end of the scene.\nBargain of a Small Price: Receive the entity’s assistance without its normal payment, naming your own price: D4 Stress in SPIRIT, MIND, RESOURCES, or FATE. On a failure, the entity still helps, but the GM raises the price to D8 or adds an unpleasant condition.\nDo Not Look into Its Face: You know how to avoid offending or admitting the otherworldly into yourself. Give yourself or an ally +2 Protection and two additional slots in SPIRIT until the end of the scene.\nTranslator of the Impossible: Explain inhuman signs, smells, interference, or dreams to your allies. On a success, the entire group may interact with this entity or location as though possessing the appropriate Domain until the end of the scene, but only for INVESTIGATE and TALK checks.",
+      "skill": "КОЛДОВАТЬ",
+      "skillEn": "CAST"
+    },
+    {
+      "id": "tactics-card-113-365",
+      "kind": "tactic",
+      "title": "Ritual",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          113
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "5. Ritual\nCircle of Protection: Spend significant time drawing a circle, arranging charms, placing candles, connecting wires, or scattering salt and gunpowder. On a success, the group gains +5 Protection and five additional slots in SPIRIT until the end of the scene while it remains inside the protected area, which occupies one Range band.\nThe Long Word: Perform a CAST check slowly, using song, calculations, blood, smoke, or repetition of a name. If you have significant preparation time, roll with Mastery, but take Stress one step higher on a failure.\nInterrogation: Spend significant time asking one question of a comrade or Contact NPC. If they answer honestly, until the end of the scene you may each take Stress in the other person’s FRIENDSHIP track toward you instead of your own FRIENDSHIP track toward that comrade.\nSeal the Passage: Spend significant time sealing a door, crack in the concrete, ventilation shaft, or other passage with warding magic. On a success, enemies that could have appeared through it do not arrive before the beginning of the next scene.\nExtensive Preparation: Given significant time, spend a D8 or more valuable resource. Until the end of the scene, make CAST checks with Mastery against one specific target or category of targets.",
+      "skill": "КОЛДОВАТЬ",
+      "skillEn": "CAST"
+    },
+    {
+      "id": "tactics-card-114-366",
+      "kind": "tactic",
+      "title": "Field Medic",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          114
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "1. Field Medic\nTourniquet with Your Teeth: Use FIX on a character at Close Range during combat, even while under fire, moving, or holding a weapon in one hand. Restore Stress one step higher for every difficulty step above Standard.\nNot Now: When an ally would receive Minor Fallout in BULLETS, immediately make a FIX check. On a success, the Fallout does not take effect until the end of the scene, though the Stress remains. If the ally takes BULLETS Stress again before the scene ends, the Fallout returns.\nCombat Stimulants: Inject a drug, apply an invigorating spell, or activate an implant’s emergency mode. On a success, the target ignores one Minor Fallout in BULLETS or MIND until the end of the scene. Afterward, they take D4 Stress in that Resistance.\nCheck the Pupils: Quickly determine what threatens the patient: blood loss, shock, poison, a curse, implant overload, or panic. On a success, the next FIX roll on this target restores Stress even if it fails.\nPull Them Clear: When you successfully restore a comrade’s Stress, move them one Range band to a safer place: behind cover, behind a shield, into smoke, or behind the squad.",
+      "skill": "ЧИНИТЬ",
+      "skillEn": "FIX"
+    },
+    {
+      "id": "tactics-card-114-367",
+      "kind": "tactic",
+      "title": "Military Psychologist",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          114
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "2. Military Psychologist\nBreathe to the Count: Force an ally back into reality through your headset, a slap, counted breaths, knocking on their armor, or a short military mantra. Restore MIND Stress one step higher. You may use this Tactic at Medium Range if the target can hear you.\nAfter-Action Debrief: After a dangerous scene, quickly discuss what happened: who stood where, what everyone saw, what was done correctly, and why the survivors are not responsible for the casualties. The entire group restores D4 Stress in MIND.\nOrder to Live: When an ally would receive Fallout in MIND, intervene with an order, a superior’s gesture, a reminder of an oath, a threat, a joke, or a personal appeal. On a success, the Fallout has no effect until the end of the scene, though the Stress remains.\nNormalize the Horror: Explain the impossible as something ordinary and manageable. On a success, one character gains +3 Protection in MIND against a threat they have already witnessed until the end of the scene.\nBlack Humor: Disrupt the horror with a crude joke, cynical remark, or absurd comparison. On a success, restore D6 Stress in the FRIENDSHIP tracks of yourself and one ally.",
+      "skill": "ЧИНИТЬ",
+      "skillEn": "FIX"
+    },
+    {
+      "id": "tactics-card-114-368",
+      "kind": "tactic",
+      "title": "Repair Master",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          114
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "3. Repair Master\nRed Electrical Tape: Temporarily repair almost anything: armor, a door, a cyberarm, or a radio. On a success, the item works until the end of the scene even if Fallout had broken it. It must still be repaired properly afterward.\nWeak Point: Before beginning repairs, quickly determine what is broken. On a success, ask the GM one question about an object, mechanism, body, or structure: what is most dangerous here, what will break next, what needs replacement, or what can be temporarily bypassed?\nImprovisation: Reduce the resource die required to repair a mechanism by one step.\nBorrow Parts: When repairing a mechanism, you may take Stress in FRIENDSHIP instead of RESOURCES.\nRepair Under Pressure: The difficulty of a check made to repair a mechanism cannot rise above Risky.",
+      "skill": "ЧИНИТЬ",
+      "skillEn": "FIX"
+    },
+    {
+      "id": "tactics-card-114-369",
+      "kind": "tactic",
+      "title": "Quartermaster",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          114
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "4. Quartermaster\nRepair Your Reputation: Trust can be more valuable than a rifle. Explain a misunderstanding, produce documents, find a witness, or repay a debt. On a success, ignore RESOURCES Fallout connected to public disapproval until the end of the scene. Increase the difficulty by one step if the problem involves obvious betrayal or the murder of innocents.\nAccurate Accounts: Put the records in order after a transaction, battle, or Ascent. On a success, reduce the severity of the next RESOURCES Fallout connected to debt, suspicion, a poor reputation, or legal trouble by one step.\nReturn to Circulation: Repair dirty, damaged, cursed, or unattractive equipment so it can be sold, traded, or offered as payment. On a success, one item or resource counts as one value step higher for barter or services until the end of the scene, but not when used directly.\nEvery Casing Helps: Gather anything useful after a scene: intact enemy equipment, surviving batteries, coins, medicine, flowers, cables, ammunition, charms, or corporate cards. On a success, restore D4 Stress in RESOURCES in addition to the normal loot. Increase this to D6 if the scene was particularly dangerous or rich.\nDetailed Search: Spend significant time counting your own supplies or those of a comrade. Until the end of the scene, gain +2 Protection in RESOURCES when paying for something.",
+      "skill": "ЧИНИТЬ",
+      "skillEn": "FIX"
+    },
+    {
+      "id": "tactics-card-115-370",
+      "kind": "tactic",
+      "title": "Metaphysical Restoration",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          115
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "5. Metaphysical Restoration\nSubtle Matter: Treat damage to the soul, destiny, or magical field rather than the body. On a success, restore the same amount of Stress in both SPIRIT and MIND.\nStitch Fate: Repair someone’s luck with ritual money, knots, or cartridges that failed to fire. Restore FATE Stress one step higher. On a critical success, random misfortune cannot take the target by surprise until the end of the scene.\nReturn the Name: Remind an item what it was before it broke. On a success, a magical item, charm, artifact, or strange Tower mechanism works again until the end of the scene. If Major Fallout broke it, the GM names a price: a resource, SPIRIT Stress, or an unpleasant condition.\nQuiet Conversation: Calm a comrade through care instead of speech: adjust their armor, apply war paint, clean their weapon, comb their hair, or wipe blood from their face. Spend significant time and a D6 resource to restore D6 Stress in MIND to yourself and the comrade.\nClose the Evil Trail: After contact with an anomaly, spirit, dead person, or Tower entity, cleanse the traces of its influence. Restore all Stress in SPIRIT, but record the amount. The next time you encounter the same threat, that Stress returns as if dealt again.",
+      "skill": "ЧИНИТЬ",
+      "skillEn": "FIX"
+    },
+    {
+      "id": "tactics-card-115-371",
+      "kind": "tactic",
+      "title": "Lightning",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          115
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "1. Lightning\nDash: Instantly cross one Range band: sprint across a covered corridor, leap into an elevator, dive behind cover, or reach a falling ally. On a success, you move before the threat can react.\nFirst Through the Opening: When a scene begins, be the first to enter the dangerous area. On a success, choose one: allies gain Mastery on their next ASCEND check, enemies lose their ambush advantage, or you immediately occupy an advantageous position.\nFueled by Adrenaline: While you have at least 5 Stress in BULLETS or MIND, deal an additional D6 Stress to an Ascent or obstacle.\nPursuit: Gain Mastery while someone is pursuing you with hostile intent.\nGet There Regardless: This ASCEND check gains Stable, but you take Stress one step higher on a failure.",
+      "skill": "ПРОБИВАТЬСЯ",
+      "skillEn": "ASCEND"
+    },
+    {
+      "id": "tactics-card-115-372",
+      "kind": "tactic",
+      "title": "March",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          115
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "2. March\nMarching Pace: Lead the group through a long passage, setting the rhythm of walking, resting, breathing, and equipment checks. One ally lacking the appropriate Skill or Domain may still provide an assistance die.\nForced March: Cross an area faster than normal: without sleep or proper rest, through rain, the Tower’s noise, or a collapsing route. On a success, the Ascent takes Stress one step higher. On a failure, the Stress dealt to the squad also increases by one step.\nCarry Them: Lead, drag, or protect an injured, overloaded, frightened, or disoriented ally. On a success, Fallout that impedes their movement does not increase the difficulty of the group’s ASCEND check.\nCautious Advance: Move slowly, checking every turn for traps and ambushes. Deal Stress to the Ascent one step lower, but the group cannot be taken by surprise. Unexpected threats do not increase the difficulty of enemies or obstacles.\nParade of the Desperate: Sing loudly and tell jokes while traveling, making no attempt to conceal yourselves. HIDE checks become one step harder until the end of the scene, but restore as much MIND Stress as this check deals to the Ascent.",
+      "skill": "ПРОБИВАТЬСЯ",
+      "skillEn": "ASCEND"
+    },
+    {
+      "id": "tactics-card-115-373",
+      "kind": "tactic",
+      "title": "Combat Parkour",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          115
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "3. Combat Parkour\nThrough the Window: Overcome an obstacle violently and stylishly: crash through glass, slide beneath a gate, or vault over a barricade. If the check is risky or more difficult, either deal Stress to the Ascent one step higher or gain a positional advantage.\nChange Elevation: Suddenly change levels by dropping, rushing up stairs, jumping onto a platform, catching a hook, or moving beneath a walkway. On a success, one enemy loses its positional advantage against you until the end of the scene.\nMaintain Momentum: Move one Range band and knock a human opponent down. The next check against them gains Mastery.\nRunning Fight: Until the end of the scene, close-combat KILL and EVADE checks do not become harder because of unstable surfaces, confined spaces, slopes, stairs, or moving platforms.\nSomersault: Flip over a close-combat opponent. They remain disoriented until they deal Stress to you. Until then, you make KILL and EVADE checks against them with Advantage.",
+      "skill": "ПРОБИВАТЬСЯ",
+      "skillEn": "ASCEND"
+    },
+    {
+      "id": "tactics-card-116-374",
+      "kind": "tactic",
+      "title": "Rough Terrain",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          116
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "4. Rough Terrain\nFirm Step: Find safe places to put your feet on an unreliable surface. The terrain does not increase this check’s difficulty.\nTrail of the Safe Path: Lead others along the footholds you found. One ally may follow without a separate check if they do nothing more complicated than moving.\nHook, Light, and Prayer: If you possess at least two pieces of travel equipment, ask the GM one question about the route: where is safest, what is unstable, where will danger come from, or where does the shortest path lead?\nTouch Nothing Unnecessary: Pass through a hazardous environment without brushing against cables, mushrooms, bones, or sensors. You do not activate passive environmental dangers.\nWay Back: Mark the route with chalk, ribbons, cartridges, or notches. On a failure, you cannot receive Fallout involving the destination moving farther away or the group becoming separated.",
+      "skill": "ПРОБИВАТЬСЯ",
+      "skillEn": "ASCEND"
+    },
+    {
+      "id": "tactics-card-116-375",
+      "kind": "tactic",
+      "title": "Stubbornness",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          116
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "5. Stubbornness\nShoulder to Shoulder: Arrange the group so nobody interferes with anyone else. Confined spaces do not increase the difficulty of group checks until the end of the scene.\nCarry the Heavy Load: Transport heavy objects without losing pace or control. The load does not increase the passage’s difficulty and takes no damage from the journey.\nBlind Section: Move through an area where the route cannot be seen properly. Lack of visibility does not increase ASCEND difficulty until the obstacle ends.\nTireless: If you receive Fallout after this check, ignore it until the end of the scene.\nStraight Through: If this check completes an Ascent, restore Stress in BULLETS, MIND, or SPIRIT. The source text does not specify the recovery die.",
+      "skill": "ПРОБИВАТЬСЯ",
+      "skillEn": "ASCEND"
+    },
+    {
+      "id": "tactics-card-116-376",
+      "kind": "tactic",
+      "title": "Camouflage",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          116
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "1. Camouflage\nBlend into the Background: Spend significant time using camouflage, mud, shadows, digital interference, an enemy uniform, or another person’s scent to become part of the surroundings. Your next check during this scene automatically succeeds if you have not moved.\nBreak Up the Silhouette: Move in a way that conceals the shape of your body: crouch, disrupt your outline with a cloak, or hide among pipes. On a failure, take Stress one step lower, and the enemies do not raise the alarm immediately.\nCamouflage the Squad: Quickly assign allies to blind spots and instruct them how to move. On the next check before the scene ends, helpers do not take Stress if the character they assist fails.\nForeign Insignia: Use another group’s markings, uniform, and jargon. At a distance or during a cursory inspection, you are mistaken for one of them. Conversation or document checks still require TALK.\nBlack Out the Scene: Destroy surveillance systems and scanners or cut the power. The entire group gains Mastery on HIDE and ASCEND checks until the end of the scene, but everyone nearby realizes that someone is present.",
+      "skill": "СКРЫВАТЬСЯ",
+      "skillEn": "HIDE"
+    },
+    {
+      "id": "tactics-card-116-377",
+      "kind": "tactic",
+      "title": "Stealth Elimination",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          116
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "2. Stealth Elimination\nChain of Eliminations: A combat-knife attack made through HIDE gains Scatter.\nHand on the Radio: When silently neutralizing an enemy, immediately prevent them from raising the alarm by covering their mouth, seizing their radio, or jamming their implant. The alarm is not raised even on a failure.\nBody Behind the Crate: After a stealth elimination, immediately hide the body in shadows, rubbish, or ventilation. On a success, it is not discovered until the end of the scene.\nPolice Sniper Technique: A long-range-rifle attack made through HIDE gains Nonlethal and may knock an object from an enemy’s hand. If the enemy uses a human or assault shield, the attack ignores their Protection.\nDrop Upon Them: Deal Stress one step higher for every difficulty step above Standard on an attack made through HIDE.",
+      "skill": "СКРЫВАТЬСЯ",
+      "skillEn": "HIDE"
+    },
+    {
+      "id": "tactics-card-116-378",
+      "kind": "tactic",
+      "title": "Infiltration",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          116,
+          117
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "3. Infiltration\nNo Mark on the Lock: Open a door, hatch, window, grate, container, or cabinet without leaving signs of forced entry or triggering an automatic alarm.\nInside the Flow: Pass through a prisoner column, patrol rotation, or market as though you have always belonged there. Until the end of the scene, you take no RESOURCES Stress if someone recognizes you.\nHit the Ground: If this check is risky or harder, take D6 Stress in FATE to reduce its difficulty by one step.\nGadget Master: Take D6 Stress in RESOURCES to gain Mastery on this check. Describe the impressive gadget you use to overcome the obstacle. You cannot use this Tactic again during the scene if you repeat a gadget description.\nCoincidence: Declare that the door you need is open, the turret is disabled, or the searchlight does not illuminate the required area. On a failure, take Stress and introduce an additional complication—for example, the door opened only because a squad of soldiers was about to emerge.",
+      "skill": "СКРЫВАТЬСЯ",
+      "skillEn": "HIDE"
+    },
+    {
+      "id": "tactics-card-117-379",
+      "kind": "tactic",
+      "title": "Restless Hands",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          117
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "4. Restless Hands\nSkillful Theft: Steal an item from a target. If it would normally be easy to steal, take Stress one step lower on a failure, and the Stress is never caused by the target noticing the theft. If it would be difficult, such as taking something from a backpack, reduce the difficulty by one step.\nSmall Cache: Hide an item so it cannot be found during an ordinary search. A reasonably small item or resource gains Concealable until the end of the scene.\nMove First: Perform a minor concealed action even while someone watches you directly: hide a knife, signal an ally, or open a lock. Being watched does not increase the check’s difficulty.\nPlant Explosives: Spend significant time quietly attaching explosives to an object. Before the scene ends, detonate them to destroy a door, wall, or bridge instead of making a KILL check and dealing Stress. This does not work on people, who notice the weight of the charge, though it may be attempted against larger enemies.\nSensor: Throw a sticky sensor bead that reports the target’s movements. Until the end of the scene, gain Mastery on HIDE and ASCEND checks against that target.",
+      "skill": "СКРЫВАТЬСЯ",
+      "skillEn": "HIDE"
+    },
+    {
+      "id": "tactics-card-117-380",
+      "kind": "tactic",
+      "title": "Modification",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          117
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "1. Modification\nQuick Adjustment: Adapt an item to the current task. Until the end of the scene, it gains one positive property of your choice and one negative property chosen by the GM.\nRemove the Limiter: Push an item beyond its manufacturer’s intentions. Its die increases by one step until the end of the scene. It then breaks and can only be repaired in an oasis.\nWorkshop Installation: Install a modification on an item by spending a resource outside an oasis.\nPreserve: You have carefully maintained your equipment. Choose an item with this check; it gains Reliable until the end of the scene.\nMade by a Master: Spend significant time and a D6 or more valuable resource to transform a mass-produced weapon into a work of art. It gains Expensive.",
+      "skill": "ТЕХНИЧИТЬ",
+      "skillEn": "TECH"
+    },
+    {
+      "id": "tactics-card-117-381",
+      "kind": "tactic",
+      "title": "Field Engineer",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          117
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "2. Field Engineer\nBuild It on Your Knee: Spend a D8 or more valuable resource. Until the end of the scene, improvised items not recorded in the inventory have a D6 die instead of D4.\nLucky Spare Part: Once per scene, declare that a suitable small component was present among your equipment or surroundings. Until the end of the scene, it counts as a D6 WORLD resource that cannot be sold or exchanged.\nSingle-Use Solution: Spend significant time and a D6 or more valuable resource to create a device that does exactly one thing: jam a signal, open a door, produce a flash, or release smoke. It grants Mastery on the next relevant check and then breaks.\nCrude Automation: Spend significant time and a D6 or more valuable resource to assemble a simple automatic system such as a tripwire, sensor, or trap. It deals D8 Stress to an enemy or Ascent when a condition named during its construction occurs.\nEngineering Improvisation: Spend an item of the appropriate quality instead of a resource on a TECH check.",
+      "skill": "ТЕХНИЧИТЬ",
+      "skillEn": "TECH"
+    },
+    {
+      "id": "tactics-card-118-382",
+      "kind": "tactic",
+      "title": "Digital Engineering",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          118
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "3. Digital Engineering\nSomeone Else’s Permissions: Impersonate a system user such as a guard, technician, or administrator. Dangerous and doom difficulties for hacking digital technology become one step easier.\nTrace: Learn about users through low-level systems and careless logs. Ask the GM any question about a hacked digital system and receive a truthful answer.\nHigh-End Programs: You have manually improved the best software on the market. Make a hacking check with Mastery if the digital system belongs to someone less powerful than a corporation or army.\nBuy Neyrer Sweets Cheap with Delivery: Flood a system with an extraordinary quantity of junk files. Gain Mastery on the check, but the system cannot be repaired until the end of the scene, nor can you turn its cameras or turrets to your side.\nDigital Meat: Spend significant time, drink an energy beverage, and take D4 Stress in MIND to hack a digital system of any difficulty. Make the check with Mastery and take no Stress on a success with a cost.",
+      "skill": "ТЕХНИЧИТЬ",
+      "skillEn": "TECH"
+    },
+    {
+      "id": "tactics-card-118-383",
+      "kind": "tactic",
+      "title": "Blacksmith",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          118
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "4. Blacksmith\nForged: Spend significant time and a D8 or more valuable resource to create a combat knife or heavy close-combat weapon. Under the item-creation rules, its die equals the resource die. On a critical success, it gains Expensive. Describe the weapon.\nAmalgam: Combine two items into one. On a success, it deals Stress according to both original items’ rules. It gains Unreliable and Dangerous.\nFearsome Armor: Spend significant time reforging any plate for a plate carrier into a fearsome plate that provides +2 Protection in every Resistance.\nTailored Fit: Compensate for heavy armor’s inconvenience by fitting it to a particular person. Once per scene, the selected assault vest or full armor allows its wearer to ignore the penalties it imposes.\nField Test: Attack with a weapon you created or modified using TECH instead of KILL.",
+      "skill": "ТЕХНИЧИТЬ",
+      "skillEn": "TECH"
+    },
+    {
+      "id": "tactics-card-118-384",
+      "kind": "tactic",
+      "title": "Rationality",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          118
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "5. Rationality\nTwo Layers: Spend significant time modifying a plate carrier, assault vest, or full armor so it occupies a backpack slot. This allows you to wear two sets of armor, though their Protection still does not stack.\nAdditional Load-Bearing Rig: Modify a rig and backpack. You may now carry one item in place of four resource slots. Until you acquire a fifth item of equipment, you may still use those slots for resources.\nConstruct a Stretcher: Assemble storage for equipment from available materials. It occupies one item slot and grants +2 Protection and two additional slots in RESOURCES.\nSpecial-Armor Specialist: Modify a piece of special protection so it may occupy the body-armor slot. This allows you to wear two sets of special protection. Their Protection does not stack, and only one of their once-per-scene abilities may be used each scene.\nThe Most Valuable: Combine two helmets into one that protects the head more reliably. Their Protection stacks, but the resulting helmet gains Heavy.",
+      "skill": "ТЕХНИЧИТЬ",
+      "skillEn": "TECH"
+    },
+    {
+      "id": "tactics-card-118-385",
+      "kind": "tactic",
+      "title": "Dodge and Block",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          118
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "1. Dodge and Block\nDeflect the Trajectory: Parry a blade or turn aside a rifle barrel. An attack made against you at Close Range instead deals Stress to an enemy at your Range or behind you.\nLucky Cover: Dive behind cover at the last moment. On a failure, take Stress in FATE instead of BULLETS and reduce it by one step.\nFaster Than a Bullet: Defend yourself by parrying bullets and avoiding blades without ceasing to advance. Move one Range band without an additional check.\nBlind Spot: Remain where the attacker has difficulty reaching you: too close to a shooter, beside a beast, or beneath a large enemy’s arm. That enemy’s next attack against you deals Stress one step lower.\nThe Last Centimeter: Move only far enough for a bullet to shave off a lock of hair. You retain your position and do not retreat even if the attack would normally knock you back, knock you down, or force you away.",
+      "skill": "ИЗБЕГАТЬ",
+      "skillEn": "EVADE"
+    },
+    {
+      "id": "tactics-card-118-386",
+      "kind": "tactic",
+      "title": "Endurance and Rage",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          118,
+          119
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "2. Endurance and Rage\nSoldier’s Wedding: Meet pain, fear, and impact with pure stubbornness. If this check causes you Stress, reduce it by one step.\nTake the Hit: Accept the attack without attempting to defend or hide, catching the enemy off guard. You take Stress regardless of the result. On a success, your next check against the attacker becomes one step easier. On a critical success, this benefit applies against every enemy in the scene.\nAnger Holds You Together: If you take Stress after failing this Tactic, do not make a Fallout check for it.\nHold Formation: If you have Minor Fallout in BULLETS, make this Tactic with Mastery. If you have Major Fallout in BULLETS, you cannot critically fail it.\nCommander of Reizneiza: Like Colonel Piety of Wisdom at the Battle of Reizneiza, hold your position to the end. If you possessed a positional advantage, gain two Mastery dice instead of one.",
+      "skill": "ИЗБЕГАТЬ",
+      "skillEn": "EVADE"
+    },
+    {
+      "id": "tactics-card-119-387",
+      "kind": "tactic",
+      "title": "Survival in Hazardous Terrain",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          119
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "3. Survival in Hazardous Terrain\nShelter from the Environment: Protect yourself from fire, cold, or poisonous spores with whatever is available. Gain +2 Protection in BULLETS against environmental dangers until the end of the scene.\nUnderstand the Rhythm: Recognize the pattern governing electrical discharges, moving walls, opening gravity wells, or a spirit turning its gaze. Your next EVADE check against the same danger gains Mastery before the scene ends.\nHazard Shield: Use the terrain to place an acid river or wall of electrical impulses between yourself and an enemy. The next time an enemy or Ascent deals Stress to you, it also takes D8 Stress.\nRapid Gas Mask: Put on a gas mask instantly, even by military standards. Gain Mastery on this Tactic against gas, smoke, spores, and other airborne hazards.\nLearn from Mistakes: If you fail this Tactic and take Stress, your next check becomes one step easier. Describe how lightning or a flash of light injured you in an amusing way.",
+      "skill": "ИЗБЕГАТЬ",
+      "skillEn": "EVADE"
+    },
+    {
+      "id": "tactics-card-119-388",
+      "kind": "tactic",
+      "title": "Defense Master",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          119
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "4. Defense Master\nPresent the Plate: Receive the attack with the part of your armor designed to withstand it. Your armor’s BULLETS Protection counts as 2 higher against this attack.\nGlancing Angle: Turn your body so the attack strikes at an angle. On a failure, take Stress one step lower.\nFlew Like an RRR Bird: Use your armor’s structure to survive a fall or collision. When falling from a great height, declare that your body armor breaks. Your result on this Tactic cannot then be worse than a success with a cost. RRR birds cannot fly.\nPacifier: If this Tactic allows you to avoid all Stress from an enemy attack, strike the enemy at Close Range with an assault shield. Without another check, deal Stress equal to the shield’s combined Protection and additional slots.\nCoordination: When assisting an ally’s EVADE check with this Tactic, provide both an assistance die and a Mastery die.",
+      "skill": "ИЗБЕГАТЬ",
+      "skillEn": "EVADE"
+    },
+    {
+      "id": "tactics-card-119-389",
+      "kind": "tactic",
+      "title": "Closed Circuit",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          119
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "5. Closed Circuit\nEmpty Thought: Briefly clear your mind by counting cartridges, repeating a prayer, recalling regulations, staring at a crack in a wall, or listening to your breath. Gain Mastery if you had to act extremely quickly and are attempting to avoid SPIRIT or MIND Stress.\nOpen the Circuit: Disable unnecessary channels of perception by closing your eyes, switching off an implant, or severing radio contact. Until the end of the scene, lose one chosen sense, making checks connected to it one step harder, but gain +4 Protection in MIND.\nBreak the Rhythm: Disrupt the effect’s sequence by interrupting a spirit’s song, altering your breathing, or speaking an incorrect answer. Take D6 Stress in RESOURCES to gain Mastery on all EVADE checks against that target until the end of the scene.\nNot Fated: Refuse to participate when a threat attempts to impose destiny, cursed coincidence, or another predetermined outcome upon you. If this Tactic avoids Stress in SPIRIT or FATE, clear one Minor Fallout in SPIRIT or FATE.\nMirage Illusion: If this Tactic avoids Stress in MIND or SPIRIT, ask the GM what is not real in the scene. The GM must answer truthfully.",
+      "skill": "ИЗБЕГАТЬ",
+      "skillEn": "EVADE"
+    },
+    {
+      "id": "tactics-card-119-390",
+      "kind": "tactic",
+      "title": "Investigation",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          119
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "1. Investigation\nReconstruct Events: Examine a crime scene. On a success, the GM briefly describes what happened in the correct order without revealing the participants’ hidden motives. The GM also reveals the investigation’s maximum Resistance.\nThe One Who Lies with Evidence: Search for inconsistencies: an extra cartridge, blood in the wrong place, or an unnaturally clean room. Declare that the culprit is nearby and present your theory. Reduce the investigation’s Protection by 2.\nFind the Connection: Link several clues into a single chain. Declare that one of the major factions is involved. The GM determines its motives and the details of what occurred.\nThe Last Mistake: Find the moment when everything deviated from the plan: a stripped bolt, a broken fingernail, or an unnecessary shot. When you encounter the culprit, make all checks against them with Mastery.\nTeam of Specialists: If someone assisted this INVESTIGATE check, increase the Stress dealt to the investigation by one step.",
+      "skill": "УЗНАВАТЬ",
+      "skillEn": "INVESTIGATE"
+    },
+    {
+      "id": "tactics-card-120-391",
+      "kind": "tactic",
+      "title": "Human Analysis",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          120
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "2. Human Analysis\nRead Intentions: Observe how a person carries themselves. Ask the GM one question about their personality, how best to approach them in conversation, their obvious desires, or their surface emotions. Receive a truthful answer.\nWho Is in Charge Here?: Quickly identify the true hierarchy: who gives orders, whom people fear, whom they protect, and who merely speaks the loudest. Further actions against or through the leader gain Mastery.\nCombat Signature: Observe an opponent’s fighting style. Ask the GM what their strongest side is and receive a truthful answer.\nProfessional Habit: Recognize an occupation from hands, stance, scars, and jargon. Determine what the person once did or was trained to do. Gain Mastery on TALK checks with them if you served in the same branch of service.\nAnother’s Pain: Understand what Fallout, injury, debt, or fear currently governs a person. Ask the GM what they fear, whom they blame, or what they refuse to let go. Receive a truthful answer.",
+      "skill": "УЗНАВАТЬ",
+      "skillEn": "INVESTIGATE"
+    },
+    {
+      "id": "tactics-card-120-392",
+      "kind": "tactic",
+      "title": "Magical Analysis",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          120
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "3. Magical Analysis\nIdentify: Study a magical item. Learn the Domain from which its magic originates and its approximate purpose.\nWhat If…?: Study the signs surrounding an anomaly, spirit, or magical item before interacting with it. The GM truthfully tells you which Stress or Fallout is most likely if something goes wrong.\nTrace: Perceive what recently used magic here through smells, residue on walls, overheated coins, dead insects, burns in reality, or digital tremors. Learn its magical school, where the mage went, their approximate strength, or which spell was cast.\nLineage: After seeing a spell in action, identify the tradition, faction, or Class responsible for it. Learn who could have taught it, where it is usually employed, and what wielders of this magic normally avoid.\nCracked Miracle: Find a flaw in a mage or magical item: an incorrect name, a crack in the circle, or an extra candle. The next CAST check against the target gains Mastery and cannot critically fail.",
+      "skill": "УЗНАВАТЬ",
+      "skillEn": "INVESTIGATE"
+    },
+    {
+      "id": "tactics-card-120-393",
+      "kind": "tactic",
+      "title": "Advanced Reconnaissance",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          120
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "4. Advanced Reconnaissance\nUnderstand the Defenses: Examine a fortification as a scout. Declare that its defenses contain a weakness, such as a route down from a concrete cliff or guards changing shifts at irregular intervals.\nField of Fire: Determine which areas are exposed, where the dead ground lies, where fragments will land, and where a sniper is positioned. Until the end of the scene, make EVADE and ASCEND checks within the area with Mastery.\nFind the Observer: Search for someone already watching you: a sniper, camera, spirit, or artillery spotter. Declare that an outside observer appears in the scene. On a failure, it is your enemy even if it should not be present. On a success, it is one of your Contact NPCs even if they should not be present.\nWait a Minute: Declare that this is the worst possible moment to act: a patrol is passing, an elevator is moving, or the market has fallen silent. Make all subsequent checks with Mastery until the first failure. That failure deals Stress one step higher and ends the sequence.\nA Real Squad: Quickly explain the situation to an ally: where the cover, target, danger, commander, and escape route are located. One ally gains an assistance die on their next check even if you do not participate directly, or two assistance dice if you do.",
+      "skill": "УЗНАВАТЬ",
+      "skillEn": "INVESTIGATE"
+    },
+    {
+      "id": "tactics-card-120-394",
+      "kind": "tactic",
+      "title": "Touch of the Unfathomable",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          120
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "5. Touch of the Unfathomable\nRiddle: Contemplate impossible geometry, dancing shadows, and concrete structures of cosmic scale, allowing your soul to assemble them into an answer. On a success, ask the GM one question about the location. The answer is truthful but deals D6 Stress to you in MIND.\nAccept the Wrong Thought: Briefly accept that the place’s insane logic is correct: the staircase leads both upward and downward, the corpse remembers the future, or the door opens when someone screams. Declare that you know how to overcome an irrational obstacle without another check, but take D8 Stress in MIND.\nWaking Dream: Allow a vision, hallucination, or another person’s memory to pass through you. Learn one secret about a person, monster, or faction.\nReturn: After contact with the impossible, repeat simple truths: your name, the names of your friends, and the mission’s objective. Until the end of the scene, reduce MIND Stress from the same source by one step.",
+      "skill": "УЗНАВАТЬ",
+      "skillEn": "INVESTIGATE"
+    },
+    {
+      "id": "tactics-card-121-395",
+      "kind": "tactic",
+      "title": "Advanced Manipulation",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          121
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "1. Advanced Manipulation\nAnimal Cunning: Rapidly adapt to the other person’s expectations, speaking like an ally, customer, superior, or useful idiot. Gain Mastery if you know who the person is and what they want and fear.\nTruth with a Filling: Construct a lie around genuine details: a real name, authentic document, or actual wound. Gain Mastery if you currently have Major Fallout.\nMake Them Justify Themselves: Ask a question that causes the other person to explain their actions, weaknesses, fears, or motives. Learn one important fact, provided it is something they could reveal during a conversation.\nGentle Threat: Make a threat sound like concern, a warning, advice, or a sad inevitability. The target becomes frightened but has no grounds to declare you an enemy. You take no RESOURCES Stress if this Tactic fails.\nDivide the Allies: Drive a wedge between two people or groups by emphasizing conflicting interests, an old grievance, or unequal rewards. They cannot act as a unified group until the end of the scene.",
+      "skill": "ГОВОРИТЬ",
+      "skillEn": "TALK"
+    },
+    {
+      "id": "tactics-card-121-396",
+      "kind": "tactic",
+      "title": "Skilled Trade",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          121
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "2. Skilled Trade\nPrice in the Heart: Understand what the seller values more than money: safety, status, or someone else’s humiliation. Learn what can replace part of the payment or reduce the transaction’s price by one step.\nBarter Chain: Arrange a chain of exchanges through several people and objects: ammunition for batteries, batteries for passage, passage for information, and information for medicine. One resource or item counts as one value step higher for this transaction.\nDemonstrate the Benefit: Explain why the transaction will remain profitable later through reputation, future deliveries, or revenge against a competitor. The seller adds a minor service, discount, piece of information, or deferred payment.\nHaggle Without Humiliation: Lower the price without causing the other party to lose face by praising the goods, acknowledging the route’s difficulty, or referring to the market, season, or omens. The price falls without damaging the relationship.\nComplaints-and-Suggestions Rifle: Conduct the transaction so you cannot be deceived, lured into an ambush, or sold a cursed item. The GM must identify the part of the deal that appears most dangerous or suspicious.",
+      "skill": "ГОВОРИТЬ",
+      "skillEn": "TALK"
+    },
+    {
+      "id": "tactics-card-121-397",
+      "kind": "tactic",
+      "title": "Performance",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          121
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "3. Performance\nCommand Attention: Sing, tell a story, deliver a toast, pray, or make an accusation so compellingly that everyone falls silent. The scene briefly revolves around you: an argument, fight, or panic is delayed until your first failed roll.\nSpeech Before Battle: Raise the spirits of the squad, Contacts, mercenaries, or a crowd before a dangerous task. Until the first failed roll, all affected characters and Contacts make checks with Mastery.\nLegend of Yourself: Tell stories about your past deeds, famous friends, and legendary weapons. Deal an additional D4 Stress to the negotiation’s Resistance for each Professional Ability you possess.\nStir the Crowd: Direct the emotions of many people, turning fear into flight or anger into revolt. The crowd performs one simple mass action that requires no complex coordination.\nFinal Words: Before a conversation collapses into battle, execution, exile, or escape, speak one final sentence. It changes one minor condition of the scene: someone hesitates, begins to doubt, remembers you, or chooses not to fire first.",
+      "skill": "ГОВОРИТЬ",
+      "skillEn": "TALK"
+    },
+    {
+      "id": "tactics-card-121-398",
+      "kind": "tactic",
+      "title": "Culture",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          121
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "4. Culture\nProper Greeting: Know or quickly guess how to address someone through gesture, title, distance, or a bow. Their initial reaction cannot be worse than neutral unless you arrive as an obvious enemy.\nRespect the Taboos: Notice a cultural trap: one must not eat sweets, say a particular number, look into someone’s eyes, or touch a weapon. Ask the GM which unobvious action might offend the other person and receive a truthful answer.\nMeaningful Gift: Choose a gift whose meaning exceeds its price: a knife, a piece of cloth, or a rare scent. The gift counts as one value step higher in this culture or situation.\nShared Custom: Find a bridge between cultures through a similar ritual, military habit, or shared fear. Gain Mastery when communicating with members of one people until the end of the scene.\nAccurate Translation: Even when someone knows the language, they may miss an implication. Explain to your allies what a phrase, gesture, pause, refusal, or gift truly meant. Until the end of the scene, take RESOURCES Stress caused by the other person’s displeasure one step lower.",
+      "skill": "ГОВОРИТЬ",
+      "skillEn": "TALK"
+    },
+    {
+      "id": "consequences-card-1",
+      "kind": "consequence",
+      "title": "Exhausted",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You are tired from your wounds and the intensity of the fighting. Until you rest, ASCEND checks become one step harder.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-2",
+      "kind": "consequence",
+      "title": "Grenade!",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Someone throws a grenade toward you. Every nearby character makes an ASCEND check with the appropriate Domain. On a failure, the grenade deals D8 Stress in BULLETS.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-3",
+      "kind": "consequence",
+      "title": "Double Vision",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "A loud sound, tear gas, or a blow to the head makes your vision lose focus. Until the end of the scene, long-range attacks become one step harder.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-4",
+      "kind": "consequence",
+      "title": "Out of Ammunition",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You have emptied your firearm’s magazine. Before using it again, make a KILL check with the appropriate Domain. You reload regardless of the result but may take Stress on a failure.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-5",
+      "kind": "consequence",
+      "title": "Bleeding",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You are wounded and losing blood. Until the end of the scene, mark 1 Stress in BULLETS whenever you make a check. Do not make Fallout checks for this Stress.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-6",
+      "kind": "consequence",
+      "title": "Disarmed",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your weapon is knocked from your hands. Recover it by making an ASCEND check with the appropriate Domain.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-7",
+      "kind": "consequence",
+      "title": "Flanked",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "An enemy changes position. You lose positional bonuses from high ground, cover, shadows, or similar advantages.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-8",
+      "kind": "consequence",
+      "title": "Deafened",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You partially lose your hearing. Until the end of the scene, INVESTIGATE checks involving listening and all HIDE checks become one step harder.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-9",
+      "kind": "consequence",
+      "title": "Damaged Modification",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "A module attached to your weapon, such as an optical sight or assault grip, breaks. If you installed a modification on the weapon, it loses the corresponding property. Repair the modification with a FIX check using the appropriate Domain. You always repair it but may take Stress on a failure.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-10",
+      "kind": "consequence",
+      "title": "Pinned Behind Cover",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Heavy fire prevents you from exposing yourself. Until the end of the scene or until the responsible enemy is killed, attempting to move causes Stress unless you pass an EVADE check.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-11",
+      "kind": "consequence",
+      "title": "Broken Plate",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "An unlucky hit cracks the plate in your light body armor. Your armor stops functioning until you insert a new plate with a KILL check using the appropriate Domain.",
+      "resistance": "ПУЛИ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-12",
+      "kind": "consequence",
+      "title": "Tangled Fate",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          122
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You sense that destinies inside the Tower have become so entangled that it is impossible to determine which belongs to whom. The next time a comrade would receive Fallout, you receive it instead and remove Tangled Fate.",
+      "resistance": "СУДЬБА",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-13",
+      "kind": "consequence",
+      "title": "Jam",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your weapon or another important item stops functioning correctly until the end of the scene. You may make a FIX check to restore it immediately. The item is always repaired, but you may take Stress on a failure.",
+      "resistance": "СУДЬБА",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-14",
+      "kind": "consequence",
+      "title": "Low Visibility",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Until the end of the scene, the area unexpectedly becomes dark, fog rises, or a storm of concrete dust fills the air. Actions at Long Range or requiring fast, precise movements become one step harder.",
+      "resistance": "СУДЬБА",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-15",
+      "kind": "consequence",
+      "title": "Double-Edged",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You spare an enemy who should not have been spared. They return in the future or harm you indirectly. Remove this Fallout when that harm occurs.",
+      "resistance": "СУДЬБА",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-16",
+      "kind": "consequence",
+      "title": "Circumstances",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "An important person is no longer present at the oasis where you expected to find them. They are safe, but you must either wait for their return or go looking for them.",
+      "resistance": "СУДЬБА",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-17",
+      "kind": "consequence",
+      "title": "Detour",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "A serious obstacle forces you to take a longer route. Increase the Ascent’s Resistance by D6.",
+      "resistance": "СУДЬБА",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-18",
+      "kind": "consequence",
+      "title": "Bad Omen",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "The Tower winks at you through a red lamp, a die landing on its edge, or something resembling a face in a crack in the concrete. The next time you receive a success with a cost, the GM adds another minor problem.",
+      "resistance": "СУДЬБА",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-19",
+      "kind": "consequence",
+      "title": "Kiss of the Moment",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You arrive just slightly too late. During the next scene, an enemy, danger, or negotiator acts first, increasing the difficulty of the first check by one step even if you would normally possess the advantage.",
+      "resistance": "СУДЬБА",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-20",
+      "kind": "consequence",
+      "title": "Separated",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You become separated from the squad and must find one another again. This normally requires an ASCEND check against Resistance 6, though circumstances may make it easier or harder.",
+      "resistance": "СУДЬБА",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-21",
+      "kind": "consequence",
+      "title": "Forward Only",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You have lost too much time. When you reach the next haven, you miss an important event, such as a fresh ammunition shipment or the visit of mercenaries willing to help.",
+      "resistance": "СУДЬБА",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-22",
+      "kind": "consequence",
+      "title": "Memory Gap",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You forget something important, such as the combination to a safe or the route back to an oasis.",
+      "resistance": "РАЗУМ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-23",
+      "kind": "consequence",
+      "title": "Voice of Reason",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "A rational, polite, and extremely unhelpful voice appears in your head, constantly advising you not to take risks. Whenever you perform a risky or more difficult action for an ally and to your own detriment, take D4 Stress in MIND without making a Fallout check.",
+      "resistance": "РАЗУМ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-24",
+      "kind": "consequence",
+      "title": "A Fix",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You urgently need something strong—or at least a drink. Until you satisfy this need, whenever you take MIND Stress, roll two Stress dice and use the higher result.",
+      "resistance": "РАЗУМ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-25",
+      "kind": "consequence",
+      "title": "Impulse",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You surrender to your emotions and cannot concentrate. You cannot use Tactics until the end of the scene.",
+      "resistance": "РАЗУМ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-26",
+      "kind": "consequence",
+      "title": "Graveyard Laughter",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You laugh during every tense situation. Once per scene, such as during important negotiations or while sneaking, the GM may declare that you laugh loudly. This always causes something negative to happen.",
+      "resistance": "РАЗУМ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-27",
+      "kind": "consequence",
+      "title": "Incomprehensible",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You cannot understand what is happening around you. Until the end of the scene, you cannot benefit from Domains.",
+      "resistance": "РАЗУМ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-28",
+      "kind": "consequence",
+      "title": "Shock",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You understand so little about whatever shocked you that you cannot even think about it. Until the end of the scene, checks made against its source become one step harder.",
+      "resistance": "РАЗУМ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-29",
+      "kind": "consequence",
+      "title": "Overconfidence",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You perceive a weak point in an enemy or a hidden passage but cannot tell whether it is real. Make your next roll with Mastery. On a failure, take Stress one step higher because the weakness existed only in your imagination.",
+      "resistance": "РАЗУМ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-30",
+      "kind": "consequence",
+      "title": "Waking Dream",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "For a moment, you feel that you have already dreamed this scene. Once before the end of the scene, the GM may give you a false but plausible sensory detail.",
+      "resistance": "РАЗУМ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-31",
+      "kind": "consequence",
+      "title": "Restless Hands",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You constantly experience strange, impulsive desires. Once per scene, the GM may declare that you desperately want to open a door, pick up an object, spare a particular enemy, reveal your true name, or do something similar. If you refuse, take D6 Stress in SPIRIT.",
+      "resistance": "ДУХ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-32",
+      "kind": "consequence",
+      "title": "Distortion",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Magic behaves strangely inside the Tower and sometimes refuses to obey even its source. One positive property of one of your items changes into a negative property.",
+      "resistance": "ДУХ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-33",
+      "kind": "consequence",
+      "title": "Conflict of Interest",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your magic stops obeying you, apparently deciding that it knows better. Whenever you take Stress after a CAST check, roll two Stress dice and use the higher result.",
+      "resistance": "ДУХ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-34",
+      "kind": "consequence",
+      "title": "Damaged Charm",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your charm, talisman, amulet, protective program, or blessing no longer provides Protection in SPIRIT. It can normally be repaired only by a trained Paratech or someone in an oasis.",
+      "resistance": "ДУХ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-35",
+      "kind": "consequence",
+      "title": "Following",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "A strange entity begins following you at the edge of your vision. It causes no direct harm, but everyone who sees it takes D4 Stress in MIND. Remove this Fallout automatically upon reaching an oasis.",
+      "resistance": "ДУХ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-36",
+      "kind": "consequence",
+      "title": "Color of Brotherhood",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "The color red possesses a mind of its own—or something greater uses it to speak with you. Whenever you see something sufficiently large and bright red, such as a Red Sleeve or a chemical light, it begins speaking to you in riddles and metaphors. The conversation takes significant time. Ending it requires a TALK check. You always escape the conversation but may take Stress on a failure. Once per session, you may declare that the color red gave you useful information. The GM must reveal one secret about the current location.",
+      "resistance": "ДУХ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-37",
+      "kind": "consequence",
+      "title": "Black Thirst",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You desperately crave human blood and can think of nothing else. Until you drink it, you cannot clear Stress by any method other than receiving Fallout.",
+      "resistance": "ДУХ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-38",
+      "kind": "consequence",
+      "title": "Ephemeral",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You begin flickering as though disappearing from reality. Until the end of the scene, whenever you use magic, take D4 Stress in SPIRIT without making a Fallout check.",
+      "resistance": "ДУХ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-39",
+      "kind": "consequence",
+      "title": "Lie",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          123
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "The next time someone gives your group important information, they conceal something or lie outright.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-40",
+      "kind": "consequence",
+      "title": "Low Supplies",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You have very little ammunition, food, and other consumable material remaining. Take RESOURCES Stress one step higher. An ally may help by taking D6 Stress in their own RESOURCES.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-41",
+      "kind": "consequence",
+      "title": "Incompatible Ammunition",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You possess ammunition of the correct caliber, but it functions poorly because of the cartridge material, powder load, or primer quality. All your firearms gain Unreliable.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-42",
+      "kind": "consequence",
+      "title": "Lost Caravan",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "A Kra Sir caravan is late or has disappeared entirely. At the next oasis you visit, the relevant equipment or services cost one value step more.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-43",
+      "kind": "consequence",
+      "title": "Depleted Battery",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your energy sources are exhausted, and all your external electronics stop functioning. An ally may help by taking D6 Stress in their own RESOURCES.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-44",
+      "kind": "consequence",
+      "title": "Market Realities",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You were overcharged or sold strange ammunition, a forged pass, or expired medicine. The next item or resource rated D8 or lower that you purchase or discover gains an unpleasant property chosen by the GM.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-45",
+      "kind": "consequence",
+      "title": "Risk",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "People do not trust you. Every merchant raises their prices for you by one step. This does not apply to your allies, though merchants may begin trusting them less as well.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-46",
+      "kind": "consequence",
+      "title": "Rumor in the Queue",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "An unpleasant minor rumor about you begins circulating. Your next TALK check made to trade, recruit someone, or request a service becomes one step harder.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-47",
+      "kind": "consequence",
+      "title": "Loss",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You lose a D6 resource and have no idea where you might have left it.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "minor",
+      "severityLabel": "Малое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Minor"
+    },
+    {
+      "id": "consequences-card-48",
+      "kind": "consequence",
+      "title": "Unconscious",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your injuries cause you to lose consciousness until the end of the scene. Enemies may do anything they want with you.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-49",
+      "kind": "consequence",
+      "title": "Heavy Armor Damaged",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your heavy armor is damaged and no longer provides Protection. Between battles, repair it with a FIX check using the appropriate Domain. You always repair it but may take Stress on a failure.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-50",
+      "kind": "consequence",
+      "title": "Helmet Damaged",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your helmet is damaged and provides neither Protection nor additional functions. Between battles, repair it with a FIX check using the appropriate Domain. You always repair it but may take Stress on a failure.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-51",
+      "kind": "consequence",
+      "title": "Auxiliary Protection Damaged",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your auxiliary protection—such as magical charms, a stealth suit, or close-combat chainmail—is damaged and no longer provides Protection. Between battles, attempt to repair it with a FIX check. Repair is not guaranteed. On a failure, it remains ineffective until repaired at the nearest oasis.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-52",
+      "kind": "consequence",
+      "title": "Damaged Leg",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your leg is seriously injured and cannot be used until treated or replaced. ASCEND checks become one step harder. You may receive this Fallout twice.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-53",
+      "kind": "consequence",
+      "title": "Damaged Arm",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your arm is seriously injured. Most checks become one step harder. You may receive this Fallout twice.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-54",
+      "kind": "consequence",
+      "title": "Damaged Backpack",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your backpack is damaged and cannot perform its functions. Between battles, repair it with a FIX check using the appropriate Domain. You always repair it but may take Stress on a failure.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-55",
+      "kind": "consequence",
+      "title": "Severe Bleeding",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You suffer a serious wound. Take D6 Stress in BULLETS whenever you make a check.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-56",
+      "kind": "consequence",
+      "title": "Impaired Coordination",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "On a failure, HIDE and ASCEND checks deal Stress to you one step higher.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-57",
+      "kind": "consequence",
+      "title": "Burn",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You were attacked with an energy weapon, acid, or fire. All incoming Stress increases by one step.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-58",
+      "kind": "consequence",
+      "title": "Broken Concentration",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You have difficulty concentrating. Checks requiring significant time become one step harder.",
+      "resistance": "ПУЛИ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-59",
+      "kind": "consequence",
+      "title": "Strong Bonds",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "One of your Contacts receives Major Fallout. You should be more careful.",
+      "resistance": "СУДЬБА",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-60",
+      "kind": "consequence",
+      "title": "Hatred",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "One faction hates you. You must either earn its trust or continue fighting it.",
+      "resistance": "СУДЬБА",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-61",
+      "kind": "consequence",
+      "title": "Blinded",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Until the end of the current scene, all checks requiring sight have dangerous difficulty. Until the end of the following scene, those checks have risky difficulty.",
+      "resistance": "СУДЬБА",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-62",
+      "kind": "consequence",
+      "title": "Reinforcements",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Additional fighters arrive to support the enemy. The GM determines their number, though the arriving group is normally no larger than the one the squad initially confronted.",
+      "resistance": "СУДЬБА",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-63",
+      "kind": "consequence",
+      "title": "Breakdown",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your weapon or another important item breaks. It can only be repaired in an oasis.",
+      "resistance": "СУДЬБА",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-64",
+      "kind": "consequence",
+      "title": "Severed Bonds",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Every soldier knows that communication is the first thing to fail in a real war. You cannot remotely contact your Contacts or oases until you spend a long time recalibrating your equipment in an oasis.",
+      "resistance": "СУДЬБА",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-65",
+      "kind": "consequence",
+      "title": "Shadow",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "After a battle, one surviving enemy who remained hidden moves behind the squad. They attack before you notice them.",
+      "resistance": "СУДЬБА",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-66",
+      "kind": "consequence",
+      "title": "Three-Way Hashahsot Duel",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "A third party unexpectedly joins the battle. It is stronger than either squad individually but weaker than both squads combined.",
+      "resistance": "СУДЬБА",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-67",
+      "kind": "consequence",
+      "title": "Fearlessness",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Problems with your instinct for self-preservation cause you to take unnecessary risks. Whenever you make a Fallout check, roll the D10 twice and keep the lower result. You deal Stress one step higher on risky and dangerous checks.",
+      "resistance": "РАЗУМ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-68",
+      "kind": "consequence",
+      "title": "Slowed Reactions",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          124
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Poison, terrible exhaustion, or a malfunctioning stimulant implant makes you sluggish. EVADE and ASCEND checks requiring great speed become one step harder.",
+      "resistance": "РАЗУМ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-69",
+      "kind": "consequence",
+      "title": "True Love",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You discover beauty within the nightmare and do not want to disturb the Tower’s peace. Whenever you deal Stress to an Ascent, take the same amount of Stress in SPIRIT.",
+      "resistance": "РАЗУМ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-70",
+      "kind": "consequence",
+      "title": "Unquenchable",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You are so exhausted by violence and fear that you cannot rest properly. Lose one recovery condition chosen by the GM.",
+      "resistance": "РАЗУМ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-71",
+      "kind": "consequence",
+      "title": "Trauma",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "A place, person, or corporation has traumatized you. You avoid it by any means possible. When confronting it, the difficulty of your checks increases by one step. Remove this Fallout if you defeat the threat.",
+      "resistance": "РАЗУМ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-72",
+      "kind": "consequence",
+      "title": "Phobia",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "The Domain you currently occupy burns itself into your memory through one horrifying detail. All checks involving that Domain become one step harder.",
+      "resistance": "РАЗУМ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-73",
+      "kind": "consequence",
+      "title": "Cold",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You lose the ability to experience and understand intense emotions. Make TALK checks with Mastery when lying or intimidating, but you cannot recognize when someone lies to you or makes a joke at your expense.",
+      "resistance": "РАЗУМ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-74",
+      "kind": "consequence",
+      "title": "Rage",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You are overwhelmingly furious for no particular reason and cannot accept assistance until this Fallout is removed.",
+      "resistance": "РАЗУМ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-75",
+      "kind": "consequence",
+      "title": "Honor",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Someone challenges you to a duel, and you cannot refuse. Until the end of the scene, you may attack enemies only at Close Range. During an Ascent, you must lead the group.",
+      "resistance": "ДУХ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-76",
+      "kind": "consequence",
+      "title": "Protective Spells",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You are afflicted by magic intended to restrain evil. You cannot say the number four or tell a lie.",
+      "resistance": "ДУХ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-77",
+      "kind": "consequence",
+      "title": "Blood and Concrete",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your body slowly transforms into rebar, concrete, and wiring. Until this Fallout is removed, medical kits and other nonmagical medicine cannot restore your BULLETS Stress.",
+      "resistance": "ДУХ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-78",
+      "kind": "consequence",
+      "title": "Mirage",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You arrive at your intended location, only to discover that it is a counterfeit made from concrete and rebar—a copy born within the Tower. It causes no direct harm, but another passage is required to reach the real destination.",
+      "resistance": "ДУХ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-79",
+      "kind": "consequence",
+      "title": "Swapped Bodies",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Because of the Tower’s peculiarities, you exchange bodies with a comrade until the end of the scene. Exchange character sheets with the player sitting to your right.",
+      "resistance": "ДУХ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-80",
+      "kind": "consequence",
+      "title": "Shortage",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "At the next oasis you visit, every D6 item and resource costs D8.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-81",
+      "kind": "consequence",
+      "title": "Confiscation",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "At the next oasis you visit, all your weapons are confiscated. You are denied entry if you refuse to surrender them. The weapons are eventually returned, but you inevitably encounter a situation inside the oasis where they would have been useful.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-82",
+      "kind": "consequence",
+      "title": "Avenger",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your actions cause an assassin to be sent after you. The Avenger has Difficulty 1, deals D10 Stress, and possesses 3 Protection. Killing the Avenger does not remove this Fallout.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-83",
+      "kind": "consequence",
+      "title": "Slandered",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Terrible rumors spread about you. Until you restore your good name, no oasis will allow you to enter.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-84",
+      "kind": "consequence",
+      "title": "Dangerous Client",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Several merchants decide that dealing with you is dangerous. At one oasis or among one faction, prices for you increase by one step, and rare goods require an additional service.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-85",
+      "kind": "consequence",
+      "title": "Logistical Problems",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Your ammunition, batteries, medicine, or spare parts fail to arrive. Until the next session, one piece of your equipment gains Unreliable or Inconvenient, or requires a D6 resource every time it is used. The GM chooses the effect.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-86",
+      "kind": "consequence",
+      "title": "Sold",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You must sell an important or valuable item rated D10 or higher to settle your debts.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-87",
+      "kind": "consequence",
+      "title": "Witness",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Someone witnessed your deception, betrayal, murder, or humiliating failure. They are not necessarily an enemy, but their silence costs a D12 resource, a service, or a dangerous promise.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "major",
+      "severityLabel": "Значимое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Major"
+    },
+    {
+      "id": "consequences-card-88",
+      "kind": "consequence",
+      "title": "Gutted",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You die from numerous wounds. You may perform one final action before death. It automatically succeeds.",
+      "resistance": "ПУЛИ",
+      "severity": "doom",
+      "severityLabel": "Роковое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Doom"
+    },
+    {
+      "id": "consequences-card-89",
+      "kind": "consequence",
+      "title": "Defeated",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "At the decisive moment, your opponent proves stronger. Describe how they finish you off.",
+      "resistance": "ПУЛИ",
+      "severity": "doom",
+      "severityLabel": "Роковое",
+      "resistanceEn": "BULLETS",
+      "severityLabelEn": "Doom"
+    },
+    {
+      "id": "consequences-card-90",
+      "kind": "consequence",
+      "title": "Doom",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You suffer a horrifying run of bad luck: a mine explodes beneath you, you fall through a hole in the floor, or your worst enemies appear where they should never have been. It is a foolish death, but such things happen often inside the Tower.",
+      "resistance": "СУДЬБА",
+      "severity": "doom",
+      "severityLabel": "Роковое",
+      "resistanceEn": "FATE",
+      "severityLabelEn": "Doom"
+    },
+    {
+      "id": "consequences-card-91",
+      "kind": "consequence",
+      "title": "Grandeur",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You surrender to the Tower’s dark influence and become an insane cultist serving one of its entities, such as the King-in-Camouflage or the Queen of Six Masks.",
+      "resistance": "РАЗУМ",
+      "severity": "doom",
+      "severityLabel": "Роковое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Doom"
+    },
+    {
+      "id": "consequences-card-92",
+      "kind": "consequence",
+      "title": "Obsessed",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You lose your mind and become fixated on a single objective, unable to think about anything else. The moment you accomplish it, your exhausted body dies.",
+      "resistance": "РАЗУМ",
+      "severity": "doom",
+      "severityLabel": "Роковое",
+      "resistanceEn": "MIND",
+      "severityLabelEn": "Doom"
+    },
+    {
+      "id": "consequences-card-93",
+      "kind": "consequence",
+      "title": "The Great Red",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You touch something red and enter the Great Red, a dimension older than both the world of the peoples and the Tower. You and the others trapped there spend eternity conversing with one another and with the color red. There is nothing unpleasant about this, but you can no longer interact with the outside world.",
+      "resistance": "ДУХ",
+      "severity": "doom",
+      "severityLabel": "Роковое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Doom"
+    },
+    {
+      "id": "consequences-card-94",
+      "kind": "consequence",
+      "title": "Following",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You die, but part of your essence remains wandering through the Tower, eternally cold and hungry. This fragment follows different groups of Ascenders but can never approach closely enough for them to remove its curse.",
+      "resistance": "ДУХ",
+      "severity": "doom",
+      "severityLabel": "Роковое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Doom"
+    },
+    {
+      "id": "consequences-card-95",
+      "kind": "consequence",
+      "title": "Radiance",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          125
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You explode in streams of brilliant magic, consumed by power you cannot contain. You die and destroy the location around you. The people survive. Most of them.",
+      "resistance": "ДУХ",
+      "severity": "doom",
+      "severityLabel": "Роковое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Doom"
+    },
+    {
+      "id": "consequences-card-96",
+      "kind": "consequence",
+      "title": "Four",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          126
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "You say the number four aloud when She does not want you to. You instantly disappear without sound or flash, as though you had never existed.",
+      "resistance": "ДУХ",
+      "severity": "doom",
+      "severityLabel": "Роковое",
+      "resistanceEn": "SPIRIT",
+      "severityLabelEn": "Doom"
+    },
+    {
+      "id": "consequences-card-97",
+      "kind": "consequence",
+      "title": "Exiled",
+      "section": "consequences",
+      "dropTarget": "consequence",
+      "source": {
+        "pdfPages": [
+          126
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Nobody is your friend anymore. Everyone will attempt to kill you, deceive you, or simply refuse to communicate.",
+      "resistance": "РЕСУРСЫ",
+      "severity": "doom",
+      "severityLabel": "Роковое",
+      "resistanceEn": "RESOURCES",
+      "severityLabelEn": "Doom"
+    }
+  ]
+};
