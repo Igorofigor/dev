@@ -3771,7 +3771,7 @@ function importCharacterJSON(event){
       const modal=byId("codexModal");
       if(!modal?.classList.contains("open"))return;
       const panel=byId("codexPanel");
-      if(panel?.contains(event.target)||event.target.closest?.("#openCodexButton"))return;
+      if(panel?.contains(event.target)||event.target.closest?.("#openCodexButton,#openAbilitiesMenuButton,#openTacticsMenuButton"))return;
       closeCodexMenu();
     }
 
