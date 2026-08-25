@@ -1663,17 +1663,7 @@ button.secondary.portrait-mini-button{
 
 <div class="discord-settings">
   <h3>Discord, Telegram и ВКонтакте</h3>
-  <p class="hint">Укажите адрес единого моста и его ключ. Токены ботов хранятся только на сервере; сообщения отправляются во все настроенные чаты.</p>
-  <div class="grid-2">
-    <div>
-      <label>Адрес моста чатов</label>
-      <input id="discordBridgeUrl" data-sheet-ignore="true" placeholder="https://example.com" onchange="saveDiscordSettings()" />
-    </div>
-    <div>
-      <label>Ключ подключения</label>
-      <input id="discordBridgeSecret" data-sheet-ignore="true" type="password" autocomplete="off" onchange="saveDiscordSettings()" />
-    </div>
-  </div>
+  <p class="hint">Адрес моста и защищённая сессия настраиваются автоматически. Токены ботов и общий секрет остаются только на сервере.</p>
   <div class="sheet-menu-actions" style="margin-top:10px">
     <button type="button" onclick="createChatConnectCode()">Создать код /connect</button>
     <button class="secondary" type="button" onclick="refreshChatConnections()">Обновить подключения</button>
@@ -1760,7 +1750,10 @@ button.secondary.portrait-mini-button{
   <script>
     const STORAGE_KEY="towerCharacterSheetV14";
     const CHARACTER_PORTRAIT_KEY="towerCharacterPortraitV1";
-    const DISCORD_SETTINGS_KEY="towerDiscordBridgeV1";
+    const CHAT_BRIDGE_URL="https://towersheetbot.na4u.ru";
+    const DISCORD_SETTINGS_KEY="towerChatBridgeV2";
+    const LEGACY_DISCORD_SETTINGS_KEY="towerDiscordBridgeV1";
+    let chatBridgeSessionPromise=null;
     let portraitDataUrl="";
     let nationStripeAnimationEnabled=true;
     const currentLanguage="ru";
@@ -1769,7 +1762,7 @@ button.secondary.portrait-mini-button{
     Object.assign(UI_EN,{"ПУЛИ":"BULLETS","РАЗУМ":"MIND","ДУХ":"SPIRIT","СУДЬБА":"FATE","УБИВАТЬ":"KILL","КОЛДОВАТЬ":"CAST","ЧИНИТЬ":"FIX","ПРОБИВАТЬСЯ":"ASCEND","СКРЫВАТЬСЯ":"HIDE","ТЕХНИЧИТЬ":"TECH","ИЗБЕГАТЬ":"EVADE","УЗНАВАТЬ":"INVESTIGATE","ГОВОРИТЬ":"TALK","ЧАЩА":"THICKET","ПУСТОШЬ":"WASTELAND","ВОЛНЫ":"WAVES","ГОРИЗОНТ":"HORIZON","АРМИЯ":"ARMY","БЕЗУМИЕ":"MADNESS","МИР":"WORLD","КОРПОРАЦИИ":"CORPORATIONS","ДУХИ":"SPIRITS","К4":"D4","К6":"D6","К8":"D8","К10":"D10","К12":"D12","Голова":"Head","Тело":"Body","Особое":"Special","Рюкзак":"Backpack"});
     Object.assign(UI_EN,{"А4":"A4","Навык, связанный с любым боем или попыткой что-то сломать.":"A Skill used for any kind of combat or an attempt to break something.","Навык, применяемый для любой магии или магического предмета. Если вы имеете этот навык, вы можете создавать простые магические эффекты без проверки, например прикурить сигарету щелчком пальцев или перемешать напиток в кружке, не касаясь его.":"A Skill used for any magic or magical item. With it, you can create simple magical effects without a check, such as lighting a cigarette with a snap of your fingers or stirring a drink without touching it.","Навык, дающий восстановить прежнее состояние чего-то или кого-то.":"A Skill used to restore something or someone to their former condition.","Навык, отвечающий за перемещение в опасных ситуациях, например во время погони или перехода через Башню.":"A Skill used to move through dangerous situations, such as a chase or an Ascent through the Tower.","Навык, отвечающий за скрытное проникновение и перемещение. Незаметные нейтрализации не подозревающих противников — тоже часть этого навыка.":"A Skill used for covert entry and movement. Silently neutralizing unsuspecting enemies is also part of this Skill.","Навык, отвечающий за взаимодействие с технологией, будь то взлом или написание кода. Для создания новых предметов также используется этот навык.":"A Skill used to interact with technology, from hacking to writing code. It is also used to create new items.","Навык, отвечающий за уход от физических и магических атак, например уворот, парирование или чтение короткого заговора.":"A Skill used to avoid physical and magical attacks, such as dodging, parrying, or reciting a short ward.","Навык, который отвечает за поиск вещей, опознание магических предметов или поиск данных в сети.":"A Skill used to find things, identify magical items, or search for information online.","Навык, обозначающий способность красиво и хорошо вести переговоры, торговаться или обманывать.":"A Skill used to negotiate, bargain, persuade, or deceive.","Область, отвечающая за взаимодействие с людьми из народа Ножей и с локациями Башни, похожими на лес или лабиринт.":"A Domain for interacting with the People of Knives and Tower locations resembling forests or labyrinths.","Область, отвечающая за взаимодействие с людьми из народа Ядов, а также за представляющие опасность ядовитые и проклятые локации Башни.":"A Domain for interacting with the People of Poisons and dangerous poisonous or cursed Tower locations.","Область, отвечающая за взаимодействие с людьми из народа Граней и с постоянно меняющимися или разумными локациями.":"A Domain for interacting with the People of Facets and constantly changing or sentient locations.","Область, отвечающая за взаимодействие с людьми из народа Железа и за огромные открытые локации в Башне.":"A Domain for interacting with the People of Iron and enormous open locations in the Tower.","Область для взаимодействия с чем угодно военным: от оружия и техники до людей и компьютерных программ. Ещё она отвечает за укреплённые или патрулируемые локации в Башне.":"A Domain for anything military, from weapons and vehicles to personnel and software. It also covers fortified or patrolled Tower locations.","Область, обозначающая сумасшедшее влияние Башни и всех, кто ей подвергся, а также не связанных с Башней культистов.":"A Domain covering the Tower's maddening influence, everyone affected by it, and cultists unrelated to the Tower.","Область, отвечающая за все не-военные организации, места, людей и занятия, например за разговор с торговцем или готовку. Кроме того, она отвечает за места в Башне, похожие на человеческую городскую застройку.":"A Domain for civilian organizations, places, people, and activities. It also covers Tower locations resembling human urban development.","Область могучих частных компаний, ставших полубожественной силой, и контролируемых ими мест Башни.":"A Domain of powerful private companies that became near-divine forces, and the Tower locations they control.","Область духов природы и компьютерных программ, а также их вотчин: в Башне другие реки и леса, зато встречаются подкодыши и духи предметов.":"A Domain of nature spirits and computer programs, along with their domains, including Codelings and spirits of objects."});
     Object.assign(UI_EN,{"Критический провал":"Critical Failure","Провал":"Failure","Успех с ценой":"Success at a Cost","Успех":"Success","Критический успех":"Critical Success","Действие не удалось, получите на ступень больше стресса.":"The action fails; take Stress one step higher.","Действие не удалось, получите стресс.":"The action fails; take Stress.","Действие удалось, получите стресс.":"The action succeeds; take Stress.","Действие удалось.":"The action succeeds.","За каждую кость 10 и более стресс, причиняемый вами, повышается на ступень.":"For each die showing 10 or more, increase the Stress you inflict by one step.","Борись за жизнь!":"Fight for your life!","Это уже серьёзно…":"This is getting serious…","Отбить врата!":"Hold the Gate!","Осветим мир!":"Let us light the world!","Вспомни, кем ты был…":"Remember who you were…","Лучшая сделка почти в кармане.":"The best deal is almost in the bag.","Это будет просто просчитать.":"This will be easy to calculate.","Вдохни глубоко и выпусти когти.":"Breathe deep and bare your claws.","Заслужи золотое будущее!":"Earn a golden future!","Победа на крыльях бабочки…":"Victory on butterfly wings…","Взрастим прекраснейший цветок!":"Let us grow the fairest flower!","Малое последствие":"Minor Fallout","Значимое последствие":"Major Fallout","Роковое последствие":"Doom Fallout","Без последствия":"No Fallout","Свернуть / развернуть секцию":"Collapse / expand section"});
-    Object.assign(UI_EN,{"Discord, Telegram и ВКонтакте":"Discord, Telegram and VK","Укажите адрес единого моста и его ключ. Токены ботов хранятся только на сервере; сообщения отправляются во все настроенные чаты.":"Enter the unified bridge URL and key. Bot tokens stay on the server; messages are sent to every configured chat.","Адрес моста чатов":"Chat bridge URL","Ключ подключения":"Connection key","Проверить чаты":"Test chats","Отправлено в чаты.":"Sent to chats.","Интеграция с чатами не настроена. Укажите адрес моста и ключ в меню листа.":"Chat integration is not configured. Enter the bridge URL and key in the sheet menu."});
+    Object.assign(UI_EN,{"Discord, Telegram и ВКонтакте":"Discord, Telegram and VK","Адрес моста и защищённая сессия настраиваются автоматически. Токены ботов и общий секрет остаются только на сервере.":"The bridge address and secure session are configured automatically. Bot tokens and the shared server secret remain on the server.","Проверить чаты":"Test chats","Отправлено в чаты.":"Sent to chats."});
     const UI_EN_REPLACEMENTS=[["ОБЩИЙ СТРЕСС","TOTAL STRESS"],["Общий стресс","Total Stress"],["ПРОВЕРКА ПОСЛЕДСТВИЯ","FALLOUT CHECK"],["Проверка последствия","Fallout Check"],["ЗНАЧИМЫХ","MAJOR"],["значимых","major"],["МАЛЫХ","MINOR"],["малых","minor"],["НАВЫКОВ","SKILLS"],["навыков","skills"],["ОБЛАСТЕЙ","DOMAINS"],["областей","domains"],["ЛИЧНЫХ","PERSONAL"],["личных","personal"],["ФРАКЦИОННЫХ","FACTION"],["фракционных","faction"],["МИРОВЫХ","WORLD"],["мировых","world"],["ПЕРСОНАЖЕЙ ИГРОКОВ","PLAYER CHARACTERS"],["персонажей игроков","player characters"],["БАЗОВЫХ","BASIC"],["базовых","basic"],["ПРОФЕССИОНАЛЬНЫХ","PROFESSIONAL"],["профессиональных","professional"],["ЭЛИТНЫХ","ELITE"],["элитных","elite"],["Дополнительный слот","Extra slot"],["Обычный стресс","Regular Stress"],["Персонаж","Character"],["Ячейка","Slot"],["Запись","Entry"]];
     Object.assign(UI_EN,{"Создать код /connect":"Create /connect code","Обновить подключения":"Refresh connections"});
     function translateUiText(value){
@@ -3446,25 +3439,58 @@ function importCharacterJSON(event){
 function getDiscordSettings(){
   try{
     const saved=JSON.parse(localStorage.getItem(DISCORD_SETTINGS_KEY)||"{}");
-    if(!saved.roomId)saved.roomId=(crypto.randomUUID?.()||`room-${Date.now()}-${Math.random().toString(36).slice(2)}`);
-    localStorage.setItem(DISCORD_SETTINGS_KEY,JSON.stringify(saved));
-    return {bridgeUrl:String(saved.bridgeUrl||"").trim().replace(/\/+$/,""),secret:String(saved.secret||"").trim(),roomId:String(saved.roomId)};
-  }catch(error){return {bridgeUrl:"",secret:"",roomId:`room-${Date.now()}-${Math.random().toString(36).slice(2)}`}}
+    const legacy=JSON.parse(localStorage.getItem(LEGACY_DISCORD_SETTINGS_KEY)||"{}");
+    return {
+      bridgeUrl:CHAT_BRIDGE_URL,
+      roomId:String(saved.roomId||legacy.roomId||""),
+      roomToken:String(saved.roomToken||""),
+      legacySecret:String(legacy.secret||saved.secret||"").trim()
+    };
+  }catch(error){return {bridgeUrl:CHAT_BRIDGE_URL,roomId:"",roomToken:"",legacySecret:""}}
+}
+
+function storeDiscordSettings(settings){
+  localStorage.setItem(DISCORD_SETTINGS_KEY,JSON.stringify({roomId:settings.roomId,roomToken:settings.roomToken}));
 }
 
 function loadDiscordSettings(){
   const settings=getDiscordSettings();
-  if(byId("discordBridgeUrl"))byId("discordBridgeUrl").value=settings.bridgeUrl;
-  if(byId("discordBridgeSecret"))byId("discordBridgeSecret").value=settings.secret;
+  const status=byId("discordSettingsStatus");
+  if(status)status.textContent=settings.roomToken?(currentLanguage==="en"?"The secure session for this sheet is saved on this device.":"Защищённая сессия этого листа сохранена на устройстве."):(currentLanguage==="en"?"The bridge will configure itself when you create a /connect code.":"Мост настроится автоматически при создании кода /connect.");
 }
 
 function saveDiscordSettings(){
+  loadDiscordSettings();
+}
+
+async function requestChatBridgeSession(roomId="",legacySecret=""){
+  const headers={"Content-Type":"application/json"};
+  if(legacySecret)headers.Authorization=`Bearer ${legacySecret}`;
+  const response=await fetch(`${CHAT_BRIDGE_URL}/api/session`,{method:"POST",headers,body:JSON.stringify(roomId?{roomId}:{})});
+  let result={};
+  try{result=await response.json()}catch(error){}
+  if(!response.ok)throw new Error(result.error||`${currentLanguage==="en"?"Chat bridge error":"Ошибка моста чатов"}: HTTP ${response.status}`);
+  return result;
+}
+
+async function ensureChatBridgeSession(){
   const saved=getDiscordSettings();
-  const bridgeUrl=byId("discordBridgeUrl")?.value.trim().replace(/\/+$/,"")||"";
-  const secret=byId("discordBridgeSecret")?.value.trim()||"";
-  localStorage.setItem(DISCORD_SETTINGS_KEY,JSON.stringify({bridgeUrl,secret,roomId:saved.roomId}));
-  const status=byId("discordSettingsStatus");
-  if(status)status.textContent=bridgeUrl&&secret?(currentLanguage==="en"?"Discord settings saved on this device.":"Настройки Discord сохранены на этом устройстве."):"";
+  if(saved.roomId&&saved.roomToken)return saved;
+  if(chatBridgeSessionPromise)return chatBridgeSessionPromise;
+  chatBridgeSessionPromise=(async()=>{
+    let session;
+    if(saved.roomId&&saved.legacySecret){
+      try{session=await requestChatBridgeSession(saved.roomId,saved.legacySecret)}
+      catch(error){console.warn("Не удалось перенести старую комнату, создаётся новая сессия.",error);session=await requestChatBridgeSession()}
+    }else session=await requestChatBridgeSession();
+    const next={bridgeUrl:CHAT_BRIDGE_URL,roomId:String(session.roomId||""),roomToken:String(session.roomToken||""),legacySecret:""};
+    if(!next.roomId||!next.roomToken)throw new Error(currentLanguage==="en"?"The bridge did not return a secure sheet session.":"Мост не вернул защищённую сессию листа.");
+    storeDiscordSettings(next);
+    localStorage.removeItem(LEGACY_DISCORD_SETTINGS_KEY);
+    loadDiscordSettings();
+    return next;
+  })().finally(()=>{chatBridgeSessionPromise=null});
+  return chatBridgeSessionPromise;
 }
 
 function showDiscordToast(message,isError=false){
@@ -3482,15 +3508,10 @@ function getDiscordSheetName(){
 }
 
 async function chatBridgeRequest(endpoint,payload={}){
-  const settings=getDiscordSettings();
-  if(!settings.bridgeUrl||!settings.secret){
-    const error=new Error(currentLanguage==="en"?"Chat integration is not configured. Enter the bridge URL and key in the sheet menu.":"Интеграция с чатами не настроена. Укажите адрес моста и ключ в меню листа.");
-    error.code="DISCORD_NOT_CONFIGURED";
-    throw error;
-  }
+  const settings=await ensureChatBridgeSession();
   const response=await fetch(`${settings.bridgeUrl}${endpoint}`,{
     method:"POST",
-    headers:{"Content-Type":"application/json","Authorization":`Bearer ${settings.secret}`},
+    headers:{"Content-Type":"application/json","Authorization":`Bearer ${settings.roomToken}`},
     body:JSON.stringify({roomId:settings.roomId,sheetName:getDiscordSheetName(),language:currentLanguage,...payload})
   });
   let result={};
@@ -3561,7 +3582,7 @@ function formatDiscordRoll(entry){
 
 function sendDiscordRoll(entry){
   const settings=getDiscordSettings();
-  if(!settings.bridgeUrl||!settings.secret)return;
+  if(!settings.roomId||!settings.roomToken)return;
   discordBridgeRequest(formatDiscordRoll(entry)).catch(error=>showDiscordToast(error.message,true));
 }
 
