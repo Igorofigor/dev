@@ -383,7 +383,7 @@
 
     .floating-actions{right:18px}
     .floating-actions-left{left:18px}
-    .language-toggle-button{position:fixed;top:16px;right:18px;z-index:1200;min-width:46px;height:32px;border:2px solid var(--accent);border-radius:8px;background:var(--card);color:var(--accent);font-weight:800;cursor:pointer}
+    .language-toggle-button{position:fixed;top:16px;right:18px;z-index:1200;width:auto!important;min-width:46px;height:32px;padding:4px 10px;border:2px solid var(--accent);border-radius:8px;background:var(--card);color:var(--accent);font-weight:800;cursor:pointer}
 
     .floating-diary-button{
       width:96px;
@@ -569,6 +569,17 @@
       filter:contrast(1.15);
       transform:scale(1.06);
     }
+    body.assets-missing .floating-diary-button,
+    body.assets-missing .floating-section-button,
+    body.assets-missing .floating-sheet-menu-button{mask-image:none!important;-webkit-mask-image:none!important;background:var(--accent);font-size:26px;color:var(--on-accent)}
+    body.assets-missing .floating-diary-button::after{content:"✎"}
+    body.assets-missing .floating-ability-button::after{content:"✦"}
+    body.assets-missing .floating-tactics-button::after{content:"⌁"}
+    body.assets-missing .floating-resources-button::after{content:"◈"}
+    body.assets-missing .floating-sheet-menu-button::after{content:"☰"}
+    body.assets-missing.has-class-emblem::before{mask-image:none;-webkit-mask-image:none;background:var(--accent);opacity:.08}
+    body.assets-missing.has-nation-pattern::after{mask-image:none;-webkit-mask-image:none;background:repeating-linear-gradient(135deg,transparent 0 10px,var(--accent) 10px 12px);opacity:.08}
+    body.assets-missing.has-class-emblem .floating-roll-button{mask-image:none;-webkit-mask-image:none;background:var(--accent);color:var(--on-accent);font-size:13px;clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%)}
 
     .roll-modal,
     .diary-modal,
@@ -1719,7 +1730,7 @@ button.secondary.portrait-mini-button{
     let portraitDataUrl="";
     let nationStripeAnimationEnabled=true;
     let currentLanguage=localStorage.getItem("towerSheetLanguage")||"ru";
-    const UI_EN={"КОДЕКС":"CODEX","СПОСОБНОСТИ":"ABILITIES","ТАКТИКИ":"TACTICS","РЕСУРСЫ":"RESOURCES","ДНЕВНИК":"DIARY","БРОСОК":"ROLL","СПРАВКА":"HELP","МЕНЮ":"MENU","Персонаж":"Character","Портрет":"Portrait","Настройки портрета":"Portrait settings","Загрузить":"Load","Удалить":"Delete","Имя":"Name","Класс":"Class","Народ":"Nation","Другой":"Other","Род Войск":"Military Branch","Описание":"Description","Сопротивления, защита и стресс":"Resistances, Protection and Stress","Сопротивление":"Resistance","Защита":"Protection","Доп. слоты":"Extra Slots","Стресс":"Stress","Итог":"Total","Последствия":"Fallout","Малые":"Minor","Значимые":"Major","Шкалы дружбы":"Friendship Tracks","Заметка":"Note","Навыки и области":"Skills and Domains","Навыки":"Skills","Области":"Domains","Снаряжение":"Equipment","Слот":"Slot","Предмет":"Item","Качество":"Quality","Свойства / заметки":"Properties / Notes","Броня":"Armor","Свойства":"Properties","Контакты":"Contacts","Личные":"Personal","Фракционные":"Faction","Мировые":"World","Персонажи игроков":"Player Characters","Классовые вопросы":"Class Questions","Вопрос 1":"Question 1","Вопрос 2":"Question 2","Вопрос 3":"Question 3","Закрыть":"Close","Базовые":"Basic","Малые":"Minor","Профессиональные":"Professional","Элитные":"Elite","Группы тактик":"Tactic Groups","Группа тактик":"Tactic Group","Связанный навык":"Linked Skill","Тактики / заметки":"Tactics / Notes","Ресурс":"Resource","Свойства / цена / применение":"Properties / Cost / Use","Кодекс":"Codex","Справка":"Rules Help","Дневник":"Diary","Меню листа":"Sheet Menu","Сохранить":"Save","Очистить":"Clear","Анимация полоски: да":"Stripe animation: yes","Экспорт .json":"Export .json","Импорт .json":"Import .json","Автоматический бросок":"Automatic Roll","Навык":"Skill","Страж Врат":"Gate Guard","Светоносец":"Light Bearer","Раствор Души":"Soul Fluid","Росоход":"Dew Walker","Экономант":"Economancer","Неболом":"Skybreaker","Подкодыш":"Codeling","Паратехник":"Paratech","Красный Рукав":"Red Sleeve","Народ Ножей":"People of Knives","Народ Ядов":"People of Poisons","Народ Граней":"People of Facets","Народ Железа":"People of Iron","Тяжёлая пехота":"Heavy Infantry","Мобильная пехота":"Mobile Infantry","Разведка":"Reconnaissance","Военный инженер":"Military Engineer","Штурмовая пехота":"Assault Infantry","Служба безопасности":"Security Service","Мистическая пехота":"Mystical Infantry","Полевой медик":"Field Medic","Отдел исследований":"Research Division","Открыть кодекс":"Open codex","Открыть способности":"Open abilities","Открыть группы тактик":"Open tactics","Открыть ресурсы":"Open resources","Открыть дневник":"Open diary","Открыть меню броска":"Open roll menu","Открыть справку":"Open rules help","Открыть меню листа":"Open sheet menu"};
+    const UI_EN={"КОДЕКС":"CODEX","СПОСОБНОСТИ":"ABILITIES","ТАКТИКИ":"TACTICS","РЕСУРСЫ":"RESOURCES","ДНЕВНИК":"DIARY","БРОСОК":"ROLL","СПРАВКА":"HELP","МЕНЮ":"MENU","Персонаж":"Character","Портрет":"Portrait","Настройки портрета":"Portrait settings","Загрузить":"Load","Удалить":"Delete","Имя":"Name","Класс":"Class","Народ":"Nation","Другой":"Other","Род Войск":"Military Branch","Описание":"Description","Сопротивления, защита и стресс":"Resistances, Protection and Stress","Сопротивление":"Resistance","Защита":"Protection","Доп. слоты":"Extra Slots","Стресс":"Stress","Итог":"Total","Последствия":"Fallout","Малые":"Minor","Значимые":"Major","Шкалы дружбы":"Friendship Tracks","Заметка":"Note","Навыки и области":"Skills and Domains","Навыки":"Skills","Области":"Domains","Снаряжение":"Equipment","Слот":"Slot","Предмет":"Item","Качество":"Quality","Свойства / заметки":"Properties / Notes","Броня":"Armor","Свойства":"Properties","Контакты":"Contacts","Личные":"Personal","Фракционные":"Faction","Мировые":"World","Персонажи игроков":"Player Characters","Классовые вопросы":"Class Questions","Вопрос 1":"Question 1","Вопрос 2":"Question 2","Вопрос 3":"Question 3","Закрыть":"Close","Базовые":"Basic","Малые":"Minor","Профессиональные":"Professional","Элитные":"Elite","Группы тактик":"Tactic Groups","Группа тактик":"Tactic Group","Связанный навык":"Linked Skill","Тактики / заметки":"Tactics / Notes","Ресурс":"Resource","Свойства / цена / применение":"Properties / Cost / Use","Кодекс":"Codex","Справка":"Rules Help","Дневник":"Diary","Меню листа":"Sheet Menu","Сохранить":"Save","Очистить":"Clear","Анимация полоски: да":"Stripe animation: yes","Анимация полоски: нет":"Stripe animation: no","Экспорт .json":"Export .json","Импорт .json":"Import .json","Автоматический бросок":"Automatic Roll","Навык":"Skill","Страж Врат":"Gate Guard","Светоносец":"Light Bearer","Раствор Души":"Soul Fluid","Росоход":"Dew Walker","Экономант":"Economancer","Неболом":"Skybreaker","Подкодыш":"Codeling","Паратехник":"Paratech","Красный Рукав":"Red Sleeve","Народ Ножей":"People of Knives","Народ Ядов":"People of Poisons","Народ Граней":"People of Facets","Народ Железа":"People of Iron","Тяжёлая пехота":"Heavy Infantry","Мобильная пехота":"Mobile Infantry","Разведка":"Reconnaissance","Военный инженер":"Military Engineer","Штурмовая пехота":"Assault Infantry","Служба безопасности":"Security Service","Мистическая пехота":"Mystical Infantry","Полевой медик":"Field Medic","Отдел исследований":"Research Division","Открыть кодекс":"Open codex","Открыть способности":"Open abilities","Открыть группы тактик":"Open tactics","Открыть ресурсы":"Open resources","Открыть дневник":"Open diary","Открыть меню броска":"Open roll menu","Открыть справку":"Open rules help","Открыть меню листа":"Open sheet menu"};
     function localizeStaticUi(){
       document.documentElement.lang=currentLanguage;
       const button=byId("languageToggleButton"); if(button)button.textContent=currentLanguage==="en"?"RU":"EN";
@@ -1732,8 +1743,11 @@ button.secondary.portrait-mini-button{
       currentLanguage=language==="en"?"en":"ru"; localStorage.setItem("towerSheetLanguage",currentLanguage);
       window.TOWER_CODEX=currentLanguage==="en"?window.TOWER_CODEX_EN:window.TOWER_CODEX_RU;
       if(codexActiveSection?.startsWith("classes:"))codexActiveSection="classes";
+      if(typeof updateNationTheme==="function"){updateNationTheme();updateClassBackground();updateNationPattern();updateNationStripeAnimation();}
       localizeStaticUi();
       if(typeof renderCodexTabs==="function"){renderCodexTabs();renderCodexSection()}
+      if(typeof renderCounters==="function")renderCounters();
+      localizeStaticUi();
       rulesHelpLoaded=false; if(typeof loadRulesHelp==="function"&&byId("rulesHelpContent"))loadRulesHelp();
     }
     function toggleLanguage(){setLanguage(currentLanguage==="en"?"ru":"en")}
@@ -1870,6 +1884,12 @@ button.secondary.portrait-mini-button{
       "Народ Железа":"#597376",
       "Народ Ядов":"#6a0002"
     };
+
+    function checkThemeAssets(){
+      if(location.protocol==="file:")return;
+      const paths=[...Object.values(classBackgroundMap),...Object.values(nationPatternMap),"images/diarybutton.svg","images/abilitybutton.svg","images/tacticsbutton.svg","images/resourcebuttonlow.svg","images/menubutton.svg","images/rulesbutton.svg"];
+      Promise.all(paths.map(path=>fetch(`./${path}`,{cache:"no-cache"}).then(response=>response.ok).catch(()=>false))).then(results=>document.body.classList.toggle("assets-missing",results.some(ok=>!ok)));
+    }
 
     const skillOptions=["",...defaultSkills.map(skill=>skill.name)];
     const domainOptions=["",...defaultDomains.map(domain=>domain.name)];
@@ -4098,6 +4118,7 @@ function closeRulesHelpMenuOnBackdrop(event){
         renderCounters();
       }
       localizeStaticUi();
+      checkThemeAssets();
     }
 
     try{init()}

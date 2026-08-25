@@ -3505,7 +3505,7 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Basic Equipment",
-      "skillEn": "BREAK THROUGH"
+      "skillEn": "ASCEND"
     },
     {
       "id": "equipment-6-64-180",
@@ -3655,7 +3655,7 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Basic Equipment",
-      "skillEn": "BREAK THROUGH"
+      "skillEn": "ASCEND"
     },
     {
       "id": "equipment-10-66-186",
@@ -5637,7 +5637,7 @@ window.TOWER_CODEX_EN = {
         "Рюкзак"
       ],
       "categoryEn": "Backpacks",
-      "skillEn": "BREAK THROUGH"
+      "skillEn": "ASCEND"
     },
     {
       "id": "equipment-card-78-266",
@@ -5781,7 +5781,7 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Travel Equipment",
-      "skillEn": "BREAK THROUGH"
+      "skillEn": "ASCEND"
     },
     {
       "id": "equipment-card-79-272",
@@ -5805,7 +5805,7 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Travel Equipment",
-      "skillEn": "BREAK THROUGH"
+      "skillEn": "ASCEND"
     },
     {
       "id": "equipment-card-79-273",
@@ -5829,7 +5829,7 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Travel Equipment",
-      "skillEn": "BREAK THROUGH"
+      "skillEn": "ASCEND"
     },
     {
       "id": "equipment-card-79-274",
@@ -5853,12 +5853,12 @@ window.TOWER_CODEX_EN = {
       "protection": 0,
       "extraSlots": 0,
       "categoryEn": "Travel Equipment",
-      "skillEn": "BREAK THROUGH"
+      "skillEn": "ASCEND"
     },
     {
       "id": "factions-card-82-275",
       "kind": "ability",
-      "title": "Любовь, что спасёт мир",
+      "title": "The Love That Will Save the World",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -5867,15 +5867,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Любовь, что спасёт мир\nКогда вы получаете стресс в шкалу отношений с соратником по правилам дружбы, соратник\nвыбирает эффект той же ступени в вашу сторону без нужды в принятии стресса.",
+      "text": "The Love That Will Save the World\nWhen you take Stress to your relationship track with a comrade under the friendship rules, that comrade chooses an effect of the same tier toward you without having to take Stress.",
       "factionName": "Стальной горящий батальон",
       "factionArea": "Фракции ЧАЩИ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Burning Steel Battalion",
+      "factionAreaEn": "Factions of the THICKET"
     },
     {
       "id": "factions-card-82-276",
       "kind": "ability",
-      "title": "Оберегать последнее",
+      "title": "Protect What Remains",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -5884,15 +5886,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Оберегать последнее\nКогда вы восстанавливаете стресс соратнику через проверку ЧИНИТЬ, вы бросаете с\nмастерством, если у него уже есть последствия в восстанавливаемой шкале.\n162",
+      "text": "Protect What Remains\nWhen you restore a comrade’s Stress with a FIX check, you roll with Mastery if they already have Fallout in the track being restored.",
       "factionName": "Стальной горящий батальон",
       "factionArea": "Фракции ЧАЩИ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Burning Steel Battalion",
+      "factionAreaEn": "Factions of the THICKET"
     },
     {
       "id": "factions-card-82-277",
       "kind": "ability",
-      "title": "Церемониальный дрон",
+      "title": "Ceremonial Drone",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -5901,15 +5905,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Церемониальный дрон\nРядом с вами постоянно летает украшенный лентами дрон поддержки, подсвечивающий\nцели и ведущий авиаразведку. Раз в сцену вы можете с его помощью получить мастерство\nпри атаке по противнику, или узнать честный ответ на вопрос о локации на выбор.",
+      "text": "Ceremonial Drone\nA support drone adorned with ribbons constantly flies beside you, marking targets and conducting aerial reconnaissance.\nOnce per scene, you may use it either to gain Mastery on an attack against an enemy or to learn the truthful answer to one question of your choice about the location.",
       "factionName": "Стальной горящий батальон",
       "factionArea": "Фракции ЧАЩИ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Burning Steel Battalion",
+      "factionAreaEn": "Factions of the THICKET"
     },
     {
       "id": "factions-card-82-278",
       "kind": "ability",
-      "title": "Меч, что видел Бога",
+      "title": "The Sword That Saw God",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -5918,15 +5924,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Меч, что видел Бога\nВы получаете Рийр, колоссальный вибромеч, для использования которого нужны особые\nтренировки. Он занимает кроме слота оружия ещё и слот рюкзака.",
+      "text": "The Sword That Saw God\nYou gain a Riir, a colossal vibrosword requiring special training to use. In addition to a weapon slot, it also occupies a backpack slot.",
       "factionName": "Высокородные Синего Древа",
       "factionArea": "Фракции ЧАЩИ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Highborn of the Blue Tree",
+      "factionAreaEn": "Factions of the THICKET"
     },
     {
       "id": "factions-card-83-279",
       "kind": "ability",
-      "title": "Книга свершений",
+      "title": "Riir",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -5935,15 +5943,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Книга свершений\nЗаписи о ваших подвигах ведутся и обсуждаются другими высокородными. Получите новое\nусловие восстановления: победить в ситуации, что казалась безвыходной.",
+      "text": "Riir\nStress: D12\nProperties: Heavy, Exhausting, One-Shot\nSpecial: Kills opponents of standard difficulty without needing to deal Stress. Against enemies of dangerous or greater difficulty, it always deals maximum Stress.\nRange: Close Combat",
       "factionName": "Рийр",
       "factionArea": "Фракции ЧАЩИ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Highborn of the Blue Tree",
+      "factionAreaEn": "Factions of the THICKET"
     },
     {
       "id": "factions-card-83-280",
       "kind": "ability",
-      "title": "Неиссякаемая отвага",
+      "title": "Book of Deeds",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -5952,15 +5962,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Неиссякаемая отвага\nВаша смелость пугает даже потусторонних существ Башни. В рискованной или более\nсложной ситуации перед броском вы можете действовать отчаянно. В таком случае, любые\nваши успехи и провалы станут критическими.",
+      "text": "Book of Deeds\nRecords of your exploits are kept and discussed by the other Highborn.\nGain a new recovery condition: triumph in a situation that appeared hopeless.",
       "factionName": "Рийр",
       "factionArea": "Фракции ЧАЩИ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Highborn of the Blue Tree",
+      "factionAreaEn": "Factions of the THICKET"
     },
     {
       "id": "factions-card-83-281",
       "kind": "ability",
-      "title": "Священная лампа",
+      "title": "Sacred Lamp",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -5969,15 +5981,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Священная лампа\nВаш отряд получает право носить священную лампу Единственного Сына. Кто-то в отряде\nобязан нести лампу, что занимает одну руку. Взамен весь отряд получает +3 защиты и +3\nслота в ДУХ и СУДЬБУ.",
+      "text": "Sacred Lamp\nYour squad gains the right to carry the sacred lamp of the Only Son.\nSomeone in the squad must carry the lamp, occupying one hand. In return, the entire squad gains +3 Protection and three additional slots in both SPIRIT and FATE.",
       "factionName": "Храмовые антисолдаты",
       "factionArea": "Фракции ЧАЩИ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Temple Antisoldiers",
+      "factionAreaEn": "Factions of the THICKET"
     },
     {
       "id": "factions-card-83-282",
       "kind": "ability",
-      "title": "Искренность суперсолдата",
+      "title": "A Supersoldier’s Sincerity",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -5986,15 +6000,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Искренность суперсолдата\nЕсли у вас есть малое последствие в РАЗУМ, вы получаете на ступень меньше стресса в\nПУЛИ. Если у вас есть значимое последствие в РАЗУМ, вы причиняете на ступень больше\nстресса атаками в рукопашном бою.",
+      "text": "A Supersoldier’s Sincerity\nIf you have Minor Fallout in MIND, you take Stress one step lower in BULLETS.\nIf you have Major Fallout in MIND, your close-combat attacks deal Stress one step higher.",
       "factionName": "Храмовые антисолдаты",
       "factionArea": "Фракции ЧАЩИ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Temple Antisoldiers",
+      "factionAreaEn": "Factions of the THICKET"
     },
     {
       "id": "factions-card-83-283",
       "kind": "ability",
-      "title": "Истовый",
+      "title": "Zealous",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6003,15 +6019,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Истовый\nРаз в сцену, можете при проверке прибавить стресс в РАЗУМЕ к самому большому\nрезультату на кости.",
+      "text": "Zealous\nOnce per scene, when making a check, you may add your current MIND Stress to the highest result on one of your dice.",
       "factionName": "Храмовые антисолдаты",
       "factionArea": "Фракции ЧАЩИ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Temple Antisoldiers",
+      "factionAreaEn": "Factions of the THICKET"
     },
     {
       "id": "factions-card-84-284",
       "kind": "ability",
-      "title": "Рассветы и закаты",
+      "title": "Sunrises and Sunsets",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6020,15 +6038,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Рассветы и закаты\nКаждая чётная сцена в течение сессии метафорически является днём, а каждая нечётная –\nночью. В начале каждой сцены дня, восстановите К8 стресса в ДУХЕ/РАЗУМЕ. В начале\nкаждой сцены ночи, восстановите К8 стресса в ПУЛЯХ/СУДЬБЕ.",
+      "text": "Sunrises and Sunsets\nEvery even-numbered scene during a session metaphorically counts as day, while every odd-numbered scene counts as night.\nAt the beginning of every day scene, restore D8 Stress in SPIRIT or MIND. At the beginning of every night scene, restore D8 Stress in BULLETS or FATE.",
       "factionName": "ЧВК Ядовитые Шляпы",
       "factionArea": "Фракции ПУСТОШИ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Poison Hats PMC",
+      "factionAreaEn": "Factions of the WASTELAND"
     },
     {
       "id": "factions-card-84-285",
       "kind": "ability",
-      "title": "РПРТР КРРР",
+      "title": "RPRTR KRRR",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6037,15 +6057,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► РПРТР КРРР\nВы получаете традиционную шляпу, пропитанную соком ядовитых трав для защиты от\nживущих на голове паразитов. Раз в сессию, вы можете сказать, что собеседник узнал вашу\nшляпу и уважает вашу группировку, до конца сцены все проверки ГОВОРИТЬ против него\nбудут совершаться с преимуществом.",
+      "text": "RPRTR KRRR\nYou gain a traditional hat soaked in the sap of poisonous herbs, protecting you from parasites that live on the head.\nOnce per session, you may declare that someone you are speaking to recognizes your hat and respects your faction. Until the end of the scene, all TALK checks against them are made with Advantage.",
       "factionName": "ЧВК Ядовитые Шляпы",
       "factionArea": "Фракции ПУСТОШИ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Poison Hats PMC",
+      "factionAreaEn": "Factions of the WASTELAND"
     },
     {
       "id": "factions-card-84-286",
       "kind": "ability",
-      "title": "Двойной удар",
+      "title": "Double Strike",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6054,15 +6076,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Двойной удар\nКогда вы выводите из строя противника, следующая проверка УБИВАТЬ или СКРЫВАТЬСЯ\nможет быть совершена с мастерством.",
+      "text": "Double Strike\nWhen you incapacitate an enemy, your next KILL or HIDE check may be made with Mastery.",
       "factionName": "ЧВК Ядовитые Шляпы",
       "factionArea": "Фракции ПУСТОШИ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Poison Hats PMC",
+      "factionAreaEn": "Factions of the WASTELAND"
     },
     {
       "id": "factions-card-84-287",
       "kind": "ability",
-      "title": "Я-Поющий Гром!",
+      "title": "I Am Singing Thunder!",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6071,15 +6095,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Я-Поющий Гром!\nВы приняли единое имя. Когда вы получаете последствие в шкалу РЕСУРСОВ, связанное с\nсоциальным осуждением или преследованием, вы можете от него отказаться, но получите\nстресс в контакт на выбор ведущего – к6 за малое, к8 за значимое и к12 за роковое.",
+      "text": "I Am Singing Thunder!\nYou have adopted the shared name.\nWhen you receive Fallout in RESOURCES connected to public condemnation or persecution, you may refuse it. If you do, take Stress to a Contact chosen by the GM: D6 for Minor Fallout, D8 for Major Fallout, or D12 for Doom Fallout.",
       "factionName": "Поющие Громы",
       "factionArea": "Фракции ПУСТОШИ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Singing Thunders",
+      "factionAreaEn": "Factions of the WASTELAND"
     },
     {
       "id": "factions-card-84-288",
       "kind": "ability",
-      "title": "Засадная тактика",
+      "title": "Ambush Tactics",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6088,15 +6114,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Засадная тактика\nКогда вы атакуете из засады, вы, вдобавок к мастерству, причиняете на ступень больше\nстресса до конца сцены.",
+      "text": "Ambush Tactics\nWhen you attack from an ambush, you deal Stress one step higher until the end of the scene, in addition to gaining Mastery.",
       "factionName": "Поющие Громы",
       "factionArea": "Фракции ПУСТОШИ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Singing Thunders",
+      "factionAreaEn": "Factions of the WASTELAND"
     },
     {
       "id": "factions-card-84-289",
       "kind": "ability",
-      "title": "Система забвения",
+      "title": "Oblivion System",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6105,15 +6133,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Система забвения\nРаз в сессию, вы можете назваться чужим именем. Вас примут за своего без нужды в\nпроверке ГОВОРИТЬ, но первый в сцене провал будет критическим и разрушит вашу\nлегенду.",
+      "text": "Oblivion System\nOnce per session, you may introduce yourself under someone else’s name. You will be accepted as one of their own without needing a TALK check.\nHowever, your first failure during the scene becomes a critical failure and destroys your cover.",
       "factionName": "Поющие Громы",
       "factionArea": "Фракции ПУСТОШИ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Singing Thunders",
+      "factionAreaEn": "Factions of the WASTELAND"
     },
     {
       "id": "factions-card-85-290",
       "kind": "ability",
-      "title": "Малые проклятия",
+      "title": "Minor Curses",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6122,15 +6152,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Малые проклятия\nВы получаете значимое последствие в шкалу ДУХ – набор добровольных проклятий. Раз в\nсессию, ведущий может сказать, что одно из них вам помешало и понизить степень успеха\nброска на одну ступень. Взамен вы получаете +5 слотов и +4 защиты в ДУХ, пока это\nпоследствие при вас.",
+      "text": "Minor Curses\nYou receive Major Fallout in SPIRIT: a collection of voluntarily accepted curses.\nOnce per session, the GM may declare that one of these curses interferes with you and reduce the degree of success of a roll by one step.\nIn return, you gain five additional slots and +4 Protection in SPIRIT for as long as you retain this Fallout.",
       "factionName": "Эзогончие ББББ",
       "factionArea": "Фракции ПУСТОШИ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "BBBB Exohounds",
+      "factionAreaEn": "Factions of the WASTELAND"
     },
     {
       "id": "factions-card-85-291",
       "kind": "ability",
-      "title": "Собачья песня",
+      "title": "Hound Song",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6139,15 +6171,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Собачья песня\nРаз в сессию, особым длительным песнопением вы перемешиваете имена всех\nучаствующих в ритуале. Поменяйте имена в листах персонажа. До конца сцены, когда кто-\nто из певших песню должен получить стресс или последствие в ДУХ или ПУЛИ от\nвражеской магии, его может забрать другой.",
+      "text": "Hound Song\nOnce per session, you may perform a prolonged ritual chant that mixes the names of everyone participating. Exchange the names written on the characters’ sheets.\nUntil the end of the scene, whenever one of the singers would take Stress or Fallout in SPIRIT or BULLETS from hostile magic, another singer may take it instead.",
       "factionName": "Эзогончие ББББ",
       "factionArea": "Фракции ПУСТОШИ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "BBBB Exohounds",
+      "factionAreaEn": "Factions of the WASTELAND"
     },
     {
       "id": "factions-card-85-292",
       "kind": "ability",
-      "title": "Арсенал охотника",
+      "title": "Hunter’s Arsenal",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6156,15 +6190,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Арсенал охотника\nВы получаете особенным образом модифицированную ракетную установку с\nантимагическими боеприпасами.",
+      "text": "Hunter’s Arsenal\nYou gain a specially modified rocket launcher loaded with anti-magic ammunition.",
       "factionName": "Эзогончие ББББ",
       "factionArea": "Фракции ПУСТОШИ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "BBBB Exohounds",
+      "factionAreaEn": "Factions of the WASTELAND"
     },
     {
       "id": "factions-card-85-293",
       "kind": "ability",
-      "title": "Испытание саблей",
+      "title": "Trial by Saber",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6173,15 +6209,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Испытание саблей\nКогда вы атакуете тяжёлым оружием ближнего боя, вы причиняете на ступень больше\nстресса врагам, что сражаются с похожим оружием.\n169",
+      "text": "Trial by Saber\nWhen you attack with a heavy close-combat weapon, you deal Stress one step higher to enemies wielding similar weapons.",
       "factionName": "Ягодная Стража",
       "factionArea": "Фракции ВОЛН",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Berry Guard",
+      "factionAreaEn": "Factions of the WAVES"
     },
     {
       "id": "factions-card-86-294",
       "kind": "ability",
-      "title": "Отвар из ягод",
+      "title": "Berry Brew",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6190,15 +6228,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Отвар из ягод\nМногие виды ягод на грани исчезновения из-за действий корпораций, но вы их храните. Раз\nв сессию, вы можете сварить алхимический отвар, это не требует проверки, но занимает\nзначимое время. Выпивший отвар получает мастерство на любой навык по выбору до\nконца сцены, отвары не имеют срока годности, но занимают слот ресурса.",
+      "text": "Berry Brew\nMany varieties of berries are on the brink of extinction because of corporate activity, but you preserve them.\nOnce per session, you may prepare an alchemical brew. This requires no check but takes a significant amount of time. Anyone who drinks it gains Mastery in one Skill of their choice until the end of the scene.\nThe brews do not expire, but each occupies a resource slot.",
       "factionName": "Ягодная Стража",
       "factionArea": "Фракции ВОЛН",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Berry Guard",
+      "factionAreaEn": "Factions of the WAVES"
     },
     {
       "id": "factions-card-86-295",
       "kind": "ability",
-      "title": "Теория жизни",
+      "title": "Theory of Life",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6207,15 +6247,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Теория жизни\nКогда вы встречаете неизведанное существо, вы получаете мастерство на все броски,\nсвязанные с его нелетальной поимкой, допросом и изучением. Это никогда не оказывается\nнастоящий инопланетянин, только чудовище из Башни, сбежавший эксперимент\nкорпораций, или мутировавший от вселившихся духов человек.",
+      "text": "Theory of Life\nWhen you encounter an unknown creature, you gain Mastery on all rolls connected with capturing it alive, interrogating it, or studying it.\nIt never turns out to be a real alien—only a monster from the Tower, an escaped corporate experiment, or a human mutated by possessing spirits.",
       "factionName": "Ягодная Стража",
       "factionArea": "Фракции ВОЛН",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Berry Guard",
+      "factionAreaEn": "Factions of the WAVES"
     },
     {
       "id": "factions-card-86-296",
       "kind": "ability",
-      "title": "Достойная смерть",
+      "title": "A Worthy Death",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6224,15 +6266,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Достойная смерть\nРаз в сессию, когда вы сражаетесь с сильным врагом, или восхождением, вы можете\nсказать, что они уважают ваше право умереть достойно. До конца сцены, когда вы\nполучаете от него стресс, вы причиняете ему стресс с такой же костью.\n170",
+      "text": "A Worthy Death\nOnce per session, when fighting a powerful enemy or an ASCENT, you may declare that it respects your right to die with dignity.\nUntil the end of the scene, whenever it deals Stress to you, you deal Stress to it using a die of the same size.",
       "factionName": "ЧВК Фаталисты",
       "factionArea": "Фракции ВОЛН",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Fatalists PMC",
+      "factionAreaEn": "Factions of the WAVES"
     },
     {
       "id": "factions-card-86-297",
       "kind": "ability",
-      "title": "Трофей раба судьбы",
+      "title": "Trophy of Fate’s Slave",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6241,15 +6285,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Трофей раба судьбы\nВ начале сцены бросьте К6. Один раз до конца сцены вы можете заменить его результатом\nлюбой результат на брошенной вами кости.",
+      "text": "Trophy of Fate’s Slave\nAt the beginning of the scene, roll a D6. Once before the end of the scene, you may replace the result of any die you roll with this result.",
       "factionName": "ЧВК Фаталисты",
       "factionArea": "Фракции ВОЛН",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Fatalists PMC",
+      "factionAreaEn": "Factions of the WAVES"
     },
     {
       "id": "factions-card-86-298",
       "kind": "ability",
-      "title": "Зима дышит в спину",
+      "title": "Winter at Your Back",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6258,15 +6304,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Зима дышит в спину\nВы ближе к миру мёртвых, чем остальные. Когда рядом погибает человек, вы можете\nвосстановить К6 в РАЗУМ, ДУХ, или СУДЬБУ. Вам всегда очень холодно.",
+      "text": "Winter at Your Back\nYou are closer to the world of the dead than most. When a person dies nearby, you may restore D6 Stress in MIND, SPIRIT, or FATE.\nYou are always extremely cold.",
       "factionName": "ЧВК Фаталисты",
       "factionArea": "Фракции ВОЛН",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Fatalists PMC",
+      "factionAreaEn": "Factions of the WAVES"
     },
     {
       "id": "factions-card-87-299",
       "kind": "ability",
-      "title": "Тайные испытания",
+      "title": "Secret Testing",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6275,15 +6323,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Тайные испытания\nВы не производите излучения. Вы совершаете с мастерством проверки СКРЫВАТЬСЯ\nпротив машин, камер и сильно кибернетизированных бойцов.",
+      "text": "Secret Testing\nYou emit no radiation. You make HIDE checks with Mastery against machines, cameras, and heavily cybernetic fighters.",
       "factionName": "Хашахсотские мученики",
       "factionArea": "Фракции ВОЛН",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Martyrs of Hashahsot",
+      "factionAreaEn": "Factions of the WAVES"
     },
     {
       "id": "factions-card-87-300",
       "kind": "ability",
-      "title": "Осколок",
+      "title": "The Shard",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6292,15 +6342,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Осколок\nОсколок храма занимает слот снаряжения. Пока вы его несёте, вы получаете в СУДЬБУ на\nступень больше стресса и не можете пользоваться защитой и дополнительными слотами в\nэтой шкале. Раз в сцену, вы выбираете другое сопротивление, вы получаете в него на\nступень меньше стресса до конца сцены.",
+      "text": "The Shard\nThe temple shard occupies one equipment slot.\nWhile carrying it, you take FATE Stress one step higher and cannot benefit from Protection or additional slots in that Resistance.\nOnce per scene, choose another Resistance. Until the end of the scene, you take Stress to it one step lower.",
       "factionName": "Хашахсотские мученики",
       "factionArea": "Фракции ВОЛН",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Martyrs of Hashahsot",
+      "factionAreaEn": "Factions of the WAVES"
     },
     {
       "id": "factions-card-87-301",
       "kind": "ability",
-      "title": "Иссушенный",
+      "title": "Desiccated",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6309,15 +6361,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Иссушенный\nВы получаете на ступень меньше стресса от неблагоприятных условий: от жары и холода\nдо ядовитого газа.",
+      "text": "Desiccated\nYou take Stress one step lower from hostile environmental conditions, including extreme heat, cold, and poisonous gas.",
       "factionName": "Хашахсотские мученики",
       "factionArea": "Фракции ВОЛН",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Martyrs of Hashahsot",
+      "factionAreaEn": "Factions of the WAVES"
     },
     {
       "id": "factions-card-87-302",
       "kind": "ability",
-      "title": "Оформить задним числом",
+      "title": "Backdate the Paperwork",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6326,15 +6380,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Оформить задним числом\nРаз в сессию, когда вы должны потратить ресурс, вы можете его не потратить, сказав, что\nвторой такой же просто не записали в накладной.",
+      "text": "Backdate the Paperwork\nOnce per session, when you would have to spend a resource, you may keep it by declaring that the second identical item was simply omitted from the invoice.",
       "factionName": "Бюроманты Двухвостой Змеи",
       "factionArea": "Фракции Горизонта",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Bureaumancers of the Two-Tailed Serpent",
+      "factionAreaEn": "Factions of the HORIZON"
     },
     {
       "id": "factions-card-87-303",
       "kind": "ability",
-      "title": "Гриф «не срочно»",
+      "title": "“Not Urgent” Classification",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6343,15 +6399,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Гриф «не срочно»\nРаз в сцену выберите последствие. Оно у вас остаётся, но вступает в силу только в начале\nследующей сцены.",
+      "text": "“Not Urgent” Classification\nOnce per scene, choose one of your Fallout effects. It remains with you, but does not take effect until the beginning of the next scene.",
       "factionName": "Бюроманты Двухвостой Змеи",
       "factionArea": "Фракции Горизонта",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Bureaumancers of the Two-Tailed Serpent",
+      "factionAreaEn": "Factions of the HORIZON"
     },
     {
       "id": "factions-card-87-304",
       "kind": "ability",
-      "title": "Подробная документация",
+      "title": "Detailed Documentation",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6360,15 +6418,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Подробная документация\nРаз в сессию, вы можете быстро составить чёткий план действий и объяснить его\nтоварищам. До конца сцены, вы совершаете все проверки с мастерством до первой\nпровалившейся проверки. После её провала вы получаете на ступень больше стресса до\nконца сцены.",
+      "text": "Detailed Documentation\nOnce per session, you may rapidly prepare a clear plan of action and explain it to your comrades.\nUntil the end of the scene, you make every check with Mastery until you fail your first check. After that failure, you take Stress one step higher until the end of the scene.",
       "factionName": "Бюроманты Двухвостой Змеи",
       "factionArea": "Фракции Горизонта",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Bureaumancers of the Two-Tailed Serpent",
+      "factionAreaEn": "Factions of the HORIZON"
     },
     {
       "id": "factions-card-88-305",
       "kind": "ability",
-      "title": "Достойный наследник",
+      "title": "Worthy Heir",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6377,15 +6437,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Достойный наследник\nВыберите навык, в котором имеете мастерство. Кость мастерства этого навыка теперь не\nдобавляется в общий пул, вместо этого её результат суммируется с костью с наивысшим\nрезультатом.",
+      "text": "Worthy Heir\nChoose a Skill in which you have Mastery.\nThe Mastery die for that Skill is no longer added to the general dice pool. Instead, its result is added to the die with the highest result.",
       "factionName": "Новые Герои",
       "factionArea": "Фракции Горизонта",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "New Heroes",
+      "factionAreaEn": "Factions of the HORIZON"
     },
     {
       "id": "factions-card-88-306",
       "kind": "ability",
-      "title": "Стыд перед предками",
+      "title": "Shame Before the Ancestors",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6394,15 +6456,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Стыд перед предками\nРаз в сцену после проваленной проверки вы можете сказать, что слышите в голове\nосуждающее эхо предка. Вы перебрасываете проверку и получаете К6 стресса в РАЗУМ.\nВы можете делать это сколько угодно раз в сессию, но с каждым применением кость\nстресса в РАЗУМ повышается на ступень.",
+      "text": "Shame Before the Ancestors\nOnce per scene, after failing a check, you may declare that you hear the condemning echo of an ancestor in your mind.\nReroll the check and take D6 Stress in MIND. You may use this ability any number of times during a session, but the MIND Stress die increases by one step with every use.",
       "factionName": "Новые Герои",
       "factionArea": "Фракции Горизонта",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "New Heroes",
+      "factionAreaEn": "Factions of the HORIZON"
     },
     {
       "id": "factions-card-88-307",
       "kind": "ability",
-      "title": "Новые легенды",
+      "title": "New Legends",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6411,15 +6475,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Новые легенды\nРаз в сессию, когда вы совершаете опасное или роковое действие, вы можете принять\nуспех с ценой. Опишите это действие как часть легенды о герое.\nВы можете выбрать, кто именно с вашей родины будет рассказывать об этом подвиге,\nнапример ваша младшая сестра, школьный учитель, солдат в отставке или мудрец-\nотшельник. Перенеситесь в сцену с рассказом и опишите реакцию слушателей.",
+      "text": "New Legends\nOnce per session, when performing a dangerous or doom action, you may accept a success with a cost. Describe this action as part of a legend about your hero.\nChoose who in your homeland will tell the story of this deed: your younger sister, a schoolteacher, a retired soldier, a hermit sage, or someone else.\nCut to the scene in which the story is told and describe the listeners’ reactions.",
       "factionName": "Новые Герои",
       "factionArea": "Фракции Горизонта",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "New Heroes",
+      "factionAreaEn": "Factions of the HORIZON"
     },
     {
       "id": "factions-card-88-308",
       "kind": "ability",
-      "title": "Шлем-куб",
+      "title": "Cube Helmet",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6428,15 +6494,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Шлем-куб\nВы получаете полный шлем с +3 защитой и +3 слотами в ПУЛИ. Благодаря встроенным в\nнего системам наведения для тяжёлого оружия и баллистическим калькуляторам, всё ваше\nтактическое оружие и артиллерийские удары получают свойство стабильный.",
+      "text": "Cube Helmet\nYou gain a full helmet providing +3 Protection and three additional slots in BULLETS.\nIts heavy-weapon targeting systems and ballistic computers give all your tactical weapons and artillery strikes the Stable property.",
       "factionName": "Голодная Сотня",
       "factionArea": "Фракции Горизонта",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Hungry Hundred",
+      "factionAreaEn": "Factions of the HORIZON"
     },
     {
       "id": "factions-380-88-309",
       "kind": "ability",
-      "title": "380-мм реприза",
+      "title": "380 mm Reprise",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6445,15 +6513,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► 380-мм реприза\nВы получаете снаряжение — красный трансреальностный маячок, запускаемую из\nсигнального пистолета систему наводки артиллерии на основе артефакта из Башни. Вы\nможете использовать его раз в сцену проверкой УБИВАТЬ и всегда получаете\nдополнительно к8 стресса в РЕСУРСЫ. При атаке вы должны вплести врагов и себя в часть\nпостановки для стороннего наблюдателя, иначе получите на ступень стресса в РЕСУРСЫ\nбольше.\nТяжёлая артиллерия\nСтресс: К12\nСвойства: Мошный, разброс, бронебойный (6), подавление, осадный, громкий\nДистанция: Дальняя",
+      "text": "380 mm Reprise\nYou gain a piece of equipment: a red transreality beacon fired from a flare pistol, which uses an artifact from the Tower to guide artillery.\nYou may use it once per scene with a KILL check, always taking an additional D8 Stress in RESOURCES. During the attack, you must weave both yourself and your enemies into part of a performance intended for an outside observer. Otherwise, the additional RESOURCES Stress increases by one step.",
       "factionName": "Голодная Сотня",
       "factionArea": "Фракции Горизонта",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Hungry Hundred",
+      "factionAreaEn": "Factions of the HORIZON"
     },
     {
       "id": "factions-120-88-310",
       "kind": "ability",
-      "title": "120-мм дивертисмент",
+      "title": "Heavy Artillery",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6462,15 +6532,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► 120-мм дивертисмент\nВы получаете снаряжение — зелёный трансреальностный маячок, запускаемую из\nсигнального пистолета систему наводки артиллерии на основе артефакта из Башни. Вы\nможете использовать его раз в сцену проверкой УБИВАТЬ и всегда получаете\nдополнительно к8 стресса в РЕСУРСЫ. При атаке вы должны вплести врагов и себя в часть\nпостановки для стороннего наблюдателя, иначе получите на ступень стресса в РЕСУРСЫ\nбольше.\nТочечный выстрел\nСтресс: К12\nСвойства: Мощный, бронебойный (8), осадный, точный, автоматический, дуэльный,\nгромкий\nДистанция: Дальняя\n175",
+      "text": "Heavy Artillery\nStress: D12\nProperties: Powerful, Scatter, Armor-Piercing (6), Suppression, Siege, Loud\nRange: Long",
       "factionName": "Голодная Сотня",
       "factionArea": "Фракции Горизонта",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Hungry Hundred",
+      "factionAreaEn": "Factions of the HORIZON"
     },
     {
       "id": "factions-card-89-311",
       "kind": "ability",
-      "title": "Переходя земли и моря",
+      "title": "Across Lands and Seas",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6479,15 +6551,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Переходя земли и моря\nКогда вы работаете на фракции с противоположными интересами, вы получаете на ступень\nменьше стресса в СУДЬБУ и РЕСУРСЫ.\n176",
+      "text": "Across Lands and Seas\nWhen you work for factions with opposing interests, you take Stress in FATE and RESOURCES one step lower.",
       "factionName": "ЧВК Звездочёты",
       "factionArea": "Фракции АРМИИ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Stargazers PMC",
+      "factionAreaEn": "Factions of the ARMY"
     },
     {
       "id": "factions-card-89-312",
       "kind": "ability",
-      "title": "Костяное созвездие",
+      "title": "Bone Constellation",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6496,15 +6570,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Костяное созвездие\nВ течение сцены, в которой погиб или был тяжело ранен другой человек, вы можете\nпровести ритуал с песней, поеданием плоти и построением созвездий в странной\nгалактике, которую видите только вы с братьями по оружию.\nРаз в сессию бросьте кость К10, при нечётном результате вас ждёт неудача и вы к ней\nготовы: до конца сессии, получив критический провал или провал, вы можете сказать, что\nпредвидели его и заменить его на успех с ценой. При чётном результате вас ждёт успех:\nполучив успех с ценой или успех, вы можете заменить его на критический успех.",
+      "text": "Bone Constellation\nDuring a scene in which another person has died or been severely wounded, you may conduct a ritual involving song, the consumption of flesh, and the construction of constellations in a strange galaxy visible only to you and your comrades-in-arms.\nOnce per session, roll a D10.\nOn an odd result, failure awaits you, and you are prepared for it. Until the end of the session, whenever you receive a failure or critical failure, you may declare that you foresaw it and replace it with a success with a cost.\nOn an even result, success awaits you. Until the end of the session, whenever you receive a success or success with a cost, you may replace it with a critical success.",
       "factionName": "ЧВК Звездочёты",
       "factionArea": "Фракции АРМИИ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Stargazers PMC",
+      "factionAreaEn": "Factions of the ARMY"
     },
     {
       "id": "factions-card-89-313",
       "kind": "ability",
-      "title": "Ясновидящее мясо",
+      "title": "Clairvoyant Flesh",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6513,15 +6589,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Ясновидящее мясо\nВ течение сессии, в которой вы ели человеческую плоть, вы можете один раз узнать, кто из\nперсонажей ведущего в сцене наиболее опасен, ранен, напуган, или важен для сцены.",
+      "text": "Clairvoyant Flesh\nDuring a session in which you have eaten human flesh, you may once learn which GM character in the scene is the most dangerous, wounded, frightened, or important to the scene.",
       "factionName": "ЧВК Звездочёты",
       "factionArea": "Фракции АРМИИ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Stargazers PMC",
+      "factionAreaEn": "Factions of the ARMY"
     },
     {
       "id": "factions-card-90-314",
       "kind": "ability",
-      "title": "Ключ от всех дверей",
+      "title": "Key to Every Door",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6530,15 +6608,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Ключ от всех дверей\nВы несёте выкованный из танка гигантский ключ, он занимает слот снаряжения. Он может\nбез нужды в проверке открыть любую дверь, но вы обязательно получите К8 стресса в\nСУДЬБУ.",
+      "text": "Key to Every Door\nYou carry a gigantic key forged from a tank. It occupies one equipment slot.\nIt can open any door without requiring a check, but doing so always causes you D8 Stress in FATE.",
       "factionName": "Коронованные Удары",
       "factionArea": "Фракции АРМИИ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Crowned Strikes",
+      "factionAreaEn": "Factions of the ARMY"
     },
     {
       "id": "factions-card-90-315",
       "kind": "ability",
-      "title": "Злая месть",
+      "title": "Spiteful Vengeance",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6547,15 +6627,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Злая месть\nВы можете разогнать ярость, которая поддерживает в вас жизнь. Раз в сцену, вы можете\nповысить сложность действия на одну ступень, чтобы повысить причиняемый стресс на две\nступени.",
+      "text": "Spiteful Vengeance\nYou can intensify the rage that keeps you alive.\nOnce per scene, you may increase the difficulty of an action by one step to increase the Stress it deals by two steps.",
       "factionName": "Коронованные Удары",
       "factionArea": "Фракции АРМИИ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Crowned Strikes",
+      "factionAreaEn": "Factions of the ARMY"
     },
     {
       "id": "factions-card-90-316",
       "kind": "ability",
-      "title": "Призрачный танк",
+      "title": "Spectral Tank",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6564,15 +6646,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Призрачный танк\nРаз в сцену, вы можете проверкой КОЛДОВАТЬ призвать часть призрачного танка,\nнапример гусеницы, фару, бронелист, или пушку. При провале вы можете попытаться снова,\nно успешных использований не может быть больше одного в сцене.\nВыберите эффект:\n— Атака К12 со свойствами громкий, мощный, разброс и осадный\n— Атака К10 со свойствами громкий, мощный, автоматический и подавление\n— +5 защиты и +2 слота в ПУЛИ до конца сцены одному из персонажей в группе на выбор\n— Действие К10 ПРОБИВАТЬСЯ со свойствами громкий, мощный и стабильный\n— Заставить работать выключенную технику без топлива\n178",
+      "text": "Spectral Tank\nOnce per scene, you may make a CAST check to summon part of a spectral tank, such as its tracks, headlight, armor plate, or gun.\nYou may try again after a failure, but the ability cannot be used successfully more than once per scene.\nChoose one effect:\nMake a D12 attack with Loud, Powerful, Scatter, and Siege.\nMake a D10 attack with Loud, Powerful, Automatic, and Suppression.\nGive one chosen character in the group +5 Protection and two additional slots in BULLETS until the end of the scene.\nPerform a D10 ASCEND action with Loud, Powerful, and Stable.\nMake disabled machinery function without fuel.",
       "factionName": "Коронованные Удары",
       "factionArea": "Фракции АРМИИ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Crowned Strikes",
+      "factionAreaEn": "Factions of the ARMY"
     },
     {
       "id": "factions-card-90-317",
       "kind": "ability",
-      "title": "Рекламная пауза",
+      "title": "Commercial Break",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6581,15 +6665,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Рекламная пауза\nРаз в сцену вы можете громко выкрикнуть спонсорскую фразу, сделать фирменный жест,\nили проиграть на киберглазах заставку. Враги на мгновение теряются: один союзник может\nсменить позицию, перезарядиться или сделать другую небоевую проверку нормальной по\nсложности.",
+      "text": "Commercial Break\nOnce per scene, you may loudly shout a sponsor’s slogan, perform a trademark gesture, or display an intro sequence on your cybereyes.\nThe enemies become confused for a moment. One ally may change position, reload, or make another noncombat check at normal difficulty.",
       "factionName": "Общество «Цепи»",
       "factionArea": "Фракции АРМИИ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "The Chains Society",
+      "factionAreaEn": "Factions of the ARMY"
     },
     {
       "id": "factions-card-90-318",
       "kind": "ability",
-      "title": "Спонсорская печать",
+      "title": "Sponsor’s Seal",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6598,15 +6684,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Спонсорская печать\nСовершая рискованное и более сложное действие, вы можете сказать рекламный слоган.\nПри успехе вы причините на ступень больше стресса благодаря магии спонсора, при\nпровале ролик с вашей неудачей становится крайне популярным: вы восстанавливаете К10\nстресса в РЕСУРСЫ.\n179",
+      "text": "Sponsor’s Seal\nWhen performing a risky or more difficult action, you may recite an advertising slogan.\nOn a success, the sponsor’s magic causes you to deal Stress one step higher.\nOn a failure, footage of your mistake becomes extremely popular, and you restore D10 Stress in RESOURCES.",
       "factionName": "Общество «Цепи»",
       "factionArea": "Фракции АРМИИ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "The Chains Society",
+      "factionAreaEn": "Factions of the ARMY"
     },
     {
       "id": "factions-card-91-319",
       "kind": "ability",
-      "title": "Знаток-обзорщик",
+      "title": "Expert Reviewer",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6615,15 +6703,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Знаток-обзорщик\nВы прекрасно разбираетесь в военном снаряжении, и на многое у вас есть видеообзоры.\nКогда вы продаёте или покупаете снаряжение, при успехе проверки ГОВОРИТЬ вы можете\nпродать его на ступень дороже, или купить на ступень дешевле.",
+      "text": "Expert Reviewer\nYou are highly knowledgeable about military equipment and have produced video reviews of many different items.\nWhen buying or selling equipment, a successful TALK check allows you to sell it at one value step higher or purchase it at one value step lower.",
       "factionName": "Общество «Цепи»",
       "factionArea": "Фракции АРМИИ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "The Chains Society",
+      "factionAreaEn": "Factions of the ARMY"
     },
     {
       "id": "factions-card-91-320",
       "kind": "ability",
-      "title": "Быстрая кладка",
+      "title": "Rapid Masonry",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6632,15 +6722,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Быстрая кладка\nПройдя проверку ТЕХНИЧИТЬ и потратив К8 или более ценный ресурс, вы можете\nблагодаря магии тёмных строителей быстро возвести постройку, которая будет давать\nмастерство к вашим броскам до первого проваленного броска. Например, это может быть\nбаррикада для помощи в УБИВАТЬ, или лестница для ПРОБИВАТЬСЯ.",
+      "text": "Rapid Masonry\nAfter passing a TECH check and spending a D8 or more valuable resource, you may use the magic of the Dark Builders to rapidly erect a structure.\nThe structure grants Mastery to relevant rolls until the first failed roll. For example, it might be a barricade that assists KILL or a ladder that assists ASCEND.",
       "factionName": "Тёмные строители",
       "factionArea": "Фракции БЕЗУМИЯ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Dark Builders",
+      "factionAreaEn": "Factions of MADNESS"
     },
     {
       "id": "factions-card-91-321",
       "kind": "ability",
-      "title": "Важная постройка",
+      "title": "Important Construction",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6649,15 +6741,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Важная постройка\nПройдя проверку ТЕХНИЧИТЬ и потратив К12 ресурс, вы можете через сложные ритуалы\nтёмных строителей возвести в оазисе сложную комплексную постройку, она будет готова\nтолько к началу следующей сессии, но ваша работа займёт только одну сцену. Выберите\nтовар или услугу, продающуюся в оазисе, например исцеление в РАЗУМ, или оружие, или\nпредметы для путешествий. Товары этой категории теперь стоят в этом оазисе на одну\nступень дешевле при покупке.",
+      "text": "Important Construction\nAfter passing a TECH check and spending a D12 resource, you may use the complex rituals of the Dark Builders to erect an elaborate structure in an oasis.\nIt will not be ready until the beginning of the next session, though your work takes only one scene.\nChoose a type of product or service sold in the oasis, such as MIND treatment, weapons, or travel equipment. Purchasing goods from that category in this oasis now costs one value step less.",
       "factionName": "Тёмные строители",
       "factionArea": "Фракции БЕЗУМИЯ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Dark Builders",
+      "factionAreaEn": "Factions of MADNESS"
     },
     {
       "id": "factions-card-91-322",
       "kind": "ability",
-      "title": "Союз",
+      "title": "Union",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6666,15 +6760,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Союз\nВы стираете границу между человеком и зданием. Вы получаете +1 защиты и +1 слот в\nПУЛИ, а также возможность слышать сквозь толстые стены и проверкой ПРОБИВАТЬСЯ\nпроходить через бетонные стены без вреда для обеих сторон.",
+      "text": "Union\nYou erase the boundary between human and building.\nYou gain +1 Protection and one additional slot in BULLETS. You can also hear through thick walls and use an ASCEND check to pass through concrete walls without harming yourself or the wall.",
       "factionName": "Тёмные строители",
       "factionArea": "Фракции БЕЗУМИЯ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Dark Builders",
+      "factionAreaEn": "Factions of MADNESS"
     },
     {
       "id": "factions-card-92-323",
       "kind": "ability",
-      "title": "Посредник",
+      "title": "Mediator",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6683,15 +6779,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Посредник\nВы можете немного, но понимать существ Башни, в основном – пытающихся казаться\nлюдьми. Вы можете без проверки добиться простого понимания, например перемирия до\nконца сцены, права пройти мимо за оплату, или возможности задать один вопрос.",
+      "text": "Mediator\nYou possess a limited ability to understand creatures of the Tower, particularly those attempting to appear human.\nWithout making a check, you can establish simple mutual understanding: a truce until the end of the scene, permission to pass in exchange for payment, or the opportunity to ask one question.",
       "factionName": "Секреты Короля",
       "factionArea": "Фракции БЕЗУМИЯ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Secrets of the King",
+      "factionAreaEn": "Factions of MADNESS"
     },
     {
       "id": "factions-card-92-324",
       "kind": "ability",
-      "title": "Приёмная перчатка",
+      "title": "Adoptive Glove",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6700,15 +6798,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Приёмная перчатка\nВас приняли в общину, это со временем дало вам инстинктивное понимание природы тайн\nи загадок. Когда кто-то из группы задаёт вопрос ведущему через способность персонажа,\nвы восстанавливаете К8 в ДУХЕ и РАЗУМЕ.",
+      "text": "Adoptive Glove\nYou have been accepted into the community. Over time, this has given you an instinctive understanding of secrets and riddles.\nWhenever someone in the group asks the GM a question through a character ability, you restore D8 Stress in both SPIRIT and MIND.",
       "factionName": "Секреты Короля",
       "factionArea": "Фракции БЕЗУМИЯ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Secrets of the King",
+      "factionAreaEn": "Factions of MADNESS"
     },
     {
       "id": "factions-card-92-325",
       "kind": "ability",
-      "title": "Благословение Короля",
+      "title": "Blessing of the King",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6717,15 +6817,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Благословение Короля\nКороль-в-камуфляже награждает вас силой скрываться от взора. Раз в сцену, вы можете\nперебросить проверку СКРЫВАТЬСЯ. Вы пристрастились к коллекционированию перчаток.\n182",
+      "text": "Blessing of the King\nThe King-in-Camouflage grants you the power to hide from sight.\nOnce per scene, you may reroll a HIDE check. You have developed an addiction to collecting gloves.",
       "factionName": "Секреты Короля",
       "factionArea": "Фракции БЕЗУМИЯ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Secrets of the King",
+      "factionAreaEn": "Factions of MADNESS"
     },
     {
       "id": "factions-card-92-326",
       "kind": "ability",
-      "title": "Транс-хрональный доспех",
+      "title": "Transchronal Armor",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6734,15 +6836,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Транс-хрональный доспех\nНа внутренней стороне вашей брони написаны имена нерождённых детей. Раз в сцену,\nкогда вы получаете стресс в ПУЛИ, вы можете перенести его в СУДЬБУ и снизить на одну\nступень.",
+      "text": "Transchronal Armor\nThe names of unborn children are written inside your armor.\nOnce per scene, when you take Stress in BULLETS, you may transfer it to FATE and reduce it by one step.",
       "factionName": "Контр-шаманы Царицы-закат",
       "factionArea": "Фракции БЕЗУМИЯ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Counter-Shamans of the Sunset Queen",
+      "factionAreaEn": "Factions of MADNESS"
     },
     {
       "id": "factions-card-92-327",
       "kind": "ability",
-      "title": "Пустое пророчество",
+      "title": "Empty Prophecy",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6751,15 +6855,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Пустое пророчество\nВы существуете только в текущем моменте и ясновидение вас не учитывает. Раз в сессию,\nкогда кто-то из группы пользуется предсказанием, вы можете сказать, что предсказание не\nвидело вашего вклада и увеличить степень успеха гадания на одну ступень.",
+      "text": "Empty Prophecy\nYou exist only in the present moment, and clairvoyance does not account for you.\nOnce per session, when someone in the group uses a prediction, you may declare that the prediction failed to see your contribution and increase the divination’s degree of success by one step.",
       "factionName": "Контр-шаманы Царицы-закат",
       "factionArea": "Фракции БЕЗУМИЯ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Counter-Shamans of the Sunset Queen",
+      "factionAreaEn": "Factions of MADNESS"
     },
     {
       "id": "factions-card-92-328",
       "kind": "ability",
-      "title": "Бой нематериальному!",
+      "title": "Fight the Immaterial!",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6768,15 +6874,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Бой нематериальному!\nРаз в сцену, вы можете сказать, что чувствуете рядом духа местности. Он будет вам\nмешать, повышая сложность проверок на одну ступень, но за каждую проваленную таким\nобразом проверку вы получите К8 ресурс при поимке духа.\n183",
+      "text": "Fight the Immaterial!\nOnce per scene, you may declare that you sense a local spirit nearby.\nIt interferes with you, increasing the difficulty of your checks by one step. Once the spirit is captured, you gain one D8 resource for every check failed because of this interference.",
       "factionName": "Контр-шаманы Царицы-закат",
       "factionArea": "Фракции БЕЗУМИЯ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Counter-Shamans of the Sunset Queen",
+      "factionAreaEn": "Factions of MADNESS"
     },
     {
       "id": "factions-card-93-329",
       "kind": "ability",
-      "title": "Позовём – и все пойдут за нами",
+      "title": "We Will Call—and All Will Follow",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6785,15 +6893,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Позовём – и все пойдут за нами\nБашня – главная угроза миру и вы не устаёте об этом напоминать. Вы совершает с\nмастерством проверки ГОВОРИТЬ, направленные на временную вербовку помощников.",
+      "text": "We Will Call—and All Will Follow\nThe Tower is the greatest threat to the world, and you never tire of reminding people of it.\nYou make TALK checks intended to recruit temporary helpers with Mastery.",
       "factionName": "Башня Упадёт",
       "factionArea": "Фракции МИРА",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "The Tower Will Fall",
+      "factionAreaEn": "Factions of the WORLD"
     },
     {
       "id": "factions-card-93-330",
       "kind": "ability",
-      "title": "Несокрушимый дух",
+      "title": "Unbreakable Spirit",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6802,15 +6912,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Несокрушимый дух\nКосмический ужас бессилен перед чудесами человеческой воли. Раз в сцену, когда вы\nдолжны получить стресс в РАЗУМ, вы можете от него отказаться и причинить столько же\nстресса атаковавшему.\n184",
+      "text": "Unbreakable Spirit\nCosmic horror is powerless against the miracles of human will.\nOnce per scene, when you would take Stress in MIND, you may refuse it and deal the same amount of Stress to whoever attacked you.",
       "factionName": "Башня Упадёт",
       "factionArea": "Фракции МИРА",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "The Tower Will Fall",
+      "factionAreaEn": "Factions of the WORLD"
     },
     {
       "id": "factions-card-93-331",
       "kind": "ability",
-      "title": "Красная рыба",
+      "title": "Red Fish",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6819,15 +6931,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Красная рыба\nРаз в сессию, когда вы находите полезную информацию для борьбы с Башней, например\nобнаруживаете слабое место одного из видов тварей Башни, или находите безопасный\nмаршрут, или находите место сбора культа, вы можете внести её в базы данных\nгруппировки. Теперь вы не можете получить критический провал против того, о чём узнали\nинформацию.",
+      "text": "Red Fish\nOnce per session, when you discover information useful in the struggle against the Tower, you may add it to the organization’s databases.\nThis might include discovering a weakness of a species of Tower creature, finding a safe route, or locating a cult’s meeting place.\nFrom then on, you cannot critically fail against the subject of that information.",
       "factionName": "Башня Упадёт",
       "factionArea": "Фракции МИРА",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "The Tower Will Fall",
+      "factionAreaEn": "Factions of the WORLD"
     },
     {
       "id": "factions-card-94-332",
       "kind": "ability",
-      "title": "Срочная доставка",
+      "title": "Urgent Delivery",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6836,15 +6950,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Срочная доставка\nРаз в сессию, придя в оазис, вы можете сказать, что кто-то готов поручить вам доставку в\nсоседнюю локацию. В ней всегда будет подвох, например предмет взрывоопасный, или за\nним охотятся корпорации. При успешной доставке, вы получаете втрое больше ресурсов,\nчем получили бы за такую миссию. При проваленной доставке, вы получаете стресс в\nРЕСУРСЫ, равный кости предмета, что вы несли.",
+      "text": "Urgent Delivery\nOnce per session, upon arriving at an oasis, you may declare that someone wants you to make a delivery to a neighboring location.\nThe delivery always has a complication: the object might be explosive, or corporations may be searching for it.\nIf you complete the delivery, you receive three times as many resources as you normally would for such a mission. If the delivery fails, you take RESOURCES Stress equal to the die of the item you were carrying.",
       "factionName": "Курьерская служба Кра Сир",
       "factionArea": "Фракции МИРА",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Kra Sir Courier Service",
+      "factionAreaEn": "Factions of the WORLD"
     },
     {
       "id": "factions-card-94-333",
       "kind": "ability",
-      "title": "Холодная вода",
+      "title": "Cold Water",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6853,15 +6969,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Холодная вода\nВы знаете, как правильно обращаться с водой. Раз в сессию, во время восхождения, вы\nможете сказать, что нашли источник относительно чистой воды, он восстановит всем в\nгруппе К6 в ПУЛЯХ и РАЗУМЕ. Не забудьте поблагодарить воду после этого.",
+      "text": "Cold Water\nYou know how to treat water properly.\nOnce per session during an ASCENT, you may declare that you have found a source of relatively clean water. Everyone in the group restores D6 Stress in both BULLETS and MIND.\nDo not forget to thank the water afterward.",
       "factionName": "Курьерская служба Кра Сир",
       "factionArea": "Фракции МИРА",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Kra Sir Courier Service",
+      "factionAreaEn": "Factions of the WORLD"
     },
     {
       "id": "factions-card-94-334",
       "kind": "ability",
-      "title": "Клятва рабочего",
+      "title": "Worker’s Oath",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6870,15 +6988,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Клятва рабочего\nНа плечах трудящихся стоит мир. Раз в сцену, вы можете перебросить проверку\nТЕХНИЧИТЬ.",
+      "text": "Worker’s Oath\nThe world rests upon the shoulders of its workers.\nOnce per scene, you may reroll a TECH check.",
       "factionName": "Курьерская служба Кра Сир",
       "factionArea": "Фракции МИРА",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Kra Sir Courier Service",
+      "factionAreaEn": "Factions of the WORLD"
     },
     {
       "id": "factions-card-94-335",
       "kind": "ability",
-      "title": "Полярная ночь",
+      "title": "Polar Night",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6887,15 +7007,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Полярная ночь\nВы получаете +5 защиты в ПУЛИ и РАЗУМ от холода, темноты, изоляции и долгого\nожидания. Проверки УЗНАВАТЬ в аномальных зонах, похожих на что-то человеческое,\nсовершаются с мастерством.",
+      "text": "Polar Night\nYou gain +5 Protection in BULLETS and MIND against cold, darkness, isolation, and prolonged waiting.\nYou make INVESTIGATE checks with Mastery in anomalous zones that resemble something made by humans.",
       "factionName": "Экспедиция Канонира Слепой Королевы",
       "factionArea": "Фракции МИРА",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Expedition of the Blind Queen’s Gunner",
+      "factionAreaEn": "Factions of the WORLD"
     },
     {
       "id": "factions-card-94-336",
       "kind": "ability",
-      "title": "Мы здесь были",
+      "title": "We Have Seen This Before",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6904,15 +7026,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Мы здесь были\nРаз в сессию вы можете заявить, что похожую аномалию уже видели на полюсе. Задайте\nведущему два вопроса о принципе работы аномалии, или артефакта. Один ответ будет\nточным, второй — полезным, но неполным.",
+      "text": "We Have Seen This Before\nOnce per session, you may declare that you encountered a similar anomaly at the pole.\nAsk the GM two questions about how an anomaly or artifact functions. One answer will be precise; the other will be useful but incomplete.",
       "factionName": "Экспедиция Канонира Слепой Королевы",
       "factionArea": "Фракции МИРА",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Expedition of the Blind Queen’s Gunner",
+      "factionAreaEn": "Factions of the WORLD"
     },
     {
       "id": "factions-card-94-337",
       "kind": "ability",
-      "title": "Сквозь бури и ураганы",
+      "title": "Through Storms and Hurricanes",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6921,15 +7045,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Сквозь бури и ураганы\nРоковое восхождение считается опасным, пока вы ведёте группу.",
+      "text": "Through Storms and Hurricanes\nA doom ASCENT counts as dangerous while you are leading the group.",
       "factionName": "Экспедиция Канонира Слепой Королевы",
       "factionArea": "Фракции МИРА",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Expedition of the Blind Queen’s Gunner",
+      "factionAreaEn": "Factions of the WORLD"
     },
     {
       "id": "factions-card-95-338",
       "kind": "ability",
-      "title": "Блюститель дружбы",
+      "title": "Enforcer of Friendship",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6938,15 +7064,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Блюститель дружбы\nКогда вы помогаете соратнику, применяя способности дружбы, вы можете выбрать два\nэффекта соответствующего уровня кости, но кроме стресса в шкалу дружбы, вы получите\nтакую же кость стресса в ресурсы.",
+      "text": "Enforcer of Friendship\nWhen you help a comrade using friendship abilities, you may choose two effects appropriate to the die’s tier.\nIn addition to taking Stress to the friendship track, you take the same die of Stress in RESOURCES.",
       "factionName": "Рти Кти Данн",
       "factionArea": "Фракции Корпораций",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Rti Kti Dann",
+      "factionAreaEn": "Factions of the CORPORATIONS"
     },
     {
       "id": "factions-card-95-339",
       "kind": "ability",
-      "title": "Улыбка с обложки",
+      "title": "Cover-Model Smile",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6955,15 +7083,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Улыбка с обложки\nКогда вы помогаете соратнику и при этом говорите что-то гиперболизировано\nдружелюбное, рекламное или фальшиво-заботливое, он получает мастерство в добавок к\nкости помощи. Если союзник проваливает бросок, вы оба получаете к8 стресса в РАЗУМ.",
+      "text": "Cover-Model Smile\nWhen helping a comrade, if you say something excessively friendly, promotional, or insincerely caring, they gain Mastery in addition to the assistance die.\nIf the ally fails the roll, both of you take D8 Stress in MIND.",
       "factionName": "Рти Кти Данн",
       "factionArea": "Фракции Корпораций",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Rti Kti Dann",
+      "factionAreaEn": "Factions of the CORPORATIONS"
     },
     {
       "id": "factions-card-95-340",
       "kind": "ability",
-      "title": "Эталонная подготовка",
+      "title": "Standardized Training",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6972,15 +7102,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Эталонная подготовка\nВас учили всему и понемногу. Один раз в сессию, выберите группу тактик, которой не\nвладеете (вы всё ещё должны обладать нужным навыком). До конца сессии, вы можете ей\nпользоваться.",
+      "text": "Standardized Training\nYou were taught a little of everything.\nOnce per session, choose a group of Tactics you do not possess. You must still have the required Skill. Until the end of the session, you may use those Tactics.",
       "factionName": "Рти Кти Данн",
       "factionArea": "Фракции Корпораций",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Rti Kti Dann",
+      "factionAreaEn": "Factions of the CORPORATIONS"
     },
     {
       "id": "factions-card-95-341",
       "kind": "ability",
-      "title": "Дочерняя структура",
+      "title": "Subsidiary Company",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -6989,15 +7121,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Дочерняя структура\nРаз в сессию вы можете объявить, что нужная мелкая услуга, запчасть, справка или\nспециалист принадлежат одной из фирм концерна. Это не решает проблему полностью, но\nснижает сложность следующей проверки ГОВОРИТЬ, ТЕХНИЧИТЬ или УЗНАВАТЬ на одну\nступень.",
+      "text": "Subsidiary Company\nOnce per session, you may declare that a minor service, spare part, document, or specialist you need belongs to one of the conglomerate’s companies.\nThis does not solve the problem outright, but it reduces the difficulty of the next TALK, TECH, or INVESTIGATE check by one step.",
       "factionName": "Островные фирмы",
       "factionArea": "Фракции Корпораций",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Island Firms",
+      "factionAreaEn": "Factions of the CORPORATIONS"
     },
     {
       "id": "factions-card-95-342",
       "kind": "ability",
-      "title": "Хлад лунного стыда",
+      "title": "Cold of Lunar Shame",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -7006,15 +7140,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Хлад лунного стыда\nРаз в сцену, вы можете пройти проверку КОЛДОВАТЬ, чтобы призвать часть устыдившейся\nчеловечества луны. Вы можете совершать сколько угодно попыток, но успешно применить\nспособность можно только один раз за сцену. Выберите эффект:\n– Низкая гравитация\nПротивники теряют бонусы от расположения, или вы снижаете на ступень сложность\nвосхождения до конца сцены.\n– Космический вакуум\nПричиняет К6 стресса со свойствами мощный и разброс, или до конца сцены лишает\nресурс свойства, делающего его менее удобным при переноске.\n– Песня мёртвой луны\nПричиняет К6 стресса со свойствами стабильный и подавление, или делает преграду\nхрупкой, так что попытки её сломать причинят максимальный стресс.",
+      "text": "Cold of Lunar Shame\nOnce per scene, you may make a CAST check to summon part of the Moon that became ashamed of humanity.\nYou may attempt the check any number of times, but the ability can be used successfully only once per scene.\nChoose one effect:\nLow Gravity: Enemies lose bonuses from positioning, or you reduce the difficulty of an ASCENT by one step until the end of the scene.\nCosmic Vacuum: Deal D6 Stress with Powerful and Scatter, or remove a property that makes a resource easier to carry until the end of the scene.\nSong of the Dead Moon: Deal D6 Stress with Stable and Suppression, or make an obstacle fragile so that attempts to destroy it deal maximum Stress.",
       "factionName": "Островные фирмы",
       "factionArea": "Фракции Корпораций",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Island Firms",
+      "factionAreaEn": "Factions of the CORPORATIONS"
     },
     {
       "id": "factions-card-95-343",
       "kind": "ability",
-      "title": "Ненависть",
+      "title": "Hatred",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -7023,15 +7159,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Ненависть\nВы причиняете на ступень больше стресса имуществу других корпораций, но не их\nперсоналу.",
+      "text": "Hatred\nYou deal Stress one step higher to the property of other corporations, but not to their personnel.",
       "factionName": "Островные фирмы",
       "factionArea": "Фракции Корпораций",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Island Firms",
+      "factionAreaEn": "Factions of the CORPORATIONS"
     },
     {
       "id": "factions-card-96-344",
       "kind": "ability",
-      "title": "Враг лицензий",
+      "title": "Enemy of Licenses",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -7040,15 +7178,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Враг лицензий\nРаз в сцену, вы можете пройти проверку ТЕХНИЧИТЬ, чтобы создать нелегальную копию\nкорпоративного снаряжения до конца сцены. Вы можете совершать сколько угодно попыток,\nно успешно применить способность можно только один раз за сцену. Она будет иметь те же\nсвойства и характеристики, и вдобавок – опасный и ненадёжный. Под снаряжением\nкорпоративного производства подразумевается заранее заготовленное снаряжение из\nсписка в книге, или то, что ведущий и игроки создали сами и ввели в повествование как\nснаряжение серийного производства.\n190",
+      "text": "Enemy of Licenses\nOnce per scene, you may make a TECH check to create an illegal copy of a piece of corporate equipment until the end of the scene.\nYou may attempt the check any number of times, but the ability may be used successfully only once per scene.\nThe copy has the same properties and characteristics as the original, as well as Dangerous and Unreliable.\nCorporate equipment means either prepared equipment from the book’s equipment list or equipment created by the GM and players and introduced into the story as a mass-produced product.",
       "factionName": "Протест левшей",
       "factionArea": "Фракции Корпораций",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Left-Handers’ Protest",
+      "factionAreaEn": "Factions of the CORPORATIONS"
     },
     {
       "id": "factions-card-96-345",
       "kind": "ability",
-      "title": "Левша",
+      "title": "Left-Handed",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -7057,15 +7197,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Левша\nКогда вы получаете второе последствие повреждена рука, оно исчезает в начале\nследующей сцены благодаря перестроению программируемого полимера.",
+      "text": "Left-Handed\nWhen you receive a second instance of the Damaged Arm Fallout, it disappears at the beginning of the next scene as the programmable polymer restructures itself.",
       "factionName": "Протест левшей",
       "factionArea": "Фракции Корпораций",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Left-Handers’ Protest",
+      "factionAreaEn": "Factions of the CORPORATIONS"
     },
     {
       "id": "factions-card-96-346",
       "kind": "ability",
-      "title": "Новый фильм",
+      "title": "New Movie",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -7074,15 +7216,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Новый фильм\nВы получили доступ к инфоканалу, где можно добыть нелегальную копию фильма,\nанимационного фильма, или видеоигры задолго до релиза. Раз в сессию, находясь в\nоазисе, вы можете потратить К10 ресурс или предмет, или получить К10 стресса в\nРЕСУРСЫ, чтобы приобрести пиратский контент. Его просмотр восстановит вам К10 в\nРАЗУМ без проверки, затем кость снизится на одну ступень и его снова можно будет\nприменить. Спойлер по крупной франшизе может дать мастерство в навыке ГОВОРИТЬ,\nесли вы общаетесь с её ценителем.",
+      "text": "New Movie\nYou have access to an information channel where illegal copies of movies, animated films, and video games can be obtained long before release.\nOnce per session while in an oasis, you may spend a D10 resource or item—or take D10 Stress in RESOURCES—to acquire pirated content.\nWatching it restores D10 Stress in MIND without a check. The die then decreases by one step, after which the content may be used again.\nA spoiler concerning a major franchise may grant Mastery in TALK when speaking to one of its fans.",
       "factionName": "Протест левшей",
       "factionArea": "Фракции Корпораций",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Left-Handers’ Protest",
+      "factionAreaEn": "Factions of the CORPORATIONS"
     },
     {
       "id": "factions-card-96-347",
       "kind": "ability",
-      "title": "Поймать кошмар",
+      "title": "Catch a Nightmare",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -7091,15 +7235,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Поймать кошмар\nКогда вы или союзник получаете стресс в РАЗУМ, вы можете пройти проверку ИЗБЕГАТЬ,\nчтобы поймать часть испуга в маленький сосуд, ткань, кость или глиняную фигурку. Снизьте\nстресс на ступень. Позже вы можете разбить сосуд, чтобы без проверки причинить врагу К6\nстресса.",
+      "text": "Catch a Nightmare\nWhen you or an ally takes Stress in MIND, you may make an EVADE check to trap part of the terror inside a small vessel, a piece of cloth, a bone, or a clay figurine.\nReduce the Stress by one step. Later, you may break the vessel to deal D6 Stress to an enemy without making a check.",
       "factionName": "Пастухи",
       "factionArea": "Фракции ДУХОВ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Shepherds",
+      "factionAreaEn": "Factions of the SPIRITS"
     },
     {
       "id": "factions-card-96-348",
       "kind": "ability",
-      "title": "Сон на двоих",
+      "title": "A Dream for Two",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -7108,15 +7254,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Сон на двоих\nРаз в сессию во время отдыха вы можете лечь рядом с союзником и провести его через\nбезопасный сон. Вы оба восстанавливаете к8 в РАЗУМЕ и ДУХЕ, но ведущий задаёт вам\nвопрос о страхе, желании или воспоминании союзника, которому принадлежит сон, вы\nдолжны ответить честно. Опишите сон.",
+      "text": "A Dream for Two\nOnce per session during a rest, you may lie beside an ally and guide them through a safe dream.\nBoth of you restore D8 Stress in MIND and SPIRIT. The GM then asks you a question about a fear, desire, or memory belonging to the ally whose dream you shared. You must answer truthfully.\nDescribe the dream.",
       "factionName": "Пастухи",
       "factionArea": "Фракции ДУХОВ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Shepherds",
+      "factionAreaEn": "Factions of the SPIRITS"
     },
     {
       "id": "factions-card-96-349",
       "kind": "ability",
-      "title": "Стёртая грань",
+      "title": "Erased Boundary",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -7125,15 +7273,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Стёртая грань\nВы причиняете и восстанавливаете на ступень больше стресса, пока у вас больше 5\nстресса в ДУХ. В этом состоянии не можете различить, что вам снится, а что нет.",
+      "text": "Erased Boundary\nYou deal and restore Stress one step higher while you have more than 5 Stress in SPIRIT.\nWhile in this state, you cannot distinguish dreams from reality.",
       "factionName": "Пастухи",
       "factionArea": "Фракции ДУХОВ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Shepherds",
+      "factionAreaEn": "Factions of the SPIRITS"
     },
     {
       "id": "factions-card-97-350",
       "kind": "ability",
-      "title": "Информационная чистка",
+      "title": "Information Purge",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -7142,15 +7292,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Информационная чистка\nРаз в сессию вы можете удалить следы действия отряда из сетей, камер, отчётов и слухов.\nЭто не меняет память очевидцев, но делает доказательства бесполезными.",
+      "text": "Information Purge\nOnce per session, you may erase all traces of the squad’s actions from networks, cameras, reports, and rumors.\nThis does not alter the memories of eyewitnesses, but it renders the evidence useless.",
       "factionName": "Узорезы",
       "factionArea": "Фракции ДУХОВ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Linkcutters",
+      "factionAreaEn": "Factions of the SPIRITS"
     },
     {
       "id": "factions-card-97-351",
       "kind": "ability",
-      "title": "Щит индустрии",
+      "title": "Shield of the Industry",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -7159,15 +7311,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Щит индустрии\nРаз в сессию, вы можете в важный момент начать переписываться в узах локации с\nсетевым хейтером. Это делает все другие проверки в сцене на ступень тяжелее, пока вы не\nпройдёте проверку ГОВОРИТЬ, переспорив вредителя. В награду, придя в оазис, вы\nможете получить два К6 предмета или ресурса, их кости повышаются на ступень за каждую\nпроваленную в ходе онлайн-обсуждения проверку.",
+      "text": "Shield of the Industry\nOnce per session, at an important moment, you may begin arguing with an online hater through the location’s networks.\nAll other checks in the scene become one step harder until you pass a TALK check and outargue the troublemaker.\nAs a reward, the next time you reach an oasis, you may receive two D6 items or resources. Their dice increase by one step for every check failed during the online argument.",
       "factionName": "Узорезы",
       "factionArea": "Фракции ДУХОВ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Linkcutters",
+      "factionAreaEn": "Factions of the SPIRITS"
     },
     {
       "id": "factions-card-97-352",
       "kind": "ability",
-      "title": "Кибер-жаргон",
+      "title": "Cyber Jargon",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -7176,15 +7330,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Кибер-жаргон\nВы совмещаете преступный жаргон и новомодные словечки из сетевых мемов и\nпопулярных роликов. Ваши с соратниками переговоры по рации возможно перехватить,\nчтобы, например, узнать, где вы, но невозможно расшифровать.\n192\n\nСеребряные копья.\nВоины, чьё сердце разбито несчастной любовью, уходят в монашеский орден,\nзанимающийся охотой на диких духов и помощью раненым на поле боя.\nМалые способности",
+      "text": "Cyber Jargon\nYou combine criminal slang with fashionable expressions drawn from network memes and popular videos.\nYour radio conversations with your comrades can be intercepted, allowing someone to determine your location, but their contents cannot be deciphered.",
       "factionName": "Узорезы",
       "factionArea": "Фракции ДУХОВ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Linkcutters",
+      "factionAreaEn": "Factions of the SPIRITS"
     },
     {
       "id": "factions-card-97-353",
       "kind": "ability",
-      "title": "Разбитое сердце",
+      "title": "Broken Heart",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -7193,15 +7349,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Разбитое сердце\nКогда вы защищаете раненого, отвергнутого, испуганного или одержимого, получите\nмастерство на ЧИНИТЬ, ИЗБЕГАТЬ или УБИВАТЬ. После сцены можете восстановить К6 в\nРАЗУМЕ, если честно признаетесь соратникам, кого вам это напомнило.",
+      "text": "Broken Heart\nWhen protecting someone who is wounded, rejected, frightened, or possessed, gain Mastery on FIX, EVADE, or KILL.\nAfter the scene, you may restore D6 Stress in MIND if you honestly tell your comrades whom that person reminded you of.",
       "factionName": "Узорезы",
       "factionArea": "Фракции ДУХОВ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Silver Spears",
+      "factionAreaEn": "Factions of the SPIRITS"
     },
     {
       "id": "factions-card-97-354",
       "kind": "ability",
-      "title": "Святое серебро",
+      "title": "Holy Silver",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -7210,15 +7368,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Святое серебро\nВы получаете серебряное копьё ордена для охоты на духов.",
+      "text": "Holy Silver\nYou gain the order’s silver spear, used for hunting spirits.",
       "factionName": "Узорезы",
       "factionArea": "Фракции ДУХОВ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Silver Spears",
+      "factionAreaEn": "Factions of the SPIRITS"
     },
     {
       "id": "factions-card-98-355",
       "kind": "ability",
-      "title": "Не снова!",
+      "title": "Silver Spear",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
@@ -7227,15 +7387,17 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Не снова!\nКогда ваш контакт-персонаж ведущего, или персонаж игрока должен получить роковое\nпоследствие, он выбывает из игры не мгновенно, а только в конце сцены. До этого момента\nвы можете его спасти, обычно это роковая проверка ЧИНИТЬ, для которой требуется К12\nпредмет.\n194",
+      "text": "Silver Spear\nStress: D10\nRange: Close Combat\nProperties: Armor-Piercing (2), Accurate\nSpecial: When attacking something immaterial, you always deal maximum Stress and may ask the GM one question about its nature.",
       "factionName": "Серебряное копьё",
       "factionArea": "Фракции ДУХОВ",
-      "tier": "minor"
+      "tier": "minor",
+      "factionNameEn": "Silver Spears",
+      "factionAreaEn": "Factions of the SPIRITS"
     },
     {
       "id": "tactics-card-111-356",
       "kind": "tactic",
-      "title": "Продвинутая перезарядка",
+      "title": "Advanced Reloading",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7244,13 +7406,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "1) Продвинутая перезарядка\n— Перезарядка со сбросом магазина: Вы с мастерством проходите проверку\nперезарядки, но всегда при этом получаете к4 стресса в ресурсы.\n— Перезарядка одной рукой: Бросок на перезарядку не становится сложнее, даже если у\nвас ранена вторая рука или вы что-то в ней держите.\n— Тактическая перезарядка: Вы перезаряжаетесь до того, как опустошить магазин. Если\nвы атаковали огнестрельным оружием в этой сцене, вы можете пройти проверку\nперезарядки без соответствующего последствия. После этой перезарядки, до конца этой\nсцены оружие не может пострадать от последствия “закончились патроны”.\n— Хашахсотская перезарядка: Этот метод применяли бойцы в химзащите, сражавшиеся\nпосле ядерной атаки на Хашахсот. Набор манипуляций, разнящихся от оружия к оружию,\nминимизирует попадание грязи в механизм. После этой перезарядки, до конца этой сцены\nоружие не может пострадать от последствия клин”.\n— Угрожающая перезарядка: Вы перезаряжаетесь очень грозно. Даже зная, что вы\nуязвимы, враги не будут наступать.",
-      "skill": "УБИВАТЬ"
+      "text": "1. Advanced Reloading\nDrop-Mag Reload: Make a reload check with Mastery, but always take D4 Stress in RESOURCES.\nOne-Handed Reload: Your reload check does not become more difficult if your other hand is injured or holding something.\nTactical Reload: Reload before emptying the magazine. If you attacked with a firearm during this scene, you may make a reload check without the corresponding Fallout. After reloading, the weapon cannot suffer the Out of Ammunition Fallout until the end of the scene.\nHashahsot Reload: Fighters in protective suits used this method after the nuclear attack on Hashahsot. The precise actions vary between weapons but minimize contamination of the mechanism. After reloading, the weapon cannot suffer the Jam Fallout until the end of the scene.\nIntimidating Reload: You reload in an exceptionally threatening manner. Even though the enemies know you are vulnerable, they will not advance.",
+      "skill": "УБИВАТЬ",
+      "skillEn": "KILL"
     },
     {
       "id": "tactics-card-111-357",
       "kind": "tactic",
-      "title": "Штурм",
+      "title": "Assault",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7259,13 +7422,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "2) Штурм\n— Срезать угол: Вы осматриваете комнату, понемногу увеличивая сектор обзора. Один раз\nв сцену вы можете проигнорировать стресс, когда осматриваете комнату таким образом.\n— Вежливая граната: Перед вами по правилам этикета заходит граната. Вы совершаете\nпроверку на метание гранаты в комнату с мастерством.\n— Обезвредить: Вы знаете, как обезвредить растяжки, мины и магическую защиту. Этой\nтактикой вы в любом случае обезвреживаете ловушку, но можете получить стресс при\nпровале.\n— Маятник: Вы осторожно выглядываете из-за угла раскачивающимися движениями и тут\nже возвращаетесь в укрытие. Эта проверка против цели, контролирующей коридор или\nкомнату, не повышает сложности.\n— Живой щит: Вы проходите эту проверку и при успехе закрываетесь противником\nчеловеческого размера от вражеских атак. Вы получаете защиту в ПУЛИ, равную его\nзащите. Живой щит занимает руку.\n221",
-      "skill": "УБИВАТЬ"
+      "text": "2. Assault\nSlice the Pie: Gradually expand your field of view while inspecting a room. Once per scene, you may ignore Stress received while examining a room this way.\nPolite Grenade: According to proper etiquette, the grenade enters before you. Make a grenade-throwing check with Mastery.\nDisarm: You know how to neutralize tripwires, mines, and magical defenses. The Tactic always disarms the trap, though you may take Stress on a failure.\nPendulum: Sway out from behind a corner and immediately return to cover. A check against a target controlling a room or corridor does not become more difficult.\nHuman Shield: On a success, use a human-sized enemy to shield yourself from hostile attacks. Gain BULLETS Protection equal to their Protection. The Human Shield occupies one hand.",
+      "skill": "УБИВАТЬ",
+      "skillEn": "KILL"
     },
     {
       "id": "tactics-card-112-358",
       "kind": "tactic",
-      "title": "Грубая мощь",
+      "title": "Brute Force",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7274,13 +7438,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "3) Грубая мощь\n— Открыто: Вы можете открыть силой даже крупную гермодверь или без проверки выбить\nногой обычную дверь с помощью этой тактики. При критическом успехе, враги по ту сторону\nдвери окажутся испуганными и отступят на менее выгодные позиции.\n— Беспощадный удар: С помощью этой тактики, вы можете при рукопашной атаке\nпричинить максимальный стресс, возможный на кости, однако при провале так же получите\nмаксимальный стресс, возможный на кости.\n— Растерзать: С помощью этой тактики, вы можете при атаке жестоко добить противника.\nЕсли эта атака его убивает, вы восстанавливаете 1к6 стресса в РАЗУМ, или ДУХ. Красочно\nопишите добивание, если вы повторяетесь с добиванием в рамках одной сцены, до её\nконца вы не можете применять эту тактику.\n— Оттолкнуть: С помощью этой тактики, вы можете при успехе рукопашной атаки\nоттолкнуть противника на одну дистанцию.\n— Превзойти: Вы можете недолго бороться в ближнем бою с огромным чудовищем, или\nсломать бетонную стену без инструментов. Сложность этой проверки повышается на 1\nступень.",
-      "skill": "УБИВАТЬ"
+      "text": "3. Brute Force\nOpen Up: Force open even a large sealed door, or kick down an ordinary door without a check. On a critical success, enemies on the other side become frightened and retreat to less advantageous positions.\nMerciless Blow: A close-combat attack deals the maximum possible Stress on its die. On a failure, you also take the maximum possible Stress.\nTear Apart: Brutally finish off an opponent. If the attack kills them, restore D6 Stress in MIND or SPIRIT. Describe the killing blow vividly. If you repeat a finishing move during the same scene, you cannot use this Tactic again until the scene ends.\nShove: On a successful close-combat attack, push the opponent one Range band away.\nOutmatch: Briefly wrestle an enormous monster or break through a concrete wall without tools. Increase the check’s difficulty by one step.",
+      "skill": "УБИВАТЬ",
+      "skillEn": "KILL"
     },
     {
       "id": "tactics-card-112-359",
       "kind": "tactic",
-      "title": "Рукопашный бой",
+      "title": "Close Combat",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7289,13 +7454,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "4) Рукопашный бой\n— Образцовый удар: Кость стресса рукопашной атаки понижается на 1 ступень, однако\nсложность проверки также снижается на 1 ступень.\n— Ложный замах: Вы сначала проводите проверку этой рукопашной атаки, а затем\nвыбираете её цель.\n— Охота: По цели, против которой вы имеете мастерство в проверке, сложность этой\nрукопашной атаки снижается на ступень.\n— Опасный трюк: Если при рукопашной атаке с этой тактикой вы получили стресс, вы\nполучаете мастерство на следующее действие против причинившей стресс цели\n— Вихрь: Этой тактикой вы атакуете в рукопашной с невероятной скоростью: враг,\nполучивший стресс, не сможет использовать ход противника до конца сцены.\n222",
-      "skill": "УБИВАТЬ"
+      "text": "4. Close Combat\nExemplary Strike: Reduce both the close-combat attack’s Stress die and its difficulty by one step.\nFeint: Roll the close-combat attack first, then choose its target.\nHunt: If you have Mastery on a check against the target, reduce the difficulty of this close-combat attack by one step.\nDangerous Trick: If you take Stress during this close-combat attack, gain Mastery on your next action against the source of that Stress.\nWhirlwind: Attack in close combat with incredible speed. An enemy that takes Stress cannot use an Enemy Move until the end of the scene.",
+      "skill": "УБИВАТЬ",
+      "skillEn": "KILL"
     },
     {
       "id": "tactics-card-112-360",
       "kind": "tactic",
-      "title": "Мастерская стрельба",
+      "title": "Masterful Shooting",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7304,13 +7470,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "5) Мастерская стрельба\n— Быстрое выхватывание: Этой тактикой вы можете выхватить стрелковое оружие и\nнаправить его на врагов быстрее, чем они успеют нажать на спуск даже если уже в вас\nцелятся. Не работает с оружием со свойством тяжёлый.\n— Рирское прицеливание: Этой тактикой вы можете совершить проверку, не причиняя\nстресса. При её успехе, стресс следующей успешной стрелковой атаки повышается на 1\nступень, и ещё на 1 ступень за каждое повышение сложности проверки.\n— Обезвредить: Этой тактикой вы выцеливаете конечности противника даже во время\nбоя. Вы можете сделать атаки стрелковым оружием нелетальными. Не работает с оружием\nсо свойствами мощный и разброс.\n— Красный выстрел: Этой тактикой вы можете попасть во что-то, во что в боевых\nусловиях попасть невозможно, например летящую в вас гранату, или в назойливое\nнасекомое. Критический стресс от этой тактики повышается на 2 ступени вместо 1.\n— Рикошет: Этой тактикой вы можете совершить проверку стрелковой атаки, причиняющей\nна 1 ступень стресса меньше. Такая атака не увеличивает сложность проверки при\nсражении с врагом в укрытии.",
-      "skill": "УБИВАТЬ"
+      "text": "5. Masterful Shooting\nQuick Draw: Draw and aim a ranged weapon before the enemies can pull their triggers, even if they are already aiming at you. This does not work with Heavy weapons.\nRiir Aiming: Make a check that deals no Stress. On a success, the Stress of your next successful ranged attack increases by one step, plus another step for every increase applied to the aiming check’s difficulty.\nDisarm: Target an enemy’s limbs even during battle. Your ranged attacks may be nonlethal. This does not work with weapons possessing Powerful or Scatter.\nRed Shot: Hit something normally impossible to strike during combat, such as a grenade flying toward you or an irritating insect. Critical Stress from this Tactic increases by two steps instead of one.\nRicochet: Make a ranged attack that deals Stress one step lower. Fighting an enemy in cover does not increase this attack’s difficulty.",
+      "skill": "УБИВАТЬ",
+      "skillEn": "KILL"
     },
     {
       "id": "tactics-card-112-361",
       "kind": "tactic",
-      "title": "Бытовая магия",
+      "title": "Household Magic",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7319,13 +7486,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "1) Бытовая магия\n— Щелчок пальцами: Вы выполняете мелкое безвредное магическое действие мгновенно\nи без проверки: зажечь огонь, остановить протечку, высушить одежду, охладить оружейный\nствол. Если действие всё же требует проверки, сложность снижается на 1 ступень.\n— Домовой порядок: Вы заставляете небольшие предметы двигаться, складываться,\nподниматься или удерживаться на месте. При успехе можете, например, расчистить путь,\nзакрыть дверь, собрать рассыпанные ресурсы, удержать хрупкий предмет от падения.\n— Малое благословение: Вы нашёптываете удачу на предмет. До конца сцены первое\nпоследствие, связанное с поломкой, потерей, клином, загрязнением или неудобством этого\nпредмета, игнорируется.\n— Очищение воды: Вместо таблеток для очищения воды, вы используете древний ритуал,\nпросящий воду отделиться от загрязнений. Раз в сцену вы можете восстановить К6 в\nПУЛЯХ на привале, сказав, что нашли и очистили источник воды.\n— Тёплая вещь: Вы заряжаете предмет уютом. Один персонаж до конца сцены получает\n+4 защиты в РАЗУМ или ДУХ, но только против страха, усталости, холода, одиночества\nили влияния странной локации.\n223",
-      "skill": "КОЛДОВАТЬ"
+      "text": "1. Household Magic\nSnap Your Fingers: Instantly perform a small, harmless magical act without a check: light a fire, stop a leak, dry clothes, or cool a weapon barrel. If the action nevertheless requires a check, reduce its difficulty by one step.\nHouse-Spirit Order: Make small objects move, stack themselves, rise, or remain in place. On a success, you might clear a path, close a door, collect scattered resources, or prevent a fragile object from falling.\nMinor Blessing: Whisper good fortune into an item. Until the end of the scene, ignore the first Fallout involving that item breaking, becoming lost, jamming, becoming dirty, or proving inconvenient.\nPurify Water: Instead of purification tablets, perform an ancient ritual asking water to separate itself from contaminants. Once per scene while resting, declare that you found and purified a water source to restore D6 Stress in BULLETS.\nWarm Belonging: Charge an item with a sense of comfort. Until the end of the scene, one character gains +4 Protection in MIND or SPIRIT, but only against fear, exhaustion, cold, loneliness, or the influence of a strange location.",
+      "skill": "КОЛДОВАТЬ",
+      "skillEn": "CAST"
     },
     {
       "id": "tactics-card-113-362",
       "kind": "tactic",
-      "title": "Боевая магия",
+      "title": "Combat Magic",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7334,13 +7502,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "2) Боевая магия\n— Удар заклятием: Вы атакуете врага чистым магическим импульсом, проклятием, огнём,\nсветом, гравитационным рывком или иным эффектом. Атака причиняет к4 стресса со\nсвойством энергетический на ближней или средней дистанции.\n— Оковы: Вы сковываете врага при помощи магии, например мгновенно вырастающим\nцветком красного рукава, или дымом сигареты стража врат. При успехе цель не может\nпереместиться, пока не получит или не причинит стресс.\n— Антиудар: После получения стресса в ДУХ, вы можете использовать эту тактику, чтобы\nпричинить столько же стресса его источнику.\n— Колдовская стойка: Вы принимаете стрелковую стойку, позволяющую одновременно\nприменять магию и вести огонь. До конца сцены, ваши проверки КОЛДОВАТЬ и УБИВАТЬ\nне получают штрафа против очень быстрых целей.\n— Сжечь защиту: Вы бьёте по нательной броне, оберегам, полю искажения или\nблагословению. При успехе цель теряет 2 защиты до конца сцены.",
-      "skill": "КОЛДОВАТЬ"
+      "text": "2. Combat Magic\nSpell Strike: Attack with raw magical force, a curse, fire, light, a gravitational jolt, or another effect. The attack deals D4 Stress with Energy at Close or Medium Range.\nBindings: Restrain an enemy with magic, such as a Red Sleeve’s instantly growing flower or a Gate Guardian’s cigarette smoke. On a success, the target cannot move until it takes or deals Stress.\nCounterstrike: After taking Stress in SPIRIT, deal the same amount of Stress to its source.\nSorcerous Stance: Adopt a firing stance that allows you to use magic and weapons simultaneously. Until the end of the scene, CAST and KILL checks suffer no penalty against extremely fast targets.\nBurn Through Protection: Strike body armor, protective charms, distortion fields, or blessings. On a success, the target loses 2 Protection until the end of the scene.",
+      "skill": "КОЛДОВАТЬ",
+      "skillEn": "CAST"
     },
     {
       "id": "tactics-card-113-363",
       "kind": "tactic",
-      "title": "Гадание",
+      "title": "Divination",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7349,13 +7518,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "3) Гадание\n— Бросить кости: Вы бросаете кости, монеты, патроны, запускаете предсказательный\nалгоритм. При успехе задайте ведущему один вопрос о ближайшей опасности, ловушке,\nзасаде или цене действия. Ведущий отвечает честно, но может ответить символом или\nзагадкой.\n— Увидеть развилку: Перед рискованным или более сложным действием действием вы\nсмотрите на несколько вероятных исходов. При успехе выберите: снизить сложность этой\nпроверки на ступень или при провале получить стресс на ступень ниже.\n— Имя беды: Вы называете, откуда придёт неприятность: сверху, снизу, от друга, из\nпрошлого, от техники, от духов, от денег, от оружия. До конца сцены одно последствие,\nподходящее под названный источник, можно заменить на другое последствие той же\nтяжести.\n— Посчитать смерть: Вы гадаете на врага, которого видите или чьё имя знаете. При\nуспехе узнайте, какой навык против него сейчас эффективнее всего, например ГОВОРИТЬ\nили СКРЫВАТЬСЯ. Одна проверка названного навыка до конца сцены совершается против\nнего с мастерством.\n— Заранее было ясно: Один раз в сцену после появления препятствия вы можете\nзаявить, что уже видели его в предсказании и подготовили мелкую меру: нужный оберег,\nслово-пароль, приманку, запасной путь, предупреждение союзнику. Проверка с этой\nтактикой не становится сложнее из-за внезапности.\n224",
-      "skill": "КОЛДОВАТЬ"
+      "text": "3. Divination\nCast the Bones: Cast dice, coins, or cartridges, or run a predictive algorithm. On a success, ask the GM one question about an imminent danger, trap, ambush, or the price of an action. The answer is truthful but may be expressed through a symbol or riddle.\nSee the Branching Path: Before a risky or more difficult action, examine several possible outcomes. On a success, either reduce the check’s difficulty by one step or take Stress one step lower if the check fails.\nName the Trouble: Name where the danger will come from: above, below, a friend, the past, technology, spirits, money, or weapons. Until the end of the scene, you may replace one Fallout matching that source with different Fallout of the same severity.\nCalculate Death: Divine the fate of an enemy you can see or whose name you know. On a success, learn which Skill is currently most effective against them, such as TALK or HIDE. One check using that Skill against the target gains Mastery before the scene ends.\nIt Was Obvious in Advance: Once per scene, after an obstacle appears, declare that you foresaw it and prepared a minor precaution: the correct charm, a password, bait, an alternative route, or a warning for an ally. Surprise does not increase this check’s difficulty.",
+      "skill": "КОЛДОВАТЬ",
+      "skillEn": "CAST"
     },
     {
       "id": "tactics-card-113-364",
       "kind": "tactic",
-      "title": "Общение с потусторонним",
+      "title": "Communing with the Otherworld",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7364,13 +7534,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "4) Общение с потусторонним\n— Вежливое обращение: Вы говорите с духом, мёртвым, или странной программой по\nправилам шаманского этикета. При успехе оно отвечает на один вопрос или выполняет\nмаленькую просьбу, если та не противоречит его природе, и получает на выполнение\nпросьбы дополнительную кость К10.\n— Назвать по должности: Вы не знаете истинного имени сущности, но правильно\nугадываете её роль: сторож, голод, архив, мать лифта, старший патрон, сирота подстанции.\nПри успехе сложность дальнейших проверок ГОВОРИТЬ или КОЛДОВАТЬ против неё\nснижается на 1 ступень до конца сцены. — Договор малой цены: Вы можете получить от\nсущности помощь без обычной платы, но назначаете плату сами: к4 стресса в ДУХ, РАЗУМ,\nРЕСУРСЫ или СУДЬБУ. При провале сущность всё равно помогает, но ведущий повышает\nцену до к8 или добавляет неприятное условие.\n— Не смотреть в лицо: Вы знаете, как не оскорбить и не впустить в себя потустороннее.\nЭтой тактикой вы можете получить или дать союзнику +2 защиты и +2 слота в ДУХ до конца\nсцены.\n— Переводчик невозможного: Вы объясняете союзникам смысл нечеловеческих знаков,\nзапахов, помех, или снов. При успехе вся группа до конца сцены может взаимодействовать\nс этой сущностью или локацией так, будто обладает подходящей областью, но только для\nпроверок УЗНАВАТЬ и ГОВОРИТЬ.,",
-      "skill": "КОЛДОВАТЬ"
+      "text": "4. Communing with the Otherworld\nPolite Address: Speak to a spirit, dead person, or strange program according to shamanic etiquette. On a success, it answers one question or performs a small request that does not contradict its nature. It gains an additional D10 when carrying out that request.\nAddress by Office: You do not know the entity’s true name but correctly identify its role: Guardian, Hunger, Archive, Mother of the Elevator, Senior Patron, Orphan of the Substation. On a success, reduce the difficulty of further TALK and CAST checks against it by one step until the end of the scene.\nBargain of a Small Price: Receive the entity’s assistance without its normal payment, naming your own price: D4 Stress in SPIRIT, MIND, RESOURCES, or FATE. On a failure, the entity still helps, but the GM raises the price to D8 or adds an unpleasant condition.\nDo Not Look into Its Face: You know how to avoid offending or admitting the otherworldly into yourself. Give yourself or an ally +2 Protection and two additional slots in SPIRIT until the end of the scene.\nTranslator of the Impossible: Explain inhuman signs, smells, interference, or dreams to your allies. On a success, the entire group may interact with this entity or location as though possessing the appropriate Domain until the end of the scene, but only for INVESTIGATE and TALK checks.",
+      "skill": "КОЛДОВАТЬ",
+      "skillEn": "CAST"
     },
     {
       "id": "tactics-card-113-365",
       "kind": "tactic",
-      "title": "Ритуал",
+      "title": "Ritual",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7379,13 +7550,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "5) Ритуал\n— Круг защиты: Вы тратите заметное время, рисуя круг, раскладывая обереги, ставя\nсвечи, подключая провода или рассыпая соль с порохом. При успехе до конца сцены группа\nполучает +5 защиты и +5 слотов в ДУХ, пока остаётся внутри защищённой зоны (Занимает\nодну дистанцию).\n— Долгое слово: Вы можете провести проверку КОЛДОВАТЬ медленно, с песней,\nрасчётами, кровью, дымом или повторением имени. Если у вас есть заметное время на\nподготовку, вы бросаете с мастерством, но при провале получаете стресс на ступень выше.\n— Допрос: Вы можете потратить заметное время, чтобы задать один вопрос соратнику, или\nконтакту-персонажу ведущего. Если он отвечает честно, вы оба можете до конца сцены\nполучать стресс в чужую шкалу ДРУЖБЫ по отношению к вам вместо вашей по отношению\nк соратнику.\n— Запечатать проход: Вы тратите заметное время и закрываете дверь, трещину в бетоне,\nвентиляцию, или иной путь с помощью ограждающих заклинаний. При успехе противники,\nчто могли появиться, не появятся до начала следующей сцены.\n— Большая подготовка: Если у вас есть заметное время, вы можете потратить К8 и более\nценный ресурс, чтобы до конца сцены совершать проверки КОЛДОВАТЬ с мастерством\nпротив конкретной цели или категории целей.\n225",
-      "skill": "КОЛДОВАТЬ"
+      "text": "5. Ritual\nCircle of Protection: Spend significant time drawing a circle, arranging charms, placing candles, connecting wires, or scattering salt and gunpowder. On a success, the group gains +5 Protection and five additional slots in SPIRIT until the end of the scene while it remains inside the protected area, which occupies one Range band.\nThe Long Word: Perform a CAST check slowly, using song, calculations, blood, smoke, or repetition of a name. If you have significant preparation time, roll with Mastery, but take Stress one step higher on a failure.\nInterrogation: Spend significant time asking one question of a comrade or Contact NPC. If they answer honestly, until the end of the scene you may each take Stress in the other person’s FRIENDSHIP track toward you instead of your own FRIENDSHIP track toward that comrade.\nSeal the Passage: Spend significant time sealing a door, crack in the concrete, ventilation shaft, or other passage with warding magic. On a success, enemies that could have appeared through it do not arrive before the beginning of the next scene.\nExtensive Preparation: Given significant time, spend a D8 or more valuable resource. Until the end of the scene, make CAST checks with Mastery against one specific target or category of targets.",
+      "skill": "КОЛДОВАТЬ",
+      "skillEn": "CAST"
     },
     {
       "id": "tactics-card-114-366",
       "kind": "tactic",
-      "title": "Полевой медик",
+      "title": "Field Medic",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7394,13 +7566,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "1) Полевой медик\n— Жгут зубами: Вы можете применить ЧИНИТЬ к персонажу на ближней дистанции прямо\nво время сражения, даже если сами под огнём, в движении или одной рукой держите\nоружие. За каждую ступень сложности сверх нормальной, вы восстанавливаете на ступень\nбольше стресса.\n— Не сейчас: Когда союзник должен получить малое последствие в ПУЛИ, вы можете\nмгновенно пройти проверку ЧИНИТЬ. При успехе последствие не срабатывает до конца\nсцены, но стресс остаётся. Если до конца сцены союзник снова получит стресс в ПУЛИ,\nпоследствие возвращается.\n— Боевые стимуляторы: Вы вкалываете препарат, накладываете заклинание бодрости\nили запускаете аварийный режим импланта. При успехе цель игнорирует одно малое\nпоследствие в ПУЛИ или РАЗУМ до конца сцены, но после сцены получает к4 стресса в это\nже сопротивление.\n— Проверить зрачки: Вы быстро понимаете, что именно угрожает человеку: кровопотеря,\nшок, яд, проклятие, перегрузка имплантов, паника. При успехе следующий бросок ЧИНИТЬ\nпо этой цели до конца сцены всегда восстановит стресс, даже при провале.\n— Вытащить из-под удара: Когда вы успешно восстанавливаете стресс соратнику, вы\nможете одновременно переместить его на одну дистанцию в более безопасное место: за\nукрытие, за щит, в дым, за спины отряда.",
-      "skill": "ЧИНИТЬ"
+      "text": "1. Field Medic\nTourniquet with Your Teeth: Use FIX on a character at Close Range during combat, even while under fire, moving, or holding a weapon in one hand. Restore Stress one step higher for every difficulty step above Standard.\nNot Now: When an ally would receive Minor Fallout in BULLETS, immediately make a FIX check. On a success, the Fallout does not take effect until the end of the scene, though the Stress remains. If the ally takes BULLETS Stress again before the scene ends, the Fallout returns.\nCombat Stimulants: Inject a drug, apply an invigorating spell, or activate an implant’s emergency mode. On a success, the target ignores one Minor Fallout in BULLETS or MIND until the end of the scene. Afterward, they take D4 Stress in that Resistance.\nCheck the Pupils: Quickly determine what threatens the patient: blood loss, shock, poison, a curse, implant overload, or panic. On a success, the next FIX roll on this target restores Stress even if it fails.\nPull Them Clear: When you successfully restore a comrade’s Stress, move them one Range band to a safer place: behind cover, behind a shield, into smoke, or behind the squad.",
+      "skill": "ЧИНИТЬ",
+      "skillEn": "FIX"
     },
     {
       "id": "tactics-card-114-367",
       "kind": "tactic",
-      "title": "Военный психолог",
+      "title": "Military Psychologist",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7409,13 +7582,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "2) Военный психолог\n— Дыши по счёту: Вы жёстко возвращаете союзника в реальность: голосом в гарнитуре,\nпощёчиной, счётом вдохов, стуком по броне или короткой армейской мантрой. При успехе\nвосстановите на ступень больше стресса в РАЗУМЕ. Эту тактику можно применять на\nсредней дистанции, если цель вас слышит.\n— Боевой разбор: После опасной сцены вы быстро проговариваете с отрядом\nпроизошедшее: кто где был, кто что видел, кто сделал правильно, почему выжившие не\nвиноваты в жертвах. Вся группа восстанавливает К4 стресса в РАЗУМ.\n— Приказ жить: Когда союзник должен получить последствие в РАЗУМ, вы можете резко\nвмешаться: приказом, знаком старшего по званию, напоминанием о клятве, угрозой, шуткой\nили личным обращением. При успехе последствие не действует до конца сцены, но стресс\nостаётся.\n— Нормализация ужаса: Вы объясняете невозможное как что-то повседневное, с чем\nлегко справиться. При успехе до конца сцены один персонаж получает +3 защиты в РАЗУМ\nпротив уже увиденной угрозы.\n— Чёрный юмор: Вы сбиваете ужас грубой шуткой, циничным комментарием или\nабсурдным сравнением. При успехе восстановите К6 в шкале дружбы себе и одному\nсоюзнику.\n226",
-      "skill": "ЧИНИТЬ"
+      "text": "2. Military Psychologist\nBreathe to the Count: Force an ally back into reality through your headset, a slap, counted breaths, knocking on their armor, or a short military mantra. Restore MIND Stress one step higher. You may use this Tactic at Medium Range if the target can hear you.\nAfter-Action Debrief: After a dangerous scene, quickly discuss what happened: who stood where, what everyone saw, what was done correctly, and why the survivors are not responsible for the casualties. The entire group restores D4 Stress in MIND.\nOrder to Live: When an ally would receive Fallout in MIND, intervene with an order, a superior’s gesture, a reminder of an oath, a threat, a joke, or a personal appeal. On a success, the Fallout has no effect until the end of the scene, though the Stress remains.\nNormalize the Horror: Explain the impossible as something ordinary and manageable. On a success, one character gains +3 Protection in MIND against a threat they have already witnessed until the end of the scene.\nBlack Humor: Disrupt the horror with a crude joke, cynical remark, or absurd comparison. On a success, restore D6 Stress in the FRIENDSHIP tracks of yourself and one ally.",
+      "skill": "ЧИНИТЬ",
+      "skillEn": "FIX"
     },
     {
       "id": "tactics-card-114-368",
       "kind": "tactic",
-      "title": "Мастер починки",
+      "title": "Repair Master",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7424,13 +7598,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "3) Мастер починки\n— Красная изолента: Вы можете временно починить почти что угодно: броню, дверь,\nкиберруку, рацию. При успехе предмет работает до конца сцены, даже если был сломан\nпоследствием. После его всё равно придётся нормально чинить.\n— Слабое место: Перед ремонтом вы быстро понимаете, что именно сломано. При успехе\nзадайте ведущему один вопрос о предмете, механизме, теле или конструкции: что здесь\nопаснее всего, что сломается следующим, что нужно заменить, чем можно временно\nобойтись.\n— Импровизация: С этой тактикой кость ресурса, который требуется для починки\nмеханизма, снижена на одну ступень.\n— Одолжить детали: При починке механизма, вы можете получить стресс в шкалу\nДРУЖБЫ вместо шкалы РЕСУРСОВ.\n— Чинить под давлением: Сложность проверки на починку механизмов не повышается\nвыше рискованной с этой тактикой.",
-      "skill": "ЧИНИТЬ"
+      "text": "3. Repair Master\nRed Electrical Tape: Temporarily repair almost anything: armor, a door, a cyberarm, or a radio. On a success, the item works until the end of the scene even if Fallout had broken it. It must still be repaired properly afterward.\nWeak Point: Before beginning repairs, quickly determine what is broken. On a success, ask the GM one question about an object, mechanism, body, or structure: what is most dangerous here, what will break next, what needs replacement, or what can be temporarily bypassed?\nImprovisation: Reduce the resource die required to repair a mechanism by one step.\nBorrow Parts: When repairing a mechanism, you may take Stress in FRIENDSHIP instead of RESOURCES.\nRepair Under Pressure: The difficulty of a check made to repair a mechanism cannot rise above Risky.",
+      "skill": "ЧИНИТЬ",
+      "skillEn": "FIX"
     },
     {
       "id": "tactics-card-114-369",
       "kind": "tactic",
-      "title": "Интендант",
+      "title": "Quartermaster",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7439,13 +7614,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "4) Интендант\n— Починить репутацию: Доверие бывает ценнее автомата. Вы объясняете\nнедоразумение, показываете документы, находите свидетеля, возвращаете долг. При\nуспехе вы можете до конца сцены игнорировать последствие в РЕСУРСЫ, связанное с\nсоциальным неодобрением. Если проблема связана с явным предательством или\nубийством невиновных, сложность повышается на ступень.\n— Аккуратная отчётность: После сделки, боя или восхождения, вы приводите записи в\nпоряядок. При успехе следующее последствие в РЕСУРСЫ, связанное с долгами,\nподозрениями, плохой славой или юридическими проблемами, снижается на ступень.\n— Вернуть в оборот: Вы чините повреждённое, грязное, проклятое или плохо\nвыглядящее снаряжение так, чтобы его снова можно было продать, обменять или\nпредъявить как оплату. При успехе один предмет или ресурс до конца сцены считается на\nступень ценнее при бартере или оплате услуг, но не при прямом применении.\n— С миру по гильзе: Вы собираете полезное после сцены: не сломанное снаряжение\nврагов, уцелевшие батареи, монеты, лекарства, цветы, провода, патроны, амулеты,\nкорпоративные карточки. При успехе восстановите к4 в РЕСУРСАХ дополнительно к\nобычной добыче. Если сцена была особенно богатой или опасной, восстановление\nповышается до к6.\n— Подробный поиск: Вы тратите значимое время, чтобы пересчитать припасы, либо\nваши, либо соратника. До конца сцены, вы получаете +2 защиты в РЕСУРСЫ,\nприменяющиеся, когда вы что-то оплачиваете.\n227",
-      "skill": "ЧИНИТЬ"
+      "text": "4. Quartermaster\nRepair Your Reputation: Trust can be more valuable than a rifle. Explain a misunderstanding, produce documents, find a witness, or repay a debt. On a success, ignore RESOURCES Fallout connected to public disapproval until the end of the scene. Increase the difficulty by one step if the problem involves obvious betrayal or the murder of innocents.\nAccurate Accounts: Put the records in order after a transaction, battle, or Ascent. On a success, reduce the severity of the next RESOURCES Fallout connected to debt, suspicion, a poor reputation, or legal trouble by one step.\nReturn to Circulation: Repair dirty, damaged, cursed, or unattractive equipment so it can be sold, traded, or offered as payment. On a success, one item or resource counts as one value step higher for barter or services until the end of the scene, but not when used directly.\nEvery Casing Helps: Gather anything useful after a scene: intact enemy equipment, surviving batteries, coins, medicine, flowers, cables, ammunition, charms, or corporate cards. On a success, restore D4 Stress in RESOURCES in addition to the normal loot. Increase this to D6 if the scene was particularly dangerous or rich.\nDetailed Search: Spend significant time counting your own supplies or those of a comrade. Until the end of the scene, gain +2 Protection in RESOURCES when paying for something.",
+      "skill": "ЧИНИТЬ",
+      "skillEn": "FIX"
     },
     {
       "id": "tactics-card-115-370",
       "kind": "tactic",
-      "title": "Метафизическое восстановление",
+      "title": "Metaphysical Restoration",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7454,13 +7630,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "5) Метафизическое восстановление\n— Тонкая материя: Вы лечите не тело, а нарушение в душе, судьбе или магическом поле.\nПри успехе восстановите одинаковое количество стресса стресс в ДУХЕ и РАЗУМЕ.\n— Сшить судьбу: Вы чините удачу человека через ритуальные деньги, узлы, патроны,\nкоторые не выстрелили. При успехе восстановите на ступень больше стресса в СУДЬБЕ.\nПри критическом успехе цель до конца сцены не может быть застигнута врасплох\nслучайной неприятностью.\n— Вернуть имя: Вы напоминаете предмету, чем он был до поломки. При успехе\nмагический предмет, оберег, артефакт или странный механизм Башни снова работает до\nконца сцены, но если он был сломан значимым последствием, ведущий назначает цену:\nресурс, стресс в ДУХ или неприятное условие.\n— Тихий разговор: Вы успокаиваете соратника не речью, а уходом: поправляете броню,\nнаносите боевую раскраску, чистите оружие, расчёсываете волосы, стираете кровь с лица.\nВы тратите значимое время и К6 ресурс, чтобы восстановите К6 в РАЗУМЕ себе и\nсоратнику.\n— Закрыть дурной след: После контакта с аномалией, духом, мертвецом или сущностью\nБашни вы чистите следы влияния. Вы можете восстановить весь стресс в ДУХ, но\nзапишите его количество: при следующей встрече с этой же угрозой, он вернётся, как если\nбы его причиняли снова.",
-      "skill": "ЧИНИТЬ"
+      "text": "5. Metaphysical Restoration\nSubtle Matter: Treat damage to the soul, destiny, or magical field rather than the body. On a success, restore the same amount of Stress in both SPIRIT and MIND.\nStitch Fate: Repair someone’s luck with ritual money, knots, or cartridges that failed to fire. Restore FATE Stress one step higher. On a critical success, random misfortune cannot take the target by surprise until the end of the scene.\nReturn the Name: Remind an item what it was before it broke. On a success, a magical item, charm, artifact, or strange Tower mechanism works again until the end of the scene. If Major Fallout broke it, the GM names a price: a resource, SPIRIT Stress, or an unpleasant condition.\nQuiet Conversation: Calm a comrade through care instead of speech: adjust their armor, apply war paint, clean their weapon, comb their hair, or wipe blood from their face. Spend significant time and a D6 resource to restore D6 Stress in MIND to yourself and the comrade.\nClose the Evil Trail: After contact with an anomaly, spirit, dead person, or Tower entity, cleanse the traces of its influence. Restore all Stress in SPIRIT, but record the amount. The next time you encounter the same threat, that Stress returns as if dealt again.",
+      "skill": "ЧИНИТЬ",
+      "skillEn": "FIX"
     },
     {
       "id": "tactics-card-115-371",
       "kind": "tactic",
-      "title": "Молния",
+      "title": "Lightning",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7469,13 +7646,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "1) Молния\n— Рывок: Вы мгновенно преодолеваете одну дистанцию: пересекаете простреливаемый\nкоридор, влетаете в лифт, прыгаете за укрытие, добегаете до падающего союзника. При\nуспехе вы перемещаетесь до того, как угроза успеет отреагировать.\n— Первым в проём: Когда начинается сцена, вы можете первым ворваться в опасную\nзону. При успехе выберите одно: союзники получают мастерство на следующую проверку\nПРОБИВАТЬСЯ, враги теряют преимущество засады, или вы сразу оказываетесь на\nвыгодной позиции.\n— На адреналине: Вы можете использовать боль и панику как топливо. Вы причиняете\nвосхождению или препятствию дополнительно К6 стресса, пока у вас есть 5 или более\nстресса в ПУЛЯХ или РАЗУМЕ,.\n— Погоня: Пока вас преследуют, желая зла, вы получаете мастерство.\n— Добраться вопреки: Эта проверка ПРОБИВАТЬСЯ получает свойство стабильный, но\nпри провале вы получаете на ступень больше стресса.\n228",
-      "skill": "ПРОБИВАТЬСЯ"
+      "text": "1. Lightning\nDash: Instantly cross one Range band: sprint across a covered corridor, leap into an elevator, dive behind cover, or reach a falling ally. On a success, you move before the threat can react.\nFirst Through the Opening: When a scene begins, be the first to enter the dangerous area. On a success, choose one: allies gain Mastery on their next ASCEND check, enemies lose their ambush advantage, or you immediately occupy an advantageous position.\nFueled by Adrenaline: While you have at least 5 Stress in BULLETS or MIND, deal an additional D6 Stress to an Ascent or obstacle.\nPursuit: Gain Mastery while someone is pursuing you with hostile intent.\nGet There Regardless: This ASCEND check gains Stable, but you take Stress one step higher on a failure.",
+      "skill": "ПРОБИВАТЬСЯ",
+      "skillEn": "ASCEND"
     },
     {
       "id": "tactics-card-115-372",
       "kind": "tactic",
-      "title": "Марш",
+      "title": "March",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7484,13 +7662,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "2) Марш\n— Строевой темп: Вы ведёте группу через долгий переход, задавая ритм шагов, привалов,\nдыхания и проверки снаряжения. К этой проверке один союзник, у которого нет\nподходящего навыка или области, всё равно может дать вам кость помощи.\n— Марш-бросок: Вы проходите участок быстрее обычного: без сна, без нормального\nпривала, под дождём, сквозь шум Башни или по рушащемуся маршруту. При успехе\nвосхождение получает на ступень больше стресса, но при провале стресс по отряду тоже\nповышается на ступень.\n— Нести на себе: Вы можете вести, тащить или прикрывать раненого, перегруженного,\nиспуганного или потерявшего ориентацию союзника. При успехе его последствия,\nмешающие движению, не повышают сложность групповой проверки ПРОБИВАТЬСЯ.\n— Осторожное продвижение: Вы двигаетесь медленно, проверяя каждый поворот на\nловушку или засаду. Вы причиняете восхождению на ступень меньше стресса, но вашу\nгруппу нельзя застать врасплох. Сложность врагов и препятствий не повышается из-за\nнеожиданности.\n— Парад отчаянных: В дороге вы громко поёте, рассказываете шутки и не заботитесь о\nмаскировке. До конца сцены проверки СКРЫВАТЬСЯ становятся на ступень тяжелее, но вы\nвосстанавливаете столько же стресса в РАЗУМ, сколько причинили восхождению этой\nпроверкой.",
-      "skill": "ПРОБИВАТЬСЯ"
+      "text": "2. March\nMarching Pace: Lead the group through a long passage, setting the rhythm of walking, resting, breathing, and equipment checks. One ally lacking the appropriate Skill or Domain may still provide an assistance die.\nForced March: Cross an area faster than normal: without sleep or proper rest, through rain, the Tower’s noise, or a collapsing route. On a success, the Ascent takes Stress one step higher. On a failure, the Stress dealt to the squad also increases by one step.\nCarry Them: Lead, drag, or protect an injured, overloaded, frightened, or disoriented ally. On a success, Fallout that impedes their movement does not increase the difficulty of the group’s ASCEND check.\nCautious Advance: Move slowly, checking every turn for traps and ambushes. Deal Stress to the Ascent one step lower, but the group cannot be taken by surprise. Unexpected threats do not increase the difficulty of enemies or obstacles.\nParade of the Desperate: Sing loudly and tell jokes while traveling, making no attempt to conceal yourselves. HIDE checks become one step harder until the end of the scene, but restore as much MIND Stress as this check deals to the Ascent.",
+      "skill": "ПРОБИВАТЬСЯ",
+      "skillEn": "ASCEND"
     },
     {
       "id": "tactics-card-115-373",
       "kind": "tactic",
-      "title": "Боевой паркур",
+      "title": "Combat Parkour",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7499,13 +7678,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "3) Боевой паркур\n— Через окно: Вы преодолеваете препятствие грубо и красиво: влетаете через стекло,\nскользите под воротами, перепрыгиваете баррикаду. Вы причиняете на ступень больше\nстресса восхождению, или получаете преимущество от позиции, если проверка была\nрискованной и более сложной.\n— Смена высоты: Вы резко меняете уровень: падаете вниз, взлетаете по лестнице,\nспрыгиваете на платформу, цепляетесь за крюк, уходите под мостик. При успехе один\nпротивник теряет преимущество позиции против вас до конца сцены.\n— Сохранить импульс: Вы перемещаетесь на одну дистанцию и сбиваете противника-\nчеловека с ног, так что следующая проверка против него будет совершаться с мастерством.\n— Драка на бегу: До конца сцены проверки УБИВАТЬ и ИЗБЕГАТЬ в ближнем бою не\nстановятся сложнее из-за неудобной поверхности, тесноты, наклона, лестницы или\nдвижения платформы.\n— Сальто: Вы делаете кувырок через противника в ближнем бою. Он дезориентировн,\nпока он не причинит вам стресс, вы совершаете проверки УБИВАТЬ и ИЗБЕГАТЬ против\nнего с преимуществом.\n229",
-      "skill": "ПРОБИВАТЬСЯ"
+      "text": "3. Combat Parkour\nThrough the Window: Overcome an obstacle violently and stylishly: crash through glass, slide beneath a gate, or vault over a barricade. If the check is risky or more difficult, either deal Stress to the Ascent one step higher or gain a positional advantage.\nChange Elevation: Suddenly change levels by dropping, rushing up stairs, jumping onto a platform, catching a hook, or moving beneath a walkway. On a success, one enemy loses its positional advantage against you until the end of the scene.\nMaintain Momentum: Move one Range band and knock a human opponent down. The next check against them gains Mastery.\nRunning Fight: Until the end of the scene, close-combat KILL and EVADE checks do not become harder because of unstable surfaces, confined spaces, slopes, stairs, or moving platforms.\nSomersault: Flip over a close-combat opponent. They remain disoriented until they deal Stress to you. Until then, you make KILL and EVADE checks against them with Advantage.",
+      "skill": "ПРОБИВАТЬСЯ",
+      "skillEn": "ASCEND"
     },
     {
       "id": "tactics-card-116-374",
       "kind": "tactic",
-      "title": "Пересечённая местность",
+      "title": "Rough Terrain",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7514,13 +7694,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "4) Пересечённая местность\n— Твёрдый шаг: Вы находите, куда ставить ноги на ненадёжной поверхности. Местность\nне повышает сложность этой проверки.\n— След безопасного пути: Вы ведёте остальных по уже найденным точкам. Один\nсоюзник может пройти за вами без отдельной проверки, если не делает ничего сложнее\nдвижения.\n— Крюк, свет и молитва: Если у вас есть два и более снаряжения для путешествия, вы\nзадаёте ведущему один вопрос о маршруте: где безопаснее, что здесь нестабильно, откуда\nпридёт опасность, куда ведёт кратчайший путь.\n— Не трогать лишнего: Вы проходите через опасную среду, не цепляя провода, грибы,\nкости и датчики. Вы не активируете пассивную опасность местности.\n— Путь назад: В процессе перехода вы отмечаете дорогу мелом, лентами, гильзами, или\nзарубками. При провале этой тактики вы не можете получить последствие, связанное с\nотдалением места назначения или разделениме группы.",
-      "skill": "ПРОБИВАТЬСЯ"
+      "text": "4. Rough Terrain\nFirm Step: Find safe places to put your feet on an unreliable surface. The terrain does not increase this check’s difficulty.\nTrail of the Safe Path: Lead others along the footholds you found. One ally may follow without a separate check if they do nothing more complicated than moving.\nHook, Light, and Prayer: If you possess at least two pieces of travel equipment, ask the GM one question about the route: where is safest, what is unstable, where will danger come from, or where does the shortest path lead?\nTouch Nothing Unnecessary: Pass through a hazardous environment without brushing against cables, mushrooms, bones, or sensors. You do not activate passive environmental dangers.\nWay Back: Mark the route with chalk, ribbons, cartridges, or notches. On a failure, you cannot receive Fallout involving the destination moving farther away or the group becoming separated.",
+      "skill": "ПРОБИВАТЬСЯ",
+      "skillEn": "ASCEND"
     },
     {
       "id": "tactics-card-116-375",
       "kind": "tactic",
-      "title": "Упрямство",
+      "title": "Stubbornness",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7529,13 +7710,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "5) Упрямство\n— Плечом к плечу: Вы выстраиваете группу так, чтобы никто не мешал друг другу. До\nконца сцены теснота не повышает сложность групповых проверок.\n— Нести тяжёлое: Вы можете тащить тяжёлые предметы без потери темпа и контроля.\nГруз не повышает сложность перехода и не получает повреждений от дороги.\n— Слепой участок: Вы двигаетесь через место, где нельзя нормально видеть дорогу.\nОтсутствие обзора не повышает сложность именно проверок ПРОБИВАТЬСЯ до конца\nпрепятствия.\n– Неутомимый: Если вы получаете последствие после этой проверки, вы игнорируете его\nдо конца сцены.\n– Наскозь: Если этой проверкой вы завершаете восхождение, вы восстанавливаете К в\nПУЛЯХ, РАЗУМЕ, или ДУХЕ\n230",
-      "skill": "ПРОБИВАТЬСЯ"
+      "text": "5. Stubbornness\nShoulder to Shoulder: Arrange the group so nobody interferes with anyone else. Confined spaces do not increase the difficulty of group checks until the end of the scene.\nCarry the Heavy Load: Transport heavy objects without losing pace or control. The load does not increase the passage’s difficulty and takes no damage from the journey.\nBlind Section: Move through an area where the route cannot be seen properly. Lack of visibility does not increase ASCEND difficulty until the obstacle ends.\nTireless: If you receive Fallout after this check, ignore it until the end of the scene.\nStraight Through: If this check completes an Ascent, restore Stress in BULLETS, MIND, or SPIRIT. The source text does not specify the recovery die.",
+      "skill": "ПРОБИВАТЬСЯ",
+      "skillEn": "ASCEND"
     },
     {
       "id": "tactics-card-116-376",
       "kind": "tactic",
-      "title": "Маскировка",
+      "title": "Camouflage",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7544,13 +7726,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "1) Маскировка\n— Слиться с фоном: Вы тратите значимое время, чтобы через камуфляж, грязь, тени,\nцифровые помехи, форму врага или чужой запах, стать частью окружения. Ваша\nследующая проверка в этой сцене автоматически успешна, если вы не двигались.\n— Разбить силуэт: Вы двигаетесь так, чтобы не выдавать себя формой тела: пригибаетесь,\nломаете контур плащом, прячетесь среди труб. При провале этой проверке вы получите на\nступень меньше стресса, а враги не сразу поднимут тревогу.\n— Замаскировать отряд: Вы быстро распределяете союзников по слепым зонам и даёте\nуказания по движению. В следующей проверке до конца сцены помощники не получает\nстресс от провала действия того, кому помогают,\n— Чужой знак: Вы используете отличительные знаки, форму и жаргон чужой группы. Вас\nпринимают за «своего» на расстоянии или при беглом осмотре. Если кто-то начинает с\nвами говорить или проверять документы, понадобится уже проверка ГОВОРИТЬ.\n— Погасить сцену: Вы уничтожаете системы наблюдения, сканеры, отключаете\nэлектричество. Вся группа получает на проверки СКРЫВАТЬСЯ и ПРОБИВАТЬСЯ конца\nсцены, но окружающие понимают, что кто-то здесь ест.",
-      "skill": "СКРЫВАТЬСЯ"
+      "text": "1. Camouflage\nBlend into the Background: Spend significant time using camouflage, mud, shadows, digital interference, an enemy uniform, or another person’s scent to become part of the surroundings. Your next check during this scene automatically succeeds if you have not moved.\nBreak Up the Silhouette: Move in a way that conceals the shape of your body: crouch, disrupt your outline with a cloak, or hide among pipes. On a failure, take Stress one step lower, and the enemies do not raise the alarm immediately.\nCamouflage the Squad: Quickly assign allies to blind spots and instruct them how to move. On the next check before the scene ends, helpers do not take Stress if the character they assist fails.\nForeign Insignia: Use another group’s markings, uniform, and jargon. At a distance or during a cursory inspection, you are mistaken for one of them. Conversation or document checks still require TALK.\nBlack Out the Scene: Destroy surveillance systems and scanners or cut the power. The entire group gains Mastery on HIDE and ASCEND checks until the end of the scene, but everyone nearby realizes that someone is present.",
+      "skill": "СКРЫВАТЬСЯ",
+      "skillEn": "HIDE"
     },
     {
       "id": "tactics-card-116-377",
       "kind": "tactic",
-      "title": "Скрытная ликвидация",
+      "title": "Stealth Elimination",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7559,13 +7742,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "2) Скрытная ликвидация\n— Цепь ликвидаций: Атака боевым ножом через СКРЫВАТЬСЯ получает свойство\nразброс.\n— Рука на рации: Когда вы скрытно нейтрализуете врага, можете сразу помешать ему\nподнять тревогу: зажать рот, перехватить рацию, заглушить имплант. Тревога не\nподнимается даже при провале.\n— Тело за ящиком: После скрытной ликвидации вы можете сразу спрятать тело: в тень,\nмусор, вентиляцию. При успехе тело не найдут до конца сцены.\n— Полицейская снайперская техника: Атака дальнобойной винтовкой через\nСКРЫВАТЬСЯ получает свойство нелетальный и может выбить у врага то, что он держит в\nруке. Если враг использует щит, живой или штурмовой, вы причиняете ему стресс,\nигнорируя защиту.\n— Обрушиться: Вы атакуете опытных противников так, что даже они удивляются. За\nкаждую ступень сложности свыше нормальной, вы причиняете на ступень больше стресса\nэтой атакой через СКРЫВАТЬСЯ.",
-      "skill": "СКРЫВАТЬСЯ"
+      "text": "2. Stealth Elimination\nChain of Eliminations: A combat-knife attack made through HIDE gains Scatter.\nHand on the Radio: When silently neutralizing an enemy, immediately prevent them from raising the alarm by covering their mouth, seizing their radio, or jamming their implant. The alarm is not raised even on a failure.\nBody Behind the Crate: After a stealth elimination, immediately hide the body in shadows, rubbish, or ventilation. On a success, it is not discovered until the end of the scene.\nPolice Sniper Technique: A long-range-rifle attack made through HIDE gains Nonlethal and may knock an object from an enemy’s hand. If the enemy uses a human or assault shield, the attack ignores their Protection.\nDrop Upon Them: Deal Stress one step higher for every difficulty step above Standard on an attack made through HIDE.",
+      "skill": "СКРЫВАТЬСЯ",
+      "skillEn": "HIDE"
     },
     {
       "id": "tactics-card-116-378",
       "kind": "tactic",
-      "title": "Проникновение",
+      "title": "Infiltration",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7575,13 +7759,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "3) Проникновение\n— Без следа на замке: Вы открываете дверь, люк, окно, решётку, контейнер или шкаф так,\nчтобы не было видно следов вскрытия и не поднялась автоматическая тревога\n— Внутри потока: Вы проходите через колонну пленных, смену патруля, или рынок так,\nбудто всегда были там. До конца сцены вы не получаете стресса в РЕСУРСЫ, если вас кто-\nто узнает.\n— Броситься на землю: Если сложность этой проверки рискованная и выше, можете\nполучить К6 стресса в СУДЬБУ, чтобы снизить её на ступень.\n231\n— Мастер гаджетов: У вас всегда в кармане нужный тактический инструмент для текущей\nситуации. Получите К6 стресса в РЕСУРСЫ, чтобы получить мастерство на эту проверку.\nОпишите крутой гаджет, который вы используете для обхода очередного препятствия. Если\nвы повторяетесь в рамках одной сцены, вы не можете использовать эту тактику снова в\nэтой сцене,\n– Совпадение: Вы можете сказать, что нужная вам дверь открыта, турель отключена, а\nпрожектор не освещает нужную вам зону. При провале вы получаете не только стресс, но и\nдополнительное осложнение сцены, например дверь открылась только чтобы через неё\nвышло отделение солдат.",
-      "skill": "СКРЫВАТЬСЯ"
+      "text": "3. Infiltration\nNo Mark on the Lock: Open a door, hatch, window, grate, container, or cabinet without leaving signs of forced entry or triggering an automatic alarm.\nInside the Flow: Pass through a prisoner column, patrol rotation, or market as though you have always belonged there. Until the end of the scene, you take no RESOURCES Stress if someone recognizes you.\nHit the Ground: If this check is risky or harder, take D6 Stress in FATE to reduce its difficulty by one step.\nGadget Master: Take D6 Stress in RESOURCES to gain Mastery on this check. Describe the impressive gadget you use to overcome the obstacle. You cannot use this Tactic again during the scene if you repeat a gadget description.\nCoincidence: Declare that the door you need is open, the turret is disabled, or the searchlight does not illuminate the required area. On a failure, take Stress and introduce an additional complication—for example, the door opened only because a squad of soldiers was about to emerge.",
+      "skill": "СКРЫВАТЬСЯ",
+      "skillEn": "HIDE"
     },
     {
       "id": "tactics-card-117-379",
       "kind": "tactic",
-      "title": "Беспокойные руки",
+      "title": "Restless Hands",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7590,13 +7775,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "4) Беспокойные руки\n— Ловкая кража: Вы крадёте у цели предмет. Если его было легко украсть обычной\nпроверкой СКРЫВАТЬСЯ, вы получаете на ступень меньше стресса при провале и он\nникогда не связан с тем, что цель заметила пропажу. Если его было украсть сложно,\nнапример предмет лежит в рюкзаке, сложность понижается на одну ступень.\n— Маленький тайник: Вы прячете предмет так, чтобы его не нашли при обычном обыске.\nВаш не слишком большой предмет или ресурс получают свойство скрываемый до конца\nсцены.\n— Опередить: Когда кто-то смотрит прямо на вас, вы всё равно совершаете мелкое\nскрытое действие: прячете нож, передаёте сигнал союзнику, или открываете замок. Эта\nпроверка не становится сложнее, даже если за вами наблюдают.\n— Закрепить взрывчатку: Этой проверкой вы можете потратить значимое время, чтобы\nтихо установить взрывчатку на любом объекте. До конца сцены вы можете её взорвать,\nчтобы уничтожить дверь, стену, или мост вместо проверки УБИВАТЬ с причинением\nстресса. На людей это не работает, поскольку они замечают вес взрывпакета, но с более\nкрупными противниками попробовать можно.\n— Датчик: Вы бросаете липкий шарик-датчик, сообщающий о передвижении цели. До\nконца сцены, у вас есть мастерство на проверки СКРЫВАТЬСЯ и ПРОБИВАТЬСЯ против\nнеё.\n232",
-      "skill": "СКРЫВАТЬСЯ"
+      "text": "4. Restless Hands\nSkillful Theft: Steal an item from a target. If it would normally be easy to steal, take Stress one step lower on a failure, and the Stress is never caused by the target noticing the theft. If it would be difficult, such as taking something from a backpack, reduce the difficulty by one step.\nSmall Cache: Hide an item so it cannot be found during an ordinary search. A reasonably small item or resource gains Concealable until the end of the scene.\nMove First: Perform a minor concealed action even while someone watches you directly: hide a knife, signal an ally, or open a lock. Being watched does not increase the check’s difficulty.\nPlant Explosives: Spend significant time quietly attaching explosives to an object. Before the scene ends, detonate them to destroy a door, wall, or bridge instead of making a KILL check and dealing Stress. This does not work on people, who notice the weight of the charge, though it may be attempted against larger enemies.\nSensor: Throw a sticky sensor bead that reports the target’s movements. Until the end of the scene, gain Mastery on HIDE and ASCEND checks against that target.",
+      "skill": "СКРЫВАТЬСЯ",
+      "skillEn": "HIDE"
     },
     {
       "id": "tactics-card-117-380",
       "kind": "tactic",
-      "title": "Модификация",
+      "title": "Modification",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7605,13 +7791,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "1) Модификация\n— Быстрая настройка: Вы подгоняете предмет под текущую задачу. До конца сцены он\nполучает одно положительное свойство на ваш выбор и одно негативное на выбор\nведущего.\n— Снять ограничитель: Вы выжимаете из предмета больше, чем задумал производитель.\nДо конца сцены кость предмета повышается на ступень, но затем он ломается так, что\nпочинить его можно только в оазисе.\n— Мастерская установка: Вы можете поставить на предмет модификацию за ресурс вне\nоазиса.\n— Беречь: Вы тщательно ухаживали за снаряжением, этой проверкой выберите предмет.\nДо конца сцены он получает свойство надёжный.\n— Сделанный мастером: Вы тратите значимое время и К6 или более ценный ресурс,\nчтобы сделать из оружия серийного производства шедевр искусства. Оно получает\nсвойство дорогой.",
-      "skill": "ТЕХНИЧИТЬ"
+      "text": "1. Modification\nQuick Adjustment: Adapt an item to the current task. Until the end of the scene, it gains one positive property of your choice and one negative property chosen by the GM.\nRemove the Limiter: Push an item beyond its manufacturer’s intentions. Its die increases by one step until the end of the scene. It then breaks and can only be repaired in an oasis.\nWorkshop Installation: Install a modification on an item by spending a resource outside an oasis.\nPreserve: You have carefully maintained your equipment. Choose an item with this check; it gains Reliable until the end of the scene.\nMade by a Master: Spend significant time and a D6 or more valuable resource to transform a mass-produced weapon into a work of art. It gains Expensive.",
+      "skill": "ТЕХНИЧИТЬ",
+      "skillEn": "TECH"
     },
     {
       "id": "tactics-card-117-381",
       "kind": "tactic",
-      "title": "Полевой инженер",
+      "title": "Field Engineer",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7620,13 +7807,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "2) Полевой инженер\n—- Собрать на коленке: Вы можете потратить К8 и более ценный ресурс, чтобы до конца\nсцены сделать предметы, которые не учтены в инвентаре, К6 вместо К4.\n— Повезло с деталью: Раз в сцену вы можете сказать, что среди вашего снаряжения или\nв окружении нашлась подходящая мелкая деталь. До конца сцены она считается ресурсом\nК6 МИР, который нельзя продать или обменять.\n— Одноразовое решение: Вы тратите значимое время и К6 и более ценный ресурс и\nсоздаёте устройство, которое делает ровно одну вещь: глушит сигнал, открывает дверь,\nдаёт вспышку, запускает дым. Оно срабатывает, давая мастерство на следующую проверку,\nа затем ломается.\n— Грубая автоматика: Вы тратите К6 и более ценный ресурс и значимое время и\nсобираете простую автоматическую систему: растяжку, датчик, ловушку. Она причинит К8\nстресса восхождению или врагу при условии, которое вы называете при её создании.\n– Инженерная импровизация: Вместо ресурса, вы можете потратить для проверки\nТЕХНИЧИТЬ предмет соответствующего качества.\n233",
-      "skill": "ТЕХНИЧИТЬ"
+      "text": "2. Field Engineer\nBuild It on Your Knee: Spend a D8 or more valuable resource. Until the end of the scene, improvised items not recorded in the inventory have a D6 die instead of D4.\nLucky Spare Part: Once per scene, declare that a suitable small component was present among your equipment or surroundings. Until the end of the scene, it counts as a D6 WORLD resource that cannot be sold or exchanged.\nSingle-Use Solution: Spend significant time and a D6 or more valuable resource to create a device that does exactly one thing: jam a signal, open a door, produce a flash, or release smoke. It grants Mastery on the next relevant check and then breaks.\nCrude Automation: Spend significant time and a D6 or more valuable resource to assemble a simple automatic system such as a tripwire, sensor, or trap. It deals D8 Stress to an enemy or Ascent when a condition named during its construction occurs.\nEngineering Improvisation: Spend an item of the appropriate quality instead of a resource on a TECH check.",
+      "skill": "ТЕХНИЧИТЬ",
+      "skillEn": "TECH"
     },
     {
       "id": "tactics-card-118-382",
       "kind": "tactic",
-      "title": "Цифровая техника",
+      "title": "Digital Engineering",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7635,13 +7823,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "3) Цифровая техника\n— Чужие права: Вы выдаёте себя за пользователя системы: охранника, техника,\nадминистратора. Опасная и роковая сложности при взломе цифровой техники теперь на\nступень легче.\n– Отследить: Вы узнаёте многое о пользователях через низкие уровни системы и\nнеаккуратные логи. Можете задать ведущему любой вопрос о взломанной цифровой\nсистеме, вам ответят честно.\n– Высококлассные программы: Вы вручную доработали и так лучшее на рынке ПО. Вы\nможете совершить с мастерством проверку на взлом, если цифровая система принадлежит\nне корпорации или армии, а кому-то менее могущественному.\n– Нейрерские сладости купить дёшево с доставкой: Вы организуете на систему\nцифровую атаку, присылая ей невероятное количество мусорных файлов. Вы получаете\nмастерство на эту проверку, но систему не починить до конца сцены, и переманить на свою\nсторону камеры или турели тоже не выйдет.\n– Цифровое мясо: Можете потратить значимое время и получить К4 стресса в РАЗУМ,\nчтобы, выпив банку энергетика, взломать цифровую систему любой сложности. Вы\nсовершаете проверку с мастерством и не получаете стресса при успехе с ценой.",
-      "skill": "ТЕХНИЧИТЬ"
+      "text": "3. Digital Engineering\nSomeone Else’s Permissions: Impersonate a system user such as a guard, technician, or administrator. Dangerous and doom difficulties for hacking digital technology become one step easier.\nTrace: Learn about users through low-level systems and careless logs. Ask the GM any question about a hacked digital system and receive a truthful answer.\nHigh-End Programs: You have manually improved the best software on the market. Make a hacking check with Mastery if the digital system belongs to someone less powerful than a corporation or army.\nBuy Neyrer Sweets Cheap with Delivery: Flood a system with an extraordinary quantity of junk files. Gain Mastery on the check, but the system cannot be repaired until the end of the scene, nor can you turn its cameras or turrets to your side.\nDigital Meat: Spend significant time, drink an energy beverage, and take D4 Stress in MIND to hack a digital system of any difficulty. Make the check with Mastery and take no Stress on a success with a cost.",
+      "skill": "ТЕХНИЧИТЬ",
+      "skillEn": "TECH"
     },
     {
       "id": "tactics-card-118-383",
       "kind": "tactic",
-      "title": "Кузнец",
+      "title": "Blacksmith",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7650,13 +7839,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "4) Кузнец\n— Кованый: Вы можете потратить значимое время и к8 и более ценный ресурс, чтобы\nпопытаться создать боевой нож или тяжёлое оружие ближнего боя с костью, равной кости\nзатраченного ресурса по правилам создания предметов. При критическом успехе он\nполучает свойство дорогой. Опишите его.\n– Амальгамма: Вы создаёте из двух предметов один, при успехе причиняющий стресс по\nправилам обоих предметов. Он получает свойства ненадёжный и опасный.\n– Грозная броня: Вы можете взять любую пластину для плитника и, потратив значимое\nвремя, перековать её в грозную пластину, дающую +2 защиты во все сопротивления.\n– По форме: Вы компенсируете неудобство тяжёлой брони, подгоняя её под конкретного\nчеловека. Выбранный штурмовой бронежилет или полный доспех теперь позволяют раз в\nсцену игнорировать получаемые от них штрафы.\n– Испытание в деле: Вы можете совершить атаку созданным или модифицированным\nвами оружием через навык ТЕХНИЧИТЬ.\n234",
-      "skill": "ТЕХНИЧИТЬ"
+      "text": "4. Blacksmith\nForged: Spend significant time and a D8 or more valuable resource to create a combat knife or heavy close-combat weapon. Under the item-creation rules, its die equals the resource die. On a critical success, it gains Expensive. Describe the weapon.\nAmalgam: Combine two items into one. On a success, it deals Stress according to both original items’ rules. It gains Unreliable and Dangerous.\nFearsome Armor: Spend significant time reforging any plate for a plate carrier into a fearsome plate that provides +2 Protection in every Resistance.\nTailored Fit: Compensate for heavy armor’s inconvenience by fitting it to a particular person. Once per scene, the selected assault vest or full armor allows its wearer to ignore the penalties it imposes.\nField Test: Attack with a weapon you created or modified using TECH instead of KILL.",
+      "skill": "ТЕХНИЧИТЬ",
+      "skillEn": "TECH"
     },
     {
       "id": "tactics-card-118-384",
       "kind": "tactic",
-      "title": "Рациональность",
+      "title": "Rationality",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7665,13 +7855,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "5) Рациональность\n– В два слоя: Вы тратите заметное время, и модифицируете плитник, штурмовой\nбронежилет, или полный доспех так, чтобы они занимали слот рюкзака. Так вы сможете\nносить два комплекта брони. Их защита всё ещё не суммируется.\n– Дополнительная разгрузка: Вы модифицируете разгрузку и рюкзак. Теперь вы можете\nвзять вместо четырёх слотов ресурсов один предмет. Пока у вас нет пятого предмета\nснаряжения, вы всё ещё можете брать эти ресурсы.\n– Соорудить носилки: Вы собираете хранилище для предметов из подручных средств.\nОно занимает слот предмета и даёт +2 защиты и +2 слота в РЕСУРСЫ.\n– Специалист особой брони: Вы модифицируете особую защиту так, что она теперь\nможет занимать слот брони на тело. Так вы сможете носить два комплекта особой защиты.\nИх защита всё ещё не суммируется, а применяемую раз в сцену способность от двух\nкомплектов можно использовать только одну за сцену.\n– Самое ценное: Вы соединяете два шлема в один, надёжнее защищающий голову. Их\nзащита суммируется, но итог получает свойство тяжёлый.",
-      "skill": "ТЕХНИЧИТЬ"
+      "text": "5. Rationality\nTwo Layers: Spend significant time modifying a plate carrier, assault vest, or full armor so it occupies a backpack slot. This allows you to wear two sets of armor, though their Protection still does not stack.\nAdditional Load-Bearing Rig: Modify a rig and backpack. You may now carry one item in place of four resource slots. Until you acquire a fifth item of equipment, you may still use those slots for resources.\nConstruct a Stretcher: Assemble storage for equipment from available materials. It occupies one item slot and grants +2 Protection and two additional slots in RESOURCES.\nSpecial-Armor Specialist: Modify a piece of special protection so it may occupy the body-armor slot. This allows you to wear two sets of special protection. Their Protection does not stack, and only one of their once-per-scene abilities may be used each scene.\nThe Most Valuable: Combine two helmets into one that protects the head more reliably. Their Protection stacks, but the resulting helmet gains Heavy.",
+      "skill": "ТЕХНИЧИТЬ",
+      "skillEn": "TECH"
     },
     {
       "id": "tactics-card-118-385",
       "kind": "tactic",
-      "title": "Уклонение и блок",
+      "title": "Dodge and Block",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7680,13 +7871,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "1) Уклонение и блок\n— Сбить траекторию: Вы парируете клинок, или отводите ствол автомата. Атака,\nсовершённая против вас на дистанции ближнего боя, причиняет стресс противнику на той\nже дистанции, что вы, или позади вас.\n— Удачное укрытие: В последний момент вы ныряете в укрытие. При провале вместо\nПУЛЬ получите стресс в СУДЬБУ и снизьте его на ступень.\n— Быстрее пули: Вы защищаетесь, парируя пули и уворачиваясь от клинков, но не\nпрекращаете продвигаться. Можете переместиться на одну дистанцию без дополнительных\nпроверок.\n— Слепая зона: Вы держитесь там, где атакующему неудобно вас достать: слишком близко\nк стрелку, сбоку от зверя, под рукой крупного врага.Следующая атака этого противника\nпричинит по вам на ступень меньше стресса.\n— Последний сантиметр: Вы не уходите полностью, а смещаетесь ровно настолько,\nчтобы пуля могла сбрить прядь волос. Вы сохраняете позицию и не отступаете, даже если\nатака обычно должна была отбросить, сбить или вытеснить вас.",
-      "skill": "ИЗБЕГАТЬ"
+      "text": "1. Dodge and Block\nDeflect the Trajectory: Parry a blade or turn aside a rifle barrel. An attack made against you at Close Range instead deals Stress to an enemy at your Range or behind you.\nLucky Cover: Dive behind cover at the last moment. On a failure, take Stress in FATE instead of BULLETS and reduce it by one step.\nFaster Than a Bullet: Defend yourself by parrying bullets and avoiding blades without ceasing to advance. Move one Range band without an additional check.\nBlind Spot: Remain where the attacker has difficulty reaching you: too close to a shooter, beside a beast, or beneath a large enemy’s arm. That enemy’s next attack against you deals Stress one step lower.\nThe Last Centimeter: Move only far enough for a bullet to shave off a lock of hair. You retain your position and do not retreat even if the attack would normally knock you back, knock you down, or force you away.",
+      "skill": "ИЗБЕГАТЬ",
+      "skillEn": "EVADE"
     },
     {
       "id": "tactics-card-118-386",
       "kind": "tactic",
-      "title": "Выдержка и ярость",
+      "title": "Endurance and Rage",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7696,13 +7888,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "2) Выдержка и ярость\n— Солдатская свадьба: Вы встречаете боль, страх и удар чистым упрямством.\nЕсли после этой проверки вы получите стресс, он будет на ступень ниже.\n— Принять удар: Вы принимаете удар, не пытаясь защититься или спрятаться, и это\nникогда не входит в планы противника. Вы получите стресс в любом случае, но при успехе\nследующая проверка против противника, причинившего его, будет на ступень легче. При\nкритическом успехе это применяется ко всем противникам в сцене.\n235\n— Злость держит: Если вы получаете стресс при провале этой тактики, вы не совершаете\nдля него проверку последствия.\n— Держать строй: Если у вас есть малое последствие в ПУЛЯХ, совершайте эту тактику с\nмастерством. Если у вас есть значимое последствие в пулях, вы не можете получить на ней\nкритический провал.\n– Командир Рейзнейза: Вы, уподобившись полковнику Благочестию Мудрости во время\nбитвы при Рейзнейзе, держите позицию до конца. Если вы имели преимущество от\nпозиции, вы вместо одной кости мастерства получаете две.",
-      "skill": "ИЗБЕГАТЬ"
+      "text": "2. Endurance and Rage\nSoldier’s Wedding: Meet pain, fear, and impact with pure stubbornness. If this check causes you Stress, reduce it by one step.\nTake the Hit: Accept the attack without attempting to defend or hide, catching the enemy off guard. You take Stress regardless of the result. On a success, your next check against the attacker becomes one step easier. On a critical success, this benefit applies against every enemy in the scene.\nAnger Holds You Together: If you take Stress after failing this Tactic, do not make a Fallout check for it.\nHold Formation: If you have Minor Fallout in BULLETS, make this Tactic with Mastery. If you have Major Fallout in BULLETS, you cannot critically fail it.\nCommander of Reizneiza: Like Colonel Piety of Wisdom at the Battle of Reizneiza, hold your position to the end. If you possessed a positional advantage, gain two Mastery dice instead of one.",
+      "skill": "ИЗБЕГАТЬ",
+      "skillEn": "EVADE"
     },
     {
       "id": "tactics-card-119-387",
       "kind": "tactic",
-      "title": "Выживание в опасной местности",
+      "title": "Survival in Hazardous Terrain",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7711,13 +7904,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "3) Выживание в опасной местности\n— Прятаться от среды: Вы закрываетесь от огня, холода или ядовитых спор тем, что есть\nпод рукой. Вы получаете +2 защиты в ПУЛИ от окружающей среды до конца сцены.\n— Понять ритм: Вы ловите закономерность: когда бьёт ток, когда сдвигаются стена, когда\nоткрывается гравитационная яма, когда дух смотрит в вашу сторону. Следующая проверка\nИЗБЕГАТЬ против этой же опасности до конца сцены совершается с мастерством.\n— Щит опасности: Вы пользуетесь местностью так, что между вами и врагом оказывается\nкислотная река, или стена из электрических импульсов. Следующий стресс, причиняемый\nвам врагом, или восхождением, причинит ему К8 стресса.\n– Быстрый противогаз: Вы надеваете противогаз мгновенно даже по армейским меркам.\nВы получаете мастерство на эту тактику против газа, дыма, спор и других угроз в воздухе.\n– Учиться на ошибках: Если вы получаете стресс, провалив эту тактику, ваша следующая\nпроверка становится на ступень легче. Опишите, как вас забавно повредило молнией, или\nвспышкой света.",
-      "skill": "ИЗБЕГАТЬ"
+      "text": "3. Survival in Hazardous Terrain\nShelter from the Environment: Protect yourself from fire, cold, or poisonous spores with whatever is available. Gain +2 Protection in BULLETS against environmental dangers until the end of the scene.\nUnderstand the Rhythm: Recognize the pattern governing electrical discharges, moving walls, opening gravity wells, or a spirit turning its gaze. Your next EVADE check against the same danger gains Mastery before the scene ends.\nHazard Shield: Use the terrain to place an acid river or wall of electrical impulses between yourself and an enemy. The next time an enemy or Ascent deals Stress to you, it also takes D8 Stress.\nRapid Gas Mask: Put on a gas mask instantly, even by military standards. Gain Mastery on this Tactic against gas, smoke, spores, and other airborne hazards.\nLearn from Mistakes: If you fail this Tactic and take Stress, your next check becomes one step easier. Describe how lightning or a flash of light injured you in an amusing way.",
+      "skill": "ИЗБЕГАТЬ",
+      "skillEn": "EVADE"
     },
     {
       "id": "tactics-card-119-388",
       "kind": "tactic",
-      "title": "Мастер защиты",
+      "title": "Defense Master",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7726,13 +7920,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "4) Мастер защиты\n— Подставить плиту: Вы принимаете удар именно тем участком брони, который\nрассчитан на нагрузку. Защита в ПУЛЯХ от брони считается на 2 выше против этой атаки.\n— Скользящий угол: Вы поворачиваете корпус так, чтобы атака прошла по касательной.\nПри провале этой тактики вы получаете на ступень меньше стресса.\n— Летал как птица РРР: Вы используете структуру брони, чтобы пережить падение, или\nстолкновение. Падая с большой высоты, вы можете сказать, что сломана ваша броня на\nтеле, тогда вы не можете получить на этой тактике результат хуже успеха с ценой. Птицы\nРРР не умеют летать.\n– Успокоительное: Если вы не получили стресса от вражеской атаки благодаря этой\nтактике, вы можете атаковать врага в ближнем бою штурмовым щитом. Он без\nдополнительной проверки причинит столько стресса, сколько суммарно даёт слотов и\nзащиты.\n– Координация: Когда вы оказываете союзнику помощь в проверке ИЗБЕГАТЬ с помощью\nэтой тактики, вы даёте кроме кости помощи ещё и кость мастерства.\n236",
-      "skill": "ИЗБЕГАТЬ"
+      "text": "4. Defense Master\nPresent the Plate: Receive the attack with the part of your armor designed to withstand it. Your armor’s BULLETS Protection counts as 2 higher against this attack.\nGlancing Angle: Turn your body so the attack strikes at an angle. On a failure, take Stress one step lower.\nFlew Like an RRR Bird: Use your armor’s structure to survive a fall or collision. When falling from a great height, declare that your body armor breaks. Your result on this Tactic cannot then be worse than a success with a cost. RRR birds cannot fly.\nPacifier: If this Tactic allows you to avoid all Stress from an enemy attack, strike the enemy at Close Range with an assault shield. Without another check, deal Stress equal to the shield’s combined Protection and additional slots.\nCoordination: When assisting an ally’s EVADE check with this Tactic, provide both an assistance die and a Mastery die.",
+      "skill": "ИЗБЕГАТЬ",
+      "skillEn": "EVADE"
     },
     {
       "id": "tactics-card-119-389",
       "kind": "tactic",
-      "title": "Закрытый контур",
+      "title": "Closed Circuit",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7741,13 +7936,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "5) Закрытый контур\n— Пустая мысль: Вы на мгновение очищаете сознание: считаете патроны, повторяете\nмолитву, вспоминаете устав, смотрите на трещину в стене,\nслушаете собственное дыхание. Вы получаете мастерство на эту тактику, если действовать\nнадо было очень быстро и если вы пытаетесь избежать стресса в ДУХ или РАЗУМ.\n— Разомкнуть контур: Вы отключаете лишние каналы восприятия: закрываете глаза,\nвыключаете имплант, рвёте радиосвязь. До конца сцены вы лишены одного чувства на\nвыбор, что сделает связанные с ним проверки на ступень сложнее, но даст +4 защиты в\nРАЗУМ.\n— Сбить ритм: Вы ломаете последовательность воздействия: перебиваете песню духа,\nсбиваете дыхание, произносите неправильный ответ. Можете получить К6 стресса в\nРЕСУРСЫ, чтобы до конца сцены получить мастерство на все проверки ИЗБЕГАТЬ против\nцели, к которой применяли эту тактику.\n— Не судьба: Когда угроза пытается навязать вам рок, проклятую случайность, или другой\nпредрешённый исход, вы отказываетесь участвовать в этом сценарии. Если вы избегаете\nэтой тактикой стресса в ДУХ, или СУДЬБУ, вы можете очистить малое последствие в ДУХЕ\nили СУДЬБЕ.\n– Иллюзия миража: Если вы избегаете этой тактикой стресса в РАЗУМ или ДУХ, можете\nспросить у ведущего, что в этой сцене не по-настоящему, вам обязаны ответить честно.",
-      "skill": "ИЗБЕГАТЬ"
+      "text": "5. Closed Circuit\nEmpty Thought: Briefly clear your mind by counting cartridges, repeating a prayer, recalling regulations, staring at a crack in a wall, or listening to your breath. Gain Mastery if you had to act extremely quickly and are attempting to avoid SPIRIT or MIND Stress.\nOpen the Circuit: Disable unnecessary channels of perception by closing your eyes, switching off an implant, or severing radio contact. Until the end of the scene, lose one chosen sense, making checks connected to it one step harder, but gain +4 Protection in MIND.\nBreak the Rhythm: Disrupt the effect’s sequence by interrupting a spirit’s song, altering your breathing, or speaking an incorrect answer. Take D6 Stress in RESOURCES to gain Mastery on all EVADE checks against that target until the end of the scene.\nNot Fated: Refuse to participate when a threat attempts to impose destiny, cursed coincidence, or another predetermined outcome upon you. If this Tactic avoids Stress in SPIRIT or FATE, clear one Minor Fallout in SPIRIT or FATE.\nMirage Illusion: If this Tactic avoids Stress in MIND or SPIRIT, ask the GM what is not real in the scene. The GM must answer truthfully.",
+      "skill": "ИЗБЕГАТЬ",
+      "skillEn": "EVADE"
     },
     {
       "id": "tactics-card-119-390",
       "kind": "tactic",
-      "title": "Расследование",
+      "title": "Investigation",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7756,13 +7952,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "1) Расследование\n— Восстановить события: Вы изучаете место происшествия. При успехе ведущий кратко\nописывает, что здесь произошло в правильном порядке, но без скрытых мотивов\nучастников. Ведущий открывает вам максимальное сопротивление расследования.\n— Тот, кто врёт следами: Вы ищете несостыковки: лишнюю гильзу, кровь не там, где она\nдолжна быть, слишком чистую комнату. Вы можете сказать, что виновник где-то рядом и\nвыдвинуть свою теорию. Защита сопротивления расследования снижается на 2.\n— Найти связь: Вы соединяете несколько улик в одну цепочку. Вы можете сказать, что в\nделе замешана одна из крупных фракций, но её мотивы и подробности событий остаются\nза ведущим.\n— Последняя ошибка: Вы находите момент, где всё пошло не по плану: сорванный болт,\nсломанный ноготь, лишний выстрел. Когда вы столкнётесь с виновником, все проверки\nпротив него будут совершаться с мастерством.\n— Бригада специалистов: Если вам помогали с этой проверкой УЗНАВАТЬ, стресс\nрасследованию повышается на ступень.\n237",
-      "skill": "УЗНАВАТЬ"
+      "text": "1. Investigation\nReconstruct Events: Examine a crime scene. On a success, the GM briefly describes what happened in the correct order without revealing the participants’ hidden motives. The GM also reveals the investigation’s maximum Resistance.\nThe One Who Lies with Evidence: Search for inconsistencies: an extra cartridge, blood in the wrong place, or an unnaturally clean room. Declare that the culprit is nearby and present your theory. Reduce the investigation’s Protection by 2.\nFind the Connection: Link several clues into a single chain. Declare that one of the major factions is involved. The GM determines its motives and the details of what occurred.\nThe Last Mistake: Find the moment when everything deviated from the plan: a stripped bolt, a broken fingernail, or an unnecessary shot. When you encounter the culprit, make all checks against them with Mastery.\nTeam of Specialists: If someone assisted this INVESTIGATE check, increase the Stress dealt to the investigation by one step.",
+      "skill": "УЗНАВАТЬ",
+      "skillEn": "INVESTIGATE"
     },
     {
       "id": "tactics-card-120-391",
       "kind": "tactic",
-      "title": "Анализ человеческого",
+      "title": "Human Analysis",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7771,13 +7968,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "2) Анализ человеческого\n— Прочитать намерение: Вы наблюдаете за тем, как человек держится. Задайте\nведущему вопрос о его характере, подходе к диалогу с ним, или о его очевидных желаниях\nи поверхностных эмоциях, вам ответят честно.\n— Кто здесь главный: Вы быстро понимаете настоящую иерархию группы: кто отдаёт\nприказы, кого боятся, кого берегут, кто просто громче всех говорит. Дальнейшие действия\nпротив лидера или через лидера совершаются с мастерством.\n— Боевой почерк: Вы наблюдаете за боевым стилем противника. Задайте ведущему\nвопрос, какая сторона у него – самая сильная, вам ответят честно.\n— Профессиональная привычка: Вы узнаёте род занятий по рукам, стойке, шрамам,\nжаргону. Вы определяете, кем человек был или чему обучен и получаете мастерство на\nпроверки ГОВОРИТЬ с ним, если служили в том же роде войск.\n— Чужая боль: Вы понимаете, какое последствие, травма, долг или страх сейчас\nуправляет человеком. Можете задать ведущему один вопрос: чего он боится, кого винит, за\nчто держится. Вам ответят честно.",
-      "skill": "УЗНАВАТЬ"
+      "text": "2. Human Analysis\nRead Intentions: Observe how a person carries themselves. Ask the GM one question about their personality, how best to approach them in conversation, their obvious desires, or their surface emotions. Receive a truthful answer.\nWho Is in Charge Here?: Quickly identify the true hierarchy: who gives orders, whom people fear, whom they protect, and who merely speaks the loudest. Further actions against or through the leader gain Mastery.\nCombat Signature: Observe an opponent’s fighting style. Ask the GM what their strongest side is and receive a truthful answer.\nProfessional Habit: Recognize an occupation from hands, stance, scars, and jargon. Determine what the person once did or was trained to do. Gain Mastery on TALK checks with them if you served in the same branch of service.\nAnother’s Pain: Understand what Fallout, injury, debt, or fear currently governs a person. Ask the GM what they fear, whom they blame, or what they refuse to let go. Receive a truthful answer.",
+      "skill": "УЗНАВАТЬ",
+      "skillEn": "INVESTIGATE"
     },
     {
       "id": "tactics-card-120-392",
       "kind": "tactic",
-      "title": "Анализ магического",
+      "title": "Magical Analysis",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7786,13 +7984,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "3) Анализ магического\n— Опознать: Вы изучаете магический предмет. Вы узнаёте область происхождения магии и\nеё примерное назначение.\n— А что если…: Перед взаимодействием с аномалией, духом, или магическим предметом\nвы изучаете его признаки. Ведущий честно говорит, какой стресс или последствие наиболее\nвероятны при ошибке.\n— След: Вы видите, кто или что недавно колдовало здесь: запах, осадок на стенах,\nперегретые монеты, мёртвых насекомых, ожоги на реальности, цифровую дрожь. Вы\nузнаёте школу магии, куда ушёл маг, его примерную силу, или что это было за заклинание.\n— Родословная: Увидев заклинание в действии, вы понимаете, к какой традиции,\nфракции, или к какому классу относится эффект. Вы узнаёте, кто мог этому научить, где это\nобычно применяют и чего носитель такой магии обычно избегает.\n— Треснувшее чудо: Вы находите в маге или магическом предмете изъян: неверное имя,\nтрещину в круге, лишнюю свечу. Следующая проверка КОЛДОВАТЬ против этой цели\nполучает мастерство и не может принести критический провал.\n238",
-      "skill": "УЗНАВАТЬ"
+      "text": "3. Magical Analysis\nIdentify: Study a magical item. Learn the Domain from which its magic originates and its approximate purpose.\nWhat If…?: Study the signs surrounding an anomaly, spirit, or magical item before interacting with it. The GM truthfully tells you which Stress or Fallout is most likely if something goes wrong.\nTrace: Perceive what recently used magic here through smells, residue on walls, overheated coins, dead insects, burns in reality, or digital tremors. Learn its magical school, where the mage went, their approximate strength, or which spell was cast.\nLineage: After seeing a spell in action, identify the tradition, faction, or Class responsible for it. Learn who could have taught it, where it is usually employed, and what wielders of this magic normally avoid.\nCracked Miracle: Find a flaw in a mage or magical item: an incorrect name, a crack in the circle, or an extra candle. The next CAST check against the target gains Mastery and cannot critically fail.",
+      "skill": "УЗНАВАТЬ",
+      "skillEn": "INVESTIGATE"
     },
     {
       "id": "tactics-card-120-393",
       "kind": "tactic",
-      "title": "Продвинутая разведка",
+      "title": "Advanced Reconnaissance",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7801,13 +8000,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "4) Продвинутая разведка\n— Понять оборону: Вы смотрите на укрепление как разведчик. Вы можете сказать, что в\nобороне есть изъян, например возможность зайти с бетонной скалы сверху, или\nнерегулярно сменяющиеся часовые.\n— Сектор обстрела: Вы определяете, какие места простреливаются, где мёртвая зона, куда\nлягут осколки, откуда работает снайпер. До конца сцены проверки ИЗБЕГАТЬ или\nПРОБИВАТЬСЯ в этой зоне совершаются с мастерством.\n— Найти наблюдателя: Вы ищете того, кто уже смотрит на вас: снайпера, камеру, духа,\nкорректировщика артиллерии. Вы можете сказать, что в сцене появляется сторонний\nнаблюдатель. При провале тактики это ваш враг, даже если его тут быть не должно. При\nуспехе это ваш контакт-персонаж ведущего, даже если его тут быть не должно.\n— Погодить минуту: Вы можете сказать, что сейчас худший момент для действия: патруль\nрядом, лифт едет, рынок замолчал. Все следующие проверки до первого провала вы\nсовершаете с мастерством, первый провал приносит на ступень больше стресса и\nобрывает эту серию.\n— Настоящий отряд: Вы быстро объясняете союзнику обстановку: где укрытия, где цель,\nгде опасность, кто командир, куда бежать. Один союзник получает кость помощи на\nследующую проверку, даже если вы не участвуете в действии напрямую и две, если\nучаствуете.",
-      "skill": "УЗНАВАТЬ"
+      "text": "4. Advanced Reconnaissance\nUnderstand the Defenses: Examine a fortification as a scout. Declare that its defenses contain a weakness, such as a route down from a concrete cliff or guards changing shifts at irregular intervals.\nField of Fire: Determine which areas are exposed, where the dead ground lies, where fragments will land, and where a sniper is positioned. Until the end of the scene, make EVADE and ASCEND checks within the area with Mastery.\nFind the Observer: Search for someone already watching you: a sniper, camera, spirit, or artillery spotter. Declare that an outside observer appears in the scene. On a failure, it is your enemy even if it should not be present. On a success, it is one of your Contact NPCs even if they should not be present.\nWait a Minute: Declare that this is the worst possible moment to act: a patrol is passing, an elevator is moving, or the market has fallen silent. Make all subsequent checks with Mastery until the first failure. That failure deals Stress one step higher and ends the sequence.\nA Real Squad: Quickly explain the situation to an ally: where the cover, target, danger, commander, and escape route are located. One ally gains an assistance die on their next check even if you do not participate directly, or two assistance dice if you do.",
+      "skill": "УЗНАВАТЬ",
+      "skillEn": "INVESTIGATE"
     },
     {
       "id": "tactics-card-120-394",
       "kind": "tactic",
-      "title": "Касание непостижимого",
+      "title": "Touch of the Unfathomable",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7816,13 +8016,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "5) Касание непостижимого\n— Загадка: Вы смотрите на невозможную геометрию, танец теней и космических\nмасштабов бетонные структуры, чтобы позволить душе сложить их в ответ. При успехе\nзадайте ведущему один вопрос о локации. Ответ правдивый, но причинит вам К6 стресса в\nРАЗУМ.\n— Принять неправильную мысль: Вы ненадолго допускаете, что безумная логика места\nверна. Лестница ведёт вверх и вниз одновременно, труп помнит будущее, дверь\nоткрывается криком. Вы можете сказать, что знаете, как справиться с сумасшедшим\nпрепятствием, и вам не нужно на это дополнительной проверки, но вы получите К8 стресса\nв РАЗУМ.\n— Сон наяву: Вы позволяете видению, галлюцинации, или чужой памяти пройти сквозь\nвас. Вы узнаёте одну тайну о человеке, чудовище, фракции,\n— Вернуться обратно: После контакта с невозможным вы проговариваете простые\nистины: своё имя, имена друзей, цель задания. Стресс в РАЗУМ от этого же источника до\nконца сцены снижается на ступень.\n239",
-      "skill": "УЗНАВАТЬ"
+      "text": "5. Touch of the Unfathomable\nRiddle: Contemplate impossible geometry, dancing shadows, and concrete structures of cosmic scale, allowing your soul to assemble them into an answer. On a success, ask the GM one question about the location. The answer is truthful but deals D6 Stress to you in MIND.\nAccept the Wrong Thought: Briefly accept that the place’s insane logic is correct: the staircase leads both upward and downward, the corpse remembers the future, or the door opens when someone screams. Declare that you know how to overcome an irrational obstacle without another check, but take D8 Stress in MIND.\nWaking Dream: Allow a vision, hallucination, or another person’s memory to pass through you. Learn one secret about a person, monster, or faction.\nReturn: After contact with the impossible, repeat simple truths: your name, the names of your friends, and the mission’s objective. Until the end of the scene, reduce MIND Stress from the same source by one step.",
+      "skill": "УЗНАВАТЬ",
+      "skillEn": "INVESTIGATE"
     },
     {
       "id": "tactics-card-121-395",
       "kind": "tactic",
-      "title": "Продвинутые манипуляции",
+      "title": "Advanced Manipulation",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7831,13 +8032,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "1) Продвинутые манипуляции\n— Зверская хитрость: Вы быстро подстраиваетесь под ожидания собеседника: говорите\nкак союзник, клиент, начальник, или полезный идиот. Если у вас есть информация о том,\nкто этот человек, чего он хочет и боится, вы совершаете эту тактику с мастерством.\n— Правда с начинкой: Вы строите обман вокруг настоящих деталей: реального имени,\nподлинного документа, настоящей раны. Если у вас есть значимое последствие, вы\nсовершаете эту тактику с мастерством.\n— Заставить оправдываться: Вы задаёте вопрос, после которого собеседник сам\nначинает объяснять свои действия, слабые места, страхи или мотивы. Получите один\nважный факт, но только такой, который он мог выдать в разговоре.\n— Мягкая угроза: Вы угрожаете так, что это звучит как забота, предупреждение, совет или\nпечальная неизбежность. Цель напугана, но не имеет оснований объявить вас врагом. При\nпровале этой тактики вы не получаете стресс в РЕСУРСЫ.\n— Разделить союзников: Вы вбиваете клин между двумя людьми или группами:\nподчёркиваете разницу интересов, старую обиду, неравную награду. Они не действуют как\nединое целое до конца сцены.",
-      "skill": "ГОВОРИТЬ"
+      "text": "1. Advanced Manipulation\nAnimal Cunning: Rapidly adapt to the other person’s expectations, speaking like an ally, customer, superior, or useful idiot. Gain Mastery if you know who the person is and what they want and fear.\nTruth with a Filling: Construct a lie around genuine details: a real name, authentic document, or actual wound. Gain Mastery if you currently have Major Fallout.\nMake Them Justify Themselves: Ask a question that causes the other person to explain their actions, weaknesses, fears, or motives. Learn one important fact, provided it is something they could reveal during a conversation.\nGentle Threat: Make a threat sound like concern, a warning, advice, or a sad inevitability. The target becomes frightened but has no grounds to declare you an enemy. You take no RESOURCES Stress if this Tactic fails.\nDivide the Allies: Drive a wedge between two people or groups by emphasizing conflicting interests, an old grievance, or unequal rewards. They cannot act as a unified group until the end of the scene.",
+      "skill": "ГОВОРИТЬ",
+      "skillEn": "TALK"
     },
     {
       "id": "tactics-card-121-396",
       "kind": "tactic",
-      "title": "Умелая торговля",
+      "title": "Skilled Trade",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7846,13 +8048,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "2) Умелая торговля\n— Цена в сердце: Вы понимаете, что для продавца важнее денег: безопасность, статус,\nчужое унижение. Вы узнаёте, чем можно заменить часть оплаты или снизить стоимость\nсделки на ступень.\n— Бартерная цепочка: Вы выстраиваете обмен через несколько вещей и людей: патроны\nна батареи, батареи на проход, проход на информацию, информацию на лекарство. Один\nваш ресурс или предмет считается на ступень ценнее именно для этой сделки.\n— Показать выгоду: Вы объясняете, почему сделка выгодна не только сейчас, но и потом:\nрепутация, будущие поставки, месть конкуренту. Продавец добавляет к сделке маленькую\nуслугу, скидку, информацию или отсрочку.\n— Торг без унижения: Вы снижаете цену так, чтобы другая сторона не потеряла лицо:\nхвалите товар, признаёте трудность маршрута, ссылаетесь на рынок, сезон, приметы. Цена\nпадает, но отношения не портятся.\n— Винтовка жалоб и предложений: Вы ведёте сделку так, чтобы вас не обманули, не\nзавели в засаду и не подсунули проклятый товар. Ведущий обязан сказать, какая часть\nсделки выглядит самой опасной или сомнительной.\n240",
-      "skill": "ГОВОРИТЬ"
+      "text": "2. Skilled Trade\nPrice in the Heart: Understand what the seller values more than money: safety, status, or someone else’s humiliation. Learn what can replace part of the payment or reduce the transaction’s price by one step.\nBarter Chain: Arrange a chain of exchanges through several people and objects: ammunition for batteries, batteries for passage, passage for information, and information for medicine. One resource or item counts as one value step higher for this transaction.\nDemonstrate the Benefit: Explain why the transaction will remain profitable later through reputation, future deliveries, or revenge against a competitor. The seller adds a minor service, discount, piece of information, or deferred payment.\nHaggle Without Humiliation: Lower the price without causing the other party to lose face by praising the goods, acknowledging the route’s difficulty, or referring to the market, season, or omens. The price falls without damaging the relationship.\nComplaints-and-Suggestions Rifle: Conduct the transaction so you cannot be deceived, lured into an ambush, or sold a cursed item. The GM must identify the part of the deal that appears most dangerous or suspicious.",
+      "skill": "ГОВОРИТЬ",
+      "skillEn": "TALK"
     },
     {
       "id": "tactics-card-121-397",
       "kind": "tactic",
-      "title": "Выступление",
+      "title": "Performance",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7861,13 +8064,14 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "3) Выступление\n— Захватить внимание: Вы поёте, рассказываете историю, произносите тост, молитву,\nили обвинение так, что люди замолкают и слушают. Сцена на короткое время вращается\nвокруг вас: спор, драка или паника задерживаются до вашего первого проваленного\nброска.\n— Речь перед боем: Вы поднимаете дух отряда, контактов, наёмников или толпы перед\nопасным делом. До первого проваленного броска все персонажи и контакты совершают\nбросок с мастерством.\n— Легенда о себе: Вы рассказываете о своих прошлых подвигах, знаменитых друзьях и\nлегендарном оружии. За каждую вашу профессиональную способность вы причиняете\nсопротивлению переговоров дополнительные 1к4 стресса.\n— Взволновать толпу: Вы направляете эмоции множества людей: страх в бегство, а\nзлость в бунт. Толпа делает одно простое массовое действие, не требующее сложной\nкоординации.\n— Последняя фраза: Перед тем как разговор сорвётся в бой, казнь, изгнание или побег,\nвы успеваете сказать одну фразу. Эта фраза меняет одно малое условие сцены: кто-то\nмедлит, кто-то сомневается, кто-то запоминает вас, кто-то не стреляет первым.",
-      "skill": "ГОВОРИТЬ"
+      "text": "3. Performance\nCommand Attention: Sing, tell a story, deliver a toast, pray, or make an accusation so compellingly that everyone falls silent. The scene briefly revolves around you: an argument, fight, or panic is delayed until your first failed roll.\nSpeech Before Battle: Raise the spirits of the squad, Contacts, mercenaries, or a crowd before a dangerous task. Until the first failed roll, all affected characters and Contacts make checks with Mastery.\nLegend of Yourself: Tell stories about your past deeds, famous friends, and legendary weapons. Deal an additional D4 Stress to the negotiation’s Resistance for each Professional Ability you possess.\nStir the Crowd: Direct the emotions of many people, turning fear into flight or anger into revolt. The crowd performs one simple mass action that requires no complex coordination.\nFinal Words: Before a conversation collapses into battle, execution, exile, or escape, speak one final sentence. It changes one minor condition of the scene: someone hesitates, begins to doubt, remembers you, or chooses not to fire first.",
+      "skill": "ГОВОРИТЬ",
+      "skillEn": "TALK"
     },
     {
       "id": "tactics-card-121-398",
       "kind": "tactic",
-      "title": "Культура",
+      "title": "Culture",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -7876,8 +8080,9 @@ window.TOWER_CODEX_EN = {
         ],
         "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "4) Культура\n— Правильное приветствие: Вы знаете или быстро угадываете, как обратиться к\nчеловеку: жест, титул, дистанция, поклон. Первая реакция собеседника не может быть хуже\nнейтральной, если вы не пришли как очевидный враг.\n— Чтить запреты: Вы замечаете культурную ловушку: нельзя есть сладкое, нельзя\nговорить цифру, нельзя смотреть в глаза, нельзя трогать оружие. Вы задаёте ведущему\nвопрос, какое неочевидное действие может обидеть собеседника, вам ответят честно.\n— Подарок по смыслу: Вы выбираете дар, который говорит больше цены: нож, кусок\nткани, редкий запах. Подарок считается на ступень ценнее в этой культуре или ситуации.\n— Общий обычай: Вы находите мост между культурами: похожий ритуал, армейскую\nпривычку, одинаковый страх. Вы получаете мастерство в общении с представителями\nодного народа до конца сцены.\n— Грамотный перевод: Даже зная язык, легко не понять намёк. Вы объясняете\nсоюзникам, что на самом деле значила фраза, жест, пауза, отказ или подарок. До конца\nсцены вы получаете на ступень стресса в РЕСУРСЫ меньше от недовольства собеседника.\n241",
-      "skill": "ГОВОРИТЬ"
+      "text": "4. Culture\nProper Greeting: Know or quickly guess how to address someone through gesture, title, distance, or a bow. Their initial reaction cannot be worse than neutral unless you arrive as an obvious enemy.\nRespect the Taboos: Notice a cultural trap: one must not eat sweets, say a particular number, look into someone’s eyes, or touch a weapon. Ask the GM which unobvious action might offend the other person and receive a truthful answer.\nMeaningful Gift: Choose a gift whose meaning exceeds its price: a knife, a piece of cloth, or a rare scent. The gift counts as one value step higher in this culture or situation.\nShared Custom: Find a bridge between cultures through a similar ritual, military habit, or shared fear. Gain Mastery when communicating with members of one people until the end of the scene.\nAccurate Translation: Even when someone knows the language, they may miss an implication. Explain to your allies what a phrase, gesture, pause, refusal, or gift truly meant. Until the end of the scene, take RESOURCES Stress caused by the other person’s displeasure one step lower.",
+      "skill": "ГОВОРИТЬ",
+      "skillEn": "TALK"
     }
   ]
 };
