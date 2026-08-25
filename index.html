@@ -3109,16 +3109,18 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
       const totals=getCurrentStressTotals();
       const totalStress=totals.totalStress;
       const roll=Math.floor(Math.random()*10)+1;
+      let consequence=currentLanguage==="en"?"No Fallout":"Без последствия";
       if(roll<totalStress){
-        let consequence=currentLanguage==="en"?"Minor Fallout":"Малое последствие";
+        consequence=currentLanguage==="en"?"Minor Fallout":"Малое последствие";
         if(totalStress>=16)consequence=currentLanguage==="en"?"Doom Fallout":"Роковое последствие";
         else if(totalStress>=6)consequence=currentLanguage==="en"?"Major Fallout":"Значимое последствие";
         lastConsequenceCheckText=`${currentLanguage==="en"?"D10":"К10"}: ${roll}, ${currentLanguage==="en"?"Stress":"стресс"}: ${totalStress} — ${consequence}`;
       }else{
-        lastConsequenceCheckText=`${currentLanguage==="en"?"D10":"К10"}: ${roll}, ${currentLanguage==="en"?"Stress":"стресс"}: ${totalStress} — ${currentLanguage==="en"?"No Fallout":"Без последствия"}`;
+        lastConsequenceCheckText=`${currentLanguage==="en"?"D10":"К10"}: ${roll}, ${currentLanguage==="en"?"Stress":"стресс"}: ${totalStress} — ${consequence}`;
       }
       renderCounters();
       saveSheet(false);
+      sendDiscordRoll({type:"consequence",roll,totalStress,consequence});
     }
 
     function updateMasteryNoteVisibility(){
@@ -3534,6 +3536,13 @@ async function testDiscordConnection(){
 }
 
 function formatDiscordRoll(entry){
+  if(entry.type==="consequence"){
+    return {
+      kind:"consequence",
+      title:currentLanguage==="en"?"Fallout Check":"Проверка последствия",
+      text:`${currentLanguage==="en"?"D10":"К10"}: ${entry.roll}\n${currentLanguage==="en"?"Stress":"Стресс"}: ${entry.totalStress}\n${currentLanguage==="en"?"Result":"Результат"}: ${entry.consequence}`
+    };
+  }
   if(entry.type==="simple"){
     const die=`D${entry.sides}`;
     const modifier=Number(entry.modifier||0);
