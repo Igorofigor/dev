@@ -1675,8 +1675,12 @@ button.secondary.portrait-mini-button{
     </div>
   </div>
   <div class="sheet-menu-actions" style="margin-top:10px">
+    <button type="button" onclick="createChatConnectCode()">Создать код /connect</button>
+    <button class="secondary" type="button" onclick="refreshChatConnections()">Обновить подключения</button>
     <button type="button" onclick="testDiscordConnection()">Проверить чаты</button>
   </div>
+  <div id="chatConnectCode" class="hint discord-settings-status"></div>
+  <div id="chatConnectionsStatus" class="hint discord-settings-status"></div>
   <div id="discordSettingsStatus" class="hint discord-settings-status"></div>
 </div>
 
@@ -1768,6 +1772,7 @@ button.secondary.portrait-mini-button{
     Object.assign(UI_EN,{"Критический провал":"Critical Failure","Провал":"Failure","Успех с ценой":"Success at a Cost","Успех":"Success","Критический успех":"Critical Success","Действие не удалось, получите на ступень больше стресса.":"The action fails; take Stress one step higher.","Действие не удалось, получите стресс.":"The action fails; take Stress.","Действие удалось, получите стресс.":"The action succeeds; take Stress.","Действие удалось.":"The action succeeds.","За каждую кость 10 и более стресс, причиняемый вами, повышается на ступень.":"For each die showing 10 or more, increase the Stress you inflict by one step.","Борись за жизнь!":"Fight for your life!","Это уже серьёзно…":"This is getting serious…","Отбить врата!":"Hold the Gate!","Осветим мир!":"Let us light the world!","Вспомни, кем ты был…":"Remember who you were…","Лучшая сделка почти в кармане.":"The best deal is almost in the bag.","Это будет просто просчитать.":"This will be easy to calculate.","Вдохни глубоко и выпусти когти.":"Breathe deep and bare your claws.","Заслужи золотое будущее!":"Earn a golden future!","Победа на крыльях бабочки…":"Victory on butterfly wings…","Взрастим прекраснейший цветок!":"Let us grow the fairest flower!","Малое последствие":"Minor Fallout","Значимое последствие":"Major Fallout","Роковое последствие":"Doom Fallout","Без последствия":"No Fallout","Свернуть / развернуть секцию":"Collapse / expand section"});
     Object.assign(UI_EN,{"Discord, Telegram и ВКонтакте":"Discord, Telegram and VK","Укажите адрес единого моста и его ключ. Токены ботов хранятся только на сервере; сообщения отправляются во все настроенные чаты.":"Enter the unified bridge URL and key. Bot tokens stay on the server; messages are sent to every configured chat.","Адрес моста чатов":"Chat bridge URL","Ключ подключения":"Connection key","Проверить чаты":"Test chats","Отправлено в чаты.":"Sent to chats.","Интеграция с чатами не настроена. Укажите адрес моста и ключ в меню листа.":"Chat integration is not configured. Enter the bridge URL and key in the sheet menu."});
     const UI_EN_REPLACEMENTS=[["ОБЩИЙ СТРЕСС","TOTAL STRESS"],["Общий стресс","Total Stress"],["ПРОВЕРКА ПОСЛЕДСТВИЯ","FALLOUT CHECK"],["Проверка последствия","Fallout Check"],["ЗНАЧИМЫХ","MAJOR"],["значимых","major"],["МАЛЫХ","MINOR"],["малых","minor"],["НАВЫКОВ","SKILLS"],["навыков","skills"],["ОБЛАСТЕЙ","DOMAINS"],["областей","domains"],["ЛИЧНЫХ","PERSONAL"],["личных","personal"],["ФРАКЦИОННЫХ","FACTION"],["фракционных","faction"],["МИРОВЫХ","WORLD"],["мировых","world"],["ПЕРСОНАЖЕЙ ИГРОКОВ","PLAYER CHARACTERS"],["персонажей игроков","player characters"],["БАЗОВЫХ","BASIC"],["базовых","basic"],["ПРОФЕССИОНАЛЬНЫХ","PROFESSIONAL"],["профессиональных","professional"],["ЭЛИТНЫХ","ELITE"],["элитных","elite"],["Дополнительный слот","Extra slot"],["Обычный стресс","Regular Stress"],["Персонаж","Character"],["Ячейка","Slot"],["Запись","Entry"]];
+    Object.assign(UI_EN,{"Создать код /connect":"Create /connect code","Обновить подключения":"Refresh connections"});
     function translateUiText(value){
       const text=String(value??""); const trimmed=text.trim(); if(!trimmed)return text;
       let translated=UI_EN[trimmed]||trimmed.replace(/^Итого:/,"Total:").replace(/ броня\)/g," armor)").replace(/^Стресс:/,"Stress:");
@@ -3440,8 +3445,10 @@ function importCharacterJSON(event){
 function getDiscordSettings(){
   try{
     const saved=JSON.parse(localStorage.getItem(DISCORD_SETTINGS_KEY)||"{}");
-    return {bridgeUrl:String(saved.bridgeUrl||"").trim().replace(/\/+$/,"") ,secret:String(saved.secret||"").trim()};
-  }catch(error){return {bridgeUrl:"",secret:""}}
+    if(!saved.roomId)saved.roomId=(crypto.randomUUID?.()||`room-${Date.now()}-${Math.random().toString(36).slice(2)}`);
+    localStorage.setItem(DISCORD_SETTINGS_KEY,JSON.stringify(saved));
+    return {bridgeUrl:String(saved.bridgeUrl||"").trim().replace(/\/+$/,""),secret:String(saved.secret||"").trim(),roomId:String(saved.roomId)};
+  }catch(error){return {bridgeUrl:"",secret:"",roomId:`room-${Date.now()}-${Math.random().toString(36).slice(2)}`}}
 }
 
 function loadDiscordSettings(){
@@ -3451,9 +3458,10 @@ function loadDiscordSettings(){
 }
 
 function saveDiscordSettings(){
+  const saved=getDiscordSettings();
   const bridgeUrl=byId("discordBridgeUrl")?.value.trim().replace(/\/+$/,"")||"";
   const secret=byId("discordBridgeSecret")?.value.trim()||"";
-  localStorage.setItem(DISCORD_SETTINGS_KEY,JSON.stringify({bridgeUrl,secret}));
+  localStorage.setItem(DISCORD_SETTINGS_KEY,JSON.stringify({bridgeUrl,secret,roomId:saved.roomId}));
   const status=byId("discordSettingsStatus");
   if(status)status.textContent=bridgeUrl&&secret?(currentLanguage==="en"?"Discord settings saved on this device.":"Настройки Discord сохранены на этом устройстве."):"";
 }
@@ -3472,23 +3480,45 @@ function getDiscordSheetName(){
   return byId("characterName")?.value.trim()||(currentLanguage==="en"?"Unnamed character":"Безымянный персонаж");
 }
 
-async function discordBridgeRequest(payload){
+async function chatBridgeRequest(endpoint,payload={}){
   const settings=getDiscordSettings();
   if(!settings.bridgeUrl||!settings.secret){
     const error=new Error(currentLanguage==="en"?"Chat integration is not configured. Enter the bridge URL and key in the sheet menu.":"Интеграция с чатами не настроена. Укажите адрес моста и ключ в меню листа.");
     error.code="DISCORD_NOT_CONFIGURED";
     throw error;
   }
-  const response=await fetch(`${settings.bridgeUrl}/api/message`,{
+  const response=await fetch(`${settings.bridgeUrl}${endpoint}`,{
     method:"POST",
     headers:{"Content-Type":"application/json","Authorization":`Bearer ${settings.secret}`},
-    body:JSON.stringify({sheetName:getDiscordSheetName(),language:currentLanguage,...payload})
+    body:JSON.stringify({roomId:settings.roomId,sheetName:getDiscordSheetName(),language:currentLanguage,...payload})
   });
   let result={};
   try{result=await response.json()}catch(error){}
   if(!response.ok)throw new Error(result.error||`${currentLanguage==="en"?"Discord bridge error":"Ошибка Discord-моста"}: HTTP ${response.status}`);
   return result;
 }
+
+function renderChatConnections(status={}){
+  const names={discord:"Discord",telegram:"Telegram",vk:"VK"};
+  const parts=Object.entries(names).map(([key,name])=>`${name}: ${(status[key]||[]).map(chat=>chat.label).join(", ")||"—"}`);
+  if(byId("chatConnectionsStatus"))byId("chatConnectionsStatus").textContent=parts.join(" · ");
+}
+
+async function createChatConnectCode(){
+  saveDiscordSettings();
+  try{
+    const result=await chatBridgeRequest("/api/connect");
+    if(byId("chatConnectCode"))byId("chatConnectCode").textContent=`For the next 15 minutes, send the bots: /connect ${result.code}`;
+    renderChatConnections(result.status);
+  }catch(error){showDiscordToast(error.message,true)}
+}
+
+async function refreshChatConnections(){
+  try{renderChatConnections((await chatBridgeRequest("/api/status")).status)}
+  catch(error){showDiscordToast(error.message,true)}
+}
+
+async function discordBridgeRequest(payload){return chatBridgeRequest("/api/message",payload)}
 
 async function testDiscordConnection(){
   saveDiscordSettings();
