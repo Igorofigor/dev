@@ -685,6 +685,15 @@
     .codex-card-text{white-space:pre-wrap;line-height:1.35;font-size:13px;max-height:420px;overflow:auto}
     .codex-card[draggable="true"]{cursor:grab}
     .codex-card.is-dragging{opacity:.45}
+    .discord-settings{margin-top:16px;padding-top:14px;border-top:1px solid var(--accent)}
+    .discord-settings h3{margin:0 0 10px}
+    .discord-settings .grid-2{align-items:end}
+    .discord-settings-status{min-height:20px;margin-top:8px}
+    .discord-shareable{cursor:pointer}
+    .discord-shareable:hover{outline:1px dashed var(--accent);outline-offset:2px}
+    .discord-toast{position:fixed;left:50%;bottom:24px;z-index:10000;max-width:min(520px,calc(100vw - 32px));transform:translateX(-50%);padding:10px 14px;border:1px solid var(--accent);background:var(--panel);color:var(--text);box-shadow:0 8px 30px rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:opacity .2s ease}
+    .discord-toast.show{opacity:1}
+    .discord-toast.error{border-color:var(--danger)}
     [data-codex-drop].codex-drop-eligible{
       outline:2px dashed var(--accent);
       outline-offset:3px;
@@ -1652,8 +1661,29 @@ button.secondary.portrait-mini-button{
   <input id="importCharacterJsonInput" type="file" accept=".json,application/json" hidden onchange="importCharacterJSON(event)" />
 </div>
 
+<div class="discord-settings">
+  <h3>Discord, Telegram и ВКонтакте</h3>
+  <p class="hint">Укажите адрес единого моста и его ключ. Токены ботов хранятся только на сервере; сообщения отправляются во все настроенные чаты.</p>
+  <div class="grid-2">
+    <div>
+      <label>Адрес моста чатов</label>
+      <input id="discordBridgeUrl" data-sheet-ignore="true" placeholder="https://example.com" onchange="saveDiscordSettings()" />
+    </div>
+    <div>
+      <label>Ключ подключения</label>
+      <input id="discordBridgeSecret" data-sheet-ignore="true" type="password" autocomplete="off" onchange="saveDiscordSettings()" />
     </div>
   </div>
+  <div class="sheet-menu-actions" style="margin-top:10px">
+    <button type="button" onclick="testDiscordConnection()">Проверить чаты</button>
+  </div>
+  <div id="discordSettingsStatus" class="hint discord-settings-status"></div>
+</div>
+
+    </div>
+  </div>
+
+  <div id="discordToast" class="discord-toast" role="status" aria-live="polite"></div>
 
   <div id="rollModal" class="roll-modal" onclick="closeRollMenuOnBackdrop(event)" aria-hidden="true">
     <div class="roll-panel" onclick="event.stopPropagation()">
@@ -1727,6 +1757,7 @@ button.secondary.portrait-mini-button{
   <script>
     const STORAGE_KEY="towerCharacterSheetV14";
     const CHARACTER_PORTRAIT_KEY="towerCharacterPortraitV1";
+    const DISCORD_SETTINGS_KEY="towerDiscordBridgeV1";
     let portraitDataUrl="";
     let nationStripeAnimationEnabled=true;
     const currentLanguage="en";
@@ -1735,6 +1766,7 @@ button.secondary.portrait-mini-button{
     Object.assign(UI_EN,{"ПУЛИ":"BULLETS","РАЗУМ":"MIND","ДУХ":"SPIRIT","СУДЬБА":"FATE","УБИВАТЬ":"KILL","КОЛДОВАТЬ":"CAST","ЧИНИТЬ":"FIX","ПРОБИВАТЬСЯ":"ASCEND","СКРЫВАТЬСЯ":"HIDE","ТЕХНИЧИТЬ":"TECH","ИЗБЕГАТЬ":"EVADE","УЗНАВАТЬ":"INVESTIGATE","ГОВОРИТЬ":"TALK","ЧАЩА":"THICKET","ПУСТОШЬ":"WASTELAND","ВОЛНЫ":"WAVES","ГОРИЗОНТ":"HORIZON","АРМИЯ":"ARMY","БЕЗУМИЕ":"MADNESS","МИР":"WORLD","КОРПОРАЦИИ":"CORPORATIONS","ДУХИ":"SPIRITS","К4":"D4","К6":"D6","К8":"D8","К10":"D10","К12":"D12","Голова":"Head","Тело":"Body","Особое":"Special","Рюкзак":"Backpack"});
     Object.assign(UI_EN,{"А4":"A4","Навык, связанный с любым боем или попыткой что-то сломать.":"A Skill used for any kind of combat or an attempt to break something.","Навык, применяемый для любой магии или магического предмета. Если вы имеете этот навык, вы можете создавать простые магические эффекты без проверки, например прикурить сигарету щелчком пальцев или перемешать напиток в кружке, не касаясь его.":"A Skill used for any magic or magical item. With it, you can create simple magical effects without a check, such as lighting a cigarette with a snap of your fingers or stirring a drink without touching it.","Навык, дающий восстановить прежнее состояние чего-то или кого-то.":"A Skill used to restore something or someone to their former condition.","Навык, отвечающий за перемещение в опасных ситуациях, например во время погони или перехода через Башню.":"A Skill used to move through dangerous situations, such as a chase or an Ascent through the Tower.","Навык, отвечающий за скрытное проникновение и перемещение. Незаметные нейтрализации не подозревающих противников — тоже часть этого навыка.":"A Skill used for covert entry and movement. Silently neutralizing unsuspecting enemies is also part of this Skill.","Навык, отвечающий за взаимодействие с технологией, будь то взлом или написание кода. Для создания новых предметов также используется этот навык.":"A Skill used to interact with technology, from hacking to writing code. It is also used to create new items.","Навык, отвечающий за уход от физических и магических атак, например уворот, парирование или чтение короткого заговора.":"A Skill used to avoid physical and magical attacks, such as dodging, parrying, or reciting a short ward.","Навык, который отвечает за поиск вещей, опознание магических предметов или поиск данных в сети.":"A Skill used to find things, identify magical items, or search for information online.","Навык, обозначающий способность красиво и хорошо вести переговоры, торговаться или обманывать.":"A Skill used to negotiate, bargain, persuade, or deceive.","Область, отвечающая за взаимодействие с людьми из народа Ножей и с локациями Башни, похожими на лес или лабиринт.":"A Domain for interacting with the People of Knives and Tower locations resembling forests or labyrinths.","Область, отвечающая за взаимодействие с людьми из народа Ядов, а также за представляющие опасность ядовитые и проклятые локации Башни.":"A Domain for interacting with the People of Poisons and dangerous poisonous or cursed Tower locations.","Область, отвечающая за взаимодействие с людьми из народа Граней и с постоянно меняющимися или разумными локациями.":"A Domain for interacting with the People of Facets and constantly changing or sentient locations.","Область, отвечающая за взаимодействие с людьми из народа Железа и за огромные открытые локации в Башне.":"A Domain for interacting with the People of Iron and enormous open locations in the Tower.","Область для взаимодействия с чем угодно военным: от оружия и техники до людей и компьютерных программ. Ещё она отвечает за укреплённые или патрулируемые локации в Башне.":"A Domain for anything military, from weapons and vehicles to personnel and software. It also covers fortified or patrolled Tower locations.","Область, обозначающая сумасшедшее влияние Башни и всех, кто ей подвергся, а также не связанных с Башней культистов.":"A Domain covering the Tower's maddening influence, everyone affected by it, and cultists unrelated to the Tower.","Область, отвечающая за все не-военные организации, места, людей и занятия, например за разговор с торговцем или готовку. Кроме того, она отвечает за места в Башне, похожие на человеческую городскую застройку.":"A Domain for civilian organizations, places, people, and activities. It also covers Tower locations resembling human urban development.","Область могучих частных компаний, ставших полубожественной силой, и контролируемых ими мест Башни.":"A Domain of powerful private companies that became near-divine forces, and the Tower locations they control.","Область духов природы и компьютерных программ, а также их вотчин: в Башне другие реки и леса, зато встречаются подкодыши и духи предметов.":"A Domain of nature spirits and computer programs, along with their domains, including Codelings and spirits of objects."});
     Object.assign(UI_EN,{"Критический провал":"Critical Failure","Провал":"Failure","Успех с ценой":"Success at a Cost","Успех":"Success","Критический успех":"Critical Success","Действие не удалось, получите на ступень больше стресса.":"The action fails; take Stress one step higher.","Действие не удалось, получите стресс.":"The action fails; take Stress.","Действие удалось, получите стресс.":"The action succeeds; take Stress.","Действие удалось.":"The action succeeds.","За каждую кость 10 и более стресс, причиняемый вами, повышается на ступень.":"For each die showing 10 or more, increase the Stress you inflict by one step.","Борись за жизнь!":"Fight for your life!","Это уже серьёзно…":"This is getting serious…","Отбить врата!":"Hold the Gate!","Осветим мир!":"Let us light the world!","Вспомни, кем ты был…":"Remember who you were…","Лучшая сделка почти в кармане.":"The best deal is almost in the bag.","Это будет просто просчитать.":"This will be easy to calculate.","Вдохни глубоко и выпусти когти.":"Breathe deep and bare your claws.","Заслужи золотое будущее!":"Earn a golden future!","Победа на крыльях бабочки…":"Victory on butterfly wings…","Взрастим прекраснейший цветок!":"Let us grow the fairest flower!","Малое последствие":"Minor Fallout","Значимое последствие":"Major Fallout","Роковое последствие":"Doom Fallout","Без последствия":"No Fallout","Свернуть / развернуть секцию":"Collapse / expand section"});
+    Object.assign(UI_EN,{"Discord, Telegram и ВКонтакте":"Discord, Telegram and VK","Укажите адрес единого моста и его ключ. Токены ботов хранятся только на сервере; сообщения отправляются во все настроенные чаты.":"Enter the unified bridge URL and key. Bot tokens stay on the server; messages are sent to every configured chat.","Адрес моста чатов":"Chat bridge URL","Ключ подключения":"Connection key","Проверить чаты":"Test chats","Отправлено в чаты.":"Sent to chats.","Интеграция с чатами не настроена. Укажите адрес моста и ключ в меню листа.":"Chat integration is not configured. Enter the bridge URL and key in the sheet menu."});
     const UI_EN_REPLACEMENTS=[["ОБЩИЙ СТРЕСС","TOTAL STRESS"],["Общий стресс","Total Stress"],["ПРОВЕРКА ПОСЛЕДСТВИЯ","FALLOUT CHECK"],["Проверка последствия","Fallout Check"],["ЗНАЧИМЫХ","MAJOR"],["значимых","major"],["МАЛЫХ","MINOR"],["малых","minor"],["НАВЫКОВ","SKILLS"],["навыков","skills"],["ОБЛАСТЕЙ","DOMAINS"],["областей","domains"],["ЛИЧНЫХ","PERSONAL"],["личных","personal"],["ФРАКЦИОННЫХ","FACTION"],["фракционных","faction"],["МИРОВЫХ","WORLD"],["мировых","world"],["ПЕРСОНАЖЕЙ ИГРОКОВ","PLAYER CHARACTERS"],["персонажей игроков","player characters"],["БАЗОВЫХ","BASIC"],["базовых","basic"],["ПРОФЕССИОНАЛЬНЫХ","PROFESSIONAL"],["профессиональных","professional"],["ЭЛИТНЫХ","ELITE"],["элитных","elite"],["Дополнительный слот","Extra slot"],["Обычный стресс","Regular Stress"],["Персонаж","Character"],["Ячейка","Slot"],["Запись","Entry"]];
     function translateUiText(value){
       const text=String(value??""); const trimmed=text.trim(); if(!trimmed)return text;
@@ -1801,6 +1833,8 @@ button.secondary.portrait-mini-button{
     let stressHoverAttached=false;
     let rollMasteryEnabled=false;
     let advancedRollHistory=[];
+    let discordSharingAttached=false;
+    let discordToastTimer=0;
     let lastConsequenceCheckText="";
 
     const contactCounts={personal:1,faction:0,world:0,players:1};
@@ -3236,6 +3270,7 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
       getAllInputs().forEach(element=>{
         if(!element.id)return;
         if(element.type==="file")return;
+        if(element.dataset.sheetIgnore)return;
         data[element.id]=element.type==="checkbox"?element.checked:element.value;
       });
       data.rollLog=byId("rollLog")?.textContent||"";
@@ -3260,6 +3295,7 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
       getAllInputs().forEach(element=>{
         if(!element.id||data[element.id]===undefined)return;
         if(element.type==="file")return;
+        if(element.dataset.sheetIgnore)return;
         if(element.type==="checkbox")element.checked=Boolean(data[element.id]);
         else element.value=data[element.id];
       });
@@ -3401,6 +3437,153 @@ function importCharacterJSON(event){
   reader.readAsText(file);
 }
 
+function getDiscordSettings(){
+  try{
+    const saved=JSON.parse(localStorage.getItem(DISCORD_SETTINGS_KEY)||"{}");
+    return {bridgeUrl:String(saved.bridgeUrl||"").trim().replace(/\/+$/,"") ,secret:String(saved.secret||"").trim()};
+  }catch(error){return {bridgeUrl:"",secret:""}}
+}
+
+function loadDiscordSettings(){
+  const settings=getDiscordSettings();
+  if(byId("discordBridgeUrl"))byId("discordBridgeUrl").value=settings.bridgeUrl;
+  if(byId("discordBridgeSecret"))byId("discordBridgeSecret").value=settings.secret;
+}
+
+function saveDiscordSettings(){
+  const bridgeUrl=byId("discordBridgeUrl")?.value.trim().replace(/\/+$/,"")||"";
+  const secret=byId("discordBridgeSecret")?.value.trim()||"";
+  localStorage.setItem(DISCORD_SETTINGS_KEY,JSON.stringify({bridgeUrl,secret}));
+  const status=byId("discordSettingsStatus");
+  if(status)status.textContent=bridgeUrl&&secret?(currentLanguage==="en"?"Discord settings saved on this device.":"Настройки Discord сохранены на этом устройстве."):"";
+}
+
+function showDiscordToast(message,isError=false){
+  const toast=byId("discordToast");
+  if(!toast)return;
+  clearTimeout(discordToastTimer);
+  toast.textContent=message;
+  toast.classList.toggle("error",isError);
+  toast.classList.add("show");
+  discordToastTimer=setTimeout(()=>toast.classList.remove("show"),3200);
+}
+
+function getDiscordSheetName(){
+  return byId("characterName")?.value.trim()||(currentLanguage==="en"?"Unnamed character":"Безымянный персонаж");
+}
+
+async function discordBridgeRequest(payload){
+  const settings=getDiscordSettings();
+  if(!settings.bridgeUrl||!settings.secret){
+    const error=new Error(currentLanguage==="en"?"Chat integration is not configured. Enter the bridge URL and key in the sheet menu.":"Интеграция с чатами не настроена. Укажите адрес моста и ключ в меню листа.");
+    error.code="DISCORD_NOT_CONFIGURED";
+    throw error;
+  }
+  const response=await fetch(`${settings.bridgeUrl}/api/message`,{
+    method:"POST",
+    headers:{"Content-Type":"application/json","Authorization":`Bearer ${settings.secret}`},
+    body:JSON.stringify({sheetName:getDiscordSheetName(),language:currentLanguage,...payload})
+  });
+  let result={};
+  try{result=await response.json()}catch(error){}
+  if(!response.ok)throw new Error(result.error||`${currentLanguage==="en"?"Discord bridge error":"Ошибка Discord-моста"}: HTTP ${response.status}`);
+  return result;
+}
+
+async function testDiscordConnection(){
+  saveDiscordSettings();
+  const status=byId("discordSettingsStatus");
+  if(status)status.textContent=currentLanguage==="en"?"Sending a test message…":"Отправляю тестовое сообщение…";
+  try{
+    await discordBridgeRequest({kind:"test",title:currentLanguage==="en"?"Connection test":"Проверка подключения",text:currentLanguage==="en"?"The character sheet is connected successfully.":"Лист персонажа успешно подключён."});
+    if(status)status.textContent=currentLanguage==="en"?"The test message was sent to the configured chats.":"Тестовое сообщение отправлено в настроенные чаты.";
+    showDiscordToast(currentLanguage==="en"?"Sent to chats.":"Отправлено в чаты.");
+  }catch(error){
+    if(status)status.textContent=error.message;
+    showDiscordToast(error.message,true);
+  }
+}
+
+function formatDiscordRoll(entry){
+  if(entry.type==="simple"){
+    const die=`D${entry.sides}`;
+    const modifier=Number(entry.modifier||0);
+    const calculation=modifier?`${entry.result} ${modifier>0?"+":"−"} ${Math.abs(modifier)} = ${entry.total}`:`${entry.result}`;
+    return {kind:"roll",title:currentLanguage==="en"?`Simple ${die} roll`:`Простой бросок ${die}`,text:`${die}: ${calculation}${entry.reason?`\n${entry.reason}`:""}`};
+  }
+  const difficulty=currentLanguage==="en"?(UI_EN[entry.difficultyLabel]||entry.difficultyLabel):entry.difficultyLabel;
+  const result=currentLanguage==="en"?(UI_EN[entry.resultLabel]||entry.resultLabel):entry.resultLabel;
+  const details=[];
+  if(entry.skillName)details.push(`${currentLanguage==="en"?"Skill":"Навык"}: ${currentLanguage==="en"?(UI_EN[entry.skillName]||entry.skillName):entry.skillName}${entry.skillChecked?" ✓":""}`);
+  if(entry.domainName)details.push(`${currentLanguage==="en"?"Domain":"Область"}: ${currentLanguage==="en"?(UI_EN[entry.domainName]||entry.domainName):entry.domainName}${entry.domainChecked?" ✓":""}`);
+  details.push(`${currentLanguage==="en"?"Difficulty":"Сложность"}: ${difficulty}`);
+  details.push(`${currentLanguage==="en"?"Dice":"Кости"}: ${(entry.rolls||[]).join(", ")}`);
+  return {kind:"roll",title:result||"Roll",text:details.join("\n")};
+}
+
+function sendDiscordRoll(entry){
+  const settings=getDiscordSettings();
+  if(!settings.bridgeUrl||!settings.secret)return;
+  discordBridgeRequest(formatDiscordRoll(entry)).catch(error=>showDiscordToast(error.message,true));
+}
+
+function discordValue(id){return byId(id)?.value.trim()||""}
+
+function getDiscordSharePayload(target){
+  const card=target.closest?.(".codex-card[data-codex-id]");
+  if(card){
+    const item=getCodexItem(card.dataset.codexId);
+    if(!item)return null;
+    return {kind:item.kind||item.section||"card",title:item.title,text:item.text||""};
+  }
+  const gearRow=target.closest?.("#gearRows tr[data-codex-target-index]");
+  if(gearRow){
+    const index=gearRow.dataset.codexTargetIndex;
+    const title=discordValue(`gear${index}Name`);
+    if(!title)return null;
+    const details=[discordValue(`gear${index}Skill`),discordValue(`gear${index}Quality`),discordValue(`gear${index}Note`)].filter(Boolean);
+    return {kind:"item",title,text:details.join("\n")};
+  }
+  const armorRow=target.closest?.("#armorRows tr[data-codex-target-index]");
+  if(armorRow){
+    const index=armorRow.dataset.codexTargetIndex;
+    const title=discordValue(`armor${index}Name`);
+    if(!title)return null;
+    const details=[discordValue(`armor${index}Skill`),discordValue(`armor${index}Quality`),discordValue(`armor${index}Resistance`),discordValue(`armor${index}Note`)].filter(Boolean);
+    return {kind:"item",title,text:details.join("\n")};
+  }
+  const tacticRow=target.closest?.("#tacticRows tr[data-codex-target-index]");
+  if(tacticRow){
+    const index=tacticRow.dataset.codexTargetIndex;
+    const title=discordValue(`tactic${index}Name`);
+    if(!title)return null;
+    return {kind:"tactic",title,text:[discordValue(`tactic${index}Skill`),discordValue(`tactic${index}Notes`)].filter(Boolean).join("\n")};
+  }
+  const field=target.closest?.("textarea");
+  if(!field||!field.value.trim())return null;
+  let match=field.id.match(/^ability_(basic|minor|professional|elite)_(\d+)$/);
+  if(match){
+    const labels=currentLanguage==="en"?{basic:"Basic Ability",minor:"Minor Ability",professional:"Professional Ability",elite:"Elite Ability"}:{basic:"Базовая способность",minor:"Малая способность",professional:"Профессиональная способность",elite:"Элитная способность"};
+    return {kind:"ability",title:labels[match[1]],text:field.value.trim()};
+  }
+  match=field.id.match(/^consequence_(minor|major)_(\d+)$/);
+  if(match)return {kind:"consequence",title:currentLanguage==="en"?(match[1]==="minor"?"Minor Fallout":"Major Fallout"):(match[1]==="minor"?"Малое последствие":"Значимое последствие"),text:field.value.trim()};
+  match=field.id.match(/^diaryEntry(\d+)$/);
+  if(match)return {kind:"diary",title:`${currentLanguage==="en"?"Diary entry":"Запись дневника"} ${match[1]}`,text:field.value.trim()};
+  return null;
+}
+
+function attachDiscordSharing(){
+  if(discordSharingAttached)return;
+  document.addEventListener("dblclick",event=>{
+    if(event.target.closest?.("#discordToast, .discord-settings, button"))return;
+    const payload=getDiscordSharePayload(event.target);
+    if(!payload)return;
+    discordBridgeRequest(payload).then(()=>showDiscordToast(currentLanguage==="en"?"Sent to chats.":"Отправлено в чаты.")).catch(error=>showDiscordToast(error.message,true));
+  });
+  discordSharingAttached=true;
+}
+
 
     function rollDie(sides){
       const modifier=Number(byId("rollModifier")?.value||0);
@@ -3413,6 +3596,7 @@ function importCharacterJSON(event){
       advancedRollHistory=advancedRollHistory.slice(0,10);
       renderAdvancedRollHistory();
       saveSheet(false);
+      sendDiscordRoll(entry);
     }
 
     function isFormElement(element){return element&&["INPUT","TEXTAREA","SELECT"].includes(element.tagName)}
@@ -3423,6 +3607,7 @@ function importCharacterJSON(event){
         const element=event.target;
         if(!isFormElement(element))return;
         if(element.type==="file")return;
+        if(element.dataset.sheetIgnore)return;
         if(element.type==="checkbox")return;
         renderCounters();
         saveSheet(false);
@@ -3431,6 +3616,7 @@ function importCharacterJSON(event){
         const element=event.target;
         if(!isFormElement(element))return;
         if(element.type==="file")return;
+        if(element.dataset.sheetIgnore)return;
         if(element.type==="checkbox"&&element.dataset.track){
           setTrackStressUpTo(element.dataset.track,element);
           return;
@@ -3975,6 +4161,7 @@ function importCharacterJSON(event){
         :`Костей до сложности: ${intendedDice}. Сложность: ${difficultyLabel} (-${difficultyPenalty}). Брошено костей: ${diceToRoll}. Снижение степени успеха: ${downgradeSteps}. Десяток: ${criticalTens}.`;
       renderAdvancedRollHistory();
       saveSheet(false);
+      sendDiscordRoll(entry);
     }
 
     function renderSimpleRollEntry(entry,isNewest=false){
@@ -4172,6 +4359,8 @@ function closeRulesHelpMenuOnBackdrop(event){
       attachParallax();
       attachStressHoverEffects();
       attachCharacterPortraitUpload();
+      loadDiscordSettings();
+      attachDiscordSharing();
       initCodexWindowInteractions();
       if(saved)applyData(saved);
       else{
