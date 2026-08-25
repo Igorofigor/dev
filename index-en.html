@@ -6,7 +6,7 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="images/rulesbutton.svg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tower Will Fall — Interactive Character Sheet</title>
+  <title>Towerfall — Interactive Character Sheet</title>
 
   <style>
     :root{
@@ -93,22 +93,22 @@
     .nation-theme-stripe{
       position:fixed;
       top:0;
-      left:7px;
+      left:8px;
       z-index:2;
-      width:7px;
+      width:14px;
       height:100vh;
       pointer-events:none;
-      opacity:.72;
+      opacity:.9;
       background:repeating-linear-gradient(
         to bottom,
-        var(--accent) 0,
-        var(--accent) 11px,
-        transparent 11px,
-        transparent 25px
+        var(--nation-stripe-color,var(--accent)) 0,
+        var(--nation-stripe-color,var(--accent)) 18px,
+        transparent 18px,
+        transparent 32px
       );
-      background-size:100% 50px;
-      animation:nation-stripe-rise 18s linear infinite;
-      transition:opacity .18s ease;
+      background-size:100% 64px;
+      animation:nation-stripe-rise var(--nation-stripe-duration,18s) linear infinite;
+      transition:opacity .18s ease,filter .18s ease,background-color .18s ease;
     }
 
     body.nation-stripe-animation-disabled .nation-theme-stripe{
@@ -117,7 +117,7 @@
 
     @keyframes nation-stripe-rise{
       from{background-position:0 0}
-      to{background-position:0 -50px}
+      to{background-position:0 -64px}
     }
 
     .app{max-width:1120px;margin:0 auto 80px;position:relative;z-index:1}
@@ -367,15 +367,17 @@
     .log{min-height:110px;white-space:pre-wrap;background:#fff;padding:10px;border:1px solid var(--accent);color:var(--text);font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:14px}
 
     .quality-cell{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}
-    .quality-die-preview{display:inline-flex;align-items:center;justify-content:center;width:44px;height:34px;min-width:44px;background:var(--accent);color:var(--on-accent);border:none;font-weight:1000;font-size:13px;line-height:1;transition:background-color .14s ease,color .14s ease,transform .14s ease}
+    .quality-die-preview{display:inline-flex;align-items:center;justify-content:center;width:44px;height:34px;min-width:44px;padding:0;background:var(--accent);color:var(--on-accent);border:none;border-radius:0;box-shadow:none;font-weight:1000;font-size:13px;line-height:1;cursor:pointer;transition:background-color .14s ease,color .14s ease,transform .14s ease}
     .quality-cell:hover .quality-die-preview{background:var(--accent-hover);color:var(--on-hover);transform:scale(1.06)}
     .quality-die-preview.empty{opacity:.25;clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
+    .quality-die-preview.has-result{background:var(--danger);color:#fff;transform:scale(1.08)}
+    .plain-die-cell select{min-width:76px}
 
     .floating-actions,
     .floating-actions-left{
       position:fixed;
       bottom:18px;
-      z-index:900;
+      z-index:1300;
       display:flex;
       flex-direction:column;
       align-items:center;
@@ -599,6 +601,16 @@
       background:transparent;
     }
 
+    .diary-modal,
+    .abilities-modal,
+    .tactics-modal,
+    .resources-modal{pointer-events:none}
+
+    .diary-panel,
+    .abilities-panel,
+    .tactics-panel,
+    .resources-panel{pointer-events:auto}
+
     .codex-modal{
       position:fixed;
       inset:0;
@@ -672,8 +684,13 @@
     .codex-content{flex:1;min-height:0;overflow:auto;padding:0 16px 24px}
     .codex-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
     .codex-tabs button.is-active{background:var(--accent);color:#fff}
+    .codex-search{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:end;margin:12px 0}
+    .codex-search label{grid-column:1/-1;margin:0}
+    .codex-search-status{min-height:18px;margin:-4px 0 10px;font-size:12px;color:var(--muted)}
     .codex-items{display:grid;gap:10px}
-    .codex-group{border:1px solid var(--accent);background:rgba(255,255,255,.7)}
+    .codex-group{position:relative;isolation:isolate;border:1px solid var(--accent);background:rgba(255,255,255,.86);overflow:hidden}
+    .codex-group>*{position:relative;z-index:1}
+    .codex-group.codex-class-group::before{content:"";position:absolute;z-index:0;inset:42px 8px 8px;pointer-events:none;background-color:var(--accent);opacity:.1;-webkit-mask-image:var(--codex-class-emblem);mask-image:var(--codex-class-emblem);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-position:center;mask-position:center;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
     .codex-group-summary{cursor:pointer;padding:10px 12px;font-weight:1000;color:var(--accent);list-style:none}
     .codex-group-summary::-webkit-details-marker{display:none}
     .codex-group-summary::before{content:"▼";display:inline-block;margin-right:8px;font-size:11px;transition:transform .14s ease}
@@ -685,6 +702,14 @@
     .codex-card-text{white-space:pre-wrap;line-height:1.35;font-size:13px;max-height:420px;overflow:auto}
     .codex-card[draggable="true"]{cursor:grab}
     .codex-card.is-dragging{opacity:.45}
+    .codex-subgroup{margin-top:10px;border-top:1px dashed var(--accent);padding-top:8px}
+    .codex-subgroup-summary{cursor:pointer;color:var(--accent);font-size:12px;font-weight:1000;list-style:none}
+    .codex-subgroup-summary::-webkit-details-marker{display:none}
+    .codex-subgroup-summary::before{content:"▼";display:inline-block;margin-right:7px;font-size:10px;transition:transform .14s ease}
+    .codex-subgroup:not([open]) .codex-subgroup-summary::before{transform:rotate(-90deg)}
+    .codex-subgroup-items{display:grid;gap:8px;margin-top:8px}
+    .codex-minor-card{background:rgba(255,255,255,.92);padding:9px}
+    .codex-minor-card h3{font-size:13px}
     .discord-settings{margin-top:16px;padding-top:14px;border-top:1px solid var(--accent)}
     .discord-settings h3{margin:0 0 10px}
     .discord-settings .grid-2{align-items:end}
@@ -1465,10 +1490,10 @@ button.secondary.portrait-mini-button{
     <section id="gearCard" class="card">
       <h2>Снаряжение</h2>
       <h3>4 слота снаряжения</h3>
-      <div class="table-wrap"><table class="table"><thead><tr><th>Слот</th><th>Предмет</th><th>Навык</th><th>Качество</th><th>Свойства / заметки</th></tr></thead><tbody id="gearRows"></tbody></table></div>
+      <div class="table-wrap"><table class="table"><thead><tr><th>Слот</th><th>Предмет</th><th>Качество</th><th>Навык</th><th>Причиняемый стресс</th><th>Свойства / заметки</th></tr></thead><tbody id="gearRows"></tbody></table></div>
 
       <h3 style="margin-top:18px">Броня</h3>
-      <div class="table-wrap"><table class="table"><thead><tr><th>Слот</th><th>Предмет</th><th>Навык</th><th>Стресс</th><th>Сопротивление</th><th>Защита</th><th>Доп. слоты</th><th>Свойства</th></tr></thead><tbody id="armorRows"></tbody></table></div>
+      <div class="table-wrap"><table class="table"><thead><tr><th>Слот</th><th>Предмет</th><th>Качество</th><th>Навык</th><th>Причиняемый стресс</th><th>Сопротивление</th><th>Защита</th><th>Доп. слоты</th><th>Свойства</th></tr></thead><tbody id="armorRows"></tbody></table></div>
     </section>
 
     <section id="contactsCard" class="card">
@@ -1595,7 +1620,7 @@ button.secondary.portrait-mini-button{
         </div>
       </div>
       <div id="resourceCounters" class="counter-row"></div>
-      <div class="table-wrap"><table class="table"><thead><tr><th>№</th><th>Ресурс</th><th>Качество</th><th>Свойства / цена / применение</th></tr></thead><tbody id="resourceRows"></tbody></table></div>
+      <div class="table-wrap"><table class="table"><thead><tr><th>№</th><th>Ресурс</th><th>Область</th><th>Качество</th><th>Свойства / цена / применение</th></tr></thead><tbody id="resourceRows"></tbody></table></div>
     </div>
   </div>
   <button id="languageToggleButton" class="language-toggle-button" type="button" onclick="location.href='index.html'" aria-label="Русская версия">RU</button>
@@ -1608,6 +1633,12 @@ button.secondary.portrait-mini-button{
       </div>
       <div class="codex-content">
         <p class="hint">Выберите группу, раскройте нужную карточку и перетащите её в подходящий слот листа. Допустимые слоты подсветятся цветом темы. Окно перемещается за шапку и меняет размер за правый нижний угол.</p>
+        <div class="codex-search">
+          <label for="codexSearchInput">Поиск по названию, тексту или категории</label>
+          <input id="codexSearchInput" type="search" placeholder="Например: броня, УБИВАТЬ, Светоносец..." oninput="setCodexSearch(this.value)" />
+          <button class="secondary" type="button" onclick="clearCodexSearch()">Очистить</button>
+        </div>
+        <div id="codexSearchStatus" class="codex-search-status" aria-live="polite"></div>
         <div id="codexTabs" class="codex-tabs"></div>
         <div id="codexItems" class="codex-items"></div>
       </div>
@@ -1638,7 +1669,7 @@ button.secondary.portrait-mini-button{
       </div>
       <p class="hint">Здесь можно хранить заметки, сцены, долги, обещания, странные находки и всё, что не должно занимать место на основном листе.</p>
       <div id="diaryCounters" class="counter-row"></div>
-      <div id="diaryRows" class="slot-list"></div>
+      <div id="diaryRows" class="slot-list" data-codex-drop="diary"></div>
     </div>
   </div>
 
@@ -1746,7 +1777,7 @@ button.secondary.portrait-mini-button{
     </div>
   </div>
 
-  <script src="codex-data-en.js?v=3"></script>
+  <script src="codex-data-en.js?v=4"></script>
   <script>window.TOWER_CODEX=window.TOWER_CODEX_EN;</script>
   <script>
     const STORAGE_KEY="towerCharacterSheetV14";
@@ -1759,13 +1790,15 @@ button.secondary.portrait-mini-button{
     let nationStripeAnimationEnabled=true;
     const currentLanguage="en";
     const UI_EN={"КОДЕКС":"CODEX","СПОСОБНОСТИ":"ABILITIES","ТАКТИКИ":"TACTICS","РЕСУРСЫ":"RESOURCES","ДНЕВНИК":"DIARY","БРОСОК":"ROLL","СПРАВКА":"HELP","МЕНЮ":"MENU","Персонаж":"Character","Портрет":"Portrait","Настройки портрета":"Portrait settings","Загрузить":"Load","Удалить":"Delete","Имя":"Name","Класс":"Class","Народ":"Nation","Другой":"Other","Род Войск":"Military Branch","Описание":"Description","Сопротивления, защита и стресс":"Resistances, Protection and Stress","Сопротивление":"Resistance","Защита":"Protection","Доп. слоты":"Extra Slots","Стресс":"Stress","Итог":"Total","Последствия":"Fallout","Малые":"Minor","Значимые":"Major","Шкалы дружбы":"Friendship Tracks","Заметка":"Note","Навыки и области":"Skills and Domains","Навыки":"Skills","Области":"Domains","Снаряжение":"Equipment","Слот":"Slot","Предмет":"Item","Качество":"Quality","Свойства / заметки":"Properties / Notes","Броня":"Armor","Свойства":"Properties","Контакты":"Contacts","Личные":"Personal","Фракционные":"Faction","Мировые":"World","Персонажи игроков":"Player Characters","Классовые вопросы":"Class Questions","Вопрос 1":"Question 1","Вопрос 2":"Question 2","Вопрос 3":"Question 3","Закрыть":"Close","Базовые":"Basic","Малые":"Minor","Профессиональные":"Professional","Элитные":"Elite","Группы тактик":"Tactic Groups","Группа тактик":"Tactic Group","Связанный навык":"Linked Skill","Тактики / заметки":"Tactics / Notes","Ресурс":"Resource","Свойства / цена / применение":"Properties / Cost / Use","Кодекс":"Codex","Справка":"Rules Help","Дневник":"Diary","Меню листа":"Sheet Menu","Сохранить":"Save","Очистить":"Clear","Анимация полоски: да":"Stripe animation: yes","Анимация полоски: нет":"Stripe animation: no","Экспорт .json":"Export .json","Импорт .json":"Import .json","Автоматический бросок":"Automatic Roll","Навык":"Skill","Страж Врат":"Gate Guard","Светоносец":"Light Bearer","Раствор Души":"Soul Fluid","Росоход":"Dew Walker","Экономант":"Economancer","Неболом":"Skybreaker","Подкодыш":"Codeling","Паратехник":"Paratech","Красный Рукав":"Red Sleeve","Народ Ножей":"People of Knives","Народ Ядов":"People of Poisons","Народ Граней":"People of Facets","Народ Железа":"People of Iron","Тяжёлая пехота":"Heavy Infantry","Мобильная пехота":"Mobile Infantry","Разведка":"Reconnaissance","Военный инженер":"Military Engineer","Штурмовая пехота":"Assault Infantry","Служба безопасности":"Security Service","Мистическая пехота":"Mystical Infantry","Полевой медик":"Field Medic","Отдел исследований":"Research Division","Открыть кодекс":"Open codex","Открыть способности":"Open abilities","Открыть группы тактик":"Open tactics","Открыть ресурсы":"Open resources","Открыть дневник":"Open diary","Открыть меню броска":"Open roll menu","Открыть справку":"Open rules help","Открыть меню листа":"Open sheet menu"};
-    Object.assign(UI_EN,{"Башня Упадёт — интерактивный лист персонажа":"Tower Will Fall — Interactive Character Sheet","В ячейку защиты можно вписать любое число. Защита от брони суммируется с ним автоматически. То же работает с дополнительными слотами: ручные слоты + слоты от брони.":"Enter any number in a Protection cell. Armor Protection is added automatically. Extra slots work the same way: manual slots plus armor slots.","Сопротивления дружбы с соратниками, отмечайте в них стресс ради бонусов.":"Friendship resistances with comrades; mark Stress in them to gain benefits.","4 слота снаряжения":"4 equipment slots","Три свободные ячейки для важных вопросов класса, личной драмы, долга, странностей или сюжетных крючков.":"Three free fields for class questions, personal drama, debts, peculiarities, or story hooks.","Способности":"Abilities","Ресурсы":"Resources","перетащить окно":"drag window","Выберите группу, раскройте нужную карточку и перетащите её в подходящий слот листа. Допустимые слоты подсветятся цветом темы. Окно перемещается за шапку и меняет размер за правый нижний угол.":"Choose a group, open a card, and drag it to a suitable sheet slot. Valid slots are highlighted with the theme color. Drag the title bar to move the window and its lower-right corner to resize it.","Загрузка справки...":"Loading rules help...","Здесь можно хранить заметки, сцены, долги, обещания, странные находки и всё, что не должно занимать место на основном листе.":"Keep notes, scenes, debts, promises, strange discoveries, and anything else that should not occupy the main sheet here.","Область":"Domain","Мастерство":"Mastery","Мастерство области":"Domain Mastery","Мастерство: нет":"Mastery: no","Мастерство: да":"Mastery: yes","Количество помощников":"Number of helpers","Сложность":"Difficulty","Нормальная":"Standard","Рискованная":"Risky","Опасная":"Dangerous","Роковая":"Doom","Бросить кости":"Roll dice","Результат появится здесь":"The result will appear here","Бросков пока нет.":"No rolls yet.","Простой бросок":"Simple roll","Модификатор":"Modifier","Причина броска":"Roll reason","Общий журнал последних 10 бросков":"Shared log of the last 10 rolls","Имя персонажа":"Character name","Внешность, манеры, важные детали, странности, связи...":"Appearance, mannerisms, important details, peculiarities, relationships...","Ответ":"Answer","Например: УБИВАТЬ, ИЗБЕГАТЬ, сопротивление...":"For example: KILL, EVADE, resistance...","Например: Тихая ликвидация":"For example: Silent elimination","Конкретные тактики, условия применения, бонусы...":"Specific tactics, conditions, bonuses...","Роль, состояние, опасность...":"Role, condition, danger...","Заметка к мастерству навыка...":"Skill Mastery note...","Заметка к мастерству области...":"Domain Mastery note...","Свойства, поломки, странность...":"Properties, damage, peculiarities...","Свойства, качество, кому нужен...":"Properties, quality, who needs it...","Свойства, штрафы, особые эффекты...":"Properties, penalties, special effects...","Заметка, сцена, долг, обещание, находка, имя, странность...":"Note, scene, debt, promise, discovery, name, peculiarity...","Убрать группу тактик":"Remove tactic group","Добавить группу тактик":"Add tactic group","Убрать ресурс":"Remove resource","Добавить ресурс":"Add resource","Перетащите, чтобы переместить окно":"Drag to move the window","Изменить размер окна":"Resize window","Убрать запись":"Remove entry","Добавить запись":"Add entry","Русская версия":"Russian version"});
+    Object.assign(UI_EN,{"Башня Упадёт — интерактивный лист персонажа":"Towerfall — Interactive Character Sheet","В ячейку защиты можно вписать любое число. Защита от брони суммируется с ним автоматически. То же работает с дополнительными слотами: ручные слоты + слоты от брони.":"Enter any number in a Protection cell. Armor Protection is added automatically. Extra slots work the same way: manual slots plus armor slots.","Сопротивления дружбы с соратниками, отмечайте в них стресс ради бонусов.":"Friendship resistances with comrades; mark Stress in them to gain benefits.","4 слота снаряжения":"4 equipment slots","Три свободные ячейки для важных вопросов класса, личной драмы, долга, странностей или сюжетных крючков.":"Three free fields for class questions, personal drama, debts, peculiarities, or story hooks.","Способности":"Abilities","Ресурсы":"Resources","перетащить окно":"drag window","Выберите группу, раскройте нужную карточку и перетащите её в подходящий слот листа. Допустимые слоты подсветятся цветом темы. Окно перемещается за шапку и меняет размер за правый нижний угол.":"Choose a group, open a card, and drag it to a suitable sheet slot. Valid slots are highlighted with the theme color. Drag the title bar to move the window and its lower-right corner to resize it.","Загрузка справки...":"Loading rules help...","Здесь можно хранить заметки, сцены, долги, обещания, странные находки и всё, что не должно занимать место на основном листе.":"Keep notes, scenes, debts, promises, strange discoveries, and anything else that should not occupy the main sheet here.","Область":"Domain","Мастерство":"Mastery","Мастерство области":"Domain Mastery","Мастерство: нет":"Mastery: no","Мастерство: да":"Mastery: yes","Количество помощников":"Number of helpers","Сложность":"Difficulty","Нормальная":"Standard","Рискованная":"Risky","Опасная":"Dangerous","Роковая":"Doom","Бросить кости":"Roll dice","Результат появится здесь":"The result will appear here","Бросков пока нет.":"No rolls yet.","Простой бросок":"Simple roll","Модификатор":"Modifier","Причина броска":"Roll reason","Общий журнал последних 10 бросков":"Shared log of the last 10 rolls","Имя персонажа":"Character name","Внешность, манеры, важные детали, странности, связи...":"Appearance, mannerisms, important details, peculiarities, relationships...","Ответ":"Answer","Например: УБИВАТЬ, ИЗБЕГАТЬ, сопротивление...":"For example: KILL, EVADE, resistance...","Например: Тихая ликвидация":"For example: Silent elimination","Конкретные тактики, условия применения, бонусы...":"Specific tactics, conditions, bonuses...","Роль, состояние, опасность...":"Role, condition, danger...","Заметка к мастерству навыка...":"Skill Mastery note...","Заметка к мастерству области...":"Domain Mastery note...","Свойства, поломки, странность...":"Properties, damage, peculiarities...","Свойства, качество, кому нужен...":"Properties, quality, who needs it...","Свойства, штрафы, особые эффекты...":"Properties, penalties, special effects...","Заметка, сцена, долг, обещание, находка, имя, странность...":"Note, scene, debt, promise, discovery, name, peculiarity...","Убрать группу тактик":"Remove tactic group","Добавить группу тактик":"Add tactic group","Убрать ресурс":"Remove resource","Добавить ресурс":"Add resource","Перетащите, чтобы переместить окно":"Drag to move the window","Изменить размер окна":"Resize window","Убрать запись":"Remove entry","Добавить запись":"Add entry","Русская версия":"Russian version"});
     Object.assign(UI_EN,{"ПУЛИ":"BULLETS","РАЗУМ":"MIND","ДУХ":"SPIRIT","СУДЬБА":"FATE","УБИВАТЬ":"KILL","КОЛДОВАТЬ":"CAST","ЧИНИТЬ":"FIX","ПРОБИВАТЬСЯ":"ASCEND","СКРЫВАТЬСЯ":"HIDE","ТЕХНИЧИТЬ":"TECH","ИЗБЕГАТЬ":"EVADE","УЗНАВАТЬ":"INVESTIGATE","ГОВОРИТЬ":"TALK","ЧАЩА":"THICKET","ПУСТОШЬ":"WASTELAND","ВОЛНЫ":"WAVES","ГОРИЗОНТ":"HORIZON","АРМИЯ":"ARMY","БЕЗУМИЕ":"MADNESS","МИР":"WORLD","КОРПОРАЦИИ":"CORPORATIONS","ДУХИ":"SPIRITS","К4":"D4","К6":"D6","К8":"D8","К10":"D10","К12":"D12","Голова":"Head","Тело":"Body","Особое":"Special","Рюкзак":"Backpack"});
     Object.assign(UI_EN,{"А4":"A4","Навык, связанный с любым боем или попыткой что-то сломать.":"A Skill used for any kind of combat or an attempt to break something.","Навык, применяемый для любой магии или магического предмета. Если вы имеете этот навык, вы можете создавать простые магические эффекты без проверки, например прикурить сигарету щелчком пальцев или перемешать напиток в кружке, не касаясь его.":"A Skill used for any magic or magical item. With it, you can create simple magical effects without a check, such as lighting a cigarette with a snap of your fingers or stirring a drink without touching it.","Навык, дающий восстановить прежнее состояние чего-то или кого-то.":"A Skill used to restore something or someone to their former condition.","Навык, отвечающий за перемещение в опасных ситуациях, например во время погони или перехода через Башню.":"A Skill used to move through dangerous situations, such as a chase or an Ascent through the Tower.","Навык, отвечающий за скрытное проникновение и перемещение. Незаметные нейтрализации не подозревающих противников — тоже часть этого навыка.":"A Skill used for covert entry and movement. Silently neutralizing unsuspecting enemies is also part of this Skill.","Навык, отвечающий за взаимодействие с технологией, будь то взлом или написание кода. Для создания новых предметов также используется этот навык.":"A Skill used to interact with technology, from hacking to writing code. It is also used to create new items.","Навык, отвечающий за уход от физических и магических атак, например уворот, парирование или чтение короткого заговора.":"A Skill used to avoid physical and magical attacks, such as dodging, parrying, or reciting a short ward.","Навык, который отвечает за поиск вещей, опознание магических предметов или поиск данных в сети.":"A Skill used to find things, identify magical items, or search for information online.","Навык, обозначающий способность красиво и хорошо вести переговоры, торговаться или обманывать.":"A Skill used to negotiate, bargain, persuade, or deceive.","Область, отвечающая за взаимодействие с людьми из народа Ножей и с локациями Башни, похожими на лес или лабиринт.":"A Domain for interacting with the People of Knives and Tower locations resembling forests or labyrinths.","Область, отвечающая за взаимодействие с людьми из народа Ядов, а также за представляющие опасность ядовитые и проклятые локации Башни.":"A Domain for interacting with the People of Poisons and dangerous poisonous or cursed Tower locations.","Область, отвечающая за взаимодействие с людьми из народа Граней и с постоянно меняющимися или разумными локациями.":"A Domain for interacting with the People of Facets and constantly changing or sentient locations.","Область, отвечающая за взаимодействие с людьми из народа Железа и за огромные открытые локации в Башне.":"A Domain for interacting with the People of Iron and enormous open locations in the Tower.","Область для взаимодействия с чем угодно военным: от оружия и техники до людей и компьютерных программ. Ещё она отвечает за укреплённые или патрулируемые локации в Башне.":"A Domain for anything military, from weapons and vehicles to personnel and software. It also covers fortified or patrolled Tower locations.","Область, обозначающая сумасшедшее влияние Башни и всех, кто ей подвергся, а также не связанных с Башней культистов.":"A Domain covering the Tower's maddening influence, everyone affected by it, and cultists unrelated to the Tower.","Область, отвечающая за все не-военные организации, места, людей и занятия, например за разговор с торговцем или готовку. Кроме того, она отвечает за места в Башне, похожие на человеческую городскую застройку.":"A Domain for civilian organizations, places, people, and activities. It also covers Tower locations resembling human urban development.","Область могучих частных компаний, ставших полубожественной силой, и контролируемых ими мест Башни.":"A Domain of powerful private companies that became near-divine forces, and the Tower locations they control.","Область духов природы и компьютерных программ, а также их вотчин: в Башне другие реки и леса, зато встречаются подкодыши и духи предметов.":"A Domain of nature spirits and computer programs, along with their domains, including Codelings and spirits of objects."});
     Object.assign(UI_EN,{"Критический провал":"Critical Failure","Провал":"Failure","Успех с ценой":"Success at a Cost","Успех":"Success","Критический успех":"Critical Success","Действие не удалось, получите на ступень больше стресса.":"The action fails; take Stress one step higher.","Действие не удалось, получите стресс.":"The action fails; take Stress.","Действие удалось, получите стресс.":"The action succeeds; take Stress.","Действие удалось.":"The action succeeds.","За каждую кость 10 и более стресс, причиняемый вами, повышается на ступень.":"For each die showing 10 or more, increase the Stress you inflict by one step.","Борись за жизнь!":"Fight for your life!","Это уже серьёзно…":"This is getting serious…","Отбить врата!":"Hold the Gate!","Осветим мир!":"Let us light the world!","Вспомни, кем ты был…":"Remember who you were…","Лучшая сделка почти в кармане.":"The best deal is almost in the bag.","Это будет просто просчитать.":"This will be easy to calculate.","Вдохни глубоко и выпусти когти.":"Breathe deep and bare your claws.","Заслужи золотое будущее!":"Earn a golden future!","Победа на крыльях бабочки…":"Victory on butterfly wings…","Взрастим прекраснейший цветок!":"Let us grow the fairest flower!","Малое последствие":"Minor Fallout","Значимое последствие":"Major Fallout","Роковое последствие":"Doom Fallout","Без последствия":"No Fallout","Свернуть / развернуть секцию":"Collapse / expand section"});
     Object.assign(UI_EN,{"Discord, Telegram и ВКонтакте":"Discord, Telegram and VK","Адрес моста и защищённая сессия настраиваются автоматически. Токены ботов и общий секрет остаются только на сервере.":"The bridge address and secure session are configured automatically. Bot tokens and the shared server secret remain on the server.","Проверить чаты":"Test chats","Отправлено в чаты.":"Sent to chats."});
     const UI_EN_REPLACEMENTS=[["ОБЩИЙ СТРЕСС","TOTAL STRESS"],["Общий стресс","Total Stress"],["ПРОВЕРКА ПОСЛЕДСТВИЯ","FALLOUT CHECK"],["Проверка последствия","Fallout Check"],["ЗНАЧИМЫХ","MAJOR"],["значимых","major"],["МАЛЫХ","MINOR"],["малых","minor"],["НАВЫКОВ","SKILLS"],["навыков","skills"],["ОБЛАСТЕЙ","DOMAINS"],["областей","domains"],["ЛИЧНЫХ","PERSONAL"],["личных","personal"],["ФРАКЦИОННЫХ","FACTION"],["фракционных","faction"],["МИРОВЫХ","WORLD"],["мировых","world"],["ПЕРСОНАЖЕЙ ИГРОКОВ","PLAYER CHARACTERS"],["персонажей игроков","player characters"],["БАЗОВЫХ","BASIC"],["базовых","basic"],["ПРОФЕССИОНАЛЬНЫХ","PROFESSIONAL"],["профессиональных","professional"],["ЭЛИТНЫХ","ELITE"],["элитных","elite"],["Дополнительный слот","Extra slot"],["Обычный стресс","Regular Stress"],["Персонаж","Character"],["Ячейка","Slot"],["Запись","Entry"]];
     Object.assign(UI_EN,{"Создать код /connect":"Create /connect code","Обновить подключения":"Refresh connections"});
+    Object.assign(UI_EN,{"Качество":"Quality","Причиняемый стресс":"Inflicted Stress","Поиск по названию, тексту или категории":"Search by title, text, or category","Например: броня, УБИВАТЬ, Светоносец...":"For example: armor, KILL, Light Bearer...","Очистить":"Clear","Бросить причиняемый стресс":"Roll inflicted Stress","Бросить кость качества":"Roll quality die"});
+    const UI_RU_BY_EN=Object.fromEntries(Object.entries(UI_EN).map(([ru,en])=>[en,ru]));
     function translateUiText(value){
       const text=String(value??""); const trimmed=text.trim(); if(!trimmed)return text;
       let translated=UI_EN[trimmed]||trimmed.replace(/^Итого:/,"Total:").replace(/ броня\)/g," armor)").replace(/^Стресс:/,"Stress:");
@@ -1774,6 +1807,12 @@ button.secondary.portrait-mini-button{
     }
     function localizeUiSubtree(root=document.body){
       if(currentLanguage!=="en"||!root)return;
+      if(root.nodeType===Node.ELEMENT_NODE){
+        const options=root.matches("option")?[root]:[...root.querySelectorAll("option")];
+        options.forEach(option=>{
+          if(!option.hasAttribute("value"))option.setAttribute("value",option.textContent.trim());
+        });
+      }
       const textNodes=[];
       if(root.nodeType===Node.TEXT_NODE)textNodes.push(root);
       else{
@@ -1835,7 +1874,7 @@ button.secondary.portrait-mini-button{
     let discordToastTimer=0;
     let lastConsequenceCheckText="";
 
-    const contactCounts={personal:1,faction:0,world:0,players:1};
+    const contactCounts={personal:1,faction:0,world:0,players:3};
     const consequenceCounts={minor:0,major:0};
     const abilityCounts={basic:1,minor:3,professional:1,elite:0};
     const countMaps={contact:contactCounts,consequence:consequenceCounts,ability:abilityCounts};
@@ -1903,6 +1942,153 @@ button.secondary.portrait-mini-button{
       "Раствор Души":{skill:"ГОВОРИТЬ",domain:"БЕЗУМИЕ"},
       "Подкодыш":{skill:"ПРОБИВАТЬСЯ",domain:"ДУХИ"},
       "Паратехник":{skill:"ТЕХНИЧИТЬ",domain:"КОРПОРАЦИИ"}
+    };
+
+    const classPromptMap={
+      "Страж Врат":{
+        questions:["Как вы потеряли глаз?","Кто люди в ваших жетонах?","Любимый смешной случай из армии"],
+        contacts:[
+          "Сослуживец из жизни до Башни (Персонаж ведущего)",
+          "Кто-то в составе группы, кому вы даёте ценные советы и рассказываете весёлые истории из армии, кому и какой ваш совет вы считаете лучшим?",
+          "Кто-то из группы вас героически спас, кто и из какой ситуации?",
+          "Кто-то в группе постоянно стреляет у вас сигареты, хотя вы не видели, чтобы он курил. Кто это и что он отвечает, когда вы спрашиваете?"
+        ],
+        questionsEn:["How did you lose your eye?","Who are the people in your tokens?","Your favorite funny story from the army"],
+        contactsEn:[
+          "A fellow soldier from your life before the Tower (GM character)",
+          "Someone in the group to whom you give valuable advice and tell funny army stories. Who are they, and which piece of your advice do you consider the best?",
+          "Someone in the group heroically saved you. Who were they, and what did they save you from?",
+          "Someone in the group keeps bumming cigarettes from you, although you have never seen them smoke. Who are they, and what do they say when you ask?"
+        ]
+      },
+      "Светоносец":{
+        questions:["Почему вы оставили близких и ушли в монахи?","Ваш любимый источник света","В каком смысле вы понимаете идею «осветить мир»?"],
+        contacts:[
+          "Ваш духовный учитель, недовольный, но любящий (Персонаж ведущего)",
+          "Кто-то в группе безобидно над вами шутит. Кто и какая невинная шутка вас задела?",
+          "Вы помогаете кому-то в группе с духовным ростом и саморазвитием. Кто это и какую духовную практику вы предлагаете?",
+          "Кто-то в группе дарит вам батарейки, конфеты и патроны просто так, кто это и почему вы не спрашиваете о причине подарков?"
+        ],
+        questionsEn:["Why did you leave your loved ones and become a monk?","Your favorite source of light","What does the idea of ‘lighting the world’ mean to you?"],
+        contactsEn:[
+          "Your spiritual teacher, disappointed but loving (GM character)",
+          "Someone in the group makes harmless jokes about you. Who are they, and which innocent joke hurt you?",
+          "You help someone in the group with spiritual growth and self-improvement. Who are they, and which spiritual practice do you suggest?",
+          "Someone in the group gives you batteries, sweets, and ammunition for no reason. Who are they, and why do you not ask about the gifts?"
+        ]
+      },
+      "Раствор Души":{
+        questions:["По какой возможности до трансформации вы скучаете больше всего?","Какую маленькую радость вы нашли, чтобы не сойти с ума?","Ваше самое успешное произведение после трансформации"],
+        contacts:[
+          "Поклонник вашего творчества (Персонаж ведущего)",
+          "Кто-то в группе занимается тем же видом творчества, но не так умело, и вы ему помогаете. Кто?",
+          "Кто-то в группе вечно рассказывает вам отвлечённые истории про рыбалку. Кто это и чего он пытается достичь?",
+          "В группе кто-то помогает вам делать что-то, чего вы не можете из-за новой формы, например говорит вслух, как сейчас пахнет. Кто это и почему он к вам так добр?"
+        ],
+        questionsEn:["Which ability from before your transformation do you miss most?","What small joy did you find to keep yourself from going mad?","Your most successful work since the transformation"],
+        contactsEn:[
+          "A fan of your art (GM character)",
+          "Someone in the group practices the same art as you, but less skillfully, and you help them. Who are they?",
+          "Someone in the group constantly tells you rambling stories about fishing. Who are they, and what are they trying to achieve?",
+          "Someone in the group helps you do something your new form makes impossible, such as describing a smell aloud. Who are they, and why are they so kind to you?"
+        ]
+      },
+      "Росоход":{
+        questions:["История, в которой вы спаслись в последний момент.","Кто ваш соперник за важную добычу? Назовите их обоих.","Что случилось с вашей первой винтовкой?"],
+        contacts:[
+          "Ваш бывший напарник и его гончая, клянчащая у вас кровь (Персонаж ведущего)",
+          "Кто-то в группе осуждает магию росоходов. Кто и какие аргументы он выдвигает?",
+          "Кто-то из группы интересуется вашими традициями честной охоты, но сам убивать не любит. Кто это и как вы преподносите ему вашу культуру?",
+          "Вы не доверяете кому-то в группе, поскольку он ведёт себя слишком честно и по-доброму. Кто это и какие его правильные действия вы трактуете как обман?"
+        ],
+        questionsEn:["A story in which you escaped at the last moment.","Who is your rival for an important quarry? Name both of them.","What happened to your first rifle?"],
+        contactsEn:[
+          "Your former partner and their hound, which begs you for blood (GM character)",
+          "Someone in the group condemns Dew Walker magic. Who are they, and what arguments do they make?",
+          "Someone in the group is interested in your traditions of fair hunting but dislikes killing. Who are they, and how do you teach them your culture?",
+          "You distrust someone in the group because they act too honestly and kindly. Who are they, and which good deeds do you interpret as deceit?"
+        ]
+      },
+      "Экономант":{
+        questions:["Откуда вы взяли стартовый капитал?","Кого вы предали ради наживы?","Расскажите про вашу экономическую теорию, за которую вас считают безумцем."],
+        contacts:[
+          "Ваш бизнес-партнёр, он обманул вас в серьёзной сделке, но его связи стоят риска (Персонаж ведущего)",
+          "Кто-то из группы чересчур альтруистичен и всегда забывает о выгоде для отряда. Кто это и как вы объясняете ему необходимость заработка?",
+          "Кто-то из группы пытается выглядеть официально, но постоянно спотыкается о мелкие детали формального общения. Кто это и почему вы решили помочь ему научиться общению в приличных кругах?",
+          "Вы сговорились с кем-то из команды ради финансовой махинации в одном из оазисов. Кто это был и как вы провернули всё так тонко, что никто не заметил?"
+        ],
+        questionsEn:["Where did you get your starting capital?","Whom did you betray for profit?","Describe the economic theory for which people consider you a madman."],
+        contactsEn:[
+          "Your business partner. They cheated you in a major deal, but their connections are worth the risk (GM character)",
+          "Someone in the group is excessively altruistic and always forgets what benefits the squad. Who are they, and how do you explain the need to make money?",
+          "Someone in the group tries to look official but constantly misses small details of formal etiquette. Who are they, and why did you decide to teach them how to behave in polite circles?",
+          "You conspired with someone in the squad on a financial scheme in an oasis. Who were they, and how did you pull it off so subtly that nobody noticed?"
+        ]
+      },
+      "Неболом":{
+        questions:["Что в вашей практике поколебало уверенность в том, что всё можно просчитать?","Почему вы хотите отправиться к другим планетам?","Ваш самый удавшийся подсчёт"],
+        contacts:[
+          "Неболом с клятвой мести, ваш напарник, которого вы до недавней встречи считали мёртвым (Персонаж ведущего)",
+          "Кто-то в группе считает межпланетные полёты пустой тратой ресурсов, постоянно вам об этом напоминая. Кто это и как он это объясняет?",
+          "Кто-то в группе пытается освоить гуманитарную науку вроде философии или литературоведения, чей смысл вы не понимаете. Кто это и почему вы не оставляете попыток познать что-то далёкое от вашей сферы?",
+          "Вы спасли жизнь кому-то из группы, заслонив от пуль. Кто это был и чем он обещал вам отплатить?"
+        ],
+        questionsEn:["What in your practice shook your confidence that everything can be calculated?","Why do you want to travel to other planets?","Your most successful calculation"],
+        contactsEn:[
+          "A Skybreaker sworn to vengeance, your partner whom you believed dead until your recent meeting (GM character)",
+          "Someone in the group considers interplanetary travel a waste of resources and constantly reminds you of it. Who are they, and how do they explain their view?",
+          "Someone in the group is trying to master a humanities field such as philosophy or literary studies, whose purpose you do not understand. Who are they, and why do you keep trying to learn something so distant from your specialty?",
+          "You saved someone in the group by shielding them from bullets. Who were they, and how did they promise to repay you?"
+        ]
+      },
+      "Красный Рукав":{
+        questions:["Однажды вы отступили от принципов красных рукавов, но вас не наказали, почему?","Самое необычное свойство, которое вы хотите привить цветку.","Вы участвовали в миссии по ликвидации цели, в которой всё пошло не так, но вы спасли ситуацию в последний момент. Что произошло?"],
+        contacts:[
+          "Ваш напарник, излишне самоуверенный юный рукав с татуировками на всё тело. (Персонаж ведущего)",
+          "Кто-то из группы считает, что честь и принципы на поле боя неуместны. Кто это и как вы пытаетесь его переубедить?",
+          "Кто-то в группе просит у вас цветы, чтобы производить из них красители. Кто это и что он с ними делает?",
+          "Кто-то из группы называет вас отцом, сестрой, или другим членом семьи. Кто это и после какого события вы так сплотились?"
+        ],
+        questionsEn:["Once you broke the principles of the Red Sleeves but were not punished. Why?","The most unusual trait you want to graft onto a flower.","You took part in a mission to eliminate a target. Everything went wrong, but you saved the situation at the last moment. What happened?"],
+        contactsEn:[
+          "Your partner, an overly self-confident young Sleeve covered in tattoos (GM character)",
+          "Someone in the group believes honor and principles have no place on the battlefield. Who are they, and how do you try to change their mind?",
+          "Someone in the group asks you for flowers to make dyes. Who are they, and what do they do with them?",
+          "Someone in the group calls you father, sister, or another family title. Who are they, and after what event did you become so close?"
+        ]
+      },
+      "Подкодыш":{
+        questions:["Кто прошлый владелец вашего тела и почему он сошёл с ума?","Пока вы были бесплотным духом, человечество вас обидело, но вы не держите зла. Что это была за ситуация и почему вы простили людей?","Вы помните чьё-то лицо, но не можете вспомнить ни имени, ни то, кем был этот человек. Что вы делаете, чтобы выяснить, кто это?"],
+        contacts:[
+          "Охотник на тела, нанятый родственниками предыдущего владельца вашего тела, но ставший вам другом (Персонаж ведущего)",
+          "Кто-то в группе считает, что вы не понимаете человеческих шуток и идиом и всегда вам их объясняет. Кто это и что самое очевидное он вам рассказал?",
+          "Кто-то в группе углубился в изучение связанной с духами магии и обсуждает её с вами. Кто это и в чём он заблуждается?",
+          "Кто-то из группы готовит вместе с вами еду, кто это, и какому ставшему любимым рецепту он вас научил?"
+        ],
+        questionsEn:["Who previously owned your body, and why did they go mad?","While you were a bodiless spirit, humanity wronged you, but you bear no grudge. What happened, and why did you forgive people?","You remember someone’s face but cannot recall their name or who they were. What are you doing to find out?"],
+        contactsEn:[
+          "A body hunter hired by the relatives of your body’s previous owner, who later became your friend (GM character)",
+          "Someone in the group thinks you do not understand human jokes and idioms and always explains them. Who are they, and what was the most obvious thing they explained?",
+          "Someone in the group has delved into spirit-related magic and discusses it with you. Who are they, and what are they mistaken about?",
+          "Someone in the group cooks with you. Who are they, and which recipe that became your favorite did they teach you?"
+        ]
+      },
+      "Паратехник":{
+        questions:["Самый вам ненавистный способ корпораций ограничить свободу","В отличие от многих паратехников, вы часто идёте в открытый бой, почему?","В долгих хакерских сессиях вы привыкли питаться чем попало. Расскажите ваш любимый рецепт блюда из полуфабрикатов."],
+        contacts:[
+          "Предатель корпорации, работающий на паратехников (Персонаж ведущего)",
+          "Кто-то в группе любит спрашивать у вас о методах взлома защиты сериалов и видеоигр. Кто это, и какую неочевидную цель он преследует?",
+          "Кто-то в группе подвергся вашему взлому на службе до Башни. Кто это и почему вы от него этого не скрываете?",
+          "Кто-то в группе подозрительно хорошо общается с миром информации, при этом ничего не зная про духов и цифровые технологии. Кто это и в чём его секрет?"
+        ],
+        questionsEn:["The corporate method of limiting freedom that you hate most","Unlike many Paratechnicians, you often fight openly. Why?","During long hacking sessions you grew used to eating whatever was available. Describe your favorite dish made from convenience foods."],
+        contactsEn:[
+          "A corporate defector working for the Paratechnicians (GM character)",
+          "Someone in the group likes asking you how to crack the protection on shows and video games. Who are they, and what non-obvious goal are they pursuing?",
+          "Someone in the group was hacked by you while you served before the Tower. Who are they, and why do you not hide it from them?",
+          "Someone in the group communicates suspiciously well with the Information World despite knowing nothing about spirits or digital technology. Who are they, and what is their secret?"
+        ]
+      }
     };
 
     const classRollTitleMap={
@@ -2065,8 +2251,25 @@ button.secondary.portrait-mini-button{
       const button=byId("nationStripeAnimationToggle");
       if(!button)return;
       button.classList.toggle("is-active",nationStripeAnimationEnabled);
-      button.textContent=nationStripeAnimationEnabled?"Анимация полоски: да":"Анимация полоски: нет";
+      button.textContent=currentLanguage==="en"
+        ?`Stripe animation: ${nationStripeAnimationEnabled?"on":"off"}`
+        :`Анимация полоски: ${nationStripeAnimationEnabled?"да":"нет"}`;
       button.setAttribute("aria-pressed",nationStripeAnimationEnabled?"true":"false");
+    }
+
+    function updateNationStripeContext(){
+      const minorConsequences=countFilledSlots("consequence","minor");
+      const majorConsequences=countFilledSlots("consequence","major");
+      const duration=Math.max(1,18-minorConsequences-majorConsequences*2);
+      const totalStress=getCurrentStressTotals().totalStress;
+      const dangerDarkening=totalStress>=17 ? 0.48 : totalStress>=6 ? 0.25 : 0;
+      const nationName=byId("nationName")?.value||"";
+      const themeColor=nationThemeMap[nationName]||DEFAULT_THEME_COLOR;
+      const stripeColor=dangerDarkening?mixColor(themeColor,"#000000",dangerDarkening):themeColor;
+      document.documentElement.style.setProperty("--nation-stripe-duration",`${duration}s`);
+      document.documentElement.style.setProperty("--nation-stripe-color",stripeColor);
+      const stripe=document.querySelector(".nation-theme-stripe");
+      if(stripe)stripe.dataset.cycleSeconds=String(duration);
     }
 
     function toggleNationStripeAnimation(){
@@ -2813,11 +3016,12 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
             <tr data-codex-drop="gear" data-codex-target-index="${i}">
             <td>${i}</td>
             <td><input id="gear${i}Name" placeholder="Предмет" /></td>
+            <td class="plain-die-cell"><select id="gear${i}Quality">${makeDieOptions()}</select></td>
             <td><select id="gear${i}Skill">${makeOptions(skillOptions)}</select></td>
             <td>
               <div class="quality-cell">
-                <select id="gear${i}Quality">${makeDieOptions()}</select>
-                <span id="gear${i}QualityPreview" class="quality-die-preview empty">—</span>
+                <select id="gear${i}Stress">${makeDieOptions()}</select>
+                <button id="gear${i}StressPreview" class="quality-die-preview empty" type="button" onclick="rollCardDie('gear',${i},event)" title="Бросить причиняемый стресс">—</button>
               </div>
             </td>
             <td><input id="gear${i}Note" placeholder="Свойства, поломки, странность..." /></td>
@@ -2829,13 +3033,14 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
 
     function appendResourceRow(index){
       byId("resourceRows").insertAdjacentHTML("beforeend",`
-        <tr>
+        <tr data-resource-index="${index}">
           <td>${index}</td>
           <td><input id="resource${index}Name" placeholder="Ресурс" /></td>
+          <td><select id="resource${index}Domain">${makeOptions(domainOptions)}</select></td>
           <td>
             <div class="quality-cell">
               <select id="resource${index}Quality">${makeDieOptions()}</select>
-              <span id="resource${index}QualityPreview" class="quality-die-preview empty">—</span>
+              <button id="resource${index}QualityPreview" class="quality-die-preview empty" type="button" onclick="rollCardDie('resource',${index},event)" title="Бросить кость качества">—</button>
             </div>
           </td>
           <td><input id="resource${index}Note" placeholder="Свойства, качество, кому нужен..." /></td>
@@ -2867,9 +3072,40 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
       container.innerHTML="";
       armorSlots.forEach((slot,index)=>{
         const i=index+1;
-        container.innerHTML+=`<tr data-codex-drop="armor" data-codex-armor-slot="${slot}" data-codex-target-index="${i}"><td>${slot}</td><td><input id="armor${i}Name" placeholder="${slot}" /></td><td><select id="armor${i}Skill">${makeOptions(skillOptions)}</select></td><td><div class="quality-cell"><select id="armor${i}Quality">${makeDieOptions()}</select><span id="armor${i}QualityPreview" class="quality-die-preview empty">—</span></div></td><td><select id="armor${i}Resistance">${makeResistanceOptions()}</select></td><td><input id="armor${i}Protection" type="number" min="0" value="0" /></td><td><input id="armor${i}ExtraSlots" type="number" min="0" max="5" value="0" /></td><td><input id="armor${i}Note" placeholder="Свойства, штрафы, особые эффекты..." /></td></tr>`;
+        container.innerHTML+=`<tr data-codex-drop="armor" data-codex-armor-slot="${slot}" data-codex-target-index="${i}"><td>${slot}</td><td><input id="armor${i}Name" placeholder="${slot}" /></td><td class="plain-die-cell"><select id="armor${i}Quality">${makeDieOptions()}</select></td><td><select id="armor${i}Skill">${makeOptions(skillOptions)}</select></td><td><div class="quality-cell"><select id="armor${i}Stress">${makeDieOptions()}</select><button id="armor${i}StressPreview" class="quality-die-preview empty" type="button" onclick="rollCardDie('armor',${i},event)" title="Бросить причиняемый стресс">—</button></div></td><td><select id="armor${i}Resistance">${makeResistanceOptions()}</select></td><td><input id="armor${i}Protection" type="number" min="0" value="0" /></td><td><input id="armor${i}ExtraSlots" type="number" min="0" max="5" value="0" /></td><td><input id="armor${i}Note" placeholder="Свойства, штрафы, особые эффекты..." /></td></tr>`;
       });
       attachCodexDragHandlers();
+    }
+
+    function getSelectedClassPrompts(){
+      const prompts=classPromptMap[byId("className")?.value||""];
+      if(!prompts)return{questions:[],contacts:[]};
+      return currentLanguage==="en"
+        ?{questions:prompts.questionsEn||prompts.questions,contacts:prompts.contactsEn||prompts.contacts}
+        :{questions:prompts.questions,contacts:prompts.contacts};
+    }
+
+    function getSlotPlaceholder(kind,type,index){
+      if(kind!=="contact")return `${currentLanguage==="en"?"Slot":"Ячейка"} ${index}`;
+      const contacts=getSelectedClassPrompts().contacts;
+      if(type==="personal"&&index===1)return contacts[0]||`${currentLanguage==="en"?"Slot":"Ячейка"} ${index}`;
+      if(type==="players"&&index<=3)return contacts[index]||`${currentLanguage==="en"?"Slot":"Ячейка"} ${index}`;
+      return `${currentLanguage==="en"?"Slot":"Ячейка"} ${index}`;
+    }
+
+    function updateClassPromptPlaceholders(){
+      const prompts=getSelectedClassPrompts();
+      for(let i=1;i<=3;i++){
+        const field=byId(`classQuestion${i}`);
+        if(field)field.placeholder=prompts.questions[i-1]||(currentLanguage==="en"?"Answer":"Ответ");
+      }
+      ["personal","faction","world","players"].forEach(type=>{
+        const count=Number(contactCounts[type]||0);
+        for(let i=1;i<=count;i++){
+          const field=byId(`contact_${type}_${i}`);
+          if(field)field.placeholder=getSlotPlaceholder("contact",type,i);
+        }
+      });
     }
 
     function buildSlotRows(kind,type){
@@ -2878,7 +3114,7 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
       const count=Number(countMaps[kind]?.[type]||0);
       container.innerHTML="";
       for(let i=1;i<=count;i++){
-        container.innerHTML+=`<div class="slot-entry"><textarea id="${kind}_${type}_${i}" placeholder="Ячейка ${i}"></textarea></div>`;
+        container.innerHTML+=`<div class="slot-entry"><textarea id="${kind}_${type}_${i}" placeholder="${escapeHtml(getSlotPlaceholder(kind,type,i))}"></textarea></div>`;
       }
     }
 
@@ -2902,6 +3138,7 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
         `;
       }
       renderDiaryCounters();
+      attachCodexDragHandlers();
     }
 
     function addDiaryEntry(){preserveDataAndRebuild(()=>{diaryCount+=1;buildDiaryRows()})}
@@ -3151,19 +3388,64 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
       const preview=byId(previewId);
       if(!select||!preview)return;
       const value=select.value||"";
+      if(preview.dataset.lastDie!==value){
+        delete preview.dataset.lastDie;
+        delete preview.dataset.lastRoll;
+      }
       preview.className="quality-die-preview empty";
       preview.textContent="—";
       const match=value.match(/^D(4|6|8|10|12)$/);
       if(!match)return;
       const sides=match[1];
       preview.className=`quality-die-preview die-d${sides}`;
-      preview.textContent=`К${sides}`;
+      const lastRoll=Number(preview.dataset.lastRoll||0);
+      if(lastRoll>0&&preview.dataset.lastDie===value){
+        preview.textContent=String(lastRoll);
+        preview.classList.add("has-result");
+        preview.title=`${currentLanguage==="en"?"D":"К"}${sides}: ${lastRoll}`;
+      }else{
+        preview.textContent=`${currentLanguage==="en"?"D":"К"}${sides}`;
+      }
     }
 
     function updateQualityDiePreviews(){
-      for(let i=1;i<=4;i++)updateQualityDiePreview(`gear${i}Quality`,`gear${i}QualityPreview`);
-      for(let i=1;i<=armorSlots.length;i++)updateQualityDiePreview(`armor${i}Quality`,`armor${i}QualityPreview`);
+      for(let i=1;i<=4;i++)updateQualityDiePreview(`gear${i}Stress`,`gear${i}StressPreview`);
+      for(let i=1;i<=armorSlots.length;i++)updateQualityDiePreview(`armor${i}Stress`,`armor${i}StressPreview`);
       for(let i=1;i<=resourceCount;i++)updateQualityDiePreview(`resource${i}Quality`,`resource${i}QualityPreview`);
+    }
+
+    function getCardDieConfig(kind,index){
+      if(kind==="gear")return{selectId:`gear${index}Stress`,previewId:`gear${index}StressPreview`,labelRu:"Причиняемый стресс",labelEn:"Inflicted Stress"};
+      if(kind==="armor")return{selectId:`armor${index}Stress`,previewId:`armor${index}StressPreview`,labelRu:"Причиняемый стресс",labelEn:"Inflicted Stress"};
+      if(kind==="resource")return{selectId:`resource${index}Quality`,previewId:`resource${index}QualityPreview`,labelRu:"Качество",labelEn:"Quality"};
+      return null;
+    }
+
+    function rollCardDie(kind,index,event){
+      event?.preventDefault();
+      event?.stopPropagation();
+      const config=getCardDieConfig(kind,index);
+      const select=config?byId(config.selectId):null;
+      const preview=config?byId(config.previewId):null;
+      const match=String(select?.value||"").match(/^D(4|6|8|10|12)$/);
+      if(!match){
+        showDiscordToast(currentLanguage==="en"?"Choose a die first.":"Сначала выберите кость.",true);
+        return;
+      }
+      const sides=Number(match[1]);
+      const result=Math.floor(Math.random()*sides)+1;
+      preview.dataset.lastDie=`D${sides}`;
+      preview.dataset.lastRoll=String(result);
+      updateQualityDiePreview(config.selectId,config.previewId);
+
+      const settings=getDiscordSettings();
+      if(!settings.roomId||!settings.roomToken)return;
+      const cardPayload=getDiscordSharePayload(preview);
+      if(!cardPayload)return;
+      const rollLabel=currentLanguage==="en"?config.labelEn:config.labelRu;
+      const rollLine=`${rollLabel}: D${sides} = ${result}`;
+      discordBridgeRequest({...cardPayload,kind:`${cardPayload.kind||kind}-roll`,text:[cardPayload.text,rollLine].filter(Boolean).join("\n")})
+        .catch(error=>showDiscordToast(error.message,true));
     }
 
     function renderCounters(){
@@ -3174,6 +3456,7 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
       updateNationPattern();
       updateMasteryNoteVisibility();
       updateStressScales();
+      updateNationStripeContext();
       updateQualityDiePreviews();
       renderSkillDomainCounters();
       renderTacticCounters();
@@ -3182,6 +3465,7 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
       renderConsequenceCounters();
       renderAbilityCounters();
       renderDiaryCounters();
+      updateClassPromptPlaceholders();
       updateRollMenuTitle();
       updateFloatingMenuButtons();
     }
@@ -3282,7 +3566,38 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
       return String(logText).split("\n").map(line=>line.trim()).filter(Boolean).slice(0,10).map(line=>({type:"legacy",text:line}));
     }
 
+    function migrateLegacyEquipmentDice(data){
+      const migrated={...data};
+      for(let i=1;i<=4;i++){
+        const qualityId=`gear${i}Quality`;
+        const stressId=`gear${i}Stress`;
+        if(migrated[stressId]===undefined&&migrated[qualityId]!==undefined){
+          migrated[stressId]=migrated[qualityId];
+          migrated[qualityId]="";
+        }
+      }
+      for(let i=1;i<=armorSlots.length;i++){
+        const qualityId=`armor${i}Quality`;
+        const stressId=`armor${i}Stress`;
+        if(migrated[stressId]===undefined&&migrated[qualityId]!==undefined){
+          migrated[stressId]=migrated[qualityId];
+          migrated[qualityId]="";
+        }
+      }
+      return migrated;
+    }
+
+    function migrateLocalizedSelectValues(data){
+      const migrated={...data};
+      ["className","nationName","serviceBranch"].forEach(id=>{
+        const value=migrated[id];
+        if(typeof value==="string"&&UI_RU_BY_EN[value])migrated[id]=UI_RU_BY_EN[value];
+      });
+      return migrated;
+    }
+
     function applyData(data){
+      data=migrateLocalizedSelectValues(migrateLegacyEquipmentDice(data||{}));
       autoSelectedSkills=new Set(data.autoSelectedSkills||[]);
       autoSelectedDomains=new Set(data.autoSelectedDomains||[]);
       autoSelectedSkillMasteries=new Set(data.autoSelectedSkillMasteries||[]);
@@ -3311,7 +3626,8 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
       tacticCount=Math.max(0,Number(data?.tacticCount??DEFAULT_TACTIC_COUNT));
       resourceCount=Math.min(Math.max(0,Number(data?.resourceCount??DEFAULT_RESOURCE_COUNT)),MAX_RESOURCE_COUNT);
       diaryCount=Math.max(0,Number(data?.diaryCount??DEFAULT_DIARY_COUNT));
-      Object.assign(contactCounts,{personal:1,faction:0,world:0,players:1},data?.contactCounts||{});
+      Object.assign(contactCounts,{personal:1,faction:0,world:0,players:3},data?.contactCounts||{});
+      contactCounts.players=Math.max(3,Number(contactCounts.players||0));
       consequenceCounts.minor=Number(data?.consequenceCounts?.minor??consequenceCounts.minor??0);
       consequenceCounts.major=Number(data?.consequenceCounts?.major??consequenceCounts.major??0);
       delete consequenceCounts.fatal;
@@ -3522,7 +3838,7 @@ async function chatBridgeRequest(endpoint,payload={}){
 }
 
 function renderChatConnections(status={}){
-  const names={discord:"Discord",telegram:"Telegram",vk:"VK"};
+  const names={discord:"Discord",telegram:"Telegram",vk:"ВКонтакте"};
   const parts=Object.entries(names).map(([key,name])=>`${name}: ${(status[key]||[]).map(chat=>chat.label).join(", ")||"—"}`);
   if(byId("chatConnectionsStatus"))byId("chatConnectionsStatus").textContent=parts.join(" · ");
 }
@@ -3531,7 +3847,7 @@ async function createChatConnectCode(){
   saveDiscordSettings();
   try{
     const result=await chatBridgeRequest("/api/connect");
-    if(byId("chatConnectCode"))byId("chatConnectCode").textContent=`For the next 15 minutes, send the bots: /connect ${result.code}`;
+    if(byId("chatConnectCode"))byId("chatConnectCode").textContent=`В течение 15 минут отправьте ботам команду /connect ${result.code}`;
     renderChatConnections(result.status);
   }catch(error){showDiscordToast(error.message,true)}
 }
@@ -3587,21 +3903,33 @@ function sendDiscordRoll(entry){
   discordBridgeRequest(formatDiscordRoll(entry)).catch(error=>showDiscordToast(error.message,true));
 }
 
-function discordValue(id){return byId(id)?.value.trim()||""}
+function discordValue(id){
+  const element=byId(id);
+  if(!element)return"";
+  if(currentLanguage==="en"&&element.tagName==="SELECT")return element.options[element.selectedIndex]?.textContent.trim()||"";
+  return element.value.trim()||"";
+}
+
+function discordDetail(labelRu,labelEn,value){return value?`${currentLanguage==="en"?labelEn:labelRu}: ${value}`:""}
 
 function getDiscordSharePayload(target){
   const card=target.closest?.(".codex-card[data-codex-id]");
   if(card){
     const item=getCodexItem(card.dataset.codexId);
     if(!item)return null;
-    return {kind:item.kind||item.section||"card",title:item.title,text:item.text||""};
+    return {kind:item.kind||item.section||"card",title:item.title,text:formatCodexText(item.text,item.title)};
   }
   const gearRow=target.closest?.("#gearRows tr[data-codex-target-index]");
   if(gearRow){
     const index=gearRow.dataset.codexTargetIndex;
     const title=discordValue(`gear${index}Name`);
     if(!title)return null;
-    const details=[discordValue(`gear${index}Skill`),discordValue(`gear${index}Quality`),discordValue(`gear${index}Note`)].filter(Boolean);
+    const details=[
+      discordDetail("Качество","Quality",discordValue(`gear${index}Quality`)),
+      discordDetail("Навык","Skill",discordValue(`gear${index}Skill`)),
+      discordDetail("Причиняемый стресс","Inflicted Stress",discordValue(`gear${index}Stress`)),
+      discordValue(`gear${index}Note`)
+    ].filter(Boolean);
     return {kind:"item",title,text:details.join("\n")};
   }
   const armorRow=target.closest?.("#armorRows tr[data-codex-target-index]");
@@ -3609,15 +3937,35 @@ function getDiscordSharePayload(target){
     const index=armorRow.dataset.codexTargetIndex;
     const title=discordValue(`armor${index}Name`);
     if(!title)return null;
-    const details=[discordValue(`armor${index}Skill`),discordValue(`armor${index}Quality`),discordValue(`armor${index}Resistance`),discordValue(`armor${index}Note`)].filter(Boolean);
+    const details=[
+      discordDetail("Качество","Quality",discordValue(`armor${index}Quality`)),
+      discordDetail("Навык","Skill",discordValue(`armor${index}Skill`)),
+      discordDetail("Причиняемый стресс","Inflicted Stress",discordValue(`armor${index}Stress`)),
+      discordDetail("Сопротивление","Resistance",discordValue(`armor${index}Resistance`)),
+      discordDetail("Защита","Protection",discordValue(`armor${index}Protection`)),
+      discordDetail("Доп. слоты","Extra Slots",discordValue(`armor${index}ExtraSlots`)),
+      discordValue(`armor${index}Note`)
+    ].filter(Boolean);
     return {kind:"item",title,text:details.join("\n")};
+  }
+  const resourceRow=target.closest?.("#resourceRows tr[data-resource-index]");
+  if(resourceRow){
+    const index=resourceRow.dataset.resourceIndex;
+    const title=discordValue(`resource${index}Name`);
+    if(!title)return null;
+    const details=[
+      discordDetail("Область","Domain",discordValue(`resource${index}Domain`)),
+      discordDetail("Качество","Quality",discordValue(`resource${index}Quality`)),
+      discordValue(`resource${index}Note`)
+    ].filter(Boolean);
+    return {kind:"resource",title,text:details.join("\n")};
   }
   const tacticRow=target.closest?.("#tacticRows tr[data-codex-target-index]");
   if(tacticRow){
     const index=tacticRow.dataset.codexTargetIndex;
     const title=discordValue(`tactic${index}Name`);
     if(!title)return null;
-    return {kind:"tactic",title,text:[discordValue(`tactic${index}Skill`),discordValue(`tactic${index}Notes`)].filter(Boolean).join("\n")};
+    return {kind:"tactic",title,text:[discordDetail("Навык","Skill",discordValue(`tactic${index}Skill`)),discordValue(`tactic${index}Notes`)].filter(Boolean).join("\n")};
   }
   const field=target.closest?.("textarea");
   if(!field||!field.value.trim())return null;
@@ -3693,6 +4041,7 @@ function attachDiscordSharing(){
           closeTacticsMenu();
           closeResourcesMenu();
           closeRulesHelpMenu();
+          closeCodexMenu();
         }
       });
       listenersAttached=true;
@@ -3809,13 +4158,124 @@ function attachDiscordSharing(){
     function closeResourcesMenuOnBackdrop(event){if(event.target.id==="resourcesModal")closeResourcesMenu()}
 
     let codexActiveSection="classes";
+    let codexSearchQuery="";
     let codexDraggedItemId="";
     let codexPanelDragState=null;
     let codexPanelResizeState=null;
+    const codexRuntimeItems=new Map();
     const CODEX_PANEL_MARGIN=12;
 
     function escapeCodexHtml(value){
       return String(value??"").replace(/[&<>\"']/g,character=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;", "'":"&#39;"}[character]));
+    }
+
+    function cleanCodexSourceLines(value){
+      return String(value??"")
+        .replace(/\r\n?/g,"\n")
+        .split("\n")
+        .map(line=>line.replace(/[\t ]+/g," ").trim())
+        .filter(line=>!/^\d{1,3}$/.test(line));
+    }
+
+    function formatCodexText(value,title=""){
+      const webText=String(value??"").replace(/\s+(?=(?:Урон|Стресс|Свойства|Дистанция|Качество|Ячейки модификации|Damage|Stress|Properties|Range|Distance|Quality|Modification Slots)\s*:)/gi,"\n");
+      const lines=cleanCodexSourceLines(webText);
+      if(lines.length&&title){
+        const first=lines[0].replace(/^\d+\)\s*/,"").trim();
+        const firstLower=first.toLocaleLowerCase();
+        const titleLower=String(title).trim().toLocaleLowerCase();
+        if(firstLower===titleLower)lines.shift();
+        else if(firstLower.startsWith(`${titleLower}:`))lines[0]=first.slice(title.length+1).trim();
+      }
+      const blocks=[];
+      let current="";
+      const flush=()=>{if(current.trim())blocks.push(current.trim());current=""};
+      lines.forEach(line=>{
+        if(!line){flush();return}
+        const startsBlock=/^(?:[►•▪◦]|[—–-]\s|\d+\)\s|(?:Урон|Стресс|Свойства|Дистанция|Качество|Damage|Stress|Properties|Range|Distance|Quality)\s*:|(?:Малые|Minor)\s*$)/i.test(line);
+        if(startsBlock)flush();
+        if(!current)current=line;
+        else if(current.endsWith("-"))current+=line;
+        else current+=` ${line}`;
+      });
+      flush();
+      return blocks.join("\n")
+        .replace(/([:;,])(?=[A-Za-zА-Яа-яЁё])/g,"$1 ")
+        .replace(/([A-Za-zА-Яа-яЁё0-9])\(/g,"$1 (")
+        .replace(/\n{3,}/g,"\n\n")
+        .trim();
+    }
+
+    function normalizeCodexSearchText(value){
+      return String(value??"").toLocaleLowerCase(currentLanguage==="en"?"en-GB":"ru-RU").replace(/ё/g,"е").replace(/\s+/g," ").trim();
+    }
+
+    function isEnglishCodexHeadingLine(line){
+      if(currentLanguage!=="en"||line.length<2||line.length>64||/[.:;!?]$/.test(line))return false;
+      const smallWords=new Set(["a","an","and","at","by","for","from","in","of","on","or","the","to","with"]);
+      return line.split(/\s+/).every((word,index)=>{
+        const clean=word.replace(/^[“‘(]|[”’)]+$/g,"");
+        return (index>0&&smallWords.has(clean.toLowerCase()))||/^[A-Z][A-Za-zÀ-ÖØ-öø-ÿ’'\-]*$/.test(clean);
+      });
+    }
+
+    function parseProfessionalMinorAbilities(item){
+      if(item.section!=="classes"||item.tier!=="professional")return{baseText:item.text||"",children:[]};
+      const lines=cleanCodexSourceLines(item.text);
+      const explicitMarkerIndex=lines.findIndex(line=>/^(?:малые|minor(?: abilities)?)\s*:?$/i.test(line));
+      const fallbackMarkerIndex=lines.findIndex(line=>/^[►•▪◦]\s*.+/.test(line)||/^Minor\s*:\s*.+/i.test(line));
+      const markerIndex=explicitMarkerIndex>=0?explicitMarkerIndex:fallbackMarkerIndex;
+      if(markerIndex<0)return{baseText:item.text||"",children:[]};
+      const childStartIndex=explicitMarkerIndex>=0?markerIndex+1:markerIndex;
+      const children=[];
+      let active=null;
+      const finish=()=>{
+        if(!active)return;
+        const childText=[active.title+(active.inlineText?`: ${active.inlineText}`:""),...active.lines].join("\n").trim();
+        children.push({...item,id:`${item.id}-professional-minor-${children.length+1}`,title:active.title,text:childText,tier:"minor",isProfessionalMinor:true,parentAbilityId:item.id});
+        active=null;
+      };
+      lines.slice(childStartIndex).forEach(line=>{
+        const bullet=line.match(/^[►•▪◦]\s*(.+)$/);
+        const dashHeading=currentLanguage==="en"?line.match(/^[—–-]\s+(.+)$/):null;
+        const prefixedMinor=currentLanguage==="en"?line.match(/^Minor\s*:\s*(.+)$/i):null;
+        const englishHeading=currentLanguage==="en"?line.match(/^([A-Z][^:]{1,64}):\s*(.*)$/):null;
+        const excludedHeading=englishHeading&&/^(?:Stress|Damage|Properties|Range|Distance|Quality|Fallout|Resistance|For example|Example|Result)$/i.test(englishHeading[1].trim());
+        const plainEnglishHeading=isEnglishCodexHeadingLine(line)?line:null;
+        const startsChild=bullet||dashHeading||prefixedMinor||(englishHeading&&!excludedHeading)||plainEnglishHeading;
+        if(startsChild&&(!active||children.length<2)){
+          finish();
+          const content=(bullet?.[1]||dashHeading?.[1]||prefixedMinor?.[1]||englishHeading?.[1]||plainEnglishHeading||"").trim();
+          const split=content.match(/^(.{1,80}?):\s*(.*)$/);
+          active={title:(split?.[1]||content).trim(),inlineText:(split?.[2]||englishHeading?.[2]||"").trim(),lines:[]};
+          return;
+        }
+        if(active)active.lines.push(line);
+      });
+      finish();
+      return{baseText:lines.slice(0,markerIndex).join("\n"),children};
+    }
+
+    function getCodexSearchHaystack(item){
+      const sectionTitle=(window.TOWER_CODEX?.sections||[]).find(section=>section.id===item.section)?.title||item.section;
+      return normalizeCodexSearchText([
+        item.title,item.text,item.category,item.categoryEn,item.className,item.classNameEn,
+        item.factionName,item.factionNameEn,item.factionArea,item.factionAreaEn,item.skill,item.skillEn,
+        item.resistance,item.resistanceEn,item.severityLabel,item.severityLabelEn,item.tier,sectionTitle
+      ].filter(Boolean).join(" "));
+    }
+
+    function setCodexSearch(value){
+      codexSearchQuery=String(value||"");
+      renderCodexSection();
+    }
+
+    function clearCodexSearch(){
+      codexSearchQuery="";
+      const input=byId("codexSearchInput");
+      if(input)input.value="";
+      renderCodexSection();
+      input?.focus();
     }
 
     function renderCodexTabs(){
@@ -3831,42 +4291,83 @@ function attachDiscordSharing(){
       container.innerHTML=tabs.map(tab=>`<button class="toggle-button${tab.id===codexActiveSection?" is-active":""}" type="button" onclick="selectCodexSection('${escapeCodexHtml(tab.id)}')">${escapeCodexHtml(tab.title)}</button>`).join("");
     }
 
+    function getCodexGroupLabel(item){
+      if(item.section==="classes")return currentLanguage==="en"?(item.classNameEn||item.className):(item.className||"Класс");
+      if(item.section==="factions")return currentLanguage==="en"?(item.factionAreaEn||item.factionArea):(item.factionArea||"Фракции");
+      if(item.section==="equipment")return currentLanguage==="en"?(item.categoryEn||item.category):(item.category||"Снаряжение");
+      if(item.section==="tactics")return currentLanguage==="en"?(item.skillEn||item.skill):(item.skill||"Тактики");
+      if(item.section==="consequences")return currentLanguage==="en"?(item.resistanceEn||item.resistance):(item.resistance||"Сопротивление");
+      return item.section||"Кодекс";
+    }
+
+    function renderCodexCard(item,{nested=false}={}){
+      codexRuntimeItems.set(item.id,item);
+      const tierLabels=currentLanguage==="en"?{basic:"Basic",minor:"Minor",professional:"Professional",elite:"Elite"}:{basic:"Базовая",minor:"Малая",professional:"Профессиональная",elite:"Элитная"};
+      const severityLabel=currentLanguage==="en"?(item.severityLabelEn||item.severityLabel):item.severityLabel;
+      const cardTitle=nested?item.title:item.section==="classes"?`${item.title} — ${tierLabels[item.tier]||"Ability"}`:item.section==="factions"?`${item.title} — ${currentLanguage==="en"?(item.factionNameEn||item.factionName):(item.factionName||"Фракция не указана")}`:item.section==="consequences"?`${item.title} — ${severityLabel}`:item.title;
+      const professional=parseProfessionalMinorAbilities(item);
+      professional.children.forEach(child=>codexRuntimeItems.set(child.id,child));
+      const displayText=formatCodexText(professional.baseText,item.title);
+      const metaLabel=currentLanguage==="en"?(item.severityLabelEn||item.tier||item.skillEn||item.dropTarget):(item.severityLabel||item.tier||item.skill||item.dropTarget);
+      const query=normalizeCodexSearchText(codexSearchQuery);
+      const nestedMatches=query&&professional.children.some(child=>getCodexSearchHaystack(child).includes(query));
+      const nestedHtml=professional.children.length?`<details class="codex-subgroup"${nestedMatches?" open":""}>
+        <summary class="codex-subgroup-summary">${currentLanguage==="en"?"Minor abilities":"Малые способности"} <span class="counter">${professional.children.length}</span></summary>
+        <div class="codex-subgroup-items">${professional.children.map(child=>renderCodexCard(child,{nested:true})).join("")}</div>
+      </details>`:"";
+      return `<article class="codex-card${nested?" codex-minor-card":""}" draggable="true" data-codex-id="${escapeCodexHtml(item.id)}" title="${currentLanguage==="en"?"Drag to a suitable slot or the diary":"Перетащить в подходящий слот или дневник"}">
+        <h3>${escapeCodexHtml(cardTitle)}</h3>
+        <div class="codex-card-meta">${currentLanguage==="en"?"Rulebook pages":"Страницы PDF"}: ${escapeCodexHtml((item.source?.pdfPages||[]).join(", "))} · ${escapeCodexHtml(metaLabel)}</div>
+        <div class="codex-card-text">${escapeCodexHtml(displayText)}</div>
+        ${nestedHtml}
+      </article>`;
+    }
+
     function renderCodexSection(){
       const container=byId("codexItems");
       if(!container)return;
-      const items=(window.TOWER_CODEX?.items||[]).filter(item=>{
+      codexRuntimeItems.clear();
+      const allItems=(window.TOWER_CODEX?.items||[]).filter(item=>!(item.section==="equipment"&&item.isCategory));
+      allItems.forEach(item=>codexRuntimeItems.set(item.id,item));
+      const query=normalizeCodexSearchText(codexSearchQuery);
+      const items=allItems.filter(item=>{
+        if(query)return getCodexSearchHaystack(item).includes(query);
         const classTab=codexActiveSection.startsWith("classes:");
         const className=currentLanguage==="en"?(item.classNameEn||item.className):item.className;
-        const sectionMatch=classTab?item.section==="classes"&&className===codexActiveSection.slice("classes:".length):item.section===codexActiveSection;
-        return sectionMatch&&!(item.section==="equipment"&&item.isCategory);
+        return classTab?item.section==="classes"&&className===codexActiveSection.slice("classes:".length):item.section===codexActiveSection;
       });
-      const tierLabels=currentLanguage==="en"?{basic:"Basic",minor:"Minor",professional:"Professional",elite:"Elite"}:{basic:"Базовые",minor:"Малые",professional:"Профессиональные",elite:"Элитные"};
+      const status=byId("codexSearchStatus");
+      if(status)status.textContent=query?(currentLanguage==="en"?`${items.length} cards found`:`Найдено карточек: ${items.length}`):"";
+      if(!items.length){
+        container.innerHTML=`<div class="codex-card"><h3>${currentLanguage==="en"?"Nothing found":"Ничего не найдено"}</h3><div class="codex-card-text">${currentLanguage==="en"?"Try a different title, phrase, or category.":"Попробуйте другое название, фразу или категорию."}</div></div>`;
+        return;
+      }
+      const sectionTitles=new Map((window.TOWER_CODEX?.sections||[]).map(section=>[section.id,section.title]));
       const groups=new Map();
       items.forEach(item=>{
-        let label="Снаряжение";
-        if(item.section==="classes")label=currentLanguage==="en"?(item.classNameEn||item.className):item.className||"Класс";
-        if(item.section==="factions")label=currentLanguage==="en"?(item.factionAreaEn||item.factionArea):item.factionArea||"Фракции";
-        if(item.section==="equipment")label=currentLanguage==="en"?(item.categoryEn||item.category):(item.category||"Снаряжение").replace(/\s*\([Кк]\d+(?:\s+[^)]*)?\)$/," ").trim();
-        if(item.section==="tactics")label=currentLanguage==="en"?(item.skillEn||item.skill):item.skill||"Тактики";
-        if(item.section==="consequences")label=currentLanguage==="en"?(item.resistanceEn||item.resistance):item.resistance||"Сопротивление";
-        if(!groups.has(label))groups.set(label,[]);
-        groups.get(label).push(item);
+        const baseLabel=getCodexGroupLabel(item);
+        const label=query?`${sectionTitles.get(item.section)||item.section} · ${baseLabel}`:baseLabel;
+        const key=`${item.section}\u0000${label}`;
+        if(!groups.has(key))groups.set(key,{label,items:[]});
+        groups.get(key).items.push(item);
       });
-      container.innerHTML=[...groups.entries()].map(([label,groupItems])=>`<details class="codex-group" open>
-        <summary class="codex-group-summary">${escapeCodexHtml(label)} <span class="counter">${groupItems.length}</span></summary>
-        <div class="codex-group-items">${groupItems.map(item=>{const severityLabel=currentLanguage==="en"?(item.severityLabelEn||item.severityLabel):item.severityLabel;const cardTitle=item.section==="classes"?`${item.title} — ${tierLabels[item.tier]||"Ability"}`:item.section==="factions"?`${item.title} — ${currentLanguage==="en"?(item.factionNameEn||item.factionName):(item.factionName||"Фракция не указана")}`:item.section==="consequences"?`${item.title} — ${severityLabel}`:item.title;const canDrag=item.section!=="consequences"||item.severity!=="doom";return `<article class="codex-card" draggable="${canDrag}" data-codex-id="${escapeCodexHtml(item.id)}" title="${canDrag?(currentLanguage==="en"?"Drag to a suitable slot":"Перетащить в подходящий слот"):(currentLanguage==="en"?"Reference-only Doom Fallout":"Роковое последствие приведено для справки")}">
-          <h3>${escapeCodexHtml(cardTitle)}</h3>
-          <div class="codex-card-meta">${currentLanguage==="en"?"Rulebook pages":"Страницы PDF"}: ${escapeCodexHtml((item.source?.pdfPages||[]).join(", "))} · ${escapeCodexHtml(currentLanguage==="en"?(item.severityLabelEn||item.tier||item.skillEn||item.dropTarget):(item.severityLabel||item.tier||item.skill||item.dropTarget))}</div>
-          <div class="codex-card-text">${escapeCodexHtml(item.text)}</div>
-        </article>`}).join("")}</div>
-      </details>`).join("");
+      container.innerHTML=[...groups.values()].map(group=>{
+        const groupItems=group.items;
+        const emblemPath=groupItems[0]?.section==="classes"?classBackgroundMap[groupItems[0].className]:"";
+        return `<details class="codex-group${emblemPath?" codex-class-group":""}"${query?" open":""}${emblemPath?` style="--codex-class-emblem:url(${escapeCodexHtml(emblemPath)})"`:""}>
+          <summary class="codex-group-summary">${escapeCodexHtml(group.label)} <span class="counter">${groupItems.length}</span></summary>
+          <div class="codex-group-items">${groupItems.map(item=>renderCodexCard(item)).join("")}</div>
+        </details>`;
+      }).join("");
       attachCodexDragHandlers();
     }
 
-    function getCodexItem(itemId){return (window.TOWER_CODEX?.items||[]).find(item=>item.id===itemId)}
+    function getCodexItem(itemId){return codexRuntimeItems.get(itemId)||(window.TOWER_CODEX?.items||[]).find(item=>item.id===itemId)}
 
     function codexItemFitsTarget(item,target){
-      if(!item||!target||item.dropTarget!==target.dataset.codexDrop)return false;
+      if(!item||!target)return false;
+      if(target.dataset.codexDrop==="diary")return true;
+      if(item.dropTarget!==target.dataset.codexDrop)return false;
       if(target.dataset.codexTier&&item.tier!==target.dataset.codexTier)return false;
       if(target.dataset.codexConsequenceSeverity&&item.severity!==target.dataset.codexConsequenceSeverity)return false;
       if(target.dataset.codexDrop==="armor"&&item.armorSlots?.length&&!item.armorSlots.includes(target.dataset.codexArmorSlot))return false;
@@ -3893,13 +4394,54 @@ function attachDiscordSharing(){
       });
     }
 
+    function extractCodexDie(value){
+      const match=String(value||"").match(/(?:^|[\s(])(?:D|К|к)(4|6|8|10|12)(?=\b|\))/);
+      return match?`D${match[1]}`:"";
+    }
+
+    function getCodexItemQuality(item){
+      return item.itemQuality||item.qualityDie
+        ||extractCodexDie(currentLanguage==="en"?(item.categoryEn||item.category):(item.category||item.categoryEn))
+        ||extractCodexDie(item.category)||extractCodexDie(item.categoryEn)
+        ||extractCodexDie(item.title)||extractCodexDie(item.text);
+    }
+
+    function getCodexItemStress(item){
+      if(item.stress)return item.stress;
+      const text=String(item.text||"");
+      const causesStress=Boolean(item.skill)||/(?:^|\n)\s*(?:Урон|Стресс|Damage|Stress)\s*:/i.test(text);
+      if(!causesStress)return"";
+      return item.quality||extractCodexDie(text);
+    }
+
+    function getCodexItemNotes(item){
+      const raw=currentLanguage==="en"?(item.notesEn??item.text):(item.notes??item.text);
+      return formatCodexText(raw,item.title).replace(/\n+/g," · ");
+    }
+
+    function getCodexEntryText(item){
+      const body=formatCodexText(item.text,item.title);
+      return[item.title,body].filter(Boolean).join("\n");
+    }
+
     function fillCodexTarget(item,target){
       if(!codexItemFitsTarget(item,target))return false;
       const targetType=target.dataset.codexDrop;
       if(targetType==="ability"||targetType==="consequence"){
         const field=[...target.querySelectorAll("textarea")].find(element=>!element.value.trim());
         if(!field){alert(currentLanguage==="en"?"There are no empty slots in this category.":"В этой категории нет свободной ячейки.");return false}
-        field.value=item.text;
+        field.value=getCodexEntryText(item);
+        field.dispatchEvent(new Event("input",{bubbles:true}));
+        return true;
+      }
+      if(targetType==="diary"){
+        let field=[...target.querySelectorAll("textarea")].find(element=>!element.value.trim());
+        if(!field){
+          addDiaryEntry();
+          field=byId(`diaryEntry${diaryCount}`);
+        }
+        if(!field)return false;
+        field.value=getCodexEntryText(item);
         field.dispatchEvent(new Event("input",{bubbles:true}));
         return true;
       }
@@ -3910,7 +4452,7 @@ function attachDiscordSharing(){
         const notes=byId(`tactic${index}Notes`);
         if(name)name.value=item.title;
         if(skill&&item.skill)skill.value=item.skill;
-        if(notes)notes.value=item.text;
+        if(notes)notes.value=formatCodexText(item.text,item.title);
         dispatchCodexFieldUpdates([name,skill,notes]);
         return true;
       }
@@ -3918,32 +4460,36 @@ function attachDiscordSharing(){
         const name=byId(`gear${index}Name`);
         const skill=byId(`gear${index}Skill`);
         const quality=byId(`gear${index}Quality`);
+        const stress=byId(`gear${index}Stress`);
         const note=byId(`gear${index}Note`);
         if(name)name.value=item.title;
         if(skill)skill.value=item.skill||"";
-        if(quality)quality.value=item.quality||"";
-        if(note)note.value=currentLanguage==="en"?(item.notesEn??item.text):(item.notes??item.text);
-        dispatchCodexFieldUpdates([name,skill,quality,note]);
-        updateQualityDiePreview(`gear${index}Quality`,`gear${index}QualityPreview`);
+        if(quality)quality.value=getCodexItemQuality(item);
+        if(stress)stress.value=getCodexItemStress(item);
+        if(note)note.value=getCodexItemNotes(item);
+        dispatchCodexFieldUpdates([name,quality,skill,stress,note]);
+        updateQualityDiePreview(`gear${index}Stress`,`gear${index}StressPreview`);
         return true;
       }
       if(targetType==="armor"){
         const name=byId(`armor${index}Name`);
         const skill=byId(`armor${index}Skill`);
         const quality=byId(`armor${index}Quality`);
+        const stress=byId(`armor${index}Stress`);
         const resistance=byId(`armor${index}Resistance`);
         const protection=byId(`armor${index}Protection`);
         const extraSlots=byId(`armor${index}ExtraSlots`);
         const note=byId(`armor${index}Note`);
         if(name)name.value=item.title;
         if(skill)skill.value=item.skill||"";
-        if(quality)quality.value=item.skill&&item.quality?item.quality:"";
+        if(quality)quality.value=getCodexItemQuality(item);
+        if(stress)stress.value=getCodexItemStress(item);
         if(resistance)resistance.value=item.resistance||"";
         if(protection)protection.value=Number(item.protection||0);
         if(extraSlots)extraSlots.value=Number(item.extraSlots||0);
-        if(note)note.value=currentLanguage==="en"?(item.notesEn??item.text):(item.notes??item.text);
-        dispatchCodexFieldUpdates([name,skill,quality,resistance,protection,extraSlots,note]);
-        updateQualityDiePreview(`armor${index}Quality`,`armor${index}QualityPreview`);
+        if(note)note.value=getCodexItemNotes(item);
+        dispatchCodexFieldUpdates([name,quality,skill,stress,resistance,protection,extraSlots,note]);
+        updateQualityDiePreview(`armor${index}Stress`,`armor${index}StressPreview`);
         renderCounters();
         return true;
       }
@@ -3990,11 +4536,12 @@ function attachDiscordSharing(){
       if(!panel)return;
       const margin=CODEX_PANEL_MARGIN;
       if(!panel.dataset.codexPositioned){
-        const width=Math.min(panel.offsetWidth,Math.max(1,window.innerWidth-margin*2));
+        const rightDockReserve=window.innerWidth>900?132:0;
+        const width=Math.min(panel.offsetWidth,Math.max(1,window.innerWidth-margin*2-rightDockReserve));
         const height=Math.min(panel.offsetHeight,Math.max(1,window.innerHeight-margin*2));
         panel.style.width=`${width}px`;
         panel.style.height=`${height}px`;
-        panel.style.left=`${Math.max(margin,window.innerWidth-width-margin)}px`;
+        panel.style.left=`${Math.max(margin,window.innerWidth-width-margin-rightDockReserve)}px`;
         panel.style.top=`${margin}px`;
         panel.style.right="auto";
         panel.style.bottom="auto";
@@ -4115,12 +4662,17 @@ function attachDiscordSharing(){
       keepCodexPanelInViewport();
     }
 
-    function closeCodexOnOutsidePointer(event){
-      const modal=byId("codexModal");
-      if(!modal?.classList.contains("open"))return;
-      const panel=byId("codexPanel");
-      if(panel?.contains(event.target)||event.target.closest?.("#openCodexButton,#openAbilitiesMenuButton,#openTacticsMenuButton"))return;
+    function closeWorkspaceWindowsOnOutsidePointer(event){
+      const sharedSelector=[
+        "#codexPanel",".abilities-panel",".tactics-panel",".resources-panel",".diary-panel",
+        "#openCodexButton","#openAbilitiesMenuButton","#openTacticsMenuButton","#openResourcesMenuButton","#openDiaryButton"
+      ].join(",");
+      if(event.target.closest?.(sharedSelector))return;
       closeCodexMenu();
+      closeAbilitiesMenu();
+      closeTacticsMenu();
+      closeResourcesMenu();
+      closeDiaryMenu();
     }
 
     function initCodexWindowInteractions(){
@@ -4130,12 +4682,15 @@ function attachDiscordSharing(){
       document.addEventListener("pointerup",stopCodexPanelResize);
       document.addEventListener("pointercancel",stopCodexPanelDrag);
       document.addEventListener("pointercancel",stopCodexPanelResize);
-      document.addEventListener("pointerdown",closeCodexOnOutsidePointer,true);
+      document.addEventListener("pointerdown",closeWorkspaceWindowsOnOutsidePointer,true);
       window.addEventListener("resize",keepCodexPanelInViewport);
     }
 
     function selectCodexSection(sectionId){
       codexActiveSection=sectionId;
+      codexSearchQuery="";
+      const input=byId("codexSearchInput");
+      if(input)input.value="";
       renderCodexTabs();
       renderCodexSection();
     }
@@ -4143,6 +4698,8 @@ function attachDiscordSharing(){
     function openCodexMenu(){
       const modal=byId("codexModal");
       if(!modal)return;
+      const input=byId("codexSearchInput");
+      if(input)input.value=codexSearchQuery;
       renderCodexTabs();
       renderCodexSection();
       modal.classList.add("open");
