@@ -2,7 +2,7 @@ window.TOWER_CODEX = {
   "version": 2,
   "title": "Кодекс — Башня упадёт",
   "source": {
-    "file": "1-Башня-упадёт-тактические-приключения-web.pdf",
+    "file": "1-Башня-упадёт-тактические-приключения.pdf",
     "note": "Карточки выделены из текста PDF по заголовкам; текст внутри карточек не пересказывается."
   },
   "sections": [
@@ -36,379 +36,396 @@ window.TOWER_CODEX = {
         "classes-card-18-24",
         "classes-card-18-25",
         "classes-card-18-26",
-        "classes-card-20-27",
-        "classes-card-20-28",
-        "classes-card-20-29",
-        "classes-card-20-30",
-        "classes-card-21-31",
-        "classes-card-21-32",
-        "classes-card-21-33",
-        "classes-card-21-34",
-        "classes-card-21-35",
-        "classes-card-21-36",
-        "classes-card-21-37",
-        "classes-card-21-38",
-        "classes-card-21-39",
-        "classes-card-21-40",
+        "classes-card-18-27",
+        "classes-card-18-28",
+        "classes-card-18-29",
+        "classes-card-18-30",
+        "classes-card-19-31",
+        "classes-card-19-32",
+        "classes-card-19-33",
+        "classes-card-19-34",
+        "classes-card-19-35",
+        "classes-card-20-36",
+        "classes-card-20-37",
+        "classes-card-20-38",
+        "classes-card-20-39",
+        "classes-card-20-40",
         "classes-card-22-41",
         "classes-card-22-42",
         "classes-card-22-43",
         "classes-card-22-44",
-        "classes-card-22-45",
+        "classes-card-23-45",
         "classes-card-23-46",
-        "classes-card-24-47",
-        "classes-card-25-48",
-        "classes-card-25-49",
-        "classes-card-25-50",
-        "classes-card-25-51",
-        "classes-card-25-52",
-        "classes-card-25-53",
-        "classes-card-25-54",
-        "classes-card-25-55",
-        "classes-card-25-56",
-        "classes-card-25-57",
-        "classes-card-25-58",
-        "classes-card-26-59",
-        "classes-card-26-60",
+        "classes-card-23-47",
+        "classes-card-23-48",
+        "classes-card-23-49",
+        "classes-card-23-50",
+        "classes-card-23-51",
+        "classes-card-23-52",
+        "classes-card-23-53",
+        "classes-card-23-54",
+        "classes-card-24-55",
+        "classes-card-24-56",
+        "classes-card-24-57",
+        "classes-card-24-58",
+        "classes-card-24-59",
+        "classes-card-25-60",
         "classes-card-26-61",
         "classes-card-27-62",
         "classes-card-27-63",
         "classes-card-27-64",
         "classes-card-27-65",
-        "classes-card-29-66",
-        "classes-card-29-67",
-        "classes-card-29-68",
-        "classes-card-29-69",
-        "classes-card-29-70",
-        "classes-card-29-71",
-        "classes-card-29-72",
-        "classes-card-29-73",
-        "classes-card-29-74",
-        "classes-card-30-75",
-        "classes-card-30-76",
-        "classes-card-30-77",
-        "classes-card-30-78",
-        "classes-card-30-79",
+        "classes-card-27-66",
+        "classes-card-27-67",
+        "classes-card-27-68",
+        "classes-card-27-69",
+        "classes-card-27-70",
+        "classes-card-27-71",
+        "classes-card-27-72",
+        "classes-card-28-73",
+        "classes-card-28-74",
+        "classes-card-28-75",
+        "classes-card-29-76",
+        "classes-card-29-77",
+        "classes-card-29-78",
+        "classes-card-29-79",
         "classes-card-31-80",
         "classes-card-31-81",
         "classes-card-31-82",
         "classes-card-31-83",
-        "classes-card-32-84",
-        "classes-card-33-85",
-        "classes-card-34-86",
-        "classes-card-34-87",
-        "classes-card-34-88",
-        "classes-card-34-89",
-        "classes-card-34-90",
-        "classes-card-34-91",
-        "classes-card-34-92",
-        "classes-card-34-93",
-        "classes-card-35-94",
-        "classes-card-35-95",
-        "classes-card-35-96",
-        "classes-card-35-97",
-        "classes-card-36-98",
-        "classes-card-36-99",
+        "classes-card-31-84",
+        "classes-card-31-85",
+        "classes-card-31-86",
+        "classes-card-31-87",
+        "classes-card-31-88",
+        "classes-card-32-89",
+        "classes-card-32-90",
+        "classes-card-32-91",
+        "classes-card-32-92",
+        "classes-card-32-93",
+        "classes-card-33-94",
+        "classes-card-33-95",
+        "classes-card-33-96",
+        "classes-card-33-97",
+        "classes-card-34-98",
+        "classes-card-35-99",
         "classes-card-36-100",
-        "classes-card-37-101",
-        "classes-card-37-102",
-        "classes-card-37-103",
-        "classes-card-38-104",
-        "classes-card-39-105",
-        "classes-card-39-106",
-        "classes-card-39-107",
-        "classes-card-39-108",
-        "classes-card-39-109",
-        "classes-card-39-110",
-        "classes-card-39-111",
-        "classes-card-39-112",
-        "classes-card-39-113",
-        "classes-card-40-114",
-        "classes-card-40-115",
-        "classes-card-40-116",
-        "classes-card-40-117",
+        "classes-card-36-101",
+        "classes-card-36-102",
+        "classes-card-36-103",
+        "classes-card-36-104",
+        "classes-card-36-105",
+        "classes-card-36-106",
+        "classes-card-36-107",
+        "classes-card-37-108",
+        "classes-card-37-109",
+        "classes-card-37-110",
+        "classes-card-37-111",
+        "classes-card-38-112",
+        "classes-card-38-113",
+        "classes-card-38-114",
+        "classes-card-39-115",
+        "classes-card-39-116",
+        "classes-card-39-117",
         "classes-card-40-118",
-        "classes-card-40-119",
+        "classes-card-41-119",
         "classes-card-41-120",
         "classes-card-41-121",
         "classes-card-41-122",
         "classes-card-41-123",
         "classes-card-41-124",
-        "classes-card-43-125",
-        "classes-card-43-126",
-        "classes-card-43-127",
-        "classes-card-43-128",
-        "classes-card-44-129",
-        "classes-card-44-130",
-        "classes-card-44-131",
-        "classes-card-44-132",
-        "classes-card-44-133",
-        "classes-card-44-134",
-        "classes-card-44-135",
-        "classes-card-44-136",
-        "classes-card-45-137",
-        "classes-card-45-138",
+        "classes-card-41-125",
+        "classes-card-41-126",
+        "classes-card-41-127",
+        "classes-card-42-128",
+        "classes-card-42-129",
+        "classes-card-42-130",
+        "classes-card-42-131",
+        "classes-card-42-132",
+        "classes-card-42-133",
+        "classes-card-43-134",
+        "classes-card-43-135",
+        "classes-card-43-136",
+        "classes-card-43-137",
+        "classes-card-43-138",
         "classes-card-45-139",
-        "classes-card-46-140",
-        "classes-card-46-141",
-        "classes-card-46-142",
+        "classes-card-45-140",
+        "classes-card-45-141",
+        "classes-card-45-142",
         "classes-card-46-143",
-        "classes-card-48-144",
-        "classes-card-48-145",
-        "classes-card-48-146",
-        "classes-card-48-147",
-        "classes-card-48-148",
-        "classes-card-49-149",
-        "classes-card-49-150",
-        "classes-card-49-151",
-        "classes-card-49-152",
-        "classes-card-49-153",
-        "classes-card-49-154",
-        "classes-card-49-155",
-        "classes-card-50-156",
-        "classes-card-50-157",
-        "classes-card-51-158",
-        "classes-card-51-159",
-        "classes-card-51-160",
-        "classes-card-51-161",
-        "classes-card-51-162"
+        "classes-card-46-144",
+        "classes-card-46-145",
+        "classes-card-46-146",
+        "classes-card-46-147",
+        "classes-card-46-148",
+        "classes-card-46-149",
+        "classes-card-46-150",
+        "classes-card-47-151",
+        "classes-card-47-152",
+        "classes-card-47-153",
+        "classes-card-48-154",
+        "classes-card-48-155",
+        "classes-card-48-156",
+        "classes-card-48-157",
+        "classes-card-50-158",
+        "classes-card-50-159",
+        "classes-card-50-160",
+        "classes-card-50-161",
+        "classes-card-50-162",
+        "classes-card-51-163",
+        "classes-card-51-164",
+        "classes-card-51-165",
+        "classes-card-51-166",
+        "classes-card-51-167",
+        "classes-card-51-168",
+        "classes-card-51-169",
+        "classes-card-52-170",
+        "classes-card-52-171",
+        "classes-card-53-172",
+        "classes-card-53-173",
+        "classes-card-53-174",
+        "classes-card-53-175",
+        "classes-card-53-176"
       ]
     },
     {
       "id": "equipment",
       "title": "Снаряжение",
       "items": [
-        "equipment-9-1-8-62-163",
-        "equipment-7-62-7-10-62-164",
-        "equipment-8-62-165",
-        "equipment-6-62-166",
-        "equipment-8-62-167",
-        "equipment-10-63-168",
-        "equipment-6-63-169",
-        "equipment-6-63-170",
-        "equipment-6-63-171",
-        "equipment-10-64-172",
-        "equipment-7-64-173",
-        "equipment-15-5-64-174",
-        "equipment-9-1-64-175",
-        "equipment-9-65-176",
-        "equipment-card-65-177",
-        "equipment-card-65-178",
-        "equipment-card-65-179",
-        "equipment-card-65-180",
-        "equipment-7-62-7-66-181",
-        "equipment-11-5-9-66-182",
-        "equipment-5-56-66-183",
-        "equipment-7-62-67-184",
-        "equipment-7-62-67-185",
-        "equipment-7-62-2-67-186",
-        "equipment-5-56-29-68-187",
-        "equipment-11-5-68-188",
-        "equipment-5-56-68-189",
-        "equipment-7-62-68-190",
-        "equipment-11-5-68-191",
-        "equipment-7-62-5-68-192",
-        "equipment-5-56-5-69-193",
-        "equipment-12-7-69-194",
-        "equipment-7-62-69-195",
-        "equipment-8-69-196",
-        "equipment-97-69-197",
-        "equipment-card-70-198",
-        "equipment-card-70-199",
-        "equipment-card-70-200",
-        "equipment-1-70-201",
-        "equipment-8-70-202",
-        "equipment-card-70-203",
-        "equipment-card-70-204",
-        "equipment-card-71-205",
-        "equipment-card-71-206",
-        "equipment-card-71-207",
-        "equipment-2-71-208",
-        "equipment-card-71-209",
-        "equipment-card-72-210",
-        "equipment-card-72-211",
+        "equipment-9-1-8-64-177",
+        "equipment-7-62-7-10-64-178",
+        "equipment-8-64-179",
+        "equipment-6-64-180",
+        "equipment-8-64-181",
+        "equipment-10-65-182",
+        "equipment-6-65-183",
+        "equipment-6-65-184",
+        "equipment-6-65-185",
+        "equipment-10-66-186",
+        "equipment-7-66-187",
+        "equipment-15-5-66-188",
+        "equipment-9-1-66-189",
+        "equipment-9-67-190",
+        "equipment-card-67-191",
+        "equipment-card-67-192",
+        "equipment-card-67-193",
+        "equipment-card-67-194",
+        "equipment-7-62-7-68-195",
+        "equipment-11-5-9-68-196",
+        "equipment-5-56-68-197",
+        "equipment-7-62-69-198",
+        "equipment-7-62-69-199",
+        "equipment-7-62-2-69-200",
+        "equipment-5-56-29-70-201",
+        "equipment-11-5-70-202",
+        "equipment-5-56-70-203",
+        "equipment-7-62-70-204",
+        "equipment-11-5-70-205",
+        "equipment-7-62-5-70-206",
+        "equipment-5-56-5-71-207",
+        "equipment-12-7-71-208",
+        "equipment-7-62-71-209",
+        "equipment-8-71-210",
+        "equipment-97-71-211",
         "equipment-card-72-212",
         "equipment-card-72-213",
-        "equipment-2-73-214",
-        "equipment-6-73-215",
-        "equipment-card-73-216",
-        "equipment-card-73-217",
-        "equipment-card-73-218",
+        "equipment-card-72-214",
+        "equipment-1-72-215",
+        "equipment-8-72-216",
+        "equipment-card-72-217",
+        "equipment-card-72-218",
         "equipment-card-73-219",
         "equipment-card-73-220",
         "equipment-card-73-221",
-        "equipment-card-73-222",
-        "equipment-12-74-223",
-        "equipment-4-74-224",
-        "equipment-6-74-225",
-        "equipment-12-74-226",
-        "equipment-800-10-74-227",
-        "equipment-card-74-228",
-        "equipment-card-74-229",
-        "equipment-card-74-230",
+        "equipment-2-73-222",
+        "equipment-card-74-223",
+        "equipment-card-74-224",
+        "equipment-card-74-225",
+        "equipment-card-74-226",
+        "equipment-2-75-227",
+        "equipment-6-75-228",
+        "equipment-card-75-229",
+        "equipment-card-75-230",
         "equipment-card-75-231",
         "equipment-card-75-232",
         "equipment-card-75-233",
         "equipment-card-75-234",
         "equipment-card-75-235",
-        "equipment-card-75-236",
-        "equipment-card-75-237",
-        "equipment-card-75-238",
-        "equipment-card-75-239",
-        "equipment-6-75-240",
-        "equipment-10-75-241",
-        "equipment-6-75-242",
-        "equipment-12-75-243",
-        "equipment-card-75-244",
-        "equipment-card-75-245",
-        "equipment-card-76-246",
-        "equipment-card-76-247",
-        "equipment-card-76-248",
-        "equipment-card-76-249",
-        "equipment-card-76-250",
-        "equipment-card-76-251",
-        "equipment-card-76-252",
-        "equipment-card-76-253",
-        "equipment-card-76-254",
-        "equipment-card-76-255",
-        "equipment-card-77-256",
+        "equipment-12-76-236",
+        "equipment-4-76-237",
+        "equipment-6-76-238",
+        "equipment-12-76-239",
+        "equipment-800-10-76-240",
+        "equipment-card-76-241",
+        "equipment-card-76-242",
+        "equipment-card-76-243",
+        "equipment-card-77-244",
+        "equipment-card-77-245",
+        "equipment-card-77-246",
+        "equipment-card-77-247",
+        "equipment-card-77-248",
+        "equipment-card-77-249",
+        "equipment-card-77-250",
+        "equipment-card-77-251",
+        "equipment-card-77-252",
+        "equipment-6-77-253",
+        "equipment-10-77-254",
+        "equipment-6-77-255",
+        "equipment-12-77-256",
         "equipment-card-77-257",
-        "equipment-card-77-258"
+        "equipment-card-77-258",
+        "equipment-card-78-259",
+        "equipment-card-78-260",
+        "equipment-card-78-261",
+        "equipment-card-78-262",
+        "equipment-card-78-263",
+        "equipment-card-78-264",
+        "equipment-card-78-265",
+        "equipment-card-78-266",
+        "equipment-card-78-267",
+        "equipment-card-78-268",
+        "equipment-card-78-269",
+        "equipment-card-78-270",
+        "equipment-card-78-271",
+        "equipment-card-79-272",
+        "equipment-card-79-273",
+        "equipment-card-79-274"
       ]
     },
     {
       "id": "factions",
       "title": "Способности фракций",
       "items": [
-        "factions-card-80-259",
-        "factions-card-80-260",
-        "factions-card-80-261",
-        "factions-card-80-262",
-        "factions-card-81-263",
-        "factions-card-81-264",
-        "factions-card-81-265",
-        "factions-card-81-266",
-        "factions-card-81-267",
-        "factions-card-82-268",
-        "factions-card-82-269",
-        "factions-card-82-270",
-        "factions-card-82-271",
-        "factions-card-82-272",
-        "factions-card-82-273",
-        "factions-card-83-274",
-        "factions-card-83-275",
-        "factions-card-83-276",
-        "factions-card-83-277",
-        "factions-card-84-278",
-        "factions-card-84-279",
-        "factions-card-84-280",
-        "factions-card-84-281",
-        "factions-card-84-282",
-        "factions-card-85-283",
-        "factions-card-85-284",
-        "factions-card-85-285",
-        "factions-card-85-286",
-        "factions-card-85-287",
-        "factions-card-85-288",
-        "factions-card-86-289",
-        "factions-card-86-290",
-        "factions-card-86-291",
-        "factions-card-86-292",
-        "factions-380-86-293",
-        "factions-120-86-294",
-        "factions-card-87-295",
-        "factions-card-87-296",
-        "factions-card-87-297",
-        "factions-card-88-298",
-        "factions-card-88-299",
-        "factions-card-88-300",
-        "factions-card-88-301",
-        "factions-card-88-302",
-        "factions-card-89-303",
-        "factions-card-89-304",
-        "factions-card-89-305",
-        "factions-card-89-306",
-        "factions-card-90-307",
-        "factions-card-90-308",
-        "factions-card-90-309",
-        "factions-card-90-310",
-        "factions-card-90-311",
-        "factions-card-90-312",
-        "factions-card-91-313",
-        "factions-card-91-314",
-        "factions-card-91-315",
-        "factions-card-92-316",
-        "factions-card-92-317",
-        "factions-card-92-318",
-        "factions-card-92-319",
-        "factions-card-92-320",
-        "factions-card-92-321",
-        "factions-card-93-322",
-        "factions-card-93-323",
-        "factions-card-93-324",
-        "factions-card-93-325",
-        "factions-card-93-326",
-        "factions-card-93-327",
-        "factions-card-94-328",
-        "factions-card-94-329",
-        "factions-card-94-330",
-        "factions-card-94-331",
+        "factions-card-82-275",
+        "factions-card-82-276",
+        "factions-card-82-277",
+        "factions-card-82-278",
+        "factions-card-83-279",
+        "factions-card-83-280",
+        "factions-card-83-281",
+        "factions-card-83-282",
+        "factions-card-83-283",
+        "factions-card-84-284",
+        "factions-card-84-285",
+        "factions-card-84-286",
+        "factions-card-84-287",
+        "factions-card-84-288",
+        "factions-card-84-289",
+        "factions-card-85-290",
+        "factions-card-85-291",
+        "factions-card-85-292",
+        "factions-card-85-293",
+        "factions-card-86-294",
+        "factions-card-86-295",
+        "factions-card-86-296",
+        "factions-card-86-297",
+        "factions-card-86-298",
+        "factions-card-87-299",
+        "factions-card-87-300",
+        "factions-card-87-301",
+        "factions-card-87-302",
+        "factions-card-87-303",
+        "factions-card-87-304",
+        "factions-card-88-305",
+        "factions-card-88-306",
+        "factions-card-88-307",
+        "factions-card-88-308",
+        "factions-380-88-309",
+        "factions-120-88-310",
+        "factions-card-89-311",
+        "factions-card-89-312",
+        "factions-card-89-313",
+        "factions-card-90-314",
+        "factions-card-90-315",
+        "factions-card-90-316",
+        "factions-card-90-317",
+        "factions-card-90-318",
+        "factions-card-91-319",
+        "factions-card-91-320",
+        "factions-card-91-321",
+        "factions-card-91-322",
+        "factions-card-92-323",
+        "factions-card-92-324",
+        "factions-card-92-325",
+        "factions-card-92-326",
+        "factions-card-92-327",
+        "factions-card-92-328",
+        "factions-card-93-329",
+        "factions-card-93-330",
+        "factions-card-93-331",
         "factions-card-94-332",
         "factions-card-94-333",
-        "factions-card-95-334",
-        "factions-card-95-335",
-        "factions-card-95-336",
-        "factions-card-95-337",
-        "factions-card-95-338"
+        "factions-card-94-334",
+        "factions-card-94-335",
+        "factions-card-94-336",
+        "factions-card-94-337",
+        "factions-card-95-338",
+        "factions-card-95-339",
+        "factions-card-95-340",
+        "factions-card-95-341",
+        "factions-card-95-342",
+        "factions-card-95-343",
+        "factions-card-96-344",
+        "factions-card-96-345",
+        "factions-card-96-346",
+        "factions-card-96-347",
+        "factions-card-96-348",
+        "factions-card-96-349",
+        "factions-card-97-350",
+        "factions-card-97-351",
+        "factions-card-97-352",
+        "factions-card-97-353",
+        "factions-card-97-354",
+        "factions-card-98-355"
       ]
     },
     {
       "id": "tactics",
       "title": "Тактики",
       "items": [
-        "tactics-card-109-339",
-        "tactics-card-109-340",
-        "tactics-card-110-341",
-        "tactics-card-110-342",
-        "tactics-card-110-343",
-        "tactics-card-110-344",
-        "tactics-card-111-345",
-        "tactics-card-111-346",
-        "tactics-card-111-347",
-        "tactics-card-111-348",
-        "tactics-card-112-349",
-        "tactics-card-112-350",
-        "tactics-card-112-351",
-        "tactics-card-112-352",
-        "tactics-card-113-353",
-        "tactics-card-113-354",
-        "tactics-card-113-355",
-        "tactics-card-113-356",
-        "tactics-card-114-357",
-        "tactics-card-114-358",
-        "tactics-card-114-359",
-        "tactics-card-114-360",
-        "tactics-card-114-361",
-        "tactics-card-115-362",
-        "tactics-card-115-363",
-        "tactics-card-115-364",
-        "tactics-card-116-365",
-        "tactics-card-116-366",
-        "tactics-card-116-367",
-        "tactics-card-116-368",
-        "tactics-card-116-369",
-        "tactics-card-117-370",
-        "tactics-card-117-371",
-        "tactics-card-117-372",
-        "tactics-card-117-373",
-        "tactics-card-118-374",
-        "tactics-card-118-375",
-        "tactics-card-118-376",
-        "tactics-card-118-377",
-        "tactics-card-119-378",
-        "tactics-card-119-379",
-        "tactics-card-119-380",
-        "tactics-card-119-381"
+        "tactics-card-111-356",
+        "tactics-card-111-357",
+        "tactics-card-112-358",
+        "tactics-card-112-359",
+        "tactics-card-112-360",
+        "tactics-card-112-361",
+        "tactics-card-113-362",
+        "tactics-card-113-363",
+        "tactics-card-113-364",
+        "tactics-card-113-365",
+        "tactics-card-114-366",
+        "tactics-card-114-367",
+        "tactics-card-114-368",
+        "tactics-card-114-369",
+        "tactics-card-115-370",
+        "tactics-card-115-371",
+        "tactics-card-115-372",
+        "tactics-card-115-373",
+        "tactics-card-116-374",
+        "tactics-card-116-375",
+        "tactics-card-116-376",
+        "tactics-card-116-377",
+        "tactics-card-116-378",
+        "tactics-card-117-379",
+        "tactics-card-117-380",
+        "tactics-card-117-381",
+        "tactics-card-118-382",
+        "tactics-card-118-383",
+        "tactics-card-118-384",
+        "tactics-card-118-385",
+        "tactics-card-118-386",
+        "tactics-card-119-387",
+        "tactics-card-119-388",
+        "tactics-card-119-389",
+        "tactics-card-119-390",
+        "tactics-card-120-391",
+        "tactics-card-120-392",
+        "tactics-card-120-393",
+        "tactics-card-120-394",
+        "tactics-card-121-395",
+        "tactics-card-121-396",
+        "tactics-card-121-397",
+        "tactics-card-121-398"
       ]
     }
   ],
@@ -423,7 +440,7 @@ window.TOWER_CODEX = {
         "pdfPages": [
           14
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "1) Перекур: Когда вы выкуриваете сигарету, тратя на это минуту, вы можете\nприменить одно из древних солдатских заклинаний.\nВы получаете кость сигарет к10. Для применения заклинания бросьте к10. Если он меньше\nпоказателя вашей кости сигарет, у вас находится сигарета для заклинания, а показатель\nресурса понижается на одну ступень. Вы можете снова восстановить сигареты до к10 в\nоазисе.\nИзначально вы знаете следующие заклинания:\n► Выдохнуть дым, заставляющий светиться мины и растяжки, это даст вам автоматически\nпройти проверку УЗНАВАТЬ в зоне с ловушками.\n► Создать дымовую завесу, которая снижает получаемый вашим отрядом в дальнем бою\nстресс на 1 ступень, или маскирует его передвижение, чтобы бросить с мастерством на\nСКРЫВАТЬСЯ.",
       "tier": "basic",
@@ -439,7 +456,7 @@ window.TOWER_CODEX = {
         "pdfPages": [
           14
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "2) Призрачный глаз: Ваш отсутствующий глаз видит то, что неподвластно даже\nзрячим. Изначально у него есть один режим:\n► Ночное зрение: Вы прекрасно видите этим глазом в полной темноте. Вы совершаете все\nдействия в темноте без штрафа.\nНа вас не может сработать последствие ослеплён, поскольку вас нельзя лишить отсутствия\nглаза.",
       "tier": "basic",
@@ -455,9 +472,9 @@ window.TOWER_CODEX = {
         "pdfPages": [
           14
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "3) Отряд: В ваших жетонах живёт несколько личностей, способных вам помогать.\nИзначально у вас два жетона, выберите для каждого имя, опишите одним словом характер\nи выберите каждому либо навык, либо область. Вы можете активировать один раз за\nсессию каждый из них. Активация жетона может дать мастерство в его навыке или области\nдо конца сцены, другие способности могут дать жетонам дополнительные активации.\n26",
+      "text": "3) Отряд: В ваших жетонах живёт несколько личностей, способных вам помогать.\nИзначально у вас два жетона, выберите для каждого имя, опишите одним словом характер\nи выберите каждому либо навык, либо область. Вы можете активировать один раз за\nсессию каждый из них. Активация жетона может дать мастерство в его навыке или области\nдо конца сцены, другие способности могут дать жетонам дополнительные активации.",
       "tier": "basic",
       "className": "Страж Врат"
     },
@@ -471,7 +488,7 @@ window.TOWER_CODEX = {
         "pdfPages": [
           14
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "1) Огненный след\nТеперь вы можете выкурить сигарету мгновенно. Вам доступно новое заклинание при\nвыкуривании сигареты:\n► Выпустить огненную стрелу с помощью броска УБИВАТЬ.",
       "tier": "minor",
@@ -487,7 +504,7 @@ window.TOWER_CODEX = {
         "pdfPages": [
           14
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "2) Войти в транс\nВы теперь можете задерживать дыхание на час. Вам доступно новое заклинание при\nвыкуривании сигареты:\n► Успокоить сознание и магическое поле с помощью броска ЧИНИТЬ, это восстановит 1к6\nстресса в ДУХ и РАЗУМ.",
       "tier": "minor",
@@ -503,7 +520,7 @@ window.TOWER_CODEX = {
         "pdfPages": [
           14
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "3) Пепельный щит\nТеперь вы не можете получить последствие, когда выполняете заклинание при\nвыкуривании сигареты. Вы получаете новое:\n► Создать огненный барьер с помощью броска КОЛДОВАТЬ, он не позволит ни одной\nстороне перейти в ближний бой или запретит одной стороне сбежать из боя, пока отряд не\nпровалит первый бросок.",
       "tier": "minor",
@@ -519,7 +536,7 @@ window.TOWER_CODEX = {
         "pdfPages": [
           14
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "4) Тело\nВаш пустой глаз теперь видит следы рук и ног людей и позволяет быстро отличить их друг\nот друга. Это даст мастерство в броске УЗНАВАТЬ при, например, расследовании.",
       "tier": "minor",
@@ -535,7 +552,7 @@ window.TOWER_CODEX = {
         "pdfPages": [
           14
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "5) Разум\nВаш пустой глаз теперь видит нити компьютерного кода. Это даст мастерство в броске\nТЕХНИЧИТЬ, когда вы имеете дело с компьютером или сетью, а так же даст мастерство в\nброске ИЗБЕГАТЬ, если вы сражаетесь с дроном или турелью.",
       "tier": "minor",
@@ -551,7 +568,7 @@ window.TOWER_CODEX = {
         "pdfPages": [
           14
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "6) Чувства\nВаш пустой глаз теперь видит потоки и сгустки человеческих эмоций. Это даст вам\nмастерство ГОВОРИТЬ при эмоциональном разговоре и позволит обнаруживать врагов,\nкоторые испытывают яркие эмоции, до того, как они обнаружат вас.",
       "tier": "minor",
@@ -568,9 +585,9 @@ window.TOWER_CODEX = {
           14,
           15
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "7) Дозорный\nВы получаете дополнительный жетон. Теперь когда вы приходите в локацию, вы можете\nактивировать жетон, чтобы он подмечал те опасности, что не видите вы: можете задать\nведущему вопрос о засаде, ловушке или путях отступления и вам будут должны честно\n27\nответить.",
+      "text": "7) Дозорный\nВы получаете дополнительный жетон. Теперь когда вы приходите в локацию, вы можете\nактивировать жетон, чтобы он подмечал те опасности, что не видите вы: можете задать\nведущему вопрос о засаде, ловушке или путях отступления и вам будут должны честно\nответить.",
       "tier": "minor",
       "className": "Страж Врат"
     },
@@ -584,7 +601,7 @@ window.TOWER_CODEX = {
         "pdfPages": [
           15
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "8) Фехтовальный штурман\nВы получаете дополнительный жетон. Когда вы сражаетесь в ближнем бою, ваш жетон\nвыступает дополнительным органом координации, вы можете его активировать, чтобы\nперебросить кость проверки или кость стресса рукопашной атаки.",
       "tier": "minor",
@@ -600,7 +617,7 @@ window.TOWER_CODEX = {
         "pdfPages": [
           15
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "9) Второй номер\nВы получаете дополнительный жетон. Когда вы причиняете стресс врагу на средней или\nдальней дистанции, вы можете активировать жетон, чтобы дух павшего солдата ненадолго\nпереселился в пулю и направил её точно в цель, результат вашей кости стресса на этом\nброске всегда считается максимальным.",
       "tier": "minor",
@@ -616,7 +633,7 @@ window.TOWER_CODEX = {
         "pdfPages": [
           15
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "10) Воинская слава\nВы служили в очень известной части, и принимали участие в значимом конфликте.\nРаз в сессию, вы можете упомянуть об этом в разговоре с военным-персонажем ведущего,\nчтобы попросить о чём-то, чего он обычно не сделал бы. Пройдите проверку\nГОВОРИТЬ+АРМИЯ, вы всегда получите от впечатлённого бойца услугу, но можете\nполучить стресс при провале.",
       "tier": "minor",
@@ -632,7 +649,7 @@ window.TOWER_CODEX = {
         "pdfPages": [
           15
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "1) Парамедик\nМалое время на стабилизацию раненого теперь не добавляет сложности проверке.\nмалые\n► Слова ободрения: раз в сцену вы можете без броска восстановить другому персонажу\nк6 в пулях или разуме.\n► Вопреки: оказание помощи самому себе теперь не добавляет сложности проверке\n► Солдатская смекалка: Раз в сессию вы можете при применении навыка ЧИНИТЬ\nавтоматически получить успех. Вы можете использовать изоленту, чтобы исцелять живые\nорганизмы.",
       "tier": "professional",
@@ -641,16 +658,16 @@ window.TOWER_CODEX = {
     {
       "id": "classes-card-15-15",
       "kind": "ability",
-      "title": "Боевое искусство",
+      "title": "Боевое искусство: ЕАБ",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
           15
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "2) Боевое искусство: ЕАБ\nВы получаете мастерство в навыке УБИВАТЬ, срабатывающее, когда вы сражаетесь без\nоружия, с боевым ножом, или с тяжёлым оружием ближнего боя. Ваши безоружные атаки\nтеперь причиняют к6 стресса. При успехе безоружной атаки или атаки боевым ножом вы\nможете обезоружить или иным способом ослабиоть противника, снизив опасность цели на\nступень.\nмалые\n► Серия ударов: Ваша атака в ближнем бою получает свойство разброс.\n► Меж стыков: Ваши атаки боевым ножом или тяжёлым оружием ближнего боя получают\nсвойство бронебойный (4)\n► Бросок: При успехе атаки в ближнем бою, вы можете бросить противника-человека на\nземлю, следующая атака по нему не принесёт стресс атакующему при провале.\n28",
+      "text": "2) Боевое искусство: ЕАБ\nВы получаете мастерство в навыке УБИВАТЬ, срабатывающее, когда вы сражаетесь без\nоружия, с боевым ножом, или с тяжёлым оружием ближнего боя. Ваши безоружные атаки\nтеперь причиняют к6 стресса. При успехе безоружной атаки или атаки боевым ножом вы\nможете обезоружить или иным способом ослабиоть противника, снизив опасность цели на\nступень.\nмалые\n► Серия ударов: Ваша атака в ближнем бою получает свойство разброс.\n► Меж стыков: Ваши атаки боевым ножом или тяжёлым оружием ближнего боя получают\nсвойство бронебойный (4)\n► Бросок: При успехе атаки в ближнем бою, вы можете бросить противника-человека на\nземлю, следующая атака по нему не принесёт стресс атакующему при провале.",
       "tier": "professional",
       "className": "Страж Врат"
     },
@@ -664,7 +681,7 @@ window.TOWER_CODEX = {
         "pdfPages": [
           15
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "3) Разговор у костра\nРаз в сессию, когда вы разбили лагерь и это позволяют условия, вы можете сказать, что\nмимо проходит другой отряд восходящих и останавливается, чтобы поговорить, поторговать\nи сверить карты.\nмалые\n► Полные карманы: Они готовы продать предмет к12 ценности или оказать равноценную\nуслугу, например восстановить стресс или снять последствие.\n► Скитальцы: Этому отряду нужно в то же место, что и вам, так что по пути они окажут\nпосильную помощь, давая кость помощи в проверках УБИВАТЬ и ПРОБИВАТЬСЯ.\n► Дикая Башня: Встреченный вами отряд может по вашему желанию оказаться\nмаксимально странным, но всё же, похоже, безвредным. Они свободно покупают и продают\nпредметы со свойством “запретный”.",
       "tier": "professional",
@@ -680,9 +697,9 @@ window.TOWER_CODEX = {
         "pdfPages": [
           15
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "4) Ветеранские хитрости\nЕсли в начале перехода вы выкурили сигарету, вы точно знаете, встретите ли дальше по\nмаршруту врагов, так что всегда застаёте их врасплох, даже если они появились из\nниоткуда.\nмалые\n► Эзогранаты: Раз в сессию на отдыхе вы можете переделать любые гранаты в\nэзогранаты, на каждую вам потребуется два использования сигарет и к4 стресса в ресурсы\nза обильное использование изоленты.\nЭзограната\nУрон: 1к6\nСвойства: Разброс, Все получившие стресс враги\nтеряют магические свойства до конца сцены.\nДистанция: Средняя\n► Контр-беспилотник: Вражеские дроны не могут вас обнаружить, атакуя их, вы бросаете\nс мастерством.\n► Щегольнуть знанием: Вы отлично знаете принцип работы, историю и ТТХ всего оружия\nна рынке. Когда вы говорите с человеком, любящим оружие, вы бросаете с мастерством.\nПо звуку вы можете точно определить, какое оружие стреляет и на каком расстоянии.\n29",
+      "text": "4) Ветеранские хитрости\nЕсли в начале перехода вы выкурили сигарету, вы точно знаете, встретите ли дальше по\nмаршруту врагов, так что всегда застаёте их врасплох, даже если они появились из\nниоткуда.\nмалые\n► Эзогранаты: Раз в сессию на отдыхе вы можете переделать любые гранаты в\nэзогранаты, на каждую вам потребуется два использования сигарет и к4 стресса в ресурсы\nза обильное использование изоленты.\nЭзограната\nУрон: 1к6\nСвойства: Разброс, Все получившие стресс враги\nтеряют магические свойства до конца сцены.\nДистанция: Средняя\n► Контр-беспилотник: Вражеские дроны не могут вас обнаружить, атакуя их, вы бросаете\nс мастерством.\n► Щегольнуть знанием: Вы отлично знаете принцип работы, историю и ТТХ всего оружия\nна рынке. Когда вы говорите с человеком, любящим оружие, вы бросаете с мастерством.\nПо звуку вы можете точно определить, какое оружие стреляет и на каком расстоянии.",
       "tier": "professional",
       "className": "Страж Врат"
     },
@@ -696,7 +713,7 @@ window.TOWER_CODEX = {
         "pdfPages": [
           16
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "5) Винтовка уз\nВы получаете штурмовую или дальнобойную винтовку на выбор, она привязана к вам на\nдуховном уровне. Когда вы её теряете против своей воли, убийство любого разумного\nсущества вернёт вам её обратно через небольшое время.\nмалые\n► Неразрывная связь: Вы тоньше настраиваетесь на верную винтовку. Запишите\nеё себе в качестве контакта личного уровня. Пометьте в неё к4 стресса, чтобы получить\nодин из вариантов:\n– До конца сцены атаковать определённый тип врагов с мастерством\n– Повысить стресс следующей успешной атаки на 1 ступень\n– До конца сцены оружие не нужно перезаряжать и оно теряет все свойства неудобный\n► Взаимность: Когда вы в первый раз устанавливаете на винтовку новый модуль,\nвосстановите 1к6 в любой шкале. Когда вы тратите отдых на уход за винтовкой,\nвосстановите 1к4 в любой шкале и 1к4 в шкале контакта винтовки.\n► Лязг: Вы можете управлять вашей верной винтовкой дистанционно, перемещать и\nперезаряжать её. Вы можете продолжать атаковать ей, даже если обезоружены, или\nприменять её вместе с другим оружием: при успехе проверки УБИВАТЬ, или СКРЫВАТЬСЯ,\nвы можете причинить стресс как этой винтовкой, так и оружием, что держите в руках.",
       "tier": "professional",
@@ -712,9 +729,9 @@ window.TOWER_CODEX = {
         "pdfPages": [
           16
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "1) Братство\nВы сливаетесь с жетонами в единое целое, превращаясь из безумца с голосами в голове в\nновое существо, большее, чем сумма частей.\nВы получаете все навыки и области ваших жетонов в постоянное пользование. Активные\nспособности жетонов теперь постоянные. Получите последствие оболган и последствие\nконтакта конфликт со всеми контактами-людьми. Понимание людей можно вернуть по\nобычным правилам получения новых контактов, но прежним собой уже не стать.\nПримеры отыгрыша за лишившегося человечности стража врат:\n– Вашему телу всё ещё нужна пища, но вы про это постоянно забываете из-за того, что не\nсвязываете чувство голода и необходимость есть.\n– Вы начинаете воспринимать шутки буквально.\n30\n\n– Вы начинаете связывать несвязанные вещи гораздо сильнее.\n– Вы начинаете бояться приятного чувства, например тепла или признания.\n– В разговоре вы легко скачете с темы на тему, забывая, о чём вы говорили до этого.",
+      "text": "1) Братство\nВы сливаетесь с жетонами в единое целое, превращаясь из безумца с голосами в голове в\nновое существо, большее, чем сумма частей.\nВы получаете все навыки и области ваших жетонов в постоянное пользование. Активные\nспособности жетонов теперь постоянные. Получите последствие оболган и последствие\nконтакта конфликт со всеми контактами-людьми. Понимание людей можно вернуть по\nобычным правилам получения новых контактов, но прежним собой уже не стать.\nПримеры отыгрыша за лишившегося человечности стража врат:\n– Вашему телу всё ещё нужна пища, но вы про это постоянно забываете из-за того, что не\nсвязываете чувство голода и необходимость есть.\n– Вы начинаете воспринимать шутки буквально.\n\n– Вы начинаете связывать несвязанные вещи гораздо сильнее.\n– Вы начинаете бояться приятного чувства, например тепла или признания.\n– В разговоре вы легко скачете с темы на тему, забывая, о чём вы говорили до этого.",
       "tier": "elite",
       "className": "Страж Врат"
     },
@@ -728,7 +745,7 @@ window.TOWER_CODEX = {
         "pdfPages": [
           16
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "2) Роковой глаз\nРаз в сессию вы, открыв отсутствующий глаз, обрекаете первого, на кого посмотрите, на\nсмерть через сутки. Процесс можно обратить только если вас убить или принести в жертву\nкрупную часть вашего тела. Если вы посмотрите роковым глазом на божественную\nсущность Башни, вы сотрёте её из существования, но и вас с этого момента никогда и не\nбыло.",
       "tier": "elite",
@@ -742,407 +759,532 @@ window.TOWER_CODEX = {
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          16,
-          17,
-          18
+          16
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "3) Сигаретный драгун\nВы больше не расходуете сигареты, создавая дым прямо из лёгких. Вы можете войти в\nлюбое облако сигаретного дыма в Башне и выйти из любого другого. Вас принимают во\nвнутренний круг Стражей Врат, теперь вы можете отдавать рядовым стражам приказы. Раз\nв сессию вы можете выдохнуть сигнальный дым, из которого выйдет отделение прекрасно\nэкипированных стражей из внутреннего круга, они уничтожат угрозу, или помогут припасами\nи медициной.\n31\nСветоносец\n«Солнечный свет – сам по себе награда»\nСвет — бесконечно важная часть жизни. Костёр, электричество — всё это даёт\nблагословенный свет. Светоносцы — орден странствующих монахов, путешествующих в\nБашню, чтобы освещать оазисы и помогать другим группам пробираться дальше в сыром\nполумраке. Они долго учатся владеть боевыми искусствами, а в долгих медитациях\nдостигают полного контроля над эмоциями.\nНавык ПРОБИВАТЬСЯ\nОбласть МИР\nПомочь мирному человеку/Осветить важное\nдля людей место/Достичь новой локации\nИзбавление\nЦели\nСветоносцы совершают все деяния ради света, кто-то воспринимает это буквально,\nпытаясь осветить максимальную территорию, кто-то открывает в оазисах ночлежки для\nособо бедных групп. В монахи не уходят просто так, у каждого есть собственная причина\nотречься от прошлого и посвятить жизнь медитациям и обслуживанию священных\nпрожекторов.\nВнешность\nНа светоносцах всегда огромное количество приборов для освещения: фонари, фонарики,\nлампочки, карманы их всегда набиты батарейками. На видном месте они носят священный\nсимвол, выжигающее солнце.\nРеференсы: Стиль «урбан», индустриальные элементы (провода, лампочки)\nТрадиции\n— Имя у светоносца остаётся старое, бывшее до посвящения.\nОтветьте на\nОни, однако, все до единого берут одну фамилию — Ревущий, в\nвопросы честь основателя первого храма.\n— Светоносцы по древней традиции никогда не нападают первыми\nПочему вы оставили\nна противников-людей.\nблизких и ушли в\nмонахи?\n— Светоносцы изготавливают благовония буквально из всего — от\nбетона и краски до костей и цветов. Разница в запахах у них из-за\nВаш любимый\nэтого огромная, от постоянного воскуривания благовоний каждый\nисточник света\nсветоносец пахнет по-своему.\nВ каком смысле вы\nКонтакты\nпонимаете идею\n«осветить мир»?\n► Ваш духовный учитель, недовольный, но любящий (Персонаж\n33\nвашими глазами. Видение в темноте, глазами мёртвых и имён сохраняется.",
+      "text": "3) Сигаретный драгун\nВы больше не расходуете сигареты, создавая дым прямо из лёгких. Вы можете войти в\nлюбое облако сигаретного дыма в Башне и выйти из любого другого. Вас принимают во\nвнутренний круг Стражей Врат, теперь вы можете отдавать рядовым стражам приказы. Раз\nв сессию вы можете выдохнуть сигнальный дым, из которого выйдет отделение прекрасно\nэкипированных стражей из внутреннего круга, они уничтожат угрозу, или помогут припасами\nи медициной.",
       "tier": "elite",
-      "className": "Светоносец"
+      "className": "Страж Врат"
     },
     {
       "id": "classes-card-18-22",
       "kind": "ability",
-      "title": "Боевое искусство",
+      "title": "Искривление света",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
           18
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "4) Боевое искусство: Хатар-ша\nВы получаете мастерство в навыке УБИВАТЬ, срабатывающее, когда вы сражаетесь без\nоружия. Ваши безоружные атаки теперь причиняют к6 стресса. При успехе безоружной\nатаки, вы можете повредить врагу конечность, лишив его дополнительных преимуществ\nкиберруки или хитинового клинка.\nМалые\n► Бескомпромиссный удар\nВаши безоружные атаки получают свойство мощный.\n► Тысяча вспышек света\nВаши безоружные атаки получают свойство огонь.\n►Перебороть боль\nОдин раз за сцену, когда вы получаете последствие после броска УБИВАТЬ в ближнем бою,\nвы можете полностью убрать это последствие (стресс в шкале сохраняется.)",
-      "tier": "elite",
+      "text": "1) Искривление света\nВы можете изменять поведение фотонов, точечно влияя на квантовые вероятности и\nгравитацию с помощью дыхательных техник динамической медитации.\nЕсли вы можете спокойно дышать (нет последствия ВЫДОХСЯ, вы не находитесь под\nводой, не надет респиратор и так далее), вы можете при успешной проверке\nПРОБИВАТЬСЯ совершить одну из светотехник. На старте у вас есть следующие:\n► Искривление\nНа одну сцену вы можете искривить пути света, дав всей группе мастерство на проверки\nСКРЫВАТЬСЯ.\n► Вспышка\nВы создаёте невыносимо яркий свет, все враги на ближней дистанции без особой защиты\nглаз теряют одну ступень угрозы до конца сцены.\nСвятой лазер\nУрон: 1к8\nСвойства: Точное, энергетическое\nДистанция: Средняя,дальняя\n► Усиление\nВы усиливаете источник света, до конца сцены ваши источающие свет предметы и\nсветотехники становятся на 1 ступень эффективнее, включая и фонарики и оружие.",
+      "tier": "basic",
       "className": "Светоносец"
     },
     {
       "id": "classes-card-18-23",
+      "kind": "ability",
+      "title": "Светотехника: Святой лазер",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          18
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "1) Светотехника: Святой лазер\nВы получаете возможность выстрелить лучом сжигающего света.",
+      "tier": "minor",
+      "className": "Светоносец"
+    },
+    {
+      "id": "classes-card-18-24",
+      "kind": "ability",
+      "title": "Светотехника: Мираж",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          18
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "2) Светотехника: Мираж\nВы получаете возможность сплетать из света хитрые иллюзии. В следующий раз, единожды\nв сцену, когда вы должны получить стресс, вы его не получаете.",
+      "tier": "minor",
+      "className": "Светоносец"
+    },
+    {
+      "id": "classes-card-18-25",
+      "kind": "ability",
+      "title": "Светотехника: Зеркало",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          18
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "3) Светотехника: Зеркало\nВы выстраиваете сложную систему из односторонних магических зеркал, чтобы подглядеть\nв место на расстоянии до одного перехода, за каким бы количеством поворотов оно ни\nбыло.",
+      "tier": "minor",
+      "className": "Светоносец"
+    },
+    {
+      "id": "classes-card-18-26",
+      "kind": "ability",
+      "title": "Фотосинтез",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          18
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "4) Фотосинтез\nСвященная модификация симбиотическими фоточувствительными клетками,\nпозволяющими перерабатывать свет и воду на питательные вещества. В древности\nдля этого требовался долгий ритуал с поеданием дикого зверя Хоти, в котором живут\nподобные организмы и обширными татуировками, но с приходом искусственной кожи и\nнаномашин, ритуал стал занимать всего сутки.\nКогда вы отдыхаете под источником яркого света, вы восстанавливаете 1к6 в ПУЛЯХ и\nДУХЕ. Ваша кожа становится заметно темнее.",
+      "tier": "minor",
+      "className": "Светоносец"
+    },
+    {
+      "id": "classes-card-18-27",
+      "kind": "ability",
+      "title": "Волновой мост",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          18
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "5) Волновой мост\nВолна, частица – всё относительно…\nОдин раз в сессию вы можете переместиться к любой радиостанции на расстоянии до\nодного перехода между локациями. Вы можете взять с собой одного человека или груз, что\nможете унести в руках, но для этого потребуется пройти проверку ПРОБИВАТЬСЯ.",
+      "tier": "minor",
+      "className": "Светоносец"
+    },
+    {
+      "id": "classes-card-18-28",
+      "kind": "ability",
+      "title": "Все ответы — в гравитации",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          18
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "6) Все ответы — в гравитации\nВы — часть братства притяжения, последователей учителя Ревущего Третьего Сына.\nОн считал, что притяжение звёздных тел — главный фактор развития живых\nорганизмов, и только преодолев его можно возвыситься духовно. Братство притяжения\nможет, правильно направляя дыхание и движения тела, изменять пути гравитонов,\nквантов гравитации. Все члены братства носят на груди небольшую наковальню как\nсимвол вреда, что гравитация приносит человечеству.\nПолучите новую тактику в навык ПРОБИВАТЬСЯ – бег вопреки.\n► Бег вопреки\nВы перемещаетесь к недоступной точке по стене, жидкости, потолку или пролетающим\nракетам. Вы причиняете удвоенный стресс опасным восхождениям и тройной — роковым.",
+      "tier": "minor",
+      "className": "Светоносец"
+    },
+    {
+      "id": "classes-card-18-29",
+      "kind": "ability",
+      "title": "Скорость света",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          18
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "7) Скорость света\nВаши дыхательные тренировки и мастерство во владении телом вместе со способностью\nнаправлять гравитацию позволяют развивать ослепительную скорость.\nВы бросаете с мастерством на все тактики, связанные со скоростью — от бега до\nизвлечения оружия.",
+      "tier": "minor",
+      "className": "Светоносец"
+    },
+    {
+      "id": "classes-card-18-30",
+      "kind": "ability",
+      "title": "Друг оптики",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          18,
+          19
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "8) Друг оптики\nВы понимаете оптические устройства на более тонком уровне, отражённый свет — язык\nвашей души.\nЕсли вы свободно дышите, вы можете пройти проверку КОЛДОВАТЬ, чтобы до конца сцены\nснизить стресс, причиняемый врагами с оптическими имплантами, смарт-очками или\nприцелами снайперских винтовок на 1 ступень и повысить стресс, причиняемый\nсоюзниками с тем же снаряжением на 1 ступень.",
+      "tier": "minor",
+      "className": "Светоносец"
+    },
+    {
+      "id": "classes-card-19-31",
+      "kind": "ability",
+      "title": "Солнцекровный",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          19
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "9) Солнцекровный\nЧистая энергия, вот чем суждено стать человеку.\nПока вы свободно дышите, можете пройти проверку КОЛДОВАТЬ, чтобы зарядить энергией\nэлектроприбор. Одной успешной проверки хватит на десяток мелких устройств, батарею\nэнергетического оружия, огромную бункерную дверь, или час работы компьютера.",
+      "tier": "minor",
+      "className": "Светоносец"
+    },
+    {
+      "id": "classes-card-19-32",
+      "kind": "ability",
+      "title": "Благословенный аромат",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          19
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "10) Благословенный аромат\nВы можете три раза в сессию использовать пучок благовоний.\nПолучите новую тактику в навык КОЛДОВАТЬ – вдохнуть дым.\n► Вдохнуть дым\nЕсли вы можете свободно дышать, выберите одно последствие. Вы игнорируете его\nэффект до конца сцены. Вы тратите использование пучка благовоний.",
+      "tier": "minor",
+      "className": "Светоносец"
+    },
+    {
+      "id": "classes-card-19-33",
+      "kind": "ability",
+      "title": "Световой клинок",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          19
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "1) Световой клинок\nВ любой момент вы можете сплести оружие ближнего боя из твёрдого света проверкой\nКолдовать. Оно существует до конца сцены и передать его никому нельзя. Для создания\nСветовое оружие\nУрон: 1к10\nСвойства: Бронебойный (1), Энергетический\nДистанция: Ближний бой\nнужно иметь возможность свободно дышать.\nМалые\n► Перегрузка\nВы можете создать перегруженное световое оружие с уроном 1к12 и дополнительными\nсвойствами огонь и ненадёжный.\n► Квантовые связи\nВы можете атаковать световым оружием противника на любой дистанции, если атаковали\nим его в течение этой сессии или знаете его имя. Его всё ещё нужно видеть.\n► Гармония\nЗа одну проверку вы создаёте и световое оружие и занимающий вторую руку\nбаллистический щит, дающий 3 защиты и 3 слота в пули.",
+      "tier": "professional",
+      "className": "Светоносец"
+    },
+    {
+      "id": "classes-card-19-34",
+      "kind": "ability",
+      "title": "Облачение стража алтаря",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          19
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "2) Облачение стража алтаря\nЗа ваши заслуги, орден светоносцев дарует вам особый полный доспех.\nПолный доспех (базовый)\n+4 защиты в ПУЛИ. +4 слота в ПУЛИ. Все ваши броски\nнавыков ПРОБИВАТЬСЯ и СКРЫВАТЬСЯ становятся на\n1 ступень тяжелее.\nБлагодаря хитроумной системе точек приложения силы, эта модификация брони отражает\nвсе энергетические атаки: от атак энергетическим оружием вы получаете +5 защиты.\nМалые\n► Грави-каркас\nРаз в сессию, вы используете ваши способности к манипуляции гравитацией, чтобы\nоблегчить вес снаряжения. До конца сцены вы можете считать все проверки навыков\nПРОБИВАТЬСЯ и СКРЫВАТЬСЯ проверками с обычной сложностью.\n► Свет за сталью\nРаз в сцену когда вы получаете последствие в ПУЛИ, вы можете без проверки использовать\nлюбую светотехнику.\n► Фото-парирование\nКогда вас атакуют лучевым оружием, враг получает стресс вместо вас.",
+      "tier": "professional",
+      "className": "Светоносец"
+    },
+    {
+      "id": "classes-card-19-35",
+      "kind": "ability",
+      "title": "Без глаз — без сожалений",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          19,
+          20
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "3) Без глаз — без сожалений\nВы находите другого светоносца, чтобы тот по всем правилам удалил вам глаза. Глазницы\nпосле заживления заливаются воском и инкрустируются драгоценными камнями. Вы теперь\nвидите суть вещей, а не отражённый свет: в темноте вы не получаете штраф на действия.\nМалые\n► Мёртвый свет\nВы можете на время извлечь восковую пробку и вставить в глазницу глаз мертвеца, чтобы\nвидеть им окружающую локацию так, как он видел её перед смертью. Это работает и с\nискусственными глазами. Зрение мертвеца работает время, на которые вы можете\nзадержать дыхание.\n► Безымянные\nВы видите над людьми имена, которыми их называют. Эта способность не позволяет узнать\nистинное имя, зато с её помощью можно узнать, человек ли перед вами: над машиной или\nпорождением Башни имени не будет. К тому же, это демаскирует спрятавшиеся отряды.\n► Крик потерявшегося в горном лесу\nВы можете делиться картинкой того, что вы видите, с вашими союзниками, они видят будто\nвашими глазами. Видение в темноте, глазами мёртвых и имён сохраняется.",
+      "tier": "professional",
+      "className": "Светоносец"
+    },
+    {
+      "id": "classes-card-20-36",
+      "kind": "ability",
+      "title": "Боевое искусство: Хатар-ша",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          20
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "4) Боевое искусство: Хатар-ша\nВы получаете мастерство в навыке УБИВАТЬ, срабатывающее, когда вы сражаетесь без\nоружия. Ваши безоружные атаки теперь причиняют к6 стресса. При успехе безоружной\nатаки, вы можете повредить врагу конечность, лишив его дополнительных преимуществ\nкиберруки или хитинового клинка.\nМалые\n► Бескомпромиссный удар\nВаши безоружные атаки получают свойство мощный.\n► Тысяча вспышек света\nВаши безоружные атаки получают свойство огонь.\n►Перебороть боль\nОдин раз за сцену, когда вы получаете последствие после броска УБИВАТЬ в ближнем бою,\nвы можете полностью убрать это последствие (стресс в шкале сохраняется.)",
+      "tier": "professional",
+      "className": "Светоносец"
+    },
+    {
+      "id": "classes-card-20-37",
       "kind": "ability",
       "title": "Светоконструкция",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          18
+          20
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "5) Светоконструкция\nРаз в сессию вы можете пройти проверку ПРОБИВАТЬСЯ, чтобы создать из твёрдого света\nпостройку. На это уходит заметное время. Постройки позволяют совершить переход между\nлокациями без проверки ПРОБИВАТЬСЯ. Постройка существует, пока вы находитесь в\nлокации.\nМалые\n► Солнечное топливо\nВы можете потратить ресурс к6 и лучше из области МИР,или ДУХИ, чтобы попробовать\nсоздать конструкцию снова в случае провала.\n► Пополнение\nВы можете потратить ресурс к10 и лучше из области МИР, или ДУХИ, чтобы создать\nсветовую конструкцию без проверки.\n► Заряженные фотоны\nСветовая конструкция существует теперь до конца сессии, даже если вы уходили с\nлокации.\n38",
-      "tier": "elite",
+      "text": "5) Светоконструкция\nРаз в сессию вы можете пройти проверку ПРОБИВАТЬСЯ, чтобы создать из твёрдого света\nпостройку. На это уходит заметное время. Постройки позволяют совершить переход между\nлокациями без проверки ПРОБИВАТЬСЯ. Постройка существует, пока вы находитесь в\nлокации.\nМалые\n► Солнечное топливо\nВы можете потратить ресурс к6 и лучше из области МИР,или ДУХИ, чтобы попробовать\nсоздать конструкцию снова в случае провала.\n► Пополнение\nВы можете потратить ресурс к10 и лучше из области МИР, или ДУХИ, чтобы создать\nсветовую конструкцию без проверки.\n► Заряженные фотоны\nСветовая конструкция существует теперь до конца сессии, даже если вы уходили с\nлокации.",
+      "tier": "professional",
       "className": "Светоносец"
     },
     {
-      "id": "classes-card-18-24",
+      "id": "classes-card-20-38",
       "kind": "ability",
       "title": "Сын Солнца",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          18
+          20
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "1) Сын Солнца\nВы пробуждаете внутри себя осколок солнца, достигнув высоты в совершенстовании тела и\nдуха.\nТеперь вам не нужно дышать для вашей магии и вы бросаете на светотехники с\nмастерством. Вы можете осветить локацию целиком или лишить её света, при этом все\nпротивники без особой защиты, полагающиеся на зрение, снижают опасность на одну\nступень.",
       "tier": "elite",
       "className": "Светоносец"
     },
     {
-      "id": "classes-card-18-25",
+      "id": "classes-card-20-39",
       "kind": "ability",
       "title": "Перчатка антипринца",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          18
+          20
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "2) Перчатка антипринца\nВы получаете одну из четырёх правых перчаток основателя ордена, антипринца Неба\nРевущего. По легенде, он мог лишать королей-тиранов зрения и рассудка взмахом руки,\nраскалывая все защитные чары, и именно это по одной из версий привело к разделению\nнародов Ножей и Ядов.\nТеперь вы тоже обладаете такой силой: раз в сессию, вы можете навсегда ослепить и\nввести в безумие врага, которого вы можете видеть. Вы можете обезвредить таким образом\nдаже божественную сущность Башни, но в таком случае сами будете обречены на\nсумасшествие и темноту.",
       "tier": "elite",
       "className": "Светоносец"
     },
     {
-      "id": "classes-card-18-26",
+      "id": "classes-card-20-40",
       "kind": "ability",
       "title": "Похороненный свет",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          18,
-          19,
           20
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "3) Похороненный свет\nВы входите в тайное общество внутри светоносцев, считающее, что темнота важнее света,\nчто холод и спокойствие стократ важнее суетного жара.\nТеперь вы автоматически проходите проверку СКРЫВАТЬСЯ. Ещё вы можете говорить с\nтенями людей, они ответят вам даже если этого не хочет владелец. Ответ всегда даётся\nтуманной метафорой, а каждый заданный вопрос причиняет 1к6 стресса в РАЗУМ. Вы\nможете проверкой Колдовать забрать у человека тень, тогда его станут преследовать\nнеудачи и его будет гораздо легче проклясть.\n39\nРаствор души\n«Герой — это память о нём» — пословица народа Железа\nВ Башне есть множество аномалий, меняющих тела, и обычно они совершенно\nнепредсказуемы, да и разум они искажают гораздо быстрее. Есть, однако, категория\nстабильных аномалий, превращающих людей во что-то конкретное. Одна из таких —\nЗеркало Души, аномалия, выглядящая как облако белого дыма, неправильно падающий\nсвет, или отражающее только живых существ газообразное зеркало, попав в такую, воин\nпревращается в жидкость, обладающую его прежним сознанием.\nЧерез время случаи такие стали настолько массовыми, что в Башню стали приносить\nскафандры, в которые помещается жидкость, каждый раствор настраивает свой скафандр\nпод себя. Они постепенно теряют память о прошлом, так что их локальная культура во\nмногом строится вокруг воспоминаний.\nНавык ГОВОРИТЬ\nОбласть БЕЗУМИЕ\nСоздать интересное произведение искусства/\nНайти вещь, соединяющую с прошлым/\nИзбавление\nПомочь друзьям, использовав жидкую\nприроду тела\nЦели\nРастворы странствуют в попытках вернуть себе тела и остановить деградацию сознания.\nВнешность\nРастворы носят модифицированные космические скафандры. Все они уникальны как\nраскраской, так и закреплёнными модулями и приборами, так, многие устанавливают на\nнего броню, гидравлический пресс, или климат-контроль. В зависимости от профессии на\nних можно встретить как белый халат, так и крупнокалиберный пулемёт.\nРеференсы: скафандр космонавта, тактическое снаряжение, картины красками.\nТрадиции\n— Чтобы максимально отразить индивидуальность, утерянную из-за становления\nжидкостью, растворы занимаются творчеством.\n— Для многих растворов души важно ценить друг друга, поэтому они придумали праздники,\nпосвящённые воссоединению с прошлым. На этих праздниках они могут напомнить друг\nдругу о былых достижениях. Так, последний день каждого месяца у них называется Днём\nВоспоминаний, на нём они собираются, чтобы рассказать о том, что было в их жизнях до\nстолкновения с аномалией.\n41\nПример творческого инструмента\n► ТРГГ, похожий на дубинку духовой инструмент народа Ядов, звуки похожи на птичье\nпение.\n► Пуля, извлечённая из вашего тела во время службы в армии.\n► Электрорит, подключаемая к усилителю версия струнного инструмента народа Ножей, на\nнём играют двумя смычками, уперев в землю.\n► Кулон с портретом дочери, на нём написана дата, но вы не помните, что она значит.\n► Графический планшет со стилусом в чехле из углеродного волокна с системой\nзакрепления на разгрузке.\nПример памятной вещи\n► Не заправленная зажигалка с концерта любимого музыканта. Вы точно знаете, что\nзаправлять её нельзя, но не уверены, что тогда случится.\n► Набор красок, кисти, вода и бумага. Вместо этюдника вы носите это в оружейном кейсе.\n► Военный жетон сослуживца. Стражи врат постоянно к вам из-за него пристают.\n► Записная книжка, наполовину заполненная стихотворениями.\n► Осколок кривого зеркала. Всё, что в нём отражается, становится невероятно смешным.\nКонтакты\nОтветьте на ► Поклонник вашего творчества (Персонаж ведущего)\nвопросы\n► Кто-то в группе занимается тем же видом творчества, но не так\nумело, и вы ему помогаете. Кто?\nПо какой\nвозможности до\n► Кто-то в группе вечно рассказывает вам отвлечённые истории\nтрансформации вы\nпро рыбалку. Кто это и чего он пытается достичь?\nскучаете больше\nвсего?\n► В группе кто-то помогает вам делать что-то, чего вы не можете\nиз-за новой формы, например говорит вслух, как сейчас пахнет. Кто\nКакую маленькую это и почему он к вам так добр?\nрадость вы нашли,\nчтобы не сойти с\nума?\nВаше самое\nуспешное\nпроизведение после\nтрансформации\n42",
+      "text": "3) Похороненный свет\nВы входите в тайное общество внутри светоносцев, считающее, что темнота важнее света,\nчто холод и спокойствие стократ важнее суетного жара.\nТеперь вы автоматически проходите проверку СКРЫВАТЬСЯ. Ещё вы можете говорить с\nтенями людей, они ответят вам даже если этого не хочет владелец. Ответ всегда даётся\nтуманной метафорой, а каждый заданный вопрос причиняет 1к6 стресса в РАЗУМ. Вы\nможете проверкой Колдовать забрать у человека тень, тогда его станут преследовать\nнеудачи и его будет гораздо легче проклясть.",
       "tier": "elite",
-      "className": "Раствор Души"
+      "className": "Светоносец"
     },
     {
-      "id": "classes-card-20-27",
+      "id": "classes-card-22-41",
       "kind": "ability",
       "title": "Жидкая форма",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          20
+          22
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "1) Жидкая форма\nВ начале сцены вы восстанавливаете весь стресс в ПУЛЯХ. Вы не можете восстанавливать\nстресс в ПУЛЯХ другими способами. На вас не распространяются последствия, связанные\nс ранением конечностей, потерей сознания и вы можете без ранений упасть с высоты до 50\nметров.\nВы можете выйти из скафандра, в этой форме вы не можете пользоваться предметами и\nговорить, но зато можете проникать в места, куда не пролез бы человек. Когда вы входите в\nэту форму и в начале каждой сцены в ней, вы получаете к6 стресса в РАЗУМ.",
       "tier": "basic",
       "className": "Раствор Души"
     },
     {
-      "id": "classes-card-20-28",
+      "id": "classes-card-22-42",
       "kind": "ability",
       "title": "Новая страсть",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          20
+          22
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "2) Новая страсть\nРаз в сцену вы можете попытаться внести вклад в произведение искусства. Оно имеет\nсопротивление 16. Успешной проверкой ГОВОРИТЬ вы заполняете его шкалу\nсопротивления, этот процесс можно ускорить вашими предметами. Когда вы его закончите,\nназовите его, вы можете либо продать его как к12 предмет (ценитель даст за такое и\nбольше), либо отрефлексировать с ним наедине и восстановить к12 в РАЗУМЕ. Вы можете\nнакопить неограниченное число произведений.",
       "tier": "basic",
       "className": "Раствор Души"
     },
     {
-      "id": "classes-card-20-29",
+      "id": "classes-card-22-43",
       "kind": "ability",
       "title": "Не-журчание",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          20
+          22
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "1) Не-журчание\nНаходясь в жидкой форме, вы получаете мастерство в навыке СКРЫВАТЬСЯ. Вы можете\nполучить к6 стресса в РАЗУМ, чтобы растворить труп врага и его снаряжение (Эффект\nслишком медленный для прямой атаки)",
       "tier": "minor",
       "className": "Раствор Души"
     },
     {
-      "id": "classes-card-20-30",
+      "id": "classes-card-22-44",
       "kind": "ability",
       "title": "Водяное лезвие",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          20
+          22
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "2) Водяное лезвие\nПропуская собственное тело через клапаны скафандра под огромным давлением,вы\nможете атаковать врагов, каждая атака дополнительно причиняет вам к6 стресса в ПУЛИ,\nдаже в случае успеха. Вы так же можете получить к6 стресса в ПУЛИ, чтобы быстро\nразрезать что-то прочное, например заваренную дверь или оружие.\nВодяное лезвие\nУрон: 1к10\nСвойства: Бронебойный (2)\nДистанция: Ближняя\n43",
+      "text": "2) Водяное лезвие\nПропуская собственное тело через клапаны скафандра под огромным давлением,вы\nможете атаковать врагов, каждая атака дополнительно причиняет вам к6 стресса в ПУЛИ,\nдаже в случае успеха. Вы так же можете получить к6 стресса в ПУЛИ, чтобы быстро\nразрезать что-то прочное, например заваренную дверь или оружие.\nВодяное лезвие\nУрон: 1к10\nСвойства: Бронебойный (2)\nДистанция: Ближняя",
       "tier": "minor",
       "className": "Раствор Души"
     },
     {
-      "id": "classes-card-21-31",
+      "id": "classes-card-23-45",
       "kind": "ability",
       "title": "Водомёт",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          21
+          23
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "3) Водомёт\nВы выпускаете жидкость тела из рук, отталкивая врагов. каждая атака дополнительно\nпричиняет вам к6 стресса в ПУЛИ, даже в случае успеха. Вы так же можете получить к6\nстресса в ПУЛИ, чтобы быстро взлететь на небольшую высоту и добраться до позиции\nнаверху.\nВодомёт\nУрон: 1к6\nСвойства: Мощный, отталкивает цель на одну\nдистанцию.\nДистанция: Ближняя, средняя",
       "tier": "minor",
       "className": "Раствор Души"
     },
     {
-      "id": "classes-card-21-32",
+      "id": "classes-card-23-46",
       "kind": "ability",
       "title": "Новые голоса",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          21
+          23
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "4) Новые голоса\nРаз в сессию во время восхождения вы можете сказать, что встречаете группу восходящих,\nразбивших лагерь или идущих в противоположном вам направлении. Они делятся с вами\nинтересной историей из их приключений: следующий бросок на создание произведения\nискусства будет совершён с мастерством и причинит на ступень больше стресса.",
       "tier": "minor",
       "className": "Раствор Души"
     },
     {
-      "id": "classes-card-21-33",
+      "id": "classes-card-23-47",
       "kind": "ability",
       "title": "Новое лицо",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          21
+          23
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "5) Новое лицо\nУ вас больше нет лица, ваш голос – ИИ в скафандре, переводящий колебания жидкости в\nречь, а ваши движения стали безжизненно плавными. Но ещё не всё потеряно.\nВы покрываете ваш скафандр цитатами из ваших произведений, вашими рисунками или\nдругими украшениями. Ваши броски ГОВОРИТЬ при критическом успехе причиняют\nмаксимальный стресс, возможный на кости, а при критическом провале – вы всегда\nполучаете только 1 стресса.",
       "tier": "minor",
       "className": "Раствор Души"
     },
     {
-      "id": "classes-card-21-34",
+      "id": "classes-card-23-48",
       "kind": "ability",
       "title": "Яркое выступление",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          21
+          23
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "6) Яркое выступление\nРаз в сессию, вы собираете на площади толпу, зачитывая стихи, или играя музыку. Ваше\nвыступление имеет шкалу сопротивления в 8, и при её заполнении вы восстанавливаете\nк10 в ресурсах. У вас появляются фанаты: раз в сессию, прибывая в новое место, вы\nможете заявить, что здесь находится поклонник вашего творчества, готовый поделиться\nинформацией.",
       "tier": "minor",
       "className": "Раствор Души"
     },
     {
-      "id": "classes-card-21-35",
+      "id": "classes-card-23-49",
       "kind": "ability",
       "title": "Раствориться",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          21
+          23
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "7) Раствориться\nРади верных друзей можно пожертвовать многим…\nВы перестаёте противиться новой жидкой природе, по крайней мере, на время. Любой\nстресс в РАЗУМ, причиняемый вашими способностями, вы можете переместить в ПУЛИ. Вы\nнастолько отдаляетесь от человечности, что можете раз в сессию попытаться поговорить с\nсуществами Башни, это причинит вам дополнительно к6 стресса в РАЗУМ.",
       "tier": "minor",
       "className": "Раствор Души"
     },
     {
-      "id": "classes-card-21-36",
+      "id": "classes-card-23-50",
       "kind": "ability",
       "title": "Новые источники",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          21
+          23
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "8) Новые источники\nВы постепенно забываете события и людей из собственной жизни и теперь жадно\nнабрасываетесь на чужие воспоминания. Вы можете получить к6 стресса в разум, чтобы\nпройти проверку КОЛДОВАТЬ и получить недавние воспоминания из мёртвого противника,\n44\n\nони всегда окажутся важными.",
+      "text": "8) Новые источники\nВы постепенно забываете события и людей из собственной жизни и теперь жадно\nнабрасываетесь на чужие воспоминания. Вы можете получить к6 стресса в разум, чтобы\nпройти проверку КОЛДОВАТЬ и получить недавние воспоминания из мёртвого противника,\n\nони всегда окажутся важными.",
       "tier": "minor",
       "className": "Раствор Души"
     },
     {
-      "id": "classes-card-21-37",
+      "id": "classes-card-23-51",
       "kind": "ability",
       "title": "Закалённое сознание",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          21
+          23
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "9) Закалённое сознание\nВы получаете +2 слота сопротивления и +2 защиты в РАЗУМ.",
       "tier": "minor",
       "className": "Раствор Души"
     },
     {
-      "id": "classes-card-21-38",
+      "id": "classes-card-23-52",
       "kind": "ability",
       "title": "Присутствие",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          21
+          23
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "10) Присутствие\nВы больше не человек и это пугает всех вокруг. Когда вы пытаетесь запугивать оппонента,\nвы совершаете проверки ГОВОРИТЬ с мастерством.\n. Профессиональные способности",
       "tier": "minor",
       "className": "Раствор Души"
     },
     {
-      "id": "classes-card-21-39",
+      "id": "classes-card-23-53",
       "kind": "ability",
       "title": "Смена состава",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          21
+          23
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "1) Смена состава\nРаз в сессию в течение часа вы можете поменять состав жидкости, из которой состоите,\nдобавив в неё реагенты и проведя особый ритуал.\nИзначально у вас есть состав горный хрусталь — Жидкость в вашем теле после долгого\nритуала с зеркалами из горного хрусталя становится целебной. Ваше тело работает как к6\nпредмет ЧИНИТЬ ПУЛИ, вы можете получить к6 стресса в РАЗУМ, чтобы до конца сцены\nоно работало как к8 ЧИНИТЬ ПУЛИ.\nМалые\n► Пожиратель плоти\nЖидкость в вашем теле становится химическим оружием после поглощения\nпромышленной кислоты и набора ядов. Когда вы атакуете противника водяными атаками,\nили когда получаете стресс в ПУЛИ, находясь рядом с врагом, вы причиняете к4 стресса со\nсвойствами мощный и бронебойный (1).\n► Баллистический состав\nЖидкость в вашем теле благодаря загустителям и дополнительным присадкам становится\nплотной и тяжёлой. Вы получаете +3 защиты в ПУЛИ. Вас нельзя сдвинуть с места против\nвашей воли.\n► Зажигательная смесь\nВы добавляете в жидкое тело топливо и масла. Когда вы атакуете противника водяными\nатаками или когда получаете стресс в ПУЛИ, находясь рядом с врагом, вы покрываете его\nзажигательной смесью: До конца сцены атаки со свойством «огонь» наносят по нему на\nодну ступень больше урона.",
-      "tier": "minor",
+      "tier": "professional",
       "className": "Раствор Души"
     },
     {
-      "id": "classes-card-21-40",
+      "id": "classes-card-23-54",
       "kind": "ability",
       "title": "Тюнинг скафандра",
-      "section": "classes",
-      "dropTarget": "ability",
-      "source": {
-        "pdfPages": [
-          21,
-          22
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "2) Тюнинг скафандра\nВы встраиваете в скафандр дополнительные модули, расширяющие тактические\nвозможности. Раз в сессию на одну сцену вы можете получить доступ к одному навыку.\n45\nМалые\n► На пределе\nПри получении доступа к навыку через тюнинг скафандра, вы можете получить к6 стресса,\nчтобы повысить причиняемый им стресс на одну ступень до конца сцены.\n► Импровизация\nВы легко придумываете улучшения для скафандра на ходу. Вы можете потратить к8 или\nболее ценный ресурс из области МИР, АРМИЯ или КОРПОРАЦИИ, чтобы использовать\nтюнинг скафандра повторно.\n► Адаптивная броня\nВы покрываете скафандр адаптирующейся к атакам эзотерической прослойкой. Когда вы\nполучаете навык через тюнинг скафандра, можете выбрать сопротивление, чтобы до конца\nсцены получить в нём +1 защиты.",
-      "tier": "minor",
-      "className": "Раствор Души"
-    },
-    {
-      "id": "classes-card-22-41",
-      "kind": "ability",
-      "title": "Резонанс",
-      "section": "classes",
-      "dropTarget": "ability",
-      "source": {
-        "pdfPages": [
-          22
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "3) Резонанс\nВы затронуты Башней и чувствуете Её куда тоньше, чем остальные…\nРаз в сессию, когда вы оказываетесь на новой локации, вы можете спросить у ведущего,\nгде находится ближайший источник аномальной активности и каковы его свойства. Вам\nобязаны честно ответить.\nМалые\n► Подчинять лаской\nВы можете использовать навык ГОВОРИТЬ и соответствующее снаряжение вместо навыка\nПРОБИВАТЬСЯ во время восхождений.\n► Тяжёлый взгляд\nВы всегда чувствуете, когда за вами наблюдает порождение Башни и его примерное\nместоположение.\n► Не в первый раз\nВы научены горьким опытом взаимодействия с аномалиями. Раз в сессию вы можете без\nпоследствий взаимодействовать с аномалией без проверки.",
-      "tier": "minor",
-      "className": "Раствор Души"
-    },
-    {
-      "id": "classes-card-22-42",
-      "kind": "ability",
-      "title": "Певец идеи",
-      "section": "classes",
-      "dropTarget": "ability",
-      "source": {
-        "pdfPages": [
-          22
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "4) Певец идеи\nВы – голос целого движения или народа. Получите область на выбор. Раз в сессию, вы\nможете сказать, что её представитель встречает вас и просит создать произведение на\nзаказ. Такое произведение при продаже восстановит всю шкалу ресурсов и снимет все в\nней последствия.\n► Порядок\nВаше творчество успокаивает и направляет людей. Вы можете пройти проверку ГОВОРИТЬ\nс сопротивлением 12 и потратить произведение, чтобы, например, остановить перестрелку\nили разбушевавшуюся толпу.\n46\n\n►Хаос\nВаше творчество вызывает всплеск эмоций и жажду действовать. Вы можете пройти\nпроверку ГОВОРИТЬ с сопротивлением 12 и потратить произведение, чтобы, например,\nподнять толпу на бой или внушить врагам страх.\n► Отражение\nВы становитесь частью идеи, большей, чем вы сами. Раз в сцену, когда вы должны\nполучить последствие в РАЗУМ, вы можете от него отказаться (стресс в шкале\nсохраняется).",
-      "tier": "minor",
-      "className": "Раствор Души"
-    },
-    {
-      "id": "classes-card-22-43",
-      "kind": "ability",
-      "title": "Боевое искусство",
-      "section": "classes",
-      "dropTarget": "ability",
-      "source": {
-        "pdfPages": [
-          22
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "5) Боевое искусство: Реки и горы\nВы получаете мастерство в навыке УБИВАТЬ, срабатывающее, когда вы сражаетесь без\nоружия. Ваши безоружные атаки теперь причиняют к6 стресса. При провале безоружной\nатаки, вы можете контратаковать противника-человека, причинив ему количество стресса,\nчто вы получили за провал этого действия.\nмалые\n► Гидравлический пресс: Ваши рукопашные атаки причиняют на ступень больше стресса\nнеподвижным или медленным врагам.\n► Амортизация: Вы можете спрыгнуть на противника с большой высоты, раздавив его\nвесом. Это считается рукопашной атакой, она всегда убьёт врага-человека и снизит на 1\nступень опасность врага живучее человека, но вы окажетесь уязвимы.\n► Захват: Проверкой рукопашной атаки вы можете схватить противника-человека.\nСледующая атака по нему будет проведена с мастерством.",
-      "tier": "minor",
-      "className": "Раствор Души"
-    },
-    {
-      "id": "classes-card-22-44",
-      "kind": "ability",
-      "title": "Вернуться",
-      "section": "classes",
-      "dropTarget": "ability",
-      "source": {
-        "pdfPages": [
-          22
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "1) Вернуться\nВы находите способ снова стать человеком, будь то долгий ритуал на высоких уровнях\nБашни, или передача вашей волновой копии в искусственное тело от мегакорпорации.\nВаши навыки, области, защиты, снаряжение и тактики сохраняются, но вы теряете\nспособности раствора души. Вы берёте столько же больших и профессиональных\nспособностей в виде тактик, повышений навыков и киберимплантов, сколько у вас было\nсоответствующих способностей раствора души.\nВы становитесь знаком надежды для других растворов, любой из них пойдёт с вами в\nвосхождение без нужды в проверке ГОВОРИТЬ.",
-      "tier": "elite",
-      "className": "Раствор Души"
-    },
-    {
-      "id": "classes-card-22-45",
-      "kind": "ability",
-      "title": "Раствориться",
-      "section": "classes",
-      "dropTarget": "ability",
-      "source": {
-        "pdfPages": [
-          22
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "2) Раствориться\nВы принимаете свою новую аномальную природу. Вас не должно быть, именно этим вы и\nпрекрасны.\nВы можете свободно говорить с тварями Башни и раз в сессию имеете возможность задать\nвопрос Ей самой. Башня ответит правду, но всегда загадкой. Вы можете убедить сущность\nБашни отступить или исчезнуть, но сами в этот момент становитесь простой водой.\n47",
-      "tier": "elite",
-      "className": "Раствор Души"
-    },
-    {
-      "id": "classes-card-23-46",
-      "kind": "ability",
-      "title": "Смириться",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
@@ -1150,614 +1292,627 @@ window.TOWER_CODEX = {
           23,
           24
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "3) Смириться\nВы находите внутренний покой. Погоня за телом ослепила вас, но теперь вы понимаете –\nнужно жить сейчас, а о том, чего ещё не произошло, волноваться глупо.\nВы получаете на 1 ступень меньше стресса в РАЗУМ, вас нельзя застать врасплох и\nнапугать. Ваши произведения, созданные с данного момента, начинают цениться вдвое\nбольше благодаря необычайной глубине, что в них открыл ваш новый взгляд на жизнь.\n48\nРосоход\n«Хищный вид не вымирает.»\nОхота требует высоких технологий, а ради технологического развития можно пойти на\nлюбые жертвы. Росоходы, бывшие до появления Башни следопытами, охотились в диких\nлесах народа Ножей или радиоактивных пустошах Хашахсота. В своей охоте они\nиспользуют механизмы, работающие на крови — от рельсовых винтовок, чьё магическое\nядро берёт жизненную силу из колбы с кровью до имплантов и гончих — заправляемых\nкровью дронов, помогающих загнать добычу.\nНавык СКРЫВАТЬСЯ\nОбласть ЧАЩА\nУбить опасную цель/Успешно скрыться от\nИзбавление страшной угрозы/Добыть необычный образец\nкрови\nЦели\nРосоходы отправляются в Башню ради охоты на невообразимых чудовищ и\nсовершенствования механизмов.\nВнешность\nВсе росоходы носят длинные маскировочные плащи с камуфляжем, меняющимся в\nзависимости от поверхности вокруг. Плащи эти имеют свою долгую историю у каждого\nохотника, это верный инструмент, завернувшись в который можно и переночевать и\nскрыться от угрозы.\nКроме того, на них постоянно огромное количество оборудования для обнаружения: ПНВ,\nмикрофоны для определения направления выстрела, направленные микрофоны, фонарики\nс ультрафиолоетовым режимом и прочее, очень часто у охотников крови можно встретить\nоптические импланты на месте глаз.\nОни постоянно носят бронежилет или разгрузку, к тому же тут и там видны трубки с\nбегущей кровью, они подсоединены к резервуару с консервированной кровью в рюкзаке и\nмогут подключаться для заправки нужных элементов снаряжения. Постоянно они носят с\nсобой запасную флягу с кровью, а так же один или несколько огромных шприцев, нужных\nдля забора крови.\nРеференсы: Снайперский камуфляж «гилли», охотничье снаряжение, роботы-собаки,\nкиберпанк.\nТрадиции\n— Росоходы придают большую важность приметам, они могут отказаться от задания, если\nна заказчика сядет муха, или вовсе весь день лежать завёрнутыми в плащ, потому что\nвстали, опираясь руками о стену.\n— Росоходы в Башне живут вне оазисов, обычно чуть поодаль в отдельном лагере, так что\nесли хотите нанять такого, придётся постараться.\n50\n\n— Росоходы считают кровь источником магических и душевных сил, а потому с\nподозрением относятся к экономантам, заменяющим кровь на золото.\n— У росоходов два разных приветствия: других охотников они встречают, подняв кулак, а\nвсех прочих — закрыв шею ладонью.\n— Росоходы носят амулеты и подвески, содержащие кровь зверя или человека, которого\nони добыли.\n— Росоходы считают имя своей охотничьей добычи частью своего собственного имени, так\nчто имена их могут состоять из десятков слов с полными именами убитых ими людей,\nзверей, или чудовищ.\n— На сверхъестественном уровне росоходы обязаны заснуть рано вечером, чтобы\nпроснуться ровно в момент, когда капли росы созреют на траве. Это ограничивающее\nзаклинание на них наложил третий Король-Весна, чтобы ограничить браконьерство.\nОтветьте на Контакты\nвопросы\n► Ваш бывший напарник и его гончая, клянчащая у вас кровь\n(Персонаж ведущего)\nИстория, в которой\nвы спаслись в ► Кто-то в группе осуждает магию росоходов. Кто и какие аргументы\nпоследний момент. он выдвигает?\nКто ваш соперник за ► Кто-то из группы интересуется вашими традициями честной охоты,\nважную добычу? но сам убивать не любит. Кто это и как вы преподносите ему вашу\nНазовите их обоих. культуру?\nЧто случилось с ► Вы не доверяете кому-то в группе, поскольку он ведёт себя\nвашей первой слишком честно и по-доброму. Кто это и какие его правильные\nвинтовкой? действия вы трактуете как обман?",
-      "tier": "elite",
-      "className": "Росоход"
+      "text": "2) Тюнинг скафандра\nВы встраиваете в скафандр дополнительные модули, расширяющие тактические\nвозможности. Раз в сессию на одну сцену вы можете получить доступ к одному навыку.\nМалые\n► На пределе\nПри получении доступа к навыку через тюнинг скафандра, вы можете получить к6 стресса,\nчтобы повысить причиняемый им стресс на одну ступень до конца сцены.\n► Импровизация\nВы легко придумываете улучшения для скафандра на ходу. Вы можете потратить к8 или\nболее ценный ресурс из области МИР, АРМИЯ или КОРПОРАЦИИ, чтобы использовать\nтюнинг скафандра повторно.\n► Адаптивная броня\nВы покрываете скафандр адаптирующейся к атакам эзотерической прослойкой. Когда вы\nполучаете навык через тюнинг скафандра, можете выбрать сопротивление, чтобы до конца\nсцены получить в нём +1 защиты.",
+      "tier": "professional",
+      "className": "Раствор Души"
     },
     {
-      "id": "classes-card-24-47",
+      "id": "classes-card-24-55",
       "kind": "ability",
-      "title": "Параинженер",
+      "title": "Резонанс",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
           24
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "1) Параинженер\nВы получаете ресурс — человеческая кровь (к12, мир). Каждый раз, когда вы тратите кровь,\nбросьте к12. Если результат меньше кости ресурса, кость ресурса снижается на одну\nступень. Когда кость снижается ниже к4, вы не можете больше использовать предметы,\nпотребляющие кровь.\nС каждого недавно погибшего человека вы можете собрать кровь. Бросьте к12, если\nрезультат больше кости ресурса, кость ресурса повышается на одну ступень. Вы или ваш\nсоратник можете ранить себя на 1к6 стресса в ПУЛИ, от которого не защищает броня и\nповысить за это кость крови на ступень.\nПотратив кровь на создание или починку механизма, вы совершаете проверки ТЕХНИЧИТЬ\nи ЧИНИТЬ с мастерством.\n51",
+      "text": "3) Резонанс\nВы затронуты Башней и чувствуете Её куда тоньше, чем остальные…\nРаз в сессию, когда вы оказываетесь на новой локации, вы можете спросить у ведущего,\nгде находится ближайший источник аномальной активности и каковы его свойства. Вам\nобязаны честно ответить.\nМалые\n► Подчинять лаской\nВы можете использовать навык ГОВОРИТЬ и соответствующее снаряжение вместо навыка\nПРОБИВАТЬСЯ во время восхождений.\n► Тяжёлый взгляд\nВы всегда чувствуете, когда за вами наблюдает порождение Башни и его примерное\nместоположение.\n► Не в первый раз\nВы научены горьким опытом взаимодействия с аномалиями. Раз в сессию вы можете без\nпоследствий взаимодействовать с аномалией без проверки.",
+      "tier": "professional",
+      "className": "Раствор Души"
+    },
+    {
+      "id": "classes-card-24-56",
+      "kind": "ability",
+      "title": "Певец идеи",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          24
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "4) Певец идеи\nВы – голос целого движения или народа. Получите область на выбор. Раз в сессию, вы\nможете сказать, что её представитель встречает вас и просит создать произведение на\nзаказ. Такое произведение при продаже восстановит всю шкалу ресурсов и снимет все в\nней последствия.\n► Порядок\nВаше творчество успокаивает и направляет людей. Вы можете пройти проверку ГОВОРИТЬ\nс сопротивлением 12 и потратить произведение, чтобы, например, остановить перестрелку\nили разбушевавшуюся толпу.\n\n►Хаос\nВаше творчество вызывает всплеск эмоций и жажду действовать. Вы можете пройти\nпроверку ГОВОРИТЬ с сопротивлением 12 и потратить произведение, чтобы, например,\nподнять толпу на бой или внушить врагам страх.\n► Отражение\nВы становитесь частью идеи, большей, чем вы сами. Раз в сцену, когда вы должны\nполучить последствие в РАЗУМ, вы можете от него отказаться (стресс в шкале\nсохраняется).",
+      "tier": "professional",
+      "className": "Раствор Души"
+    },
+    {
+      "id": "classes-card-24-57",
+      "kind": "ability",
+      "title": "Боевое искусство: Реки и горы",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          24
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "5) Боевое искусство: Реки и горы\nВы получаете мастерство в навыке УБИВАТЬ, срабатывающее, когда вы сражаетесь без\nоружия. Ваши безоружные атаки теперь причиняют к6 стресса. При провале безоружной\nатаки, вы можете контратаковать противника-человека, причинив ему количество стресса,\nчто вы получили за провал этого действия.\nмалые\n► Гидравлический пресс: Ваши рукопашные атаки причиняют на ступень больше стресса\nнеподвижным или медленным врагам.\n► Амортизация: Вы можете спрыгнуть на противника с большой высоты, раздавив его\nвесом. Это считается рукопашной атакой, она всегда убьёт врага-человека и снизит на 1\nступень опасность врага живучее человека, но вы окажетесь уязвимы.\n► Захват: Проверкой рукопашной атаки вы можете схватить противника-человека.\nСледующая атака по нему будет проведена с мастерством.",
+      "tier": "professional",
+      "className": "Раствор Души"
+    },
+    {
+      "id": "classes-card-24-58",
+      "kind": "ability",
+      "title": "Вернуться",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          24
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "1) Вернуться\nВы находите способ снова стать человеком, будь то долгий ритуал на высоких уровнях\nБашни, или передача вашей волновой копии в искусственное тело от мегакорпорации.\nВаши навыки, области, защиты, снаряжение и тактики сохраняются, но вы теряете\nспособности раствора души. Вы берёте столько же больших и профессиональных\nспособностей в виде тактик, повышений навыков и киберимплантов, сколько у вас было\nсоответствующих способностей раствора души.\nВы становитесь знаком надежды для других растворов, любой из них пойдёт с вами в\nвосхождение без нужды в проверке ГОВОРИТЬ.",
+      "tier": "elite",
+      "className": "Раствор Души"
+    },
+    {
+      "id": "classes-card-24-59",
+      "kind": "ability",
+      "title": "Раствориться",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          24
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "2) Раствориться\nВы принимаете свою новую аномальную природу. Вас не должно быть, именно этим вы и\nпрекрасны.\nВы можете свободно говорить с тварями Башни и раз в сессию имеете возможность задать\nвопрос Ей самой. Башня ответит правду, но всегда загадкой. Вы можете убедить сущность\nБашни отступить или исчезнуть, но сами в этот момент становитесь простой водой.",
+      "tier": "elite",
+      "className": "Раствор Души"
+    },
+    {
+      "id": "classes-card-25-60",
+      "kind": "ability",
+      "title": "Смириться",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          25
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "3) Смириться\nВы находите внутренний покой. Погоня за телом ослепила вас, но теперь вы понимаете –\nнужно жить сейчас, а о том, чего ещё не произошло, волноваться глупо.\nВы получаете на 1 ступень меньше стресса в РАЗУМ, вас нельзя застать врасплох и\nнапугать. Ваши произведения, созданные с данного момента, начинают цениться вдвое\nбольше благодаря необычайной глубине, что в них открыл ваш новый взгляд на жизнь.",
+      "tier": "elite",
+      "className": "Раствор Души"
+    },
+    {
+      "id": "classes-card-26-61",
+      "kind": "ability",
+      "title": "Параинженер",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          26
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "1) Параинженер\nВы получаете ресурс — человеческая кровь (к12, мир). Каждый раз, когда вы тратите кровь,\nбросьте к12. Если результат меньше кости ресурса, кость ресурса снижается на одну\nступень. Когда кость снижается ниже к4, вы не можете больше использовать предметы,\nпотребляющие кровь.\nС каждого недавно погибшего человека вы можете собрать кровь. Бросьте к12, если\nрезультат больше кости ресурса, кость ресурса повышается на одну ступень. Вы или ваш\nсоратник можете ранить себя на 1к6 стресса в ПУЛИ, от которого не защищает броня и\nповысить за это кость крови на ступень.\nПотратив кровь на создание или починку механизма, вы совершаете проверки ТЕХНИЧИТЬ\nи ЧИНИТЬ с мастерством.",
       "tier": "basic",
       "className": "Росоход"
     },
     {
-      "id": "classes-card-25-48",
+      "id": "classes-card-27-62",
       "kind": "ability",
       "title": "Параинженерный апофеоз",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          25
+          27
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "1) Параинженерный апофеоз\nВы углубляетесь в жестокую эзотерику росоходов. Теперь вы можете возвысить механизм,\nзапитав его кровью и опутав сосудами пластиковых трубок.\nЛюбой предмет с движущимися частями или работающий от аккумулятора повышает\nэффективность на одну ступень, но после каждого применения он тратит кровь. Кроме\nэтого, он получает свойство голодный.",
       "tier": "minor",
       "className": "Росоход"
     },
     {
-      "id": "classes-card-25-49",
+      "id": "classes-card-27-63",
       "kind": "ability",
       "title": "Ужас в темноте",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          25
+          27
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "2) Ужас в темноте\nВы скользите во тьме зверем, пугающим чудовищ. Каждый раз, когда вы убиваете\nпротивника, пока вас не видят или с особой жестокостью, другие враги пугаются и\nотступают на менее выгодные позиции. Если таким образом совершить убийство\nвражеского лидера, враги перестанут быть боеспособны, например убегут в ужасе или\nначнут делить командирские должности.",
       "tier": "minor",
       "className": "Росоход"
     },
     {
-      "id": "classes-card-25-50",
+      "id": "classes-card-27-64",
       "kind": "ability",
       "title": "Ошкурить добычу",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          25
+          27
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "3) Ошкурить добычу\nВы знаете, как получить с дичи максимальную выгоду. Когда вы грабите тела, вы\nдополнительно к полученным предметам восстанавливаете 1к6 в ресурсах.",
       "tier": "minor",
       "className": "Росоход"
     },
     {
-      "id": "classes-card-25-51",
+      "id": "classes-card-27-65",
       "kind": "ability",
       "title": "Сладость",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          25
+          27
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "4) Сладость\nПопробовав на вкус кровь, вы можете определить имя владельца, его физические\nхарактеристики и примерное местоположение. Это не работает с золотой кровью\nэкономантов.",
       "tier": "minor",
       "className": "Росоход"
     },
     {
-      "id": "classes-card-25-52",
+      "id": "classes-card-27-66",
       "kind": "ability",
       "title": "Пир охотника",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          25
+          27
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "5) Пир охотника\nДолой глупые идеи о морали. Есть только охотник и добыча.\nОдин раз за сессию можете съесть часть человека или животного, они обязательно должны\nбыть добыты на честной охоте и убиты только что. До конца сессии вы получаете навык,\nкоторым обладала цель, например это может быть УБИВАТЬ у солдата или СКРЫВАТЬСЯ у\nночного зверя.",
       "tier": "minor",
       "className": "Росоход"
     },
     {
-      "id": "classes-card-25-53",
+      "id": "classes-card-27-67",
       "kind": "ability",
       "title": "Ямы ери",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          25
+          27
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "6) Ямы ери\nВы — мастер засад и ловушек. Если вы приготовили засаду заранее, в сцене сражения вы\nможете один раз без проверок заявить, что всё идёт по вашему плану, например за врагами\nиз-за взрыва обваливается потолок, отрезая путь к отступлению, или из клетки вырывается\nтварь башни, нападая на них.",
       "tier": "minor",
       "className": "Росоход"
     },
     {
-      "id": "classes-card-25-54",
+      "id": "classes-card-27-68",
       "kind": "ability",
       "title": "Запутанные следы",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          25
+          27
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "7) Запутанные следы\nВы лучше всех идёте по следу и прячете собственный. Вы можете использовать навык\nСКРЫВАТЬСЯ вместо бросков УЗНАВАТЬ, направленных на выслеживание и бросков\nПРОБИВАТЬСЯ, направленных на уход от погони. Вас невозможно выследить.",
       "tier": "minor",
       "className": "Росоход"
     },
     {
-      "id": "classes-card-25-55",
+      "id": "classes-card-27-69",
       "kind": "ability",
       "title": "Ломать линии",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          25
+          27
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "8) Ломать линии\nВы отлично знаете, по каким энергетическим линиям внутри людей и зверей течёт энергия.\nПосле успешного нанесения урона боевым ножом или клинковым тяжёлым оружием, вы\n52\n\nлишаете противника активной магии, однако это работает только пока оружие остаётся в\nтеле, так что вы его на это время лишаетесь.",
+      "text": "8) Ломать линии\nВы отлично знаете, по каким энергетическим линиям внутри людей и зверей течёт энергия.\nПосле успешного нанесения урона боевым ножом или клинковым тяжёлым оружием, вы\n\nлишаете противника активной магии, однако это работает только пока оружие остаётся в\nтеле, так что вы его на это время лишаетесь.",
       "tier": "minor",
       "className": "Росоход"
     },
     {
-      "id": "classes-card-25-56",
+      "id": "classes-card-27-70",
       "kind": "ability",
       "title": "Техновабельщик",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          25
+          27
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "9) Техновабельщик\nБлагодаря актёрским навыкам и ряду особых киберимплантов голосовых связок, вы можете\nидеально повторить голос человека или животного, вплоть до интонаций и акцента. Когда\nвы пытаетесь выдать себя за другого, вы совершаете проверки ГОВОРИТЬ с мастерством.",
       "tier": "minor",
       "className": "Росоход"
     },
     {
-      "id": "classes-card-25-57",
+      "id": "classes-card-27-71",
       "kind": "ability",
       "title": "Истинная причина",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          25
+          27
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "10) Истинная причина\nВсе знают, что на охоту выходят во многом чтобы выпить чего покрепче. Вы можете выпить\nочень много алкоголя, не отравившись и не опьянев, кроме того на вкус можете отличить\nмельчайшие детали состава и условий хранения. Раз в сессию когда вы делаете это в\nкомпании, получите контакт личного уровня.",
       "tier": "minor",
       "className": "Росоход"
     },
     {
-      "id": "classes-card-25-58",
+      "id": "classes-card-27-72",
       "kind": "ability",
       "title": "Гончая",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          25,
-          26
+          27,
+          28
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "1) Гончая\nЖуткие четверолапые машины, созданные, чтобы выслеживать зверей и выгрызать их из\nнор. Голодные до крови гончие отличаются от военных дронов способностью чувствовать\nэмоции и бесконечной верностью хозяину.\nГончая тратит кровь при каждом использовании атаки, помощи или способности. Проверок\nна атаки и способности гончей проводить не надо. Выберите ей кличку.\nГончая\nУрон: 1к6\nСвойства: мощный\nДистанция: ближняя, средняя\nДаёт мастерство на броски УЗНАВАТЬ, связанные с выслеживанием цели\nГончая может схватить противника: следующая атака по нему причинит на одну ступень\nстресса больше.\nПоследствие: повреждена гончая (ПУЛИ) Если вы атаковали гончей, вы получите это\nпоследствие вместо того, что повредило бы персонажу. Пока гончая не будет починена\nпроверкой ЧИНИТЬ и к8 и более ценным ресурсом, она сможет только перемещаться\nрядом с росоходом.\nМалые\n► Гусеничная платформа\nПотратьте час и пройдите проверку ТЕХНИЧИТЬ, чтобы перестроить гончую в этот вариант.\nВариант сборки гончей для прямых атак, популярный у городских росоходов, выбравших\nцелью охоты людей и городских зверей.\nАтака заменяется на урон К8, ближняя-средняя-дальняя дистанция, автоматическое,\nразброс. Эта атака совершается двумя пулемётами, так что её могут коснуться\nпоследствия клин и закончились патроны.\n53\nВместо возможности схватить врага, имеет активную защиту, сбивающую вражеские\nснаряды комплексом из направляемых высокоскоростными камерами невидимых лазеров\nи реактивных залпов. Когда вас атакуют гранатой или другим снарядом крупнее пули, вы\nможете активировать её, чтобы не получить стресс.\n► Воздушное шасси\nПотратьте час и пройдите проверку ТЕХНИЧИТЬ, чтобы перестроить гончую в этот вариант.\nВариант сборки, напоминающий охотничьих птиц прошлого, включая массивную кожаную\nперчатку в комплекте.\nАтака заменяется на возможность использовать любую гранату, что есть у вас в инвентаре,\nна дальней дистанции и в недосягаемых областях, например на другом конце обрыва.\nВместо возможности схватить врага, может сканировать окружение, вы можете задать\nвопрос о локации и получить от ведущего честный ответ.\n► Гуманоидная рама\nПотратьте час и пройдите проверку ТЕХНИЧИТЬ, чтобы перестроить гончую в этот вариант.\nХолодный человекоподобный робот, чьё искусственное сердце качает украденную кровь,\nочень полезен универсальностью и мобильностью.\nАтака заменяется на возможность применить любое предназначенное для человека\nоружие.\nВместо возможности схватить врага, может оказать помощь в проверке ЧИНИТЬ,\nТЕХНИЧИТЬ, УБИВАТЬ или ПРОБИВАТЬСЯ.",
+      "text": "1) Гончая\nЖуткие четверолапые машины, созданные, чтобы выслеживать зверей и выгрызать их из\nнор. Голодные до крови гончие отличаются от военных дронов способностью чувствовать\nэмоции и бесконечной верностью хозяину.\nГончая тратит кровь при каждом использовании атаки, помощи или способности. Проверок\nна атаки и способности гончей проводить не надо. Выберите ей кличку.\nГончая\nУрон: 1к6\nСвойства: мощный\nДистанция: ближняя, средняя\nДаёт мастерство на броски УЗНАВАТЬ, связанные с выслеживанием цели\nГончая может схватить противника: следующая атака по нему причинит на одну ступень\nстресса больше.\nПоследствие: повреждена гончая (ПУЛИ) Если вы атаковали гончей, вы получите это\nпоследствие вместо того, что повредило бы персонажу. Пока гончая не будет починена\nпроверкой ЧИНИТЬ и к8 и более ценным ресурсом, она сможет только перемещаться\nрядом с росоходом.\nМалые\n► Гусеничная платформа\nПотратьте час и пройдите проверку ТЕХНИЧИТЬ, чтобы перестроить гончую в этот вариант.\nВариант сборки гончей для прямых атак, популярный у городских росоходов, выбравших\nцелью охоты людей и городских зверей.\nАтака заменяется на урон К8, ближняя-средняя-дальняя дистанция, автоматическое,\nразброс. Эта атака совершается двумя пулемётами, так что её могут коснуться\nпоследствия клин и закончились патроны.\nВместо возможности схватить врага, имеет активную защиту, сбивающую вражеские\nснаряды комплексом из направляемых высокоскоростными камерами невидимых лазеров\nи реактивных залпов. Когда вас атакуют гранатой или другим снарядом крупнее пули, вы\nможете активировать её, чтобы не получить стресс.\n► Воздушное шасси\nПотратьте час и пройдите проверку ТЕХНИЧИТЬ, чтобы перестроить гончую в этот вариант.\nВариант сборки, напоминающий охотничьих птиц прошлого, включая массивную кожаную\nперчатку в комплекте.\nАтака заменяется на возможность использовать любую гранату, что есть у вас в инвентаре,\nна дальней дистанции и в недосягаемых областях, например на другом конце обрыва.\nВместо возможности схватить врага, может сканировать окружение, вы можете задать\nвопрос о локации и получить от ведущего честный ответ.\n► Гуманоидная рама\nПотратьте час и пройдите проверку ТЕХНИЧИТЬ, чтобы перестроить гончую в этот вариант.\nХолодный человекоподобный робот, чьё искусственное сердце качает украденную кровь,\nочень полезен универсальностью и мобильностью.\nАтака заменяется на возможность применить любое предназначенное для человека\nоружие.\nВместо возможности схватить врага, может оказать помощь в проверке ЧИНИТЬ,\nТЕХНИЧИТЬ, УБИВАТЬ или ПРОБИВАТЬСЯ.",
       "tier": "professional",
       "className": "Росоход"
     },
     {
-      "id": "classes-card-26-59",
+      "id": "classes-card-28-73",
       "kind": "ability",
       "title": "Бестиарий",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          26
+          28
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "2) Бестиарий\nВы входите в братство когтей-близнецов, внутреннюю секту росоходов, ведущих\nсправочник о самой опасной добыче и способах охоты на неё. Чтобы отметить вашу к ней\nпринадлежность, вы носите на видном месте аномальные части зверей, например\nраздвоившийся коготь, или завившийся рог.\nКогда вы убиваете чудовище из Башни, вы делаете запись в бестиарий. Вы получаете\nмастерство на броски УБИВАТЬ и СКРЫВАТЬСЯ против этого вида чудовищ.\nМалые\n► Хладный охотник\nВы заносите в бестиарий не только чудовищ, но и людей. Это должен быть один тип\nпротивника или представители одной фракции.\n► Экзотерика\nВы делитесь записями с другими росоходами и получаете информацию от них. Раз в\nсессию, придя в оазис, вы можете сказать, что встретили другого росохода из когтей-\nблизнецов, вы можете потратить к8 ресурс, чтобы получить запись о любом\nраспространённом враге на выбор. Если у вас есть запись о редком чудовище, вы можете\nподелиться ей, получив к8 ресурс.\n54\n\n► Примирение\nВы так же получаете против целей, о которых у вас есть записи, мастерство на проверки\nГОВОРИТЬ.",
+      "text": "2) Бестиарий\nВы входите в братство когтей-близнецов, внутреннюю секту росоходов, ведущих\nсправочник о самой опасной добыче и способах охоты на неё. Чтобы отметить вашу к ней\nпринадлежность, вы носите на видном месте аномальные части зверей, например\nраздвоившийся коготь, или завившийся рог.\nКогда вы убиваете чудовище из Башни, вы делаете запись в бестиарий. Вы получаете\nмастерство на броски УБИВАТЬ и СКРЫВАТЬСЯ против этого вида чудовищ.\nМалые\n► Хладный охотник\nВы заносите в бестиарий не только чудовищ, но и людей. Это должен быть один тип\nпротивника или представители одной фракции.\n► Экзотерика\nВы делитесь записями с другими росоходами и получаете информацию от них. Раз в\nсессию, придя в оазис, вы можете сказать, что встретили другого росохода из когтей-\nблизнецов, вы можете потратить к8 ресурс, чтобы получить запись о любом\nраспространённом враге на выбор. Если у вас есть запись о редком чудовище, вы можете\nподелиться ей, получив к8 ресурс.\n\n► Примирение\nВы так же получаете против целей, о которых у вас есть записи, мастерство на проверки\nГОВОРИТЬ.",
       "tier": "professional",
       "className": "Росоход"
     },
     {
-      "id": "classes-card-26-60",
+      "id": "classes-card-28-74",
       "kind": "ability",
       "title": "Сезон охоты",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          26
+          28
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "3) Сезон охоты\nРаз в сессию, вы можете сказать, что видите в этом месте следы чудовища, например\nоплавленные кислотой стены, или несколько человеческих тел, выложенных по росту. У вас\nесть время на подготовку, например вы можете изучить следы проверкой УЗНАВАТЬ, чтобы\nповысить шансы на успех, или расставить ловушки через способность ямы ери. В начале\nследующей сцены вы столкнётесь с этим чудовищем, оно всегда очень опасно, но победа\nнад ним принесёт выгоду, например, само существо ценно для науки, или его логово\nрасполагалось на складе, за информацию о котором вам готовы щедро заплатить.\nМалые\n► Голодные имена\nВы можете сжечь любое из ваших имён, полученных от присоединения имени добычи в\nходе игры, чтобы сбросить стресс во всех сопротивлениях, убрать любое значимое\nпоследствие или четыре малых.\n► Тяжесть стали\nВы получаете модифицированную росоходами рельсовую винтовку для охоты на особо\nкрупную дичь.\nКровавый удар\nУрон: 1к12\nСвойства: Точный, Мощный, Тяжёлый, Громкий,\nОднозарядный, можете добавить к стрессу этого оружия\nбросок кости крови, это тратит кровь второй раз.\nДистанция: Дальняя\n► Героизм\nКогда у вас 5 и больше стресса в сопротивлении ПУЛЬ, вы причиняете на ступень больше\nстресса.",
       "tier": "professional",
       "className": "Росоход"
     },
     {
-      "id": "classes-card-26-61",
+      "id": "classes-card-28-75",
       "kind": "ability",
       "title": "Лихая стая",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          26,
-          27
+          28,
+          29
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "4) Лихая стая\nСловно в древности, вы охотитесь с другими росоходами вместе. Когда вы встречаете\nросохода или нескольких, вы можете без проверки убедить их пойти с вами, если вы точно\nзнаете, где находится интересная цель. Они помогут вам, но вы обязаны будете разделить\nдобычу поровну.\nМалые\n►Загнать добычу\nКогда вы оказываете помощь в бросках УБИВАТЬ, СКРЫВАТЬСЯ и ПРОБИВАТЬСЯ,\nэффективность повышается на ступень.\n55\n► Снайперская двойка\nПока вам помогают, вы можете принять успех с ценой при любой проверке атаки из\nдальнобойной винтовки.\n► Вихрь клыков\nВы синхронизируете гончих с другими охотниками. Пока с вами росоход-персонаж\nведущего, вы можете использовать способность гончей дважды в сцену.",
+      "text": "4) Лихая стая\nСловно в древности, вы охотитесь с другими росоходами вместе. Когда вы встречаете\nросохода или нескольких, вы можете без проверки убедить их пойти с вами, если вы точно\nзнаете, где находится интересная цель. Они помогут вам, но вы обязаны будете разделить\nдобычу поровну.\nМалые\n►Загнать добычу\nКогда вы оказываете помощь в бросках УБИВАТЬ, СКРЫВАТЬСЯ и ПРОБИВАТЬСЯ,\nэффективность повышается на ступень.\n► Снайперская двойка\nПока вам помогают, вы можете принять успех с ценой при любой проверке атаки из\nдальнобойной винтовки.\n► Вихрь клыков\nВы синхронизируете гончих с другими охотниками. Пока с вами росоход-персонаж\nведущего, вы можете использовать способность гончей дважды в сцену.",
       "tier": "professional",
       "className": "Росоход"
     },
     {
-      "id": "classes-card-27-62",
+      "id": "classes-card-29-76",
       "kind": "ability",
-      "title": "Боевое искусство",
+      "title": "Боевое искусство: Высший хищник",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          27
+          29
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "5) Боевое искусство: Высший хищник\nВы получаете мастерство в навыке УБИВАТЬ, срабатывающее, когда вы сражаетесь без\nоружия или с боевым ножом. Ваши безоружные атаки теперь причиняют к6 стресса. Раз в\nсцену вы можете отвлечь противника широким ударом: следующая атака по нему причинит\nна ступень больше стресса.\nМалые\n► Наброситься\nКогда вы применяете навык СКРЫВАТЬСЯ, вы всё ещё получаете бонусы от боевого\nискусства\n► Безрассудство\nРаз в сцену вы можете вместо проверки принять успех с ценой, пока сражаетесь без\nоружия или с боевым ножом\n► Добивание\nВы причиняете на ступень больше стресса медленным или обездвиженным противникам.",
       "tier": "professional",
       "className": "Росоход"
     },
     {
-      "id": "classes-card-27-63",
+      "id": "classes-card-29-77",
       "kind": "ability",
       "title": "Король-Весна",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          27
+          29
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "1) Король-Весна\nВы принимаете титул Короля-Весны, главы одной из пяти лож росоходов. Вместе с ним на\nвас возлагается венец из постоянно текущей магической крови.\nВы имеете право собрать вместе всю ложу: раз в сессию вы можете приказать зачистить\nвыбранную локацию от врагов и к началу следующей это будет сделано. Ложа считается\nконтактом фракционного уровня.",
       "tier": "elite",
       "className": "Росоход"
     },
     {
-      "id": "classes-card-27-64",
+      "id": "classes-card-29-78",
       "kind": "ability",
       "title": "Влюбённые",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          27
+          29
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "2) Влюбённые\nВы так долго прятались в тени, что услышали её прекрасное пение. Вы ответили своей\nпечальной песней.\nВы с тенями становитесь любовниками. Вы не можете получить при броске СКРЫВАТЬСЯ\nрезультат хуже успеха с ценой, видите в темноте и раз в сцену можете спросить у тени\nлюбую информацию о локации, вам ответят честно. Вы можете бросить мёртвое тело в\nтень и оно быстро растворится.\nТень считается контактом мирового уровня.\n56",
+      "text": "2) Влюбённые\nВы так долго прятались в тени, что услышали её прекрасное пение. Вы ответили своей\nпечальной песней.\nВы с тенями становитесь любовниками. Вы не можете получить при броске СКРЫВАТЬСЯ\nрезультат хуже успеха с ценой, видите в темноте и раз в сцену можете спросить у тени\nлюбую информацию о локации, вам ответят честно. Вы можете бросить мёртвое тело в\nтень и оно быстро растворится.\nТень считается контактом мирового уровня.",
       "tier": "elite",
       "className": "Росоход"
     },
     {
-      "id": "classes-card-27-65",
+      "id": "classes-card-29-79",
       "kind": "ability",
       "title": "Чёрная стрела",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          27,
-          28,
           29
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "3) Чёрная стрела\nВы, как один из искуснейших охотников, получаете в дар лук первого Короля-Весны и\nчёрную стрелу, которой по преданию был убит зверь Рир, на чьей крови вырос чёрный лес\nнарода ножей.\nЧёрная стрела всегда возвращается к вам в колчан. Она может убить сущность Башни, но\nвы в таком случае не сможете убить больше никого: после такой великой охоты, судьба\nбудет противиться более скромным свершениям.\nУрон: Мгновенно убивает цель-человека при успехе,\n1к12 по остальным врагам\nСвойства: Точный, Мощный, Тихий, Однозарядный, за\nкаждое имя противника вы бросаете дополнительную\nкость на попадание\nДистанция: Средняя, Дальняя\n57\nЭкономант\n«Клинки ржавеют от крови, но не монеты» — поговорка экономантов\nЭкономика - поистине самая непостижимая ветвь магии, самая опасная и хаотичная. С\nдревних времён, когда золото стало из-за неоспоримых магических свойств ходить\nосновной валютой, его принялись изучать заклинатели — экономанты. В эпоху Башни это\nнаполовину люди, наполовину деньги, самые перспективные ученики экономических\nфакультетов, прошедшие опасную трансформацию, они пытаются рассчитать выгоду от\nоткрытия предприятий при Башне, консультируют бизнесменов в оазисах и, конечно, ходят\nдобывать загадочное «золото мертвецов».\nНавык КОЛДОВАТЬ\nОбласть КОРПОРАЦИИ\nЗавершить важную сделку/Применить\nнасилие ради выгоды/Найти способ\nИзбавление\nзаработка, которым никто раньше не\nпользовался\nЦели\nЭкономанты стараются любым способом разбогатеть, по возможности разорив врагов и\nподняв друзей. Часто у них есть собственные частные фирмы, от небольших лавочек в\nоазисах до целых оружейных заводов. Кроме этого, они изучают экономику как науку, а\nчтобы понять влияние на неё Башни, нужно понять как можно больше Её законов. Ещё они\nдобывают золото мертвецов, особый встречаемый лишь в Башне материал, обладающий\nпамятью и сознанием, он очень ценен в производстве компьютеров и магических\nпредметов.\nВнешность\nЭкономанты в ходе посвящения, направляющего их магические способности, заменяют\nкровь на специальным образом подготовленное жидкое золото, перед этим их ждёт\nнесколько лет приёма золота внутрь во всё увеличивающихся дозах. Многие не\nпереживают и подготовки и ритуала, выжившие же получают золотой цвет глаз, волос,\nногтей, слизистых и внутренних органов, а так же очень бледную, почти белую кожу.\nЭкономанты всегда одеты с иголочки, даже в бой они идут в дорогих костюмах с запонками.\nОни, однако, не брезгуют и военным снаряжением, нося бронежилеты, разгрузку, тяжёлое\nвооружение или холодное оружие.\nЕсли экономант теряет конечность, киберпротез у него приживётся только на золотом\nконнекторе и с золотыми проводами, однако почти никто на этом не останавливается,\nпокрывая корпус позолотой.\nРеференсы: Трейдеры, военное снаряжение, фэнтези волшебники\nТрадиции\n— Экономанты держат банковские карты, золотые монеты и купюры в массивных\nавтоматических кошельках, закрытых на три замка — магический, биометрический и\nфизический. Кошельки, лихо и быстро открываемые владельцами, выстреливают в руку\nнужную сумму, стоит ввести её на встроенном сенсорном экране, или включают одну из\n59\nкарточек, чтобы с неё можно было списать ровно эту сумму.\nРазные экономанты по желанию встраивают в кошельки защитные механизмы, например\nкапсулу с пирофорным веществом, уничтожающим деньги при повреждении замка,\nоднозарядный крупнокалиберный пистолет, позволяющий неожиданно ранить грабителя,\nили бронированный корпус, не дающий пулям повредить самому святому.\nКонтакты\nОтветьте на\n► Ваш бизнес-партнёр, он обманул вас в серьёзной сделке, но его\nвопросы\nсвязи стоят риска(Персонаж ведущего)\nОткуда вы взяли\n► Кто-то из группы чересчур альтруистичен и всегда забывает о\nстартовый капитал?\nвыгоде для отряда. Кто это и как вы объясняете ему необходимость\nзаработка?\nКого вы предали\nради наживы? ► Кто-то из группы пытается выглядеть официально, но постоянно\nспотыкается о мелкие детали формального общения. Кто это и\nРасскажите про почему вы решили помочь ему научиться общению в приличных\nвашу кругах?\nэкономическую\nтеорию, за которую ► Вы сговорились с кем-то из команды ради финансовой махинации\nвас считают в одном из оазисов. Кто это был и как вы провернули всё так тонко,\nбезумцем. что никто не заметил?",
+      "text": "3) Чёрная стрела\nВы, как один из искуснейших охотников, получаете в дар лук первого Короля-Весны и\nчёрную стрелу, которой по преданию был убит зверь Рир, на чьей крови вырос чёрный лес\nнарода ножей.\nЧёрная стрела всегда возвращается к вам в колчан. Она может убить сущность Башни, но\nвы в таком случае не сможете убить больше никого: после такой великой охоты, судьба\nбудет противиться более скромным свершениям.\nУрон: Мгновенно убивает цель-человека при успехе,\n1к12 по остальным врагам\nСвойства: Точный, Мощный, Тихий, Однозарядный, за\nкаждое имя противника вы бросаете дополнительную\nкость на попадание\nДистанция: Средняя, Дальняя",
       "tier": "elite",
-      "className": "Экономант"
+      "className": "Росоход"
     },
     {
-      "id": "classes-card-29-66",
+      "id": "classes-card-31-80",
       "kind": "ability",
       "title": "Великий обмен",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          29
+          31
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "1) Великий обмен\nВы отдаёте вашу живую кровь в обмен на холодную уверенность золота.\nКогда вы торгуетесь, вы можете использовать навык КОЛДОВАТь вместо ГОВОРИТЬ, ведь\nвы понимаете метафизическую подоплёку обмена.\nКогда вы получаете стресс, чтобы оплатить что-то или использовать заклинаине, вы можете\nпринять его в сопротивление ПУЛЬ вместо РЕСУРСОВ, тратя золотую кровь из ран. Вы\nбросаете кость два раза и выбираете меньшую в любом случае.\nВы становитесь очень тяжёлым из-за золота в организме.",
       "tier": "basic",
       "className": "Экономант"
     },
     {
-      "id": "classes-card-29-67",
+      "id": "classes-card-31-81",
       "kind": "ability",
       "title": "Вытеснение",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          29
+          31
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "1) Вытеснение\nВы с благодарностью принимаете новую, нечеловеческую природу. Вы получаете +5\nзащиты в ПУЛИ, срабатывающие, когда вас пытаются отравить. На вас больше не\nработают алкоголь и наркотики.",
       "tier": "minor",
       "className": "Экономант"
     },
     {
-      "id": "classes-card-29-68",
+      "id": "classes-card-31-82",
       "kind": "ability",
       "title": "Друг финансов",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          29
+          31
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "2) Друг финансов\nВы чувствуете деньги на расстоянии, а прикоснувшись к ним, можете определить\nпоследних людей, кто с ними взаимодействовал и в каких операциях они были\nзадействованы. Вы можете перемещать деньги на расстоянии, не прикасаясь к ним.",
       "tier": "minor",
       "className": "Экономант"
     },
     {
-      "id": "classes-card-29-69",
+      "id": "classes-card-31-83",
       "kind": "ability",
       "title": "Телохранитель",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          29
+          31
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "3) Телохранитель\nЗа вами следует телохранитель, дайте ему позывной и отличительную черту. Это контакт\nличного уровня с к8 причиняемого стресса и защитой 3. Он не может вас предать и всегда\n60\n\nпридёт на помощь из-за иррациональной сумасшедшей верности. В случае его потери от\nрокового последствия, вы можете взять эту способность снова.",
+      "text": "3) Телохранитель\nЗа вами следует телохранитель, дайте ему позывной и отличительную черту. Это контакт\nличного уровня с к8 причиняемого стресса и защитой 3. Он не может вас предать и всегда\n\nпридёт на помощь из-за иррациональной сумасшедшей верности. В случае его потери от\nрокового последствия, вы можете взять эту способность снова.",
       "tier": "minor",
       "className": "Экономант"
     },
     {
-      "id": "classes-card-29-70",
+      "id": "classes-card-31-84",
       "kind": "ability",
       "title": "Экспроприация",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          29
+          31
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "4) Экспроприация\nСовершив проверку КОЛДОВАТЬ и соответствующей области, вы атакуете врагов или\nобъекты золотым пламенем, которое жжёт тем сильнее, чем дороже топливо. Ниже\nприведена таблица, сколько стресса оно причинит разным объектам. Дистанция — средняя\nи дальняя.\n► К4 Человек в простом снаряжении, обычные укрытия\n► К6 Человек в дорогой одежде, укрытия из броневой стали, электроника\n► К8 Человек в профессиональном боевом снаряжении, боевая машина\n► К10 Человек в элитном боевом снаряжении, или с особыми магическими артефактами\n► К12 Человек с уникальными магическими артефактами или экспериментальным\nснаряжением\nПеред броском вы можете принять столько же стресса в РЕСУРСЫ, чтобы потратить на\nзаклинание собственные деньги и дать ему свойство мощный.",
       "tier": "minor",
       "className": "Экономант"
     },
     {
-      "id": "classes-card-29-71",
+      "id": "classes-card-31-85",
       "kind": "ability",
       "title": "Оппозиция",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          29
+          31
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "5) Оппозиция\nУ вас есть оппонент в бизнесе и в экономической теории, дайте ему имя. Раз в сессию вы\nможете сказать, что он появляется в сцене торговли или переговоров и заменяет собой\nугрозу, но теперь вам придётся разбираться с ним. Если он не может продолжать\nдействовать, вы убираете эту способность и получаете повышение навыков.",
       "tier": "minor",
       "className": "Экономант"
     },
     {
-      "id": "classes-card-29-72",
+      "id": "classes-card-31-86",
       "kind": "ability",
       "title": "Биржевой жокей",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          29
+          31
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "6) Биржевой жокей\nЭкономантам сверхъестественно везёт, будто их судьба не так изношена, как у простых\nсолдат и рабочих.\nВы получаете кость судьбы, которую можно добавить к проверкам или причинению стресса.\nИзначально она равна к12, и каждый раз, когда вы её применяете, она понижается на\nступень, после понижения кости с к4 вы не можете использовать её снова. Кость судьбы\nповышается на одну ступень каждый раз когда вы получаете повышение навыков, или\nвыполняете условие избавления.",
       "tier": "minor",
       "className": "Экономант"
     },
     {
-      "id": "classes-card-29-73",
+      "id": "classes-card-31-87",
       "kind": "ability",
       "title": "Продолжение пути",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          29
+          31
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "7) Продолжение пути\nВы продолжаете превращать организм в деньги, ибо сталь порой ржавеет, а золото\nостаётся. На ваши нейроны записана криптовалюта, а в ваш генный код специальный вирус\nвшил экономические трактаты разных школ.\nПри торговле вы можете получать стресс в ДУХ или РАЗУМ вместо РЕСУРСОВ.",
       "tier": "minor",
       "className": "Экономант"
     },
     {
-      "id": "classes-card-29-74",
+      "id": "classes-card-31-88",
       "kind": "ability",
       "title": "Сделанный мастером",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          29,
-          30
+          31,
+          32
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "8) Сделанный мастером\nВы заказываете пистолет, идеально выполненный под вас, он учитывает рост, форму\nладони и ваши астрологические параметры. Пистолет так к вам привязан, что если вы его\nтеряете против своей воли, он вернётся к вам после первого убийства человека.\n61\nДизайнерский пистолет\nУрон: 1к8\nДистанция: Ближний бой, средняя\nСвойства: После первого убийства вернётся к вам при\nпотере, точный, надёжный, бронебойный (1)",
+      "text": "8) Сделанный мастером\nВы заказываете пистолет, идеально выполненный под вас, он учитывает рост, форму\nладони и ваши астрологические параметры. Пистолет так к вам привязан, что если вы его\nтеряете против своей воли, он вернётся к вам после первого убийства человека.\nДизайнерский пистолет\nУрон: 1к8\nДистанция: Ближний бой, средняя\nСвойства: После первого убийства вернётся к вам при\nпотере, точный, надёжный, бронебойный (1)",
       "tier": "minor",
       "className": "Экономант"
     },
     {
-      "id": "classes-card-30-75",
+      "id": "classes-card-32-89",
       "kind": "ability",
       "title": "Личный бренд",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          30
+          32
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "9) Личный бренд\nВы — лицо крупной компании, и от ваших действий напрямую зависит курс ценных бумаг в\nцелом секторе экономики.\nКогда вы или ваш контакт получаете последствие, связанное с репутацией или честным\nименем, вы получаете к6 стресса в ресурсы. Когда вы или ваш контакт совершаете что-то,\nвыставляющее вас в хорошем свете, вы снимаете все последствия и стресс в ресурсах.\nВы обязаны носить на видном месте логотип, держите бутылки этикеткой от себя и\nнемедленно упоминаете спонсора, стоит кому-то начать вас снимать.",
       "tier": "minor",
       "className": "Экономант"
     },
     {
-      "id": "classes-card-30-76",
+      "id": "classes-card-32-90",
       "kind": "ability",
       "title": "Холод",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          30
+          32
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "10) Холод\nВаши импланты защищены тремя рядами высококлассного шифрования, а ваши эмоции —\nкоркой льда на сердце и пугающе спокойным лицом.\nВрагам сложно предугадать ваши действия. Первое действие в сцену становится на\nступень легче.",
       "tier": "minor",
       "className": "Экономант"
     },
     {
-      "id": "classes-card-30-77",
+      "id": "classes-card-32-91",
       "kind": "ability",
       "title": "Всё ради прибыли",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          30
+          32
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "1) Всё ради прибыли\nПреступление — просто грубое слово, чтобы заклеймить людей, свободных от рамок\nгосударства, что ограничивают пламенное бушевание рынка…\nВы прочно связываетесь с бандитами, предпочитая проворачивать дела через\nорганизованную преступность. Получите контакт фракционного уровня — крупную банду.\nРаз в сессию, находясь в оазисе, вы можете через информатора банды найти любой\nнелегальный товар по желанию, например термоядерную боеголовку, экспериментальный\nбоевой наркотик или артефакт чёрной магии. Вам всегда потребуются дополнительные\nусилия, чтобы его купить или достать.\nМалые\n► Был везде\nВы сами были частью преступного мира до становления важным предпринимателем. Вы\nсвободно говорите на воровском жаргоне и раз в сессию можете найти в любом оазисе\nнелегальную услугу. Вам всегда потребуются дополнительные усилия, чтобы её получить.\nПридумайте, кто был вашим сокамерником.\n► Учтивость\nВы — мастер давать взятки. Когда вы пытаетесь подкупить кого-то, бросайте ГОВОРИТЬ с\n62\n\nмастерством. Если этот кто-то представитель государства или корпорации, результат\nброска повышается на одну ступень. Придумайте, из-за какого слишком принципиального\nоппонента у вас возникли проблемы.\n► Защита антипринца\nАнтипринц, основатель ордена светоносцев, сам себя защищал на суде. Результат мы все\nзнаем, но попытка была хорошая.\nВ такой серой зоне как Башня, вы отлично ограждаете себя, контакты и соратников от\nлегального преследования, виртуозно применяя гремучую смесь знания законов, подкупа и\nриторических ловушек. Когда вы, ваш соратник или ваш контакт должны получить\nпоследствие, связанное с недоверием, изгнанием, или другим общественным наказанием,\nвы без необходимости в проверке снижаете его на ступень. Каждый раз, защищая, вы\nдолжны придумывать новое прецедентное дело или новый закон, если вы повторитесь,\nпридётся проходить обычную проверку ГОВОРИТЬ.",
+      "text": "1) Всё ради прибыли\nПреступление — просто грубое слово, чтобы заклеймить людей, свободных от рамок\nгосударства, что ограничивают пламенное бушевание рынка…\nВы прочно связываетесь с бандитами, предпочитая проворачивать дела через\nорганизованную преступность. Получите контакт фракционного уровня — крупную банду.\nРаз в сессию, находясь в оазисе, вы можете через информатора банды найти любой\nнелегальный товар по желанию, например термоядерную боеголовку, экспериментальный\nбоевой наркотик или артефакт чёрной магии. Вам всегда потребуются дополнительные\nусилия, чтобы его купить или достать.\nМалые\n► Был везде\nВы сами были частью преступного мира до становления важным предпринимателем. Вы\nсвободно говорите на воровском жаргоне и раз в сессию можете найти в любом оазисе\nнелегальную услугу. Вам всегда потребуются дополнительные усилия, чтобы её получить.\nПридумайте, кто был вашим сокамерником.\n► Учтивость\nВы — мастер давать взятки. Когда вы пытаетесь подкупить кого-то, бросайте ГОВОРИТЬ с\n\nмастерством. Если этот кто-то представитель государства или корпорации, результат\nброска повышается на одну ступень. Придумайте, из-за какого слишком принципиального\nоппонента у вас возникли проблемы.\n► Защита антипринца\nАнтипринц, основатель ордена светоносцев, сам себя защищал на суде. Результат мы все\nзнаем, но попытка была хорошая.\nВ такой серой зоне как Башня, вы отлично ограждаете себя, контакты и соратников от\nлегального преследования, виртуозно применяя гремучую смесь знания законов, подкупа и\nриторических ловушек. Когда вы, ваш соратник или ваш контакт должны получить\nпоследствие, связанное с недоверием, изгнанием, или другим общественным наказанием,\nвы без необходимости в проверке снижаете его на ступень. Каждый раз, защищая, вы\nдолжны придумывать новое прецедентное дело или новый закон, если вы повторитесь,\nпридётся проходить обычную проверку ГОВОРИТЬ.",
       "tier": "professional",
       "className": "Экономант"
     },
     {
-      "id": "classes-card-30-78",
+      "id": "classes-card-32-92",
       "kind": "ability",
       "title": "Культурный досуг",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          30
+          32
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "2) Культурный досуг\nВы знаете, как красиво отдыхать с правильными людьми. Раз в сессию когда вы\nвыполняете условие избавления, вы можете пригласить важный для вас контакт или его\nпредставителя на роскошную по меркам Башни вечеринку. Вы и ваш контакт снимете на\nступень больше стресса и всегда договоритесь о новом выгодном деле.\nМалые\n► Кстати!\nВы очень ловко заговариваете зубы, так что всегда договариваетесь на два новых\nвыгодных дела вместо одного.\n► Удовольствие в мелочах\nВ начале сессии придумайте дополнительное условие избавления. Оно работает до конца\nсессии.\n► Приглашённые гости\nВаши соратники могут снять стресс за ваше избавление, если найдут, в какой роли они\nмогут быть на празднике, например в качестве борца на арене, музыканта, или бармена.",
       "tier": "professional",
       "className": "Экономант"
     },
     {
-      "id": "classes-card-30-79",
+      "id": "classes-card-32-93",
       "kind": "ability",
       "title": "Амбассадор",
-      "section": "classes",
-      "dropTarget": "ability",
-      "source": {
-        "pdfPages": [
-          30,
-          31
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "3) Амбассадор\nВы — часть менеджмента крупной компании. Выберите любую корпорацию. Раз в сессию в\nоазисе её представители могут бесплатно дать вам к8 или ниже предмет или ресурс, а так\nже восстановить к8 в любом сопротивлении. Раз в сессию вы получаете задание от\nкорпорации, сопряжённое с дополнительными трудностями. Если вы не выполняете его в\nтечение сессии, вам закрывается доступ к услугам от корпорации, пока вы его не\nзавершите.\n63\nМалые\n► Служба безопасности\nРаз в сессию в оазисе представители корпорации могут дать вам убежище, или выдать вам\nбойца с к8 причиняемого стресса и защитой 3 до начала следующей сессии. Придумайте\nпрозвище, которым вы называете всех агентов службы безопасности.\n► Плутониевая карта\nКорпорация одобряет вам кредит на любую сумму. В гавани у представителя компании вы\nможете раз в сессию бесплатно взять предмет к12 или меньше. Вы должны вернуть к12 в\nвиде стресса в ресурсы или предмета до конца следующей сессии, иначе вам закроется\nдоступ к услугам от корпорации, пока вы не выплатите долг.\n► В последнюю секунду\nЕсли вы попадаете в плен или в логово чудовища, представитель компании вас выкупает,\nили спасает в составе штурмового отряда.",
-      "tier": "professional",
-      "className": "Экономант"
-    },
-    {
-      "id": "classes-card-31-80",
-      "kind": "ability",
-      "title": "Сделка",
-      "section": "classes",
-      "dropTarget": "ability",
-      "source": {
-        "pdfPages": [
-          31
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "4) Сделка\nВы можете купить и продать что угодно, даже нематериальное. Тень, слава, голос — всё\nимеет цену. Разве у биржи, где покупают и продают надежды и обещания, есть с этим\nкакие-то различия?\nВы можете потратить к12 предмет или ресурс, или получить к12 стресса в РЕСУРСЫ,\nчтобы купить у знающего о ваших намерениях человека что-то концептуальное. Вы можете\nлибо пользоваться этим сами, например, меняя внешность на купленную, либо потратить,\nчтобы восстановить любое последствие в шкалах ДУХ, СУДЬБА или РЕСУРСЫ, либо\nпродать как ресурс другому экономанту.\nВы так же можете продать что-то своё, в таком случае вы получаете значимое последствие\nв ДУХ, пока не выплатите долг, и взамен можете взять к12 ресурс или предмет как если бы\nменялись на него бартером.\nМалые\n► Тернистый путь\nЗа 2 к12 ресурса или предмета, или гарантированное значимое последствие в РЕСУРСЫ,\nвы можете купить у человека его судьбу. Вы можете продать её другому экономанту, или\nсделать этого человека контактом, который не может вас предать. Вы так же можете\nпоменяться судьбами с этим человеком в смертельный момент, чтобы он погиб вместо вас\n(Вы не получаете роковое последствие и снимаете последнее полученное значимое).\n► Разбей спор!\nВместо сделки, вы можете заключить пари, в награду за которое при успехе вы получите\nмалую или профессиональную способность. В случае проигрыша вам придётся отдать к10\nили к12 ресурс или предмет. Ниже приведены примеры пари.\nМалые (к10): Победить опасного врага, дойти до оазиса без ранений, мирно разрешить\nконфликт с угрожающими местности бандитами.\nЗначимые (к12) Купить оазис за один пистолет, обмануть корпорацию и остаться правым по\nдокументам, сразиться на арене насмерть, будучи пьяным\n64\n\n► Должники\nВы можете продать ресурс или предмет, не назначая цену сразу, сказав, что потом\nпотребуете услугу. Вы можете заявиться за услугой не раньше, чем на следующей сессии,\nно взамен она будет иметь эффективность на ступень выше, чем кость предмета, который\nвы отдали.",
-      "tier": "professional",
-      "className": "Экономант"
-    },
-    {
-      "id": "classes-card-31-81",
-      "kind": "ability",
-      "title": "Боевое искусство",
-      "section": "classes",
-      "dropTarget": "ability",
-      "source": {
-        "pdfPages": [
-          31
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "5) Боевое искусство: Удар Третьего\nСистема самообороны, разработанная для корпоративной службы безопасности и высшего\nруководства Островных Фирм, но позже адаптированная большинством корпораций.\nВы получаете мастерство в навыке УБИВАТЬ, срабатывающее, когда вы сражаетесь без\nоружия. Ваши безоружные атаки теперь причиняют к6 стресса. Раз в сцену вы можете\nигнорировать преимущество противника в позиции, например если он атакует из засады,\nнаходится выше вас, или вы связаны.\nМалые\n► Свобода\nЕсли вы закованы в наручники, или десяток пластиковых стяжек, или связаны, вы можете\nгромко освободиться без проверки, или тихо - проверкой СКРЫВАТЬСЯ.\n► Ловкий финт\nВы виртуозно уходите с пути атаки противника, подставляя соратников. Раз в сцену, вы\nможете передать стресс, полученный от атаки, союзнику или контакту.\n► Пленник\nВы знаете, как можно угрозами, ударами по болевым точкам и просто вовремя\nнаставленным пистолетам взять человека в плен. Если врагов меньше, чем вас, ваши\nпроверки ГОВОРИТЬ, связанные с требованиями сдаться, совершаются с мастерством.",
-      "tier": "professional",
-      "className": "Экономант"
-    },
-    {
-      "id": "classes-card-31-82",
-      "kind": "ability",
-      "title": "Чёрный человек",
-      "section": "classes",
-      "dropTarget": "ability",
-      "source": {
-        "pdfPages": [
-          31
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "1) Чёрный человек\nВы лишаетесь последних крупиц человечности в погоне за прибылью. Вы не можете\nбольше получить стресс или последствие в РАЗУМ. Раз в сессию вы можете продать что-\nто, что вам не принадлежит, в том числе нематериальное, или купить что-то без согласия\nчеловека.",
-      "tier": "elite",
-      "className": "Экономант"
-    },
-    {
-      "id": "classes-card-31-83",
-      "kind": "ability",
-      "title": "Экономика - это я",
-      "section": "classes",
-      "dropTarget": "ability",
-      "source": {
-        "pdfPages": [
-          31
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "2) Экономика - это я\nВы связываетесь с представителями корпорации и вас оценивают как достойного стать\nчастью совета директоров. Ваша сущность, сливаясь с банковскими счетами и\nкриптовалютным кодом, становится частью мира информации. Вы считаетесь для группы\nконтактом мирового уровня и раз в сессию можете купить что-то, что обычно не достанешь\nбез нужды в ресурсах и проверках.\n65",
-      "tier": "elite",
-      "className": "Экономант"
-    },
-    {
-      "id": "classes-card-32-84",
-      "kind": "ability",
-      "title": "Тот, кто продал бога",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
@@ -1765,305 +1920,288 @@ window.TOWER_CODEX = {
           32,
           33
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "3) Тот, кто продал бога\nВы хитростью покупаете что-то важное для целой большой группы, например, память о\nгерое народа Железа, или воинскую славу сражавшихся за Хашахсот. Вы можете\nпревратить это в деньги, сделав невозможным получение стресса и последствий в шкалу\nРЕСУРСОВ, или откупиться от одной из сущностей Башни. Она покинет мир, но и мир\nнавсегда лишится чего-то ценного.\n66\nНеболом\n«Удар за ударом, все ответы-в упорстве»\nНеболомы — новый духовный орден, образовавшийся полтора века назад из первых\nкосмонавтов на орбите. Они так впечатлились пением звёзд, что принесли первую великую\nНавык УЗНАВАТЬ\nОбласть ГОРИЗОНТ\nСовершить статистически невозможное\nдействие/ выйти из ситуации раненым/ найти\nИзбавление необычное решение для трудности\nклятву — решить Великое Уравнение, лежащее в основе технологии гипердвигателя и\nотправиться к далёким манящим мирам.\nНеболомы известны своей педантичностью и стремлением всё просчитать, они составляют\nтаблицы на каждый случай жизни, не говоря уже о постоянных записях на полях книги\nмалых клятв.\nБлагодаря длительным тренировкам, медитациям, загадочным духовным практикам по\nвыходу из тела и особому массиву киберимплантов, они превращают себя в живые\nсуперкомпьютеры, способные просчитать что угодно.\nЦели\nИндивидуально неболомы поднимаются в Башню каждый по своей причине, кто-то в\nкачестве наёмника, кто-то чтобы изучить влияние Башни на вероятность.\nГлобальная цель всего ордена — найти и решить Первое Уравнение, которое поможет им\nвычислить Великое Неизвестное, божественное число, что поможет людям выйти в космос.\nОни считают, что Башня, искажающая все законы математики, может быть построена с\nВеликим Неизвестным в своей основе.\nВнешность\nНеболомы носят тяжёлую броню. Они покрыты татуировками формул, диаграмм и\nуравнений, в том числе на лице. Неболомы носят длинные волосы, заплетённые во\nмножество кос, окрашенных в яркие цвета на конце, эта традиция осталась с тех времён,\nкогда человеческий волос был единственным материалом для письменных кисточек на\nорбитальной станции. На броне всегда на видном месте у них закреплена книга малых\nклятв, сборник обещаний самому себе и по совместительству записная книжка для самых\nважных мыслей. На шее они носят нательную таблицу умножения размером чуть меньше\nладони, этот оберег используется в молитвах, к тому же вокруг него вероятность в Башне\nстановится более стабильной.\nРеференсы: Тактический стиль, эзотерика, космос\nТрадиции\n— Храмы неболомов выглядят как большие компьютерные залы, где каждый может прийти\nи составить свою таблицу, прославляя тем самым бога-число.\n68\n\n— Вступая в орден, каждый неболом даёт Великую Клятву, которой он будет следовать всю\nжизнь, это не что-то, чего можно достигнуть, а скорее свод жизненных правил, что каждый\nопределяет для себя сам. В течение жизни же неболомы дают многие малые клятвы,\nмалой клятвой можно назвать любое серьёзное обещание, от доставки тела друга до\nвнешнего мира до победы в сражении.\n— Вера в бога-число принимает очень различные формы, так, у многих она ограничивается\nпериодическими молитвами и ношением нательной таблицы умножения, другие же всю\nжизнь посвящают поиску Первого Уравнения, и даже в бою читают заговоры от пули и\nклинка.\n— Распространённым малым клятвам соответствует свой цвет особой ленты, носимой в\nволосах или на одежде. Бирюзовая лента означает траур, чёрная - долг, красная - месть, а\nбелая - покаяние.\nОтветьте на\nКонтакты\nвопросы\n► Неболом с клятвой мести, ваш напарник, которого вы до недавней\nЧто в вашей\nвстречи считали мёртвым(Персонаж ведущего)\nпрактике\nпоколебало ► Кто-то в группе считает межпланетные полёты пустой тратой\nуверенность в том, ресурсов, постоянно вам об этом напоминая. Кто это и как он это\nчто всё можно объясняет?\nпросчитать?\n► Кто-то в группе пытается освоить гуманитарную науку вроде\nПочему вы хотите философии или литературоведения, чей смысл вы не понимаете. Кто\nотправиться к это и почему вы не оставляете попыток познать что-то далёкое от\nдругим планетам? вашей сферы?\nВаш самый ►Вы спасли жизнь кому-то из группы, заслонив от пуль. Кто это был и\nудавшийся подсчёт чем он обещал вам отплатить?",
-      "tier": "elite",
-      "className": "Неболом"
+      "text": "3) Амбассадор\nВы — часть менеджмента крупной компании. Выберите любую корпорацию. Раз в сессию в\nоазисе её представители могут бесплатно дать вам к8 или ниже предмет или ресурс, а так\nже восстановить к8 в любом сопротивлении. Раз в сессию вы получаете задание от\nкорпорации, сопряжённое с дополнительными трудностями. Если вы не выполняете его в\nтечение сессии, вам закрывается доступ к услугам от корпорации, пока вы его не\nзавершите.\nМалые\n► Служба безопасности\nРаз в сессию в оазисе представители корпорации могут дать вам убежище, или выдать вам\nбойца с к8 причиняемого стресса и защитой 3 до начала следующей сессии. Придумайте\nпрозвище, которым вы называете всех агентов службы безопасности.\n► Плутониевая карта\nКорпорация одобряет вам кредит на любую сумму. В гавани у представителя компании вы\nможете раз в сессию бесплатно взять предмет к12 или меньше. Вы должны вернуть к12 в\nвиде стресса в ресурсы или предмета до конца следующей сессии, иначе вам закроется\nдоступ к услугам от корпорации, пока вы не выплатите долг.\n► В последнюю секунду\nЕсли вы попадаете в плен или в логово чудовища, представитель компании вас выкупает,\nили спасает в составе штурмового отряда.",
+      "tier": "professional",
+      "className": "Экономант"
     },
     {
-      "id": "classes-card-33-85",
+      "id": "classes-card-33-94",
       "kind": "ability",
-      "title": "Книга клятв",
+      "title": "Сделка",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
           33
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "1) Книга клятв\nВыберите Великую Клятву — траур, долг, месть, или покаяние. Когда вы получаете\nпоследствие, вы можете не принимать его, но отказаться от одного из условий избавления\n— малое последствие отнимает условие до конца сессии, значимое до следующего\nполучения способности, роковое — навсегда.\nВ начале сессии вы можете принести малую клятву, особую задачу, выполнимую за одну\nигровую встречу, например убить главаря бандитов, или дойти до далёкого оазиса. Она\nдействует как условие избавления и существует, пока вы её не выполните. После этого вы\nполучаете награду в виде ресурса или снаряжения.\nЕсли вы лишаетесь этого условия избавления, с клятвой происходит что-то негативное,\nнапример дорога к оазису оказывается удлинённой, а бандиты укрепляют аванпост. Вы\nможете иметь до трёх малых клятв одновременно, в начале каждой сессии вы можете\nзаменить одну невыполненную новой, однако в таком случае действует правило,\nсоздающее негативный эффект для отменённой клятвы.\n69",
+      "text": "4) Сделка\nВы можете купить и продать что угодно, даже нематериальное. Тень, слава, голос — всё\nимеет цену. Разве у биржи, где покупают и продают надежды и обещания, есть с этим\nкакие-то различия?\nВы можете потратить к12 предмет или ресурс, или получить к12 стресса в РЕСУРСЫ,\nчтобы купить у знающего о ваших намерениях человека что-то концептуальное. Вы можете\nлибо пользоваться этим сами, например, меняя внешность на купленную, либо потратить,\nчтобы восстановить любое последствие в шкалах ДУХ, СУДЬБА или РЕСУРСЫ, либо\nпродать как ресурс другому экономанту.\nВы так же можете продать что-то своё, в таком случае вы получаете значимое последствие\nв ДУХ, пока не выплатите долг, и взамен можете взять к12 ресурс или предмет как если бы\nменялись на него бартером.\nМалые\n► Тернистый путь\nЗа 2 к12 ресурса или предмета, или гарантированное значимое последствие в РЕСУРСЫ,\nвы можете купить у человека его судьбу. Вы можете продать её другому экономанту, или\nсделать этого человека контактом, который не может вас предать. Вы так же можете\nпоменяться судьбами с этим человеком в смертельный момент, чтобы он погиб вместо вас\n(Вы не получаете роковое последствие и снимаете последнее полученное значимое).\n► Разбей спор!\nВместо сделки, вы можете заключить пари, в награду за которое при успехе вы получите\nмалую или профессиональную способность. В случае проигрыша вам придётся отдать к10\nили к12 ресурс или предмет. Ниже приведены примеры пари.\nМалые (к10): Победить опасного врага, дойти до оазиса без ранений, мирно разрешить\nконфликт с угрожающими местности бандитами.\nЗначимые (к12) Купить оазис за один пистолет, обмануть корпорацию и остаться правым по\nдокументам, сразиться на арене насмерть, будучи пьяным\n\n► Должники\nВы можете продать ресурс или предмет, не назначая цену сразу, сказав, что потом\nпотребуете услугу. Вы можете заявиться за услугой не раньше, чем на следующей сессии,\nно взамен она будет иметь эффективность на ступень выше, чем кость предмета, который\nвы отдали.",
+      "tier": "professional",
+      "className": "Экономант"
+    },
+    {
+      "id": "classes-card-33-95",
+      "kind": "ability",
+      "title": "Боевое искусство: Удар Третьего",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          33
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "5) Боевое искусство: Удар Третьего\nСистема самообороны, разработанная для корпоративной службы безопасности и высшего\nруководства Островных Фирм, но позже адаптированная большинством корпораций.\nВы получаете мастерство в навыке УБИВАТЬ, срабатывающее, когда вы сражаетесь без\nоружия. Ваши безоружные атаки теперь причиняют к6 стресса. Раз в сцену вы можете\nигнорировать преимущество противника в позиции, например если он атакует из засады,\nнаходится выше вас, или вы связаны.\nМалые\n► Свобода\nЕсли вы закованы в наручники, или десяток пластиковых стяжек, или связаны, вы можете\nгромко освободиться без проверки, или тихо - проверкой СКРЫВАТЬСЯ.\n► Ловкий финт\nВы виртуозно уходите с пути атаки противника, подставляя соратников. Раз в сцену, вы\nможете передать стресс, полученный от атаки, союзнику или контакту.\n► Пленник\nВы знаете, как можно угрозами, ударами по болевым точкам и просто вовремя\nнаставленным пистолетам взять человека в плен. Если врагов меньше, чем вас, ваши\nпроверки ГОВОРИТЬ, связанные с требованиями сдаться, совершаются с мастерством.",
+      "tier": "professional",
+      "className": "Экономант"
+    },
+    {
+      "id": "classes-card-33-96",
+      "kind": "ability",
+      "title": "Чёрный человек",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          33
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "1) Чёрный человек\nВы лишаетесь последних крупиц человечности в погоне за прибылью. Вы не можете\nбольше получить стресс или последствие в РАЗУМ. Раз в сессию вы можете продать что-\nто, что вам не принадлежит, в том числе нематериальное, или купить что-то без согласия\nчеловека.",
+      "tier": "elite",
+      "className": "Экономант"
+    },
+    {
+      "id": "classes-card-33-97",
+      "kind": "ability",
+      "title": "Экономика - это я",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          33
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "2) Экономика - это я\nВы связываетесь с представителями корпорации и вас оценивают как достойного стать\nчастью совета директоров. Ваша сущность, сливаясь с банковскими счетами и\nкриптовалютным кодом, становится частью мира информации. Вы считаетесь для группы\nконтактом мирового уровня и раз в сессию можете купить что-то, что обычно не достанешь\nбез нужды в ресурсах и проверках.",
+      "tier": "elite",
+      "className": "Экономант"
+    },
+    {
+      "id": "classes-card-34-98",
+      "kind": "ability",
+      "title": "Тот, кто продал бога",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          34
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "3) Тот, кто продал бога\nВы хитростью покупаете что-то важное для целой большой группы, например, память о\nгерое народа Железа, или воинскую славу сражавшихся за Хашахсот. Вы можете\nпревратить это в деньги, сделав невозможным получение стресса и последствий в шкалу\nРЕСУРСОВ, или откупиться от одной из сущностей Башни. Она покинет мир, но и мир\nнавсегда лишится чего-то ценного.",
+      "tier": "elite",
+      "className": "Экономант"
+    },
+    {
+      "id": "classes-card-35-99",
+      "kind": "ability",
+      "title": "Книга клятв",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          35
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "1) Книга клятв\nВыберите Великую Клятву — траур, долг, месть, или покаяние. Когда вы получаете\nпоследствие, вы можете не принимать его, но отказаться от одного из условий избавления\n— малое последствие отнимает условие до конца сессии, значимое до следующего\nполучения способности, роковое — навсегда.\nВ начале сессии вы можете принести малую клятву, особую задачу, выполнимую за одну\nигровую встречу, например убить главаря бандитов, или дойти до далёкого оазиса. Она\nдействует как условие избавления и существует, пока вы её не выполните. После этого вы\nполучаете награду в виде ресурса или снаряжения.\nЕсли вы лишаетесь этого условия избавления, с клятвой происходит что-то негативное,\nнапример дорога к оазису оказывается удлинённой, а бандиты укрепляют аванпост. Вы\nможете иметь до трёх малых клятв одновременно, в начале каждой сессии вы можете\nзаменить одну невыполненную новой, однако в таком случае действует правило,\nсоздающее негативный эффект для отменённой клятвы.",
       "tier": "basic",
       "className": "Неболом"
     },
     {
-      "id": "classes-card-34-86",
+      "id": "classes-card-36-100",
       "kind": "ability",
       "title": "Просчитать траекторию",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          34
+          36
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "1) Просчитать траекторию\nВы применяете ваши пугающие аналитические способности для просчёта траектории\nклинка, меткого слова оппонента или пули.\nПри любом действии вы можете заявить, что благодаря расчётам избежали вражеской\nатаки, идеально направили собственный удар, или предугадали оскорбление, приняв успех\nс ценой, стресс всегда приходит в РАЗУМ. Вы можете использовать способность\nнеограниченное количество раз за сцену, но каждое следующее применение в одной сцене\nбудет стоить на 1 ступень стресса больше.",
       "tier": "minor",
       "className": "Неболом"
     },
     {
-      "id": "classes-card-34-87",
+      "id": "classes-card-36-101",
       "kind": "ability",
       "title": "Логическое пророчество",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          34
+          36
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "2) Логическое пророчество\nПринимая в учёт все факторы, вы знаете будущее даже в этом сумасшедшем месте.\nРаз в сессию, когда случается неожиданный поворот сюжета, вы можете заявить, что\nпредусмотрели его и соответствующе изменить условия сцены. Например, если вас\nобманул на деньги наниматель, вы можете сказать, что хитростью заставили его подписать\nмагический контракт экономантов так, что он не заметил, или если вас застала врасплох\nзасада, вы можете заявить, что это операция по ловле нападающих «на живца», и что пока\nвас берут в плен, врага окружает крупный отряд восходяших.",
       "tier": "minor",
       "className": "Неболом"
     },
     {
-      "id": "classes-card-34-88",
+      "id": "classes-card-36-102",
       "kind": "ability",
       "title": "Терпение счетовода",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          34
+          36
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "3) Терпение счетовода\nВы держите в голове всё и постоянно — от патронов в магазинах врагов до заряда\nаккумуляторов соратников.\nОдин раз в сцену, вы можете один раз снизить стресс, наносимый одним противником или\nдругой угрозой до нуля, сказав, например, что у врага в ответственный момент закончились\nпатроны, или что торговец, пытающийся обменяться с вами, не учёл количества ваших\nприпасов.",
       "tier": "minor",
       "className": "Неболом"
     },
     {
-      "id": "classes-card-34-89",
+      "id": "classes-card-36-103",
       "kind": "ability",
       "title": "Контроль организма",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          34
+          36
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "4) Контроль организма\nБлагодаря долгим медитациям и закалке духа и тела, вы контролируете процессы в\nорганизме на недостижимом уровне.\nОдин раз за сессию, вы можете проигнорировать эффект малого или значимого\nпоследствия в ПУЛИ, или РАЗУМ до конца сцены.",
       "tier": "minor",
       "className": "Неболом"
     },
     {
-      "id": "classes-card-34-90",
+      "id": "classes-card-36-104",
       "kind": "ability",
       "title": "Нестандартное охлаждение",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          34
+          36
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "5) Нестандартное охлаждение\nВы перенаправляете системы охлаждения, стабилизирующие ваш перегревающийся от\nподсчётов мозг.\nВы можете получить к6 стресса в РАЗУМ, чтобы без проверки атаковать противников\nпотоком сжиженного газа, потушить огонь, или создать мост на воде. Каждое следующее\nВыброс хладагента\nУрон: 1к6\nСвойства: Разброс, подавление\nДистанция: Ближняя\n70\n\nприменение в течение одной сцены повышает кость для активации способности на 1\nступень.",
+      "text": "5) Нестандартное охлаждение\nВы перенаправляете системы охлаждения, стабилизирующие ваш перегревающийся от\nподсчётов мозг.\nВы можете получить к6 стресса в РАЗУМ, чтобы без проверки атаковать противников\nпотоком сжиженного газа, потушить огонь, или создать мост на воде. Каждое следующее\nВыброс хладагента\nУрон: 1к6\nСвойства: Разброс, подавление\nДистанция: Ближняя\n\nприменение в течение одной сцены повышает кость для активации способности на 1\nступень.",
       "tier": "minor",
       "className": "Неболом"
     },
     {
-      "id": "classes-card-34-91",
+      "id": "classes-card-36-105",
       "kind": "ability",
       "title": "Правильный",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          34
+          36
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "6) Правильный\nВы стабилизируете реальность, делая более вероятное гарантированным. Никакой удачи,\nлишь космос.\nОдин раз в сессию, до конца сцены, вы и вся ваша группа получаете +2 защиты в ДУХ, и\nвсё ваше снаряжение получает черту стабильный.",
       "tier": "minor",
       "className": "Неболом"
     },
     {
-      "id": "classes-card-34-92",
+      "id": "classes-card-36-106",
       "kind": "ability",
       "title": "Мир без границ",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          34
+          36
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "7) Мир без границ\nВы были в космосе и видели настоящий Зейнейн. Без государств, без народов, хрупкий и\nнуждающийся.\nВы получаете мастерство в проверках ГОВОРИТЬ, когда пытаетесь склонить кого-то к\nмирным переговорам без насилия. Когда вы делаете что-то во вред себе, но на пользу\nконтакту, как описано в правиле руки друга, вместо мастерства вы автоматически\nпреуспеваете.",
       "tier": "minor",
       "className": "Неболом"
     },
     {
-      "id": "classes-card-34-93",
+      "id": "classes-card-36-107",
       "kind": "ability",
       "title": "Космический хаос",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          34
+          36
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "8) Космический хаос\nВы приблизились к генерации истинно случайных чисел из головы, используя квантовые\nсвязи в собственном мозге. С помощью магии, вы проявляете их в реальности. Один раз в\nсессию, вы можете до конца сцены сделать все вероятности хаотичными и запутанными.\nЧтобы обуздать хаос и вернуть всё в норму, пройдите проверку КОЛДОВАТЬ и\nсоответствующей области, или примените способность правильный. Теперь на костях\nпроверок вместо провалов и успехов у вас и ваших союзников следующие результаты:\n71",
+      "text": "8) Космический хаос\nВы приблизились к генерации истинно случайных чисел из головы, используя квантовые\nсвязи в собственном мозге. С помощью магии, вы проявляете их в реальности. Один раз в\nсессию, вы можете до конца сцены сделать все вероятности хаотичными и запутанными.\nЧтобы обуздать хаос и вернуть всё в норму, пройдите проверку КОЛДОВАТЬ и\nсоответствующей области, или примените способность правильный. Теперь на костях\nпроверок вместо провалов и успехов у вас и ваших союзников следующие результаты:",
       "tier": "minor",
       "className": "Неболом"
     },
     {
-      "id": "classes-card-35-94",
+      "id": "classes-card-37-108",
       "kind": "ability",
       "title": "Секретные архивы",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          35
+          37
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "9) Секретные архивы\nВам открывают доступ к протоколам мудрецов ордена, созданным в рамках изучения\nмежпланетных полётов. Раз в сессию, вы можете снять мысленный блок с воспоминаний о\nних, получив к8 стресса в РАЗУМ, чтобы получить секретную информацию о выбранной\nлокации, выбранном человеке, или одной фракции.",
       "tier": "minor",
       "className": "Неболом"
     },
     {
-      "id": "classes-card-35-95",
+      "id": "classes-card-37-109",
       "kind": "ability",
       "title": "Наперерез",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          35
+          37
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "10) Наперерез\nВы готовы защищать тех, с кем вам придётся лететь к звёздам. Раз в сцену, вы можете\nвзять на себя стресс, который мог бы получить другой персонаж игрока, например,\nзаслонив его от пуль, заплатив за него при торгах, или успокоив вдохновляющей речью.\n72",
+      "text": "10) Наперерез\nВы готовы защищать тех, с кем вам придётся лететь к звёздам. Раз в сцену, вы можете\nвзять на себя стресс, который мог бы получить другой персонаж игрока, например,\nзаслонив его от пуль, заплатив за него при торгах, или успокоив вдохновляющей речью.",
       "tier": "minor",
       "className": "Неболом"
     },
     {
-      "id": "classes-card-35-96",
+      "id": "classes-card-37-110",
       "kind": "ability",
       "title": "Неправильный",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          35
+          37
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "1) Неправильный\nВы искажаете вероятности так, чтобы события, казавшиеся невозможными, становились\nединственным исходом. Раз в сессию вы можете получить к8 стресса в РАЗУМ, чтобы до\nконца сцены все ваши проверки могли принести только критический успех при 5-10, либо\nкритический провал при 1-4.\nМалые\n► Туннелировать насквозь\nВы повышаете квантовую вероятность частиц на макроуровне туннелировать сквозь\nпредмет. Раз в сцену вы можете получить к8 стресса в РАЗУМ, чтобы пройти сквозь стену,\nили избежать стресса в ПУЛИ. Вы можете дублировать этот эффект для персонажа игрока\nили контакта-персонажа ведущего, но вам придётся пройти проверку ПРОБИВАТЬСЯ,\nиначе тот получит к10 стресса в ПУЛИ.\n► Невозможный выстрел\nВы искажаете вероятности так, что пуля игнорирует любые укрытия противника. Раз в\nсцену можете получить к8 стресса в РАЗУМ, чтобы до конца сцены сложность ваших\nдальнобойных атак не повышалась преимуществом врага в позиционировании.\n► Подсчёт удачи\nКогда вы получаете критический успех при проверке, вы можете вместо него принять\nобычный успех. Затем вы можете после любого результата проверки заменить его на\nкритический успех. Вы можете хранить один критический успех.",
       "tier": "professional",
       "className": "Неболом"
     },
     {
-      "id": "classes-card-35-97",
+      "id": "classes-card-37-111",
       "kind": "ability",
-      "title": "Боевое искусство",
-      "section": "classes",
-      "dropTarget": "ability",
-      "source": {
-        "pdfPages": [
-          35,
-          36
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "2) Боевое искусство: Удар и три в периоде\nСистема рукопашного боя, созданная для сражений в невесомости, чтобы не повредить\nхрупкую обшивку космических станций, часто пригождается в постоянно меняющейся\nБашне.\nВы получаете мастерство в навыке УБИВАТЬ, срабатывающее, когда вы сражаетесь без\nоружия, с боевым ножом или с тяжёлым оружием ближнего боя. Ваши безоружные атаки\nтеперь причиняют к6 стресса. Раз в сцену, вы можете сориентироваться в любом быстро\nменяющемся пространстве: следующая проверка не повысят сложность, даже если вы\nпрыгаете по падающим в пропасть бетонным осколкам, или несётесь вверх на\nгеометрически невозможном лифте.\nМалые\n► Нежно и грациозно\nВы сражаетесь так, что не повреждаете ни окружение, ни ваш инвентарь. Хрупкие\nпредметы не пострадают в этой драке, какие бы последствия вы не получали.\n► Словно орбитальный удар\nВы применяете всю массу тяжёлого доспеха и образцово высчитанную точку опоры, чтобы\nпосле успешной проверки УБИВАТЬ переместиться на одну дистанцию и взять с собой\nодну цель, находящуюся на одной дистанции с вами.\n73\n► Изучить движения\nВы просчитываете действия противника на более глубоком уровне, чем он способен\nпредставить — вместо попыток распознать технику, вы спускаетесь к биомеханике мышц и\nмассе моделей снаряжения, учитывая весь комплекс в вашей сложной виртуальной\nсистеме. То же касается и вашего маршрута через Башню и даже попыток вылечить\nтоварища.\nРаз в сцену, вы можете изучить ситуацию. Ваш следующий критический успех вместо\nповышения кости стресса на ступень, добавит дополнительную кость стресса, вы\nсуммируете результаты. Ваш следующий критический провал вместо повышения стресса\nкости на ступень, добавит дополнительную кость стресса, вы суммируете результаты.",
-      "tier": "professional",
-      "className": "Неболом"
-    },
-    {
-      "id": "classes-card-36-98",
-      "kind": "ability",
-      "title": "Тишина",
-      "section": "classes",
-      "dropTarget": "ability",
-      "source": {
-        "pdfPages": [
-          36
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "3) Тишина\nВы успокаиваете ваш постоянно работающий мозг по специальной методике. Даже\nусиленная особыми ментальными практиками искусственная нервная система не может\nвынести такого количества операций.\n4 раза в сессию, вы можете погрузиться в медитацию, чтобы восстановить себе к8 в РАЗУМ\nили снять большое или малое последствие. До конца сцены вы не можете предпринимать\nсложные действия, для которых нужны проверки. Каждый раз, когда вы убиваете человека,\nили совершаете другой настолько же ужасный поступок, количество применений\nспособности снижается на 1.\nМалые\n► Пир ненависти\nВместо обычных правил способности, вы начинаете с 0 применений способности в сессию\nи каждый раз, когда вы убиваете человека, или совершаете другой настолько же ужасный\nпоступок, вы получаете 1 применение способности. Они копятся до четырёх, но не\nпереносятся в следующую сессию.\n► Успокоить душу\nВы погружаетесь на более глубокие уровни медитации, чтобы дать отдохнуть самому\nсвоему естеству. Вы можете восстанавливать стресс и снимать последствия в шкале ДУХ\nэтой способностью.\n► Боевой транс\nПосле применения этой способности вы можете совершать проверки УБИВАТЬ, а когда вы\nво время её действия получаете стресс в ПУЛИ, вы кидаете на проверку последствия две\nкости и выбираете большую.",
-      "tier": "professional",
-      "className": "Неболом"
-    },
-    {
-      "id": "classes-card-36-99",
-      "kind": "ability",
-      "title": "Код души",
-      "section": "classes",
-      "dropTarget": "ability",
-      "source": {
-        "pdfPages": [
-          36
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "4) Код души\nВы можете обрабатывать в голове особые программы, подобные компьютерным,\nсозданные специально для среды тренированного мозга неболома на отдельном языке\nпрограммирования.\nРаз в сцену, вы можете обойтись без компьютера там, где он необходим, например выйти в\nлокальную сеть, считая строки кода в голове, или создать трёхмерную модель, а затем\nвывести её на экран через нейроразъём.\n74\n\nМалые\n► Вторая душа\nВы запускаете на собственных нейронах другой разум, военную нейросеть-аналитика. За\nпорочный союз с нечеловеческим сознанием, вас недолюбливают стражи врат.\nРаз в сессию, вы можете получить к8 стресса в разум, чтобы до конца сцены получить все\nнавыки и области, все провалы становятся критическими из-за склонности нейросети лгать.\nКогда вам нужно понять психологию и логику искусственного интеллекта, вы в этом\nсостоянии совершаете проверки с мастерством.\n► Мемоудар\nВы используете особую комбинацию психоактивных движений и звуков, чтобы напрямую,\nвне ограничений слов, воздействовать на сознание.\nРаз в сессию, вы можете проверкой УЗНАВАТЬ изменить мысли собеседника или\nпротивника в бою, например, вселив ужас, или заставив забыть важную деталь. Эта\nспособность действует на ближней и средней дистанции и работает на все цели на одной\nдистанции. Сложность противников-людей снижается на 1, пока они не получат стресс.\n► Симуляция\nРаз в сессию, вы можете погрузиться в виртуальный мир в вашем собственном сознании, с\nвашим воображением вы чувствуете любой вкус и запах, что представите, будто бы они\nреальны. До конца сцены вы не можете совершать сложных действий, требующих\nпроверок, но получаете мастерство в проверках УЗНАВАТЬ до конца сессии.",
-      "tier": "professional",
-      "className": "Неболом"
-    },
-    {
-      "id": "classes-card-36-100",
-      "kind": "ability",
-      "title": "Командир",
-      "section": "classes",
-      "dropTarget": "ability",
-      "source": {
-        "pdfPages": [
-          36
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "5) Командир\nВы научились применять исключительные аналитические способности в военной тактике.\nВы получаете кость приказов к10. Каждый раз, когда вы помогаете союзнику, вы можете\nдобавить к причинённому им стрессу кость приказов, после этого кость приказов\nуменьшается на одну ступень. Кость приказов восстанавливается полностью в начале\nсессии и на одну ступень при выполнении условия восстановления.\nМалые\n► Вместе\nКогда союзник помогает вам, вы можете добавить кость приказов к причинённому вами\nстрессу. После этого кость приказов уменьшается на одну ступень.\n► Стратег\nВы можете добавить кость приказов к броску проверки навыка, а не только к стрессу. Она\nработает как бонус к самому большому результату на кости. Вы можете добавить её и к\nпроверке и к стрессу, но после проверки она понизится на одну ступень и только затем\nдобавится к стрессу.\n► Умелые манёвры\nВы можете добавить кость приказов к проверке последствия и суммировать результаты\nкостей, после этого кость приказов уменьшается на одну ступень.\n75",
-      "tier": "professional",
-      "className": "Неболом"
-    },
-    {
-      "id": "classes-card-37-101",
-      "kind": "ability",
-      "title": "Дракон",
-      "section": "classes",
-      "dropTarget": "ability",
-      "source": {
-        "pdfPages": [
-          37
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "1) Дракон\nВаш человеческий разум чересчур ограничивал точность вычислений. Вы находите блок\nдракона, корпоративного ИИ, специально созданного, чтобы максимально отличаться от\nчеловеческого мышления, и поглощаете его базы данных и образ мышления, отказываясь\nот собственного прошлого.\nВы теряете все контакты личного уровня, получаете все навыки и области, а кости\nмастерства теперь можно добавлять неограниченное число раз за одну проверку. Раз в\nсцену, когда вы получаете стресс в РАЗУМ, вы можете разогнать вычислительные\nмощности мозга, чтобы добавить такую же кость стресса к любому причиняемому стрессу.",
-      "tier": "elite",
-      "className": "Неболом"
-    },
-    {
-      "id": "classes-card-37-102",
-      "kind": "ability",
-      "title": "Мечтатель",
-      "section": "classes",
-      "dropTarget": "ability",
-      "source": {
-        "pdfPages": [
-          37
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "2) Мечтатель\nВы целиком уходите в мир собственного подсознания, лишь изредка возвращаясь в\nреальность.\nВы не получаете стресс и последствия в РАЗУМ и ДУХ. Один раз в сессию, когда вы или\nваш соратник должны погибнуть, вы можете сказать, что эти события вам только снятся, а в\nреальности этого никогда не происходило: снимите все последствия и весь стресс с того,\nкто должен погибнуть.",
-      "tier": "elite",
-      "className": "Неболом"
-    },
-    {
-      "id": "classes-card-37-103",
-      "kind": "ability",
-      "title": "Последний расчёт",
+      "title": "Боевое искусство: Удар и три в периоде",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
@@ -2071,871 +2209,817 @@ window.TOWER_CODEX = {
           37,
           38
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "3) Последний расчёт\nВы решаете великое уравнение и находите великое неизвестное, ключ человечества к\nбессчисленным планетам. Вы можете передать его ордену, чтобы открыть путь в космос и\nполучить контакт мирового уровня, или сказать его вслух, чтобы изгнать одну из сущностей\nБашни, но закрыть дорогу к звёздам на десятилетия.\n76\nКрасный Рукав\n«Телам – патроны, почве - бутоны!»\nКрасные рукава - гильдия охотников за головами. Они верят в Короля-Патрона, божество\nоружия. Хитроумные яды, зелья и особые патроны из их магических цветов всегда будут\nполезны команде, как и их мастерство в стрельбе и фехтовании.\nНавык УБИВАТЬ\nОбласть МИР\nПривести цель к заказчику живой/ Убить\nИзбавление сильного врага/ Вырастить цветок из чего-то\nредкого или запретного\nЦели\nКрасные рукава - простые наёмники, они часто нанимаются на самые разные задания в\nБашне, от ликвидации цели до поиска артефактов. Кроме того, они принимают кодекс чести\nи следят за хорошей репутацией гильдии в обществе.\nВнешность\nКаждый красный рукав индивидуален, их роднит лишь несколько вещей. Во-первых, тот\nсамый рукав. Правый неоново-красный люминесцентный рукав необходим, чтобы\nобнаружить друг друга в толпе и райзойтись на разные стороны улицы: у столкнувшихся\nплечами рукавов постоянно случаются перестрелки. Во-вторых, красные рукава,\nтренированные амбидекстры, носят сразу по два одинаковых оружия, например парные\nножи или пистолеты, однако они помимо прочего могут использовать в каждой руке по\nпулемёту, или снайперской винтовке.\nОни одеваются в удобную военную одежду, сделанную специально для гильдии, основное\nотличие заключается в том самом рукаве. На их оружие устанавливается счётчик убийств,\nнесколько барабанов с цифрами, или экран, отображающий количество ликвидированных\nцелей, счётчик этот редактируется в отделениях гильдии в оазисах и во внешнем мире,\nкогда рукав предоставляет доказательства выполненного задания. Все рукава так же носят\nдлинный красный шарф, завязывая его каждый по-своему, шарф этот выдаётся после\nвступления в гильдию и символизирует верность и честь.\nКрасные рукава постоянно увиты цветами, которые растят прямо на одежде, к тому же\nцветы эти постоянно в быстром доступе, так что метнуть бутон, превращающийся в гранату,\nможно очень быстро. Многие, но не все, заменяют волосы имплантированным париком из\nпатронов.\nРеференсы: Тактический стиль, инструменты садовника, киберпанк\nТрадиции\n— Красные рукава считают вежливым держать руки в кулаках при разговоре, ведь чтобы\nсхватить оружие, кулак нужно сначала разжать.\n78\n\n— Красные рукава никогда не стреляют цели задания в спину, из засады, или по\nбезоружному в оазисе, этот свод правил пусть и усложнил им жизнь, но зато позволил не\nвыглядеть в глазах других беспринципными убийцами.\n— Вера в Короля-Патрона необязательна, но её придерживаются многие. Почитают его в\nоружейных храмах-садах со свечами, залитыми в гильзах и раскидистыми клумбами, с\nсобой же можно взять чётки из патронов, или иконку со схемой разборки автомата.\n— Рукава стремятся расширить влияние цветов на Башню, считая, что эту\nсверхъестественную искусственность может победить только бурная естественность. Пока\nчто садов в оазисах мало, и большинство цветов в Башне мутируют или растут странно, но\nрукава не останавливают своих поисков.\nОтветьте на\nКонтакты\nвопросы\n► Ваш напарник, излишне самоуверенный юный рукав с\nОднажды вы татуировками на всё тело. (Персонаж ведущего)\nотступили от\nпринципов красных ► Кто–то из группы считает, что честь и принципы на поле боя\nрукавов, но вас не неуместны. Кто это и как вы пытаетесь его переубедить?\nнаказали, почему?\n► Кто-то в группе просит у вас цветы, чтобы производить из них\nСамое необычное красители. Кто это и что он с ними делает?\nсвойство, которое\nвы хотите привить ► Кто-то из группы называет вас отцом, сестрой, или другим\nцветку. членом семьи. Кто это и после какого события вы так сплотились?\nВы участвовали в\nмиссии по\nликвидации цели, в\nкоторой всё пошло\nне так, но вы спасли\nситуацию в\nпоследний момент.\nЧто произошло?",
-      "tier": "elite",
-      "className": "Красный Рукав"
+      "text": "2) Боевое искусство: Удар и три в периоде\nСистема рукопашного боя, созданная для сражений в невесомости, чтобы не повредить\nхрупкую обшивку космических станций, часто пригождается в постоянно меняющейся\nБашне.\nВы получаете мастерство в навыке УБИВАТЬ, срабатывающее, когда вы сражаетесь без\nоружия, с боевым ножом или с тяжёлым оружием ближнего боя. Ваши безоружные атаки\nтеперь причиняют к6 стресса. Раз в сцену, вы можете сориентироваться в любом быстро\nменяющемся пространстве: следующая проверка не повысят сложность, даже если вы\nпрыгаете по падающим в пропасть бетонным осколкам, или несётесь вверх на\nгеометрически невозможном лифте.\nМалые\n► Нежно и грациозно\nВы сражаетесь так, что не повреждаете ни окружение, ни ваш инвентарь. Хрупкие\nпредметы не пострадают в этой драке, какие бы последствия вы не получали.\n► Словно орбитальный удар\nВы применяете всю массу тяжёлого доспеха и образцово высчитанную точку опоры, чтобы\nпосле успешной проверки УБИВАТЬ переместиться на одну дистанцию и взять с собой\nодну цель, находящуюся на одной дистанции с вами.\n► Изучить движения\nВы просчитываете действия противника на более глубоком уровне, чем он способен\nпредставить — вместо попыток распознать технику, вы спускаетесь к биомеханике мышц и\nмассе моделей снаряжения, учитывая весь комплекс в вашей сложной виртуальной\nсистеме. То же касается и вашего маршрута через Башню и даже попыток вылечить\nтоварища.\nРаз в сцену, вы можете изучить ситуацию. Ваш следующий критический успех вместо\nповышения кости стресса на ступень, добавит дополнительную кость стресса, вы\nсуммируете результаты. Ваш следующий критический провал вместо повышения стресса\nкости на ступень, добавит дополнительную кость стресса, вы суммируете результаты.",
+      "tier": "professional",
+      "className": "Неболом"
     },
     {
-      "id": "classes-card-38-104",
+      "id": "classes-card-38-112",
       "kind": "ability",
-      "title": "Красные законы",
+      "title": "Тишина",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
           38
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "1) Красные законы\nВы подчиняетесь своду правил красных рукавов, предписывающему задерживать, или\nликвидировать цель честно. Эти меры были приняты ради принятия организации как\nвластями, так и обывателями. Кроме того, вы, по праву ношения красного рукава, можете\nполучать задания по ликвидации цели в оазисах.\nКогда вы атакуете цель контракта из засады, ведёте её с собой обманом, скрываете\nкрасный рукав, или атакуете безоружную, вы получаете к8 стресса в ДУХ, РАЗУМ, или\nРЕСУРСЫ, эта кость суммируется с полученным при провале стрессом.\nРаз в сессию, когда вы приходите в оазис, вы можете сказать, что местные объявили\nнаграду за голову опасного человека. Они дадут вдвое больше ресурсов, чем обычно, если\nвы приведёте его живым и на одну ступень больше ресурсов, если принесёте\nдоказательство смерти. Цель всегда очень опасна и в заказе всегда есть какая-то\nзагвоздка, например за целью уже охотятся корпорации, или она пытается откупиться.\n79",
+      "text": "3) Тишина\nВы успокаиваете ваш постоянно работающий мозг по специальной методике. Даже\nусиленная особыми ментальными практиками искусственная нервная система не может\nвынести такого количества операций.\n4 раза в сессию, вы можете погрузиться в медитацию, чтобы восстановить себе к8 в РАЗУМ\nили снять большое или малое последствие. До конца сцены вы не можете предпринимать\nсложные действия, для которых нужны проверки. Каждый раз, когда вы убиваете человека,\nили совершаете другой настолько же ужасный поступок, количество применений\nспособности снижается на 1.\nМалые\n► Пир ненависти\nВместо обычных правил способности, вы начинаете с 0 применений способности в сессию\nи каждый раз, когда вы убиваете человека, или совершаете другой настолько же ужасный\nпоступок, вы получаете 1 применение способности. Они копятся до четырёх, но не\nпереносятся в следующую сессию.\n► Успокоить душу\nВы погружаетесь на более глубокие уровни медитации, чтобы дать отдохнуть самому\nсвоему естеству. Вы можете восстанавливать стресс и снимать последствия в шкале ДУХ\nэтой способностью.\n► Боевой транс\nПосле применения этой способности вы можете совершать проверки УБИВАТЬ, а когда вы\nво время её действия получаете стресс в ПУЛИ, вы кидаете на проверку последствия две\nкости и выбираете большую.",
+      "tier": "professional",
+      "className": "Неболом"
+    },
+    {
+      "id": "classes-card-38-113",
+      "kind": "ability",
+      "title": "Код души",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          38
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "4) Код души\nВы можете обрабатывать в голове особые программы, подобные компьютерным,\nсозданные специально для среды тренированного мозга неболома на отдельном языке\nпрограммирования.\nРаз в сцену, вы можете обойтись без компьютера там, где он необходим, например выйти в\nлокальную сеть, считая строки кода в голове, или создать трёхмерную модель, а затем\nвывести её на экран через нейроразъём.\n\nМалые\n► Вторая душа\nВы запускаете на собственных нейронах другой разум, военную нейросеть-аналитика. За\nпорочный союз с нечеловеческим сознанием, вас недолюбливают стражи врат.\nРаз в сессию, вы можете получить к8 стресса в разум, чтобы до конца сцены получить все\nнавыки и области, все провалы становятся критическими из-за склонности нейросети лгать.\nКогда вам нужно понять психологию и логику искусственного интеллекта, вы в этом\nсостоянии совершаете проверки с мастерством.\n► Мемоудар\nВы используете особую комбинацию психоактивных движений и звуков, чтобы напрямую,\nвне ограничений слов, воздействовать на сознание.\nРаз в сессию, вы можете проверкой УЗНАВАТЬ изменить мысли собеседника или\nпротивника в бою, например, вселив ужас, или заставив забыть важную деталь. Эта\nспособность действует на ближней и средней дистанции и работает на все цели на одной\nдистанции. Сложность противников-людей снижается на 1, пока они не получат стресс.\n► Симуляция\nРаз в сессию, вы можете погрузиться в виртуальный мир в вашем собственном сознании, с\nвашим воображением вы чувствуете любой вкус и запах, что представите, будто бы они\nреальны. До конца сцены вы не можете совершать сложных действий, требующих\nпроверок, но получаете мастерство в проверках УЗНАВАТЬ до конца сессии.",
+      "tier": "professional",
+      "className": "Неболом"
+    },
+    {
+      "id": "classes-card-38-114",
+      "kind": "ability",
+      "title": "Командир",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          38
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "5) Командир\nВы научились применять исключительные аналитические способности в военной тактике.\nВы получаете кость приказов к10. Каждый раз, когда вы помогаете союзнику, вы можете\nдобавить к причинённому им стрессу кость приказов, после этого кость приказов\nуменьшается на одну ступень. Кость приказов восстанавливается полностью в начале\nсессии и на одну ступень при выполнении условия восстановления.\nМалые\n► Вместе\nКогда союзник помогает вам, вы можете добавить кость приказов к причинённому вами\nстрессу. После этого кость приказов уменьшается на одну ступень.\n► Стратег\nВы можете добавить кость приказов к броску проверки навыка, а не только к стрессу. Она\nработает как бонус к самому большому результату на кости. Вы можете добавить её и к\nпроверке и к стрессу, но после проверки она понизится на одну ступень и только затем\nдобавится к стрессу.\n► Умелые манёвры\nВы можете добавить кость приказов к проверке последствия и суммировать результаты\nкостей, после этого кость приказов уменьшается на одну ступень.",
+      "tier": "professional",
+      "className": "Неболом"
+    },
+    {
+      "id": "classes-card-39-115",
+      "kind": "ability",
+      "title": "Дракон",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          39
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "1) Дракон\nВаш человеческий разум чересчур ограничивал точность вычислений. Вы находите блок\nдракона, корпоративного ИИ, специально созданного, чтобы максимально отличаться от\nчеловеческого мышления, и поглощаете его базы данных и образ мышления, отказываясь\nот собственного прошлого.\nВы теряете все контакты личного уровня, получаете все навыки и области, а кости\nмастерства теперь можно добавлять неограниченное число раз за одну проверку. Раз в\nсцену, когда вы получаете стресс в РАЗУМ, вы можете разогнать вычислительные\nмощности мозга, чтобы добавить такую же кость стресса к любому причиняемому стрессу.",
+      "tier": "elite",
+      "className": "Неболом"
+    },
+    {
+      "id": "classes-card-39-116",
+      "kind": "ability",
+      "title": "Мечтатель",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          39
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "2) Мечтатель\nВы целиком уходите в мир собственного подсознания, лишь изредка возвращаясь в\nреальность.\nВы не получаете стресс и последствия в РАЗУМ и ДУХ. Один раз в сессию, когда вы или\nваш соратник должны погибнуть, вы можете сказать, что эти события вам только снятся, а в\nреальности этого никогда не происходило: снимите все последствия и весь стресс с того,\nкто должен погибнуть.",
+      "tier": "elite",
+      "className": "Неболом"
+    },
+    {
+      "id": "classes-card-39-117",
+      "kind": "ability",
+      "title": "Последний расчёт",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          39
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "3) Последний расчёт\nВы решаете великое уравнение и находите великое неизвестное, ключ человечества к\nбессчисленным планетам. Вы можете передать его ордену, чтобы открыть путь в космос и\nполучить контакт мирового уровня, или сказать его вслух, чтобы изгнать одну из сущностей\nБашни, но закрыть дорогу к звёздам на десятилетия.",
+      "tier": "elite",
+      "className": "Неболом"
+    },
+    {
+      "id": "classes-card-40-118",
+      "kind": "ability",
+      "title": "Красные законы",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          40
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "1) Красные законы\nВы подчиняетесь своду правил красных рукавов, предписывающему задерживать, или\nликвидировать цель честно. Эти меры были приняты ради принятия организации как\nвластями, так и обывателями. Кроме того, вы, по праву ношения красного рукава, можете\nполучать задания по ликвидации цели в оазисах.\nКогда вы атакуете цель контракта из засады, ведёте её с собой обманом, скрываете\nкрасный рукав, или атакуете безоружную, вы получаете к8 стресса в ДУХ, РАЗУМ, или\nРЕСУРСЫ, эта кость суммируется с полученным при провале стрессом.\nРаз в сессию, когда вы приходите в оазис, вы можете сказать, что местные объявили\nнаграду за голову опасного человека. Они дадут вдвое больше ресурсов, чем обычно, если\nвы приведёте его живым и на одну ступень больше ресурсов, если принесёте\nдоказательство смерти. Цель всегда очень опасна и в заказе всегда есть какая-то\nзагвоздка, например за целью уже охотятся корпорации, или она пытается откупиться.",
       "tier": "basic",
       "className": "Красный Рукав"
     },
     {
-      "id": "classes-card-39-105",
+      "id": "classes-card-41-119",
       "kind": "ability",
       "title": "Оранжерея",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          39
+          41
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "2) Оранжерея\nОранжерея всегда занимает слот рюкзака, надев другой рюкзак вы лишаетесь этой\nспособности. Раз в сцену, вы можете потратить ресурс из областей ЧАЩА, ПУСТОШЬ,\nВОЛНЫ, или ГОРИЗОНТ, чтобы создать волшебный цветок с той же костью, что у ресурса.\nВозможные свойства цветка:\n► Без проверки восстанавливает стресс в ПУЛИ, РАЗУМ, или ДУХ\n► Без проверки причиняет стресс со свойством мощный врагу или восхождению\n► Даёт навык или область до конца сцены\n► Восстанавливает стресс контакту\n► Задайте ведущему вопрос о локации, тот обязан честно ответить\n► Снижает опасность одного противника на 1 ступень до конца сцены\nЦветок существует неограниченное количество времени, но их нельзя копить. Цветок\nтратится после применения. Опишите, как выглядит цветок и применяемый им магический\nэффект.",
       "tier": "basic",
       "className": "Красный Рукав"
     },
     {
-      "id": "classes-card-39-106",
+      "id": "classes-card-41-120",
       "kind": "ability",
       "title": "Боевая адаптация",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          39
+          41
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "3) Боевая адаптация\nВы — мастер обращения с оружием, способный достигать чудес благодаря набору\nстрелковых стоек, особых техник перезарядки и контроля отдачи. Когда вы атакуете\nоружием, вы можете добавить ему одно свойство на выбор с помощью мастерства стрелка\nили фехтовальщика, например ведя пистолет в сторону при стрельбе, вы добиваетесь\nсвойства разброс, стреляя в одну и ту же точку — свойства мощный, а заряжая меч магией\n— свойства огонь.",
       "tier": "basic",
       "className": "Красный Рукав"
     },
     {
-      "id": "classes-card-39-107",
+      "id": "classes-card-41-121",
       "kind": "ability",
       "title": "Язык со стальным сердечником",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          39
+          41
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "1) Язык со стальным сердечником\nВы можете говорить с оружием, безумие это или нет, но оно отвечает вам взаимностью.\nОдно ваше оружие на выбор становится контактом, вы можете получить в него к6 стресса,\nчтобы получить мастерство на атаки из него по определённому типу противников до конца\nсцены, восстановить себе к6 в ДУХ или РАЗУМ, или снять любое последствие, связанное с\nполомкой оружия, его утерей, закончившимися патронами, или чем-то другим, что мешает\nего использовать. Раз в сессию, вы можете поменять контакт на другое оружие, но стресс в\nстаром сохранится.\nВы можете совершать проверки ГОВОРИТЬ, применяя их к оружию. Оно не разумно в\nполной мере, но способно передавать отдельные чувства и образы.",
       "tier": "minor",
       "className": "Красный Рукав"
     },
     {
-      "id": "classes-card-39-108",
+      "id": "classes-card-41-122",
       "kind": "ability",
       "title": "Обет мастера",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          39
+          41
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "2) Обет мастера\nВы следуете древним традициям Красных Рукавов, предписывающих перед каждым\nзаданием приносить малый обет, ограничивающий тёмные порывы человеческой сущности.\nКогда вы берёте миссию просто так, или через способность Красные Законы, вы можете\nпринять ограничение из списка ниже, или придумать своё, согласовав с ведущим. В\nнаграду вы получаете +2 защиты и +2 слота в РАЗУМ, ДУХ и РЕСУРСЫ, пока не выполните\nмиссию успешно или не провалите её.\n80\n\n► Не убить ни одного человека\n► Не забрать ничего ценного у цели задания\n► Не пользоваться медицинскими услугами и препаратами\n► Не принимать помощи от соратников\n► За каждого раненого в ходе миссии пожертвовать на лечение (к6 предмет или стресс в\nРЕСУРСЫ за каждого)\n► Отслужить молебен за каждого убитого (к6 стресса в РАЗУМ за каждого)\nПри нарушении обета, вы теряете защиту от этой способности.",
+      "text": "2) Обет мастера\nВы следуете древним традициям Красных Рукавов, предписывающих перед каждым\nзаданием приносить малый обет, ограничивающий тёмные порывы человеческой сущности.\nКогда вы берёте миссию просто так, или через способность Красные Законы, вы можете\nпринять ограничение из списка ниже, или придумать своё, согласовав с ведущим. В\nнаграду вы получаете +2 защиты и +2 слота в РАЗУМ, ДУХ и РЕСУРСЫ, пока не выполните\nмиссию успешно или не провалите её.\n\n► Не убить ни одного человека\n► Не забрать ничего ценного у цели задания\n► Не пользоваться медицинскими услугами и препаратами\n► Не принимать помощи от соратников\n► За каждого раненого в ходе миссии пожертвовать на лечение (к6 предмет или стресс в\nРЕСУРСЫ за каждого)\n► Отслужить молебен за каждого убитого (к6 стресса в РАЗУМ за каждого)\nПри нарушении обета, вы теряете защиту от этой способности.",
       "tier": "minor",
       "className": "Красный Рукав"
     },
     {
-      "id": "classes-card-39-109",
+      "id": "classes-card-41-123",
       "kind": "ability",
       "title": "Нашивка",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          39
+          41
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "3) Нашивка\nВы представитель всех официальных ветвей власти, с которыми договорились красные\nрукава. Когда вам нужно убедить кого-то, апеллируя к законности и праву, вы совершаете\nпроверку ГОВОРИТЬ с преимуществом. Когда вы приводите цель миссии арестованной\nвместо того, чтобы принести доказательство её смерти, вы полностью восстанавливаете\nстресс во всех шкалах.",
       "tier": "minor",
       "className": "Красный Рукав"
     },
     {
-      "id": "classes-card-39-110",
+      "id": "classes-card-41-124",
       "kind": "ability",
       "title": "Дуэль",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          39
+          41
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "4) Дуэль\nРаз в сцену, вы можете совершить проверку ГОВОРИТЬ, чтобы при успехе вызвать на\nпоединок любого врага-человека или существо с похожим на человека мышлением. Вы\nвсегда побеждаете одним образцовым выстрелом, или ударом, но всегда получаете\nбольшое последствие, два больших последствия если противник рискованной сложности и\nтри — если противник опасной сложности.\nВы можете выбрать — сдерживаться в дуэли, или сражаться серьёзно. В первом случае,\nвы кроме последствий получите стресс, который причинил бы этот противник, но сможете\nобезвредить его, не убивая.",
       "tier": "minor",
       "className": "Красный Рукав"
     },
     {
-      "id": "classes-card-39-111",
+      "id": "classes-card-41-125",
       "kind": "ability",
       "title": "Парное оружие",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          39
+          41
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "5) Парное оружие\nВы овладели искусством сражаться с оружием в каждой руке. Это обязательно должно\nбыть одинаковое оружие, и оно обязательно должно быть предназначено для одной руки, а\nтак же не иметь свойства тяжёлый. Когда вы причиняете стресс парным оружием, вы\nбросаете кость стресса на один раз больше и выбираете больший результат.",
       "tier": "minor",
       "className": "Красный Рукав"
     },
     {
-      "id": "classes-card-39-112",
+      "id": "classes-card-41-126",
       "kind": "ability",
       "title": "Красная речь",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          39
+          41
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "6) Красная речь\nВы можете говорить с красным цветом. Раз в сессию, вы можете задать ему вопрос о\nлокации, в которой находитесь, ведущий обязан ответить честно. Для этого нужен любой\nкрасный предмет, если при вас нет рукава, подойдёт и лужа крови.",
       "tier": "minor",
       "className": "Красный Рукав"
     },
     {
-      "id": "classes-card-39-113",
+      "id": "classes-card-41-127",
       "kind": "ability",
       "title": "Боевая акробатика",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          39
+          41
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "7) Боевая акробатика\nВы двигаетесь, будто танцор, или хищная птица. Когда вы совершаете проверку\nПРОБИВАТЬСЯ, вы можете дополнительно кроме результата этой проверки нанести стресс,\nкак если бы это был бросок УБИВАТЬ, СКРЫВАТЬСЯ, или КОЛДОВАТЬ.\n81",
+      "text": "7) Боевая акробатика\nВы двигаетесь, будто танцор, или хищная птица. Когда вы совершаете проверку\nПРОБИВАТЬСЯ, вы можете дополнительно кроме результата этой проверки нанести стресс,\nкак если бы это был бросок УБИВАТЬ, СКРЫВАТЬСЯ, или КОЛДОВАТЬ.",
       "tier": "minor",
       "className": "Красный Рукав"
     },
     {
-      "id": "classes-card-40-114",
+      "id": "classes-card-42-128",
       "kind": "ability",
       "title": "Ходить по слухам",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          40
+          42
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "8) Ходить по слухам\nВы привыкли выгрызать информацию из глоток очевидцев. Раз в сессию, придя в новую\nлокацию, вы можете сказать, что здесь находится человек, который точно знает, где\nнаходится цель миссии. Он всегда готов с вами поделиться, но всегда потребует что-то\nвзамен, например ресурсы, убийство ещё одной цели неподалёку, или услугу, о которой он\nскажет позже.",
       "tier": "minor",
       "className": "Красный Рукав"
     },
     {
-      "id": "classes-card-40-115",
+      "id": "classes-card-42-129",
       "kind": "ability",
       "title": "Хитрые приёмы",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          40
+          42
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "9) Хитрые приёмы\nКодекс чести красных рукавов строг, но подлости в сражении и хитрые манипуляции в\nдиалоге он как порок не рассматривает. Раз в сессию, когда вы получаете критический\nпровал при броске УБИВАТЬ, СКРЫВАТЬСЯ, ПРОБИВАТЬСЯ или ГОВОРИТЬ, вы можете\nсказать, что это была обманка и получить вместо этого критический успех.",
       "tier": "minor",
       "className": "Красный Рукав"
     },
     {
-      "id": "classes-card-40-116",
+      "id": "classes-card-42-130",
       "kind": "ability",
       "title": "Друг оружия",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          40
+          42
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "10) Друг оружия\nВы для оружия близкий друг. Пожалуй, оно бы ради вас убило.\nКогда вы атакуете оружием, вы можете убрать одно его негативное свойство, например\nсвойство неудобный вы компенсируете особым хватом, а свойство ненадёжный —\nидеально отмеряя длину очереди.",
       "tier": "minor",
       "className": "Красный Рукав"
     },
     {
-      "id": "classes-card-40-117",
+      "id": "classes-card-42-131",
       "kind": "ability",
-      "title": "Боевое искусство",
+      "title": "Боевое искусство: Хирейн-майон",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          40
+          42
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "1) Боевое искусство: Хирейн-майон\nДревнее боевое искусство народа осколков, им владели убийцы из полумифического\nордена Карарир-Эйн. Эта система рукопашного боя фокусируется на ментальной\nподготовке и применении ядов.\nВы получаете мастерство в навыке УБИВАТЬ, срабатывающее, когда вы сражаетесь без\nоружия, с боевым ножом или с тяжёлым оружием ближнего боя. Ваши безоружные атаки\nтеперь причиняют к6 стресса. Когда вы причиняете стресс оружием со свойством\nдлящийся, яд причиняет врагу к6 стресса вместо к4 благодаря вашим искусным ядам из\nмагических цветов.\nМалые\n► Облако\nКогда цель, которая в этой сцене получала стресс от вашего яда, становится\nнейтрализована, все противники на этой же дистанции получают стресс от вашего яда.\n► Контроль адреналина\nВы можете унять выработку гормонов стресса.\nКогда вы получаете стресс в ПУЛИ или РАЗУМ, вы можете бросить кость проверки\nпоследствия дважды и выбрать меньшую. Если вы таким образом получаете последствие,\nвыберите навык. До конца сцены, проверки с его применением не могут быть сложностью\nвыше стандартной.\n► Танец хищных птиц\nКогда вы нейтрализуете противника, вы можете переместиться к другому противнику и тут\nже атаковать его, даже если он находится в недосягаемом месте,к которому просто так не\nподобраться.\n82",
+      "text": "1) Боевое искусство: Хирейн-майон\nДревнее боевое искусство народа осколков, им владели убийцы из полумифического\nордена Карарир-Эйн. Эта система рукопашного боя фокусируется на ментальной\nподготовке и применении ядов.\nВы получаете мастерство в навыке УБИВАТЬ, срабатывающее, когда вы сражаетесь без\nоружия, с боевым ножом или с тяжёлым оружием ближнего боя. Ваши безоружные атаки\nтеперь причиняют к6 стресса. Когда вы причиняете стресс оружием со свойством\nдлящийся, яд причиняет врагу к6 стресса вместо к4 благодаря вашим искусным ядам из\nмагических цветов.\nМалые\n► Облако\nКогда цель, которая в этой сцене получала стресс от вашего яда, становится\nнейтрализована, все противники на этой же дистанции получают стресс от вашего яда.\n► Контроль адреналина\nВы можете унять выработку гормонов стресса.\nКогда вы получаете стресс в ПУЛИ или РАЗУМ, вы можете бросить кость проверки\nпоследствия дважды и выбрать меньшую. Если вы таким образом получаете последствие,\nвыберите навык. До конца сцены, проверки с его применением не могут быть сложностью\nвыше стандартной.\n► Танец хищных птиц\nКогда вы нейтрализуете противника, вы можете переместиться к другому противнику и тут\nже атаковать его, даже если он находится в недосягаемом месте,к которому просто так не\nподобраться.",
       "tier": "professional",
       "className": "Красный Рукав"
     },
     {
-      "id": "classes-card-40-118",
+      "id": "classes-card-42-132",
       "kind": "ability",
       "title": "Слава",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          40
+          42
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "2) Слава\nПреступники вас знают и боятся, а заказчики на вас рассчитывают. Когда вы прибываете в\nновую локацию, вы можете сказать, что о вас здесь уже знают, в таком случае вам будет\nтяжелее найти цель миссии (все проверки УЗНАВАТЬ против неё станут на ступень\nсложнее), но при этом вам готовы помогать местные люди или растения – все ресурсы, что\nвы тратите на покупку товаров или выращивание цветов считаются на одну ступень более\nценными.\nМалые\n► Прочь с дороги!\nКогда вы прибываете в новую локацию, вы можете сказать, что местные вас опасаются. В\nтаком случае вас побоятся, например не пустить в закрытую область, или не решатся\nотказать в информации, но цель миссии точно не окажется в этой локации, даже если была\nтам изначально.\n► Красный проводник\nКогда вы прибываете в новую локацию, вы можете сказать, что в ней находится красный\nрукав, готовый бесплатно провести вас в соседнюю локацию: во время восхождения он\nдобавит ко всем проверкам УБИВАТЬ и ПРОБИВАТЬСЯ кость помощи.\n► Центр мишени\nКогда вы достигаете цели миссии, вы можете сказать, что она подготовилась к вашему\nприбытию, но крайне напугана. Все ваши броски УБИВАТЬ, СКРЫВАТЬСЯ и\nПРОБИВАТЬСЯ в этой сцене станут на ступень сложнее, а проверки ГОВОРИТЬ, ЧИНИТЬ и\nКОЛДОВАТЬ на ступень легче.",
       "tier": "professional",
       "className": "Красный Рукав"
     },
     {
-      "id": "classes-card-40-119",
+      "id": "classes-card-42-133",
       "kind": "ability",
       "title": "Видовое разнообразие",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          40
+          42
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "3) Видовое разнообразие\nВы расширяете возможные области применения магических растений. Вы можете\nпревратить ресурс в цветок, восстанавливающий при применении стресс в РЕСУРСЫ, или\nСУДЬБУ.\nМалые\n► Вспышковый токсин\nПримените цветок, чтобы добавить его кость к кости причиняемого или восстанавливаемого\nоружием или инструментом стресса, он получает свойство длящийся.\n► Лепестки перемен\nВы можете потратить цветок, чтобы оказаться в сцене, где вас не должно быть. Вы\nполучаете 10 стресса в СУДЬБУ, вычтя из этого стресса бросок кости цветка.\n► Древесная мудрость\nМожете потратить цветок, чтобы получить от ведущего честный ответ на вопрос о локации,\nили персонаже. Вы получаете 10 стресса в ДУХ, вычтя из этого стресса бросок кости\nцветка.\n83",
+      "text": "3) Видовое разнообразие\nВы расширяете возможные области применения магических растений. Вы можете\nпревратить ресурс в цветок, восстанавливающий при применении стресс в РЕСУРСЫ, или\nСУДЬБУ.\nМалые\n► Вспышковый токсин\nПримените цветок, чтобы добавить его кость к кости причиняемого или восстанавливаемого\nоружием или инструментом стресса, он получает свойство длящийся.\n► Лепестки перемен\nВы можете потратить цветок, чтобы оказаться в сцене, где вас не должно быть. Вы\nполучаете 10 стресса в СУДЬБУ, вычтя из этого стресса бросок кости цветка.\n► Древесная мудрость\nМожете потратить цветок, чтобы получить от ведущего честный ответ на вопрос о локации,\nили персонаже. Вы получаете 10 стресса в ДУХ, вычтя из этого стресса бросок кости\nцветка.",
       "tier": "professional",
       "className": "Красный Рукав"
     },
     {
-      "id": "classes-card-41-120",
+      "id": "classes-card-43-134",
       "kind": "ability",
       "title": "Запасы стрелка",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          41
+          43
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "4) Запасы стрелка\nВы готовы ко всему, даже к тому, про что не знали. Особенно к нему.\nРаз в сессию на одну сцену вы можете сказать, что у вас при себе оказывается любой\nпистолет или боевой нож на выбор (без модификаций), даже если у вас его быть не может,\nнапример если вас обыскали. Вы можете обыграть это не только как припрятанное при\nсебе оружие, но и, например, как оружие, быстро отобранное у конвоира, или добытое из\nпомеченного секретным знаком тайника красных рукавов. Это оружие исчезает в конце\nсцены, например, из-за поломки или того, что вам приходится отступить, бросив его.\nМалые\n► Увеличенная кобура\nВызывая оружие, вы можете выбрать для него одну модификацию.\n► Бездонные карманы\nВы можете вызвать штурмовую винтовку, или тяжёлое оружие ближнего боя.\n► Элемент неожиданности\nПервая за сцену атака таким оружием совершается с мастерством",
       "tier": "professional",
       "className": "Красный Рукав"
     },
     {
-      "id": "classes-card-41-121",
+      "id": "classes-card-43-135",
       "kind": "ability",
       "title": "Цветочная связь",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          41
+          43
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "5) Цветочная связь\nВаши цветы связывают вашу группу так же прочно, как ваши общие приключения. Вы даёте\nкаждому соратнику цветок, отражающий его индивидуальность, опишите его. Когда один из\nваших соратников помогает другому, он может добавить больше одной кости помощи, если\nвладеет и подходящим навыком и подходящей областью.\nМалые\n► Нерушимая дружба\nКогда один из ваших соратников получает последствие в РАЗУМ или ДУХ, его вместо этого\nможет взять другой соратник.\n► Отважный ветер\nКогда один из ваших соратников совершает рискованную или опасную проверку и\nпроваливается, те, кто оказывал ему помощь в этой проверке, не получают стресса.\n► Путеводная лоза\nВы совместно с другими красными рукавами устилаете переход от локации к локации\nстабилизирующими реальность цветами. Когда вы проходите восхождение, можете\nпотратить цветок из ресурса, чья кость больше или равна его сопротивлению. Начиная со\nследующей сессии, у этого восхождения будет фиксированное сопротивление 6 и не будет\nзащиты.",
       "tier": "professional",
       "className": "Красный Рукав"
     },
     {
-      "id": "classes-card-41-122",
+      "id": "classes-card-43-136",
       "kind": "ability",
       "title": "Глава ордена",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          41
+          43
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "1) Глава ордена\nТеперь вы по ту сторону указующего жеста, верховный жрец Короля-Патрона.\nВы получаете контакт мирового уровня — орден Красных Рукавов. Раз в сессию, вы можете\nназвать любого человека, от главы корпорации или опасного картеля и до лидера могучего\nкульта. В течение этой сессии вам приведут цель живой и готовой к сотрудничеству.",
       "tier": "elite",
       "className": "Красный Рукав"
     },
     {
-      "id": "classes-card-41-123",
+      "id": "classes-card-43-137",
       "kind": "ability",
       "title": "Первый Красный",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          41
+          43
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "2) Первый Красный\nВы стали первым, кто смог удивить Красный цвет в беседе. Раз в сцену, вы можете\nвоспользоваться его мудростью, чтобы получить загадочный, но всегда правдивый ответ на\nсовершенно любой вопрос. Вы можете уговорить Красный сразиться с сущностью Башни,\nта будет побеждена, но из мира на столетия исчезнет весь красный цвет.",
       "tier": "elite",
       "className": "Красный Рукав"
     },
     {
-      "id": "classes-card-41-124",
+      "id": "classes-card-43-138",
       "kind": "ability",
       "title": "Удивление миру",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          41,
-          42,
           43
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "3) Удивление миру\nВы сохранили в сердце детскую непосредственность, а в руке — твёрдость убийцы. Когда\nвы применяете цветок, он вместо исчезновения понижает кость на ступень. Вы так же\nможете сплести из цветов любое снаряжение серийного производства, сразу заполнив все\nего ячейки модификаций, оно существует до конца сцены. Раз в сессию вы можете\nпревратить любую локацию в цветочный сад: все проверки в ней станут стандартными.\n85\nПодкодыш\n«Холодный рёв разносится над буйным морем»\nИногда организм не выдерживает стресса. Врождённые болезни, несправедливости в\nжизни, нагрузка на нервную систему от кибернетических имплантов — всё это медленно\nподтачивает сознание, пока не сводит человека с ума. Кто-то становится агрессивным, кто-\nто выгорает до состояния овоща, кто-то теряет эмоции вовсе, становясь отстранённым и\nмало похожим на человека. Таких отправляют на терапию, часто насильно, однако поймать\nудаётся не всех. Бесконечный Чёрный Лес, бескрайние степи, прибрежные скалы, нижние\nуровни городов — со знанием правил информационной маскировки буйный может\nпрятаться там годами. И тогда сознание его замещается чем-то более сильным,\nстабильным и древним. Духи мест — повелители озёр, лесов, зданий, постоянно стремятся\nзавладеть телами, и когда им представляется такая возможность, они тут же выселяют\nпредыдущее сознание, принимаясь изменять его тело.\nНавык ПРОБИВАТЬСЯ\nОбласть ДУХИ\nРешить проблему прошлого владельца тела/\nОбнаружить интересную локацию/Решить\nИзбавление\nмиром проблему, в которой рациональнее\nбыло драться\nЦели\nПодкодыши живут свободной жизнью, так что в Башне их можно встретить как наёмников,\nили исследователей. Они, однако, часто заняты личными делами: у предыдущего хозяина\nтела накопилось множество долгов и обязательств, подкодыши искупают их грехи как бы в\nоплату за новое тело.\nВнешность\nПодкодыши меняют тело сумасшедшего на генетическом уровне с помощью запутанной\nприродной магии.\nОбычно можно встретить детали, напоминающие о месте происхождения духа, так у одних\nкожа местами покрывается корой и отрастают рога, другие приобретают чешую и жабры, а\nтретьи становятся похожи на сухой покрытый солью камень. В остальном, не считая\nчастого обилия кибернетических модификаций, они выглядят как в среднем по профессии,\nв Башне они обычно носят военное снаряжение.\nПодкодыши не относят себя к народам, а потому не носят характерных деталей вроде\nплаща народа Ножей и пояса с замлёй народа Ядов. Они носят повязку с текстом\nзаклинаний, обозначающую не-человеческое происхождение и покрывают всё тело\nтатуировками с заклинаниями, позволяющими духу удержаться в новом теле.\nРеференсы:\nСтиль «милитари», животные, киберпанк\n87\nТрадиции\n— Подкодыши не принимаются людьми народов, они не носят национальной одежды, не\nпридерживаются традиций народов и обладают собственной системой верований. В\nкачестве имени они носят имя того, чему были покровителями, например «Озеро РЦВДД»,\n«31-й гвардейский бронетанковый полк», или «Город Сейр».\n— Религия подкодышей заключается в почитании Наследников. Подкодыши полагают, что\nприрода развивалась шагами, и предыдущее «поколение» погибало, давая дорогу новому,\nтак что сейчас миром правит пантеон из сотни природных богов, являющимися\nизначальным богам природы дальними родственниками. Отсчёт времени подкодыши ведут\nпо поколениям, сейчас, по их мнению, идёт третье поколение от сотворения мира, чем они\nкрайне обеспокоены: по пророчествам шаманов народов, крепко связанных с духами,\nчетвёртое поколение принесёт конец света.\n— Подкодышам важно остаться в новом сосуде, так что они часто наносят татуировки с\nзащитными заклинаниями на всё тело. Кроме того, чтобы сохранить вместилище в целости,\nони отказываются от вредных привычек, что бывает сложно, так как многие тела сошедших\nс ума киборгов зависимы от наркотиков.\n— Подкодыши являются ярыми борцами с преступностью и поборниками законности: так\nво-первых они исправляют ошибки натворивших многое предыдущих владельцев тел, а во-\nвторых поднимают репутацию среди людей, в особенности считающих их убийцами.\n— По закону подкодыши обязаны обозначать своё не-человеческое происхождение, кроме\nспециального чипа они для этого носят на лбу повязку с текстом ограничивающих\nзаклинаний.\nОтветьте на Контакты\nвопросы\n► Охотник на тела, нанятый родственниками предыдущего\nвладельца вашего тела, но ставший вам другом (Персонаж\nКто прошлый ведущего)\nвладелец вашего\nтела и почему он ► Кто-то в группе считает, что вы не понимаете человеческих шуток\nсошёл с ума? и идиом и всегда вам их объясняет. Кто это и что самое очевидное он\nвам рассказал?\nПока вы были\nбесплотным духом, ► Кто-то в группе углубился в изучение связанной с духами магии и\nчеловечество вас обсуждает её с вами. Кто это и в чём он заблуждается?\nобидело, но вы не\nдержите зла. Что ► Кто-то из группы готовит вместе с вами еду, кто это, и какому\nэто была за ставшему любимым рецепту он вас научил?\nситуация и почему\nвы простили людей?\nВы помните чьё-то\nлицо, но не можете\nвспомнить ни имени,\nни то, кем был этот\nчеловек. Что вы\nделаете, чтобы\nвыяснить, кто это?\n88",
+      "text": "3) Удивление миру\nВы сохранили в сердце детскую непосредственность, а в руке — твёрдость убийцы. Когда\nвы применяете цветок, он вместо исчезновения понижает кость на ступень. Вы так же\nможете сплести из цветов любое снаряжение серийного производства, сразу заполнив все\nего ячейки модификаций, оно существует до конца сцены. Раз в сессию вы можете\nпревратить любую локацию в цветочный сад: все проверки в ней станут стандартными.",
       "tier": "elite",
-      "className": "Подкодыш"
+      "className": "Красный Рукав"
     },
     {
-      "id": "classes-card-43-125",
+      "id": "classes-card-45-139",
       "kind": "ability",
       "title": "Нелюдь",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          43
+          45
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "1) Нелюдь\nВы — другой, и люди вам никогда этого не простят. Ваше тело заметно изменено вашей\nпотусторонней природой, и ограждено защитными заклинаниями, которые люди\nиспользовали, чтобы обезопасить себя.\nПри создании персонажа выберите область, к которой относился ваш дух. Обычно это\nпокровители леса, озера, или района города, но могут быть и иные варианты, например, в\nслучае с областью АРМИЯ это может быть дух полкового знамени, а в случае с областью\nКОРПОРАЦИИ, это может быть боевая нейросеть — анализатор, или талисман спортивной\nкоманды.\nВы получаете эту область в дополнение к имеющимся у вас. Раз в сцену, вы можете\nзаменить в проверке актуальную для неё область на эту область, а если эта область и так\nприсутствовала, вы получаете от неё кость помощи. Вы можете потратить ресурс с костью\nк8 и выше, чтобы до конца сцены добавить эту область ко всем остальным областям,\nактуальным для сцены.\nВы не можете лгать и произносить вслух цифру четыре.",
       "tier": "basic",
       "className": "Подкодыш"
     },
     {
-      "id": "classes-card-43-126",
+      "id": "classes-card-45-140",
       "kind": "ability",
       "title": "Что ты, ветер, затих?",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          43
+          45
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "1) Что ты, ветер, затих?\nЛюди не мудрее тысячелетнего леса, или видевшего миллион лиц города.\nРаз в сцену, вы можете задать ведущему вопрос о локации, вам обязаны будут ответить\nчестно. В этой локации всегда есть проблема, о которой она посредством туманных\nобразов и сложных загадок сообщит. Если вы поможете её решить, все идущие от этой\nлокации восхождения получат 1к6 стресса и лишатся защиты.",
       "tier": "minor",
       "className": "Подкодыш"
     },
     {
-      "id": "classes-card-43-127",
+      "id": "classes-card-45-141",
       "kind": "ability",
       "title": "Истинный лик",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          43
+          45
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "2) Истинный лик\nРаз в сессию вы можете до конца сцены трансформировать тело во что-то,\nсоответствующее природе духа, например, отрастить жабры и плавники, если вы были\nдухом реки.\nЕсли к броску применима область, которую вы выбрали при получении базовой\nспособности, вы причиняете или восстанавливаете на ступень стресса больше.",
       "tier": "minor",
       "className": "Подкодыш"
     },
     {
-      "id": "classes-card-43-128",
+      "id": "classes-card-45-142",
       "kind": "ability",
       "title": "Друзья из прошлого",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          43
+          45
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "3) Друзья из прошлого\nВы помните лица и помните, что они улыбались вам во снах. Увидев их вновь, вы видите те\nже улыбки и усталость в глазах.\nРаз в сессию, встретив нового персонажа ведущего-человека(даже противника) вы можете\nсказать, что прошлый владелец вашего тела был ему другом. Этот персонаж всегда будет с\nвами сотрудничать, но всегда потребует неприятных дополнительных условий. При\nвыполнении условий, запишите контакт личного уровня.\n89",
+      "text": "3) Друзья из прошлого\nВы помните лица и помните, что они улыбались вам во снах. Увидев их вновь, вы видите те\nже улыбки и усталость в глазах.\nРаз в сессию, встретив нового персонажа ведущего-человека(даже противника) вы можете\nсказать, что прошлый владелец вашего тела был ему другом. Этот персонаж всегда будет с\nвами сотрудничать, но всегда потребует неприятных дополнительных условий. При\nвыполнении условий, запишите контакт личного уровня.",
       "tier": "minor",
       "className": "Подкодыш"
     },
     {
-      "id": "classes-card-44-129",
+      "id": "classes-card-46-143",
       "kind": "ability",
       "title": "Вирус",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          44
+          46
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "4) Вирус\nФлуктуации магии, проскакивающее по кремнию электричество, или нуклеиновые кислоты\n— разницы нет. Это лишь формы информации.\nРаз в сцену, вы можете передать часть своего модифицированного генома через кровь или\nслёзы, или забрать часть чужих генов, в бою для этого потребуется проверка УБИВАТЬ и\nнахождение на одной дистанции. До конца сессии, это существо считается вами (или вы\nсчитаетесь им) для всех видов магии и генетических тестов, например так можно обмануть\nпророчество, или сбить с толку проклятие.",
       "tier": "minor",
       "className": "Подкодыш"
     },
     {
-      "id": "classes-card-44-130",
+      "id": "classes-card-46-144",
       "kind": "ability",
       "title": "Смертонепробиваемый",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          44
+          46
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "5) Смертонепробиваемый\nЭто тело теперь ваше. Чувствовать тепло прикосновений, дуновение ветерка на коже,\nутолённый голод… О да, вы бы за это убили.\nКогда вы получаете малое или значимое последствие в ПУЛИ, вы можете от него\nотказаться, взяв соответствующее количество стресса в ДУХ — к6 для малого и к8 для\nзначимого. Стресс в дух может по вашему желанию получить вместо вас любой, кто\nсчитается для магии вами.",
       "tier": "minor",
       "className": "Подкодыш"
     },
     {
-      "id": "classes-card-44-131",
+      "id": "classes-card-46-145",
       "kind": "ability",
       "title": "Оружие старины",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          44
+          46
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "6) Оружие старины\nСимпатическая магия работает и с ракетными установками, и с шустрыми дронами, но вы\nпредпочитаете классику.\nВыберите цель, которую вы в течение этой сессии атаковали из лука, с помощью ножа, или\nтяжёлого оружия ближнего боя. Покрыв оружие ядом, или положив около огня, вы\nдистанционно причиняете этому врагу стресс этого оружия, если этот противник находится\nочень далеко, вы находите его мёртвым уже в следующей сессии. Если цель считается для\nмагии вами, до конца сессии стресс, полученный одним, получает и другой.",
       "tier": "minor",
       "className": "Подкодыш"
     },
     {
-      "id": "classes-card-44-132",
+      "id": "classes-card-46-146",
       "kind": "ability",
       "title": "Тайные тропы",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          44
+          46
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "7) Тайные тропы\nДаже в этом безумном месте вы уверены, что удачный поход для битвы важнее дорогого\nоружия.\nПричиняя стресс восхождению, вы получаете свойство бронебойный (3). Ваше тело\nфункционирует как инструмент к6 ПРОБИВАТЬСЯ.",
       "tier": "minor",
       "className": "Подкодыш"
     },
     {
-      "id": "classes-card-44-133",
+      "id": "classes-card-46-147",
       "kind": "ability",
       "title": "Полуденная тень",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          44
+          46
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "8) Полуденная тень\nВы можете украсть что-то, что нельзя подержать в руках или даже увидеть.\nВы можете с помощью проверки СКРЫВАТЬСЯ попытаться украсть у цели что-то\nабстрактное, например, голос, тень, или имя. Для более сложных вещей, вроде боевой\nславы, проверка может быть рискованной, или опасной. Вы владеете этим до конца сессии,\nпосле оно возвращается к владельцу. Пока оно у вас, цель не может им пользоваться.\nВы сами не можете им воспользоваться, поскольку оно вам не принадлежит, исключение —\nесли магия посчитает, что вы законный владелец этой сущности, в таком случае вы можете\nеё применить, после конца сцены она вернётся к владельцу.\n90",
+      "text": "8) Полуденная тень\nВы можете украсть что-то, что нельзя подержать в руках или даже увидеть.\nВы можете с помощью проверки СКРЫВАТЬСЯ попытаться украсть у цели что-то\nабстрактное, например, голос, тень, или имя. Для более сложных вещей, вроде боевой\nславы, проверка может быть рискованной, или опасной. Вы владеете этим до конца сессии,\nпосле оно возвращается к владельцу. Пока оно у вас, цель не может им пользоваться.\nВы сами не можете им воспользоваться, поскольку оно вам не принадлежит, исключение —\nесли магия посчитает, что вы законный владелец этой сущности, в таком случае вы можете\nеё применить, после конца сцены она вернётся к владельцу.",
       "tier": "minor",
       "className": "Подкодыш"
     },
     {
-      "id": "classes-card-44-134",
+      "id": "classes-card-46-148",
       "kind": "ability",
       "title": "Старший",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          44
+          46
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "9) Старший\nВы — старый и могучий дух, и вы способны указать проказникам и вредителям их место.\nВы можете проверкой КОЛДОВАТЬ, или потратив много времени и к8 и более ценный\nресурс, изгнать из одного тела на средней или ближней дистанции злых духов. Это\nотключит дроны и турели, причинит подкодышу, стражу врат, или раствору души к12\nстресса со свойством мощный, а для союзника функционирует как к10 ЧИНИТЬ ДУХ или\nРАЗУМ.",
       "tier": "minor",
       "className": "Подкодыш"
     },
     {
-      "id": "classes-card-44-135",
+      "id": "classes-card-46-149",
       "kind": "ability",
       "title": "Древнее гадание",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          44
+          46
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "10) Древнее гадание\nВы можете потратить к6 и более ценный ресурс и много времени на гадание. Придумайте\nодну ситуацию, которая произойдёт в течение этой сессии, например чудесное спасение из\nбитвы, или открытие нового загадочного места. Вы в любой момент можете ввести эту\nситуацию в повествование, но с ней всегда будет что-то не так, например, вы\nдействительно находите гору припасов, но она принадлежит бандитам, так что вам\nприходится убегать с ней под огнём противника. Когда эта ситуация происходит, до конца\nсцены вы кроме всех костей на проверку, бросаете ещё и кость, равную кости потраченного\nна гадание ресурса.",
       "tier": "minor",
       "className": "Подкодыш"
     },
     {
-      "id": "classes-card-44-136",
+      "id": "classes-card-46-150",
       "kind": "ability",
       "title": "Особо опасен",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          44,
-          45
+          46,
+          47
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "1) Особо опасен\nЗа вами ведут охоту. И, стоит сказать, у них есть, чего от вас потребовать.\nРаз в сессию, вы можете заменить любой результат проверки любого члена группы на\nкритический успех. В сцене, в которой вы применили эту способность, вы встретите отряд\nохотников за телами (возьмите характеристики бойцов ЧВК из приложения), желающих вас\nарестовать, а при сопротивлении — убить на месте. Если вы убиваете отряд, за вами\nвышлют новый.\nЕсли вы применяете несколько ветвей этой способности в одной сцене, идущие по вашему\nследу враги работают сообща, но вы можете, вводя нового преследователя, принять к10\nстресса в СУДЬБУ, чтобы он стал другому отряду соперником.\nМалые\n► Мгновение радости\nРаз в сессию, вы в любой момент находите или получаете в награду к12 ресурс. В этой же\nсцене вы сталкиваетесь с коллекторами, которые требуют с вас как с нового владельца\nтела проценты по кредиту вместе с простоем. Вы можете расплатиться с ними четырьмя\nк12 ресурсами, четыре раза принять к12 стресса в ресурсы или выполнить их задание,\nвсегда очень трудное и аморальное. Если вы убиваете отряд или скрываетесь от него, за\nвами высылают новый, в этот раз — готовый убить.\n► Вечные узы\nРаз в сессию, вы можете заменить результат причиняемого или восстанавливаемого\nстресса на максимальный, возможный на кости. В этой же сцене, вы встречаете бывшего\nродственника или любовника прошлого владельца вашего тела, который пытается до него\nдостучаться. Сам по себе он не приносит вреда, но пока вы не сбежите, не обманете, или\nне избавитесь от него другим образом, он будет по неосторожности мешать вам во всём.\nЕсли вы разобьёте ему сердце, или убьёте, все ваши контакты-персонажи ведущего\n91\nполучат к8 стресса, а у тела найдётся новый старый друг.\n► Увидеть незримое\nРаз в сессию, вы можете избавиться от малого или большого последствия. В этой же сцене,\nвы встречаете учёных с вооружённой охраной, желающих получить вас в качестве\nподопытного. Если вы избавляетесь от них, в следующий раз отряд будет больше и\nпопытается захватить вас силой.",
+      "text": "1) Особо опасен\nЗа вами ведут охоту. И, стоит сказать, у них есть, чего от вас потребовать.\nРаз в сессию, вы можете заменить любой результат проверки любого члена группы на\nкритический успех. В сцене, в которой вы применили эту способность, вы встретите отряд\nохотников за телами (возьмите характеристики бойцов ЧВК из приложения), желающих вас\nарестовать, а при сопротивлении — убить на месте. Если вы убиваете отряд, за вами\nвышлют новый.\nЕсли вы применяете несколько ветвей этой способности в одной сцене, идущие по вашему\nследу враги работают сообща, но вы можете, вводя нового преследователя, принять к10\nстресса в СУДЬБУ, чтобы он стал другому отряду соперником.\nМалые\n► Мгновение радости\nРаз в сессию, вы в любой момент находите или получаете в награду к12 ресурс. В этой же\nсцене вы сталкиваетесь с коллекторами, которые требуют с вас как с нового владельца\nтела проценты по кредиту вместе с простоем. Вы можете расплатиться с ними четырьмя\nк12 ресурсами, четыре раза принять к12 стресса в ресурсы или выполнить их задание,\nвсегда очень трудное и аморальное. Если вы убиваете отряд или скрываетесь от него, за\nвами высылают новый, в этот раз — готовый убить.\n► Вечные узы\nРаз в сессию, вы можете заменить результат причиняемого или восстанавливаемого\nстресса на максимальный, возможный на кости. В этой же сцене, вы встречаете бывшего\nродственника или любовника прошлого владельца вашего тела, который пытается до него\nдостучаться. Сам по себе он не приносит вреда, но пока вы не сбежите, не обманете, или\nне избавитесь от него другим образом, он будет по неосторожности мешать вам во всём.\nЕсли вы разобьёте ему сердце, или убьёте, все ваши контакты-персонажи ведущего\nполучат к8 стресса, а у тела найдётся новый старый друг.\n► Увидеть незримое\nРаз в сессию, вы можете избавиться от малого или большого последствия. В этой же сцене,\nвы встречаете учёных с вооружённой охраной, желающих получить вас в качестве\nподопытного. Если вы избавляетесь от них, в следующий раз отряд будет больше и\nпопытается захватить вас силой.",
       "tier": "professional",
       "className": "Подкодыш"
     },
     {
-      "id": "classes-card-45-137",
+      "id": "classes-card-47-151",
       "kind": "ability",
       "title": "Духи-помощники",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          45
+          47
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "2) Духи-помощники\nВы были мудрым и могучим духом, и в вашем подчинении были озорные малые сущности.\nОни пошли с вами, стоило вам обрести тело. Если вы, например, были царём леса, с вами\nмогут оказаться покровитель грибов, дух, поющий колыбельные зверям, или ответственный\nза равномерное распределение снега по кронам деревьев. Сейчас они с вами в форме\nинформации, обычно на твердотельном накопителе.\nВы получаете контакт личного уровня — «Младшие братья». Кроме обычных применений\nконтакта, вы можете попросить у них вас оберегать. Раз в сцену и до её конца, вы\nполучаете +3 слота и +3 защиты в любое сопротивление на выбор.\nМалые\n► Добрый повелитель\nЭтот контакт получает защиту 3\n► Посол благородного двора\nВы можете попросить у духов оберегать вашего соратника, или другой контакт —\nперсонажа ведущего.\n► Исправный чиновник\nОдин из духов с вами заведовал учётом, например контролировал популяцию хищных рыб\nв озере. Когда вы должны получить стресс в ресурсы, вы можете вместо этого получить\nстресс в этот контакт.",
       "tier": "professional",
       "className": "Подкодыш"
     },
     {
-      "id": "classes-card-45-138",
+      "id": "classes-card-47-152",
       "kind": "ability",
       "title": "Тяжёлая модификация",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          45
+          47
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "3) Тяжёлая модификация\nВаше тело при прошлом владельце было прошедшей долгую подготовку боевой машиной,\nнаполненной киберимплантами, биологическими и магическими модификациями. Это\nдовольно распространено среди подкодышей. Такие солдаты чаще других сходят с ума.\nДело не в давлении имплантов на нервную систему, как про то рассказывают командиры,\nнет. Вся проблема в том, что именно их посылают на самые жестокие и опасные задания.\nВпрочем, вы могли сделать это с телом и после его обретения, чтобы прочнее в нём\nзакрепиться.\nВы получаете кость модификаций к8. При каждом применении способности, она снижается\nна одну ступень. Кость модификаций восстанавливается на одну ступень при каждом\nвыполнении условия избавления, или полностью в начале сессии.\nПри любой проверке, вы можете до её результата сказать, что используете в ней своё\nизменённое тело, опишите, как именно это выглядит. Добавьте кость модификаций в\nбросок, она работает как бонус к самому большому значению.\n92\n\nМалые\n► Снятые ограничители\nКогда вы получаете значимое последствие, кость модификаций восстанавливается на одну\nступень.\n► Легкосплавное мастерство\nКогда вы в результате проверки с применением этой способности причиняете или\nвосстанавливаете стресс, можете добавить к нему бросок кости модификаций.\n► На пределе\nЕсли результат проверки с применением\nэтой способности больше 10, вы можете не\nтратить использования кости модификаций, и вместо этого получить столько же стресса в\nПУЛИ, сколько получили от её добавления к броску.",
+      "text": "3) Тяжёлая модификация\nВаше тело при прошлом владельце было прошедшей долгую подготовку боевой машиной,\nнаполненной киберимплантами, биологическими и магическими модификациями. Это\nдовольно распространено среди подкодышей. Такие солдаты чаще других сходят с ума.\nДело не в давлении имплантов на нервную систему, как про то рассказывают командиры,\nнет. Вся проблема в том, что именно их посылают на самые жестокие и опасные задания.\nВпрочем, вы могли сделать это с телом и после его обретения, чтобы прочнее в нём\nзакрепиться.\nВы получаете кость модификаций к8. При каждом применении способности, она снижается\nна одну ступень. Кость модификаций восстанавливается на одну ступень при каждом\nвыполнении условия избавления, или полностью в начале сессии.\nПри любой проверке, вы можете до её результата сказать, что используете в ней своё\nизменённое тело, опишите, как именно это выглядит. Добавьте кость модификаций в\nбросок, она работает как бонус к самому большому значению.\n\nМалые\n► Снятые ограничители\nКогда вы получаете значимое последствие, кость модификаций восстанавливается на одну\nступень.\n► Легкосплавное мастерство\nКогда вы в результате проверки с применением этой способности причиняете или\nвосстанавливаете стресс, можете добавить к нему бросок кости модификаций.\n► На пределе\nЕсли результат проверки с применением\nэтой способности больше 10, вы можете не\nтратить использования кости модификаций, и вместо этого получить столько же стресса в\nПУЛИ, сколько получили от её добавления к броску.",
       "tier": "professional",
       "className": "Подкодыш"
     },
     {
-      "id": "classes-card-45-139",
+      "id": "classes-card-47-153",
       "kind": "ability",
       "title": "Паранормальный оскал",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          45
+          47
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "4) Паранормальный оскал\nВам стоит почаще напоминать окружающим, что вы не человек.\nВы можете в бою, или переговорах повести себя странно, или особенно жестоко, опишите\nэто действие. Примите любую кость стресса на выбор в ДУХ. Ваше чудовищное поведение\nдействует как оружие со свойствами нелетальный, стабильный и разброс, действует на\nближней и средней дистанции, а его кость стресса равна принятой вами в ДУХ.\nМалые\n► Иные методы\nВы можете принять стресс в ДУХ не только в сражении, но и чтобы добавить вашу\nстранность к любой другой проверке, результат кости добавится к максимальному\nрезультату на кости проверки. Опишите, как это выглядит, например, при броске\nКОЛДОВАТЬ, вы начинаете говорить на непонятном языке.\n► Умыться кровью\nВы можете использовать эту способность каждый раз, когда получаете последствие в\nПУЛИ. В случае малого последствия, стресс равен к6, значимого — к8, а рокового — к12.\n► Гнутые кости\nВы меняете тело, чтобы оно лучше подходило вашим желаниям. Кроме ДУХА, вы можете\nпринимать стресс ещё и в ПУЛИ, он игнорирует защиту от носимой брони.\n93",
+      "text": "4) Паранормальный оскал\nВам стоит почаще напоминать окружающим, что вы не человек.\nВы можете в бою, или переговорах повести себя странно, или особенно жестоко, опишите\nэто действие. Примите любую кость стресса на выбор в ДУХ. Ваше чудовищное поведение\nдействует как оружие со свойствами нелетальный, стабильный и разброс, действует на\nближней и средней дистанции, а его кость стресса равна принятой вами в ДУХ.\nМалые\n► Иные методы\nВы можете принять стресс в ДУХ не только в сражении, но и чтобы добавить вашу\nстранность к любой другой проверке, результат кости добавится к максимальному\nрезультату на кости проверки. Опишите, как это выглядит, например, при броске\nКОЛДОВАТЬ, вы начинаете говорить на непонятном языке.\n► Умыться кровью\nВы можете использовать эту способность каждый раз, когда получаете последствие в\nПУЛИ. В случае малого последствия, стресс равен к6, значимого — к8, а рокового — к12.\n► Гнутые кости\nВы меняете тело, чтобы оно лучше подходило вашим желаниям. Кроме ДУХА, вы можете\nпринимать стресс ещё и в ПУЛИ, он игнорирует защиту от носимой брони.",
       "tier": "professional",
       "className": "Подкодыш"
     },
     {
-      "id": "classes-card-46-140",
+      "id": "classes-card-48-154",
       "kind": "ability",
-      "title": "Боевое искусство",
+      "title": "Боевое искусство: Межевой шаг",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          46
+          48
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "5) Боевое искусство: Межевой шаг\nПодкодыши адаптировали человеческие боевые системы под изменённые тела. Вы скорее\nместо, чем человек, и отлично это помните.\nВы получаете мастерство в навыке УБИВАТЬ, срабатывающее, когда вы сражаетесь без\nоружия, боевым ножом, или тяжёлым оружием ближнего боя. Ваши безоружные атаки\nтеперь причиняют к6 стресса. Когда враг причиняет вам стресс, вы можете заставить его\nпереместиться на одну дистанцию, или запретить ему перемещаться, пока он не получит\nстресс.\nМалые\n► Узилище\nКогда вы причиняете стресс врагу, которого в этой сцене перемещали или сковывали, вы\nможете бросить кость стресса на один раз больше и выбрать лучший результат.\n► Удар милосердия\nВам нужно каждую секунду доказывать, что вы не зверь, даже когда в вас уже стреляют.\nВаши безоружные атаки, атаки боевыми ножами и тяжёлым оружием ближнего боя могут\nиметь свойство нелетальный, вы должны заявить его до проверки. Когда вы нелетально\nвыводите из строя противника, вы восстанавливаете К6 в РЕСУРСЫ.\n► Пророческое парирование\nРаз в сцену, когда вы проходите проверку ИЗБЕГАТЬ, вы при успехе не только не получаете\nстресс, но и причиняете такую же кость стресса противнику.",
       "tier": "professional",
       "className": "Подкодыш"
     },
     {
-      "id": "classes-card-46-141",
+      "id": "classes-card-48-155",
       "kind": "ability",
       "title": "Вотчина",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          46
+          48
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "1) Вотчина\nВы больше не бегущий от проблем дух в чужом теле. Вы снова место.\nВыберите область, все локации с этой же областью считаются вашей вотчиной: вы и ваша\nгруппа не получаете последствий при проверках ПРОБИВАТЬСЯ, находясь в них. Раз в\nсцену вы можете сказать, что место узнаёт и защищает вас, выберите эффект:\n► Пройти между этой локацией и соседней без нужды в восхождении\n► Причинить всем противникам к12 стресса со свойством мощный\n► Восстановить всем союзникам К8 в ДУХЕ, или РАЗУМЕ\n► Спрятать всю группу от врагов до конца сцены без нужды в проверке\n► Задать о локации три вопроса, ведущий ответит честно и с предельной точностью\nОдин раз, когда ваше тело погибает, вы перерождаетесь в любой локации-вотчине, где хоть\nодин раз были, в теле проходившего мимо безумца или достаточно целого мертвеца. Вы\nсохраняете все навыки, но не снаряжение. Все контакты получают К6 стресса, поскольку им\n94\n\nсложно привыкнуть к вашему новому лицу.",
+      "text": "1) Вотчина\nВы больше не бегущий от проблем дух в чужом теле. Вы снова место.\nВыберите область, все локации с этой же областью считаются вашей вотчиной: вы и ваша\nгруппа не получаете последствий при проверках ПРОБИВАТЬСЯ, находясь в них. Раз в\nсцену вы можете сказать, что место узнаёт и защищает вас, выберите эффект:\n► Пройти между этой локацией и соседней без нужды в восхождении\n► Причинить всем противникам к12 стресса со свойством мощный\n► Восстановить всем союзникам К8 в ДУХЕ, или РАЗУМЕ\n► Спрятать всю группу от врагов до конца сцены без нужды в проверке\n► Задать о локации три вопроса, ведущий ответит честно и с предельной точностью\nОдин раз, когда ваше тело погибает, вы перерождаетесь в любой локации-вотчине, где хоть\nодин раз были, в теле проходившего мимо безумца или достаточно целого мертвеца. Вы\nсохраняете все навыки, но не снаряжение. Все контакты получают К6 стресса, поскольку им\n\nсложно привыкнуть к вашему новому лицу.",
       "tier": "elite",
       "className": "Подкодыш"
     },
     {
-      "id": "classes-card-46-142",
+      "id": "classes-card-48-156",
       "kind": "ability",
       "title": "Четвёртое поколение",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          46
+          48
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "2) Четвёртое поколение\nКонец света на пороге, и вы – один из первых духов четвёртого поколения, что по\nпророчествам готовится его принести. Но конец это всегда начало чего-то нового, и старые\nзаконы больше неприменимы.\nНа вас перестают действовать ограничения от защитных заклинаний: вы можете лгать и\nговорить цифру четыре вслух. Раз в сцену и до её конца, вы можете отменить любое\nправило, установленное людьми, например лишить ценности деньги, заставить часового\nпропускать всех подряд, или убрать из голов народа Граней саму идею рабовладения. Вы\nможете таким образом отменить реальность одной из сущностей Башни, но сами\nстановитесь бесплотны навсегда, без возможности вернуться в тело.",
       "tier": "elite",
       "className": "Подкодыш"
     },
     {
-      "id": "classes-card-46-143",
+      "id": "classes-card-48-157",
       "kind": "ability",
       "title": "Слияние",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          46,
-          47,
           48
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "3) Слияние\nМир духов и мир людей рядом с вами так же едины, как вы со своим новым телом.\nВы получаете на ступень меньше стресса из всех источников, а чтобы убить вас\nпотребуется огонь, серебро, или ртуть: вы можете отказаться от рокового последствия, но в\nтаком случае товарищам придётся вас спасать. Вокруг вас сплочается контакт мирового\nуровня – духи природы и союзники их прав. Вас как подкодыша перестают подозревать и\nненавидеть.\n95\nПаратехник\n«Не лги. Лжи нет.»\nМир и его изнанка всегда привлекали исследователей загадочностью. В древности, когда\nкультура человека не была ещё подобна магии, шаманов были единицы, с помощью долгих\nритуалов они общались с духами, хоронили мёртвых и воздавали почести богам. Сейчас\nмир изменился. Киберпространство ничуть не более понятно обывателю, чем магия. В этом\nновом мире паратехники, взаимодействующие с магическим миром через цифровой и с\nцифровым миром через магический придутся кстати всем - от небольших воинских отрядов\nдо мегакорпораций.\nЦели\nНавык ТЕХНИЧИТЬ\nОбласть КОРПОРАЦИЯ\nНайти новый способ связаться с\nИзбавление потусторонним/ Навредить корпорациям/\nОбмануть человека ему же на пользу\nПаратехники чаще всего обычные наёмники, однако среди них встречаются и идейные,\nнапример, многие из них добровольно вступают в группировку “Башня Упадёт”.\nВнешность\nПаратехники носят удобные обтягивающие комбинезоны. Так проще подключаться к\nмашинам, к тому же такой костюм отдаёт дань уважения шаманам народа Морей, которые\nв старину использовали одежду, варёную в соке дерева рисилс, получающую свойства\nрезины. Помимо этого, они используют военное снаряжение вроде разгрузок и\nбронежилетов. Они всегда носят обереги в большом количестве, средний паратехник\nвсегда обвешан шкурами зверей, ловцами снов, наконечниками копий и легкосплавными\nфигурками хищников.\nВ паратехниках часто очень много железок, они любят встраивать в себя вычислительные\nблоки, защиту от взлома и порчи, пускать по крови нанобубны. Стандартным набором\nпаратехника считается пара искусственных глаз, мост, соединяющий мозг и\nвычислительный блок, а так же заменяющие волосы кабели для подключения к разной\nтехнике.\nОсновным символом паратехников является неоново-красная бабочка, такие сопровождают\nих в странствиях по миру информации.\nРеференсы:\nКиберпанк хакеры, милитари, шаманы\nТрадиции\n– Паратехники называют мир информации Миром, а материальный мир - Рефлексом,\nсчитая, что первичны духи и компьютерный код.\n97\n– Паратехники часто оставляют цифровую подпись в месте, что взломали. Это выступает\nрекламой и вместе с тем предупреждением: за защищаемое серьёзным техником место\nвозьмётся не каждый.\n– Паратехники различают красных бабочек, соответствующих компьютерному слою мира\nинформации и бирюзовых, живущих на одном слое с духами. Сильный ИИ они видят как\nцветок размером с город, окружённый мириадами бабочек обоих цветов.\n– Паратехники трепетно относятся к информационной чистоте: перед мёртвыми или духами\nприроды они соблюдают все приличия, да и в социальных сетях никогда не грубят людям.\nОтветьте на\nКонтакты\nвопросы\n► Предатель корпорации, работающий на\nСамый вам паратехников(Персонаж ведущего)\nненавистный способ\nкорпораций ► Кто-то в группе любит спрашивать у вас о методах взлома\nограничить свободу защиты сериалов и видеоигр. Кто это, и какую неочевидную цель\nон преследует?\nВ отличие от многих\nпаратехников, вы ► Кто-то в группе подвергся вашему взлому на службе до Башни.\nчасто идёте в Кто это и почему вы от него этого не скрываете?\nоткрытый бой,\nпочему? ► Кто-то в группе подозрительно хорошо общается с миром\nинформации, при этом ничего не зная про духов и цифровые\nтехнологии. Кто это и в чём его секрет?\nВ долгих хакерских\nсессиях вы\nпривыкли питаться\nчем попало.\nРасскажите ваш\nлюбимый рецепт\nблюда из\nполуфабрикатов.",
+      "text": "3) Слияние\nМир духов и мир людей рядом с вами так же едины, как вы со своим новым телом.\nВы получаете на ступень меньше стресса из всех источников, а чтобы убить вас\nпотребуется огонь, серебро, или ртуть: вы можете отказаться от рокового последствия, но в\nтаком случае товарищам придётся вас спасать. Вокруг вас сплочается контакт мирового\nуровня – духи природы и союзники их прав. Вас как подкодыша перестают подозревать и\nненавидеть.",
       "tier": "elite",
-      "className": "Паратехник"
+      "className": "Подкодыш"
     },
     {
-      "id": "classes-card-48-144",
+      "id": "classes-card-50-158",
       "kind": "ability",
       "title": "Взлом",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          48
+          50
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "1) Взлом\nБлагодаря мастерству в цифровых технологиях и взаимодействию с духами, вы можете\nвмешиваться в электронику.\nВы можете пройти проверку ТЕХНИЧИТЬ, чтобы воздействовать на противника или\nвосхождение одним из способов на выбор:\n► Лишить защиты в сопротивлении\n► Лишить хода противника\n► Заставить переместиться на одну дистанцию\n► Следующий полученный стресс будет максимально возможным на кости\n98\n\n► Снизить причиняемый стресс на одну ступень\n► Снизить опасность на одну ступень\n► Повысить ценность добычи на одну ступень\n► Задать вопрос о персонаже или локации, ведущий обязан ответить честно\n► Причинить к8 стресса со свойствами энергетический, мощный и точный\nВ ходе одной сцены каждый эффект может быть применён только один раз.",
+      "text": "1) Взлом\nБлагодаря мастерству в цифровых технологиях и взаимодействию с духами, вы можете\nвмешиваться в электронику.\nВы можете пройти проверку ТЕХНИЧИТЬ, чтобы воздействовать на противника или\nвосхождение одним из способов на выбор:\n► Лишить защиты в сопротивлении\n► Лишить хода противника\n► Заставить переместиться на одну дистанцию\n► Следующий полученный стресс будет максимально возможным на кости\n\n► Снизить причиняемый стресс на одну ступень\n► Снизить опасность на одну ступень\n► Повысить ценность добычи на одну ступень\n► Задать вопрос о персонаже или локации, ведущий обязан ответить честно\n► Причинить к8 стресса со свойствами энергетический, мощный и точный\nВ ходе одной сцены каждый эффект может быть применён только один раз.",
       "tier": "basic",
       "className": "Паратехник"
     },
     {
-      "id": "classes-card-48-145",
+      "id": "classes-card-50-159",
       "kind": "ability",
       "title": "Чат с мёртвыми",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          48
+          50
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "1) Чат с мёртвыми\nРаз в сцену, вы можете пообщаться с недавно умершими через текстовый или голосовой\nчат. Задайте им любой вопрос о том, что их убило, или о их специализации, они всегда\nответят правду и дадут вам кость помощи на все проверки УЗНАВАТЬ до конца сцены,\nдавая вам подсказки в чате. Для этого не требуется проверки, но вы всегда получаете к8\nстресса в ДУХ, если до конца сессии не найдёте способ упокоить мёртвых, или иначе\nотблагодарить их.",
       "tier": "minor",
       "className": "Паратехник"
     },
     {
-      "id": "classes-card-48-146",
+      "id": "classes-card-50-160",
       "kind": "ability",
       "title": "Мятежник",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          48
+          50
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "2) Мятежник\nБыть врагом корпораций глупо — говорят некоторые. А вы уверены, что глупо считать\nдругом того, кто берёт от тебя работу и забирает как её результат, так и большую часть\nденег.\nРаз в сцену, когда вы действуете против мегакорпорации, в прямом бою ли, или\nподговаривая на мятеж бойцов службы безопасности, или взламывая сервер, вы не\nполучаете стресса. Раз в сессию, когда вы уже увидели следы присутствия врага, но ещё\nне было объявлено, кто это, вы можете сказать, что это представители одной из\nкорпораций.",
       "tier": "minor",
       "className": "Паратехник"
     },
     {
-      "id": "classes-card-48-147",
+      "id": "classes-card-50-161",
       "kind": "ability",
       "title": "Спецпрограмма",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          48
+          50
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "3) Спецпрограмма\nВы предпочитаете писать отдельный код для каждой задачи.\nКогда вы взламываете цель с рискованной сложностью, вы можете при успехе применить\nдва эффекта взлома, а с опасной сложностью – три, но при провале вы получите\nудвоенный стресс.\nКаждый раз, как вы достигаете успеха в таком взломе, вы получаете ресурс «данные о\nсистемах защиты» к10 КОРПОРАЦИИ, который имеет свойство дорогой, если вы продаёте\nего паратехникам.\nКаждый раз, как вы проваливаетесь в таком взломе, другие паратехники учатся на ваших\nошибках и готовы оказать вам одну услугу. Услуги копятся неограниченно.",
       "tier": "minor",
       "className": "Паратехник"
     },
     {
-      "id": "classes-card-48-148",
+      "id": "classes-card-50-162",
       "kind": "ability",
       "title": "Взаимовыручка",
-      "section": "classes",
-      "dropTarget": "ability",
-      "source": {
-        "pdfPages": [
-          48,
-          49
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "4) Взаимовыручка\nПаратехники очень сплочены и на ваших тематических ресурсах легко можно найти данные\nоб оставленных в Башне точках взаимопомощи.\nРаз в сцену, придя в локацию, вы можете сказать, что знаете, где паратехники спрятали\nящик снабжения. Вы можете восстановить К10 в РЕСУРСЫ, или потратить К10 ресурс,\nпредмет или стресс в РЕСУРСЫ, чтобы оставить что-то самим. Во втором случае\n99\nблагодарные паратехники поделятся информацией, в следующий раз, как вы придёте в\nлокацию, вы можете сказать, что в ней находится паратехник, готовый сообщить о\nвыгодном задании.",
-      "tier": "minor",
-      "className": "Паратехник"
-    },
-    {
-      "id": "classes-card-49-149",
-      "kind": "ability",
-      "title": "Мастер умного оружия",
-      "section": "classes",
-      "dropTarget": "ability",
-      "source": {
-        "pdfPages": [
-          49
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "5) Мастер умного оружия\nВсё оружие в ваших руках получает свойство умный. Когда вы пользуетесь оружием с этим\nсвойством, вы можете сначала совершить проверку и причинить стресс, а только потом\nвыбрать цель. Оружие, у которого и так было свойство умный, причиняет на ступень\nстресса больше.",
-      "tier": "minor",
-      "className": "Паратехник"
-    },
-    {
-      "id": "classes-card-49-150",
-      "kind": "ability",
-      "title": "Отпугнуть духов",
-      "section": "classes",
-      "dropTarget": "ability",
-      "source": {
-        "pdfPages": [
-          49
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "6) Отпугнуть духов\nВы можете проверкой ТЕХНИЧИТЬ, или потратив много времени и к8 и более ценный\nресурс, изгнать из одного тела на средней или ближней дистанции злых духов. Это\nотключит дроны и турели, причинит подкодышу, стражу врат, или раствору души к12\nстресса со свойствами энергетический и мощный, а для союзника функционирует как к10\nЧИНИТЬ ДУХ или РАЗУМ.",
-      "tier": "minor",
-      "className": "Паратехник"
-    },
-    {
-      "id": "classes-card-49-151",
-      "kind": "ability",
-      "title": "Имя под замком",
-      "section": "classes",
-      "dropTarget": "ability",
-      "source": {
-        "pdfPages": [
-          49
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "7) Имя под замком\nВы надёжно защищены от взлома и проклятий рядами защитных заклинаний и сложными\nпрограммами.\nРаз в сцену, когда вы получаете последствие в РАЗУМ, или ДУХ, вы можете от него\nотказаться и причинить соответствующий стресс противнику или восхождению, что его\nспровоцировал: К6 для малого последствия, К8 для большого и К12 для рокового. Стресс\nпри этом сохраняется.\nВаше имя нельзя узнать магическим или техническим способом.",
-      "tier": "minor",
-      "className": "Паратехник"
-    },
-    {
-      "id": "classes-card-49-152",
-      "kind": "ability",
-      "title": "На крыльях бабочек",
-      "section": "classes",
-      "dropTarget": "ability",
-      "source": {
-        "pdfPages": [
-          49
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "8) На крыльях бабочек\nВы получаете нужные тренировки и оборудование для полного выхода в мир информации.\nРаз в сцену, вы можете выйти в киберпространство. В таком состоянии вы не можете\nсовершать требующие проверок действия в реальном мире, но получаете мастерство на\nлюбые проверки, связанные со взломом и общением с духами. Вы можете выйти из этого\nсостояния по желанию, и всегда выходите из него при получении последствия.",
-      "tier": "minor",
-      "className": "Паратехник"
-    },
-    {
-      "id": "classes-card-49-153",
-      "kind": "ability",
-      "title": "Цифровая подпись",
-      "section": "classes",
-      "dropTarget": "ability",
-      "source": {
-        "pdfPages": [
-          49
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "9) Цифровая подпись\nВы любите оставлять у взломанных целей свою визитку, чтобы они знали, с кем связались.\nКаждый раз при успешном использовании любой способности, связанной со взломом, вы\nможете оставить цифровой отличительный знак, опишите его. Вы получаете\nсоответствующий угрозе стресс в РЕСУРСЫ, отражающий вашу дурную славу среди\nврагов, но другие паратехники обрадуются вашим завоеваниям и окажут одну услугу.\nУслуги копятся неограниченно.",
-      "tier": "minor",
-      "className": "Паратехник"
-    },
-    {
-      "id": "classes-card-49-154",
-      "kind": "ability",
-      "title": "Координатор",
-      "section": "classes",
-      "dropTarget": "ability",
-      "source": {
-        "pdfPages": [
-          49
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "10) Координатор\nВы были оперативным паратехником, воином сетецентрической войны.\nВы видите всё, что видят ваши соратники благодаря экшн-камерам на шлемах или\nбронежилетах, киберглазам, или другим приборам. Вы можете принимать и оказывать\nпомощь на любой дистанции.\n100",
-      "tier": "minor",
-      "className": "Паратехник"
-    },
-    {
-      "id": "classes-card-49-155",
-      "kind": "ability",
-      "title": "Рюкзак с дронами",
-      "section": "classes",
-      "dropTarget": "ability",
-      "source": {
-        "pdfPages": [
-          49,
-          50
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "1) Рюкзак с дронами\nВы носите рюкзак с определённым типом дронов, он выступает для них док-станцией с\nзапасом топлива и боеприпасов, а так же включает средства связи с ними. Занимает\nячейку рюкзака. Сменить тип дронов можно в любом оазисе.\nВаш базовый дрон — Рой пентакоптеров\nРазведывательный пентакоптер\nСтресс: К6 УБИВАТЬ/УЗНАВАТЬ/ПРОБИВАТЬСЯ\nСвойства: Стабильный\nДистанция: Ближний бой, средняя, дальняя\nРаз в сцену, когда вы попадаете в новую локацию,\nможете выпустить пентакоптер и задать ведущему один\nчестный вопрос о ловушках, скрытых проходах,\nнаблюдении, системах защиты или странной\nактивности, вам ответят честно.\nВы можете отправить пентакоптер атаковать тараном,\nвзорвавшись при контакте. Получите дополнительно\nК10 стресса в РЕСУРСЫ, даже если атака успешна.\nСтресс: К10 УБИВАТЬ\nСвойства: Мощный, разброс, бронебойный (2)\nДистанция: Средняя, дальняя\nМалые\n► Ударный дрон\nКрупный крылатый дрон со встроенной штурмовой винтовкой, прожектором и системами\nпомощи в наведении.\n101\nУдарный дрон\nСтресс: К8 УБИВАТЬ\nСвойства: Автоматический, подавление, разброс\nРаз в сцену, может подсветить цель инфракрасным\nлучом. Следующая атака по ней будет совершаться с\nмастерством, если у оружия есть свойство умный, оно\nкроме этого причинит на ступень больше стресса.\n► Рой грузовых дронов\nНесколько более крупных пентакоптеров с улучшенными роторами и набором\nманипуляторов и магнитных захватов.\nГрузовой дрон\nСтресс: К8 ПРОБИВАТЬСЯ\nСвойства: Точный, бронебойный (2)\nВы игнорируете свойства ресурсов, делающих их более\nтрудными для переноски, так как их несут дроны.\nРаз в сцену, вы можете без проверки переместить себя\nили соратника с помощью грузового дрона. Например,\nчтобы пересечь пропасть, или подняться на\nвозвышенность.\n► Эзотерический дрон\nРой дронов, похожих на светлячков с крыльями из нанополимерной плёнки и панцирями из\nуглепластика.\n102\n\nЭзодрон\nСтресс: К6 УЗНАВАТЬ\nСвойства: Мощный, точный\nВы можете раз в сцену выпустить эзодронов на место\nсмерти, аномалию, артефакт, духа, повреждённый\nкомпьютер или странный механизм и задать ведущему\nодин вопрос:\n► Кто или что недавно здесь действовало?\n► Чего это место хочет?\n► Что здесь опаснее всего для души, разума или\nтехники?\n► Какой ценой можно безопасно взаимодействовать с\nэтим объектом?\n►что здесь скрыто не физически, а духовно или\nинформационно?\nКроме того, когда вы проходите проверку КОЛДОВАТЬ,\nУЗНАВАТЬ или ТЕХНИЧИТЬ, чтобы понять духа,\nаномалию, призрака или магический предмет, вы\nбросаете с мастерством.",
-      "tier": "professional",
-      "className": "Паратехник"
-    },
-    {
-      "id": "classes-card-50-156",
-      "kind": "ability",
-      "title": "Шаманские танцы",
-      "section": "classes",
-      "dropTarget": "ability",
-      "source": {
-        "pdfPages": [
-          50
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "2) Шаманские танцы\nВы знаете ритуальные последовательности движений, жестов, ударов по бубну и морганий\nинтерфейса, заставляющие Мир информации отвечать быстрее. Если вы можете двигаться\nи не пытаетесь сохранять тишину, можете потратить минуту и пройти проверку\nТЕХНИЧИТЬ, чтобы войти в танец.\nДо конца сцены ваш Взлом может выбрать два разных эффекта вместо одного.\nМалые\n► Ритм отряда\nКогда вы входите в танец, выберите союзника. Его следующая проверка ПРОБИВАТЬСЯ,\nИЗБЕГАТЬ или УБИВАТЬ совершается с мастерством: вы подсказываете ему правильные\nдействия через жесты, вспышки интерфейса и пляску красных бабочек.\n► Обратный бит\nРаз в сцену, пока вы в танце, когда враг или восхождение использует магическую,\nтехническую или аномальную способность, вы можете немедленно пройти ТЕХНИЧИТЬ.\nПри успехе способность всё ещё срабатывает, но её источник получает к8 стресса со\nсвойством энергетический.\n► Танец на проводах\nВы можете входить в шаманский танец прямо в бою, на бегу, в падении или перестрелке.\nПервый стресс, полученный вами из-за провала Взлома в этой сцене, снижается на одну\nступень.",
-      "tier": "professional",
-      "className": "Паратехник"
-    },
-    {
-      "id": "classes-card-50-157",
-      "kind": "ability",
-      "title": "Мастер оберегов",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
@@ -2943,369 +3027,427 @@ window.TOWER_CODEX = {
           50,
           51
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "3) Мастер оберегов\nВы умеете делать и заговаривать обереги. Легкосплавные фигурки животных,\nуглепластиковые наконечники стрел, микросхемы с распаянными на текстолите тайными\nименами – всё это будет полезно в Башне.\n103\nВы можете потратить К8 и более ценный ресурс, чтобы создать малый оберег и К10 и\nболее ценный ресурс, чтобы создать значимый оберег. Они занимают ячейку прочей брони\nи дают возможность отказаться от одного последствия в ДУХ в сцену, малого в случае\nмалого оберега и значимого в случае значимого оберега.\nМалые\n► Личный прокси\nОбереги теперь можно вешать на оружие, они занимают ячейку модификации. Раз в сцену\nмалый оберег позволяет отказаться от малого последствия, связанного с выведением\nоружия из строя, а значимый – от значимого.\n► Око за око\nКогда вы принимаете последствие, которое могли бы отменить оберегом, вы причиняете в\nответ столько стресса, сколько причинили вам.\n► Невидимые нити\nВы можете потратить использование оберега, чтобы защитить от последствия не себя, а\nсоратника.\nВы всегда знаете эмоции, которые испытывают носящие ваши обереги соратники.",
+      "text": "4) Взаимовыручка\nПаратехники очень сплочены и на ваших тематических ресурсах легко можно найти данные\nоб оставленных в Башне точках взаимопомощи.\nРаз в сцену, придя в локацию, вы можете сказать, что знаете, где паратехники спрятали\nящик снабжения. Вы можете восстановить К10 в РЕСУРСЫ, или потратить К10 ресурс,\nпредмет или стресс в РЕСУРСЫ, чтобы оставить что-то самим. Во втором случае\nблагодарные паратехники поделятся информацией, в следующий раз, как вы придёте в\nлокацию, вы можете сказать, что в ней находится паратехник, готовый сообщить о\nвыгодном задании.",
+      "tier": "minor",
+      "className": "Паратехник"
+    },
+    {
+      "id": "classes-card-51-163",
+      "kind": "ability",
+      "title": "Мастер умного оружия",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          51
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "5) Мастер умного оружия\nВсё оружие в ваших руках получает свойство умный. Когда вы пользуетесь оружием с этим\nсвойством, вы можете сначала совершить проверку и причинить стресс, а только потом\nвыбрать цель. Оружие, у которого и так было свойство умный, причиняет на ступень\nстресса больше.",
+      "tier": "minor",
+      "className": "Паратехник"
+    },
+    {
+      "id": "classes-card-51-164",
+      "kind": "ability",
+      "title": "Отпугнуть духов",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          51
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "6) Отпугнуть духов\nВы можете проверкой ТЕХНИЧИТЬ, или потратив много времени и к8 и более ценный\nресурс, изгнать из одного тела на средней или ближней дистанции злых духов. Это\nотключит дроны и турели, причинит подкодышу, стражу врат, или раствору души к12\nстресса со свойствами энергетический и мощный, а для союзника функционирует как к10\nЧИНИТЬ ДУХ или РАЗУМ.",
+      "tier": "minor",
+      "className": "Паратехник"
+    },
+    {
+      "id": "classes-card-51-165",
+      "kind": "ability",
+      "title": "Имя под замком",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          51
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "7) Имя под замком\nВы надёжно защищены от взлома и проклятий рядами защитных заклинаний и сложными\nпрограммами.\nРаз в сцену, когда вы получаете последствие в РАЗУМ, или ДУХ, вы можете от него\nотказаться и причинить соответствующий стресс противнику или восхождению, что его\nспровоцировал: К6 для малого последствия, К8 для большого и К12 для рокового. Стресс\nпри этом сохраняется.\nВаше имя нельзя узнать магическим или техническим способом.",
+      "tier": "minor",
+      "className": "Паратехник"
+    },
+    {
+      "id": "classes-card-51-166",
+      "kind": "ability",
+      "title": "На крыльях бабочек",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          51
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "8) На крыльях бабочек\nВы получаете нужные тренировки и оборудование для полного выхода в мир информации.\nРаз в сцену, вы можете выйти в киберпространство. В таком состоянии вы не можете\nсовершать требующие проверок действия в реальном мире, но получаете мастерство на\nлюбые проверки, связанные со взломом и общением с духами. Вы можете выйти из этого\nсостояния по желанию, и всегда выходите из него при получении последствия.",
+      "tier": "minor",
+      "className": "Паратехник"
+    },
+    {
+      "id": "classes-card-51-167",
+      "kind": "ability",
+      "title": "Цифровая подпись",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          51
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "9) Цифровая подпись\nВы любите оставлять у взломанных целей свою визитку, чтобы они знали, с кем связались.\nКаждый раз при успешном использовании любой способности, связанной со взломом, вы\nможете оставить цифровой отличительный знак, опишите его. Вы получаете\nсоответствующий угрозе стресс в РЕСУРСЫ, отражающий вашу дурную славу среди\nврагов, но другие паратехники обрадуются вашим завоеваниям и окажут одну услугу.\nУслуги копятся неограниченно.",
+      "tier": "minor",
+      "className": "Паратехник"
+    },
+    {
+      "id": "classes-card-51-168",
+      "kind": "ability",
+      "title": "Координатор",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          51
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "10) Координатор\nВы были оперативным паратехником, воином сетецентрической войны.\nВы видите всё, что видят ваши соратники благодаря экшн-камерам на шлемах или\nбронежилетах, киберглазам, или другим приборам. Вы можете принимать и оказывать\nпомощь на любой дистанции.",
+      "tier": "minor",
+      "className": "Паратехник"
+    },
+    {
+      "id": "classes-card-51-169",
+      "kind": "ability",
+      "title": "Рюкзак с дронами",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          51,
+          52
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "1) Рюкзак с дронами\nВы носите рюкзак с определённым типом дронов, он выступает для них док-станцией с\nзапасом топлива и боеприпасов, а так же включает средства связи с ними. Занимает\nячейку рюкзака. Сменить тип дронов можно в любом оазисе.\nВаш базовый дрон — Рой пентакоптеров\nРазведывательный пентакоптер\nСтресс: К6 УБИВАТЬ/УЗНАВАТЬ/ПРОБИВАТЬСЯ\nСвойства: Стабильный\nДистанция: Ближний бой, средняя, дальняя\nРаз в сцену, когда вы попадаете в новую локацию,\nможете выпустить пентакоптер и задать ведущему один\nчестный вопрос о ловушках, скрытых проходах,\nнаблюдении, системах защиты или странной\nактивности, вам ответят честно.\nВы можете отправить пентакоптер атаковать тараном,\nвзорвавшись при контакте. Получите дополнительно\nК10 стресса в РЕСУРСЫ, даже если атака успешна.\nСтресс: К10 УБИВАТЬ\nСвойства: Мощный, разброс, бронебойный (2)\nДистанция: Средняя, дальняя\nМалые\n► Ударный дрон\nКрупный крылатый дрон со встроенной штурмовой винтовкой, прожектором и системами\nпомощи в наведении.\nУдарный дрон\nСтресс: К8 УБИВАТЬ\nСвойства: Автоматический, подавление, разброс\nРаз в сцену, может подсветить цель инфракрасным\nлучом. Следующая атака по ней будет совершаться с\nмастерством, если у оружия есть свойство умный, оно\nкроме этого причинит на ступень больше стресса.\n► Рой грузовых дронов\nНесколько более крупных пентакоптеров с улучшенными роторами и набором\nманипуляторов и магнитных захватов.\nГрузовой дрон\nСтресс: К8 ПРОБИВАТЬСЯ\nСвойства: Точный, бронебойный (2)\nВы игнорируете свойства ресурсов, делающих их более\nтрудными для переноски, так как их несут дроны.\nРаз в сцену, вы можете без проверки переместить себя\nили соратника с помощью грузового дрона. Например,\nчтобы пересечь пропасть, или подняться на\nвозвышенность.\n► Эзотерический дрон\nРой дронов, похожих на светлячков с крыльями из нанополимерной плёнки и панцирями из\nуглепластика.\n\nЭзодрон\nСтресс: К6 УЗНАВАТЬ\nСвойства: Мощный, точный\nВы можете раз в сцену выпустить эзодронов на место\nсмерти, аномалию, артефакт, духа, повреждённый\nкомпьютер или странный механизм и задать ведущему\nодин вопрос:\n► Кто или что недавно здесь действовало?\n► Чего это место хочет?\n► Что здесь опаснее всего для души, разума или\nтехники?\n► Какой ценой можно безопасно взаимодействовать с\nэтим объектом?\n►что здесь скрыто не физически, а духовно или\nинформационно?\nКроме того, когда вы проходите проверку КОЛДОВАТЬ,\nУЗНАВАТЬ или ТЕХНИЧИТЬ, чтобы понять духа,\nаномалию, призрака или магический предмет, вы\nбросаете с мастерством.",
       "tier": "professional",
       "className": "Паратехник"
     },
     {
-      "id": "classes-card-51-158",
+      "id": "classes-card-52-170",
+      "kind": "ability",
+      "title": "Шаманские танцы",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          52
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "2) Шаманские танцы\nВы знаете ритуальные последовательности движений, жестов, ударов по бубну и морганий\nинтерфейса, заставляющие Мир информации отвечать быстрее. Если вы можете двигаться\nи не пытаетесь сохранять тишину, можете потратить минуту и пройти проверку\nТЕХНИЧИТЬ, чтобы войти в танец.\nДо конца сцены ваш Взлом может выбрать два разных эффекта вместо одного.\nМалые\n► Ритм отряда\nКогда вы входите в танец, выберите союзника. Его следующая проверка ПРОБИВАТЬСЯ,\nИЗБЕГАТЬ или УБИВАТЬ совершается с мастерством: вы подсказываете ему правильные\nдействия через жесты, вспышки интерфейса и пляску красных бабочек.\n► Обратный бит\nРаз в сцену, пока вы в танце, когда враг или восхождение использует магическую,\nтехническую или аномальную способность, вы можете немедленно пройти ТЕХНИЧИТЬ.\nПри успехе способность всё ещё срабатывает, но её источник получает к8 стресса со\nсвойством энергетический.\n► Танец на проводах\nВы можете входить в шаманский танец прямо в бою, на бегу, в падении или перестрелке.\nПервый стресс, полученный вами из-за провала Взлома в этой сцене, снижается на одну\nступень.",
+      "tier": "professional",
+      "className": "Паратехник"
+    },
+    {
+      "id": "classes-card-52-171",
+      "kind": "ability",
+      "title": "Мастер оберегов",
+      "section": "classes",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          52,
+          53
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "3) Мастер оберегов\nВы умеете делать и заговаривать обереги. Легкосплавные фигурки животных,\nуглепластиковые наконечники стрел, микросхемы с распаянными на текстолите тайными\nименами – всё это будет полезно в Башне.\nВы можете потратить К8 и более ценный ресурс, чтобы создать малый оберег и К10 и\nболее ценный ресурс, чтобы создать значимый оберег. Они занимают ячейку прочей брони\nи дают возможность отказаться от одного последствия в ДУХ в сцену, малого в случае\nмалого оберега и значимого в случае значимого оберега.\nМалые\n► Личный прокси\nОбереги теперь можно вешать на оружие, они занимают ячейку модификации. Раз в сцену\nмалый оберег позволяет отказаться от малого последствия, связанного с выведением\nоружия из строя, а значимый – от значимого.\n► Око за око\nКогда вы принимаете последствие, которое могли бы отменить оберегом, вы причиняете в\nответ столько стресса, сколько причинили вам.\n► Невидимые нити\nВы можете потратить использование оберега, чтобы защитить от последствия не себя, а\nсоратника.\nВы всегда знаете эмоции, которые испытывают носящие ваши обереги соратники.",
+      "tier": "professional",
+      "className": "Паратехник"
+    },
+    {
+      "id": "classes-card-53-172",
       "kind": "ability",
       "title": "Мудрость мира данных",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          51
+          53
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "4) Мудрость мира данных\nРаз в сессию, находясь в оазисе, вы можете сказать, что к вам приходят за советом. Вас\nвознаградят К8 ресурсом, но от вас потребуется дать действительно дельный совет.\nМалые\n► Не шептать\nВас, как шамана, боятся из-за вашей связи с духами. Раз в сессию и до её конца, вы\nможете сказать, что в оазисе, в котором вы находитесь, про вас ходят опасливые слухи.\nНаходясь в нём, вы получаете +4 слота и +3 защиты в РЕСУРСЫ.\n► Дружеский совет\nВы можете даровать мудрость, но не злоупотреблять ею. Духи ответят на чужой вопрос, но\nне на ваш.\nПомогая союзнику в проверках УЗНАВАТЬ, ТЕХНИЧИТЬ, ЧИНИТЬ и ГОВОРИТЬ, вы даёте\nему две кости вместо одной.\n► Шаманский круг\nВы можете советоваться с другими мудрецами – паратехниками, удалённо или лично\nсобираясь в шаманский круг. Раз в сессию вы можете сказать, что сопротивление цели,\nснижаемое навыком УЗНАВАТЬ, ТЕХНИЧИТЬ, ЧИНИТЬ или ГОВОРИТЬ, снижается на 1К4\nкаждый раз, как вы причиняете ему другой стресс. Это отражает вашу подготовку к\nопасности.",
       "tier": "professional",
       "className": "Паратехник"
     },
     {
-      "id": "classes-card-51-159",
+      "id": "classes-card-53-173",
       "kind": "ability",
-      "title": "Боевое искусство",
+      "title": "Боевое искусство: Кирон кирайн кирет",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          51
+          53
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "5) Боевое искусство: Кирон кирайн кирет\nВы получаете мастерство в навыке УБИВАТЬ, срабатывающее, когда вы сражаетесь без\nоружия, или с боевым ножом. Ваши безоружные атаки теперь причиняют к6 стресса. Когда\n104\n\nвы причиняете стресс безоружной атакой, или атакой боевым ножом, вы можете применить\nк противнику одно свойство взлома.\nМалые\n► Вирус в ране\nЕсли цель уже подвергалась вашему Взлому в этой сцене, ваши атаки по ней причиняют на\nодну ступень стресса больше.\n► Быстрый взлом\nВы можете получить К6 стресса в ДУХ, чтобы посчитать любой бросок на взлом\nстандартным.\n► Автоматические протоколы\nРаз в сцену, когда противник приближается к вам на дистанцию ближнего боя, вы можете\nприменить к нему эффект взлома без нужды в проверке.",
+      "text": "5) Боевое искусство: Кирон кирайн кирет\nВы получаете мастерство в навыке УБИВАТЬ, срабатывающее, когда вы сражаетесь без\nоружия, или с боевым ножом. Ваши безоружные атаки теперь причиняют к6 стресса. Когда\n\nвы причиняете стресс безоружной атакой, или атакой боевым ножом, вы можете применить\nк противнику одно свойство взлома.\nМалые\n► Вирус в ране\nЕсли цель уже подвергалась вашему Взлому в этой сцене, ваши атаки по ней причиняют на\nодну ступень стресса больше.\n► Быстрый взлом\nВы можете получить К6 стресса в ДУХ, чтобы посчитать любой бросок на взлом\nстандартным.\n► Автоматические протоколы\nРаз в сцену, когда противник приближается к вам на дистанцию ближнего боя, вы можете\nприменить к нему эффект взлома без нужды в проверке.",
       "tier": "professional",
       "className": "Паратехник"
     },
     {
-      "id": "classes-card-51-160",
+      "id": "classes-card-53-174",
       "kind": "ability",
       "title": "Уход в мир информации",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          51
+          53
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "1) Уход в мир информации\nВы выходите из тела в мир информации, вплетаясь в танец программного кода.\nПосле каждой проверки, даже проваленной, вы можете дополнительно применить эффект\nвзлома, как если бы делали это отдельно. Вы игнорируете стресс и последствия в РАЗУМ.\nРаз в сцену, вы можете без проверки приказать механизму, например, дрону, камере, или\nтурели, перейти под ваш контроль.",
       "tier": "elite",
       "className": "Паратехник"
     },
     {
-      "id": "classes-card-51-161",
+      "id": "classes-card-53-175",
       "kind": "ability",
       "title": "Инфоудар",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          51
+          53
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "2) Инфоудар\nВласть корпораций падёт, и очень скоро. Вы сделали для этого очень много.\nВся ваша группа игнорирует стресс и последствия в РЕСУРСЫ, поскольку корпорации\nуходят из Башни из-за национализации их активов. Товары и услуги в оазисах теперь\nбесплатны, вам может лишь иногда потребоваться убедить торговцев, что они вам правда\nнужны. Раз в сессию вы можете сказать, что встреченный вами благодарный паратехник\nсогласен оказать вам очень полезную услугу бесплатно.",
       "tier": "elite",
       "className": "Паратехник"
     },
     {
-      "id": "classes-card-51-162",
+      "id": "classes-card-53-176",
       "kind": "ability",
       "title": "Нет ни лжи, ни правды",
       "section": "classes",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          51
+          53
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "3) Нет ни лжи, ни правды\nИнформация, материя – всё не имеет смысла. Нет даже иллюзии, даже миража.\nВаш эффект взлома теперь может применяться на любое количество целей в сцене. Вы\nигнорируете стресс и последствия в ДУХ. Раз в сессию, вы можете обнулить любую идею\nиз прошлого персонажа ведущего, сказав, что она была подстроена, а доказательства\nсфабрикованы. Вы можете отменить одну из сущностей Башни, сказав, что она – лишь\nплод воображения нескольких маргинальных сект. Она перестанет существовать, но и\nвоспоминания о вас – теперь подделка, а все доказательства сгенерированы нейросетью.\n105",
+      "text": "3) Нет ни лжи, ни правды\nИнформация, материя – всё не имеет смысла. Нет даже иллюзии, даже миража.\nВаш эффект взлома теперь может применяться на любое количество целей в сцене. Вы\nигнорируете стресс и последствия в ДУХ. Раз в сессию, вы можете обнулить любую идею\nиз прошлого персонажа ведущего, сказав, что она была подстроена, а доказательства\nсфабрикованы. Вы можете отменить одну из сущностей Башни, сказав, что она – лишь\nплод воображения нескольких маргинальных сект. Она перестанет существовать, но и\nвоспоминания о вас – теперь подделка, а все доказательства сгенерированы нейросетью.",
       "tier": "elite",
       "className": "Паратехник"
     },
     {
-      "id": "equipment-9-1-8-62-163",
+      "id": "equipment-9-1-8-64-177",
       "kind": "gear",
       "title": "Рти Кти Данн 9 мм А-1 (К8)",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
-          62
+          64
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "Рти Кти Данн 9 мм А-1 (К8)\nУрон: 1к6\nДистанция: Ближний бой, средняя\nСвойства: Надёжный\n2 ячейки модификации\nСтандартный 9мм пистолет.",
       "category": "Базовое снаряжение",
-      "isCategory": false
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D6",
+      "notes": "Дистанция: Ближний бой, средняя\nСвойства: Надёжный\n2 ячейки модификации\nСтандартный 9мм пистолет.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-7-62-7-10-62-164",
+      "id": "equipment-7-62-7-10-64-178",
       "kind": "gear",
       "title": "Рти Кти данн 7.62 мм В-7 (К10)",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
-          62
+          64
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "Рти Кти данн 7.62 мм В-7 (К10)\nУрон: 1к8\nСвойства: Автоматический, Неудобный(ближний бой)\nДистанция: Ближний бой, средняя,дальняя\n2 ячейки модификации\nСтандартная штурмовая винтовка, популярная у частных армий народа Ножей.",
       "category": "Базовое снаряжение",
-      "isCategory": false
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Свойства: Автоматический, Неудобный(ближний бой)\nДистанция: Ближний бой, средняя,дальняя\n2 ячейки модификации\nСтандартная штурмовая винтовка, популярная у частных армий народа Ножей.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-8-62-165",
+      "id": "equipment-8-64-179",
       "kind": "gear",
       "title": "Параштрук Лисирист портативный радар (к8)",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
-          62
+          64
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "Параштрук Лисирист портативный радар (к8)\nК8 ПРОБИВАТЬСЯ, 2 слота модификации",
       "category": "Базовое снаряжение",
-      "isCategory": false
+      "isCategory": false,
+      "skill": "ПРОБИВАТЬСЯ",
+      "quality": "D8",
+      "notes": "2 слота модификации",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-6-62-166",
+      "id": "equipment-6-64-180",
       "kind": "gear",
       "title": "Медицинский подсумок (К6 ЧИНИТЬ ПУЛИ)",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
-          62
+          64
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "Медицинский подсумок (К6 ЧИНИТЬ ПУЛИ)\nПростое снаряжение для стабилизации раненого.\nБроня",
+      "text": "Медицинский подсумок (К6 ЧИНИТЬ ПУЛИ)\nПростое снаряжение для стабилизации раненого.",
       "category": "Базовое снаряжение",
-      "isCategory": false
+      "isCategory": false,
+      "skill": "ЧИНИТЬ",
+      "quality": "D6",
+      "notes": "Простое снаряжение для стабилизации раненого.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-8-62-167",
+      "id": "equipment-8-64-181",
       "kind": "gear",
       "title": "Плитник с полимерными плитами (К8)",
       "section": "equipment",
-      "dropTarget": "gear",
+      "dropTarget": "armor",
       "source": {
         "pdfPages": [
-          62
+          64
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "Плитник с полимерными плитами (К8)\n+1 защиты и +1 слот в ПУЛИ\nБронежилет, защищающий грудь.\n127",
+      "text": "Плитник с полимерными плитами (К8)\n+1 защиты и +1 слот в ПУЛИ\nБронежилет, защищающий грудь.",
       "category": "Базовое снаряжение",
-      "isCategory": false
+      "isCategory": false,
+      "skill": null,
+      "quality": "D8",
+      "notes": "+1 защиты и +1 слот в ПУЛИ\nБронежилет, защищающий грудь.",
+      "resistance": "bullets",
+      "protection": 1,
+      "extraSlots": 1,
+      "armorSlots": [
+        "Тело"
+      ]
     },
     {
-      "id": "equipment-10-63-168",
+      "id": "equipment-10-65-182",
       "kind": "gear",
       "title": "Штурмовой рюкзак (К10)",
       "section": "equipment",
-      "dropTarget": "gear",
+      "dropTarget": "armor",
       "source": {
         "pdfPages": [
-          63
+          65
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "Штурмовой рюкзак (К10)\n+1 защиты и +1 слот в ресурсы\nКомпактный ранец, используемый непосредственно в сражениях.",
       "category": "Базовое снаряжение",
-      "isCategory": false
+      "isCategory": false,
+      "skill": null,
+      "quality": "D10",
+      "notes": "+1 защиты и +1 слот в ресурсы\nКомпактный ранец, используемый непосредственно в сражениях.",
+      "resistance": "resources",
+      "protection": 1,
+      "extraSlots": 1,
+      "armorSlots": [
+        "Рюкзак"
+      ]
     },
     {
-      "id": "equipment-6-63-169",
+      "id": "equipment-6-65-183",
       "kind": "gear",
       "title": "Специальная одежда (К6)",
       "section": "equipment",
-      "dropTarget": "gear",
+      "dropTarget": "armor",
       "source": {
         "pdfPages": [
-          63
+          65
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "Специальная одежда (К6)\nОдежда со свойством Камуфляж (Х). В случае с большинством областей, это обычно\nбуквальный военный камуфляж, но в случае с некоторыми областями это может быть\nдругая одежда, например роскошный украшенный орнаментами национальный костюм для\nобласти МИР, или формальная одежда для области КОРПОРАЦИИ. Занимает слот особой\nброни.\nРесурсы",
+      "text": "Специальная одежда (К6)\nОдежда со свойством Камуфляж (Х). В случае с большинством областей, это обычно\nбуквальный военный камуфляж, но в случае с некоторыми областями это может быть\nдругая одежда, например роскошный украшенный орнаментами национальный костюм для\nобласти МИР, или формальная одежда для области КОРПОРАЦИИ. Занимает слот особой\nброни.",
       "category": "Базовое снаряжение",
-      "isCategory": false
+      "isCategory": false,
+      "skill": null,
+      "quality": "D6",
+      "notes": "Одежда со свойством Камуфляж (Х). В случае с большинством областей, это обычно\nбуквальный военный камуфляж, но в случае с некоторыми областями это может быть\nдругая одежда, например роскошный украшенный орнаментами национальный костюм для\nобласти МИР, или формальная одежда для области КОРПОРАЦИИ. Занимает слот особой\nброни.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Особое"
+      ]
     },
     {
-      "id": "equipment-6-63-170",
+      "id": "equipment-6-65-184",
       "kind": "gear",
       "title": "Золотые монеты (К6 МИР)",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
-          63
+          65
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "Золотые монеты (К6 МИР)\nПростой и самый легко конвертируемый ресурс.",
       "category": "Базовое снаряжение",
-      "isCategory": false
+      "isCategory": false,
+      "skill": null,
+      "quality": "D6",
+      "notes": "Простой и самый легко конвертируемый ресурс.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-6-63-171",
+      "id": "equipment-6-65-185",
       "kind": "gear",
       "title": "Набор модификации (К6 АРМИЯ)",
-      "section": "equipment",
-      "dropTarget": "gear",
-      "source": {
-        "pdfPages": [
-          63,
-          64
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "Набор модификации (К6 АРМИЯ)\nПозволяет добавить снаряжению свойство, или убрать негативное свойство.\nЕсли вы хотите собрать персонажа подробнее, выберите по два предмета К10, три\nпредмета К8 и четыре предмета К6. Вы можете объединить две кости, чтобы получить\nпредмет на кость дороже. Вы можете тратить кости К6, чтобы покупать модификации к\nснаряжению.\nЧтобы придумать предмет, выберите его кость ценности от К6 до К12. Это будет мерой его\nэффективности и ценой покупки. Обычно, но не всегда, он причиняет или восстанавливает\nстресс, равный его кости ценности. Если это оружие или другой зависимый от дистанции\nпредмет, выберите дистанцию, на которой он применим, например ближний бой, средняя,\nили дальняя. Выберите также навык, с которым этот предмет применяется, например\nПРОБИВАТЬСЯ, или ЧИНИТЬ. В случае с некоторыми навыками, выберите\nдополнительные условия, например ЧИНИТЬ требует выбрать сопротивление, стресс в\nкотором восстанавливает.\nЗатем возьмите К6, это кость свойств. Она понижается на ступень за каждое\nположительное свойство, что вы возьмёте для оружия и повышается за каждое негативное.\nНа это нет ограничений, но если вы возьмёте очень много свойств, их может стать\nнеудобно подсчитывать, а сцены наверняка замедлятся! За одно понижение кости свойств\nвы можете получить:\n► Повышение стресса на ступень\n► Дополнительная дистанция применения\n► Дополнительное свойство\n► Две ячейки модификаций (Для добавления свойств за ресурсы в будущем)\n► Добавить дополнительный навык применения\n128\n\n► Добавить дополнительное сопротивление к снаряжению ЧИНИТЬ\nЧтобы повысить кость свойств на ступень, вы можете:\n► Взять негативное свойство\n► Понизить стресс на ступень\nЭти правила применимы к серийным или сделанным мастером предметам, кустарные\nподелки могут иметь, например, кость свойств К4 вместо К6, или неисправляемое свойство\nненадёжный. Если вы не хотите тратить время на придумывание предметов, обратитесь к\nглаве с обширным списком снаряжения.\nПример создания\nПараштрук Лисирист — портативный радар «Царь перьевых облаков»\nПусть он будет иметь эффективность и цену К10. Без свойств это предмет К10\nПРОБИВАТЬСЯ\nЯ хочу понизить его стресс при восхождении до к8, чтобы взять дополнительное свойство.\nТеперь я добавляю свойства надёжный (Осталось К6) и мощный (Осталось К4). Ещё я хочу,\nчтобы радар мог сканировать механизмы, я отражу это через дополнительный навык\nТЕХНИЧИТЬ (Кость иссякла).\nСчитается, что ваш персонаж всегда несёт много снаряжения, полезного в разных\nситуациях, оно имеют эффективность К4 и позволяют совершать действия, которые\nобычно невозможны без посторонних предметов. Вы можете выполнять проверки с\nэффективностью к4 и без них. Ниже приведены примеры таких предметов.\nУБИВАТЬ\nТактические перчатки, боксёрские бинты, выкидной нож, зажатая в кулаке фигурка духа-\nпокровителя\nКОЛДОВАТЬ\nОккультные татуировки из металла, зачарованный смартфон, шкатулка с деревянными\nягодами, фляга с отваром из грибов и рыбы\nЧИНИТЬ\nКрасная изолента, индивидуальный перевязочный пакет и жгут, пластиковые стяжки,\nболеутоляющие, повязка-гемостатик, травы для курильницы, флейта против проклятий\nПРОБИВАТЬСЯ\nХимсвет, фальшфейер, фонарик, наручный радар, жезл лозоходца, гадальные карты,\nмонетка для выбора развилок, крюк-кошка\nСКРЫВАТЬСЯ\nГибкая камера, метательный камень, удавка, направленный микрофон, издающий звуки\nмаячок, камуфляжная краска для лица\nТЕХНИЧИТЬ\nКарабин и паракорд, смартфон с профессиональными приложениями, карманный нож,\n129\nмультитул, смарт-очки\nГОВОРИТЬ\nМузыкальный инструмент, книга анекдотов, набор для макияжа\nСписок снаряжения\nКаждый персонаж может носить до 10 ресурсов, 4 единиц снаряжения (Например, оружия,\nнаборов медика или инструментов для навигации) и 4 единиц защиты, при этом защита в\nодном слоте не может повторяться (например, вы не можете надеть два шлема или два\nнабора оберегов). В скобках указана ценность предмета при покупке и продаже.\nУ некоторых предметов есть ячейки модификации. За к6 предмет или стресс в РЕСУРСЫ, в\nоазисе вы можете добавить к предмету дополнительное свойство, числом не больше, чем\nслотов модификаций. Например это может быть глушитель для свойства тихий, или\nудлинённый ствол для свойства точный.\nКроме того, с помощью модификации, заняв ячейку, вы можете убрать негативное\nсвойство, например облегчённая полимерная рамка может убрать свойство тяжёлый, а\nштурмовая рукоять — свойство неудобный.",
-      "category": "Базовое снаряжение",
-      "isCategory": false
-    },
-    {
-      "id": "equipment-10-64-172",
-      "kind": "gear",
-      "title": "Островные Фирмы 10 мм “Депривация”",
-      "section": "equipment",
-      "dropTarget": "gear",
-      "source": {
-        "pdfPages": [
-          64
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "Островные Фирмы 10 мм “Депривация”\nУрон: 1к6\nДистанция: Ближний бой, средняя\nСвойства: Тихий, мощный\nЗаглушённый пистолет под крупный 10 мм патрон с отсечкой пороховых газов. Работает в\nдвух переключаемых флажком режимах: полуавтоматическом и режиме ручного\nдосылания, нужном, чтобы исключить звуки работы автоматики.",
-      "category": "Пистолеты (к8)",
-      "isCategory": false
-    },
-    {
-      "id": "equipment-7-64-173",
-      "kind": "gear",
-      "title": "Островные фирмы 7 мм “Преданность”",
-      "section": "equipment",
-      "dropTarget": "gear",
-      "source": {
-        "pdfPages": [
-          64
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "Островные фирмы 7 мм “Преданность”\nУрон: 1к6\nДистанция: Ближний бой, средняя\nСвойства: Автоматический\n2 ячейки модификации\nПистолет-пулемёт с системой балансирования отдачи.",
-      "category": "Пистолеты (к8)",
-      "isCategory": false
-    },
-    {
-      "id": "equipment-15-5-64-174",
-      "kind": "gear",
-      "title": "Рти Кти Данн 15 мм А-5",
-      "section": "equipment",
-      "dropTarget": "gear",
-      "source": {
-        "pdfPages": [
-          64
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "Рти Кти Данн 15 мм А-5\nУрон: 1к8\nДистанция: Ближний бой, средняя\nСвойства: Неудобный (Ближний бой), мощный. В начале боя или после тактики\nперезарядки, вы можете выбрать дополнительное ключевое слово для оружия —\nбронебойный (2), огонь, или энергетический.\nПолуавтоматический гладкоствольный пистолет внушительных размеров под короткий\n15мм патрон. Оптимизация горения химических веществ позволила положить\nминимальную навеску пороха при сохранении калибра полноразмерного охотничьего ружья\nстарины. Под этот же пистолет имеется широчайшая номенклатура патронов.",
-      "category": "Пистолеты (к8)",
-      "isCategory": false
-    },
-    {
-      "id": "equipment-9-1-64-175",
-      "kind": "gear",
-      "title": "Рти Кти Данн 9 мм А-1 обычный и для самообороны",
-      "section": "equipment",
-      "dropTarget": "gear",
-      "source": {
-        "pdfPages": [
-          64
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "Рти Кти Данн 9 мм А-1 обычный и для самообороны\nУрон: 1к6\nДистанция: Ближний бой, средняя\nСвойства: Надёжный, у версии для самообороны — Надёжный, Скрываемый и Неудобный\n(средняя дистанция)\n2 ячейки модификации\nПолуавтоматический 9 мм пистолет. Имеется и его уменьшенная версия для самообороны,\nотличающаяся меньшим боезапасом и длиной ствола.\n131",
-      "category": "Пистолеты (к8)",
-      "isCategory": false
-    },
-    {
-      "id": "equipment-9-65-176",
-      "kind": "gear",
-      "title": "ДВЦЖ 9мм “Упреждение”",
-      "section": "equipment",
-      "dropTarget": "gear",
-      "source": {
-        "pdfPages": [
-          65
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "ДВЦЖ 9мм “Упреждение”\nУрон: 1к10\nДистанция: Ближний бой, средняя\nСвойства: Отсечка. Тактики перезарядки с этим оружием на ступень тяжелее.\nМелкосерийный пистолет из премиальных материалов с деревянными или костяными\nнакладками на рукоять, его отличительной чертой является способность вести огонь\nочередью по пять выстрелов. Вместо магазина в пистолете используется крупный сменный\nствол, сразу снаряжённый безгильзовыми патронами с инициацией по электрическому\nимпульсу, расположенными один за другим.\n132",
-      "category": "Пистолеты (к8)",
-      "isCategory": false
-    },
-    {
-      "id": "equipment-card-65-177",
-      "kind": "gear",
-      "title": "Островные Фирмы “Гордость”",
-      "section": "equipment",
-      "dropTarget": "gear",
-      "source": {
-        "pdfPages": [
-          65
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "Островные Фирмы “Гордость”\nУрон: 1к8\nСвойства: Бронебойный (2)\nДистанция: Ближний бой\n2 ячейки модификации\nКерамический нож с 15см клинком и алмазным напылением, особенно удобен для режущих\nударов. Долго не тупится, но заточить его невозможно. Рукоять выполнена из серого\nпластика, имеется отверстие для темляка. Поставляется с пластиковыми ножнами, которые\nможно закрепить на разгрузке.",
-      "category": "Боевые ножи (к8)",
-      "isCategory": false
-    },
-    {
-      "id": "equipment-card-65-178",
-      "kind": "gear",
-      "title": "Рти Кти Данн “Икт”",
-      "section": "equipment",
-      "dropTarget": "gear",
-      "source": {
-        "pdfPages": [
-          65
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "Рти Кти Данн “Икт”\nУрон: 1к8\nСвойства: Мощный\nДистанция: Ближний бой\n2 ячейки модификации\nСовременная версия традиционного боевого ножа народа Ножей, выполнен из сложных\nпорошковых сплавов, обеспечивающих прочность вместе с твёрдостью. Тяжесть ножа и его\n40см клинок делают его способным наносить серьёзные рубящие удары. Рукоять и ножны\nсделаны из стабилизированного дерева, на сайте можно указать, какую гравировку вы\nхотите на икте. Вибропривод этой модели быстрее перебирает скорости, благодаря чему\nнож лучше режет разнородные материалы.",
-      "category": "Боевые ножи (к8)",
-      "isCategory": false
-    },
-    {
-      "id": "equipment-card-65-179",
-      "kind": "gear",
-      "title": "Сиривирст Фахир “Сиривирст”",
-      "section": "equipment",
-      "dropTarget": "gear",
-      "source": {
-        "pdfPages": [
-          65
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "Сиривирст Фахир “Сиривирст”\nУрон:1к8\nСвойства: Дуэльный, сбалансированный\nДистанция: Ближний бой\nУкороченная версия национального холодного оружия народа Граней, 30см чуть изогнутый\nклинок снабжён стандартным виброприводом, увеличивающим эффективность ударов.\nВиброприводы оружия компании Сиривирст Фахир работают по запатентованной схеме\nрасширенного диапазона вибрации, дающей возможность легче резать очень твёрдые и\nочень мягкие цели. Имеет развитую корзинчатую гарду, защищающую руку.",
-      "category": "Боевые ножи (к8)",
-      "isCategory": false
-    },
-    {
-      "id": "equipment-card-65-180",
-      "kind": "gear",
-      "title": "Сиривирст Фахир “Хохсхех”",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
@@ -3313,96 +3455,198 @@ window.TOWER_CODEX = {
           65,
           66
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "Сиривирст Фахир “Хохсхех”\nУрон: 1к10\nДистанция: Ближний бой\n2 ячейки модификации\n133\nБоевая версия широкого ножа для рубки тростника, названного в честь растения из бухт\nнарода Граней. 50см клинок с обратным изгибом и толстый обух дают возможность\nнаносить сильные рубящие удары, но для фехтования и изощрённых боевых искусств этот\nнож не годится. Вибропривод заменён в нём на инерционную жидкость внутри рукояти и\nчасти клинка, улучшающую баланс и позволяющую быстрее наносить удары.\n134",
+      "text": "Набор модификации (К6 АРМИЯ)\nПозволяет добавить снаряжению свойство, или убрать негативное свойство.\nЕсли вы хотите собрать персонажа подробнее, выберите по два предмета К10, три\nпредмета К8 и четыре предмета К6. Вы можете объединить две кости, чтобы получить\nпредмет на кость дороже. Вы можете тратить кости К6, чтобы покупать модификации к\nснаряжению.\nЧтобы придумать предмет, выберите его кость ценности от К6 до К12. Это будет мерой его\nэффективности и ценой покупки. Обычно, но не всегда, он причиняет или восстанавливает\nстресс, равный его кости ценности. Если это оружие или другой зависимый от дистанции\nпредмет, выберите дистанцию, на которой он применим, например ближний бой, средняя,\nили дальняя. Выберите также навык, с которым этот предмет применяется, например\nПРОБИВАТЬСЯ, или ЧИНИТЬ. В случае с некоторыми навыками, выберите\nдополнительные условия, например ЧИНИТЬ требует выбрать сопротивление, стресс в\nкотором восстанавливает.\nЗатем возьмите К6, это кость свойств. Она понижается на ступень за каждое\nположительное свойство, что вы возьмёте для оружия и повышается за каждое негативное.\nНа это нет ограничений, но если вы возьмёте очень много свойств, их может стать\nнеудобно подсчитывать, а сцены наверняка замедлятся! За одно понижение кости свойств\nвы можете получить:\n► Повышение стресса на ступень\n► Дополнительная дистанция применения\n► Дополнительное свойство\n► Две ячейки модификаций (Для добавления свойств за ресурсы в будущем)\n► Добавить дополнительный навык применения\n\n► Добавить дополнительное сопротивление к снаряжению ЧИНИТЬ\nЧтобы повысить кость свойств на ступень, вы можете:\n► Взять негативное свойство\n► Понизить стресс на ступень\nЭти правила применимы к серийным или сделанным мастером предметам, кустарные\nподелки могут иметь, например, кость свойств К4 вместо К6, или неисправляемое свойство\nненадёжный. Если вы не хотите тратить время на придумывание предметов, обратитесь к\nглаве с обширным списком снаряжения.\nПример создания\nПараштрук Лисирист — портативный радар «Царь перьевых облаков»\nПусть он будет иметь эффективность и цену К10. Без свойств это предмет К10\nПРОБИВАТЬСЯ\nЯ хочу понизить его стресс при восхождении до к8, чтобы взять дополнительное свойство.\nТеперь я добавляю свойства надёжный (Осталось К6) и мощный (Осталось К4). Ещё я хочу,\nчтобы радар мог сканировать механизмы, я отражу это через дополнительный навык\nТЕХНИЧИТЬ (Кость иссякла).\nСчитается, что ваш персонаж всегда несёт много снаряжения, полезного в разных\nситуациях, оно имеют эффективность К4 и позволяют совершать действия, которые\nобычно невозможны без посторонних предметов. Вы можете выполнять проверки с\nэффективностью к4 и без них. Ниже приведены примеры таких предметов.\nУБИВАТЬ\nТактические перчатки, боксёрские бинты, выкидной нож, зажатая в кулаке фигурка духа-\nпокровителя\nКОЛДОВАТЬ\nОккультные татуировки из металла, зачарованный смартфон, шкатулка с деревянными\nягодами, фляга с отваром из грибов и рыбы\nЧИНИТЬ\nКрасная изолента, индивидуальный перевязочный пакет и жгут, пластиковые стяжки,\nболеутоляющие, повязка-гемостатик, травы для курильницы, флейта против проклятий\nПРОБИВАТЬСЯ\nХимсвет, фальшфейер, фонарик, наручный радар, жезл лозоходца, гадальные карты,\nмонетка для выбора развилок, крюк-кошка\nСКРЫВАТЬСЯ\nГибкая камера, метательный камень, удавка, направленный микрофон, издающий звуки\nмаячок, камуфляжная краска для лица\nТЕХНИЧИТЬ\nКарабин и паракорд, смартфон с профессиональными приложениями, карманный нож,\nмультитул, смарт-очки\nГОВОРИТЬ\nМузыкальный инструмент, книга анекдотов, набор для макияжа\nСписок снаряжения\nКаждый персонаж может носить до 10 ресурсов, 4 единиц снаряжения (Например, оружия,\nнаборов медика или инструментов для навигации) и 4 единиц защиты, при этом защита в\nодном слоте не может повторяться (например, вы не можете надеть два шлема или два\nнабора оберегов). В скобках указана ценность предмета при покупке и продаже.\nУ некоторых предметов есть ячейки модификации. За к6 предмет или стресс в РЕСУРСЫ, в\nоазисе вы можете добавить к предмету дополнительное свойство, числом не больше, чем\nслотов модификаций. Например это может быть глушитель для свойства тихий, или\nудлинённый ствол для свойства точный.\nКроме того, с помощью модификации, заняв ячейку, вы можете убрать негативное\nсвойство, например облегчённая полимерная рамка может убрать свойство тяжёлый, а\nштурмовая рукоять — свойство неудобный.",
+      "category": "Базовое снаряжение",
+      "isCategory": false,
+      "skill": "ПРОБИВАТЬСЯ",
+      "quality": "D10",
+      "notes": "Позволяет добавить снаряжению свойство, или убрать негативное свойство.\nЕсли вы хотите собрать персонажа подробнее, выберите по два предмета К10, три\nпредмета К8 и четыре предмета К6. Вы можете объединить две кости, чтобы получить\nпредмет на кость дороже. Вы можете тратить кости К6, чтобы покупать модификации к\nснаряжению.\nЧтобы придумать предмет, выберите его кость ценности от К6 до К12. Это будет мерой его\nэффективности и ценой покупки. Обычно, но не всегда, он причиняет или восстанавливает\nстресс, равный его кости ценности. Если это оружие или другой зависимый от дистанции\nпредмет, выберите дистанцию, на которой он применим, например ближний бой, средняя,\nили дальняя. Выберите также навык, с которым этот предмет применяется, например\nПРОБИВАТЬСЯ, или ЧИНИТЬ. В случае с некоторыми навыками, выберите\nдополнительные условия, например ЧИНИТЬ требует выбрать сопротивление, стресс в\nкотором восстанавливает.\nЗатем возьмите К6, это кость свойств. Она понижается на ступень за каждое\nположительное свойство, что вы возьмёте для оружия и повышается за каждое негативное.\nНа это нет ограничений, но если вы возьмёте очень много свойств, их может стать\nнеудобно подсчитывать, а сцены наверняка замедлятся! За одно понижение кости свойств\nвы можете получить:\n► Повышение стресса на ступень\n► Дополнительная дистанция применения\n► Дополнительное свойство\n► Две ячейки модификаций (Для добавления свойств за ресурсы в будущем)\n► Добавить дополнительный навык применения\n► Добавить дополнительное сопротивление к снаряжению ЧИНИТЬ\nЧтобы повысить кость свойств на ступень, вы можете:\n► Взять негативное свойство\n► Понизить стресс на ступень\nЭти правила применимы к серийным или сделанным мастером предметам, кустарные\nподелки могут иметь, например, кость свойств К4 вместо К6, или неисправляемое свойство\nненадёжный. Если вы не хотите тратить время на придумывание предметов, обратитесь к\nглаве с обширным списком снаряжения.\nПример создания\nПараштрук Лисирист — портативный радар «Царь перьевых облаков»\nПусть он будет иметь эффективность и цену К10. Без свойств это предмет К10\nПРОБИВАТЬСЯ\nЯ хочу понизить его стресс при восхождении до к8, чтобы взять дополнительное свойство.\nТеперь я добавляю свойства надёжный (Осталось К6) и мощный (Осталось К4). Ещё я хочу,\nчтобы радар мог сканировать механизмы, я отражу это через дополнительный навык\nТЕХНИЧИТЬ (Кость иссякла).\nСчитается, что ваш персонаж всегда несёт много снаряжения, полезного в разных\nситуациях, оно имеют эффективность К4 и позволяют совершать действия, которые\nобычно невозможны без посторонних предметов. Вы можете выполнять проверки с\nэффективностью к4 и без них. Ниже приведены примеры таких предметов.\nУБИВАТЬ\nТактические перчатки, боксёрские бинты, выкидной нож, зажатая в кулаке фигурка духа-\nпокровителя\nКОЛДОВАТЬ\nОккультные татуировки из металла, зачарованный смартфон, шкатулка с деревянными\nягодами, фляга с отваром из грибов и рыбы\nЧИНИТЬ\nКрасная изолента, индивидуальный перевязочный пакет и жгут, пластиковые стяжки,\nболеутоляющие, повязка-гемостатик, травы для курильницы, флейта против проклятий\nПРОБИВАТЬСЯ\nХимсвет, фальшфейер, фонарик, наручный радар, жезл лозоходца, гадальные карты,\nмонетка для выбора развилок, крюк-кошка\nСКРЫВАТЬСЯ\nГибкая камера, метательный камень, удавка, направленный микрофон, издающий звуки\nмаячок, камуфляжная краска для лица\nТЕХНИЧИТЬ\nКарабин и паракорд, смартфон с профессиональными приложениями, карманный нож,\nмультитул, смарт-очки\nГОВОРИТЬ\nМузыкальный инструмент, книга анекдотов, набор для макияжа\nСписок снаряжения\nКаждый персонаж может носить до 10 ресурсов, 4 единиц снаряжения (Например, оружия,\nнаборов медика или инструментов для навигации) и 4 единиц защиты, при этом защита в\nодном слоте не может повторяться (например, вы не можете надеть два шлема или два\nнабора оберегов). В скобках указана ценность предмета при покупке и продаже.\nУ некоторых предметов есть ячейки модификации. За к6 предмет или стресс в РЕСУРСЫ, в\nоазисе вы можете добавить к предмету дополнительное свойство, числом не больше, чем\nслотов модификаций. Например это может быть глушитель для свойства тихий, или\nудлинённый ствол для свойства точный.\nКроме того, с помощью модификации, заняв ячейку, вы можете убрать негативное\nсвойство, например облегчённая полимерная рамка может убрать свойство тяжёлый, а\nштурмовая рукоять — свойство неудобный.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
+    },
+    {
+      "id": "equipment-10-66-186",
+      "kind": "gear",
+      "title": "Островные Фирмы 10 мм “Депривация”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          66
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Островные Фирмы 10 мм “Депривация”\nУрон: 1к6\nДистанция: Ближний бой, средняя\nСвойства: Тихий, мощный\nЗаглушённый пистолет под крупный 10 мм патрон с отсечкой пороховых газов. Работает в\nдвух переключаемых флажком режимах: полуавтоматическом и режиме ручного\nдосылания, нужном, чтобы исключить звуки работы автоматики.",
+      "category": "Пистолеты (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D6",
+      "notes": "Дистанция: Ближний бой, средняя\nСвойства: Тихий, мощный\nЗаглушённый пистолет под крупный 10 мм патрон с отсечкой пороховых газов. Работает в\nдвух переключаемых флажком режимах: полуавтоматическом и режиме ручного\nдосылания, нужном, чтобы исключить звуки работы автоматики.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
+    },
+    {
+      "id": "equipment-7-66-187",
+      "kind": "gear",
+      "title": "Островные фирмы 7 мм “Преданность”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          66
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Островные фирмы 7 мм “Преданность”\nУрон: 1к6\nДистанция: Ближний бой, средняя\nСвойства: Автоматический\n2 ячейки модификации\nПистолет-пулемёт с системой балансирования отдачи.",
+      "category": "Пистолеты (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D6",
+      "notes": "Дистанция: Ближний бой, средняя\nСвойства: Автоматический\n2 ячейки модификации\nПистолет-пулемёт с системой балансирования отдачи.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
+    },
+    {
+      "id": "equipment-15-5-66-188",
+      "kind": "gear",
+      "title": "Рти Кти Данн 15 мм А-5",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          66
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Рти Кти Данн 15 мм А-5\nУрон: 1к8\nДистанция: Ближний бой, средняя\nСвойства: Неудобный (Ближний бой), мощный. В начале боя или после тактики\nперезарядки, вы можете выбрать дополнительное ключевое слово для оружия —\nбронебойный (2), огонь, или энергетический.\nПолуавтоматический гладкоствольный пистолет внушительных размеров под короткий\n15мм патрон. Оптимизация горения химических веществ позволила положить\nминимальную навеску пороха при сохранении калибра полноразмерного охотничьего ружья\nстарины. Под этот же пистолет имеется широчайшая номенклатура патронов.",
+      "category": "Пистолеты (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Дистанция: Ближний бой, средняя\nСвойства: Неудобный (Ближний бой), мощный. В начале боя или после тактики\nперезарядки, вы можете выбрать дополнительное ключевое слово для оружия —\nбронебойный (2), огонь, или энергетический.\nПолуавтоматический гладкоствольный пистолет внушительных размеров под короткий\n15мм патрон. Оптимизация горения химических веществ позволила положить\nминимальную навеску пороха при сохранении калибра полноразмерного охотничьего ружья\nстарины. Под этот же пистолет имеется широчайшая номенклатура патронов.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
+    },
+    {
+      "id": "equipment-9-1-66-189",
+      "kind": "gear",
+      "title": "Рти Кти Данн 9 мм А-1 обычный и для самообороны",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          66
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Рти Кти Данн 9 мм А-1 обычный и для самообороны\nУрон: 1к6\nДистанция: Ближний бой, средняя\nСвойства: Надёжный, у версии для самообороны — Надёжный, Скрываемый и Неудобный\n(средняя дистанция)\n2 ячейки модификации\nПолуавтоматический 9 мм пистолет. Имеется и его уменьшенная версия для самообороны,\nотличающаяся меньшим боезапасом и длиной ствола.",
+      "category": "Пистолеты (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D6",
+      "notes": "Дистанция: Ближний бой, средняя\nСвойства: Надёжный, у версии для самообороны — Надёжный, Скрываемый и Неудобный\n(средняя дистанция)\n2 ячейки модификации\nПолуавтоматический 9 мм пистолет. Имеется и его уменьшенная версия для самообороны,\nотличающаяся меньшим боезапасом и длиной ствола.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
+    },
+    {
+      "id": "equipment-9-67-190",
+      "kind": "gear",
+      "title": "ДВЦЖ 9мм “Упреждение”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          67
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "ДВЦЖ 9мм “Упреждение”\nУрон: 1к10\nДистанция: Ближний бой, средняя\nСвойства: Отсечка. Тактики перезарядки с этим оружием на ступень тяжелее.\nМелкосерийный пистолет из премиальных материалов с деревянными или костяными\nнакладками на рукоять, его отличительной чертой является способность вести огонь\nочередью по пять выстрелов. Вместо магазина в пистолете используется крупный сменный\nствол, сразу снаряжённый безгильзовыми патронами с инициацией по электрическому\nимпульсу, расположенными один за другим.",
+      "category": "Пистолеты (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D10",
+      "notes": "Дистанция: Ближний бой, средняя\nСвойства: Отсечка. Тактики перезарядки с этим оружием на ступень тяжелее.\nМелкосерийный пистолет из премиальных материалов с деревянными или костяными\nнакладками на рукоять, его отличительной чертой является способность вести огонь\nочередью по пять выстрелов. Вместо магазина в пистолете используется крупный сменный\nствол, сразу снаряжённый безгильзовыми патронами с инициацией по электрическому\nимпульсу, расположенными один за другим.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
+    },
+    {
+      "id": "equipment-card-67-191",
+      "kind": "gear",
+      "title": "Островные Фирмы “Гордость”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          67
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Островные Фирмы “Гордость”\nУрон: 1к8\nСвойства: Бронебойный (2)\nДистанция: Ближний бой\n2 ячейки модификации\nКерамический нож с 15см клинком и алмазным напылением, особенно удобен для режущих\nударов. Долго не тупится, но заточить его невозможно. Рукоять выполнена из серого\nпластика, имеется отверстие для темляка. Поставляется с пластиковыми ножнами, которые\nможно закрепить на разгрузке.",
       "category": "Боевые ножи (к8)",
-      "isCategory": false
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Свойства: Бронебойный (2)\nДистанция: Ближний бой\n2 ячейки модификации\nКерамический нож с 15см клинком и алмазным напылением, особенно удобен для режущих\nударов. Долго не тупится, но заточить его невозможно. Рукоять выполнена из серого\nпластика, имеется отверстие для темляка. Поставляется с пластиковыми ножнами, которые\nможно закрепить на разгрузке.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-7-62-7-66-181",
+      "id": "equipment-card-67-192",
       "kind": "gear",
-      "title": "Рти Кти данн 7.62 мм В-7",
-      "section": "equipment",
-      "dropTarget": "gear",
-      "source": {
-        "pdfPages": [
-          66
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "Рти Кти данн 7.62 мм В-7\nУрон: 1к8\nСвойства: Автоматический, Неудобный(ближний бой)\nДистанция: Ближний бой, средняя,дальняя\n2 ячейки модификации\nСтандартная штурмовая винтовка, популярная у частных армий народа Ножей. Отличается\nвысокой дальностью стрельбы и огромной останавливающей силой. Более совершенная\nформа пороха и полимерная гильза дали возможность сделать патрон меньше и увеличить\nскорость полёта пули. Рукоять, приклад и цевьё по традиции сделаны из\nстабилизированного дерева, однако имеются и более лёгкие версии с наноплимерной\nфурнитурой. Модульность В-7 позволяет модифицировать винтовку на свой вкус, многие\nкомпании выпускают к ней собственные дополнения вроде сменных рукояток, крышек\nствольной коробки и спусковых механизмов.",
-      "category": "Штурмовые винтовки (к10)",
-      "isCategory": false
-    },
-    {
-      "id": "equipment-11-5-9-66-182",
-      "kind": "gear",
-      "title": "Рти Кти Данн 11.5 мм В-9",
-      "section": "equipment",
-      "dropTarget": "gear",
-      "source": {
-        "pdfPages": [
-          66
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "Рти Кти Данн 11.5 мм В-9\nУрон: 1к10\nСвойства: Автоматический, Мощный, Неудобный(ближний бой), Тяжёлый.\nДистанция:Ближний бой, средняя,дальняя\nУсиленная штурмовая винтовка под патрон 11.5х46 мм, обычно используется в\nполуавтоматическом режиме для стрельбы по целям в средней или тяжёлой пехотной\nброне, но имеет и автоматический режим стрельбы. Отдача в нём очень заметна, так что\nобычно из В-9 ведут огонь короткими очередями. В-9 выполнена, не считая рукояти и\nцевья, целиком в металле, полимерная крышка ствольной коробки не выдерживала\nвибрации механизмов, рассчитанных на крупный патрон. Винтовка снабжена верхней\nинерционной планкой, соединённой с оружием подвижной шиной. Такая конструкция\nпозволяет при всей мощи патрона оставить целым установленный прицел.",
-      "category": "Штурмовые винтовки (к10)",
-      "isCategory": false
-    },
-    {
-      "id": "equipment-5-56-66-183",
-      "kind": "gear",
-      "title": "ДВЦЖ 5.56 мм “Экспедиция”",
-      "section": "equipment",
-      "dropTarget": "gear",
-      "source": {
-        "pdfPages": [
-          66
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "ДВЦЖ 5.56 мм “Экспедиция”\nУрон: 1к6\nСвойства: Автоматический, Точный\nДистанция: Ближний бой, средняя,дальняя\n2 ячейки модификации\nВинтовка по системе булл-пап с расположенным сверху шнековым магазином. Огромная\nвместительность магазина и механизм стабилизации отдачи облегчает стрельбу длинными\nочередями на любые дистанции. Корпус целиком сделан из нанополимера, что делает\nвинтовку со снаряжённым магазином заметно легче. Рукоять и цевьё сделаны из дерева с\nнакладками из рога. Утолщённый ствол легко заменяется.\n135",
-      "category": "Штурмовые винтовки (к10)",
-      "isCategory": false
-    },
-    {
-      "id": "equipment-7-62-67-184",
-      "kind": "gear",
-      "title": "Оружие Мира 7.62 мм “Роковой Алмаз”",
+      "title": "Рти Кти Данн “Икт”",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
           67
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "Оружие Мира 7.62 мм “Роковой Алмаз”\nУрон: 1к8\nСвойства: Автоматический, Умный, Неудобный(ближний бой)\nДистанция:Ближний бой, средняя,дальняя\nУмная штурмовая винтовка с системами целеуказания, камерами и линком с\nраспознающим цели ИИ. Обладает дублированным спуском: более надёжный запасной\nвариант — использовать спусковой крючок, а более быстрый — активировать удалённый\nспуск через систему управления киберимплантами. При наличии смарт визора, линз или\nкиберглаз можно подключиться к камерам винтовки и смотреть от её лица. Нуждается в\nочень тщательном обслуживании.",
-      "category": "Штурмовые винтовки (к10)",
-      "isCategory": false
+      "text": "Рти Кти Данн “Икт”\nУрон: 1к8\nСвойства: Мощный\nДистанция: Ближний бой\n2 ячейки модификации\nСовременная версия традиционного боевого ножа народа Ножей, выполнен из сложных\nпорошковых сплавов, обеспечивающих прочность вместе с твёрдостью. Тяжесть ножа и его\n40см клинок делают его способным наносить серьёзные рубящие удары. Рукоять и ножны\nсделаны из стабилизированного дерева, на сайте можно указать, какую гравировку вы\nхотите на икте. Вибропривод этой модели быстрее перебирает скорости, благодаря чему\nнож лучше режет разнородные материалы.",
+      "category": "Боевые ножи (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Свойства: Мощный\nДистанция: Ближний бой\n2 ячейки модификации\nСовременная версия традиционного боевого ножа народа Ножей, выполнен из сложных\nпорошковых сплавов, обеспечивающих прочность вместе с твёрдостью. Тяжесть ножа и его\n40см клинок делают его способным наносить серьёзные рубящие удары. Рукоять и ножны\nсделаны из стабилизированного дерева, на сайте можно указать, какую гравировку вы\nхотите на икте. Вибропривод этой модели быстрее перебирает скорости, благодаря чему\nнож лучше режет разнородные материалы.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-7-62-67-185",
+      "id": "equipment-card-67-193",
       "kind": "gear",
-      "title": "Островные фирмы 7.62 мм “Значимость”",
+      "title": "Сиривирст Фахир “Сиривирст”",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
           67
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "Островные фирмы 7.62 мм “Значимость”\nУрон: 1к8\nСвойства: Автоматический, Неудобный(дальняя)\nДистанция:Ближний бой, средняя,дальняя\n2 ячейки модификации\nУкороченная винтовка для штурма зданий, выполненная в полноценном винтовочном\nкалибре. Корпус оружия выполнен в металле, это помогает использовать его в ближнем\nбою. Штатный магазин вмещает немного патронов, но на близкой дистанции этого вполне\nхватает. Съёмный складной приклад закреплён в нескольких местах, что повышает его\nнадёжность.\n136",
-      "category": "Штурмовые винтовки (к10)",
-      "isCategory": false
+      "text": "Сиривирст Фахир “Сиривирст”\nУрон:1к8\nСвойства: Дуэльный, сбалансированный\nДистанция: Ближний бой\nУкороченная версия национального холодного оружия народа Граней, 30см чуть изогнутый\nклинок снабжён стандартным виброприводом, увеличивающим эффективность ударов.\nВиброприводы оружия компании Сиривирст Фахир работают по запатентованной схеме\nрасширенного диапазона вибрации, дающей возможность легче резать очень твёрдые и\nочень мягкие цели. Имеет развитую корзинчатую гарду, защищающую руку.",
+      "category": "Боевые ножи (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Свойства: Дуэльный, сбалансированный\nДистанция: Ближний бой\nУкороченная версия национального холодного оружия народа Граней, 30см чуть изогнутый\nклинок снабжён стандартным виброприводом, увеличивающим эффективность ударов.\nВиброприводы оружия компании Сиривирст Фахир работают по запатентованной схеме\nрасширенного диапазона вибрации, дающей возможность легче резать очень твёрдые и\nочень мягкие цели. Имеет развитую корзинчатую гарду, защищающую руку.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-7-62-2-67-186",
+      "id": "equipment-card-67-194",
       "kind": "gear",
-      "title": "Рти Кти Данн 7.62мм С-2",
+      "title": "Сиривирст Фахир “Хохсхех”",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
@@ -3410,176 +3654,132 @@ window.TOWER_CODEX = {
           67,
           68
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "Рти Кти Данн 7.62мм С-2\nУрон: 1к8\nСвойства: Автоматический, Подавление\nДистанция: Средняя,дальняя\n2 ячейки модификации\nМодификация штурмовой винтовки В-7 с длинным усиленным заменяемым стволом и\nкрышкой ствольной коробки, а так же интегрированными сошками. Питание от магазина\nпозволяет быстрее осуществлять перезарядку. В отличие от других ручных пулемётов\n137\nимеет полуавтоматический режим стрельбы.",
-      "category": "Ручные пулемёты (к12)",
-      "isCategory": false
+      "text": "Сиривирст Фахир “Хохсхех”\nУрон: 1к10\nДистанция: Ближний бой\n2 ячейки модификации\nБоевая версия широкого ножа для рубки тростника, названного в честь растения из бухт\nнарода Граней. 50см клинок с обратным изгибом и толстый обух дают возможность\nнаносить сильные рубящие удары, но для фехтования и изощрённых боевых искусств этот\nнож не годится. Вибропривод заменён в нём на инерционную жидкость внутри рукояти и\nчасти клинка, улучшающую баланс и позволяющую быстрее наносить удары.",
+      "category": "Боевые ножи (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D10",
+      "notes": "Дистанция: Ближний бой\n2 ячейки модификации\nБоевая версия широкого ножа для рубки тростника, названного в честь растения из бухт\nнарода Граней. 50см клинок с обратным изгибом и толстый обух дают возможность\nнаносить сильные рубящие удары, но для фехтования и изощрённых боевых искусств этот\nнож не годится. Вибропривод заменён в нём на инерционную жидкость внутри рукояти и\nчасти клинка, улучшающую баланс и позволяющую быстрее наносить удары.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-5-56-29-68-187",
+      "id": "equipment-7-62-7-68-195",
       "kind": "gear",
-      "title": "Рти Кти Данн 5.56мм С-29",
+      "title": "Рти Кти данн 7.62 мм В-7",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
           68
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "Рти Кти Данн 5.56мм С-29\nУрон: 1к6\nСвойства: Автоматический, Неудобный(ближний бой), Подавление, Сошки\nДистанция: Ближний бой, средняя, дальняя\n2 ячейки модификации\nЛёгкий ручной пулемёт с питанием от короба. Напечатанная на 3д принтере лента из\nнанополимеров делает снаряжённый короб заметно легче. Очень точный на средних\nдистанциях, на С-29 часто устанавливают оптические прицелы. Сошки идут в комплекте, но\nпри этом легко прищёлкиваются и отщёлкиваются.",
-      "category": "Ручные пулемёты (к12)",
-      "isCategory": false
+      "text": "Рти Кти данн 7.62 мм В-7\nУрон: 1к8\nСвойства: Автоматический, Неудобный(ближний бой)\nДистанция: Ближний бой, средняя,дальняя\n2 ячейки модификации\nСтандартная штурмовая винтовка, популярная у частных армий народа Ножей. Отличается\nвысокой дальностью стрельбы и огромной останавливающей силой. Более совершенная\nформа пороха и полимерная гильза дали возможность сделать патрон меньше и увеличить\nскорость полёта пули. Рукоять, приклад и цевьё по традиции сделаны из\nстабилизированного дерева, однако имеются и более лёгкие версии с наноплимерной\nфурнитурой. Модульность В-7 позволяет модифицировать винтовку на свой вкус, многие\nкомпании выпускают к ней собственные дополнения вроде сменных рукояток, крышек\nствольной коробки и спусковых механизмов.",
+      "category": "Штурмовые винтовки (к10)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Свойства: Автоматический, Неудобный(ближний бой)\nДистанция: Ближний бой, средняя,дальняя\n2 ячейки модификации\nСтандартная штурмовая винтовка, популярная у частных армий народа Ножей. Отличается\nвысокой дальностью стрельбы и огромной останавливающей силой. Более совершенная\nформа пороха и полимерная гильза дали возможность сделать патрон меньше и увеличить\nскорость полёта пули. Рукоять, приклад и цевьё по традиции сделаны из\nстабилизированного дерева, однако имеются и более лёгкие версии с наноплимерной\nфурнитурой. Модульность В-7 позволяет модифицировать винтовку на свой вкус, многие\nкомпании выпускают к ней собственные дополнения вроде сменных рукояток, крышек\nствольной коробки и спусковых механизмов.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-11-5-68-188",
+      "id": "equipment-11-5-9-68-196",
       "kind": "gear",
-      "title": "Островные фирмы 11.5мм “Юность”",
+      "title": "Рти Кти Данн 11.5 мм В-9",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
           68
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "Островные фирмы 11.5мм “Юность”\nУрон: 1к10\nСвойства: Автоматический, Неудобный(Средняя), Мощный, Подавление, Тяжёлый\nДистанция: Средняя, дальняя\n2 ячейки модификации\nЕдиный пулемёт, применяемый чаще как станковый. Серьёзные отдача и громкость\nкомпенсируются значительной огневой мощью. На и так тяжёлый пулемёт иногда\nустанавливается активный глушитель, подавляющий шум стрельбы и работы механизмов с\nпомощью системы микрофонов и динамиков. К Юности подходит фирменный рюкзак от\nкомпании, вмещающий присоединяемую к пулемёту ленту на 750 или 1500 выстрелов в\nзависимости от модели.",
-      "category": "Ручные пулемёты (к12)",
-      "isCategory": false
+      "text": "Рти Кти Данн 11.5 мм В-9\nУрон: 1к10\nСвойства: Автоматический, Мощный, Неудобный(ближний бой), Тяжёлый.\nДистанция:Ближний бой, средняя,дальняя\nУсиленная штурмовая винтовка под патрон 11.5х46 мм, обычно используется в\nполуавтоматическом режиме для стрельбы по целям в средней или тяжёлой пехотной\nброне, но имеет и автоматический режим стрельбы. Отдача в нём очень заметна, так что\nобычно из В-9 ведут огонь короткими очередями. В-9 выполнена, не считая рукояти и\nцевья, целиком в металле, полимерная крышка ствольной коробки не выдерживала\nвибрации механизмов, рассчитанных на крупный патрон. Винтовка снабжена верхней\nинерционной планкой, соединённой с оружием подвижной шиной. Такая конструкция\nпозволяет при всей мощи патрона оставить целым установленный прицел.",
+      "category": "Штурмовые винтовки (к10)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D10",
+      "notes": "Свойства: Автоматический, Мощный, Неудобный(ближний бой), Тяжёлый.\nДистанция:Ближний бой, средняя,дальняя\nУсиленная штурмовая винтовка под патрон 11.5х46 мм, обычно используется в\nполуавтоматическом режиме для стрельбы по целям в средней или тяжёлой пехотной\nброне, но имеет и автоматический режим стрельбы. Отдача в нём очень заметна, так что\nобычно из В-9 ведут огонь короткими очередями. В-9 выполнена, не считая рукояти и\nцевья, целиком в металле, полимерная крышка ствольной коробки не выдерживала\nвибрации механизмов, рассчитанных на крупный патрон. Винтовка снабжена верхней\nинерционной планкой, соединённой с оружием подвижной шиной. Такая конструкция\nпозволяет при всей мощи патрона оставить целым установленный прицел.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-5-56-68-189",
+      "id": "equipment-5-56-68-197",
       "kind": "gear",
-      "title": "ДВЦЖ 5.56мм ”Щит”",
+      "title": "ДВЦЖ 5.56 мм “Экспедиция”",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
           68
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "ДВЦЖ 5.56мм ”Щит”\nУрон: 1к6\nСвойства: Автоматический, Неудобный(ближний бой), Подавление, Отсечка\nДистанция: Ближний бой, средняя, дальняя\n2 ячейки модификации\nЛёгкий ручной пулемёт, отличающийся двуствольной координированной системой: пока из\nодного ствола производится выстрел, другой перезаряжается, что обеспечивает\nколоссальную плотность огня. Почти не имеет вертикальной отдачи, но обладает заметным\nраскачиванием в сторону при стрельбе длинными очередями. Боепитание производится от\nдвух вместительных магазинов. Имеет возможность установки более коротких стволов.\n138",
-      "category": "Ручные пулемёты (к12)",
-      "isCategory": false
+      "text": "ДВЦЖ 5.56 мм “Экспедиция”\nУрон: 1к6\nСвойства: Автоматический, Точный\nДистанция: Ближний бой, средняя,дальняя\n2 ячейки модификации\nВинтовка по системе булл-пап с расположенным сверху шнековым магазином. Огромная\nвместительность магазина и механизм стабилизации отдачи облегчает стрельбу длинными\nочередями на любые дистанции. Корпус целиком сделан из нанополимера, что делает\nвинтовку со снаряжённым магазином заметно легче. Рукоять и цевьё сделаны из дерева с\nнакладками из рога. Утолщённый ствол легко заменяется.",
+      "category": "Штурмовые винтовки (к10)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D6",
+      "notes": "Свойства: Автоматический, Точный\nДистанция: Ближний бой, средняя,дальняя\n2 ячейки модификации\nВинтовка по системе булл-пап с расположенным сверху шнековым магазином. Огромная\nвместительность магазина и механизм стабилизации отдачи облегчает стрельбу длинными\nочередями на любые дистанции. Корпус целиком сделан из нанополимера, что делает\nвинтовку со снаряжённым магазином заметно легче. Рукоять и цевьё сделаны из дерева с\nнакладками из рога. Утолщённый ствол легко заменяется.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-7-62-68-190",
+      "id": "equipment-7-62-69-198",
       "kind": "gear",
-      "title": "Оружие Мира 7.62мм ”Король-воин”",
-      "section": "equipment",
-      "dropTarget": "gear",
-      "source": {
-        "pdfPages": [
-          68
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "Оружие Мира 7.62мм ”Король-воин”\nУрон: 1к8\nСвойства: Автоматический, Умный, Подавление\nДистанция: Средняя, дальняя\nОчень распространённый ручной смарт пулемёт, специально облегчённый с помощью\nнанополимеров для активного перемещения и использования в зданиях. Боепитание\nпроизводится от барабанного магазина. Смарт системы дают возможность смотреть через\nкамеры пулемёта и активировать его через систему контроля имплантов как продолжение\nтела. Вместе с управляемым дистанционно станком, Короля-Воина можно превратить в\nдистанционно управляемую турель.",
-      "category": "Ручные пулемёты (к12)",
-      "isCategory": false
-    },
-    {
-      "id": "equipment-11-5-68-191",
-      "kind": "gear",
-      "title": "Оружие Мира 11.5 мм ”Зоркий Ужас”",
-      "section": "equipment",
-      "dropTarget": "gear",
-      "source": {
-        "pdfPages": [
-          68
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "Оружие Мира 11.5 мм ”Зоркий Ужас”\nУрон: 1к10\nСвойства: Умный, Мощный, Тяжёлый.\nДистанция: Средняя, дальняя\n2 ячейки модификации\nСнайперская винтовка с умным прицелом и баллистическим процессором. Продольно-\nскользящий затвор обеспечивает максимальную точность на дальней дистанции.\nВстроенные компьютеры в сочетании с камерами позволяют брать верное упреждение,\nзависящее от расстояния, ветра и прочих условий. Интегрированный в корпус прицел\nотображает картинку на нанодисплее в режимах инфракрасного, ночного, или духовного\nвидения.",
-      "category": "Дальнобойные винтовки (к12)",
-      "isCategory": false
-    },
-    {
-      "id": "equipment-7-62-5-68-192",
-      "kind": "gear",
-      "title": "Рти Кти Данн 7.62 мм Х-5",
-      "section": "equipment",
-      "dropTarget": "gear",
-      "source": {
-        "pdfPages": [
-          68
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "Рти Кти Данн 7.62 мм Х-5\nУрон: 1к10\nСвойства: Тихий\nДистанция: Средняя, Дальняя\n2 ячейки модификации\nСнайперская винтовка с системами маскировки вспышек и звука. Активное\nшумоподавление скрывает звук выстрела и работу механизмов, а ствольный кожух и\nдульная насадка из полимерного метаматериала поглощают тепло и медленно равномерно\nего распределяют, так что на тепловизорах винтовка при стрельбе не видна, а боевые\nнейросети не распознают её как оружие. Чтобы извлечь из тишины и отсутствия\nтемпературных перепадов максимальную выгоду, винтовку сделали полуавтоматической.\n139",
-      "category": "Дальнобойные винтовки (к12)",
-      "isCategory": false
-    },
-    {
-      "id": "equipment-5-56-5-69-193",
-      "kind": "gear",
-      "title": "Рти Кти Данн 5.56 мм Е-5",
+      "title": "Оружие Мира 7.62 мм “Роковой Алмаз”",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
           69
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "Рти Кти Данн 5.56 мм Е-5\nУрон: 1к6\nСвойства: Точный, Дуэльный, Неудобный(ближний бой)\nДистанция: Ближний бой, средняя, дальняя\n4 ячейки модификации\nСкаутская винтовка с высокой модульностью. Лёгкая дальнобойная винтовка позволяет\nбыстро целиться и вести огонь с рук, а её модульная система даёт собрать вокруг\nмеханизма оружие любого форм-фактора, даже не имея при себе инструментов.",
-      "category": "Дальнобойные винтовки (к12)",
-      "isCategory": false
+      "text": "Оружие Мира 7.62 мм “Роковой Алмаз”\nУрон: 1к8\nСвойства: Автоматический, Умный, Неудобный(ближний бой)\nДистанция:Ближний бой, средняя,дальняя\nУмная штурмовая винтовка с системами целеуказания, камерами и линком с\nраспознающим цели ИИ. Обладает дублированным спуском: более надёжный запасной\nвариант — использовать спусковой крючок, а более быстрый — активировать удалённый\nспуск через систему управления киберимплантами. При наличии смарт визора, линз или\nкиберглаз можно подключиться к камерам винтовки и смотреть от её лица. Нуждается в\nочень тщательном обслуживании.",
+      "category": "Штурмовые винтовки (к10)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Свойства: Автоматический, Умный, Неудобный(ближний бой)\nДистанция:Ближний бой, средняя,дальняя\nУмная штурмовая винтовка с системами целеуказания, камерами и линком с\nраспознающим цели ИИ. Обладает дублированным спуском: более надёжный запасной\nвариант — использовать спусковой крючок, а более быстрый — активировать удалённый\nспуск через систему управления киберимплантами. При наличии смарт визора, линз или\nкиберглаз можно подключиться к камерам винтовки и смотреть от её лица. Нуждается в\nочень тщательном обслуживании.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-12-7-69-194",
+      "id": "equipment-7-62-69-199",
       "kind": "gear",
-      "title": "Второе Солнце 12.7 мм ”Антракт”",
+      "title": "Островные фирмы 7.62 мм “Значимость”",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
           69
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "Второе Солнце 12.7 мм ”Антракт”\nУрон: 1к12\nСвойства: Точный, Мощный, Тяжёлый, Громкий, Однозарядный\nДистанция: Дальняя\n2 ячейки модификации\nТяжёлая винтовка с электромагнитным разгоном пули, предназначена для поражения\nпехоты в тяжёлой броне и лёгкой техники. Тяжёлая вольфрамовая пуля заряжается сверху,\nмагазина у винтовки нет, это увеличило бы её и так огромный вес и ускорило бы износ\nмеханизмов. Снизу присоединяется массивный аккумулятор. Очень громкий\nсопровождающийся плазменной вспышкой выстрел позволяет поразить цель на огромной\nдистанции.",
-      "category": "Дальнобойные винтовки (к12)",
-      "isCategory": false
+      "text": "Островные фирмы 7.62 мм “Значимость”\nУрон: 1к8\nСвойства: Автоматический, Неудобный(дальняя)\nДистанция:Ближний бой, средняя,дальняя\n2 ячейки модификации\nУкороченная винтовка для штурма зданий, выполненная в полноценном винтовочном\nкалибре. Корпус оружия выполнен в металле, это помогает использовать его в ближнем\nбою. Штатный магазин вмещает немного патронов, но на близкой дистанции этого вполне\nхватает. Съёмный складной приклад закреплён в нескольких местах, что повышает его\nнадёжность.",
+      "category": "Штурмовые винтовки (к10)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Свойства: Автоматический, Неудобный(дальняя)\nДистанция:Ближний бой, средняя,дальняя\n2 ячейки модификации\nУкороченная винтовка для штурма зданий, выполненная в полноценном винтовочном\nкалибре. Корпус оружия выполнен в металле, это помогает использовать его в ближнем\nбою. Штатный магазин вмещает немного патронов, но на близкой дистанции этого вполне\nхватает. Съёмный складной приклад закреплён в нескольких местах, что повышает его\nнадёжность.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-7-62-69-195",
+      "id": "equipment-7-62-2-69-200",
       "kind": "gear",
-      "title": "ДВЦЖ 7.62 мм ”Шипящий лист”",
-      "section": "equipment",
-      "dropTarget": "gear",
-      "source": {
-        "pdfPages": [
-          69
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "ДВЦЖ 7.62 мм ”Шипящий лист”\nУрон: 1к8\nСвойства: Автоматический, Точный, Неудобный(ближний бой)\nДистанция: Ближний бой, средняя, дальняя\n2 ячейки модификации\nНазванная в честь конструктора снайперская винтовка с автоматическим режимом огня.\nПервая модель этого семейства винтовок предназначалась для охоты, был рассчёт на то,\nчто при промахе разъярённого зверя можно будет остановить очередью. Однако\nдальнобойная и точная винтовка, дающая возможность стрелять очередями пришлась по\nвкусу вольным армиям народа Степей. По традиции отделана рогом и деревом. Имеет\nнелетальную конверсию под патрон с транквилизатором.\n140",
-      "category": "Дальнобойные винтовки (к12)",
-      "isCategory": false
-    },
-    {
-      "id": "equipment-8-69-196",
-      "kind": "gear",
-      "title": "Рти Кти Данн О-8",
-      "section": "equipment",
-      "dropTarget": "gear",
-      "source": {
-        "pdfPages": [
-          69
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "Рти Кти Данн О-8\n+3 защиты в ПУЛИ, +5 защиты в ПУЛИ от оружия ближнего боя\nНебольшой мобильный щит из прозрачного полимера, защищающий корпус,\nпредназначался для полицейских и бойцов ближнего боя.",
-      "category": "Баллистический щит (к8)",
-      "isCategory": false
-    },
-    {
-      "id": "equipment-97-69-197",
-      "kind": "gear",
-      "title": "Рти Кти Данн О-97",
+      "title": "Рти Кти Данн 7.62мм С-2",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
@@ -3587,192 +3787,242 @@ window.TOWER_CODEX = {
           69,
           70
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "Рти Кти Данн О-97\n+4 защиты в ПУЛИ, ваши проверки ПРОБИВАТЬСЯ, связанные со скоростью, становятся на\nступень тяжелее. Раз в сцену может ослепить противников: одно следующее действие не\nможет принести последствия даже при провале.\n141\nСредний щит из свервысокомолекулярного пластика и лёгких сплавов, имеет\nраскладываемые по бокам и снизу защитные пластины, а так же вспышковые лампы,\nослепляющие цели без защиты глаз.",
+      "text": "Рти Кти Данн 7.62мм С-2\nУрон: 1к8\nСвойства: Автоматический, Подавление\nДистанция: Средняя,дальняя\n2 ячейки модификации\nМодификация штурмовой винтовки В-7 с длинным усиленным заменяемым стволом и\nкрышкой ствольной коробки, а так же интегрированными сошками. Питание от магазина\nпозволяет быстрее осуществлять перезарядку. В отличие от других ручных пулемётов\nимеет полуавтоматический режим стрельбы.",
+      "category": "Ручные пулемёты (к12)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Свойства: Автоматический, Подавление\nДистанция: Средняя,дальняя\n2 ячейки модификации\nМодификация штурмовой винтовки В-7 с длинным усиленным заменяемым стволом и\nкрышкой ствольной коробки, а так же интегрированными сошками. Питание от магазина\nпозволяет быстрее осуществлять перезарядку. В отличие от других ручных пулемётов\nимеет полуавтоматический режим стрельбы.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
+    },
+    {
+      "id": "equipment-5-56-29-70-201",
+      "kind": "gear",
+      "title": "Рти Кти Данн 5.56мм С-29",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          70
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Рти Кти Данн 5.56мм С-29\nУрон: 1к6\nСвойства: Автоматический, Неудобный(ближний бой), Подавление, Сошки\nДистанция: Ближний бой, средняя, дальняя\n2 ячейки модификации\nЛёгкий ручной пулемёт с питанием от короба. Напечатанная на 3д принтере лента из\nнанополимеров делает снаряжённый короб заметно легче. Очень точный на средних\nдистанциях, на С-29 часто устанавливают оптические прицелы. Сошки идут в комплекте, но\nпри этом легко прищёлкиваются и отщёлкиваются.",
+      "category": "Ручные пулемёты (к12)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D6",
+      "notes": "Свойства: Автоматический, Неудобный(ближний бой), Подавление, Сошки\nДистанция: Ближний бой, средняя, дальняя\n2 ячейки модификации\nЛёгкий ручной пулемёт с питанием от короба. Напечатанная на 3д принтере лента из\nнанополимеров делает снаряжённый короб заметно легче. Очень точный на средних\nдистанциях, на С-29 часто устанавливают оптические прицелы. Сошки идут в комплекте, но\nпри этом легко прищёлкиваются и отщёлкиваются.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
+    },
+    {
+      "id": "equipment-11-5-70-202",
+      "kind": "gear",
+      "title": "Островные фирмы 11.5мм “Юность”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          70
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Островные фирмы 11.5мм “Юность”\nУрон: 1к10\nСвойства: Автоматический, Неудобный(Средняя), Мощный, Подавление, Тяжёлый\nДистанция: Средняя, дальняя\n2 ячейки модификации\nЕдиный пулемёт, применяемый чаще как станковый. Серьёзные отдача и громкость\nкомпенсируются значительной огневой мощью. На и так тяжёлый пулемёт иногда\nустанавливается активный глушитель, подавляющий шум стрельбы и работы механизмов с\nпомощью системы микрофонов и динамиков. К Юности подходит фирменный рюкзак от\nкомпании, вмещающий присоединяемую к пулемёту ленту на 750 или 1500 выстрелов в\nзависимости от модели.",
+      "category": "Ручные пулемёты (к12)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D10",
+      "notes": "Свойства: Автоматический, Неудобный(Средняя), Мощный, Подавление, Тяжёлый\nДистанция: Средняя, дальняя\n2 ячейки модификации\nЕдиный пулемёт, применяемый чаще как станковый. Серьёзные отдача и громкость\nкомпенсируются значительной огневой мощью. На и так тяжёлый пулемёт иногда\nустанавливается активный глушитель, подавляющий шум стрельбы и работы механизмов с\nпомощью системы микрофонов и динамиков. К Юности подходит фирменный рюкзак от\nкомпании, вмещающий присоединяемую к пулемёту ленту на 750 или 1500 выстрелов в\nзависимости от модели.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
+    },
+    {
+      "id": "equipment-5-56-70-203",
+      "kind": "gear",
+      "title": "ДВЦЖ 5.56мм ”Щит”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          70
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "ДВЦЖ 5.56мм ”Щит”\nУрон: 1к6\nСвойства: Автоматический, Неудобный(ближний бой), Подавление, Отсечка\nДистанция: Ближний бой, средняя, дальняя\n2 ячейки модификации\nЛёгкий ручной пулемёт, отличающийся двуствольной координированной системой: пока из\nодного ствола производится выстрел, другой перезаряжается, что обеспечивает\nколоссальную плотность огня. Почти не имеет вертикальной отдачи, но обладает заметным\nраскачиванием в сторону при стрельбе длинными очередями. Боепитание производится от\nдвух вместительных магазинов. Имеет возможность установки более коротких стволов.",
+      "category": "Ручные пулемёты (к12)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D6",
+      "notes": "Свойства: Автоматический, Неудобный(ближний бой), Подавление, Отсечка\nДистанция: Ближний бой, средняя, дальняя\n2 ячейки модификации\nЛёгкий ручной пулемёт, отличающийся двуствольной координированной системой: пока из\nодного ствола производится выстрел, другой перезаряжается, что обеспечивает\nколоссальную плотность огня. Почти не имеет вертикальной отдачи, но обладает заметным\nраскачиванием в сторону при стрельбе длинными очередями. Боепитание производится от\nдвух вместительных магазинов. Имеет возможность установки более коротких стволов.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
+    },
+    {
+      "id": "equipment-7-62-70-204",
+      "kind": "gear",
+      "title": "Оружие Мира 7.62мм ”Король-воин”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          70
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Оружие Мира 7.62мм ”Король-воин”\nУрон: 1к8\nСвойства: Автоматический, Умный, Подавление\nДистанция: Средняя, дальняя\nОчень распространённый ручной смарт пулемёт, специально облегчённый с помощью\nнанополимеров для активного перемещения и использования в зданиях. Боепитание\nпроизводится от барабанного магазина. Смарт системы дают возможность смотреть через\nкамеры пулемёта и активировать его через систему контроля имплантов как продолжение\nтела. Вместе с управляемым дистанционно станком, Короля-Воина можно превратить в\nдистанционно управляемую турель.",
+      "category": "Ручные пулемёты (к12)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Свойства: Автоматический, Умный, Подавление\nДистанция: Средняя, дальняя\nОчень распространённый ручной смарт пулемёт, специально облегчённый с помощью\nнанополимеров для активного перемещения и использования в зданиях. Боепитание\nпроизводится от барабанного магазина. Смарт системы дают возможность смотреть через\nкамеры пулемёта и активировать его через систему контроля имплантов как продолжение\nтела. Вместе с управляемым дистанционно станком, Короля-Воина можно превратить в\nдистанционно управляемую турель.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
+    },
+    {
+      "id": "equipment-11-5-70-205",
+      "kind": "gear",
+      "title": "Оружие Мира 11.5 мм ”Зоркий Ужас”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          70
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Оружие Мира 11.5 мм ”Зоркий Ужас”\nУрон: 1к10\nСвойства: Умный, Мощный, Тяжёлый.\nДистанция: Средняя, дальняя\n2 ячейки модификации\nСнайперская винтовка с умным прицелом и баллистическим процессором. Продольно-\nскользящий затвор обеспечивает максимальную точность на дальней дистанции.\nВстроенные компьютеры в сочетании с камерами позволяют брать верное упреждение,\nзависящее от расстояния, ветра и прочих условий. Интегрированный в корпус прицел\nотображает картинку на нанодисплее в режимах инфракрасного, ночного, или духовного\nвидения.",
+      "category": "Дальнобойные винтовки (к12)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D10",
+      "notes": "Свойства: Умный, Мощный, Тяжёлый.\nДистанция: Средняя, дальняя\n2 ячейки модификации\nСнайперская винтовка с умным прицелом и баллистическим процессором. Продольно-\nскользящий затвор обеспечивает максимальную точность на дальней дистанции.\nВстроенные компьютеры в сочетании с камерами позволяют брать верное упреждение,\nзависящее от расстояния, ветра и прочих условий. Интегрированный в корпус прицел\nотображает картинку на нанодисплее в режимах инфракрасного, ночного, или духовного\nвидения.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
+    },
+    {
+      "id": "equipment-7-62-5-70-206",
+      "kind": "gear",
+      "title": "Рти Кти Данн 7.62 мм Х-5",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          70
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Рти Кти Данн 7.62 мм Х-5\nУрон: 1к10\nСвойства: Тихий\nДистанция: Средняя, Дальняя\n2 ячейки модификации\nСнайперская винтовка с системами маскировки вспышек и звука. Активное\nшумоподавление скрывает звук выстрела и работу механизмов, а ствольный кожух и\nдульная насадка из полимерного метаматериала поглощают тепло и медленно равномерно\nего распределяют, так что на тепловизорах винтовка при стрельбе не видна, а боевые\nнейросети не распознают её как оружие. Чтобы извлечь из тишины и отсутствия\nтемпературных перепадов максимальную выгоду, винтовку сделали полуавтоматической.",
+      "category": "Дальнобойные винтовки (к12)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D10",
+      "notes": "Свойства: Тихий\nДистанция: Средняя, Дальняя\n2 ячейки модификации\nСнайперская винтовка с системами маскировки вспышек и звука. Активное\nшумоподавление скрывает звук выстрела и работу механизмов, а ствольный кожух и\nдульная насадка из полимерного метаматериала поглощают тепло и медленно равномерно\nего распределяют, так что на тепловизорах винтовка при стрельбе не видна, а боевые\nнейросети не распознают её как оружие. Чтобы извлечь из тишины и отсутствия\nтемпературных перепадов максимальную выгоду, винтовку сделали полуавтоматической.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
+    },
+    {
+      "id": "equipment-5-56-5-71-207",
+      "kind": "gear",
+      "title": "Рти Кти Данн 5.56 мм Е-5",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          71
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Рти Кти Данн 5.56 мм Е-5\nУрон: 1к6\nСвойства: Точный, Дуэльный, Неудобный(ближний бой)\nДистанция: Ближний бой, средняя, дальняя\n4 ячейки модификации\nСкаутская винтовка с высокой модульностью. Лёгкая дальнобойная винтовка позволяет\nбыстро целиться и вести огонь с рук, а её модульная система даёт собрать вокруг\nмеханизма оружие любого форм-фактора, даже не имея при себе инструментов.",
+      "category": "Дальнобойные винтовки (к12)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D6",
+      "notes": "Свойства: Точный, Дуэльный, Неудобный(ближний бой)\nДистанция: Ближний бой, средняя, дальняя\n4 ячейки модификации\nСкаутская винтовка с высокой модульностью. Лёгкая дальнобойная винтовка позволяет\nбыстро целиться и вести огонь с рук, а её модульная система даёт собрать вокруг\nмеханизма оружие любого форм-фактора, даже не имея при себе инструментов.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
+    },
+    {
+      "id": "equipment-12-7-71-208",
+      "kind": "gear",
+      "title": "Второе Солнце 12.7 мм ”Антракт”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          71
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Второе Солнце 12.7 мм ”Антракт”\nУрон: 1к12\nСвойства: Точный, Мощный, Тяжёлый, Громкий, Однозарядный\nДистанция: Дальняя\n2 ячейки модификации\nТяжёлая винтовка с электромагнитным разгоном пули, предназначена для поражения\nпехоты в тяжёлой броне и лёгкой техники. Тяжёлая вольфрамовая пуля заряжается сверху,\nмагазина у винтовки нет, это увеличило бы её и так огромный вес и ускорило бы износ\nмеханизмов. Снизу присоединяется массивный аккумулятор. Очень громкий\nсопровождающийся плазменной вспышкой выстрел позволяет поразить цель на огромной\nдистанции.",
+      "category": "Дальнобойные винтовки (к12)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D12",
+      "notes": "Свойства: Точный, Мощный, Тяжёлый, Громкий, Однозарядный\nДистанция: Дальняя\n2 ячейки модификации\nТяжёлая винтовка с электромагнитным разгоном пули, предназначена для поражения\nпехоты в тяжёлой броне и лёгкой техники. Тяжёлая вольфрамовая пуля заряжается сверху,\nмагазина у винтовки нет, это увеличило бы её и так огромный вес и ускорило бы износ\nмеханизмов. Снизу присоединяется массивный аккумулятор. Очень громкий\nсопровождающийся плазменной вспышкой выстрел позволяет поразить цель на огромной\nдистанции.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
+    },
+    {
+      "id": "equipment-7-62-71-209",
+      "kind": "gear",
+      "title": "ДВЦЖ 7.62 мм ”Шипящий лист”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          71
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "ДВЦЖ 7.62 мм ”Шипящий лист”\nУрон: 1к8\nСвойства: Автоматический, Точный, Неудобный(ближний бой)\nДистанция: Ближний бой, средняя, дальняя\n2 ячейки модификации\nНазванная в честь конструктора снайперская винтовка с автоматическим режимом огня.\nПервая модель этого семейства винтовок предназначалась для охоты, был рассчёт на то,\nчто при промахе разъярённого зверя можно будет остановить очередью. Однако\nдальнобойная и точная винтовка, дающая возможность стрелять очередями пришлась по\nвкусу вольным армиям народа Степей. По традиции отделана рогом и деревом. Имеет\nнелетальную конверсию под патрон с транквилизатором.",
+      "category": "Дальнобойные винтовки (к12)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Свойства: Автоматический, Точный, Неудобный(ближний бой)\nДистанция: Ближний бой, средняя, дальняя\n2 ячейки модификации\nНазванная в честь конструктора снайперская винтовка с автоматическим режимом огня.\nПервая модель этого семейства винтовок предназначалась для охоты, был рассчёт на то,\nчто при промахе разъярённого зверя можно будет остановить очередью. Однако\nдальнобойная и точная винтовка, дающая возможность стрелять очередями пришлась по\nвкусу вольным армиям народа Степей. По традиции отделана рогом и деревом. Имеет\nнелетальную конверсию под патрон с транквилизатором.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
+    },
+    {
+      "id": "equipment-8-71-210",
+      "kind": "gear",
+      "title": "Рти Кти Данн О-8",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          71
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Рти Кти Данн О-8\n+3 защиты в ПУЛИ, +5 защиты в ПУЛИ от оружия ближнего боя\nНебольшой мобильный щит из прозрачного полимера, защищающий корпус,\nпредназначался для полицейских и бойцов ближнего боя.",
       "category": "Баллистический щит (к8)",
-      "isCategory": false
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "+3 защиты в ПУЛИ, +5 защиты в ПУЛИ от оружия ближнего боя\nНебольшой мобильный щит из прозрачного полимера, защищающий корпус,\nпредназначался для полицейских и бойцов ближнего боя.",
+      "resistance": "bullets",
+      "protection": 3,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-card-70-198",
+      "id": "equipment-97-71-211",
       "kind": "gear",
-      "title": "Сиривирст Фахир ”Залазазиз”",
-      "section": "equipment",
-      "dropTarget": "gear",
-      "source": {
-        "pdfPages": [
-          70
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "Сиривирст Фахир ”Залазазиз”\n+5 защиты в ПУЛИ, +4 защиты в ПУЛИ стоящим на одной дистанции с вами союзникам.\nВаши проверки СКРЫВАТЬСЯ и ПРОБИВАТЬСЯ становятся на ступень тяжелее.\nТяжёлый штурмовой щит, названный в честь растения из бухт народа Морей. Выполнен из\nпрочных спецсплавов и затянут в кожух из защитной ткани, чтобы избежать осколков. Щит\nзанимает ячейку рюкзака.",
-      "category": "Баллистический щит (к8)",
-      "isCategory": false
-    },
-    {
-      "id": "equipment-card-70-199",
-      "kind": "gear",
-      "title": "Сиривирст Фахир ”Эталон”",
-      "section": "equipment",
-      "dropTarget": "gear",
-      "source": {
-        "pdfPages": [
-          70
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "Сиривирст Фахир ”Эталон”\nУрон: 1к10\nСвойства: Бронебойный (2), дуэльный\nДистанция: Ближний бой\nОсовременненная версия традиционного холодного оружия народа Граней. Обладает\nвиброприводом с расширенным диапазоном, хорошо колет, рубит и режет. Чуть изогнутый\nклинок и выполненная из позолоченных спецсплавов корзинчатая рукоять. Обмотка рукояти\nвыполнена из традиционных целебных трав. Сбалансированный Эталон идеально\nподходит для фехтования и является очень серьёзным аргументом в сражении ”Меч на\nмеч”.",
-      "category": "Тяжёлое оружие ближнего боя (к10)",
-      "isCategory": false
-    },
-    {
-      "id": "equipment-card-70-200",
-      "kind": "gear",
-      "title": "Сиривирст Фахир ”ЦЦЦ”",
-      "section": "equipment",
-      "dropTarget": "gear",
-      "source": {
-        "pdfPages": [
-          70
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "Сиривирст Фахир ”ЦЦЦ”\nУрон: 1к10\nСвойства: Стабильный, мощный\nДистанция: Ближний бой\nСовременный взгляд на национальный двуручный меч народа Ядов. Длинная рукоять и\nрасположенный под углом от неё прямой клинок дают огромную силу при рубке, внутри\nмеча и рукояти расположен защищённый резервуар с жидкостью-балансиром, ускоряющей\nатаки и усложняющей парирование ЦЦЦ. Верная традициям Сиривирст Фахир делает\nножны для меча из дерева с обмоткой из кожи, как в древности.",
-      "category": "Тяжёлое оружие ближнего боя (к10)",
-      "isCategory": false
-    },
-    {
-      "id": "equipment-1-70-201",
-      "kind": "gear",
-      "title": "Рти Кти Данн У-1",
-      "section": "equipment",
-      "dropTarget": "gear",
-      "source": {
-        "pdfPages": [
-          70
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "Рти Кти Данн У-1\nУрон: 1к10\nСвойства: Точный\nДистанция: Ближний бой\n2 ячейки модификаций\nСтандартный для многих армий прямой длинный меч с виброприводом. Хорош практически\nво всех условиях, с чем помогает запатентованная система ускоренной переборки частот\n142\n\nвибрации. У-1 включён во многие боевые системы, разработанные для армий, так что с его\nпомощью можно сражаться во многих стилях, и даже переключаться между ними во время\nбоя, чтобы адаптироваться к стилю оппонента.",
-      "category": "Тяжёлое оружие ближнего боя (к10)",
-      "isCategory": false
-    },
-    {
-      "id": "equipment-8-70-202",
-      "kind": "gear",
-      "title": "Рти Кти Данн У-8",
-      "section": "equipment",
-      "dropTarget": "gear",
-      "source": {
-        "pdfPages": [
-          70
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "Рти Кти Данн У-8\nУрон: 1к10\nСвойства: Энергетический, нелетальный\nДистанция: Ближний бой\nТелескопическая дубинка с электрошоком, особо опасная в борьбе с механизмами и\nкиборгами. Часто используется в паре. Усиленный аккумулятор и регулируемые\nконденсаторы дают управлять силой электрошока, он может как оглушать цель, так и жечь\nеё насмерть вместе с имплантами.",
-      "category": "Тяжёлое оружие ближнего боя (к10)",
-      "isCategory": false
-    },
-    {
-      "id": "equipment-card-70-203",
-      "kind": "gear",
-      "title": "Оружие Мира ”Избранный”",
-      "section": "equipment",
-      "dropTarget": "gear",
-      "source": {
-        "pdfPages": [
-          70
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "Оружие Мира ”Избранный”\nУрон: 1к10\nСвойства: Бронебойный (2)\nДистанция: Ближний бой\n2 ячейки модификаций\nБоевой топор, предназначенный для борьбы с целями в броне, сделанный в форме\nнародного топора киц. Рукоять на гибком стержне чуть изгибается при ударе, не передавая\nв руку всей отдачи. Узкое топорище из твёрдых спецсплавов предназначено, чтобы колоть\nкерамическую и металлическую броню, но может застрять в броне из полимеров или\nпресованного пластика.",
-      "category": "Тяжёлое оружие ближнего боя (к10)",
-      "isCategory": false
-    },
-    {
-      "id": "equipment-card-70-204",
-      "kind": "gear",
-      "title": "Системы инженерных решений «осадный молот»",
-      "section": "equipment",
-      "dropTarget": "gear",
-      "source": {
-        "pdfPages": [
-          70
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "Системы инженерных решений «осадный молот»\nУрон: 1к12\nСвойства: Неудобный (Сражение с перемещающимся врагом), мощный, бронебойный (2)\nДистанция: Ближний бой\nМассивная кувалда с линейным приводом, питающимся от аккумулятора в рукояти,\nспособна проламывать даже самые толстые стены, но и в битве с тяжелобронированными\nврагами пригодится.\n143",
-      "category": "Тяжёлое оружие ближнего боя (к10)",
-      "isCategory": false
-    },
-    {
-      "id": "equipment-card-71-205",
-      "kind": "gear",
-      "title": "Оружие Мира «Покоритель царей»",
-      "section": "equipment",
-      "dropTarget": "gear",
-      "source": {
-        "pdfPages": [
-          71
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "Оружие Мира «Покоритель царей»\nУрон: 1к12\nСвойства: Стабильный, умный, разброс, однозарядный, тяжёлый\nДистанция: Дальняя\n2 ячейки модификаций\n144\n\nПротивотанковая пусковая установка с крайне совершенными системами наведения.\nЗаряжается установка находящейся в полимерном защитном корпусе противотанковой\nракетой. Ракета несёт мощный кумулятивный заряд, а её новейший нанотопливный\nдвигатель выводит снаряд на сверхзвуковую скорость, нужно это чтобы обойти системы\nактивной защиты танков. После выстрела, компьютеры и камеры установки сверяются с\nсистемами связи и камерами на ракете, давая эффект “выстрелил и забыл”: оружие\nнаведётся на цель само. Колоссальная стоимость выстрела делает эту установку\nнепопулярной, хотя после начала выпуска более дешёвых неуправляемых ракет, она\nнашла себе место среди мелких наёмников и даже банд.",
-      "category": "Тактическое оружие (к12)",
-      "isCategory": false
-    },
-    {
-      "id": "equipment-card-71-206",
-      "kind": "gear",
-      "title": "Оружие Мира “Пугающий чудовищ”",
-      "section": "equipment",
-      "dropTarget": "gear",
-      "source": {
-        "pdfPages": [
-          71
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "Оружие Мира “Пугающий чудовищ”\nУрон: 1к12\nСвойства: Разброс, мощный, автоматический, громкий, тяжёлый\nДистанция: Дальняя\n2 ячейки модификаций\nМногозарядная пусковая установка для борьбы с пехотой в тяжёлой броне и за укрытиями.\nТяжёлая установка заряжается барабанным магазином на четыре реактивных гранаты, она\nможет выпустить их с минимальным промежутком. Обычно в этой установке применяются\nосколочно-фугасные гранаты, но кумулятивные встречаются так же нередко.",
-      "category": "Тактическое оружие (к12)",
-      "isCategory": false
-    },
-    {
-      "id": "equipment-card-71-207",
-      "kind": "gear",
-      "title": "Островные фирмы “Беззаботность”",
-      "section": "equipment",
-      "dropTarget": "gear",
-      "source": {
-        "pdfPages": [
-          71
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "Островные фирмы “Беззаботность”\nУрон: 1к12\nСвойства: Разброс, огонь, сошки, громкий, тяжёлый\nДистанция: Дальняя\n2 ячейки модификаций\nРеактивный огнемёт для поражения целей в зданиях и легкобронированной техники.\nВыпускает ззажигательный снаряд со смесью, быстро выжигающей кислород даже на\nоткрытых пространствах. Температура горения снаряда Беззаботности достаточна, чтобы\nплавить броневой металл и раскалывать бетон зданий. Заряжается Беззаботность сверху\nснарядом в полимерном защитном корпусе, это было сделано для работы в расчёте: так\nпервый номер может наводить огнемёт, не отрываясь от него, а второй — быстро его\nзаряжать.",
-      "category": "Тактическое оружие (к12)",
-      "isCategory": false
-    },
-    {
-      "id": "equipment-2-71-208",
-      "kind": "gear",
-      "title": "Рти Кти Данн К-2",
-      "section": "equipment",
-      "dropTarget": "gear",
-      "source": {
-        "pdfPages": [
-          71
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "Рти Кти Данн К-2\nУрон: 1к12\nСвойства: Мощный, разброс, однозарядный, тяжёлый, громкий. В начале сцены боя и",
-      "category": "Тактическое оружие (к12)",
-      "isCategory": false
-    },
-    {
-      "id": "equipment-card-71-209",
-      "kind": "gear",
-      "title": "после тактики перезярядки, можете добавить дополнительное свойство.",
+      "title": "Рти Кти Данн О-97",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
@@ -3780,208 +4030,245 @@ window.TOWER_CODEX = {
           71,
           72
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "после тактики перезярядки, можете добавить дополнительное свойство.\nДистанция: Средняя, Дальняя\n2 ячейки модификации\nБезоткатное орудие для стрельбы различными типами боеприпасов. Выпускает оно 120 мм\nснаряды, из-за их большого веса, расчёт К-2 состоит обычно из двух бойцов — стрелка и\nзаряжающего, несущего боезапас.\n145\nСамые популярные виды снарядов для К-2 — фугасные, кумулятивные, осветительные, с\nразделяющейся боеголовкой и флешетные. Как необычные можно отметить компактные\nядерные боеприпасы, такие не продают гражданским официально, но за приличные суммы\nтакие всегда обнаруживаются на чёрном рынке.",
-      "category": "Тактическое оружие (к12)",
-      "isCategory": false
-    },
-    {
-      "id": "equipment-card-72-210",
-      "kind": "gear",
-      "title": "Второе Солнце “Амплуа”",
-      "section": "equipment",
-      "dropTarget": "gear",
-      "source": {
-        "pdfPages": [
-          72
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "Второе Солнце “Амплуа”\nУрон: 1к6\nСвойства: Энергетический, мощный, нелетальный\nДистанция: Ближний бой, средняя\n2 ячейки модификации\n146\n\nЭлектрический пистолет для борьбы с дронами и киборгами. Амплуа выпускает сначала\nневидимый лазерный луч, ионизирующий воздух, а затем — идущий ровно по линии лазера\nзаряд электричества, сжигающего плоть и электронику. Дальность стрельбы Амплуа\nневелика, но её хватает для нескольких выстрелов по сближающемуся врагу. Изначально\nпистолет был нелетальным и предназначался для полиции народов, но те из-за всё\nожесточающейся обстановки с бандами постепенно стали отказываться от щадящего\nоружия.",
-      "category": "Энергетическое оружие (к10)",
-      "isCategory": false
-    },
-    {
-      "id": "equipment-card-72-211",
-      "kind": "gear",
-      "title": "Второе Солнце “Аншлаг”",
-      "section": "equipment",
-      "dropTarget": "gear",
-      "source": {
-        "pdfPages": [
-          72
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "Второе Солнце “Аншлаг”\nУрон: 1к8\nДистанция: Средняя, дальняя\nСвойства: Неудобный (средняя), точный, огонь, энергетический\n2 ячейки модификации\nДальнобойная лазерная винтовка. Работает от аккумулятора, крепящегося под стволом.\nВинтовка не имеет отдачи и звука выстрела, а её невидимый луч бьёт на расстояния\nбольше, чем пулевые снайперские винтовки, пусть и гораздо сильнее зависит от\nатмосферных условий.",
-      "category": "Энергетическое оружие (к10)",
-      "isCategory": false
+      "text": "Рти Кти Данн О-97\n+4 защиты в ПУЛИ, ваши проверки ПРОБИВАТЬСЯ, связанные со скоростью, становятся на\nступень тяжелее. Раз в сцену может ослепить противников: одно следующее действие не\nможет принести последствия даже при провале.\nСредний щит из свервысокомолекулярного пластика и лёгких сплавов, имеет\nраскладываемые по бокам и снизу защитные пластины, а так же вспышковые лампы,\nослепляющие цели без защиты глаз.",
+      "category": "Баллистический щит (к8)",
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "+4 защиты в ПУЛИ, ваши проверки ПРОБИВАТЬСЯ, связанные со скоростью, становятся на\nступень тяжелее. Раз в сцену может ослепить противников: одно следующее действие не\nможет принести последствия даже при провале.\nСредний щит из свервысокомолекулярного пластика и лёгких сплавов, имеет\nраскладываемые по бокам и снизу защитные пластины, а так же вспышковые лампы,\nослепляющие цели без защиты глаз.",
+      "resistance": "bullets",
+      "protection": 4,
+      "extraSlots": 0
     },
     {
       "id": "equipment-card-72-212",
       "kind": "gear",
-      "title": "Второе Солнце “Премьера”",
+      "title": "Сиривирст Фахир ”Залазазиз”",
       "section": "equipment",
-      "dropTarget": "gear",
+      "dropTarget": "armor",
       "source": {
         "pdfPages": [
           72
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "Второе Солнце “Премьера”\nУрон: 1к10\nДистанция: Ближний бой, средняя\nСвойства: Энергетический, разброс, сбалансированный, тяжёлый, громкий\nМикроволновая пушка в форм-факторе винтовки для борьбы с электроникой. Выпускает\nконус микроволн, сжигающих электрические схемы, особенно полезна против дронов. При\nхорошей мощности и долгом воздействии может сжечь даже серьёзно экранированные от\nэтого машины и доспехи. Работает в широком диапазоне на ближней дистанции, что даёт\nвозможность задеть сразу несколько целей.",
-      "category": "Энергетическое оружие (к10)",
-      "isCategory": false
+      "text": "Сиривирст Фахир ”Залазазиз”\n+5 защиты в ПУЛИ, +4 защиты в ПУЛИ стоящим на одной дистанции с вами союзникам.\nВаши проверки СКРЫВАТЬСЯ и ПРОБИВАТЬСЯ становятся на ступень тяжелее.\nТяжёлый штурмовой щит, названный в честь растения из бухт народа Морей. Выполнен из\nпрочных спецсплавов и затянут в кожух из защитной ткани, чтобы избежать осколков. Щит\nзанимает ячейку рюкзака.",
+      "category": "Баллистический щит (к8)",
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "+5 защиты в ПУЛИ, +4 защиты в ПУЛИ стоящим на одной дистанции с вами союзникам.\nВаши проверки СКРЫВАТЬСЯ и ПРОБИВАТЬСЯ становятся на ступень тяжелее.\nТяжёлый штурмовой щит, названный в честь растения из бухт народа Морей. Выполнен из\nпрочных спецсплавов и затянут в кожух из защитной ткани, чтобы избежать осколков. Щит\nзанимает ячейку рюкзака.",
+      "resistance": "bullets",
+      "protection": 4,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Рюкзак"
+      ]
     },
     {
       "id": "equipment-card-72-213",
       "kind": "gear",
-      "title": "Второе Солнце “Этюд”",
+      "title": "Сиривирст Фахир ”Эталон”",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
           72
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "Второе Солнце “Этюд”\nУрон: 1к10\nДистанция: Ближний бой, средняя\nСвойства: Разброс, энергетический, тяжёлый, громкий, нелетальный. При максимальном\nрезультате на кости урона, теряет свойство нелетальный.\n2 ячейки модификации.\nНаплечная звуковая пушка практически нелетального действия. Требует для работы\nзанимающий слот рюкзака ранец. Издаёт звук на меняющихся неприятных человеку\nчастотах, чтобы разогнать толпу. В комплекте идут наушники с активным\nшумоподавлением, синхронизированные с переборщиком частот оружия. При длительном\nвоздействии может не только лишить слуха, но и повредить глаза и кости. После\nнескольких случаев смерти от внутреннего кровотечения, компания заменила описание на\n“оружие практически нелетального действия”. Эта фраза понравилась пользователям сети,\nона часто используется в качестве шутки.\n147",
-      "category": "Энергетическое оружие (к10)",
-      "isCategory": false
+      "text": "Сиривирст Фахир ”Эталон”\nУрон: 1к10\nСвойства: Бронебойный (2), дуэльный\nДистанция: Ближний бой\nОсовременненная версия традиционного холодного оружия народа Граней. Обладает\nвиброприводом с расширенным диапазоном, хорошо колет, рубит и режет. Чуть изогнутый\nклинок и выполненная из позолоченных спецсплавов корзинчатая рукоять. Обмотка рукояти\nвыполнена из традиционных целебных трав. Сбалансированный Эталон идеально\nподходит для фехтования и является очень серьёзным аргументом в сражении ”Меч на\nмеч”.",
+      "category": "Тяжёлое оружие ближнего боя (к10)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D10",
+      "notes": "Свойства: Бронебойный (2), дуэльный\nДистанция: Ближний бой\nОсовременненная версия традиционного холодного оружия народа Граней. Обладает\nвиброприводом с расширенным диапазоном, хорошо колет, рубит и режет. Чуть изогнутый\nклинок и выполненная из позолоченных спецсплавов корзинчатая рукоять. Обмотка рукояти\nвыполнена из традиционных целебных трав. Сбалансированный Эталон идеально\nподходит для фехтования и является очень серьёзным аргументом в сражении ”Меч на\nмеч”.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-2-73-214",
+      "id": "equipment-card-72-214",
       "kind": "gear",
-      "title": "Рти Кти Данн РТ-2",
+      "title": "Сиривирст Фахир ”ЦЦЦ”",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
-          73
+          72
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "Рти Кти Данн РТ-2\nУрон: 1к10\nДистанция: средняя\nСвойства: Разброс, однозарядный\n2 ячейки модификации\nСтандартная осколочная граната с модифицируемым корпусом.",
-      "category": "Гранаты (к8)",
-      "isCategory": false
+      "text": "Сиривирст Фахир ”ЦЦЦ”\nУрон: 1к10\nСвойства: Стабильный, мощный\nДистанция: Ближний бой\nСовременный взгляд на национальный двуручный меч народа Ядов. Длинная рукоять и\nрасположенный под углом от неё прямой клинок дают огромную силу при рубке, внутри\nмеча и рукояти расположен защищённый резервуар с жидкостью-балансиром, ускоряющей\nатаки и усложняющей парирование ЦЦЦ. Верная традициям Сиривирст Фахир делает\nножны для меча из дерева с обмоткой из кожи, как в древности.",
+      "category": "Тяжёлое оружие ближнего боя (к10)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D10",
+      "notes": "Свойства: Стабильный, мощный\nДистанция: Ближний бой\nСовременный взгляд на национальный двуручный меч народа Ядов. Длинная рукоять и\nрасположенный под углом от неё прямой клинок дают огромную силу при рубке, внутри\nмеча и рукояти расположен защищённый резервуар с жидкостью-балансиром, ускоряющей\nатаки и усложняющей парирование ЦЦЦ. Верная традициям Сиривирст Фахир делает\nножны для меча из дерева с обмоткой из кожи, как в древности.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-6-73-215",
+      "id": "equipment-1-72-215",
       "kind": "gear",
-      "title": "Рти Кти Данн РТ-6",
+      "title": "Рти Кти Данн У-1",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
-          73
+          72
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "Рти Кти Данн РТ-6\nУрон: 1к4\nДистанция: Средняя\nСвойства: Однозарядный, энергетический, длящийся, ослепляет противников: одно\nследующее действие не может принести последствия даже при провале.\nСветошумовая граната, временно ослепляющая и оглушающая цели без защиты глаз и\nушей. Выполнена в форме пирамидки, это помогает конструкции издавать более громкий\nзвук.",
-      "category": "Гранаты (к8)",
-      "isCategory": false
+      "text": "Рти Кти Данн У-1\nУрон: 1к10\nСвойства: Точный\nДистанция: Ближний бой\n2 ячейки модификаций\nСтандартный для многих армий прямой длинный меч с виброприводом. Хорош практически\nво всех условиях, с чем помогает запатентованная система ускоренной переборки частот\n\nвибрации. У-1 включён во многие боевые системы, разработанные для армий, так что с его\nпомощью можно сражаться во многих стилях, и даже переключаться между ними во время\nбоя, чтобы адаптироваться к стилю оппонента.",
+      "category": "Тяжёлое оружие ближнего боя (к10)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D10",
+      "notes": "Свойства: Точный\nДистанция: Ближний бой\n2 ячейки модификаций\nСтандартный для многих армий прямой длинный меч с виброприводом. Хорош практически\nво всех условиях, с чем помогает запатентованная система ускоренной переборки частот\nвибрации. У-1 включён во многие боевые системы, разработанные для армий, так что с его\nпомощью можно сражаться во многих стилях, и даже переключаться между ними во время\nбоя, чтобы адаптироваться к стилю оппонента.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-card-73-216",
+      "id": "equipment-8-72-216",
       "kind": "gear",
-      "title": "Островные фирмы “Средоточие”",
+      "title": "Рти Кти Данн У-8",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
-          73
+          72
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "Островные фирмы “Средоточие”\nУрон: 1к8\nДистанция: Средняя\nСвойства: Разброс, стабильный, однозарядный\nКластерная граната, при детонации выпускающая особо взрывоопасные элементы,\nполезна на открытых пространствах.",
-      "category": "Гранаты (к8)",
-      "isCategory": false
+      "text": "Рти Кти Данн У-8\nУрон: 1к10\nСвойства: Энергетический, нелетальный\nДистанция: Ближний бой\nТелескопическая дубинка с электрошоком, особо опасная в борьбе с механизмами и\nкиборгами. Часто используется в паре. Усиленный аккумулятор и регулируемые\nконденсаторы дают управлять силой электрошока, он может как оглушать цель, так и жечь\nеё насмерть вместе с имплантами.",
+      "category": "Тяжёлое оружие ближнего боя (к10)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D10",
+      "notes": "Свойства: Энергетический, нелетальный\nДистанция: Ближний бой\nТелескопическая дубинка с электрошоком, особо опасная в борьбе с механизмами и\nкиборгами. Часто используется в паре. Усиленный аккумулятор и регулируемые\nконденсаторы дают управлять силой электрошока, он может как оглушать цель, так и жечь\nеё насмерть вместе с имплантами.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-card-73-217",
+      "id": "equipment-card-72-217",
       "kind": "gear",
-      "title": "Островные фирмы “Мечтатель”",
+      "title": "Оружие Мира ”Избранный”",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
-          73
+          72
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "Островные фирмы “Мечтатель”\nУрон: 1к8\nДистанция: средняя\nСвойства: Разброс, однозарядный, огонь\nЗажигательная граната с огнесмесью внутри, предназначена для штурма зданий.",
-      "category": "Гранаты (к8)",
-      "isCategory": false
+      "text": "Оружие Мира ”Избранный”\nУрон: 1к10\nСвойства: Бронебойный (2)\nДистанция: Ближний бой\n2 ячейки модификаций\nБоевой топор, предназначенный для борьбы с целями в броне, сделанный в форме\nнародного топора киц. Рукоять на гибком стержне чуть изгибается при ударе, не передавая\nв руку всей отдачи. Узкое топорище из твёрдых спецсплавов предназначено, чтобы колоть\nкерамическую и металлическую броню, но может застрять в броне из полимеров или\nпресованного пластика.",
+      "category": "Тяжёлое оружие ближнего боя (к10)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D10",
+      "notes": "Свойства: Бронебойный (2)\nДистанция: Ближний бой\n2 ячейки модификаций\nБоевой топор, предназначенный для борьбы с целями в броне, сделанный в форме\nнародного топора киц. Рукоять на гибком стержне чуть изгибается при ударе, не передавая\nв руку всей отдачи. Узкое топорище из твёрдых спецсплавов предназначено, чтобы колоть\nкерамическую и металлическую броню, но может застрять в броне из полимеров или\nпресованного пластика.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-card-73-218",
+      "id": "equipment-card-72-218",
       "kind": "gear",
-      "title": "ДВЦЖ “Патронташ”",
+      "title": "Системы инженерных решений «осадный молот»",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
-          73
+          72
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "ДВЦЖ “Патронташ”\nУрон: 1к10\nДистанция: средняя\nСвойства: Разброс, однозарядный, подавление\nНебольшая граната, отскакивающая от места столкновения благодаря разгибающимся\nметаллическим пластинам на корпусе. Такие гранаты оказываются особенно полезны в\n148\n\nпоражении противника за укрытием, но они менее предсказуемы и требуют серьёзной\nтренировки.",
-      "category": "Гранаты (к8)",
-      "isCategory": false
+      "text": "Системы инженерных решений «осадный молот»\nУрон: 1к12\nСвойства: Неудобный (Сражение с перемещающимся врагом), мощный, бронебойный (2)\nДистанция: Ближний бой\nМассивная кувалда с линейным приводом, питающимся от аккумулятора в рукояти,\nспособна проламывать даже самые толстые стены, но и в битве с тяжелобронированными\nврагами пригодится.",
+      "category": "Тяжёлое оружие ближнего боя (к10)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D12",
+      "notes": "Свойства: Неудобный (Сражение с перемещающимся врагом), мощный, бронебойный (2)\nДистанция: Ближний бой\nМассивная кувалда с линейным приводом, питающимся от аккумулятора в рукояти,\nспособна проламывать даже самые толстые стены, но и в битве с тяжелобронированными\nврагами пригодится.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
       "id": "equipment-card-73-219",
       "kind": "gear",
-      "title": "ДВЦЖ “Завоевание”",
+      "title": "Оружие Мира «Покоритель царей»",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
           73
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "ДВЦЖ “Завоевание”\nУрон: 1к8\nДистанция: средняя\nСвойства: Длящийся, огонь, однозарядный\nЛипкая термитная граната, предназначенная для борьбы с бронёй. Перед броском гранату\nнеобходимо извлечь из защитного чехла.",
-      "category": "Гранаты (к8)",
-      "isCategory": false
+      "text": "Оружие Мира «Покоритель царей»\nУрон: 1к12\nСвойства: Стабильный, умный, разброс, однозарядный, тяжёлый\nДистанция: Дальняя\n2 ячейки модификаций\n\nПротивотанковая пусковая установка с крайне совершенными системами наведения.\nЗаряжается установка находящейся в полимерном защитном корпусе противотанковой\nракетой. Ракета несёт мощный кумулятивный заряд, а её новейший нанотопливный\nдвигатель выводит снаряд на сверхзвуковую скорость, нужно это чтобы обойти системы\nактивной защиты танков. После выстрела, компьютеры и камеры установки сверяются с\nсистемами связи и камерами на ракете, давая эффект “выстрелил и забыл”: оружие\nнаведётся на цель само. Колоссальная стоимость выстрела делает эту установку\nнепопулярной, хотя после начала выпуска более дешёвых неуправляемых ракет, она\nнашла себе место среди мелких наёмников и даже банд.",
+      "category": "Тактическое оружие (к12)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D12",
+      "notes": "Свойства: Стабильный, умный, разброс, однозарядный, тяжёлый\nДистанция: Дальняя\n2 ячейки модификаций\nПротивотанковая пусковая установка с крайне совершенными системами наведения.\nЗаряжается установка находящейся в полимерном защитном корпусе противотанковой\nракетой. Ракета несёт мощный кумулятивный заряд, а её новейший нанотопливный\nдвигатель выводит снаряд на сверхзвуковую скорость, нужно это чтобы обойти системы\nактивной защиты танков. После выстрела, компьютеры и камеры установки сверяются с\nсистемами связи и камерами на ракете, давая эффект “выстрелил и забыл”: оружие\nнаведётся на цель само. Колоссальная стоимость выстрела делает эту установку\nнепопулярной, хотя после начала выпуска более дешёвых неуправляемых ракет, она\nнашла себе место среди мелких наёмников и даже банд.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
       "id": "equipment-card-73-220",
       "kind": "gear",
-      "title": "ДВЦЖ “Нож”",
+      "title": "Оружие Мира “Пугающий чудовищ”",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
           73
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "ДВЦЖ “Нож”\nУрон: 1к6 всем без противогазов\nДистанция: Ближний бой, средняя\nСвойства: Даёт мастерство на проверки СКРЫВАТЬСЯ и ПРОБИВАТЬСЯ при побеге или\nштурме, однозарядный\nДымовая граната, создающая облака дыма, которые несколько десятилетий назад могли\nсгенерировать разве что танки. Через дым, получающийся от жжёного красного фосфора\nне видят сканеры и тепловизоры, он крайне токсичен.",
-      "category": "Гранаты (к8)",
-      "isCategory": false
+      "text": "Оружие Мира “Пугающий чудовищ”\nУрон: 1к12\nСвойства: Разброс, мощный, автоматический, громкий, тяжёлый\nДистанция: Дальняя\n2 ячейки модификаций\nМногозарядная пусковая установка для борьбы с пехотой в тяжёлой броне и за укрытиями.\nТяжёлая установка заряжается барабанным магазином на четыре реактивных гранаты, она\nможет выпустить их с минимальным промежутком. Обычно в этой установке применяются\nосколочно-фугасные гранаты, но кумулятивные встречаются так же нередко.",
+      "category": "Тактическое оружие (к12)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D12",
+      "notes": "Свойства: Разброс, мощный, автоматический, громкий, тяжёлый\nДистанция: Дальняя\n2 ячейки модификаций\nМногозарядная пусковая установка для борьбы с пехотой в тяжёлой броне и за укрытиями.\nТяжёлая установка заряжается барабанным магазином на четыре реактивных гранаты, она\nможет выпустить их с минимальным промежутком. Обычно в этой установке применяются\nосколочно-фугасные гранаты, но кумулятивные встречаются так же нередко.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
       "id": "equipment-card-73-221",
       "kind": "gear",
-      "title": "Второе Солнце “Дублёр”",
+      "title": "Островные фирмы “Беззаботность”",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
           73
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "Второе Солнце “Дублёр”\nУрон: 1к8\nДистанция: средняя\nСвойства: Разброс, однозарядный, энергетический, нелетальный\nЭлектрическая граната, разбрасывающая вокруг места падения электроды, превращаясь в\nловушку. Работает граната как мощный тазер и при удачном броске может на время\nвывести из строя целый отряд.",
-      "category": "Гранаты (к8)",
-      "isCategory": false
+      "text": "Островные фирмы “Беззаботность”\nУрон: 1к12\nСвойства: Разброс, огонь, сошки, громкий, тяжёлый\nДистанция: Дальняя\n2 ячейки модификаций\nРеактивный огнемёт для поражения целей в зданиях и легкобронированной техники.\nВыпускает ззажигательный снаряд со смесью, быстро выжигающей кислород даже на\nоткрытых пространствах. Температура горения снаряда Беззаботности достаточна, чтобы\nплавить броневой металл и раскалывать бетон зданий. Заряжается Беззаботность сверху\nснарядом в полимерном защитном корпусе, это было сделано для работы в расчёте: так\nпервый номер может наводить огнемёт, не отрываясь от него, а второй — быстро его\nзаряжать.",
+      "category": "Тактическое оружие (к12)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D12",
+      "notes": "Свойства: Разброс, огонь, сошки, громкий, тяжёлый\nДистанция: Дальняя\n2 ячейки модификаций\nРеактивный огнемёт для поражения целей в зданиях и легкобронированной техники.\nВыпускает ззажигательный снаряд со смесью, быстро выжигающей кислород даже на\nоткрытых пространствах. Температура горения снаряда Беззаботности достаточна, чтобы\nплавить броневой металл и раскалывать бетон зданий. Заряжается Беззаботность сверху\nснарядом в полимерном защитном корпусе, это было сделано для работы в расчёте: так\nпервый номер может наводить огнемёт, не отрываясь от него, а второй — быстро его\nзаряжать.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-card-73-222",
+      "id": "equipment-2-73-222",
       "kind": "gear",
-      "title": "Оружие Мира “Испепелитель”",
+      "title": "Рти Кти Данн К-2",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
@@ -3989,602 +4276,1252 @@ window.TOWER_CODEX = {
           73,
           74
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "Оружие Мира “Испепелитель”\nДистанция: средняя\nСвойства: Отвлекает противника, заставляя того проверить место броска гранаты\nОтвлекающая граната, создающая на сканерах противника сигнатуру, напоминающую\nсолдата. Несоответствие названия эффекту объясняется тем, что в Оружии Мира отдел\nмаркетинга спускает в отдел разработок список названий, которые необходимо применить,\nещё до того, как вооружение было создано хотя бы на бумаге.\n149\nРедкое оружие",
-      "category": "Гранаты (к8)",
-      "isCategory": false
+      "text": "Рти Кти Данн К-2\nУрон: 1к12\nСвойства: Мощный, разброс, однозарядный, тяжёлый, громкий. В начале сцены боя и\nпосле тактики перезярядки, можете добавить дополнительное свойство.\nДистанция: Средняя, Дальняя\n2 ячейки модификации\nБезоткатное орудие для стрельбы различными типами боеприпасов. Выпускает оно 120 мм\nснаряды, из-за их большого веса, расчёт К-2 состоит обычно из двух бойцов — стрелка и\nзаряжающего, несущего боезапас.\nСамые популярные виды снарядов для К-2 — фугасные, кумулятивные, осветительные, с\nразделяющейся боеголовкой и флешетные. Как необычные можно отметить компактные\nядерные боеприпасы, такие не продают гражданским официально, но за приличные суммы\nтакие всегда обнаруживаются на чёрном рынке.",
+      "category": "Тактическое оружие (к12)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D12",
+      "notes": "Свойства: Мощный, разброс, однозарядный, тяжёлый, громкий. В начале сцены боя и\nпосле тактики перезярядки, можете добавить дополнительное свойство.\nДистанция: Средняя, Дальняя\n2 ячейки модификации\nБезоткатное орудие для стрельбы различными типами боеприпасов. Выпускает оно 120 мм\nснаряды, из-за их большого веса, расчёт К-2 состоит обычно из двух бойцов — стрелка и\nзаряжающего, несущего боезапас.\nСамые популярные виды снарядов для К-2 — фугасные, кумулятивные, осветительные, с\nразделяющейся боеголовкой и флешетные. Как необычные можно отметить компактные\nядерные боеприпасы, такие не продают гражданским официально, но за приличные суммы\nтакие всегда обнаруживаются на чёрном рынке.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-12-74-223",
+      "id": "equipment-card-74-223",
+      "kind": "gear",
+      "title": "Второе Солнце “Амплуа”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          74
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Второе Солнце “Амплуа”\nУрон: 1к6\nСвойства: Энергетический, мощный, нелетальный\nДистанция: Ближний бой, средняя\n2 ячейки модификации\n\nЭлектрический пистолет для борьбы с дронами и киборгами. Амплуа выпускает сначала\nневидимый лазерный луч, ионизирующий воздух, а затем — идущий ровно по линии лазера\nзаряд электричества, сжигающего плоть и электронику. Дальность стрельбы Амплуа\nневелика, но её хватает для нескольких выстрелов по сближающемуся врагу. Изначально\nпистолет был нелетальным и предназначался для полиции народов, но те из-за всё\nожесточающейся обстановки с бандами постепенно стали отказываться от щадящего\nоружия.",
+      "category": "Энергетическое оружие (к10)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D6",
+      "notes": "Свойства: Энергетический, мощный, нелетальный\nДистанция: Ближний бой, средняя\n2 ячейки модификации\nЭлектрический пистолет для борьбы с дронами и киборгами. Амплуа выпускает сначала\nневидимый лазерный луч, ионизирующий воздух, а затем — идущий ровно по линии лазера\nзаряд электричества, сжигающего плоть и электронику. Дальность стрельбы Амплуа\nневелика, но её хватает для нескольких выстрелов по сближающемуся врагу. Изначально\nпистолет был нелетальным и предназначался для полиции народов, но те из-за всё\nожесточающейся обстановки с бандами постепенно стали отказываться от щадящего\nоружия.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
+    },
+    {
+      "id": "equipment-card-74-224",
+      "kind": "gear",
+      "title": "Второе Солнце “Аншлаг”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          74
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Второе Солнце “Аншлаг”\nУрон: 1к8\nДистанция: Средняя, дальняя\nСвойства: Неудобный (средняя), точный, огонь, энергетический\n2 ячейки модификации\nДальнобойная лазерная винтовка. Работает от аккумулятора, крепящегося под стволом.\nВинтовка не имеет отдачи и звука выстрела, а её невидимый луч бьёт на расстояния\nбольше, чем пулевые снайперские винтовки, пусть и гораздо сильнее зависит от\nатмосферных условий.",
+      "category": "Энергетическое оружие (к10)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Дистанция: Средняя, дальняя\nСвойства: Неудобный (средняя), точный, огонь, энергетический\n2 ячейки модификации\nДальнобойная лазерная винтовка. Работает от аккумулятора, крепящегося под стволом.\nВинтовка не имеет отдачи и звука выстрела, а её невидимый луч бьёт на расстояния\nбольше, чем пулевые снайперские винтовки, пусть и гораздо сильнее зависит от\nатмосферных условий.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
+    },
+    {
+      "id": "equipment-card-74-225",
+      "kind": "gear",
+      "title": "Второе Солнце “Премьера”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          74
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Второе Солнце “Премьера”\nУрон: 1к10\nДистанция: Ближний бой, средняя\nСвойства: Энергетический, разброс, сбалансированный, тяжёлый, громкий\nМикроволновая пушка в форм-факторе винтовки для борьбы с электроникой. Выпускает\nконус микроволн, сжигающих электрические схемы, особенно полезна против дронов. При\nхорошей мощности и долгом воздействии может сжечь даже серьёзно экранированные от\nэтого машины и доспехи. Работает в широком диапазоне на ближней дистанции, что даёт\nвозможность задеть сразу несколько целей.",
+      "category": "Энергетическое оружие (к10)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D10",
+      "notes": "Дистанция: Ближний бой, средняя\nСвойства: Энергетический, разброс, сбалансированный, тяжёлый, громкий\nМикроволновая пушка в форм-факторе винтовки для борьбы с электроникой. Выпускает\nконус микроволн, сжигающих электрические схемы, особенно полезна против дронов. При\nхорошей мощности и долгом воздействии может сжечь даже серьёзно экранированные от\nэтого машины и доспехи. Работает в широком диапазоне на ближней дистанции, что даёт\nвозможность задеть сразу несколько целей.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
+    },
+    {
+      "id": "equipment-card-74-226",
+      "kind": "gear",
+      "title": "Второе Солнце “Этюд”",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          74
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Второе Солнце “Этюд”\nУрон: 1к10\nДистанция: Ближний бой, средняя\nСвойства: Разброс, энергетический, тяжёлый, громкий, нелетальный. При максимальном\nрезультате на кости урона, теряет свойство нелетальный.\n2 ячейки модификации.\nНаплечная звуковая пушка практически нелетального действия. Требует для работы\nзанимающий слот рюкзака ранец. Издаёт звук на меняющихся неприятных человеку\nчастотах, чтобы разогнать толпу. В комплекте идут наушники с активным\nшумоподавлением, синхронизированные с переборщиком частот оружия. При длительном\nвоздействии может не только лишить слуха, но и повредить глаза и кости. После\nнескольких случаев смерти от внутреннего кровотечения, компания заменила описание на\n“оружие практически нелетального действия”. Эта фраза понравилась пользователям сети,\nона часто используется в качестве шутки.",
+      "category": "Энергетическое оружие (к10)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D10",
+      "notes": "Дистанция: Ближний бой, средняя\nСвойства: Разброс, энергетический, тяжёлый, громкий, нелетальный. При максимальном\nрезультате на кости урона, теряет свойство нелетальный.\n2 ячейки модификации.\nНаплечная звуковая пушка практически нелетального действия. Требует для работы\nзанимающий слот рюкзака ранец. Издаёт звук на меняющихся неприятных человеку\nчастотах, чтобы разогнать толпу. В комплекте идут наушники с активным\nшумоподавлением, синхронизированные с переборщиком частот оружия. При длительном\nвоздействии может не только лишить слуха, но и повредить глаза и кости. После\nнескольких случаев смерти от внутреннего кровотечения, компания заменила описание на\n“оружие практически нелетального действия”. Эта фраза понравилась пользователям сети,\nона часто используется в качестве шутки.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Рюкзак"
+      ]
+    },
+    {
+      "id": "equipment-2-75-227",
+      "kind": "gear",
+      "title": "Рти Кти Данн РТ-2",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          75
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Рти Кти Данн РТ-2\nУрон: 1к10\nДистанция: средняя\nСвойства: Разброс, однозарядный\n2 ячейки модификации\nСтандартная осколочная граната с модифицируемым корпусом.",
+      "category": "Гранаты (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D10",
+      "notes": "Дистанция: средняя\nСвойства: Разброс, однозарядный\n2 ячейки модификации\nСтандартная осколочная граната с модифицируемым корпусом.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
+    },
+    {
+      "id": "equipment-6-75-228",
+      "kind": "gear",
+      "title": "Рти Кти Данн РТ-6",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          75
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Рти Кти Данн РТ-6\nУрон: 1к4\nДистанция: Средняя\nСвойства: Однозарядный, энергетический, длящийся, ослепляет противников: одно\nследующее действие не может принести последствия даже при провале.\nСветошумовая граната, временно ослепляющая и оглушающая цели без защиты глаз и\nушей. Выполнена в форме пирамидки, это помогает конструкции издавать более громкий\nзвук.",
+      "category": "Гранаты (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D4",
+      "notes": "Дистанция: Средняя\nСвойства: Однозарядный, энергетический, длящийся, ослепляет противников: одно\nследующее действие не может принести последствия даже при провале.\nСветошумовая граната, временно ослепляющая и оглушающая цели без защиты глаз и\nушей. Выполнена в форме пирамидки, это помогает конструкции издавать более громкий\nзвук.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
+    },
+    {
+      "id": "equipment-card-75-229",
+      "kind": "gear",
+      "title": "Островные фирмы “Средоточие”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          75
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Островные фирмы “Средоточие”\nУрон: 1к8\nДистанция: Средняя\nСвойства: Разброс, стабильный, однозарядный\nКластерная граната, при детонации выпускающая особо взрывоопасные элементы,\nполезна на открытых пространствах.",
+      "category": "Гранаты (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Дистанция: Средняя\nСвойства: Разброс, стабильный, однозарядный\nКластерная граната, при детонации выпускающая особо взрывоопасные элементы,\nполезна на открытых пространствах.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
+    },
+    {
+      "id": "equipment-card-75-230",
+      "kind": "gear",
+      "title": "Островные фирмы “Мечтатель”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          75
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Островные фирмы “Мечтатель”\nУрон: 1к8\nДистанция: средняя\nСвойства: Разброс, однозарядный, огонь\nЗажигательная граната с огнесмесью внутри, предназначена для штурма зданий.",
+      "category": "Гранаты (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Дистанция: средняя\nСвойства: Разброс, однозарядный, огонь\nЗажигательная граната с огнесмесью внутри, предназначена для штурма зданий.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
+    },
+    {
+      "id": "equipment-card-75-231",
+      "kind": "gear",
+      "title": "ДВЦЖ “Патронташ”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          75
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "ДВЦЖ “Патронташ”\nУрон: 1к10\nДистанция: средняя\nСвойства: Разброс, однозарядный, подавление\nНебольшая граната, отскакивающая от места столкновения благодаря разгибающимся\nметаллическим пластинам на корпусе. Такие гранаты оказываются особенно полезны в\n\nпоражении противника за укрытием, но они менее предсказуемы и требуют серьёзной\nтренировки.",
+      "category": "Гранаты (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D10",
+      "notes": "Дистанция: средняя\nСвойства: Разброс, однозарядный, подавление\nНебольшая граната, отскакивающая от места столкновения благодаря разгибающимся\nметаллическим пластинам на корпусе. Такие гранаты оказываются особенно полезны в\nпоражении противника за укрытием, но они менее предсказуемы и требуют серьёзной\nтренировки.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
+    },
+    {
+      "id": "equipment-card-75-232",
+      "kind": "gear",
+      "title": "ДВЦЖ “Завоевание”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          75
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "ДВЦЖ “Завоевание”\nУрон: 1к8\nДистанция: средняя\nСвойства: Длящийся, огонь, однозарядный\nЛипкая термитная граната, предназначенная для борьбы с бронёй. Перед броском гранату\nнеобходимо извлечь из защитного чехла.",
+      "category": "Гранаты (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Дистанция: средняя\nСвойства: Длящийся, огонь, однозарядный\nЛипкая термитная граната, предназначенная для борьбы с бронёй. Перед броском гранату\nнеобходимо извлечь из защитного чехла.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
+    },
+    {
+      "id": "equipment-card-75-233",
+      "kind": "gear",
+      "title": "ДВЦЖ “Нож”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          75
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "ДВЦЖ “Нож”\nУрон: 1к6 всем без противогазов\nДистанция: Ближний бой, средняя\nСвойства: Даёт мастерство на проверки СКРЫВАТЬСЯ и ПРОБИВАТЬСЯ при побеге или\nштурме, однозарядный\nДымовая граната, создающая облака дыма, которые несколько десятилетий назад могли\nсгенерировать разве что танки. Через дым, получающийся от жжёного красного фосфора\nне видят сканеры и тепловизоры, он крайне токсичен.",
+      "category": "Гранаты (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D6",
+      "notes": "Дистанция: Ближний бой, средняя\nСвойства: Даёт мастерство на проверки СКРЫВАТЬСЯ и ПРОБИВАТЬСЯ при побеге или\nштурме, однозарядный\nДымовая граната, создающая облака дыма, которые несколько десятилетий назад могли\nсгенерировать разве что танки. Через дым, получающийся от жжёного красного фосфора\nне видят сканеры и тепловизоры, он крайне токсичен.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
+    },
+    {
+      "id": "equipment-card-75-234",
+      "kind": "gear",
+      "title": "Второе Солнце “Дублёр”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          75
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Второе Солнце “Дублёр”\nУрон: 1к8\nДистанция: средняя\nСвойства: Разброс, однозарядный, энергетический, нелетальный\nЭлектрическая граната, разбрасывающая вокруг места падения электроды, превращаясь в\nловушку. Работает граната как мощный тазер и при удачном броске может на время\nвывести из строя целый отряд.",
+      "category": "Гранаты (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Дистанция: средняя\nСвойства: Разброс, однозарядный, энергетический, нелетальный\nЭлектрическая граната, разбрасывающая вокруг места падения электроды, превращаясь в\nловушку. Работает граната как мощный тазер и при удачном броске может на время\nвывести из строя целый отряд.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
+    },
+    {
+      "id": "equipment-card-75-235",
+      "kind": "gear",
+      "title": "Оружие Мира “Испепелитель”",
+      "section": "equipment",
+      "dropTarget": "gear",
+      "source": {
+        "pdfPages": [
+          75
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Оружие Мира “Испепелитель”\nДистанция: средняя\nСвойства: Отвлекает противника, заставляя того проверить место броска гранаты\nОтвлекающая граната, создающая на сканерах противника сигнатуру, напоминающую\nсолдата. Несоответствие названия эффекту объясняется тем, что в Оружии Мира отдел\nмаркетинга спускает в отдел разработок список названий, которые необходимо применить,\nещё до того, как вооружение было создано хотя бы на бумаге.",
+      "category": "Гранаты (к8)",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": null,
+      "notes": "Дистанция: средняя\nСвойства: Отвлекает противника, заставляя того проверить место броска гранаты\nОтвлекающая граната, создающая на сканерах противника сигнатуру, напоминающую\nсолдата. Несоответствие названия эффекту объясняется тем, что в Оружии Мира отдел\nмаркетинга спускает в отдел разработок список названий, которые необходимо применить,\nещё до того, как вооружение было создано хотя бы на бумаге.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
+    },
+    {
+      "id": "equipment-12-76-236",
       "kind": "gear",
       "title": "ДВЦЖ крупнокалиберное ружьё «Парирование» (К12)",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
-          74
+          76
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "ДВЦЖ крупнокалиберное ружьё «Парирование» (К12)\nУрон: 1к12\nДистанция: Ближний бой, средняя, дальняя\nСвойства: Разброс, мощный, неудобный (дальняя), громкий. Защита вдвое эффективнее\nпротив этого оружия.\n25 мм ружьё под патрон с крупной дробью или пулей. Развитие сверхпрочной военной\nодежды и технологически усиленной кожи за последние четверть века сделало\nтрадиционные дробовики из мощного оружия для штурма зданий и окопов — средством\nобороны дома или выбором охотника. Поэтому компания ДВЦЖ и решила заменить\nклассическую линейку ружей одной моделью, “Парирование” действительно оказалось\nнеплохим техническим решением, сочетающим помповую и полуавтоматическую схему,\nпереключение между которыми производится фиксацией помпы и переключением режимов\nогня. Тяжёлое и надёжное, оно способно отрывать конечности в военной одежде и ронять\nна землю бойцов в броне при выстреле с небольшого расстояния.",
-      "category": "Гранаты (к8)",
-      "isCategory": false
+      "category": "Редкое оружие",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D12",
+      "notes": "Дистанция: Ближний бой, средняя, дальняя\nСвойства: Разброс, мощный, неудобный (дальняя), громкий. Защита вдвое эффективнее\nпротив этого оружия.\n25 мм ружьё под патрон с крупной дробью или пулей. Развитие сверхпрочной военной\nодежды и технологически усиленной кожи за последние четверть века сделало\nтрадиционные дробовики из мощного оружия для штурма зданий и окопов — средством\nобороны дома или выбором охотника. Поэтому компания ДВЦЖ и решила заменить\nклассическую линейку ружей одной моделью, “Парирование” действительно оказалось\nнеплохим техническим решением, сочетающим помповую и полуавтоматическую схему,\nпереключение между которыми производится фиксацией помпы и переключением режимов\nогня. Тяжёлое и надёжное, оно способно отрывать конечности в военной одежде и ронять\nна землю бойцов в броне при выстреле с небольшого расстояния.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-4-74-224",
+      "id": "equipment-4-76-237",
       "kind": "gear",
       "title": "Полимерное оружие (К4)",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
-          74
+          76
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "Полимерное оружие (К4)\nВозьмите параметры любого пистолета или штурмовой винтовки. Это оружие обладает ими\nи свойствами ненадёжный, громкий и скрываемый.\nСоздаваемый народными умельцами на 3д принтерах вид оружия, благодаря способности\nнанополимеров принимать необычные свойства, для полимерного оружия можно сделать\nдаже механизм, дающий вести автоматический огонь, а вместе с патронами в полимерной\nгильзе и с полимерной пулей, оружие становится совершенно незаметным для сканеров.\nЧасто прячется во внутренних кобурах киберимплантов, имеет низкую надёжность и\nфантастическую доступность: такие часто продают не штуками, а сразу ящиками, или\nкилограммами.",
-      "category": "Гранаты (к8)",
-      "isCategory": false
+      "category": "Редкое оружие",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D4",
+      "notes": "Возьмите параметры любого пистолета или штурмовой винтовки. Это оружие обладает ими\nи свойствами ненадёжный, громкий и скрываемый.\nСоздаваемый народными умельцами на 3д принтерах вид оружия, благодаря способности\nнанополимеров принимать необычные свойства, для полимерного оружия можно сделать\nдаже механизм, дающий вести автоматический огонь, а вместе с патронами в полимерной\nгильзе и с полимерной пулей, оружие становится совершенно незаметным для сканеров.\nЧасто прячется во внутренних кобурах киберимплантов, имеет низкую надёжность и\nфантастическую доступность: такие часто продают не штуками, а сразу ящиками, или\nкилограммами.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-6-74-225",
+      "id": "equipment-6-76-238",
       "kind": "gear",
       "title": "Лук или арбалет (К6)",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
-          74
+          76
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "Лук или арбалет (К6)\nУрон: 1к6\nДистанция: средняя\nСвойства: Тихий, однозарядный, не может получить последствие «Закончились патроны»\n2 ячейки модификации\nТрадиционное оружие народов Граней и Ядов в новом исполнении: блоки, планки для\nприцела и целеуказателя, удобная рукоять, противовес, направляющие для стрел. По\nмеркам большой войны является спортивным снарядом, но на улицах встречается у многих\nудальцов, решивших похвастать координацией. В Башне вместе с возможностью создавать\nстрелы или болты из подручных средств оказывается очень полезен в условиях постоянной\nнехватки патронов. Производятся в основном компаниями Рти Кти Данн и ДВЦЖ.\n150",
-      "category": "Гранаты (к8)",
-      "isCategory": false
+      "text": "Лук или арбалет (К6)\nУрон: 1к6\nДистанция: средняя\nСвойства: Тихий, однозарядный, не может получить последствие «Закончились патроны»\n2 ячейки модификации\nТрадиционное оружие народов Граней и Ядов в новом исполнении: блоки, планки для\nприцела и целеуказателя, удобная рукоять, противовес, направляющие для стрел. По\nмеркам большой войны является спортивным снарядом, но на улицах встречается у многих\nудальцов, решивших похвастать координацией. В Башне вместе с возможностью создавать\nстрелы или болты из подручных средств оказывается очень полезен в условиях постоянной\nнехватки патронов. Производятся в основном компаниями Рти Кти Данн и ДВЦЖ.",
+      "category": "Редкое оружие",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D6",
+      "notes": "Дистанция: средняя\nСвойства: Тихий, однозарядный, не может получить последствие «Закончились патроны»\n2 ячейки модификации\nТрадиционное оружие народов Граней и Ядов в новом исполнении: блоки, планки для\nприцела и целеуказателя, удобная рукоять, противовес, направляющие для стрел. По\nмеркам большой войны является спортивным снарядом, но на улицах встречается у многих\nудальцов, решивших похвастать координацией. В Башне вместе с возможностью создавать\nстрелы или болты из подручных средств оказывается очень полезен в условиях постоянной\nнехватки патронов. Производятся в основном компаниями Рти Кти Данн и ДВЦЖ.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-12-74-226",
+      "id": "equipment-12-76-239",
       "kind": "gear",
       "title": "Оружие Мира Третий свидетель (К12)",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
-          74
+          76
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "Оружие Мира Третий свидетель (К12)\nУрон: 1к8\nДистанция: Средняя, дальняя\nСвойства: Умный, точный, автоматический. После успешной атаки оружие записывает\nнеопровержимое доказательство попадания: при ликвидации цели задания получите\nресурс К10 КОРПОРАЦИИ.\nШтурмовая винтовка со встроенным юридическим регистратором, созданная для\nкорпоративных операций, где важно не только убить, но и доказать, что убили правильного\nчеловека, в правильном месте и по правильной статье договора. Восходящие используют\nеё проще: стреляют в чудовище, потом продают запись учёным, страховщикам, культистам\nили родственникам погибших, смотря кто первым предложит больше.",
-      "category": "Гранаты (к8)",
-      "isCategory": false
+      "category": "Редкое оружие",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Дистанция: Средняя, дальняя\nСвойства: Умный, точный, автоматический. После успешной атаки оружие записывает\nнеопровержимое доказательство попадания: при ликвидации цели задания получите\nресурс К10 КОРПОРАЦИИ.\nШтурмовая винтовка со встроенным юридическим регистратором, созданная для\nкорпоративных операций, где важно не только убить, но и доказать, что убили правильного\nчеловека, в правильном месте и по правильной статье договора. Восходящие используют\nеё проще: стреляют в чудовище, потом продают запись учёным, страховщикам, культистам\nили родственникам погибших, смотря кто первым предложит больше.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-800-10-74-227",
+      "id": "equipment-800-10-76-240",
       "kind": "gear",
       "title": "Рти Кти Данн А-800 (К10)",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
-          74
+          76
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "Рти Кти Данн А-800 (К10)\nУрон: 1к8\nДистанция: Ближний бой, средняя\nСвойства: Точный, умный. Причиняя стресс из этого оружия, вы можете сделать его\nмаксимальным и получить К8 стресса в ПУЛИ.\nШтурмовой пистолет с агрессивной системой стабилизации, которая доводит руку стрелка\nпосле неудачного выстрела. Иногда она попадает лучше самого владельца. Иногда\nвыворачивает кисть так, что владелец поневоле задумывается о выборе другой стрелковой\nстойки.",
-      "category": "Гранаты (к8)",
-      "isCategory": false
+      "category": "Редкое оружие",
+      "isCategory": false,
+      "skill": "УБИВАТЬ",
+      "quality": "D8",
+      "notes": "Дистанция: Ближний бой, средняя\nСвойства: Точный, умный. Причиняя стресс из этого оружия, вы можете сделать его\nмаксимальным и получить К8 стресса в ПУЛИ.\nШтурмовой пистолет с агрессивной системой стабилизации, которая доводит руку стрелка\nпосле неудачного выстрела. Иногда она попадает лучше самого владельца. Иногда\nвыворачивает кисть так, что владелец поневоле задумывается о выборе другой стрелковой\nстойки.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-card-74-228",
+      "id": "equipment-card-76-241",
       "kind": "gear",
       "title": "Плитник",
       "section": "equipment",
-      "dropTarget": "gear",
+      "dropTarget": "armor",
       "source": {
         "pdfPages": [
-          74
+          76
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "Плитник\nПростая броня, защищающая грудь, несёт баллистические пакеты разных видов. В отличие\nот более тяжёлой брони, можно починить прямо в бою, вставив баллистический пакет\n(считается в рюкзаке ресурсом к6 армия).",
       "category": "Нательная броня (К8)",
-      "isCategory": false
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "Простая броня, защищающая грудь, несёт баллистические пакеты разных видов. В отличие\nот более тяжёлой брони, можно починить прямо в бою, вставив баллистический пакет\n(считается в рюкзаке ресурсом к6 армия).",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Тело"
+      ]
     },
     {
-      "id": "equipment-card-74-229",
+      "id": "equipment-card-76-242",
       "kind": "gear",
-      "title": "► Полимерная плита: Базовая пластина, не меняющая свойств жилета.",
+      "title": "Полимерная плита",
       "section": "equipment",
-      "dropTarget": "gear",
+      "dropTarget": "armor",
       "source": {
         "pdfPages": [
-          74
+          76
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "► Полимерная плита: Базовая пластина, не меняющая свойств жилета.\n+1 защиты и +1 слот в ПУЛИ\n► Металлическая плита: Более тяжёлая пластина, даёт лучшую защиту, но замедляет",
+      "text": "► Полимерная плита: Базовая пластина, не меняющая свойств жилета.\n+1 защиты и +1 слот в ПУЛИ",
       "category": "Баллистические пакеты (К6)",
-      "isCategory": false
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "Базовая пластина, не меняющая свойств жилета.\n+1 защиты и +1 слот в ПУЛИ",
+      "resistance": "bullets",
+      "protection": 1,
+      "extraSlots": 1,
+      "armorSlots": [
+        "Тело"
+      ]
     },
     {
-      "id": "equipment-card-74-230",
+      "id": "equipment-card-76-243",
       "kind": "gear",
-      "title": "действия руками.",
+      "title": "Металлическая плита",
       "section": "equipment",
-      "dropTarget": "gear",
+      "dropTarget": "armor",
       "source": {
         "pdfPages": [
-          74,
-          75
+          76
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "действия руками.\n+2 защиты и +2 слота в ПУЛИ, взаимодействие с очень быстрыми целями становится на 1\nступень сложнее\n151\n► Керамическая плита: Плита, дающая самую большую защиту, но имеющая низкую",
+      "text": "► Металлическая плита: Более тяжёлая пластина, даёт лучшую защиту, но замедляет\nдействия руками.\n+2 защиты и +2 слота в ПУЛИ, взаимодействие с очень быстрыми целями становится на 1\nступень сложнее",
       "category": "Баллистические пакеты (К6)",
-      "isCategory": false
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "Более тяжёлая пластина, даёт лучшую защиту, но замедляет\nдействия руками.\n+2 защиты и +2 слота в ПУЛИ, взаимодействие с очень быстрыми целями становится на 1\nступень сложнее",
+      "resistance": "bullets",
+      "protection": 2,
+      "extraSlots": 2,
+      "armorSlots": [
+        "Тело"
+      ]
     },
     {
-      "id": "equipment-card-75-231",
+      "id": "equipment-card-77-244",
       "kind": "gear",
-      "title": "прочность сама по себе.",
+      "title": "Керамическая плита",
       "section": "equipment",
-      "dropTarget": "gear",
+      "dropTarget": "armor",
       "source": {
         "pdfPages": [
-          75
+          77
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "прочность сама по себе.\n+3 защиты в ПУЛИ, вашим первым последствием в ПУЛИ за сцену будет последствие\nрасколота плита\n►Повышенной мобильности: Бронеплита с увеличенным вырезом позволяет быстрее",
+      "text": "► Керамическая плита: Плита, дающая самую большую защиту, но имеющая низкую\nпрочность сама по себе.\n+3 защиты в ПУЛИ, вашим первым последствием в ПУЛИ за сцену будет последствие\nрасколота плита",
       "category": "Баллистические пакеты (К6)",
-      "isCategory": false
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "Плита, дающая самую большую защиту, но имеющая низкую\nпрочность сама по себе.\n+3 защиты в ПУЛИ, вашим первым последствием в ПУЛИ за сцену будет последствие\nрасколота плита",
+      "resistance": "bullets",
+      "protection": 3,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Тело"
+      ]
     },
     {
-      "id": "equipment-card-75-232",
+      "id": "equipment-card-77-245",
       "kind": "gear",
-      "title": "оперировать руками,и, благодаря составу плиты и пакета, не тонет в воде.",
+      "title": "Повышенной мобильности",
       "section": "equipment",
-      "dropTarget": "gear",
+      "dropTarget": "armor",
       "source": {
         "pdfPages": [
-          75
+          77
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "оперировать руками,и, благодаря составу плиты и пакета, не тонет в воде.\n+1 защиты в ПУЛИ, раз в сцену вы можете перебросить проверку ПРОБИВАТЬСЯ\n► Экранированный: Пакет с защитой от термальных и энергетических атак, так же даёт",
+      "text": "►Повышенной мобильности: Бронеплита с увеличенным вырезом позволяет быстрее\nоперировать руками,и, благодаря составу плиты и пакета, не тонет в воде.\n+1 защиты в ПУЛИ, раз в сцену вы можете перебросить проверку ПРОБИВАТЬСЯ",
       "category": "Баллистические пакеты (К6)",
-      "isCategory": false
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "Бронеплита с увеличенным вырезом позволяет быстрее\nоперировать руками,и, благодаря составу плиты и пакета, не тонет в воде.\n+1 защиты в ПУЛИ, раз в сцену вы можете перебросить проверку ПРОБИВАТЬСЯ",
+      "resistance": "bullets",
+      "protection": 1,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Тело"
+      ]
     },
     {
-      "id": "equipment-card-75-233",
+      "id": "equipment-card-77-246",
       "kind": "gear",
-      "title": "небольшую защиту от пуль и осколков.",
+      "title": "Экранированный",
       "section": "equipment",
-      "dropTarget": "gear",
+      "dropTarget": "armor",
       "source": {
         "pdfPages": [
-          75
+          77
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "небольшую защиту от пуль и осколков.\n+3 защиты в ПУЛИ от энергетических атак, +1 от остальных",
+      "text": "► Экранированный: Пакет с защитой от термальных и энергетических атак, так же даёт\nнебольшую защиту от пуль и осколков.\n+3 защиты в ПУЛИ от энергетических атак, +1 от остальных",
       "category": "Баллистические пакеты (К6)",
-      "isCategory": false
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "Пакет с защитой от термальных и энергетических атак, так же даёт\nнебольшую защиту от пуль и осколков.\n+3 защиты в ПУЛИ от энергетических атак, +1 от остальных",
+      "resistance": "bullets",
+      "protection": 3,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Тело"
+      ]
     },
     {
-      "id": "equipment-card-75-234",
+      "id": "equipment-card-77-247",
       "kind": "gear",
       "title": "Штурмовой бронежилет",
       "section": "equipment",
-      "dropTarget": "gear",
+      "dropTarget": "armor",
       "source": {
         "pdfPages": [
-          75
+          77
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "Штурмовой бронежилет\n+3 защиты в ПУЛИ. +3 слота в ПУЛИ. Ваши броски навыков ПРОБИВАТЬСЯ, ИЗБЕГАТЬ и\nСКРЫВАТЬСЯ становятся на 1 ступень тяжелее, если у вас есть последствие в ПУЛЯХ.\nТяжёлая броня, защищающая грудь, живот, пах, руки и ноги.",
-      "category": "Баллистические пакеты (К6)",
-      "isCategory": false
+      "category": "Нательная броня (К8)",
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "+3 защиты в ПУЛИ. +3 слота в ПУЛИ. Ваши броски навыков ПРОБИВАТЬСЯ, ИЗБЕГАТЬ и\nСКРЫВАТЬСЯ становятся на 1 ступень тяжелее, если у вас есть последствие в ПУЛЯХ.\nТяжёлая броня, защищающая грудь, живот, пах, руки и ноги.",
+      "resistance": "bullets",
+      "protection": 3,
+      "extraSlots": 3,
+      "armorSlots": [
+        "Тело"
+      ]
     },
     {
-      "id": "equipment-card-75-235",
+      "id": "equipment-card-77-248",
       "kind": "gear",
       "title": "Полный доспех",
       "section": "equipment",
-      "dropTarget": "gear",
+      "dropTarget": "armor",
       "source": {
         "pdfPages": [
-          75
+          77
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "Полный доспех\n+4 защиты в ПУЛИ. +4 слота в ПУЛИ. Все ваши броски навыков ПРОБИВАТЬСЯ, ИЗБЕГАТЬ\nи СКРЫВАТЬСЯ становятся на 1 ступень тяжелее.\nОчень тяжёлая броня, в которой сложно перемещаться.",
-      "category": "Баллистические пакеты (К6)",
-      "isCategory": false
+      "category": "Нательная броня (К8)",
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "+4 защиты в ПУЛИ. +4 слота в ПУЛИ. Все ваши броски навыков ПРОБИВАТЬСЯ, ИЗБЕГАТЬ\nи СКРЫВАТЬСЯ становятся на 1 ступень тяжелее.\nОчень тяжёлая броня, в которой сложно перемещаться.",
+      "resistance": "bullets",
+      "protection": 4,
+      "extraSlots": 4,
+      "armorSlots": [
+        "Тело"
+      ]
     },
     {
-      "id": "equipment-card-75-236",
+      "id": "equipment-card-77-249",
       "kind": "gear",
       "title": "Рукопашный доспех",
       "section": "equipment",
-      "dropTarget": "gear",
+      "dropTarget": "armor",
       "source": {
         "pdfPages": [
-          75
+          77
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "Рукопашный доспех\n+5 защиты в ПУЛИ от атак рукопашным оружием, +2 защиты в ПУЛИ от всего остального.\nБроня для ближнего боя, носимая в комбинации с обычной (занимает ячейку прочей\nброни). Обычно это твёрдая комбинированная броня из сверхвысокомолекулярного\nпластика, или кольчуга, или национальный костюм, усиленный углеродным волокном и\nвываренной кожей.",
       "category": "Прочая броня (к12)",
-      "isCategory": false
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "+5 защиты в ПУЛИ от атак рукопашным оружием, +2 защиты в ПУЛИ от всего остального.\nБроня для ближнего боя, носимая в комбинации с обычной (занимает ячейку прочей\nброни). Обычно это твёрдая комбинированная броня из сверхвысокомолекулярного\nпластика, или кольчуга, или национальный костюм, усиленный углеродным волокном и\nвываренной кожей.",
+      "resistance": "bullets",
+      "protection": 2,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Особое"
+      ]
     },
     {
-      "id": "equipment-card-75-237",
+      "id": "equipment-card-77-250",
       "kind": "gear",
       "title": "Стелс костюм",
       "section": "equipment",
-      "dropTarget": "gear",
+      "dropTarget": "armor",
       "source": {
         "pdfPages": [
-          75
+          77
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "Стелс костюм\n+1 защиты и +1 слот в ПУЛИ, один раз в сцену позволяет перебросить проверку\nСКРЫВАТЬСЯ или ПРОБИВАТЬСЯ. Бесшумные предметы причиняют на ступень стресса\nбольше, пока враги о вас не знают. Занимает слот прочей брони.\nОбтягивающий костюм, распределяющий тепло тела, снижающий шум через системы\nактивного шумоподавления и мягкие подошвы. Обладает системами активного камуфляжа,\nработающего с помощью камер и цветных электронных чернил.",
       "category": "Прочая броня (к12)",
-      "isCategory": false
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "+1 защиты и +1 слот в ПУЛИ, один раз в сцену позволяет перебросить проверку\nСКРЫВАТЬСЯ или ПРОБИВАТЬСЯ. Бесшумные предметы причиняют на ступень стресса\nбольше, пока враги о вас не знают. Занимает слот прочей брони.\nОбтягивающий костюм, распределяющий тепло тела, снижающий шум через системы\nактивного шумоподавления и мягкие подошвы. Обладает системами активного камуфляжа,\nработающего с помощью камер и цветных электронных чернил.",
+      "resistance": "bullets",
+      "protection": 1,
+      "extraSlots": 1,
+      "armorSlots": [
+        "Особое"
+      ]
     },
     {
-      "id": "equipment-card-75-238",
+      "id": "equipment-card-77-251",
       "kind": "gear",
       "title": "Силовой костюм",
       "section": "equipment",
-      "dropTarget": "gear",
+      "dropTarget": "armor",
       "source": {
         "pdfPages": [
-          75
+          77
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "Силовой костюм\n+1 защиты и +1 слот в ПУЛИ, один раз в сцену позволяет перебросить проверку УБИВАТЬ\nили ПРОБИВАТЬСЯ. Повышает кость стресса от рукопашных атак на одну ступень.\nКомбинированный боевой костюм из титанового экзоскелета и мышц из углеродных трубок\nповышает силовые показатели бойца. Работает от внутренней энергии носителя.\n152",
+      "text": "Силовой костюм\n+1 защиты и +1 слот в ПУЛИ, один раз в сцену позволяет перебросить проверку УБИВАТЬ\nили ПРОБИВАТЬСЯ. Повышает кость стресса от рукопашных атак на одну ступень.\nКомбинированный боевой костюм из титанового экзоскелета и мышц из углеродных трубок\nповышает силовые показатели бойца. Работает от внутренней энергии носителя.",
       "category": "Прочая броня (к12)",
-      "isCategory": false
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "+1 защиты и +1 слот в ПУЛИ, один раз в сцену позволяет перебросить проверку УБИВАТЬ\nили ПРОБИВАТЬСЯ. Повышает кость стресса от рукопашных атак на одну ступень.\nКомбинированный боевой костюм из титанового экзоскелета и мышц из углеродных трубок\nповышает силовые показатели бойца. Работает от внутренней энергии носителя.",
+      "resistance": "bullets",
+      "protection": 1,
+      "extraSlots": 1,
+      "armorSlots": [
+        "Особое"
+      ]
     },
     {
-      "id": "equipment-card-75-239",
+      "id": "equipment-card-77-252",
       "kind": "gear",
       "title": "Курьерский экзоскелет",
       "section": "equipment",
-      "dropTarget": "gear",
+      "dropTarget": "armor",
       "source": {
         "pdfPages": [
-          75
+          77
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "Курьерский экзоскелет\nСнаряжение и ресурсы, чьи черты делают их неудобными для переноски вы носите,\nигнорируя эти черты. Раз в сессию, вы можете отказаться от последствия в шкале\nПРОБИВАТЬСЯ. Занимает слот прочей брони.\nАктивный экзоскелет на металлической раме с системами компенсации вибраций и умным\nбалансиром, компенсирующим ветер или потерю равновесия.",
       "category": "Прочая броня (к12)",
-      "isCategory": false
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "Снаряжение и ресурсы, чьи черты делают их неудобными для переноски вы носите,\nигнорируя эти черты. Раз в сессию, вы можете отказаться от последствия в шкале\nПРОБИВАТЬСЯ. Занимает слот прочей брони.\nАктивный экзоскелет на металлической раме с системами компенсации вибраций и умным\nбалансиром, компенсирующим ветер или потерю равновесия.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Особое"
+      ]
     },
     {
-      "id": "equipment-6-75-240",
+      "id": "equipment-6-77-253",
       "kind": "gear",
       "title": "Половинный шлем (к6)",
       "section": "equipment",
-      "dropTarget": "gear",
+      "dropTarget": "armor",
       "source": {
         "pdfPages": [
-          75
+          77
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "Половинный шлем (к6)\n+2 защиты в ПУЛИ, можно быстро сбросить при поломке или быстро надеть в случае\nопасности. В отличие от единого шлема, подвержен полевому ремонту.\nШлем, защищающий верхнюю половину головы.",
-      "category": "Прочая броня (к12)",
-      "isCategory": false
+      "category": "Шлемы",
+      "isCategory": false,
+      "skill": null,
+      "quality": "D6",
+      "notes": "+2 защиты в ПУЛИ, можно быстро сбросить при поломке или быстро надеть в случае\nопасности. В отличие от единого шлема, подвержен полевому ремонту.\nШлем, защищающий верхнюю половину головы.",
+      "resistance": "bullets",
+      "protection": 2,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Голова"
+      ]
     },
     {
-      "id": "equipment-10-75-241",
+      "id": "equipment-10-77-254",
       "kind": "gear",
       "title": "Единый шлем (к10)",
       "section": "equipment",
-      "dropTarget": "gear",
+      "dropTarget": "armor",
       "source": {
         "pdfPages": [
-          75
+          77
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "Единый шлем (к10)\n+3 защиты в ПУЛИ, +5 защиты в ПУЛИ от газа и дыма\nПолный шлем с визором, встроенными рацией и противогазом.",
-      "category": "Прочая броня (к12)",
-      "isCategory": false
+      "category": "Шлемы",
+      "isCategory": false,
+      "skill": null,
+      "quality": "D10",
+      "notes": "+3 защиты в ПУЛИ, +5 защиты в ПУЛИ от газа и дыма\nПолный шлем с визором, встроенными рацией и противогазом.",
+      "resistance": "bullets",
+      "protection": 3,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Голова"
+      ]
     },
     {
-      "id": "equipment-6-75-242",
+      "id": "equipment-6-77-255",
       "kind": "gear",
       "title": "Обереги (к6)",
       "section": "equipment",
-      "dropTarget": "gear",
+      "dropTarget": "armor",
       "source": {
         "pdfPages": [
-          75
+          77
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "Обереги (к6)\n+2 защиты и +2 слота в ДУХ\nЛегкосплавные фигурки зверей, заговорённые перья, геометрические фигуры, коробочки из\nкоры, пробитые монеты, пучки целебных трав — всё сгодится для защиты. Занимает ячейку\nпрочей брони.",
       "category": "Духовная защита",
-      "isCategory": false
+      "isCategory": false,
+      "skill": null,
+      "quality": "D6",
+      "notes": "+2 защиты и +2 слота в ДУХ\nЛегкосплавные фигурки зверей, заговорённые перья, геометрические фигуры, коробочки из\nкоры, пробитые монеты, пучки целебных трав — всё сгодится для защиты. Занимает ячейку\nпрочей брони.",
+      "resistance": "spirit",
+      "protection": 2,
+      "extraSlots": 2,
+      "armorSlots": [
+        "Особое"
+      ]
     },
     {
-      "id": "equipment-12-75-243",
+      "id": "equipment-12-77-256",
       "kind": "gear",
       "title": "Якорь реальности (к12)",
       "section": "equipment",
-      "dropTarget": "gear",
+      "dropTarget": "armor",
       "source": {
         "pdfPages": [
-          75
+          77
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "Якорь реальности (к12)\nРаз в сессию +5 защиты и +5 слотов в ДУХ до конца сцены\nПохожая на ранец машина, основанная на артефакте из глубин Башни, ослабляющая Её\nвлияние при включении. Занимает ячейку рюкзака.",
       "category": "Духовная защита",
-      "isCategory": false
+      "isCategory": false,
+      "skill": null,
+      "quality": "D12",
+      "notes": "Раз в сессию +5 защиты и +5 слотов в ДУХ до конца сцены\nПохожая на ранец машина, основанная на артефакте из глубин Башни, ослабляющая Её\nвлияние при включении. Занимает ячейку рюкзака.",
+      "resistance": "spirit",
+      "protection": 5,
+      "extraSlots": 5,
+      "armorSlots": [
+        "Рюкзак"
+      ]
     },
     {
-      "id": "equipment-card-75-244",
+      "id": "equipment-card-77-257",
       "kind": "gear",
       "title": "Штурмовой рюкзак",
       "section": "equipment",
-      "dropTarget": "gear",
+      "dropTarget": "armor",
       "source": {
         "pdfPages": [
-          75
+          77
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "Штурмовой рюкзак\n+1 защиты и +1 слот в РЕСУРСЫ\nКомпактный ранец, используемый непосредственно в сражениях.",
       "category": "Рюкзаки (К10)",
-      "isCategory": false
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "+1 защиты и +1 слот в РЕСУРСЫ\nКомпактный ранец, используемый непосредственно в сражениях.",
+      "resistance": "resources",
+      "protection": 1,
+      "extraSlots": 1,
+      "armorSlots": [
+        "Рюкзак"
+      ]
     },
     {
-      "id": "equipment-card-75-245",
+      "id": "equipment-card-77-258",
       "kind": "gear",
       "title": "Рейдовый рюкзак",
       "section": "equipment",
-      "dropTarget": "gear",
+      "dropTarget": "armor",
       "source": {
         "pdfPages": [
-          75,
-          76
+          77
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "Рейдовый рюкзак\n+3 защиты и +3 слота в РЕСУРСЫ, тяжёлый.\nБольшой рюкзак для походов.\n153\nРанец ленточного питания\nВ любой момент выберите огнестрельное оружие со свойством автоматический, на него не\nбудет влиять последствие закончились патроны. Чтобы поменять выбранное оружие в бою\nили других трудных условиях, потребуется тактика перезарядки, или проверка УБИВАТЬ.\nРюкзак с патронами и гибкой универсальной лентой, подающий патроны в оружие,\nособенно популярен у пулемётчиков.",
+      "text": "Рейдовый рюкзак\n+3 защиты и +3 слота в РЕСУРСЫ, тяжёлый.\nБольшой рюкзак для походов.",
       "category": "Рюкзаки (К10)",
-      "isCategory": false
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "+3 защиты и +3 слота в РЕСУРСЫ, тяжёлый.\nБольшой рюкзак для походов.",
+      "resistance": "resources",
+      "protection": 3,
+      "extraSlots": 3,
+      "armorSlots": [
+        "Рюкзак"
+      ]
     },
     {
-      "id": "equipment-card-76-246",
+      "id": "equipment-card-78-259",
+      "kind": "gear",
+      "title": "Ранец ленточного питания",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          78
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Ранец ленточного питания\nВ любой момент выберите огнестрельное оружие со свойством автоматический, на него не\nбудет влиять последствие закончились патроны. Чтобы поменять выбранное оружие в бою\nили других трудных условиях, потребуется тактика перезарядки, или проверка УБИВАТЬ.\nРюкзак с патронами и гибкой универсальной лентой, подающий патроны в оружие,\nособенно популярен у пулемётчиков.",
+      "category": "Рюкзаки (К10)",
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "В любой момент выберите огнестрельное оружие со свойством автоматический, на него не\nбудет влиять последствие закончились патроны. Чтобы поменять выбранное оружие в бою\nили других трудных условиях, потребуется тактика перезарядки, или проверка УБИВАТЬ.\nРюкзак с патронами и гибкой универсальной лентой, подающий патроны в оружие,\nособенно популярен у пулемётчиков.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Рюкзак"
+      ]
+    },
+    {
+      "id": "equipment-card-78-260",
       "kind": "gear",
       "title": "Медицинский ранец",
       "section": "equipment",
-      "dropTarget": "gear",
+      "dropTarget": "armor",
       "source": {
         "pdfPages": [
-          76
+          78
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "Медицинский ранец\nк10 ЧИНИТЬ ПУЛИ, мощный, стабильный\nНосимый на спине набор полевого медика со всем необходимым.\nУстановка связи\nВы не можете получить последствие разорванные узы, и ваши дистанционные переговоры\nс соратниками и контактами нельзя обнаружить или подслушать.\nКрупная портативная радиостанция, основанная на артефакте из Башни, массиве\nзащищённых микрокомпьютеров и излучателях волн разной частоты.",
+      "text": "Медицинский ранец\nк10 ЧИНИТЬ ПУЛИ, мощный, стабильный\nНосимый на спине набор полевого медика со всем необходимым.",
       "category": "Рюкзаки (К10)",
-      "isCategory": false
+      "isCategory": false,
+      "skill": "ЧИНИТЬ",
+      "quality": "D10",
+      "notes": "ПУЛИ, мощный, стабильный\nНосимый на спине набор полевого медика со всем необходимым.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Рюкзак"
+      ]
     },
     {
-      "id": "equipment-card-76-247",
+      "id": "equipment-card-78-261",
+      "kind": "gear",
+      "title": "Установка связи",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          78
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Установка связи\nВы не можете получить последствие разорванные узы, и ваши дистанционные переговоры\nс соратниками и контактами нельзя обнаружить или подслушать.\nКрупная портативная радиостанция, основанная на артефакте из Башни, массиве\nзащищённых микрокомпьютеров и излучателях волн разной частоты.",
+      "category": "Рюкзаки (К10)",
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "Вы не можете получить последствие разорванные узы, и ваши дистанционные переговоры\nс соратниками и контактами нельзя обнаружить или подслушать.\nКрупная портативная радиостанция, основанная на артефакте из Башни, массиве\nзащищённых микрокомпьютеров и излучателях волн разной частоты.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Рюкзак"
+      ]
+    },
+    {
+      "id": "equipment-card-78-262",
       "kind": "gear",
       "title": "Полевая кухня",
       "section": "equipment",
-      "dropTarget": "gear",
+      "dropTarget": "armor",
       "source": {
         "pdfPages": [
-          76
+          78
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "Полевая кухня\nк8 ЧИНИТЬ РАЗУМ, Сбалансированный, стабильный, мощный\nНабор для приготовления горячих блюд, более полезных для нервов и желудка, чем\nпостоянное питание пайками.\nАссистированная сбруя\nРаз в сцену, вы можете получить мастерство на бросок, требующий точности или скорости\nрук.\nДополнительные механические руки, носимые на спине и управляемые через внешний\nтерминал или киберимплант в позвоночнике.",
+      "text": "Полевая кухня\nк8 ЧИНИТЬ РАЗУМ, Сбалансированный, стабильный, мощный\nНабор для приготовления горячих блюд, более полезных для нервов и желудка, чем\nпостоянное питание пайками.",
       "category": "Рюкзаки (К10)",
-      "isCategory": false
+      "isCategory": false,
+      "skill": "ЧИНИТЬ",
+      "quality": "D8",
+      "notes": "РАЗУМ, Сбалансированный, стабильный, мощный\nНабор для приготовления горячих блюд, более полезных для нервов и желудка, чем\nпостоянное питание пайками.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Рюкзак"
+      ]
     },
     {
-      "id": "equipment-card-76-248",
+      "id": "equipment-card-78-263",
+      "kind": "gear",
+      "title": "Ассистированная сбруя",
+      "section": "equipment",
+      "dropTarget": "armor",
+      "source": {
+        "pdfPages": [
+          78
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "Ассистированная сбруя\nРаз в сцену, вы можете получить мастерство на бросок, требующий точности или скорости\nрук.\nДополнительные механические руки, носимые на спине и управляемые через внешний\nтерминал или киберимплант в позвоночнике.",
+      "category": "Рюкзаки (К10)",
+      "isCategory": false,
+      "skill": null,
+      "quality": null,
+      "notes": "Раз в сцену, вы можете получить мастерство на бросок, требующий точности или скорости\nрук.\nДополнительные механические руки, носимые на спине и управляемые через внешний\nтерминал или киберимплант в позвоночнике.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Рюкзак"
+      ]
+    },
+    {
+      "id": "equipment-card-78-264",
       "kind": "gear",
       "title": "Полевая лаборатория",
       "section": "equipment",
-      "dropTarget": "gear",
+      "dropTarget": "armor",
       "source": {
         "pdfPages": [
-          76
+          78
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "Полевая лаборатория\nк10 УЗНАВАТЬ\nНабор инструментов и реагентов для полевого анализа. Обычно он связан с одной\nспециальностью, например, криминалиста или ботаника, но пригодится при любых\nпопытках узнать больше.\n154",
+      "text": "Полевая лаборатория\nк10 УЗНАВАТЬ\nНабор инструментов и реагентов для полевого анализа. Обычно он связан с одной\nспециальностью, например, криминалиста или ботаника, но пригодится при любых\nпопытках узнать больше.",
       "category": "Рюкзаки (К10)",
-      "isCategory": false
+      "isCategory": false,
+      "skill": "УЗНАВАТЬ",
+      "quality": "D10",
+      "notes": "Набор инструментов и реагентов для полевого анализа. Обычно он связан с одной\nспециальностью, например, криминалиста или ботаника, но пригодится при любых\nпопытках узнать больше.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Рюкзак"
+      ]
     },
     {
-      "id": "equipment-card-76-249",
+      "id": "equipment-card-78-265",
       "kind": "gear",
       "title": "Системы маневрирования",
       "section": "equipment",
-      "dropTarget": "gear",
+      "dropTarget": "armor",
       "source": {
         "pdfPages": [
-          76
+          78
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "Системы маневрирования\nк10 ПРОБИВАТЬСЯ, вы можете до конца сцены снизить кость этого снаряжения на одну\nступень, чтобы ваш бросок ПРОБИВАТЬСЯ получил нормальную сложность. Занимает\nслоты прочей брони и рюкзака.\nЛёгкий углепластиковый экзоскелет с магнитами в стопах и ладонях, парными\nавтоматическими крюками-кошками и ранцем с топливом и несколькими\nразнонаправленными реактивными двигателями. Предназначен для стремительных\nопераций, бега по стенам и головокружительных прыжков, гражданские модели очень\nпопулярны у спортсменов-экстремалов.",
       "category": "Рюкзаки (К10)",
-      "isCategory": false
+      "isCategory": false,
+      "skill": "ПРОБИВАТЬСЯ",
+      "quality": "D10",
+      "notes": "вы можете до конца сцены снизить кость этого снаряжения на одну\nступень, чтобы ваш бросок ПРОБИВАТЬСЯ получил нормальную сложность. Занимает\nслоты прочей брони и рюкзака.\nЛёгкий углепластиковый экзоскелет с магнитами в стопах и ладонях, парными\nавтоматическими крюками-кошками и ранцем с топливом и несколькими\nразнонаправленными реактивными двигателями. Предназначен для стремительных\nопераций, бега по стенам и головокружительных прыжков, гражданские модели очень\nпопулярны у спортсменов-экстремалов.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0,
+      "armorSlots": [
+        "Особое",
+        "Рюкзак"
+      ]
     },
     {
-      "id": "equipment-card-76-250",
+      "id": "equipment-card-78-266",
       "kind": "gear",
       "title": "Медпакет",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
-          76
+          78
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "Медпакет\nК8 ЧИНИТЬ ПУЛИ, калиброванный\nНабор медицинских инструментов и лекарств для полевой хирургии.",
       "category": "Восстанавливающее снаряжение (К8)",
-      "isCategory": false
+      "isCategory": false,
+      "skill": "ЧИНИТЬ",
+      "quality": "D8",
+      "notes": "ПУЛИ, калиброванный\nНабор медицинских инструментов и лекарств для полевой хирургии.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-card-76-251",
+      "id": "equipment-card-78-267",
       "kind": "gear",
       "title": "Музыкальный инструмент",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
-          76
+          78
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "Музыкальный инструмент\nК8 ЧИНИТЬ РАЗУМ, точный\nМузыкальный инструмент для моментов отдыха. Например, Иср народа ножей, который\nнужно упереть в землю и играть двумя смычками, или ХЗННН народа ядов, духовой\nклавишный инструмент с хитрой системой клапанов.",
       "category": "Восстанавливающее снаряжение (К8)",
-      "isCategory": false
+      "isCategory": false,
+      "skill": "ЧИНИТЬ",
+      "quality": "D8",
+      "notes": "РАЗУМ, точный\nМузыкальный инструмент для моментов отдыха. Например, Иср народа ножей, который\nнужно упереть в землю и играть двумя смычками, или ХЗННН народа ядов, духовой\nклавишный инструмент с хитрой системой клапанов.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-card-76-252",
+      "id": "equipment-card-78-268",
       "kind": "gear",
       "title": "Горькие травы",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
-          76
+          78
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "Горькие травы\nК8 ЧИНИТЬ ДУХ, сбалансированный\nНабор поджигаемых целебных трав, очищающий потустороннюю суть пациента.",
       "category": "Восстанавливающее снаряжение (К8)",
-      "isCategory": false
+      "isCategory": false,
+      "skill": "ЧИНИТЬ",
+      "quality": "D8",
+      "notes": "ДУХ, сбалансированный\nНабор поджигаемых целебных трав, очищающий потустороннюю суть пациента.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-card-76-253",
+      "id": "equipment-card-78-269",
       "kind": "gear",
       "title": "Ритуальные деньги",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
-          76
+          78
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "Ритуальные деньги\nК8 ЧИНИТЬ СУДЬБА, мощный\nЖертвенные деньги, которые можно проносить в храмы, используются как для\nпожертвований, так и в качестве самостоятельного элемента молитвы: считается, что при\nсжигании, они уходят предкам.",
       "category": "Восстанавливающее снаряжение (К8)",
-      "isCategory": false
+      "isCategory": false,
+      "skill": "ЧИНИТЬ",
+      "quality": "D8",
+      "notes": "СУДЬБА, мощный\nЖертвенные деньги, которые можно проносить в храмы, используются как для\nпожертвований, так и в качестве самостоятельного элемента молитвы: считается, что при\nсжигании, они уходят предкам.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-card-76-254",
+      "id": "equipment-card-78-270",
       "kind": "gear",
       "title": "Контейнер с припасами",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
-          76
+          78
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "Контейнер с припасами\nК8 ЧИНИТЬ РЕСУРСЫ, стабильный\nМеталлический или пластиковый контейнер, обычно военные хранят в таких боеприпасы,\nпайки или аккумуляторы.",
       "category": "Восстанавливающее снаряжение (К8)",
-      "isCategory": false
+      "isCategory": false,
+      "skill": "ЧИНИТЬ",
+      "quality": "D8",
+      "notes": "РЕСУРСЫ, стабильный\nМеталлический или пластиковый контейнер, обычно военные хранят в таких боеприпасы,\nпайки или аккумуляторы.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-card-76-255",
+      "id": "equipment-card-78-271",
       "kind": "gear",
       "title": "ДВЦЖ тактический фонарь",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
-          76
+          78
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "ДВЦЖ тактический фонарь\nК8 ПРОБИВАТЬСЯ, мощный, калиброванный, перегрев\nФонарик с настраиваемым спектром света, может крепиться на разгрузке.\n155",
+      "text": "ДВЦЖ тактический фонарь\nК8 ПРОБИВАТЬСЯ, мощный, калиброванный, перегрев\nФонарик с настраиваемым спектром света, может крепиться на разгрузке.",
       "category": "Снаряжение для путешествия (к8)",
-      "isCategory": false
+      "isCategory": false,
+      "skill": "ПРОБИВАТЬСЯ",
+      "quality": "D8",
+      "notes": "мощный, калиброванный, перегрев\nФонарик с настраиваемым спектром света, может крепиться на разгрузке.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-card-77-256",
+      "id": "equipment-card-79-272",
       "kind": "gear",
       "title": "Параштрук Лисирист портативный радар",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
-          77
+          79
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "Параштрук Лисирист портативный радар\nК8 ПРОБИВАТЬСЯ, 2 слота модификации\nПортативный радар размером со смартфон, оснащён экраном и несколькими\nрегулируемыми антеннами.",
       "category": "Снаряжение для путешествия (к8)",
-      "isCategory": false
+      "isCategory": false,
+      "skill": "ПРОБИВАТЬСЯ",
+      "quality": "D8",
+      "notes": "2 слота модификации\nПортативный радар размером со смартфон, оснащён экраном и несколькими\nрегулируемыми антеннами.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-card-77-257",
+      "id": "equipment-card-79-273",
       "kind": "gear",
       "title": "Параштрук Лисирист автоматический оракул",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
-          77
+          79
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "Параштрук Лисирист автоматический оракул\nК4 ПРОБИВАТЬСЯ, точный, мощный, стабильный\nНосимый на одежде сканер с загруженной и постоянно обновляемой картой предсказаний.",
       "category": "Снаряжение для путешествия (к8)",
-      "isCategory": false
+      "isCategory": false,
+      "skill": "ПРОБИВАТЬСЯ",
+      "quality": "D4",
+      "notes": "точный, мощный, стабильный\nНосимый на одежде сканер с загруженной и постоянно обновляемой картой предсказаний.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "equipment-card-77-258",
+      "id": "equipment-card-79-274",
       "kind": "gear",
       "title": "Хейсейтская птица",
       "section": "equipment",
       "dropTarget": "gear",
       "source": {
         "pdfPages": [
-          77,
-          78
+          79
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
-      "text": "Хейсейтская птица\nК10 ПРОБИВАТЬСЯ, точный, громкий. Раз в сессию вы должны покормить птицу,\nполучив К4 стресса в РЕСУРСЫ, иначе она погибнет.\nНебольшая шестиглазая птица с даром предсказания, шахтёры народа Соли носят такую в\nшахтах, чтобы не заблудиться.\nСписок свойств снаряжения\nАвтоматический — Вы можете один раз перебросить проверку УБИВАТЬ и кость стресса,\nстреляя из этого оружия и обязаны принять новый результат, но после этого получите\nпоследствие закончились патроны.\nАдаптивный – Когда предмет причиняет стресс одной и той же цели подряд, его кость\nповышается на одну ступень, но не больше К12. При причинении стресса другой цели,\nповышение кости сбрасывается.\nБронебойный (Х) — Игнорирует Х единиц защиты врага или восхождения. Если вы\nприобретаете эту черту как часть модификации, её показатель равен 2.\nВнезапный — При критическом провале повышает получаемый стресс на две ступени\nвместо одной. При критическом успехе повышает причиняемый стресс на две ступени\nвместо одной.\nВещий — Раз в сцену перед проверкой с этим предметом можно спросить ведущего: “что\nздесь пойдёт не так?” Ведущий отвечает честно, но коротко. После этого проверка всё\nравно проводится.\nГолодный — Можете получить к4 стресса в ПУЛИ, чтобы на одну проверку повысить\nэффективность предмета на 1 ступень. Росоход может вместо этого потратить\nиспользование кости крови. Разработанная росоходами технология, усиливающая\nтехнологии с помощью крови.\nГлухой — На проверки с этим предметом не влияют никакие факторы, например сложный\nпротивник не повышает сложности проверки, но и способности не позволяют улучшить\nрезультат.\nГромкий — Когда вы выбрасываете максимальный стресс этого предмета, вы получаете\n1к6 стресса в СУДЬБУ.\nДешёвый — Предмет нельзя продать дороже к4, даже если его эффективность выше. Не\nможет сочетаться со свойством дорогой.\n156\n\nДолговой — Предмет можно применить, даже если он сломан, потерян, разряжен или\nнедоступен. В конце сцены получите К6 стресса в СУДЬБУ за каждое такое применение.\nДлящийся — После получения или восстановления стресса от этого предмета, цель до\nконца сцены начинает получать или восстанавливать 1к4 стресса каждый раз, когда\nдействует (при провале броска от персонажа игрока в случае с персонажем ведущего-\nпротивником). Эффект не суммируется. Обычно этот эффект дают оружию различные яды,\nа, например, снаряжению для путешествий — умные системы.\nДорогой — Этот предмет стоит на 1 ступень больше при покупке или продаже. Не может\nсочетаться со свойством дешёвый.\nДуэльный — Этот предмет причиняет на ступень больше стресса при сражении с другим\nврагом с оружием такого же класса, например снайперской винтовкой, или мечом.\nЖадный (Х) — При критическом успехе предмет причиняет или восстанавливает на\nступень больше стресса, но после этого требует плату: к6 стресса в СУДЬБУ, ДУХ, или\nРАЗУМ.\nЗаземляющий – При получении стресса в ДУХ, вы можете снизить его на одну ступень и\nпринять его в ПУЛИ.\nИзнуряющий — После провала проверки с использованием этого предмета, его кость\nпонижается на 1 ступень.\nКалиброванный — При проверке УЗНАВАТЬ,ПРОБИВАТЬСЯ, ТЕХНИЧИТЬ или ЧИНИТЬ\nпредмет выдаёт точные измерения. На критическом успехе можно задать ведущему один\nдополнительный технический вопрос.\nКамуфляж (Х) — Эта броня даёт мастерство при проверках СКРЫВАТЬСЯ в определённой\nобласти.\nКлятвенный — Раз в сессию назовите запрет: не отступать, не убивать, не лгать, не\nиспользовать другое оружие, не принимать помощь. Запрет работает до конца сессии, пока\nон соблюдается, предмет причиняет или восстанавливает на ступень больше стресса. При\nнарушении запрета получите к8 стресса в РАЗУМ или ДУХ.\nЛюбящий — Предмет можно использовать для помощи союзнику без риска получить\nстресс вместе с ним при провале группового действия. Если союзник получает\nпоследствие, предмет выходит из строя.\nМощный — Вы бросаете кость стресса два раза и выбираете больший результат.\nНесколько свойств мощный не суммируются, но вы всё ещё можете добавлять к этому\nстрессу кости от других источников.\nНадёжный — На это оружие не распространяется последствие клин.\nНеестественный — Каждый раз, когда вы применяете это снаряжение, вы получаете 1к4\nстресса в разум. Пока у вас больше 5 стресса в разуме, результат на кости этого\nснаряжения всегда максимально возможный.\nНелетальный — Это оружие при причинении стресса выводит врагов из строя, не убивая\nих.\nНенадёжный — Когда вы выбрасываете минимальный стресс этого предмета, вы\nполучаете 1к6 стресса в ПУЛИ.\nНеудобный (Х) — Повышает сложность броска на 1 ступень в определённых условиях.\n157\nОгонь — Противник, получивший стресс от этого оружия, обязан переместиться.\nОграждающий — +3 защиты в ДУХ.\nОднозарядный — Между использованиями этого предмета успевает пройти достаточное\nвремя, чтобы подействовал противник, или окружение.\nОсадный — Причиняет всегда максимальный стресс строениям, дверям, мостам и другим\nконструкциям, а так же бронетехнике.\nОтсечка — Очень быстрые враги или враги с размытым силуэтом не усложняют проверки\nУБИВАТЬ из этого оружия.\nОхранный (Х) – Раз в сцену, когда соратник владельца должен получить стресс в одно из\nсопротивлений, предмет может отменить его стресс, но будет сломан так, что починить его\nможно будет только в оазисе.\nПамятливый – После критического провала, причиняет или восстанавливает цели\nпровалившейся проверки на ступень больше стресса.\nПерегревающийся — После критического успеха, предмет нельзя использовать до конца\nсцены, пока его не охладят.\nПодавление — Противник, получивший стресс от этого оружия, не может перемещаться,\nпока владелец оружия не получит стресс.\nПроводник — Вы можете добавить ваш стресс в шкале РАЗУМ к броску причиняемого\nстресса.\nРазброс — Причиняет стресс всем целям на одной дистанции.\nРемонтопригодный — Проверки ЧИНИТЬ на этот предмет совершаются с мастерством.\nРодной — Если предмет создан вашим народом, фракцией или классом, вы раз в сцену\nполучаете мастерство при проверке с ним.\nСбалансированный — Критические провалы считаются на этом снаряжении простыми\nпровалами, а критические успехи — простыми успехами.\nСветлый — Причиняет стресс врагу, игнорируя его броню при попадании в его тень. Тени\nвидны только в светлых локациях. Выстрел в тень причиняет на одну ступень стресса\nменьше.\nСтыдящий — Если владелец действует трусливо, подло или против собственных\nпринципов, предмет становится хуже на ступень до конца сцены. Если владелец действует\nвопреки выгоде, но согласно принципам, предмет становится эффективнее на ступень до\nконца сцены.\nСетевой — Несколько таких предметов могут обмениваться данными на короткой\nдистанции. Если союзник уже успешно применил сетевой предмет в сцене, вы можете один\nраз в сцену использовать его результат как помощь.\nСкрываемый — Этот предмет можно пронести туда, куда с ним обычно нельзя.\nСошки — Этот предмет причиняет на ступень больше стресса, если вы не двигались перед\nего использованием.\nСтабильный — Всегда причиняет стресс, даже при провале проверки.\n158\n\nТихий — Враги не обратят внимание на применение этого предмета, если вас не видят.\nТочный — Вместо повышения ступени стресса при критическом успехе, вы бросаете кость\nпредмета дважды и суммируете результат.\nТребовательный — Перед сценой предмет нужно настроить, зарядить, смазать,\nпристрелять или откалибровать. Без подготовки он делает все проверки с его участием на\nступень сложнее.\nТяжёлый — Пока вы несёте этот предмет, проверки СКРЫВАТЬСЯ и ПРОБИВАТЬСЯ, в\nкоторых нужно что-то сделать очень быстро, становятся для вас на 1 ступень сложнее.\nУмный — При использовании умного предмета, вы сначала совершаете проверку, а затем\nвыбираете её цель.\nЦеремониальный — Предмет выглядит слишком торжественно, дорого или священно.\nПроверки ГОВОРИТЬ с его демонстрацией получают мастерство, но СКРЫВАТЬСЯ с ним\nна ступень сложнее.\nЧитающий — При первом причинении стресса врагу, сообщает атакующему его имя,\nпроверки КОЛДОВАТЬ против него становятся на 1 ступень легче. Чудовища Башни могут\nиметь очень опасные имена, при первом причинении ей стресса, атакующий получает 1к6\nстресса в РАЗУМ.\nШтурмовой — После успешной проверки с этим предметом, вы можете переместиться на\nодну дистанцию без нужды в проверке.\nЭнергетический — Причиняет на ступень больше стресса механизмам и сильно\nаугментированным людям.\nСписок свойств ресурсов\nКроме свойств, применимых только к ресурсам, к ним могут подойти и свойства\nснаряжения, например, дорогой, или ограждающий.\nВонючий — Ресурс трудно скрыть: специи, химикаты, звериная кровь, озоновые батареи,\nмокрая шерсть. Пока он в инвентаре, проверки СКРЫВАТЬСЯ против существ с хорошим\nнюхом или сенсорами сложнее на ступень.\nДокументированный — У ресурса есть накладные, сертификаты, печати, благословения\nили юридическая история. При легальной покупке или продаже он считается на ступень\nвыше, при нелегальной сделке — на ступень ниже.\nЗапретный – Ресурс не купят в оазисе и, возможно, даже не разрешат его внести.\nИскушающий – В начале каждой сцены причиняет К6 стресса в РАЗУМ.\nМаяк – Ресурс притягивает неприятности. Вы получаете на одну ступень больше стресса в\nСУДЬБУ.\nНегабаритный – Ресурс занимает четыре ячейки в инвентаре вместо одной.\nНишевый (Х) – Ресурс готовы принять представители только одной группы, или\nпрофессии.\n159",
+      "text": "Хейсейтская птица\nК10 ПРОБИВАТЬСЯ, точный, громкий. Раз в сессию вы должны покормить птицу,\nполучив К4 стресса в РЕСУРСЫ, иначе она погибнет.\nНебольшая шестиглазая птица с даром предсказания, шахтёры народа Соли носят такую в\nшахтах, чтобы не заблудиться.\nСписок свойств снаряжения\nАвтоматический — Вы можете один раз перебросить проверку УБИВАТЬ и кость стресса,\nстреляя из этого оружия и обязаны принять новый результат, но после этого получите\nпоследствие закончились патроны.\nАдаптивный – Когда предмет причиняет стресс одной и той же цели подряд, его кость\nповышается на одну ступень, но не больше К12. При причинении стресса другой цели,\nповышение кости сбрасывается.\nБронебойный (Х) — Игнорирует Х единиц защиты врага или восхождения. Если вы\nприобретаете эту черту как часть модификации, её показатель равен 2.\nВнезапный — При критическом провале повышает получаемый стресс на две ступени\nвместо одной. При критическом успехе повышает причиняемый стресс на две ступени\nвместо одной.\nВещий — Раз в сцену перед проверкой с этим предметом можно спросить ведущего: “что\nздесь пойдёт не так?” Ведущий отвечает честно, но коротко. После этого проверка всё\nравно проводится.\nГолодный — Можете получить к4 стресса в ПУЛИ, чтобы на одну проверку повысить\nэффективность предмета на 1 ступень. Росоход может вместо этого потратить\nиспользование кости крови. Разработанная росоходами технология, усиливающая\nтехнологии с помощью крови.\nГлухой — На проверки с этим предметом не влияют никакие факторы, например сложный\nпротивник не повышает сложности проверки, но и способности не позволяют улучшить\nрезультат.\nГромкий — Когда вы выбрасываете максимальный стресс этого предмета, вы получаете\n1к6 стресса в СУДЬБУ.\nДешёвый — Предмет нельзя продать дороже к4, даже если его эффективность выше. Не\nможет сочетаться со свойством дорогой.\n\nДолговой — Предмет можно применить, даже если он сломан, потерян, разряжен или\nнедоступен. В конце сцены получите К6 стресса в СУДЬБУ за каждое такое применение.\nДлящийся — После получения или восстановления стресса от этого предмета, цель до\nконца сцены начинает получать или восстанавливать 1к4 стресса каждый раз, когда\nдействует (при провале броска от персонажа игрока в случае с персонажем ведущего-\nпротивником). Эффект не суммируется. Обычно этот эффект дают оружию различные яды,\nа, например, снаряжению для путешествий — умные системы.\nДорогой — Этот предмет стоит на 1 ступень больше при покупке или продаже. Не может\nсочетаться со свойством дешёвый.\nДуэльный — Этот предмет причиняет на ступень больше стресса при сражении с другим\nврагом с оружием такого же класса, например снайперской винтовкой, или мечом.\nЖадный (Х) — При критическом успехе предмет причиняет или восстанавливает на\nступень больше стресса, но после этого требует плату: к6 стресса в СУДЬБУ, ДУХ, или\nРАЗУМ.\nЗаземляющий – При получении стресса в ДУХ, вы можете снизить его на одну ступень и\nпринять его в ПУЛИ.\nИзнуряющий — После провала проверки с использованием этого предмета, его кость\nпонижается на 1 ступень.\nКалиброванный — При проверке УЗНАВАТЬ,ПРОБИВАТЬСЯ, ТЕХНИЧИТЬ или ЧИНИТЬ\nпредмет выдаёт точные измерения. На критическом успехе можно задать ведущему один\nдополнительный технический вопрос.\nКамуфляж (Х) — Эта броня даёт мастерство при проверках СКРЫВАТЬСЯ в определённой\nобласти.\nКлятвенный — Раз в сессию назовите запрет: не отступать, не убивать, не лгать, не\nиспользовать другое оружие, не принимать помощь. Запрет работает до конца сессии, пока\nон соблюдается, предмет причиняет или восстанавливает на ступень больше стресса. При\nнарушении запрета получите к8 стресса в РАЗУМ или ДУХ.\nЛюбящий — Предмет можно использовать для помощи союзнику без риска получить\nстресс вместе с ним при провале группового действия. Если союзник получает\nпоследствие, предмет выходит из строя.\nМощный — Вы бросаете кость стресса два раза и выбираете больший результат.\nНесколько свойств мощный не суммируются, но вы всё ещё можете добавлять к этому\nстрессу кости от других источников.\nНадёжный — На это оружие не распространяется последствие клин.\nНеестественный — Каждый раз, когда вы применяете это снаряжение, вы получаете 1к4\nстресса в разум. Пока у вас больше 5 стресса в разуме, результат на кости этого\nснаряжения всегда максимально возможный.\nНелетальный — Это оружие при причинении стресса выводит врагов из строя, не убивая\nих.\nНенадёжный — Когда вы выбрасываете минимальный стресс этого предмета, вы\nполучаете 1к6 стресса в ПУЛИ.\nНеудобный (Х) — Повышает сложность броска на 1 ступень в определённых условиях.",
       "category": "Снаряжение для путешествия (к8)",
-      "isCategory": false
+      "isCategory": false,
+      "skill": "ПРОБИВАТЬСЯ",
+      "quality": "D10",
+      "notes": "точный, громкий. Раз в сессию вы должны покормить птицу,\nполучив К4 стресса в РЕСУРСЫ, иначе она погибнет.\nНебольшая шестиглазая птица с даром предсказания, шахтёры народа Соли носят такую в\nшахтах, чтобы не заблудиться.\nСписок свойств снаряжения\nАвтоматический — Вы можете один раз перебросить проверку УБИВАТЬ и кость стресса,\nстреляя из этого оружия и обязаны принять новый результат, но после этого получите\nпоследствие закончились патроны.\nАдаптивный – Когда предмет причиняет стресс одной и той же цели подряд, его кость\nповышается на одну ступень, но не больше К12. При причинении стресса другой цели,\nповышение кости сбрасывается.\nБронебойный (Х) — Игнорирует Х единиц защиты врага или восхождения. Если вы\nприобретаете эту черту как часть модификации, её показатель равен 2.\nВнезапный — При критическом провале повышает получаемый стресс на две ступени\nвместо одной. При критическом успехе повышает причиняемый стресс на две ступени\nвместо одной.\nВещий — Раз в сцену перед проверкой с этим предметом можно спросить ведущего: “что\nздесь пойдёт не так?” Ведущий отвечает честно, но коротко. После этого проверка всё\nравно проводится.\nГолодный — Можете получить к4 стресса в ПУЛИ, чтобы на одну проверку повысить\nэффективность предмета на 1 ступень. Росоход может вместо этого потратить\nиспользование кости крови. Разработанная росоходами технология, усиливающая\nтехнологии с помощью крови.\nГлухой — На проверки с этим предметом не влияют никакие факторы, например сложный\nпротивник не повышает сложности проверки, но и способности не позволяют улучшить\nрезультат.\nГромкий — Когда вы выбрасываете максимальный стресс этого предмета, вы получаете\n1к6 стресса в СУДЬБУ.\nДешёвый — Предмет нельзя продать дороже к4, даже если его эффективность выше. Не\nможет сочетаться со свойством дорогой.\nДолговой — Предмет можно применить, даже если он сломан, потерян, разряжен или\nнедоступен. В конце сцены получите К6 стресса в СУДЬБУ за каждое такое применение.\nДлящийся — После получения или восстановления стресса от этого предмета, цель до\nконца сцены начинает получать или восстанавливать 1к4 стресса каждый раз, когда\nдействует (при провале броска от персонажа игрока в случае с персонажем ведущего-\nпротивником). Эффект не суммируется. Обычно этот эффект дают оружию различные яды,\nа, например, снаряжению для путешествий — умные системы.\nДорогой — Этот предмет стоит на 1 ступень больше при покупке или продаже. Не может\nсочетаться со свойством дешёвый.\nДуэльный — Этот предмет причиняет на ступень больше стресса при сражении с другим\nврагом с оружием такого же класса, например снайперской винтовкой, или мечом.\nЖадный (Х) — При критическом успехе предмет причиняет или восстанавливает на\nступень больше стресса, но после этого требует плату: к6 стресса в СУДЬБУ, ДУХ, или\nРАЗУМ.\nЗаземляющий – При получении стресса в ДУХ, вы можете снизить его на одну ступень и\nпринять его в ПУЛИ.\nИзнуряющий — После провала проверки с использованием этого предмета, его кость\nпонижается на 1 ступень.\nКалиброванный — При проверке УЗНАВАТЬ,ПРОБИВАТЬСЯ, ТЕХНИЧИТЬ или ЧИНИТЬ\nпредмет выдаёт точные измерения. На критическом успехе можно задать ведущему один\nдополнительный технический вопрос.\nКамуфляж (Х) — Эта броня даёт мастерство при проверках СКРЫВАТЬСЯ в определённой\nобласти.\nКлятвенный — Раз в сессию назовите запрет: не отступать, не убивать, не лгать, не\nиспользовать другое оружие, не принимать помощь. Запрет работает до конца сессии, пока\nон соблюдается, предмет причиняет или восстанавливает на ступень больше стресса. При\nнарушении запрета получите к8 стресса в РАЗУМ или ДУХ.\nЛюбящий — Предмет можно использовать для помощи союзнику без риска получить\nстресс вместе с ним при провале группового действия. Если союзник получает\nпоследствие, предмет выходит из строя.\nМощный — Вы бросаете кость стресса два раза и выбираете больший результат.\nНесколько свойств мощный не суммируются, но вы всё ещё можете добавлять к этому\nстрессу кости от других источников.\nНадёжный — На это оружие не распространяется последствие клин.\nНеестественный — Каждый раз, когда вы применяете это снаряжение, вы получаете 1к4\nстресса в разум. Пока у вас больше 5 стресса в разуме, результат на кости этого\nснаряжения всегда максимально возможный.\nНелетальный — Это оружие при причинении стресса выводит врагов из строя, не убивая\nих.\nНенадёжный — Когда вы выбрасываете минимальный стресс этого предмета, вы\nполучаете 1к6 стресса в ПУЛИ.\nНеудобный (Х) — Повышает сложность броска на 1 ступень в определённых условиях.",
+      "resistance": null,
+      "protection": 0,
+      "extraSlots": 0
     },
     {
-      "id": "factions-card-80-259",
+      "id": "factions-card-82-275",
       "kind": "ability",
       "title": "Любовь, что спасёт мир",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          80
+          82
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Любовь, что спасёт мир\nКогда вы получаете стресс в шкалу отношений с соратником по правилам дружбы, соратник\nвыбирает эффект той же ступени в вашу сторону без нужды в принятии стресса.",
       "factionName": "Стальной горящий батальон",
@@ -4592,16 +5529,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-80-260",
+      "id": "factions-card-82-276",
       "kind": "ability",
       "title": "Оберегать последнее",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          80
+          82
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Оберегать последнее\nКогда вы восстанавливаете стресс соратнику через проверку ЧИНИТЬ, вы бросаете с\nмастерством, если у него уже есть последствия в восстанавливаемой шкале.\n162",
       "factionName": "Стальной горящий батальон",
@@ -4609,16 +5546,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-80-261",
+      "id": "factions-card-82-277",
       "kind": "ability",
       "title": "Церемониальный дрон",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          80
+          82
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Церемониальный дрон\nРядом с вами постоянно летает украшенный лентами дрон поддержки, подсвечивающий\nцели и ведущий авиаразведку. Раз в сцену вы можете с его помощью получить мастерство\nпри атаке по противнику, или узнать честный ответ на вопрос о локации на выбор.",
       "factionName": "Стальной горящий батальон",
@@ -4626,16 +5563,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-80-262",
+      "id": "factions-card-82-278",
       "kind": "ability",
       "title": "Меч, что видел Бога",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          80
+          82
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Меч, что видел Бога\nВы получаете Рийр, колоссальный вибромеч, для использования которого нужны особые\nтренировки. Он занимает кроме слота оружия ещё и слот рюкзака.",
       "factionName": "Высокородные Синего Древа",
@@ -4643,16 +5580,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-81-263",
+      "id": "factions-card-83-279",
       "kind": "ability",
       "title": "Книга свершений",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          81
+          83
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Книга свершений\nЗаписи о ваших подвигах ведутся и обсуждаются другими высокородными. Получите новое\nусловие восстановления: победить в ситуации, что казалась безвыходной.",
       "factionName": "Рийр",
@@ -4660,16 +5597,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-81-264",
+      "id": "factions-card-83-280",
       "kind": "ability",
       "title": "Неиссякаемая отвага",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          81
+          83
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Неиссякаемая отвага\nВаша смелость пугает даже потусторонних существ Башни. В рискованной или более\nсложной ситуации перед броском вы можете действовать отчаянно. В таком случае, любые\nваши успехи и провалы станут критическими.",
       "factionName": "Рийр",
@@ -4677,16 +5614,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-81-265",
+      "id": "factions-card-83-281",
       "kind": "ability",
       "title": "Священная лампа",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          81
+          83
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Священная лампа\nВаш отряд получает право носить священную лампу Единственного Сына. Кто-то в отряде\nобязан нести лампу, что занимает одну руку. Взамен весь отряд получает +3 защиты и +3\nслота в ДУХ и СУДЬБУ.",
       "factionName": "Храмовые антисолдаты",
@@ -4694,16 +5631,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-81-266",
+      "id": "factions-card-83-282",
       "kind": "ability",
       "title": "Искренность суперсолдата",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          81
+          83
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Искренность суперсолдата\nЕсли у вас есть малое последствие в РАЗУМ, вы получаете на ступень меньше стресса в\nПУЛИ. Если у вас есть значимое последствие в РАЗУМ, вы причиняете на ступень больше\nстресса атаками в рукопашном бою.",
       "factionName": "Храмовые антисолдаты",
@@ -4711,16 +5648,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-81-267",
+      "id": "factions-card-83-283",
       "kind": "ability",
       "title": "Истовый",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          81
+          83
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Истовый\nРаз в сцену, можете при проверке прибавить стресс в РАЗУМЕ к самому большому\nрезультату на кости.",
       "factionName": "Храмовые антисолдаты",
@@ -4728,16 +5665,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-82-268",
+      "id": "factions-card-84-284",
       "kind": "ability",
       "title": "Рассветы и закаты",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          82
+          84
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Рассветы и закаты\nКаждая чётная сцена в течение сессии метафорически является днём, а каждая нечётная –\nночью. В начале каждой сцены дня, восстановите К8 стресса в ДУХЕ/РАЗУМЕ. В начале\nкаждой сцены ночи, восстановите К8 стресса в ПУЛЯХ/СУДЬБЕ.",
       "factionName": "ЧВК Ядовитые Шляпы",
@@ -4745,16 +5682,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-82-269",
+      "id": "factions-card-84-285",
       "kind": "ability",
       "title": "РПРТР КРРР",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          82
+          84
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► РПРТР КРРР\nВы получаете традиционную шляпу, пропитанную соком ядовитых трав для защиты от\nживущих на голове паразитов. Раз в сессию, вы можете сказать, что собеседник узнал вашу\nшляпу и уважает вашу группировку, до конца сцены все проверки ГОВОРИТЬ против него\nбудут совершаться с преимуществом.",
       "factionName": "ЧВК Ядовитые Шляпы",
@@ -4762,16 +5699,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-82-270",
+      "id": "factions-card-84-286",
       "kind": "ability",
       "title": "Двойной удар",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          82
+          84
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Двойной удар\nКогда вы выводите из строя противника, следующая проверка УБИВАТЬ или СКРЫВАТЬСЯ\nможет быть совершена с мастерством.",
       "factionName": "ЧВК Ядовитые Шляпы",
@@ -4779,16 +5716,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-82-271",
+      "id": "factions-card-84-287",
       "kind": "ability",
       "title": "Я-Поющий Гром!",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          82
+          84
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Я-Поющий Гром!\nВы приняли единое имя. Когда вы получаете последствие в шкалу РЕСУРСОВ, связанное с\nсоциальным осуждением или преследованием, вы можете от него отказаться, но получите\nстресс в контакт на выбор ведущего – к6 за малое, к8 за значимое и к12 за роковое.",
       "factionName": "Поющие Громы",
@@ -4796,16 +5733,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-82-272",
+      "id": "factions-card-84-288",
       "kind": "ability",
       "title": "Засадная тактика",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          82
+          84
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Засадная тактика\nКогда вы атакуете из засады, вы, вдобавок к мастерству, причиняете на ступень больше\nстресса до конца сцены.",
       "factionName": "Поющие Громы",
@@ -4813,16 +5750,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-82-273",
+      "id": "factions-card-84-289",
       "kind": "ability",
       "title": "Система забвения",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          82
+          84
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Система забвения\nРаз в сессию, вы можете назваться чужим именем. Вас примут за своего без нужды в\nпроверке ГОВОРИТЬ, но первый в сцене провал будет критическим и разрушит вашу\nлегенду.",
       "factionName": "Поющие Громы",
@@ -4830,16 +5767,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-83-274",
+      "id": "factions-card-85-290",
       "kind": "ability",
       "title": "Малые проклятия",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          83
+          85
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Малые проклятия\nВы получаете значимое последствие в шкалу ДУХ – набор добровольных проклятий. Раз в\nсессию, ведущий может сказать, что одно из них вам помешало и понизить степень успеха\nброска на одну ступень. Взамен вы получаете +5 слотов и +4 защиты в ДУХ, пока это\nпоследствие при вас.",
       "factionName": "Эзогончие ББББ",
@@ -4847,16 +5784,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-83-275",
+      "id": "factions-card-85-291",
       "kind": "ability",
       "title": "Собачья песня",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          83
+          85
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Собачья песня\nРаз в сессию, особым длительным песнопением вы перемешиваете имена всех\nучаствующих в ритуале. Поменяйте имена в листах персонажа. До конца сцены, когда кто-\nто из певших песню должен получить стресс или последствие в ДУХ или ПУЛИ от\nвражеской магии, его может забрать другой.",
       "factionName": "Эзогончие ББББ",
@@ -4864,16 +5801,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-83-276",
+      "id": "factions-card-85-292",
       "kind": "ability",
       "title": "Арсенал охотника",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          83
+          85
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Арсенал охотника\nВы получаете особенным образом модифицированную ракетную установку с\nантимагическими боеприпасами.",
       "factionName": "Эзогончие ББББ",
@@ -4881,16 +5818,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-83-277",
+      "id": "factions-card-85-293",
       "kind": "ability",
       "title": "Испытание саблей",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          83
+          85
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Испытание саблей\nКогда вы атакуете тяжёлым оружием ближнего боя, вы причиняете на ступень больше\nстресса врагам, что сражаются с похожим оружием.\n169",
       "factionName": "Ягодная Стража",
@@ -4898,16 +5835,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-84-278",
+      "id": "factions-card-86-294",
       "kind": "ability",
       "title": "Отвар из ягод",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          84
+          86
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Отвар из ягод\nМногие виды ягод на грани исчезновения из-за действий корпораций, но вы их храните. Раз\nв сессию, вы можете сварить алхимический отвар, это не требует проверки, но занимает\nзначимое время. Выпивший отвар получает мастерство на любой навык по выбору до\nконца сцены, отвары не имеют срока годности, но занимают слот ресурса.",
       "factionName": "Ягодная Стража",
@@ -4915,16 +5852,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-84-279",
+      "id": "factions-card-86-295",
       "kind": "ability",
       "title": "Теория жизни",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          84
+          86
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Теория жизни\nКогда вы встречаете неизведанное существо, вы получаете мастерство на все броски,\nсвязанные с его нелетальной поимкой, допросом и изучением. Это никогда не оказывается\nнастоящий инопланетянин, только чудовище из Башни, сбежавший эксперимент\nкорпораций, или мутировавший от вселившихся духов человек.",
       "factionName": "Ягодная Стража",
@@ -4932,16 +5869,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-84-280",
+      "id": "factions-card-86-296",
       "kind": "ability",
       "title": "Достойная смерть",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          84
+          86
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Достойная смерть\nРаз в сессию, когда вы сражаетесь с сильным врагом, или восхождением, вы можете\nсказать, что они уважают ваше право умереть достойно. До конца сцены, когда вы\nполучаете от него стресс, вы причиняете ему стресс с такой же костью.\n170",
       "factionName": "ЧВК Фаталисты",
@@ -4949,16 +5886,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-84-281",
+      "id": "factions-card-86-297",
       "kind": "ability",
       "title": "Трофей раба судьбы",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          84
+          86
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Трофей раба судьбы\nВ начале сцены бросьте К6. Один раз до конца сцены вы можете заменить его результатом\nлюбой результат на брошенной вами кости.",
       "factionName": "ЧВК Фаталисты",
@@ -4966,16 +5903,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-84-282",
+      "id": "factions-card-86-298",
       "kind": "ability",
       "title": "Зима дышит в спину",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          84
+          86
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Зима дышит в спину\nВы ближе к миру мёртвых, чем остальные. Когда рядом погибает человек, вы можете\nвосстановить К6 в РАЗУМ, ДУХ, или СУДЬБУ. Вам всегда очень холодно.",
       "factionName": "ЧВК Фаталисты",
@@ -4983,16 +5920,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-85-283",
+      "id": "factions-card-87-299",
       "kind": "ability",
       "title": "Тайные испытания",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          85
+          87
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Тайные испытания\nВы не производите излучения. Вы совершаете с мастерством проверки СКРЫВАТЬСЯ\nпротив машин, камер и сильно кибернетизированных бойцов.",
       "factionName": "Хашахсотские мученики",
@@ -5000,16 +5937,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-85-284",
+      "id": "factions-card-87-300",
       "kind": "ability",
       "title": "Осколок",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          85
+          87
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Осколок\nОсколок храма занимает слот снаряжения. Пока вы его несёте, вы получаете в СУДЬБУ на\nступень больше стресса и не можете пользоваться защитой и дополнительными слотами в\nэтой шкале. Раз в сцену, вы выбираете другое сопротивление, вы получаете в него на\nступень меньше стресса до конца сцены.",
       "factionName": "Хашахсотские мученики",
@@ -5017,16 +5954,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-85-285",
+      "id": "factions-card-87-301",
       "kind": "ability",
       "title": "Иссушенный",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          85
+          87
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Иссушенный\nВы получаете на ступень меньше стресса от неблагоприятных условий: от жары и холода\nдо ядовитого газа.",
       "factionName": "Хашахсотские мученики",
@@ -5034,16 +5971,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-85-286",
+      "id": "factions-card-87-302",
       "kind": "ability",
       "title": "Оформить задним числом",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          85
+          87
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Оформить задним числом\nРаз в сессию, когда вы должны потратить ресурс, вы можете его не потратить, сказав, что\nвторой такой же просто не записали в накладной.",
       "factionName": "Бюроманты Двухвостой Змеи",
@@ -5051,16 +5988,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-85-287",
+      "id": "factions-card-87-303",
       "kind": "ability",
       "title": "Гриф «не срочно»",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          85
+          87
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Гриф «не срочно»\nРаз в сцену выберите последствие. Оно у вас остаётся, но вступает в силу только в начале\nследующей сцены.",
       "factionName": "Бюроманты Двухвостой Змеи",
@@ -5068,16 +6005,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-85-288",
+      "id": "factions-card-87-304",
       "kind": "ability",
       "title": "Подробная документация",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          85
+          87
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Подробная документация\nРаз в сессию, вы можете быстро составить чёткий план действий и объяснить его\nтоварищам. До конца сцены, вы совершаете все проверки с мастерством до первой\nпровалившейся проверки. После её провала вы получаете на ступень больше стресса до\nконца сцены.",
       "factionName": "Бюроманты Двухвостой Змеи",
@@ -5085,16 +6022,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-86-289",
+      "id": "factions-card-88-305",
       "kind": "ability",
       "title": "Достойный наследник",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          86
+          88
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Достойный наследник\nВыберите навык, в котором имеете мастерство. Кость мастерства этого навыка теперь не\nдобавляется в общий пул, вместо этого её результат суммируется с костью с наивысшим\nрезультатом.",
       "factionName": "Новые Герои",
@@ -5102,16 +6039,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-86-290",
+      "id": "factions-card-88-306",
       "kind": "ability",
       "title": "Стыд перед предками",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          86
+          88
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Стыд перед предками\nРаз в сцену после проваленной проверки вы можете сказать, что слышите в голове\nосуждающее эхо предка. Вы перебрасываете проверку и получаете К6 стресса в РАЗУМ.\nВы можете делать это сколько угодно раз в сессию, но с каждым применением кость\nстресса в РАЗУМ повышается на ступень.",
       "factionName": "Новые Герои",
@@ -5119,16 +6056,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-86-291",
+      "id": "factions-card-88-307",
       "kind": "ability",
       "title": "Новые легенды",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          86
+          88
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Новые легенды\nРаз в сессию, когда вы совершаете опасное или роковое действие, вы можете принять\nуспех с ценой. Опишите это действие как часть легенды о герое.\nВы можете выбрать, кто именно с вашей родины будет рассказывать об этом подвиге,\nнапример ваша младшая сестра, школьный учитель, солдат в отставке или мудрец-\nотшельник. Перенеситесь в сцену с рассказом и опишите реакцию слушателей.",
       "factionName": "Новые Герои",
@@ -5136,16 +6073,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-86-292",
+      "id": "factions-card-88-308",
       "kind": "ability",
       "title": "Шлем-куб",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          86
+          88
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Шлем-куб\nВы получаете полный шлем с +3 защитой и +3 слотами в ПУЛИ. Благодаря встроенным в\nнего системам наведения для тяжёлого оружия и баллистическим калькуляторам, всё ваше\nтактическое оружие и артиллерийские удары получают свойство стабильный.",
       "factionName": "Голодная Сотня",
@@ -5153,16 +6090,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-380-86-293",
+      "id": "factions-380-88-309",
       "kind": "ability",
       "title": "380-мм реприза",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          86
+          88
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► 380-мм реприза\nВы получаете снаряжение — красный трансреальностный маячок, запускаемую из\nсигнального пистолета систему наводки артиллерии на основе артефакта из Башни. Вы\nможете использовать его раз в сцену проверкой УБИВАТЬ и всегда получаете\nдополнительно к8 стресса в РЕСУРСЫ. При атаке вы должны вплести врагов и себя в часть\nпостановки для стороннего наблюдателя, иначе получите на ступень стресса в РЕСУРСЫ\nбольше.\nТяжёлая артиллерия\nСтресс: К12\nСвойства: Мошный, разброс, бронебойный (6), подавление, осадный, громкий\nДистанция: Дальняя",
       "factionName": "Голодная Сотня",
@@ -5170,16 +6107,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-120-86-294",
+      "id": "factions-120-88-310",
       "kind": "ability",
       "title": "120-мм дивертисмент",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          86
+          88
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► 120-мм дивертисмент\nВы получаете снаряжение — зелёный трансреальностный маячок, запускаемую из\nсигнального пистолета систему наводки артиллерии на основе артефакта из Башни. Вы\nможете использовать его раз в сцену проверкой УБИВАТЬ и всегда получаете\nдополнительно к8 стресса в РЕСУРСЫ. При атаке вы должны вплести врагов и себя в часть\nпостановки для стороннего наблюдателя, иначе получите на ступень стресса в РЕСУРСЫ\nбольше.\nТочечный выстрел\nСтресс: К12\nСвойства: Мощный, бронебойный (8), осадный, точный, автоматический, дуэльный,\nгромкий\nДистанция: Дальняя\n175",
       "factionName": "Голодная Сотня",
@@ -5187,16 +6124,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-87-295",
+      "id": "factions-card-89-311",
       "kind": "ability",
       "title": "Переходя земли и моря",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          87
+          89
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Переходя земли и моря\nКогда вы работаете на фракции с противоположными интересами, вы получаете на ступень\nменьше стресса в СУДЬБУ и РЕСУРСЫ.\n176",
       "factionName": "ЧВК Звездочёты",
@@ -5204,16 +6141,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-87-296",
+      "id": "factions-card-89-312",
       "kind": "ability",
       "title": "Костяное созвездие",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          87
+          89
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Костяное созвездие\nВ течение сцены, в которой погиб или был тяжело ранен другой человек, вы можете\nпровести ритуал с песней, поеданием плоти и построением созвездий в странной\nгалактике, которую видите только вы с братьями по оружию.\nРаз в сессию бросьте кость К10, при нечётном результате вас ждёт неудача и вы к ней\nготовы: до конца сессии, получив критический провал или провал, вы можете сказать, что\nпредвидели его и заменить его на успех с ценой. При чётном результате вас ждёт успех:\nполучив успех с ценой или успех, вы можете заменить его на критический успех.",
       "factionName": "ЧВК Звездочёты",
@@ -5221,16 +6158,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-87-297",
+      "id": "factions-card-89-313",
       "kind": "ability",
       "title": "Ясновидящее мясо",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          87
+          89
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Ясновидящее мясо\nВ течение сессии, в которой вы ели человеческую плоть, вы можете один раз узнать, кто из\nперсонажей ведущего в сцене наиболее опасен, ранен, напуган, или важен для сцены.",
       "factionName": "ЧВК Звездочёты",
@@ -5238,16 +6175,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-88-298",
+      "id": "factions-card-90-314",
       "kind": "ability",
       "title": "Ключ от всех дверей",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          88
+          90
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Ключ от всех дверей\nВы несёте выкованный из танка гигантский ключ, он занимает слот снаряжения. Он может\nбез нужды в проверке открыть любую дверь, но вы обязательно получите К8 стресса в\nСУДЬБУ.",
       "factionName": "Коронованные Удары",
@@ -5255,16 +6192,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-88-299",
+      "id": "factions-card-90-315",
       "kind": "ability",
       "title": "Злая месть",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          88
+          90
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Злая месть\nВы можете разогнать ярость, которая поддерживает в вас жизнь. Раз в сцену, вы можете\nповысить сложность действия на одну ступень, чтобы повысить причиняемый стресс на две\nступени.",
       "factionName": "Коронованные Удары",
@@ -5272,16 +6209,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-88-300",
+      "id": "factions-card-90-316",
       "kind": "ability",
       "title": "Призрачный танк",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          88
+          90
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Призрачный танк\nРаз в сцену, вы можете проверкой КОЛДОВАТЬ призвать часть призрачного танка,\nнапример гусеницы, фару, бронелист, или пушку. При провале вы можете попытаться снова,\nно успешных использований не может быть больше одного в сцене.\nВыберите эффект:\n— Атака К12 со свойствами громкий, мощный, разброс и осадный\n— Атака К10 со свойствами громкий, мощный, автоматический и подавление\n— +5 защиты и +2 слота в ПУЛИ до конца сцены одному из персонажей в группе на выбор\n— Действие К10 ПРОБИВАТЬСЯ со свойствами громкий, мощный и стабильный\n— Заставить работать выключенную технику без топлива\n178",
       "factionName": "Коронованные Удары",
@@ -5289,16 +6226,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-88-301",
+      "id": "factions-card-90-317",
       "kind": "ability",
       "title": "Рекламная пауза",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          88
+          90
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Рекламная пауза\nРаз в сцену вы можете громко выкрикнуть спонсорскую фразу, сделать фирменный жест,\nили проиграть на киберглазах заставку. Враги на мгновение теряются: один союзник может\nсменить позицию, перезарядиться или сделать другую небоевую проверку нормальной по\nсложности.",
       "factionName": "Общество «Цепи»",
@@ -5306,16 +6243,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-88-302",
+      "id": "factions-card-90-318",
       "kind": "ability",
       "title": "Спонсорская печать",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          88
+          90
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Спонсорская печать\nСовершая рискованное и более сложное действие, вы можете сказать рекламный слоган.\nПри успехе вы причините на ступень больше стресса благодаря магии спонсора, при\nпровале ролик с вашей неудачей становится крайне популярным: вы восстанавливаете К10\nстресса в РЕСУРСЫ.\n179",
       "factionName": "Общество «Цепи»",
@@ -5323,16 +6260,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-89-303",
+      "id": "factions-card-91-319",
       "kind": "ability",
       "title": "Знаток-обзорщик",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          89
+          91
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Знаток-обзорщик\nВы прекрасно разбираетесь в военном снаряжении, и на многое у вас есть видеообзоры.\nКогда вы продаёте или покупаете снаряжение, при успехе проверки ГОВОРИТЬ вы можете\nпродать его на ступень дороже, или купить на ступень дешевле.",
       "factionName": "Общество «Цепи»",
@@ -5340,16 +6277,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-89-304",
+      "id": "factions-card-91-320",
       "kind": "ability",
       "title": "Быстрая кладка",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          89
+          91
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Быстрая кладка\nПройдя проверку ТЕХНИЧИТЬ и потратив К8 или более ценный ресурс, вы можете\nблагодаря магии тёмных строителей быстро возвести постройку, которая будет давать\nмастерство к вашим броскам до первого проваленного броска. Например, это может быть\nбаррикада для помощи в УБИВАТЬ, или лестница для ПРОБИВАТЬСЯ.",
       "factionName": "Тёмные строители",
@@ -5357,16 +6294,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-89-305",
+      "id": "factions-card-91-321",
       "kind": "ability",
       "title": "Важная постройка",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          89
+          91
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Важная постройка\nПройдя проверку ТЕХНИЧИТЬ и потратив К12 ресурс, вы можете через сложные ритуалы\nтёмных строителей возвести в оазисе сложную комплексную постройку, она будет готова\nтолько к началу следующей сессии, но ваша работа займёт только одну сцену. Выберите\nтовар или услугу, продающуюся в оазисе, например исцеление в РАЗУМ, или оружие, или\nпредметы для путешествий. Товары этой категории теперь стоят в этом оазисе на одну\nступень дешевле при покупке.",
       "factionName": "Тёмные строители",
@@ -5374,16 +6311,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-89-306",
+      "id": "factions-card-91-322",
       "kind": "ability",
       "title": "Союз",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          89
+          91
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Союз\nВы стираете границу между человеком и зданием. Вы получаете +1 защиты и +1 слот в\nПУЛИ, а также возможность слышать сквозь толстые стены и проверкой ПРОБИВАТЬСЯ\nпроходить через бетонные стены без вреда для обеих сторон.",
       "factionName": "Тёмные строители",
@@ -5391,16 +6328,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-90-307",
+      "id": "factions-card-92-323",
       "kind": "ability",
       "title": "Посредник",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          90
+          92
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Посредник\nВы можете немного, но понимать существ Башни, в основном – пытающихся казаться\nлюдьми. Вы можете без проверки добиться простого понимания, например перемирия до\nконца сцены, права пройти мимо за оплату, или возможности задать один вопрос.",
       "factionName": "Секреты Короля",
@@ -5408,16 +6345,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-90-308",
+      "id": "factions-card-92-324",
       "kind": "ability",
       "title": "Приёмная перчатка",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          90
+          92
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Приёмная перчатка\nВас приняли в общину, это со временем дало вам инстинктивное понимание природы тайн\nи загадок. Когда кто-то из группы задаёт вопрос ведущему через способность персонажа,\nвы восстанавливаете К8 в ДУХЕ и РАЗУМЕ.",
       "factionName": "Секреты Короля",
@@ -5425,16 +6362,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-90-309",
+      "id": "factions-card-92-325",
       "kind": "ability",
       "title": "Благословение Короля",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          90
+          92
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Благословение Короля\nКороль-в-камуфляже награждает вас силой скрываться от взора. Раз в сцену, вы можете\nперебросить проверку СКРЫВАТЬСЯ. Вы пристрастились к коллекционированию перчаток.\n182",
       "factionName": "Секреты Короля",
@@ -5442,16 +6379,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-90-310",
+      "id": "factions-card-92-326",
       "kind": "ability",
       "title": "Транс-хрональный доспех",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          90
+          92
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Транс-хрональный доспех\nНа внутренней стороне вашей брони написаны имена нерождённых детей. Раз в сцену,\nкогда вы получаете стресс в ПУЛИ, вы можете перенести его в СУДЬБУ и снизить на одну\nступень.",
       "factionName": "Контр-шаманы Царицы-закат",
@@ -5459,16 +6396,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-90-311",
+      "id": "factions-card-92-327",
       "kind": "ability",
       "title": "Пустое пророчество",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          90
+          92
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Пустое пророчество\nВы существуете только в текущем моменте и ясновидение вас не учитывает. Раз в сессию,\nкогда кто-то из группы пользуется предсказанием, вы можете сказать, что предсказание не\nвидело вашего вклада и увеличить степень успеха гадания на одну ступень.",
       "factionName": "Контр-шаманы Царицы-закат",
@@ -5476,16 +6413,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-90-312",
+      "id": "factions-card-92-328",
       "kind": "ability",
       "title": "Бой нематериальному!",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          90
+          92
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Бой нематериальному!\nРаз в сцену, вы можете сказать, что чувствуете рядом духа местности. Он будет вам\nмешать, повышая сложность проверок на одну ступень, но за каждую проваленную таким\nобразом проверку вы получите К8 ресурс при поимке духа.\n183",
       "factionName": "Контр-шаманы Царицы-закат",
@@ -5493,16 +6430,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-91-313",
+      "id": "factions-card-93-329",
       "kind": "ability",
       "title": "Позовём – и все пойдут за нами",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          91
+          93
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Позовём – и все пойдут за нами\nБашня – главная угроза миру и вы не устаёте об этом напоминать. Вы совершает с\nмастерством проверки ГОВОРИТЬ, направленные на временную вербовку помощников.",
       "factionName": "Башня Упадёт",
@@ -5510,16 +6447,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-91-314",
+      "id": "factions-card-93-330",
       "kind": "ability",
       "title": "Несокрушимый дух",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          91
+          93
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Несокрушимый дух\nКосмический ужас бессилен перед чудесами человеческой воли. Раз в сцену, когда вы\nдолжны получить стресс в РАЗУМ, вы можете от него отказаться и причинить столько же\nстресса атаковавшему.\n184",
       "factionName": "Башня Упадёт",
@@ -5527,16 +6464,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-91-315",
+      "id": "factions-card-93-331",
       "kind": "ability",
       "title": "Красная рыба",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          91
+          93
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Красная рыба\nРаз в сессию, когда вы находите полезную информацию для борьбы с Башней, например\nобнаруживаете слабое место одного из видов тварей Башни, или находите безопасный\nмаршрут, или находите место сбора культа, вы можете внести её в базы данных\nгруппировки. Теперь вы не можете получить критический провал против того, о чём узнали\nинформацию.",
       "factionName": "Башня Упадёт",
@@ -5544,16 +6481,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-92-316",
+      "id": "factions-card-94-332",
       "kind": "ability",
       "title": "Срочная доставка",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          92
+          94
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Срочная доставка\nРаз в сессию, придя в оазис, вы можете сказать, что кто-то готов поручить вам доставку в\nсоседнюю локацию. В ней всегда будет подвох, например предмет взрывоопасный, или за\nним охотятся корпорации. При успешной доставке, вы получаете втрое больше ресурсов,\nчем получили бы за такую миссию. При проваленной доставке, вы получаете стресс в\nРЕСУРСЫ, равный кости предмета, что вы несли.",
       "factionName": "Курьерская служба Кра Сир",
@@ -5561,16 +6498,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-92-317",
+      "id": "factions-card-94-333",
       "kind": "ability",
       "title": "Холодная вода",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          92
+          94
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Холодная вода\nВы знаете, как правильно обращаться с водой. Раз в сессию, во время восхождения, вы\nможете сказать, что нашли источник относительно чистой воды, он восстановит всем в\nгруппе К6 в ПУЛЯХ и РАЗУМЕ. Не забудьте поблагодарить воду после этого.",
       "factionName": "Курьерская служба Кра Сир",
@@ -5578,16 +6515,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-92-318",
+      "id": "factions-card-94-334",
       "kind": "ability",
       "title": "Клятва рабочего",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          92
+          94
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Клятва рабочего\nНа плечах трудящихся стоит мир. Раз в сцену, вы можете перебросить проверку\nТЕХНИЧИТЬ.",
       "factionName": "Курьерская служба Кра Сир",
@@ -5595,16 +6532,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-92-319",
+      "id": "factions-card-94-335",
       "kind": "ability",
       "title": "Полярная ночь",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          92
+          94
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Полярная ночь\nВы получаете +5 защиты в ПУЛИ и РАЗУМ от холода, темноты, изоляции и долгого\nожидания. Проверки УЗНАВАТЬ в аномальных зонах, похожих на что-то человеческое,\nсовершаются с мастерством.",
       "factionName": "Экспедиция Канонира Слепой Королевы",
@@ -5612,16 +6549,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-92-320",
+      "id": "factions-card-94-336",
       "kind": "ability",
       "title": "Мы здесь были",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          92
+          94
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Мы здесь были\nРаз в сессию вы можете заявить, что похожую аномалию уже видели на полюсе. Задайте\nведущему два вопроса о принципе работы аномалии, или артефакта. Один ответ будет\nточным, второй — полезным, но неполным.",
       "factionName": "Экспедиция Канонира Слепой Королевы",
@@ -5629,16 +6566,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-92-321",
+      "id": "factions-card-94-337",
       "kind": "ability",
       "title": "Сквозь бури и ураганы",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          92
+          94
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Сквозь бури и ураганы\nРоковое восхождение считается опасным, пока вы ведёте группу.",
       "factionName": "Экспедиция Канонира Слепой Королевы",
@@ -5646,16 +6583,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-93-322",
+      "id": "factions-card-95-338",
       "kind": "ability",
       "title": "Блюститель дружбы",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          93
+          95
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Блюститель дружбы\nКогда вы помогаете соратнику, применяя способности дружбы, вы можете выбрать два\nэффекта соответствующего уровня кости, но кроме стресса в шкалу дружбы, вы получите\nтакую же кость стресса в ресурсы.",
       "factionName": "Рти Кти Данн",
@@ -5663,16 +6600,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-93-323",
+      "id": "factions-card-95-339",
       "kind": "ability",
       "title": "Улыбка с обложки",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          93
+          95
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Улыбка с обложки\nКогда вы помогаете соратнику и при этом говорите что-то гиперболизировано\nдружелюбное, рекламное или фальшиво-заботливое, он получает мастерство в добавок к\nкости помощи. Если союзник проваливает бросок, вы оба получаете к8 стресса в РАЗУМ.",
       "factionName": "Рти Кти Данн",
@@ -5680,16 +6617,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-93-324",
+      "id": "factions-card-95-340",
       "kind": "ability",
       "title": "Эталонная подготовка",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          93
+          95
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Эталонная подготовка\nВас учили всему и понемногу. Один раз в сессию, выберите группу тактик, которой не\nвладеете (вы всё ещё должны обладать нужным навыком). До конца сессии, вы можете ей\nпользоваться.",
       "factionName": "Рти Кти Данн",
@@ -5697,16 +6634,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-93-325",
+      "id": "factions-card-95-341",
       "kind": "ability",
       "title": "Дочерняя структура",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          93
+          95
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Дочерняя структура\nРаз в сессию вы можете объявить, что нужная мелкая услуга, запчасть, справка или\nспециалист принадлежат одной из фирм концерна. Это не решает проблему полностью, но\nснижает сложность следующей проверки ГОВОРИТЬ, ТЕХНИЧИТЬ или УЗНАВАТЬ на одну\nступень.",
       "factionName": "Островные фирмы",
@@ -5714,16 +6651,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-93-326",
+      "id": "factions-card-95-342",
       "kind": "ability",
       "title": "Хлад лунного стыда",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          93
+          95
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Хлад лунного стыда\nРаз в сцену, вы можете пройти проверку КОЛДОВАТЬ, чтобы призвать часть устыдившейся\nчеловечества луны. Вы можете совершать сколько угодно попыток, но успешно применить\nспособность можно только один раз за сцену. Выберите эффект:\n– Низкая гравитация\nПротивники теряют бонусы от расположения, или вы снижаете на ступень сложность\nвосхождения до конца сцены.\n– Космический вакуум\nПричиняет К6 стресса со свойствами мощный и разброс, или до конца сцены лишает\nресурс свойства, делающего его менее удобным при переноске.\n– Песня мёртвой луны\nПричиняет К6 стресса со свойствами стабильный и подавление, или делает преграду\nхрупкой, так что попытки её сломать причинят максимальный стресс.",
       "factionName": "Островные фирмы",
@@ -5731,16 +6668,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-93-327",
+      "id": "factions-card-95-343",
       "kind": "ability",
       "title": "Ненависть",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          93
+          95
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Ненависть\nВы причиняете на ступень больше стресса имуществу других корпораций, но не их\nперсоналу.",
       "factionName": "Островные фирмы",
@@ -5748,16 +6685,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-94-328",
+      "id": "factions-card-96-344",
       "kind": "ability",
       "title": "Враг лицензий",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          94
+          96
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Враг лицензий\nРаз в сцену, вы можете пройти проверку ТЕХНИЧИТЬ, чтобы создать нелегальную копию\nкорпоративного снаряжения до конца сцены. Вы можете совершать сколько угодно попыток,\nно успешно применить способность можно только один раз за сцену. Она будет иметь те же\nсвойства и характеристики, и вдобавок – опасный и ненадёжный. Под снаряжением\nкорпоративного производства подразумевается заранее заготовленное снаряжение из\nсписка в книге, или то, что ведущий и игроки создали сами и ввели в повествование как\nснаряжение серийного производства.\n190",
       "factionName": "Протест левшей",
@@ -5765,16 +6702,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-94-329",
+      "id": "factions-card-96-345",
       "kind": "ability",
       "title": "Левша",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          94
+          96
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Левша\nКогда вы получаете второе последствие повреждена рука, оно исчезает в начале\nследующей сцены благодаря перестроению программируемого полимера.",
       "factionName": "Протест левшей",
@@ -5782,16 +6719,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-94-330",
+      "id": "factions-card-96-346",
       "kind": "ability",
       "title": "Новый фильм",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          94
+          96
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Новый фильм\nВы получили доступ к инфоканалу, где можно добыть нелегальную копию фильма,\nанимационного фильма, или видеоигры задолго до релиза. Раз в сессию, находясь в\nоазисе, вы можете потратить К10 ресурс или предмет, или получить К10 стресса в\nРЕСУРСЫ, чтобы приобрести пиратский контент. Его просмотр восстановит вам К10 в\nРАЗУМ без проверки, затем кость снизится на одну ступень и его снова можно будет\nприменить. Спойлер по крупной франшизе может дать мастерство в навыке ГОВОРИТЬ,\nесли вы общаетесь с её ценителем.",
       "factionName": "Протест левшей",
@@ -5799,16 +6736,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-94-331",
+      "id": "factions-card-96-347",
       "kind": "ability",
       "title": "Поймать кошмар",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          94
+          96
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Поймать кошмар\nКогда вы или союзник получаете стресс в РАЗУМ, вы можете пройти проверку ИЗБЕГАТЬ,\nчтобы поймать часть испуга в маленький сосуд, ткань, кость или глиняную фигурку. Снизьте\nстресс на ступень. Позже вы можете разбить сосуд, чтобы без проверки причинить врагу К6\nстресса.",
       "factionName": "Пастухи",
@@ -5816,16 +6753,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-94-332",
+      "id": "factions-card-96-348",
       "kind": "ability",
       "title": "Сон на двоих",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          94
+          96
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Сон на двоих\nРаз в сессию во время отдыха вы можете лечь рядом с союзником и провести его через\nбезопасный сон. Вы оба восстанавливаете к8 в РАЗУМЕ и ДУХЕ, но ведущий задаёт вам\nвопрос о страхе, желании или воспоминании союзника, которому принадлежит сон, вы\nдолжны ответить честно. Опишите сон.",
       "factionName": "Пастухи",
@@ -5833,16 +6770,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-94-333",
+      "id": "factions-card-96-349",
       "kind": "ability",
       "title": "Стёртая грань",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          94
+          96
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Стёртая грань\nВы причиняете и восстанавливаете на ступень больше стресса, пока у вас больше 5\nстресса в ДУХ. В этом состоянии не можете различить, что вам снится, а что нет.",
       "factionName": "Пастухи",
@@ -5850,16 +6787,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-95-334",
+      "id": "factions-card-97-350",
       "kind": "ability",
       "title": "Информационная чистка",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          95
+          97
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Информационная чистка\nРаз в сессию вы можете удалить следы действия отряда из сетей, камер, отчётов и слухов.\nЭто не меняет память очевидцев, но делает доказательства бесполезными.",
       "factionName": "Узорезы",
@@ -5867,16 +6804,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-95-335",
+      "id": "factions-card-97-351",
       "kind": "ability",
       "title": "Щит индустрии",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          95
+          97
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Щит индустрии\nРаз в сессию, вы можете в важный момент начать переписываться в узах локации с\nсетевым хейтером. Это делает все другие проверки в сцене на ступень тяжелее, пока вы не\nпройдёте проверку ГОВОРИТЬ, переспорив вредителя. В награду, придя в оазис, вы\nможете получить два К6 предмета или ресурса, их кости повышаются на ступень за каждую\nпроваленную в ходе онлайн-обсуждения проверку.",
       "factionName": "Узорезы",
@@ -5884,16 +6821,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-95-336",
+      "id": "factions-card-97-352",
       "kind": "ability",
       "title": "Кибер-жаргон",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          95
+          97
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Кибер-жаргон\nВы совмещаете преступный жаргон и новомодные словечки из сетевых мемов и\nпопулярных роликов. Ваши с соратниками переговоры по рации возможно перехватить,\nчтобы, например, узнать, где вы, но невозможно расшифровать.\n192\n\nСеребряные копья.\nВоины, чьё сердце разбито несчастной любовью, уходят в монашеский орден,\nзанимающийся охотой на диких духов и помощью раненым на поле боя.\nМалые способности",
       "factionName": "Узорезы",
@@ -5901,16 +6838,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-95-337",
+      "id": "factions-card-97-353",
       "kind": "ability",
       "title": "Разбитое сердце",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          95
+          97
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Разбитое сердце\nКогда вы защищаете раненого, отвергнутого, испуганного или одержимого, получите\nмастерство на ЧИНИТЬ, ИЗБЕГАТЬ или УБИВАТЬ. После сцены можете восстановить К6 в\nРАЗУМЕ, если честно признаетесь соратникам, кого вам это напомнило.",
       "factionName": "Узорезы",
@@ -5918,16 +6855,16 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "factions-card-95-338",
+      "id": "factions-card-97-354",
       "kind": "ability",
       "title": "Святое серебро",
       "section": "factions",
       "dropTarget": "ability",
       "source": {
         "pdfPages": [
-          95
+          97
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "► Святое серебро\nВы получаете серебряное копьё ордена для охоты на духов.",
       "factionName": "Узорезы",
@@ -5935,460 +6872,356 @@ window.TOWER_CODEX = {
       "tier": "minor"
     },
     {
-      "id": "tactics-card-109-339",
+      "id": "factions-card-98-355",
+      "kind": "ability",
+      "title": "Не снова!",
+      "section": "factions",
+      "dropTarget": "ability",
+      "source": {
+        "pdfPages": [
+          98
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "► Не снова!\nКогда ваш контакт-персонаж ведущего, или персонаж игрока должен получить роковое\nпоследствие, он выбывает из игры не мгновенно, а только в конце сцены. До этого момента\nвы можете его спасти, обычно это роковая проверка ЧИНИТЬ, для которой требуется К12\nпредмет.\n194",
+      "factionName": "Серебряное копьё",
+      "factionArea": "Фракции ДУХОВ",
+      "tier": "minor"
+    },
+    {
+      "id": "tactics-card-111-356",
       "kind": "tactic",
       "title": "Продвинутая перезарядка",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          109
+          111
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "1) Продвинутая перезарядка\n— Перезарядка со сбросом магазина: Вы с мастерством проходите проверку\nперезарядки, но всегда при этом получаете к4 стресса в ресурсы.\n— Перезарядка одной рукой: Бросок на перезарядку не становится сложнее, даже если у\nвас ранена вторая рука или вы что-то в ней держите.\n— Тактическая перезарядка: Вы перезаряжаетесь до того, как опустошить магазин. Если\nвы атаковали огнестрельным оружием в этой сцене, вы можете пройти проверку\nперезарядки без соответствующего последствия. После этой перезарядки, до конца этой\nсцены оружие не может пострадать от последствия “закончились патроны”.\n— Хашахсотская перезарядка: Этот метод применяли бойцы в химзащите, сражавшиеся\nпосле ядерной атаки на Хашахсот. Набор манипуляций, разнящихся от оружия к оружию,\nминимизирует попадание грязи в механизм. После этой перезарядки, до конца этой сцены\nоружие не может пострадать от последствия клин”.\n— Угрожающая перезарядка: Вы перезаряжаетесь очень грозно. Даже зная, что вы\nуязвимы, враги не будут наступать.",
       "skill": "УБИВАТЬ"
     },
     {
-      "id": "tactics-card-109-340",
+      "id": "tactics-card-111-357",
       "kind": "tactic",
       "title": "Штурм",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          109
+          111
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "2) Штурм\n— Срезать угол: Вы осматриваете комнату, понемногу увеличивая сектор обзора. Один раз\nв сцену вы можете проигнорировать стресс, когда осматриваете комнату таким образом.\n— Вежливая граната: Перед вами по правилам этикета заходит граната. Вы совершаете\nпроверку на метание гранаты в комнату с мастерством.\n— Обезвредить: Вы знаете, как обезвредить растяжки, мины и магическую защиту. Этой\nтактикой вы в любом случае обезвреживаете ловушку, но можете получить стресс при\nпровале.\n— Маятник: Вы осторожно выглядываете из-за угла раскачивающимися движениями и тут\nже возвращаетесь в укрытие. Эта проверка против цели, контролирующей коридор или\nкомнату, не повышает сложности.\n— Живой щит: Вы проходите эту проверку и при успехе закрываетесь противником\nчеловеческого размера от вражеских атак. Вы получаете защиту в ПУЛИ, равную его\nзащите. Живой щит занимает руку.\n221",
       "skill": "УБИВАТЬ"
     },
     {
-      "id": "tactics-card-110-341",
+      "id": "tactics-card-112-358",
       "kind": "tactic",
       "title": "Грубая мощь",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          110
+          112
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "3) Грубая мощь\n— Открыто: Вы можете открыть силой даже крупную гермодверь или без проверки выбить\nногой обычную дверь с помощью этой тактики. При критическом успехе, враги по ту сторону\nдвери окажутся испуганными и отступят на менее выгодные позиции.\n— Беспощадный удар: С помощью этой тактики, вы можете при рукопашной атаке\nпричинить максимальный стресс, возможный на кости, однако при провале так же получите\nмаксимальный стресс, возможный на кости.\n— Растерзать: С помощью этой тактики, вы можете при атаке жестоко добить противника.\nЕсли эта атака его убивает, вы восстанавливаете 1к6 стресса в РАЗУМ, или ДУХ. Красочно\nопишите добивание, если вы повторяетесь с добиванием в рамках одной сцены, до её\nконца вы не можете применять эту тактику.\n— Оттолкнуть: С помощью этой тактики, вы можете при успехе рукопашной атаки\nоттолкнуть противника на одну дистанцию.\n— Превзойти: Вы можете недолго бороться в ближнем бою с огромным чудовищем, или\nсломать бетонную стену без инструментов. Сложность этой проверки повышается на 1\nступень.",
       "skill": "УБИВАТЬ"
     },
     {
-      "id": "tactics-card-110-342",
+      "id": "tactics-card-112-359",
       "kind": "tactic",
       "title": "Рукопашный бой",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          110
+          112
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "4) Рукопашный бой\n— Образцовый удар: Кость стресса рукопашной атаки понижается на 1 ступень, однако\nсложность проверки также снижается на 1 ступень.\n— Ложный замах: Вы сначала проводите проверку этой рукопашной атаки, а затем\nвыбираете её цель.\n— Охота: По цели, против которой вы имеете мастерство в проверке, сложность этой\nрукопашной атаки снижается на ступень.\n— Опасный трюк: Если при рукопашной атаке с этой тактикой вы получили стресс, вы\nполучаете мастерство на следующее действие против причинившей стресс цели\n— Вихрь: Этой тактикой вы атакуете в рукопашной с невероятной скоростью: враг,\nполучивший стресс, не сможет использовать ход противника до конца сцены.\n222",
       "skill": "УБИВАТЬ"
     },
     {
-      "id": "tactics-card-110-343",
+      "id": "tactics-card-112-360",
       "kind": "tactic",
       "title": "Мастерская стрельба",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          110
+          112
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "5) Мастерская стрельба\n— Быстрое выхватывание: Этой тактикой вы можете выхватить стрелковое оружие и\nнаправить его на врагов быстрее, чем они успеют нажать на спуск даже если уже в вас\nцелятся. Не работает с оружием со свойством тяжёлый.\n— Рирское прицеливание: Этой тактикой вы можете совершить проверку, не причиняя\nстресса. При её успехе, стресс следующей успешной стрелковой атаки повышается на 1\nступень, и ещё на 1 ступень за каждое повышение сложности проверки.\n— Обезвредить: Этой тактикой вы выцеливаете конечности противника даже во время\nбоя. Вы можете сделать атаки стрелковым оружием нелетальными. Не работает с оружием\nсо свойствами мощный и разброс.\n— Красный выстрел: Этой тактикой вы можете попасть во что-то, во что в боевых\nусловиях попасть невозможно, например летящую в вас гранату, или в назойливое\nнасекомое. Критический стресс от этой тактики повышается на 2 ступени вместо 1.\n— Рикошет: Этой тактикой вы можете совершить проверку стрелковой атаки, причиняющей\nна 1 ступень стресса меньше. Такая атака не увеличивает сложность проверки при\nсражении с врагом в укрытии.",
       "skill": "УБИВАТЬ"
     },
     {
-      "id": "tactics-card-110-344",
+      "id": "tactics-card-112-361",
       "kind": "tactic",
       "title": "Бытовая магия",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          110
+          112
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "1) Бытовая магия\n— Щелчок пальцами: Вы выполняете мелкое безвредное магическое действие мгновенно\nи без проверки: зажечь огонь, остановить протечку, высушить одежду, охладить оружейный\nствол. Если действие всё же требует проверки, сложность снижается на 1 ступень.\n— Домовой порядок: Вы заставляете небольшие предметы двигаться, складываться,\nподниматься или удерживаться на месте. При успехе можете, например, расчистить путь,\nзакрыть дверь, собрать рассыпанные ресурсы, удержать хрупкий предмет от падения.\n— Малое благословение: Вы нашёптываете удачу на предмет. До конца сцены первое\nпоследствие, связанное с поломкой, потерей, клином, загрязнением или неудобством этого\nпредмета, игнорируется.\n— Очищение воды: Вместо таблеток для очищения воды, вы используете древний ритуал,\nпросящий воду отделиться от загрязнений. Раз в сцену вы можете восстановить К6 в\nПУЛЯХ на привале, сказав, что нашли и очистили источник воды.\n— Тёплая вещь: Вы заряжаете предмет уютом. Один персонаж до конца сцены получает\n+4 защиты в РАЗУМ или ДУХ, но только против страха, усталости, холода, одиночества\nили влияния странной локации.\n223",
       "skill": "КОЛДОВАТЬ"
     },
     {
-      "id": "tactics-card-111-345",
+      "id": "tactics-card-113-362",
       "kind": "tactic",
       "title": "Боевая магия",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          111
+          113
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "2) Боевая магия\n— Удар заклятием: Вы атакуете врага чистым магическим импульсом, проклятием, огнём,\nсветом, гравитационным рывком или иным эффектом. Атака причиняет к4 стресса со\nсвойством энергетический на ближней или средней дистанции.\n— Оковы: Вы сковываете врага при помощи магии, например мгновенно вырастающим\nцветком красного рукава, или дымом сигареты стража врат. При успехе цель не может\nпереместиться, пока не получит или не причинит стресс.\n— Антиудар: После получения стресса в ДУХ, вы можете использовать эту тактику, чтобы\nпричинить столько же стресса его источнику.\n— Колдовская стойка: Вы принимаете стрелковую стойку, позволяющую одновременно\nприменять магию и вести огонь. До конца сцены, ваши проверки КОЛДОВАТЬ и УБИВАТЬ\nне получают штрафа против очень быстрых целей.\n— Сжечь защиту: Вы бьёте по нательной броне, оберегам, полю искажения или\nблагословению. При успехе цель теряет 2 защиты до конца сцены.",
       "skill": "КОЛДОВАТЬ"
     },
     {
-      "id": "tactics-card-111-346",
+      "id": "tactics-card-113-363",
       "kind": "tactic",
       "title": "Гадание",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          111
+          113
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "3) Гадание\n— Бросить кости: Вы бросаете кости, монеты, патроны, запускаете предсказательный\nалгоритм. При успехе задайте ведущему один вопрос о ближайшей опасности, ловушке,\nзасаде или цене действия. Ведущий отвечает честно, но может ответить символом или\nзагадкой.\n— Увидеть развилку: Перед рискованным или более сложным действием действием вы\nсмотрите на несколько вероятных исходов. При успехе выберите: снизить сложность этой\nпроверки на ступень или при провале получить стресс на ступень ниже.\n— Имя беды: Вы называете, откуда придёт неприятность: сверху, снизу, от друга, из\nпрошлого, от техники, от духов, от денег, от оружия. До конца сцены одно последствие,\nподходящее под названный источник, можно заменить на другое последствие той же\nтяжести.\n— Посчитать смерть: Вы гадаете на врага, которого видите или чьё имя знаете. При\nуспехе узнайте, какой навык против него сейчас эффективнее всего, например ГОВОРИТЬ\nили СКРЫВАТЬСЯ. Одна проверка названного навыка до конца сцены совершается против\nнего с мастерством.\n— Заранее было ясно: Один раз в сцену после появления препятствия вы можете\nзаявить, что уже видели его в предсказании и подготовили мелкую меру: нужный оберег,\nслово-пароль, приманку, запасной путь, предупреждение союзнику. Проверка с этой\nтактикой не становится сложнее из-за внезапности.\n224",
       "skill": "КОЛДОВАТЬ"
     },
     {
-      "id": "tactics-card-111-347",
+      "id": "tactics-card-113-364",
       "kind": "tactic",
       "title": "Общение с потусторонним",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          111
+          113
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "4) Общение с потусторонним\n— Вежливое обращение: Вы говорите с духом, мёртвым, или странной программой по\nправилам шаманского этикета. При успехе оно отвечает на один вопрос или выполняет\nмаленькую просьбу, если та не противоречит его природе, и получает на выполнение\nпросьбы дополнительную кость К10.\n— Назвать по должности: Вы не знаете истинного имени сущности, но правильно\nугадываете её роль: сторож, голод, архив, мать лифта, старший патрон, сирота подстанции.\nПри успехе сложность дальнейших проверок ГОВОРИТЬ или КОЛДОВАТЬ против неё\nснижается на 1 ступень до конца сцены. — Договор малой цены: Вы можете получить от\nсущности помощь без обычной платы, но назначаете плату сами: к4 стресса в ДУХ, РАЗУМ,\nРЕСУРСЫ или СУДЬБУ. При провале сущность всё равно помогает, но ведущий повышает\nцену до к8 или добавляет неприятное условие.\n— Не смотреть в лицо: Вы знаете, как не оскорбить и не впустить в себя потустороннее.\nЭтой тактикой вы можете получить или дать союзнику +2 защиты и +2 слота в ДУХ до конца\nсцены.\n— Переводчик невозможного: Вы объясняете союзникам смысл нечеловеческих знаков,\nзапахов, помех, или снов. При успехе вся группа до конца сцены может взаимодействовать\nс этой сущностью или локацией так, будто обладает подходящей областью, но только для\nпроверок УЗНАВАТЬ и ГОВОРИТЬ.,",
       "skill": "КОЛДОВАТЬ"
     },
     {
-      "id": "tactics-card-111-348",
+      "id": "tactics-card-113-365",
       "kind": "tactic",
       "title": "Ритуал",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          111
+          113
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "5) Ритуал\n— Круг защиты: Вы тратите заметное время, рисуя круг, раскладывая обереги, ставя\nсвечи, подключая провода или рассыпая соль с порохом. При успехе до конца сцены группа\nполучает +5 защиты и +5 слотов в ДУХ, пока остаётся внутри защищённой зоны (Занимает\nодну дистанцию).\n— Долгое слово: Вы можете провести проверку КОЛДОВАТЬ медленно, с песней,\nрасчётами, кровью, дымом или повторением имени. Если у вас есть заметное время на\nподготовку, вы бросаете с мастерством, но при провале получаете стресс на ступень выше.\n— Допрос: Вы можете потратить заметное время, чтобы задать один вопрос соратнику, или\nконтакту-персонажу ведущего. Если он отвечает честно, вы оба можете до конца сцены\nполучать стресс в чужую шкалу ДРУЖБЫ по отношению к вам вместо вашей по отношению\nк соратнику.\n— Запечатать проход: Вы тратите заметное время и закрываете дверь, трещину в бетоне,\nвентиляцию, или иной путь с помощью ограждающих заклинаний. При успехе противники,\nчто могли появиться, не появятся до начала следующей сцены.\n— Большая подготовка: Если у вас есть заметное время, вы можете потратить К8 и более\nценный ресурс, чтобы до конца сцены совершать проверки КОЛДОВАТЬ с мастерством\nпротив конкретной цели или категории целей.\n225",
       "skill": "КОЛДОВАТЬ"
     },
     {
-      "id": "tactics-card-112-349",
+      "id": "tactics-card-114-366",
       "kind": "tactic",
       "title": "Полевой медик",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          112
+          114
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "1) Полевой медик\n— Жгут зубами: Вы можете применить ЧИНИТЬ к персонажу на ближней дистанции прямо\nво время сражения, даже если сами под огнём, в движении или одной рукой держите\nоружие. За каждую ступень сложности сверх нормальной, вы восстанавливаете на ступень\nбольше стресса.\n— Не сейчас: Когда союзник должен получить малое последствие в ПУЛИ, вы можете\nмгновенно пройти проверку ЧИНИТЬ. При успехе последствие не срабатывает до конца\nсцены, но стресс остаётся. Если до конца сцены союзник снова получит стресс в ПУЛИ,\nпоследствие возвращается.\n— Боевые стимуляторы: Вы вкалываете препарат, накладываете заклинание бодрости\nили запускаете аварийный режим импланта. При успехе цель игнорирует одно малое\nпоследствие в ПУЛИ или РАЗУМ до конца сцены, но после сцены получает к4 стресса в это\nже сопротивление.\n— Проверить зрачки: Вы быстро понимаете, что именно угрожает человеку: кровопотеря,\nшок, яд, проклятие, перегрузка имплантов, паника. При успехе следующий бросок ЧИНИТЬ\nпо этой цели до конца сцены всегда восстановит стресс, даже при провале.\n— Вытащить из-под удара: Когда вы успешно восстанавливаете стресс соратнику, вы\nможете одновременно переместить его на одну дистанцию в более безопасное место: за\nукрытие, за щит, в дым, за спины отряда.",
       "skill": "ЧИНИТЬ"
     },
     {
-      "id": "tactics-card-112-350",
+      "id": "tactics-card-114-367",
       "kind": "tactic",
       "title": "Военный психолог",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          112
+          114
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "2) Военный психолог\n— Дыши по счёту: Вы жёстко возвращаете союзника в реальность: голосом в гарнитуре,\nпощёчиной, счётом вдохов, стуком по броне или короткой армейской мантрой. При успехе\nвосстановите на ступень больше стресса в РАЗУМЕ. Эту тактику можно применять на\nсредней дистанции, если цель вас слышит.\n— Боевой разбор: После опасной сцены вы быстро проговариваете с отрядом\nпроизошедшее: кто где был, кто что видел, кто сделал правильно, почему выжившие не\nвиноваты в жертвах. Вся группа восстанавливает К4 стресса в РАЗУМ.\n— Приказ жить: Когда союзник должен получить последствие в РАЗУМ, вы можете резко\nвмешаться: приказом, знаком старшего по званию, напоминанием о клятве, угрозой, шуткой\nили личным обращением. При успехе последствие не действует до конца сцены, но стресс\nостаётся.\n— Нормализация ужаса: Вы объясняете невозможное как что-то повседневное, с чем\nлегко справиться. При успехе до конца сцены один персонаж получает +3 защиты в РАЗУМ\nпротив уже увиденной угрозы.\n— Чёрный юмор: Вы сбиваете ужас грубой шуткой, циничным комментарием или\nабсурдным сравнением. При успехе восстановите К6 в шкале дружбы себе и одному\nсоюзнику.\n226",
       "skill": "ЧИНИТЬ"
     },
     {
-      "id": "tactics-card-112-351",
+      "id": "tactics-card-114-368",
       "kind": "tactic",
       "title": "Мастер починки",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          112
+          114
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "3) Мастер починки\n— Красная изолента: Вы можете временно починить почти что угодно: броню, дверь,\nкиберруку, рацию. При успехе предмет работает до конца сцены, даже если был сломан\nпоследствием. После его всё равно придётся нормально чинить.\n— Слабое место: Перед ремонтом вы быстро понимаете, что именно сломано. При успехе\nзадайте ведущему один вопрос о предмете, механизме, теле или конструкции: что здесь\nопаснее всего, что сломается следующим, что нужно заменить, чем можно временно\nобойтись.\n— Импровизация: С этой тактикой кость ресурса, который требуется для починки\nмеханизма, снижена на одну ступень.\n— Одолжить детали: При починке механизма, вы можете получить стресс в шкалу\nДРУЖБЫ вместо шкалы РЕСУРСОВ.\n— Чинить под давлением: Сложность проверки на починку механизмов не повышается\nвыше рискованной с этой тактикой.",
       "skill": "ЧИНИТЬ"
     },
     {
-      "id": "tactics-card-112-352",
+      "id": "tactics-card-114-369",
       "kind": "tactic",
       "title": "Интендант",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          112
+          114
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "4) Интендант\n— Починить репутацию: Доверие бывает ценнее автомата. Вы объясняете\nнедоразумение, показываете документы, находите свидетеля, возвращаете долг. При\nуспехе вы можете до конца сцены игнорировать последствие в РЕСУРСЫ, связанное с\nсоциальным неодобрением. Если проблема связана с явным предательством или\nубийством невиновных, сложность повышается на ступень.\n— Аккуратная отчётность: После сделки, боя или восхождения, вы приводите записи в\nпоряядок. При успехе следующее последствие в РЕСУРСЫ, связанное с долгами,\nподозрениями, плохой славой или юридическими проблемами, снижается на ступень.\n— Вернуть в оборот: Вы чините повреждённое, грязное, проклятое или плохо\nвыглядящее снаряжение так, чтобы его снова можно было продать, обменять или\nпредъявить как оплату. При успехе один предмет или ресурс до конца сцены считается на\nступень ценнее при бартере или оплате услуг, но не при прямом применении.\n— С миру по гильзе: Вы собираете полезное после сцены: не сломанное снаряжение\nврагов, уцелевшие батареи, монеты, лекарства, цветы, провода, патроны, амулеты,\nкорпоративные карточки. При успехе восстановите к4 в РЕСУРСАХ дополнительно к\nобычной добыче. Если сцена была особенно богатой или опасной, восстановление\nповышается до к6.\n— Подробный поиск: Вы тратите значимое время, чтобы пересчитать припасы, либо\nваши, либо соратника. До конца сцены, вы получаете +2 защиты в РЕСУРСЫ,\nприменяющиеся, когда вы что-то оплачиваете.\n227",
       "skill": "ЧИНИТЬ"
     },
     {
-      "id": "tactics-card-113-353",
+      "id": "tactics-card-115-370",
       "kind": "tactic",
       "title": "Метафизическое восстановление",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          113
+          115
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "5) Метафизическое восстановление\n— Тонкая материя: Вы лечите не тело, а нарушение в душе, судьбе или магическом поле.\nПри успехе восстановите одинаковое количество стресса стресс в ДУХЕ и РАЗУМЕ.\n— Сшить судьбу: Вы чините удачу человека через ритуальные деньги, узлы, патроны,\nкоторые не выстрелили. При успехе восстановите на ступень больше стресса в СУДЬБЕ.\nПри критическом успехе цель до конца сцены не может быть застигнута врасплох\nслучайной неприятностью.\n— Вернуть имя: Вы напоминаете предмету, чем он был до поломки. При успехе\nмагический предмет, оберег, артефакт или странный механизм Башни снова работает до\nконца сцены, но если он был сломан значимым последствием, ведущий назначает цену:\nресурс, стресс в ДУХ или неприятное условие.\n— Тихий разговор: Вы успокаиваете соратника не речью, а уходом: поправляете броню,\nнаносите боевую раскраску, чистите оружие, расчёсываете волосы, стираете кровь с лица.\nВы тратите значимое время и К6 ресурс, чтобы восстановите К6 в РАЗУМЕ себе и\nсоратнику.\n— Закрыть дурной след: После контакта с аномалией, духом, мертвецом или сущностью\nБашни вы чистите следы влияния. Вы можете восстановить весь стресс в ДУХ, но\nзапишите его количество: при следующей встрече с этой же угрозой, он вернётся, как если\nбы его причиняли снова.",
       "skill": "ЧИНИТЬ"
     },
     {
-      "id": "tactics-card-113-354",
+      "id": "tactics-card-115-371",
       "kind": "tactic",
       "title": "Молния",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          113
+          115
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "1) Молния\n— Рывок: Вы мгновенно преодолеваете одну дистанцию: пересекаете простреливаемый\nкоридор, влетаете в лифт, прыгаете за укрытие, добегаете до падающего союзника. При\nуспехе вы перемещаетесь до того, как угроза успеет отреагировать.\n— Первым в проём: Когда начинается сцена, вы можете первым ворваться в опасную\nзону. При успехе выберите одно: союзники получают мастерство на следующую проверку\nПРОБИВАТЬСЯ, враги теряют преимущество засады, или вы сразу оказываетесь на\nвыгодной позиции.\n— На адреналине: Вы можете использовать боль и панику как топливо. Вы причиняете\nвосхождению или препятствию дополнительно К6 стресса, пока у вас есть 5 или более\nстресса в ПУЛЯХ или РАЗУМЕ,.\n— Погоня: Пока вас преследуют, желая зла, вы получаете мастерство.\n— Добраться вопреки: Эта проверка ПРОБИВАТЬСЯ получает свойство стабильный, но\nпри провале вы получаете на ступень больше стресса.\n228",
       "skill": "ПРОБИВАТЬСЯ"
     },
     {
-      "id": "tactics-card-113-355",
+      "id": "tactics-card-115-372",
       "kind": "tactic",
       "title": "Марш",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          113
+          115
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "2) Марш\n— Строевой темп: Вы ведёте группу через долгий переход, задавая ритм шагов, привалов,\nдыхания и проверки снаряжения. К этой проверке один союзник, у которого нет\nподходящего навыка или области, всё равно может дать вам кость помощи.\n— Марш-бросок: Вы проходите участок быстрее обычного: без сна, без нормального\nпривала, под дождём, сквозь шум Башни или по рушащемуся маршруту. При успехе\nвосхождение получает на ступень больше стресса, но при провале стресс по отряду тоже\nповышается на ступень.\n— Нести на себе: Вы можете вести, тащить или прикрывать раненого, перегруженного,\nиспуганного или потерявшего ориентацию союзника. При успехе его последствия,\nмешающие движению, не повышают сложность групповой проверки ПРОБИВАТЬСЯ.\n— Осторожное продвижение: Вы двигаетесь медленно, проверяя каждый поворот на\nловушку или засаду. Вы причиняете восхождению на ступень меньше стресса, но вашу\nгруппу нельзя застать врасплох. Сложность врагов и препятствий не повышается из-за\nнеожиданности.\n— Парад отчаянных: В дороге вы громко поёте, рассказываете шутки и не заботитесь о\nмаскировке. До конца сцены проверки СКРЫВАТЬСЯ становятся на ступень тяжелее, но вы\nвосстанавливаете столько же стресса в РАЗУМ, сколько причинили восхождению этой\nпроверкой.",
       "skill": "ПРОБИВАТЬСЯ"
     },
     {
-      "id": "tactics-card-113-356",
+      "id": "tactics-card-115-373",
       "kind": "tactic",
       "title": "Боевой паркур",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          113
+          115
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "3) Боевой паркур\n— Через окно: Вы преодолеваете препятствие грубо и красиво: влетаете через стекло,\nскользите под воротами, перепрыгиваете баррикаду. Вы причиняете на ступень больше\nстресса восхождению, или получаете преимущество от позиции, если проверка была\nрискованной и более сложной.\n— Смена высоты: Вы резко меняете уровень: падаете вниз, взлетаете по лестнице,\nспрыгиваете на платформу, цепляетесь за крюк, уходите под мостик. При успехе один\nпротивник теряет преимущество позиции против вас до конца сцены.\n— Сохранить импульс: Вы перемещаетесь на одну дистанцию и сбиваете противника-\nчеловека с ног, так что следующая проверка против него будет совершаться с мастерством.\n— Драка на бегу: До конца сцены проверки УБИВАТЬ и ИЗБЕГАТЬ в ближнем бою не\nстановятся сложнее из-за неудобной поверхности, тесноты, наклона, лестницы или\nдвижения платформы.\n— Сальто: Вы делаете кувырок через противника в ближнем бою. Он дезориентировн,\nпока он не причинит вам стресс, вы совершаете проверки УБИВАТЬ и ИЗБЕГАТЬ против\nнего с преимуществом.\n229",
       "skill": "ПРОБИВАТЬСЯ"
     },
     {
-      "id": "tactics-card-114-357",
+      "id": "tactics-card-116-374",
       "kind": "tactic",
       "title": "Пересечённая местность",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          114
+          116
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "4) Пересечённая местность\n— Твёрдый шаг: Вы находите, куда ставить ноги на ненадёжной поверхности. Местность\nне повышает сложность этой проверки.\n— След безопасного пути: Вы ведёте остальных по уже найденным точкам. Один\nсоюзник может пройти за вами без отдельной проверки, если не делает ничего сложнее\nдвижения.\n— Крюк, свет и молитва: Если у вас есть два и более снаряжения для путешествия, вы\nзадаёте ведущему один вопрос о маршруте: где безопаснее, что здесь нестабильно, откуда\nпридёт опасность, куда ведёт кратчайший путь.\n— Не трогать лишнего: Вы проходите через опасную среду, не цепляя провода, грибы,\nкости и датчики. Вы не активируете пассивную опасность местности.\n— Путь назад: В процессе перехода вы отмечаете дорогу мелом, лентами, гильзами, или\nзарубками. При провале этой тактики вы не можете получить последствие, связанное с\nотдалением места назначения или разделениме группы.",
       "skill": "ПРОБИВАТЬСЯ"
     },
     {
-      "id": "tactics-card-114-358",
+      "id": "tactics-card-116-375",
       "kind": "tactic",
       "title": "Упрямство",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          114
+          116
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "5) Упрямство\n— Плечом к плечу: Вы выстраиваете группу так, чтобы никто не мешал друг другу. До\nконца сцены теснота не повышает сложность групповых проверок.\n— Нести тяжёлое: Вы можете тащить тяжёлые предметы без потери темпа и контроля.\nГруз не повышает сложность перехода и не получает повреждений от дороги.\n— Слепой участок: Вы двигаетесь через место, где нельзя нормально видеть дорогу.\nОтсутствие обзора не повышает сложность именно проверок ПРОБИВАТЬСЯ до конца\nпрепятствия.\n– Неутомимый: Если вы получаете последствие после этой проверки, вы игнорируете его\nдо конца сцены.\n– Наскозь: Если этой проверкой вы завершаете восхождение, вы восстанавливаете К в\nПУЛЯХ, РАЗУМЕ, или ДУХЕ\n230",
       "skill": "ПРОБИВАТЬСЯ"
     },
     {
-      "id": "tactics-card-114-359",
+      "id": "tactics-card-116-376",
       "kind": "tactic",
       "title": "Маскировка",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          114
+          116
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "1) Маскировка\n— Слиться с фоном: Вы тратите значимое время, чтобы через камуфляж, грязь, тени,\nцифровые помехи, форму врага или чужой запах, стать частью окружения. Ваша\nследующая проверка в этой сцене автоматически успешна, если вы не двигались.\n— Разбить силуэт: Вы двигаетесь так, чтобы не выдавать себя формой тела: пригибаетесь,\nломаете контур плащом, прячетесь среди труб. При провале этой проверке вы получите на\nступень меньше стресса, а враги не сразу поднимут тревогу.\n— Замаскировать отряд: Вы быстро распределяете союзников по слепым зонам и даёте\nуказания по движению. В следующей проверке до конца сцены помощники не получает\nстресс от провала действия того, кому помогают,\n— Чужой знак: Вы используете отличительные знаки, форму и жаргон чужой группы. Вас\nпринимают за «своего» на расстоянии или при беглом осмотре. Если кто-то начинает с\nвами говорить или проверять документы, понадобится уже проверка ГОВОРИТЬ.\n— Погасить сцену: Вы уничтожаете системы наблюдения, сканеры, отключаете\nэлектричество. Вся группа получает на проверки СКРЫВАТЬСЯ и ПРОБИВАТЬСЯ конца\nсцены, но окружающие понимают, что кто-то здесь ест.",
       "skill": "СКРЫВАТЬСЯ"
     },
     {
-      "id": "tactics-card-114-360",
+      "id": "tactics-card-116-377",
       "kind": "tactic",
       "title": "Скрытная ликвидация",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          114
+          116
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "2) Скрытная ликвидация\n— Цепь ликвидаций: Атака боевым ножом через СКРЫВАТЬСЯ получает свойство\nразброс.\n— Рука на рации: Когда вы скрытно нейтрализуете врага, можете сразу помешать ему\nподнять тревогу: зажать рот, перехватить рацию, заглушить имплант. Тревога не\nподнимается даже при провале.\n— Тело за ящиком: После скрытной ликвидации вы можете сразу спрятать тело: в тень,\nмусор, вентиляцию. При успехе тело не найдут до конца сцены.\n— Полицейская снайперская техника: Атака дальнобойной винтовкой через\nСКРЫВАТЬСЯ получает свойство нелетальный и может выбить у врага то, что он держит в\nруке. Если враг использует щит, живой или штурмовой, вы причиняете ему стресс,\nигнорируя защиту.\n— Обрушиться: Вы атакуете опытных противников так, что даже они удивляются. За\nкаждую ступень сложности свыше нормальной, вы причиняете на ступень больше стресса\nэтой атакой через СКРЫВАТЬСЯ.",
       "skill": "СКРЫВАТЬСЯ"
     },
     {
-      "id": "tactics-card-114-361",
+      "id": "tactics-card-116-378",
       "kind": "tactic",
       "title": "Проникновение",
-      "section": "tactics",
-      "dropTarget": "tactic",
-      "source": {
-        "pdfPages": [
-          114,
-          115
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "3) Проникновение\n— Без следа на замке: Вы открываете дверь, люк, окно, решётку, контейнер или шкаф так,\nчтобы не было видно следов вскрытия и не поднялась автоматическая тревога\n— Внутри потока: Вы проходите через колонну пленных, смену патруля, или рынок так,\nбудто всегда были там. До конца сцены вы не получаете стресса в РЕСУРСЫ, если вас кто-\nто узнает.\n— Броситься на землю: Если сложность этой проверки рискованная и выше, можете\nполучить К6 стресса в СУДЬБУ, чтобы снизить её на ступень.\n231\n— Мастер гаджетов: У вас всегда в кармане нужный тактический инструмент для текущей\nситуации. Получите К6 стресса в РЕСУРСЫ, чтобы получить мастерство на эту проверку.\nОпишите крутой гаджет, который вы используете для обхода очередного препятствия. Если\nвы повторяетесь в рамках одной сцены, вы не можете использовать эту тактику снова в\nэтой сцене,\n– Совпадение: Вы можете сказать, что нужная вам дверь открыта, турель отключена, а\nпрожектор не освещает нужную вам зону. При провале вы получаете не только стресс, но и\nдополнительное осложнение сцены, например дверь открылась только чтобы через неё\nвышло отделение солдат.",
-      "skill": "СКРЫВАТЬСЯ"
-    },
-    {
-      "id": "tactics-card-115-362",
-      "kind": "tactic",
-      "title": "Беспокойные руки",
-      "section": "tactics",
-      "dropTarget": "tactic",
-      "source": {
-        "pdfPages": [
-          115
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "4) Беспокойные руки\n— Ловкая кража: Вы крадёте у цели предмет. Если его было легко украсть обычной\nпроверкой СКРЫВАТЬСЯ, вы получаете на ступень меньше стресса при провале и он\nникогда не связан с тем, что цель заметила пропажу. Если его было украсть сложно,\nнапример предмет лежит в рюкзаке, сложность понижается на одну ступень.\n— Маленький тайник: Вы прячете предмет так, чтобы его не нашли при обычном обыске.\nВаш не слишком большой предмет или ресурс получают свойство скрываемый до конца\nсцены.\n— Опередить: Когда кто-то смотрит прямо на вас, вы всё равно совершаете мелкое\nскрытое действие: прячете нож, передаёте сигнал союзнику, или открываете замок. Эта\nпроверка не становится сложнее, даже если за вами наблюдают.\n— Закрепить взрывчатку: Этой проверкой вы можете потратить значимое время, чтобы\nтихо установить взрывчатку на любом объекте. До конца сцены вы можете её взорвать,\nчтобы уничтожить дверь, стену, или мост вместо проверки УБИВАТЬ с причинением\nстресса. На людей это не работает, поскольку они замечают вес взрывпакета, но с более\nкрупными противниками попробовать можно.\n— Датчик: Вы бросаете липкий шарик-датчик, сообщающий о передвижении цели. До\nконца сцены, у вас есть мастерство на проверки СКРЫВАТЬСЯ и ПРОБИВАТЬСЯ против\nнеё.\n232",
-      "skill": "СКРЫВАТЬСЯ"
-    },
-    {
-      "id": "tactics-card-115-363",
-      "kind": "tactic",
-      "title": "Модификация",
-      "section": "tactics",
-      "dropTarget": "tactic",
-      "source": {
-        "pdfPages": [
-          115
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "1) Модификация\n— Быстрая настройка: Вы подгоняете предмет под текущую задачу. До конца сцены он\nполучает одно положительное свойство на ваш выбор и одно негативное на выбор\nведущего.\n— Снять ограничитель: Вы выжимаете из предмета больше, чем задумал производитель.\nДо конца сцены кость предмета повышается на ступень, но затем он ломается так, что\nпочинить его можно только в оазисе.\n— Мастерская установка: Вы можете поставить на предмет модификацию за ресурс вне\nоазиса.\n— Беречь: Вы тщательно ухаживали за снаряжением, этой проверкой выберите предмет.\nДо конца сцены он получает свойство надёжный.\n— Сделанный мастером: Вы тратите значимое время и К6 или более ценный ресурс,\nчтобы сделать из оружия серийного производства шедевр искусства. Оно получает\nсвойство дорогой.",
-      "skill": "ТЕХНИЧИТЬ"
-    },
-    {
-      "id": "tactics-card-115-364",
-      "kind": "tactic",
-      "title": "Полевой инженер",
-      "section": "tactics",
-      "dropTarget": "tactic",
-      "source": {
-        "pdfPages": [
-          115
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "2) Полевой инженер\n—- Собрать на коленке: Вы можете потратить К8 и более ценный ресурс, чтобы до конца\nсцены сделать предметы, которые не учтены в инвентаре, К6 вместо К4.\n— Повезло с деталью: Раз в сцену вы можете сказать, что среди вашего снаряжения или\nв окружении нашлась подходящая мелкая деталь. До конца сцены она считается ресурсом\nК6 МИР, который нельзя продать или обменять.\n— Одноразовое решение: Вы тратите значимое время и К6 и более ценный ресурс и\nсоздаёте устройство, которое делает ровно одну вещь: глушит сигнал, открывает дверь,\nдаёт вспышку, запускает дым. Оно срабатывает, давая мастерство на следующую проверку,\nа затем ломается.\n— Грубая автоматика: Вы тратите К6 и более ценный ресурс и значимое время и\nсобираете простую автоматическую систему: растяжку, датчик, ловушку. Она причинит К8\nстресса восхождению или врагу при условии, которое вы называете при её создании.\n– Инженерная импровизация: Вместо ресурса, вы можете потратить для проверки\nТЕХНИЧИТЬ предмет соответствующего качества.\n233",
-      "skill": "ТЕХНИЧИТЬ"
-    },
-    {
-      "id": "tactics-card-116-365",
-      "kind": "tactic",
-      "title": "Цифровая техника",
-      "section": "tactics",
-      "dropTarget": "tactic",
-      "source": {
-        "pdfPages": [
-          116
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "3) Цифровая техника\n— Чужие права: Вы выдаёте себя за пользователя системы: охранника, техника,\nадминистратора. Опасная и роковая сложности при взломе цифровой техники теперь на\nступень легче.\n– Отследить: Вы узнаёте многое о пользователях через низкие уровни системы и\nнеаккуратные логи. Можете задать ведущему любой вопрос о взломанной цифровой\nсистеме, вам ответят честно.\n– Высококлассные программы: Вы вручную доработали и так лучшее на рынке ПО. Вы\nможете совершить с мастерством проверку на взлом, если цифровая система принадлежит\nне корпорации или армии, а кому-то менее могущественному.\n– Нейрерские сладости купить дёшево с доставкой: Вы организуете на систему\nцифровую атаку, присылая ей невероятное количество мусорных файлов. Вы получаете\nмастерство на эту проверку, но систему не починить до конца сцены, и переманить на свою\nсторону камеры или турели тоже не выйдет.\n– Цифровое мясо: Можете потратить значимое время и получить К4 стресса в РАЗУМ,\nчтобы, выпив банку энергетика, взломать цифровую систему любой сложности. Вы\nсовершаете проверку с мастерством и не получаете стресса при успехе с ценой.",
-      "skill": "ТЕХНИЧИТЬ"
-    },
-    {
-      "id": "tactics-card-116-366",
-      "kind": "tactic",
-      "title": "Кузнец",
-      "section": "tactics",
-      "dropTarget": "tactic",
-      "source": {
-        "pdfPages": [
-          116
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "4) Кузнец\n— Кованый: Вы можете потратить значимое время и к8 и более ценный ресурс, чтобы\nпопытаться создать боевой нож или тяжёлое оружие ближнего боя с костью, равной кости\nзатраченного ресурса по правилам создания предметов. При критическом успехе он\nполучает свойство дорогой. Опишите его.\n– Амальгамма: Вы создаёте из двух предметов один, при успехе причиняющий стресс по\nправилам обоих предметов. Он получает свойства ненадёжный и опасный.\n– Грозная броня: Вы можете взять любую пластину для плитника и, потратив значимое\nвремя, перековать её в грозную пластину, дающую +2 защиты во все сопротивления.\n– По форме: Вы компенсируете неудобство тяжёлой брони, подгоняя её под конкретного\nчеловека. Выбранный штурмовой бронежилет или полный доспех теперь позволяют раз в\nсцену игнорировать получаемые от них штрафы.\n– Испытание в деле: Вы можете совершить атаку созданным или модифицированным\nвами оружием через навык ТЕХНИЧИТЬ.\n234",
-      "skill": "ТЕХНИЧИТЬ"
-    },
-    {
-      "id": "tactics-card-116-367",
-      "kind": "tactic",
-      "title": "Рациональность",
-      "section": "tactics",
-      "dropTarget": "tactic",
-      "source": {
-        "pdfPages": [
-          116
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "5) Рациональность\n– В два слоя: Вы тратите заметное время, и модифицируете плитник, штурмовой\nбронежилет, или полный доспех так, чтобы они занимали слот рюкзака. Так вы сможете\nносить два комплекта брони. Их защита всё ещё не суммируется.\n– Дополнительная разгрузка: Вы модифицируете разгрузку и рюкзак. Теперь вы можете\nвзять вместо четырёх слотов ресурсов один предмет. Пока у вас нет пятого предмета\nснаряжения, вы всё ещё можете брать эти ресурсы.\n– Соорудить носилки: Вы собираете хранилище для предметов из подручных средств.\nОно занимает слот предмета и даёт +2 защиты и +2 слота в РЕСУРСЫ.\n– Специалист особой брони: Вы модифицируете особую защиту так, что она теперь\nможет занимать слот брони на тело. Так вы сможете носить два комплекта особой защиты.\nИх защита всё ещё не суммируется, а применяемую раз в сцену способность от двух\nкомплектов можно использовать только одну за сцену.\n– Самое ценное: Вы соединяете два шлема в один, надёжнее защищающий голову. Их\nзащита суммируется, но итог получает свойство тяжёлый.",
-      "skill": "ТЕХНИЧИТЬ"
-    },
-    {
-      "id": "tactics-card-116-368",
-      "kind": "tactic",
-      "title": "Уклонение и блок",
-      "section": "tactics",
-      "dropTarget": "tactic",
-      "source": {
-        "pdfPages": [
-          116
-        ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
-      },
-      "text": "1) Уклонение и блок\n— Сбить траекторию: Вы парируете клинок, или отводите ствол автомата. Атака,\nсовершённая против вас на дистанции ближнего боя, причиняет стресс противнику на той\nже дистанции, что вы, или позади вас.\n— Удачное укрытие: В последний момент вы ныряете в укрытие. При провале вместо\nПУЛЬ получите стресс в СУДЬБУ и снизьте его на ступень.\n— Быстрее пули: Вы защищаетесь, парируя пули и уворачиваясь от клинков, но не\nпрекращаете продвигаться. Можете переместиться на одну дистанцию без дополнительных\nпроверок.\n— Слепая зона: Вы держитесь там, где атакующему неудобно вас достать: слишком близко\nк стрелку, сбоку от зверя, под рукой крупного врага.Следующая атака этого противника\nпричинит по вам на ступень меньше стресса.\n— Последний сантиметр: Вы не уходите полностью, а смещаетесь ровно настолько,\nчтобы пуля могла сбрить прядь волос. Вы сохраняете позицию и не отступаете, даже если\nатака обычно должна была отбросить, сбить или вытеснить вас.",
-      "skill": "ИЗБЕГАТЬ"
-    },
-    {
-      "id": "tactics-card-116-369",
-      "kind": "tactic",
-      "title": "Выдержка и ярость",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
@@ -6396,187 +7229,308 @@ window.TOWER_CODEX = {
           116,
           117
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "3) Проникновение\n— Без следа на замке: Вы открываете дверь, люк, окно, решётку, контейнер или шкаф так,\nчтобы не было видно следов вскрытия и не поднялась автоматическая тревога\n— Внутри потока: Вы проходите через колонну пленных, смену патруля, или рынок так,\nбудто всегда были там. До конца сцены вы не получаете стресса в РЕСУРСЫ, если вас кто-\nто узнает.\n— Броситься на землю: Если сложность этой проверки рискованная и выше, можете\nполучить К6 стресса в СУДЬБУ, чтобы снизить её на ступень.\n231\n— Мастер гаджетов: У вас всегда в кармане нужный тактический инструмент для текущей\nситуации. Получите К6 стресса в РЕСУРСЫ, чтобы получить мастерство на эту проверку.\nОпишите крутой гаджет, который вы используете для обхода очередного препятствия. Если\nвы повторяетесь в рамках одной сцены, вы не можете использовать эту тактику снова в\nэтой сцене,\n– Совпадение: Вы можете сказать, что нужная вам дверь открыта, турель отключена, а\nпрожектор не освещает нужную вам зону. При провале вы получаете не только стресс, но и\nдополнительное осложнение сцены, например дверь открылась только чтобы через неё\nвышло отделение солдат.",
+      "skill": "СКРЫВАТЬСЯ"
+    },
+    {
+      "id": "tactics-card-117-379",
+      "kind": "tactic",
+      "title": "Беспокойные руки",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          117
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "4) Беспокойные руки\n— Ловкая кража: Вы крадёте у цели предмет. Если его было легко украсть обычной\nпроверкой СКРЫВАТЬСЯ, вы получаете на ступень меньше стресса при провале и он\nникогда не связан с тем, что цель заметила пропажу. Если его было украсть сложно,\nнапример предмет лежит в рюкзаке, сложность понижается на одну ступень.\n— Маленький тайник: Вы прячете предмет так, чтобы его не нашли при обычном обыске.\nВаш не слишком большой предмет или ресурс получают свойство скрываемый до конца\nсцены.\n— Опередить: Когда кто-то смотрит прямо на вас, вы всё равно совершаете мелкое\nскрытое действие: прячете нож, передаёте сигнал союзнику, или открываете замок. Эта\nпроверка не становится сложнее, даже если за вами наблюдают.\n— Закрепить взрывчатку: Этой проверкой вы можете потратить значимое время, чтобы\nтихо установить взрывчатку на любом объекте. До конца сцены вы можете её взорвать,\nчтобы уничтожить дверь, стену, или мост вместо проверки УБИВАТЬ с причинением\nстресса. На людей это не работает, поскольку они замечают вес взрывпакета, но с более\nкрупными противниками попробовать можно.\n— Датчик: Вы бросаете липкий шарик-датчик, сообщающий о передвижении цели. До\nконца сцены, у вас есть мастерство на проверки СКРЫВАТЬСЯ и ПРОБИВАТЬСЯ против\nнеё.\n232",
+      "skill": "СКРЫВАТЬСЯ"
+    },
+    {
+      "id": "tactics-card-117-380",
+      "kind": "tactic",
+      "title": "Модификация",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          117
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "1) Модификация\n— Быстрая настройка: Вы подгоняете предмет под текущую задачу. До конца сцены он\nполучает одно положительное свойство на ваш выбор и одно негативное на выбор\nведущего.\n— Снять ограничитель: Вы выжимаете из предмета больше, чем задумал производитель.\nДо конца сцены кость предмета повышается на ступень, но затем он ломается так, что\nпочинить его можно только в оазисе.\n— Мастерская установка: Вы можете поставить на предмет модификацию за ресурс вне\nоазиса.\n— Беречь: Вы тщательно ухаживали за снаряжением, этой проверкой выберите предмет.\nДо конца сцены он получает свойство надёжный.\n— Сделанный мастером: Вы тратите значимое время и К6 или более ценный ресурс,\nчтобы сделать из оружия серийного производства шедевр искусства. Оно получает\nсвойство дорогой.",
+      "skill": "ТЕХНИЧИТЬ"
+    },
+    {
+      "id": "tactics-card-117-381",
+      "kind": "tactic",
+      "title": "Полевой инженер",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          117
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "2) Полевой инженер\n—- Собрать на коленке: Вы можете потратить К8 и более ценный ресурс, чтобы до конца\nсцены сделать предметы, которые не учтены в инвентаре, К6 вместо К4.\n— Повезло с деталью: Раз в сцену вы можете сказать, что среди вашего снаряжения или\nв окружении нашлась подходящая мелкая деталь. До конца сцены она считается ресурсом\nК6 МИР, который нельзя продать или обменять.\n— Одноразовое решение: Вы тратите значимое время и К6 и более ценный ресурс и\nсоздаёте устройство, которое делает ровно одну вещь: глушит сигнал, открывает дверь,\nдаёт вспышку, запускает дым. Оно срабатывает, давая мастерство на следующую проверку,\nа затем ломается.\n— Грубая автоматика: Вы тратите К6 и более ценный ресурс и значимое время и\nсобираете простую автоматическую систему: растяжку, датчик, ловушку. Она причинит К8\nстресса восхождению или врагу при условии, которое вы называете при её создании.\n– Инженерная импровизация: Вместо ресурса, вы можете потратить для проверки\nТЕХНИЧИТЬ предмет соответствующего качества.\n233",
+      "skill": "ТЕХНИЧИТЬ"
+    },
+    {
+      "id": "tactics-card-118-382",
+      "kind": "tactic",
+      "title": "Цифровая техника",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          118
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "3) Цифровая техника\n— Чужие права: Вы выдаёте себя за пользователя системы: охранника, техника,\nадминистратора. Опасная и роковая сложности при взломе цифровой техники теперь на\nступень легче.\n– Отследить: Вы узнаёте многое о пользователях через низкие уровни системы и\nнеаккуратные логи. Можете задать ведущему любой вопрос о взломанной цифровой\nсистеме, вам ответят честно.\n– Высококлассные программы: Вы вручную доработали и так лучшее на рынке ПО. Вы\nможете совершить с мастерством проверку на взлом, если цифровая система принадлежит\nне корпорации или армии, а кому-то менее могущественному.\n– Нейрерские сладости купить дёшево с доставкой: Вы организуете на систему\nцифровую атаку, присылая ей невероятное количество мусорных файлов. Вы получаете\nмастерство на эту проверку, но систему не починить до конца сцены, и переманить на свою\nсторону камеры или турели тоже не выйдет.\n– Цифровое мясо: Можете потратить значимое время и получить К4 стресса в РАЗУМ,\nчтобы, выпив банку энергетика, взломать цифровую систему любой сложности. Вы\nсовершаете проверку с мастерством и не получаете стресса при успехе с ценой.",
+      "skill": "ТЕХНИЧИТЬ"
+    },
+    {
+      "id": "tactics-card-118-383",
+      "kind": "tactic",
+      "title": "Кузнец",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          118
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "4) Кузнец\n— Кованый: Вы можете потратить значимое время и к8 и более ценный ресурс, чтобы\nпопытаться создать боевой нож или тяжёлое оружие ближнего боя с костью, равной кости\nзатраченного ресурса по правилам создания предметов. При критическом успехе он\nполучает свойство дорогой. Опишите его.\n– Амальгамма: Вы создаёте из двух предметов один, при успехе причиняющий стресс по\nправилам обоих предметов. Он получает свойства ненадёжный и опасный.\n– Грозная броня: Вы можете взять любую пластину для плитника и, потратив значимое\nвремя, перековать её в грозную пластину, дающую +2 защиты во все сопротивления.\n– По форме: Вы компенсируете неудобство тяжёлой брони, подгоняя её под конкретного\nчеловека. Выбранный штурмовой бронежилет или полный доспех теперь позволяют раз в\nсцену игнорировать получаемые от них штрафы.\n– Испытание в деле: Вы можете совершить атаку созданным или модифицированным\nвами оружием через навык ТЕХНИЧИТЬ.\n234",
+      "skill": "ТЕХНИЧИТЬ"
+    },
+    {
+      "id": "tactics-card-118-384",
+      "kind": "tactic",
+      "title": "Рациональность",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          118
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "5) Рациональность\n– В два слоя: Вы тратите заметное время, и модифицируете плитник, штурмовой\nбронежилет, или полный доспех так, чтобы они занимали слот рюкзака. Так вы сможете\nносить два комплекта брони. Их защита всё ещё не суммируется.\n– Дополнительная разгрузка: Вы модифицируете разгрузку и рюкзак. Теперь вы можете\nвзять вместо четырёх слотов ресурсов один предмет. Пока у вас нет пятого предмета\nснаряжения, вы всё ещё можете брать эти ресурсы.\n– Соорудить носилки: Вы собираете хранилище для предметов из подручных средств.\nОно занимает слот предмета и даёт +2 защиты и +2 слота в РЕСУРСЫ.\n– Специалист особой брони: Вы модифицируете особую защиту так, что она теперь\nможет занимать слот брони на тело. Так вы сможете носить два комплекта особой защиты.\nИх защита всё ещё не суммируется, а применяемую раз в сцену способность от двух\nкомплектов можно использовать только одну за сцену.\n– Самое ценное: Вы соединяете два шлема в один, надёжнее защищающий голову. Их\nзащита суммируется, но итог получает свойство тяжёлый.",
+      "skill": "ТЕХНИЧИТЬ"
+    },
+    {
+      "id": "tactics-card-118-385",
+      "kind": "tactic",
+      "title": "Уклонение и блок",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          118
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
+      },
+      "text": "1) Уклонение и блок\n— Сбить траекторию: Вы парируете клинок, или отводите ствол автомата. Атака,\nсовершённая против вас на дистанции ближнего боя, причиняет стресс противнику на той\nже дистанции, что вы, или позади вас.\n— Удачное укрытие: В последний момент вы ныряете в укрытие. При провале вместо\nПУЛЬ получите стресс в СУДЬБУ и снизьте его на ступень.\n— Быстрее пули: Вы защищаетесь, парируя пули и уворачиваясь от клинков, но не\nпрекращаете продвигаться. Можете переместиться на одну дистанцию без дополнительных\nпроверок.\n— Слепая зона: Вы держитесь там, где атакующему неудобно вас достать: слишком близко\nк стрелку, сбоку от зверя, под рукой крупного врага.Следующая атака этого противника\nпричинит по вам на ступень меньше стресса.\n— Последний сантиметр: Вы не уходите полностью, а смещаетесь ровно настолько,\nчтобы пуля могла сбрить прядь волос. Вы сохраняете позицию и не отступаете, даже если\nатака обычно должна была отбросить, сбить или вытеснить вас.",
+      "skill": "ИЗБЕГАТЬ"
+    },
+    {
+      "id": "tactics-card-118-386",
+      "kind": "tactic",
+      "title": "Выдержка и ярость",
+      "section": "tactics",
+      "dropTarget": "tactic",
+      "source": {
+        "pdfPages": [
+          118,
+          119
+        ],
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "2) Выдержка и ярость\n— Солдатская свадьба: Вы встречаете боль, страх и удар чистым упрямством.\nЕсли после этой проверки вы получите стресс, он будет на ступень ниже.\n— Принять удар: Вы принимаете удар, не пытаясь защититься или спрятаться, и это\nникогда не входит в планы противника. Вы получите стресс в любом случае, но при успехе\nследующая проверка против противника, причинившего его, будет на ступень легче. При\nкритическом успехе это применяется ко всем противникам в сцене.\n235\n— Злость держит: Если вы получаете стресс при провале этой тактики, вы не совершаете\nдля него проверку последствия.\n— Держать строй: Если у вас есть малое последствие в ПУЛЯХ, совершайте эту тактику с\nмастерством. Если у вас есть значимое последствие в пулях, вы не можете получить на ней\nкритический провал.\n– Командир Рейзнейза: Вы, уподобившись полковнику Благочестию Мудрости во время\nбитвы при Рейзнейзе, держите позицию до конца. Если вы имели преимущество от\nпозиции, вы вместо одной кости мастерства получаете две.",
       "skill": "ИЗБЕГАТЬ"
     },
     {
-      "id": "tactics-card-117-370",
+      "id": "tactics-card-119-387",
       "kind": "tactic",
       "title": "Выживание в опасной местности",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          117
+          119
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "3) Выживание в опасной местности\n— Прятаться от среды: Вы закрываетесь от огня, холода или ядовитых спор тем, что есть\nпод рукой. Вы получаете +2 защиты в ПУЛИ от окружающей среды до конца сцены.\n— Понять ритм: Вы ловите закономерность: когда бьёт ток, когда сдвигаются стена, когда\nоткрывается гравитационная яма, когда дух смотрит в вашу сторону. Следующая проверка\nИЗБЕГАТЬ против этой же опасности до конца сцены совершается с мастерством.\n— Щит опасности: Вы пользуетесь местностью так, что между вами и врагом оказывается\nкислотная река, или стена из электрических импульсов. Следующий стресс, причиняемый\nвам врагом, или восхождением, причинит ему К8 стресса.\n– Быстрый противогаз: Вы надеваете противогаз мгновенно даже по армейским меркам.\nВы получаете мастерство на эту тактику против газа, дыма, спор и других угроз в воздухе.\n– Учиться на ошибках: Если вы получаете стресс, провалив эту тактику, ваша следующая\nпроверка становится на ступень легче. Опишите, как вас забавно повредило молнией, или\nвспышкой света.",
       "skill": "ИЗБЕГАТЬ"
     },
     {
-      "id": "tactics-card-117-371",
+      "id": "tactics-card-119-388",
       "kind": "tactic",
       "title": "Мастер защиты",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          117
+          119
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "4) Мастер защиты\n— Подставить плиту: Вы принимаете удар именно тем участком брони, который\nрассчитан на нагрузку. Защита в ПУЛЯХ от брони считается на 2 выше против этой атаки.\n— Скользящий угол: Вы поворачиваете корпус так, чтобы атака прошла по касательной.\nПри провале этой тактики вы получаете на ступень меньше стресса.\n— Летал как птица РРР: Вы используете структуру брони, чтобы пережить падение, или\nстолкновение. Падая с большой высоты, вы можете сказать, что сломана ваша броня на\nтеле, тогда вы не можете получить на этой тактике результат хуже успеха с ценой. Птицы\nРРР не умеют летать.\n– Успокоительное: Если вы не получили стресса от вражеской атаки благодаря этой\nтактике, вы можете атаковать врага в ближнем бою штурмовым щитом. Он без\nдополнительной проверки причинит столько стресса, сколько суммарно даёт слотов и\nзащиты.\n– Координация: Когда вы оказываете союзнику помощь в проверке ИЗБЕГАТЬ с помощью\nэтой тактики, вы даёте кроме кости помощи ещё и кость мастерства.\n236",
       "skill": "ИЗБЕГАТЬ"
     },
     {
-      "id": "tactics-card-117-372",
+      "id": "tactics-card-119-389",
       "kind": "tactic",
       "title": "Закрытый контур",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          117
+          119
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "5) Закрытый контур\n— Пустая мысль: Вы на мгновение очищаете сознание: считаете патроны, повторяете\nмолитву, вспоминаете устав, смотрите на трещину в стене,\nслушаете собственное дыхание. Вы получаете мастерство на эту тактику, если действовать\nнадо было очень быстро и если вы пытаетесь избежать стресса в ДУХ или РАЗУМ.\n— Разомкнуть контур: Вы отключаете лишние каналы восприятия: закрываете глаза,\nвыключаете имплант, рвёте радиосвязь. До конца сцены вы лишены одного чувства на\nвыбор, что сделает связанные с ним проверки на ступень сложнее, но даст +4 защиты в\nРАЗУМ.\n— Сбить ритм: Вы ломаете последовательность воздействия: перебиваете песню духа,\nсбиваете дыхание, произносите неправильный ответ. Можете получить К6 стресса в\nРЕСУРСЫ, чтобы до конца сцены получить мастерство на все проверки ИЗБЕГАТЬ против\nцели, к которой применяли эту тактику.\n— Не судьба: Когда угроза пытается навязать вам рок, проклятую случайность, или другой\nпредрешённый исход, вы отказываетесь участвовать в этом сценарии. Если вы избегаете\nэтой тактикой стресса в ДУХ, или СУДЬБУ, вы можете очистить малое последствие в ДУХЕ\nили СУДЬБЕ.\n– Иллюзия миража: Если вы избегаете этой тактикой стресса в РАЗУМ или ДУХ, можете\nспросить у ведущего, что в этой сцене не по-настоящему, вам обязаны ответить честно.",
       "skill": "ИЗБЕГАТЬ"
     },
     {
-      "id": "tactics-card-117-373",
+      "id": "tactics-card-119-390",
       "kind": "tactic",
       "title": "Расследование",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          117
+          119
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "1) Расследование\n— Восстановить события: Вы изучаете место происшествия. При успехе ведущий кратко\nописывает, что здесь произошло в правильном порядке, но без скрытых мотивов\nучастников. Ведущий открывает вам максимальное сопротивление расследования.\n— Тот, кто врёт следами: Вы ищете несостыковки: лишнюю гильзу, кровь не там, где она\nдолжна быть, слишком чистую комнату. Вы можете сказать, что виновник где-то рядом и\nвыдвинуть свою теорию. Защита сопротивления расследования снижается на 2.\n— Найти связь: Вы соединяете несколько улик в одну цепочку. Вы можете сказать, что в\nделе замешана одна из крупных фракций, но её мотивы и подробности событий остаются\nза ведущим.\n— Последняя ошибка: Вы находите момент, где всё пошло не по плану: сорванный болт,\nсломанный ноготь, лишний выстрел. Когда вы столкнётесь с виновником, все проверки\nпротив него будут совершаться с мастерством.\n— Бригада специалистов: Если вам помогали с этой проверкой УЗНАВАТЬ, стресс\nрасследованию повышается на ступень.\n237",
       "skill": "УЗНАВАТЬ"
     },
     {
-      "id": "tactics-card-118-374",
+      "id": "tactics-card-120-391",
       "kind": "tactic",
       "title": "Анализ человеческого",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          118
+          120
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "2) Анализ человеческого\n— Прочитать намерение: Вы наблюдаете за тем, как человек держится. Задайте\nведущему вопрос о его характере, подходе к диалогу с ним, или о его очевидных желаниях\nи поверхностных эмоциях, вам ответят честно.\n— Кто здесь главный: Вы быстро понимаете настоящую иерархию группы: кто отдаёт\nприказы, кого боятся, кого берегут, кто просто громче всех говорит. Дальнейшие действия\nпротив лидера или через лидера совершаются с мастерством.\n— Боевой почерк: Вы наблюдаете за боевым стилем противника. Задайте ведущему\nвопрос, какая сторона у него – самая сильная, вам ответят честно.\n— Профессиональная привычка: Вы узнаёте род занятий по рукам, стойке, шрамам,\nжаргону. Вы определяете, кем человек был или чему обучен и получаете мастерство на\nпроверки ГОВОРИТЬ с ним, если служили в том же роде войск.\n— Чужая боль: Вы понимаете, какое последствие, травма, долг или страх сейчас\nуправляет человеком. Можете задать ведущему один вопрос: чего он боится, кого винит, за\nчто держится. Вам ответят честно.",
       "skill": "УЗНАВАТЬ"
     },
     {
-      "id": "tactics-card-118-375",
+      "id": "tactics-card-120-392",
       "kind": "tactic",
       "title": "Анализ магического",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          118
+          120
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "3) Анализ магического\n— Опознать: Вы изучаете магический предмет. Вы узнаёте область происхождения магии и\nеё примерное назначение.\n— А что если…: Перед взаимодействием с аномалией, духом, или магическим предметом\nвы изучаете его признаки. Ведущий честно говорит, какой стресс или последствие наиболее\nвероятны при ошибке.\n— След: Вы видите, кто или что недавно колдовало здесь: запах, осадок на стенах,\nперегретые монеты, мёртвых насекомых, ожоги на реальности, цифровую дрожь. Вы\nузнаёте школу магии, куда ушёл маг, его примерную силу, или что это было за заклинание.\n— Родословная: Увидев заклинание в действии, вы понимаете, к какой традиции,\nфракции, или к какому классу относится эффект. Вы узнаёте, кто мог этому научить, где это\nобычно применяют и чего носитель такой магии обычно избегает.\n— Треснувшее чудо: Вы находите в маге или магическом предмете изъян: неверное имя,\nтрещину в круге, лишнюю свечу. Следующая проверка КОЛДОВАТЬ против этой цели\nполучает мастерство и не может принести критический провал.\n238",
       "skill": "УЗНАВАТЬ"
     },
     {
-      "id": "tactics-card-118-376",
+      "id": "tactics-card-120-393",
       "kind": "tactic",
       "title": "Продвинутая разведка",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          118
+          120
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "4) Продвинутая разведка\n— Понять оборону: Вы смотрите на укрепление как разведчик. Вы можете сказать, что в\nобороне есть изъян, например возможность зайти с бетонной скалы сверху, или\nнерегулярно сменяющиеся часовые.\n— Сектор обстрела: Вы определяете, какие места простреливаются, где мёртвая зона, куда\nлягут осколки, откуда работает снайпер. До конца сцены проверки ИЗБЕГАТЬ или\nПРОБИВАТЬСЯ в этой зоне совершаются с мастерством.\n— Найти наблюдателя: Вы ищете того, кто уже смотрит на вас: снайпера, камеру, духа,\nкорректировщика артиллерии. Вы можете сказать, что в сцене появляется сторонний\nнаблюдатель. При провале тактики это ваш враг, даже если его тут быть не должно. При\nуспехе это ваш контакт-персонаж ведущего, даже если его тут быть не должно.\n— Погодить минуту: Вы можете сказать, что сейчас худший момент для действия: патруль\nрядом, лифт едет, рынок замолчал. Все следующие проверки до первого провала вы\nсовершаете с мастерством, первый провал приносит на ступень больше стресса и\nобрывает эту серию.\n— Настоящий отряд: Вы быстро объясняете союзнику обстановку: где укрытия, где цель,\nгде опасность, кто командир, куда бежать. Один союзник получает кость помощи на\nследующую проверку, даже если вы не участвуете в действии напрямую и две, если\nучаствуете.",
       "skill": "УЗНАВАТЬ"
     },
     {
-      "id": "tactics-card-118-377",
+      "id": "tactics-card-120-394",
       "kind": "tactic",
       "title": "Касание непостижимого",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          118
+          120
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "5) Касание непостижимого\n— Загадка: Вы смотрите на невозможную геометрию, танец теней и космических\nмасштабов бетонные структуры, чтобы позволить душе сложить их в ответ. При успехе\nзадайте ведущему один вопрос о локации. Ответ правдивый, но причинит вам К6 стресса в\nРАЗУМ.\n— Принять неправильную мысль: Вы ненадолго допускаете, что безумная логика места\nверна. Лестница ведёт вверх и вниз одновременно, труп помнит будущее, дверь\nоткрывается криком. Вы можете сказать, что знаете, как справиться с сумасшедшим\nпрепятствием, и вам не нужно на это дополнительной проверки, но вы получите К8 стресса\nв РАЗУМ.\n— Сон наяву: Вы позволяете видению, галлюцинации, или чужой памяти пройти сквозь\nвас. Вы узнаёте одну тайну о человеке, чудовище, фракции,\n— Вернуться обратно: После контакта с невозможным вы проговариваете простые\nистины: своё имя, имена друзей, цель задания. Стресс в РАЗУМ от этого же источника до\nконца сцены снижается на ступень.\n239",
       "skill": "УЗНАВАТЬ"
     },
     {
-      "id": "tactics-card-119-378",
+      "id": "tactics-card-121-395",
       "kind": "tactic",
       "title": "Продвинутые манипуляции",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          119
+          121
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "1) Продвинутые манипуляции\n— Зверская хитрость: Вы быстро подстраиваетесь под ожидания собеседника: говорите\nкак союзник, клиент, начальник, или полезный идиот. Если у вас есть информация о том,\nкто этот человек, чего он хочет и боится, вы совершаете эту тактику с мастерством.\n— Правда с начинкой: Вы строите обман вокруг настоящих деталей: реального имени,\nподлинного документа, настоящей раны. Если у вас есть значимое последствие, вы\nсовершаете эту тактику с мастерством.\n— Заставить оправдываться: Вы задаёте вопрос, после которого собеседник сам\nначинает объяснять свои действия, слабые места, страхи или мотивы. Получите один\nважный факт, но только такой, который он мог выдать в разговоре.\n— Мягкая угроза: Вы угрожаете так, что это звучит как забота, предупреждение, совет или\nпечальная неизбежность. Цель напугана, но не имеет оснований объявить вас врагом. При\nпровале этой тактики вы не получаете стресс в РЕСУРСЫ.\n— Разделить союзников: Вы вбиваете клин между двумя людьми или группами:\nподчёркиваете разницу интересов, старую обиду, неравную награду. Они не действуют как\nединое целое до конца сцены.",
       "skill": "ГОВОРИТЬ"
     },
     {
-      "id": "tactics-card-119-379",
+      "id": "tactics-card-121-396",
       "kind": "tactic",
       "title": "Умелая торговля",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          119
+          121
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "2) Умелая торговля\n— Цена в сердце: Вы понимаете, что для продавца важнее денег: безопасность, статус,\nчужое унижение. Вы узнаёте, чем можно заменить часть оплаты или снизить стоимость\nсделки на ступень.\n— Бартерная цепочка: Вы выстраиваете обмен через несколько вещей и людей: патроны\nна батареи, батареи на проход, проход на информацию, информацию на лекарство. Один\nваш ресурс или предмет считается на ступень ценнее именно для этой сделки.\n— Показать выгоду: Вы объясняете, почему сделка выгодна не только сейчас, но и потом:\nрепутация, будущие поставки, месть конкуренту. Продавец добавляет к сделке маленькую\nуслугу, скидку, информацию или отсрочку.\n— Торг без унижения: Вы снижаете цену так, чтобы другая сторона не потеряла лицо:\nхвалите товар, признаёте трудность маршрута, ссылаетесь на рынок, сезон, приметы. Цена\nпадает, но отношения не портятся.\n— Винтовка жалоб и предложений: Вы ведёте сделку так, чтобы вас не обманули, не\nзавели в засаду и не подсунули проклятый товар. Ведущий обязан сказать, какая часть\nсделки выглядит самой опасной или сомнительной.\n240",
       "skill": "ГОВОРИТЬ"
     },
     {
-      "id": "tactics-card-119-380",
+      "id": "tactics-card-121-397",
       "kind": "tactic",
       "title": "Выступление",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          119
+          121
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "3) Выступление\n— Захватить внимание: Вы поёте, рассказываете историю, произносите тост, молитву,\nили обвинение так, что люди замолкают и слушают. Сцена на короткое время вращается\nвокруг вас: спор, драка или паника задерживаются до вашего первого проваленного\nброска.\n— Речь перед боем: Вы поднимаете дух отряда, контактов, наёмников или толпы перед\nопасным делом. До первого проваленного броска все персонажи и контакты совершают\nбросок с мастерством.\n— Легенда о себе: Вы рассказываете о своих прошлых подвигах, знаменитых друзьях и\nлегендарном оружии. За каждую вашу профессиональную способность вы причиняете\nсопротивлению переговоров дополнительные 1к4 стресса.\n— Взволновать толпу: Вы направляете эмоции множества людей: страх в бегство, а\nзлость в бунт. Толпа делает одно простое массовое действие, не требующее сложной\nкоординации.\n— Последняя фраза: Перед тем как разговор сорвётся в бой, казнь, изгнание или побег,\nвы успеваете сказать одну фразу. Эта фраза меняет одно малое условие сцены: кто-то\nмедлит, кто-то сомневается, кто-то запоминает вас, кто-то не стреляет первым.",
       "skill": "ГОВОРИТЬ"
     },
     {
-      "id": "tactics-card-119-381",
+      "id": "tactics-card-121-398",
       "kind": "tactic",
       "title": "Культура",
       "section": "tactics",
       "dropTarget": "tactic",
       "source": {
         "pdfPages": [
-          119
+          121
         ],
-        "file": "1-Башня-упадёт-тактические-приключения-web.pdf"
+        "file": "1-Башня-упадёт-тактические-приключения.pdf"
       },
       "text": "4) Культура\n— Правильное приветствие: Вы знаете или быстро угадываете, как обратиться к\nчеловеку: жест, титул, дистанция, поклон. Первая реакция собеседника не может быть хуже\nнейтральной, если вы не пришли как очевидный враг.\n— Чтить запреты: Вы замечаете культурную ловушку: нельзя есть сладкое, нельзя\nговорить цифру, нельзя смотреть в глаза, нельзя трогать оружие. Вы задаёте ведущему\nвопрос, какое неочевидное действие может обидеть собеседника, вам ответят честно.\n— Подарок по смыслу: Вы выбираете дар, который говорит больше цены: нож, кусок\nткани, редкий запах. Подарок считается на ступень ценнее в этой культуре или ситуации.\n— Общий обычай: Вы находите мост между культурами: похожий ритуал, армейскую\nпривычку, одинаковый страх. Вы получаете мастерство в общении с представителями\nодного народа до конца сцены.\n— Грамотный перевод: Даже зная язык, легко не понять намёк. Вы объясняете\nсоюзникам, что на самом деле значила фраза, жест, пауза, отказ или подарок. До конца\nсцены вы получаете на ступень стресса в РЕСУРСЫ меньше от недовольства собеседника.\n241",
       "skill": "ГОВОРИТЬ"

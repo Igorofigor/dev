@@ -603,24 +603,60 @@
 
     .codex-panel{
       width:min(720px,calc(100% - 36px));
+      height:calc(100vh - 36px);
+      min-width:min(360px,calc(100vw - 24px));
+      min-height:260px;
+      max-width:calc(100vw - 24px);
+      max-height:calc(100vh - 24px);
       margin:0;
       position:fixed;
       top:18px;
       right:18px;
-      bottom:18px;
-      padding:16px;
+      box-sizing:border-box;
+      padding:0;
       border:2px solid var(--accent);
       background:#fff;
       box-shadow:10px 10px 0 var(--accent-soft);
-      position:relative;
-      overflow:auto;
+      overflow:hidden;
+      resize:none;
+      display:flex;
+      flex-direction:column;
       transform:translateY(18px) scale(.985);
       transition:transform .2s ease,border-color .14s ease,box-shadow .14s ease;
       pointer-events:auto;
     }
 
     .codex-modal.open .codex-panel{transform:translateY(0) scale(1)}
+    .codex-panel.is-moving,
+    .codex-panel.is-resizing{transition:none;user-select:none}
     .codex-panel:hover{border-color:var(--accent-hover);box-shadow:10px 10px 0 var(--accent-hover-soft)}
+    .codex-resize-handle{
+      position:absolute;
+      z-index:5;
+      right:0;
+      bottom:0;
+      width:24px;
+      height:24px;
+      cursor:nwse-resize;
+      touch-action:none;
+      opacity:.75;
+      background:repeating-linear-gradient(135deg,transparent 0 3px,var(--accent) 3px 5px);
+      clip-path:polygon(100% 0,100% 100%,0 100%);
+    }
+    .codex-title-row{
+      flex:0 0 auto;
+      margin:0;
+      padding:12px 16px 10px;
+      border-bottom:1px solid var(--accent);
+      background:#fff;
+      cursor:move;
+      user-select:none;
+      touch-action:none;
+    }
+    .codex-title-row h2{display:flex;align-items:baseline;gap:10px}
+    .codex-window-hint{font-size:10px;font-weight:800;color:var(--muted);letter-spacing:.04em}
+    .codex-title-row button{cursor:pointer}
+    .codex-content{flex:1;min-height:0;overflow:auto;padding:0 16px 24px}
     .codex-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
     .codex-tabs button.is-active{background:var(--accent);color:#fff}
     .codex-items{display:grid;gap:10px}
@@ -636,8 +672,30 @@
     .codex-card-text{white-space:pre-wrap;line-height:1.35;font-size:13px;max-height:420px;overflow:auto}
     .codex-card[draggable="true"]{cursor:grab}
     .codex-card.is-dragging{opacity:.45}
-    [data-codex-drop].codex-drop-active{outline:3px dashed var(--accent);outline-offset:3px;background:var(--accent-soft)}
+    [data-codex-drop].codex-drop-eligible{
+      outline:2px dashed var(--accent);
+      outline-offset:3px;
+      background:var(--accent-soft);
+      box-shadow:0 0 0 4px var(--accent-hover-soft);
+    }
+    [data-codex-drop].codex-drop-active{
+      outline:3px solid var(--accent-hover);
+      outline-offset:3px;
+      background:var(--accent-hover-soft);
+      box-shadow:0 0 0 5px var(--accent-soft);
+    }
     [data-codex-drop].codex-drop-invalid{outline:3px dashed var(--danger);outline-offset:3px}
+
+    @media(max-width:760px){
+      .codex-panel{
+        width:calc(100vw - 24px);
+        height:calc(100vh - 24px);
+        top:12px;
+        right:12px;
+      }
+      .codex-group-items{grid-template-columns:1fr}
+      .codex-window-hint{display:none}
+    }
 
     .roll-modal.open,
     .diary-modal.open,
@@ -1388,7 +1446,7 @@ button.secondary.portrait-mini-button{
       <div class="table-wrap"><table class="table"><thead><tr><th>Слот</th><th>Предмет</th><th>Навык</th><th>Качество</th><th>Свойства / заметки</th></tr></thead><tbody id="gearRows"></tbody></table></div>
 
       <h3 style="margin-top:18px">Броня</h3>
-      <div class="table-wrap"><table class="table"><thead><tr><th>Слот</th><th>Предмет</th><th>Сопротивление</th><th>Защита</th><th>Доп. слоты</th><th>Свойства</th></tr></thead><tbody id="armorRows"></tbody></table></div>
+      <div class="table-wrap"><table class="table"><thead><tr><th>Слот</th><th>Предмет</th><th>Навык</th><th>Стресс</th><th>Сопротивление</th><th>Защита</th><th>Доп. слоты</th><th>Свойства</th></tr></thead><tbody id="armorRows"></tbody></table></div>
     </section>
 
     <section id="contactsCard" class="card">
@@ -1520,14 +1578,17 @@ button.secondary.portrait-mini-button{
   </div>
 
   <div id="codexModal" class="codex-modal" onclick="closeCodexMenuOnBackdrop(event)" aria-hidden="true">
-    <div class="codex-panel" onclick="event.stopPropagation()">
-      <div class="title-row">
-        <h2>Кодекс</h2>
+    <div id="codexPanel" class="codex-panel" onclick="event.stopPropagation()">
+      <div id="codexDragHandle" class="title-row codex-title-row" onpointerdown="startCodexPanelDrag(event)" title="Перетащите, чтобы переместить окно">
+        <h2>Кодекс <span class="codex-window-hint">перетащить окно</span></h2>
         <button class="secondary" type="button" onclick="closeCodexMenu()">Закрыть</button>
       </div>
-      <p class="hint">Выберите группу, раскройте нужную карточку и перетащите её в подходящий слот листа. Кодекс остаётся открыт.</p>
-      <div id="codexTabs" class="codex-tabs"></div>
-      <div id="codexItems" class="codex-items"></div>
+      <div class="codex-content">
+        <p class="hint">Выберите группу, раскройте нужную карточку и перетащите её в подходящий слот листа. Допустимые слоты подсветятся цветом темы. Окно перемещается за шапку и меняет размер за правый нижний угол.</p>
+        <div id="codexTabs" class="codex-tabs"></div>
+        <div id="codexItems" class="codex-items"></div>
+      </div>
+      <div id="codexResizeHandle" class="codex-resize-handle" onpointerdown="startCodexPanelResize(event)" title="Изменить размер окна" aria-hidden="true"></div>
     </div>
   </div>
 <div id="rulesHelpModal" class="rules-help-modal" onclick="closeRulesHelpMenuOnBackdrop(event)" aria-hidden="true">
@@ -1647,7 +1708,7 @@ button.secondary.portrait-mini-button{
     </div>
   </div>
 
-  <script src="codex-data.js?v=4"></script>
+  <script src="codex-data.js?v=6"></script>
   <script>
     const STORAGE_KEY="towerCharacterSheetV14";
     const CHARACTER_PORTRAIT_KEY="towerCharacterPortraitV1";
@@ -2691,8 +2752,9 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
       container.innerHTML="";
       armorSlots.forEach((slot,index)=>{
         const i=index+1;
-        container.innerHTML+=`<tr><td>${slot}</td><td><input id="armor${i}Name" placeholder="${slot}" /></td><td><select id="armor${i}Resistance">${makeResistanceOptions()}</select></td><td><input id="armor${i}Protection" type="number" min="0" value="0" /></td><td><input id="armor${i}ExtraSlots" type="number" min="0" max="5" value="0" /></td><td><input id="armor${i}Note" placeholder="Свойства, штрафы, особые эффекты..." /></td></tr>`;
+        container.innerHTML+=`<tr data-codex-drop="armor" data-codex-armor-slot="${slot}" data-codex-target-index="${i}"><td>${slot}</td><td><input id="armor${i}Name" placeholder="${slot}" /></td><td><select id="armor${i}Skill">${makeOptions(skillOptions)}</select></td><td><div class="quality-cell"><select id="armor${i}Quality">${makeDieOptions()}</select><span id="armor${i}QualityPreview" class="quality-die-preview empty">—</span></div></td><td><select id="armor${i}Resistance">${makeResistanceOptions()}</select></td><td><input id="armor${i}Protection" type="number" min="0" value="0" /></td><td><input id="armor${i}ExtraSlots" type="number" min="0" max="5" value="0" /></td><td><input id="armor${i}Note" placeholder="Свойства, штрафы, особые эффекты..." /></td></tr>`;
       });
+      attachCodexDragHandlers();
     }
 
     function buildSlotRows(kind,type){
@@ -2979,6 +3041,7 @@ function drawTintedPattern(ctx,image,x,y,w,h,tileSize,color,alpha=.08){
 
     function updateQualityDiePreviews(){
       for(let i=1;i<=4;i++)updateQualityDiePreview(`gear${i}Quality`,`gear${i}QualityPreview`);
+      for(let i=1;i<=armorSlots.length;i++)updateQualityDiePreview(`armor${i}Quality`,`armor${i}QualityPreview`);
       for(let i=1;i<=resourceCount;i++)updateQualityDiePreview(`resource${i}Quality`,`resource${i}QualityPreview`);
     }
 
@@ -3402,6 +3465,9 @@ function importCharacterJSON(event){
 
     let codexActiveSection="classes";
     let codexDraggedItemId="";
+    let codexPanelDragState=null;
+    let codexPanelResizeState=null;
+    const CODEX_PANEL_MARGIN=12;
 
     function escapeCodexHtml(value){
       return String(value??"").replace(/[&<>\"']/g,character=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;", "'":"&#39;"}[character]));
@@ -3455,7 +3521,28 @@ function importCharacterJSON(event){
     function codexItemFitsTarget(item,target){
       if(!item||!target||item.dropTarget!==target.dataset.codexDrop)return false;
       if(target.dataset.codexTier&&item.tier!==target.dataset.codexTier)return false;
+      if(target.dataset.codexDrop==="armor"&&item.armorSlots?.length&&!item.armorSlots.includes(target.dataset.codexArmorSlot))return false;
       return true;
+    }
+
+    function clearCodexDropHighlights(){
+      document.querySelectorAll("[data-codex-drop]").forEach(target=>{
+        target.classList.remove("codex-drop-eligible","codex-drop-active","codex-drop-invalid");
+      });
+    }
+
+    function highlightCodexDropTargets(item){
+      clearCodexDropHighlights();
+      document.querySelectorAll("[data-codex-drop]").forEach(target=>{
+        if(codexItemFitsTarget(item,target))target.classList.add("codex-drop-eligible");
+      });
+    }
+
+    function dispatchCodexFieldUpdates(fields){
+      fields.filter(Boolean).forEach(element=>{
+        element.dispatchEvent(new Event("input",{bubbles:true}));
+        element.dispatchEvent(new Event("change",{bubbles:true}));
+      });
     }
 
     function fillCodexTarget(item,target){
@@ -3476,15 +3563,40 @@ function importCharacterJSON(event){
         if(name)name.value=item.title;
         if(skill&&item.skill)skill.value=item.skill;
         if(notes)notes.value=item.text;
-        [name,skill,notes].filter(Boolean).forEach(element=>element.dispatchEvent(new Event("input",{bubbles:true})));
+        dispatchCodexFieldUpdates([name,skill,notes]);
         return true;
       }
       if(targetType==="gear"){
         const name=byId(`gear${index}Name`);
+        const skill=byId(`gear${index}Skill`);
+        const quality=byId(`gear${index}Quality`);
         const note=byId(`gear${index}Note`);
         if(name)name.value=item.title;
-        if(note)note.value=item.text;
-        [name,note].filter(Boolean).forEach(element=>element.dispatchEvent(new Event("input",{bubbles:true})));
+        if(skill)skill.value=item.skill||"";
+        if(quality)quality.value=item.quality||"";
+        if(note)note.value=item.notes??item.text;
+        dispatchCodexFieldUpdates([name,skill,quality,note]);
+        updateQualityDiePreview(`gear${index}Quality`,`gear${index}QualityPreview`);
+        return true;
+      }
+      if(targetType==="armor"){
+        const name=byId(`armor${index}Name`);
+        const skill=byId(`armor${index}Skill`);
+        const quality=byId(`armor${index}Quality`);
+        const resistance=byId(`armor${index}Resistance`);
+        const protection=byId(`armor${index}Protection`);
+        const extraSlots=byId(`armor${index}ExtraSlots`);
+        const note=byId(`armor${index}Note`);
+        if(name)name.value=item.title;
+        if(skill)skill.value=item.skill||"";
+        if(quality)quality.value=item.skill&&item.quality?item.quality:"";
+        if(resistance)resistance.value=item.resistance||"";
+        if(protection)protection.value=Number(item.protection||0);
+        if(extraSlots)extraSlots.value=Number(item.extraSlots||0);
+        if(note)note.value=item.notes??item.text;
+        dispatchCodexFieldUpdates([name,skill,quality,resistance,protection,extraSlots,note]);
+        updateQualityDiePreview(`armor${index}Quality`,`armor${index}QualityPreview`);
+        renderCounters();
         return true;
       }
       return false;
@@ -3497,8 +3609,13 @@ function importCharacterJSON(event){
           event.dataTransfer.setData("application/x-tower-codex",card.dataset.codexId);
           event.dataTransfer.effectAllowed="copy";
           card.classList.add("is-dragging");
+          highlightCodexDropTargets(getCodexItem(codexDraggedItemId));
         });
-        card.addEventListener("dragend",()=>{codexDraggedItemId="";card.classList.remove("is-dragging")});
+        card.addEventListener("dragend",()=>{
+          codexDraggedItemId="";
+          card.classList.remove("is-dragging");
+          clearCodexDropHighlights();
+        });
       });
       document.querySelectorAll("[data-codex-drop]").forEach(target=>{
         if(target.dataset.codexHandlersAttached)return;
@@ -3513,11 +3630,160 @@ function importCharacterJSON(event){
         target.addEventListener("dragleave",()=>target.classList.remove("codex-drop-active"));
         target.addEventListener("drop",event=>{
           event.preventDefault();
-          target.classList.remove("codex-drop-active");
+          clearCodexDropHighlights();
           const item=getCodexItem(event.dataTransfer.getData("application/x-tower-codex")||codexDraggedItemId);
           fillCodexTarget(item,target);
         });
       });
+    }
+
+    function positionCodexPanel(){
+      const panel=byId("codexPanel");
+      if(!panel)return;
+      const margin=CODEX_PANEL_MARGIN;
+      if(!panel.dataset.codexPositioned){
+        const width=Math.min(panel.offsetWidth,Math.max(1,window.innerWidth-margin*2));
+        const height=Math.min(panel.offsetHeight,Math.max(1,window.innerHeight-margin*2));
+        panel.style.width=`${width}px`;
+        panel.style.height=`${height}px`;
+        panel.style.left=`${Math.max(margin,window.innerWidth-width-margin)}px`;
+        panel.style.top=`${margin}px`;
+        panel.style.right="auto";
+        panel.style.bottom="auto";
+        panel.dataset.codexPositioned="true";
+      }
+      keepCodexPanelInViewport();
+    }
+
+    function keepCodexPanelInViewport(){
+      const panel=byId("codexPanel");
+      if(!panel||!panel.dataset.codexPositioned)return;
+      const margin=CODEX_PANEL_MARGIN;
+      const maxWidth=Math.max(1,window.innerWidth-margin*2);
+      const maxHeight=Math.max(1,window.innerHeight-margin*2);
+      if(panel.offsetWidth>maxWidth)panel.style.width=`${maxWidth}px`;
+      if(panel.offsetHeight>maxHeight)panel.style.height=`${maxHeight}px`;
+      const width=panel.offsetWidth;
+      const height=panel.offsetHeight;
+      const currentLeft=Number.parseFloat(panel.style.left)||margin;
+      const currentTop=Number.parseFloat(panel.style.top)||margin;
+      const maxLeft=Math.max(margin,window.innerWidth-width-margin);
+      const maxTop=Math.max(margin,window.innerHeight-height-margin);
+      panel.style.left=`${Math.min(Math.max(margin,currentLeft),maxLeft)}px`;
+      panel.style.top=`${Math.min(Math.max(margin,currentTop),maxTop)}px`;
+    }
+
+    function startCodexPanelDrag(event){
+      if(event.button!==0||event.target.closest("button,a,input,select,textarea"))return;
+      const panel=byId("codexPanel");
+      if(!panel)return;
+      positionCodexPanel();
+      const rect=panel.getBoundingClientRect();
+      panel.style.left=`${rect.left}px`;
+      panel.style.top=`${rect.top}px`;
+      panel.style.width=`${rect.width}px`;
+      panel.style.height=`${rect.height}px`;
+      panel.style.right="auto";
+      panel.style.bottom="auto";
+      codexPanelDragState={
+        pointerId:event.pointerId,
+        startX:event.clientX,
+        startY:event.clientY,
+        startLeft:rect.left,
+        startTop:rect.top,
+        width:rect.width,
+        height:rect.height,
+        handle:event.currentTarget
+      };
+      panel.classList.add("is-moving");
+      event.currentTarget.setPointerCapture?.(event.pointerId);
+      event.preventDefault();
+    }
+
+    function moveCodexPanel(event){
+      if(!codexPanelDragState||event.pointerId!==codexPanelDragState.pointerId)return;
+      const panel=byId("codexPanel");
+      if(!panel)return;
+      const margin=CODEX_PANEL_MARGIN;
+      const maxLeft=Math.max(margin,window.innerWidth-codexPanelDragState.width-margin);
+      const maxTop=Math.max(margin,window.innerHeight-codexPanelDragState.height-margin);
+      const left=Math.min(Math.max(margin,codexPanelDragState.startLeft+event.clientX-codexPanelDragState.startX),maxLeft);
+      const top=Math.min(Math.max(margin,codexPanelDragState.startTop+event.clientY-codexPanelDragState.startY),maxTop);
+      panel.style.left=`${left}px`;
+      panel.style.top=`${top}px`;
+    }
+
+    function stopCodexPanelDrag(event){
+      if(!codexPanelDragState||event.pointerId!==codexPanelDragState.pointerId)return;
+      const panel=byId("codexPanel");
+      codexPanelDragState.handle?.releasePointerCapture?.(event.pointerId);
+      codexPanelDragState=null;
+      panel?.classList.remove("is-moving");
+      keepCodexPanelInViewport();
+    }
+
+    function startCodexPanelResize(event){
+      if(event.button!==0)return;
+      const panel=byId("codexPanel");
+      if(!panel)return;
+      positionCodexPanel();
+      const rect=panel.getBoundingClientRect();
+      codexPanelResizeState={
+        pointerId:event.pointerId,
+        startX:event.clientX,
+        startY:event.clientY,
+        startWidth:rect.width,
+        startHeight:rect.height,
+        left:rect.left,
+        top:rect.top,
+        handle:event.currentTarget
+      };
+      panel.classList.add("is-resizing");
+      event.currentTarget.setPointerCapture?.(event.pointerId);
+      event.stopPropagation();
+      event.preventDefault();
+    }
+
+    function resizeCodexPanel(event){
+      if(!codexPanelResizeState||event.pointerId!==codexPanelResizeState.pointerId)return;
+      const panel=byId("codexPanel");
+      if(!panel)return;
+      const maxWidth=Math.max(1,window.innerWidth-codexPanelResizeState.left-CODEX_PANEL_MARGIN);
+      const maxHeight=Math.max(1,window.innerHeight-codexPanelResizeState.top-CODEX_PANEL_MARGIN);
+      const minWidth=Math.min(360,maxWidth);
+      const minHeight=Math.min(260,maxHeight);
+      const width=Math.min(Math.max(minWidth,codexPanelResizeState.startWidth+event.clientX-codexPanelResizeState.startX),maxWidth);
+      const height=Math.min(Math.max(minHeight,codexPanelResizeState.startHeight+event.clientY-codexPanelResizeState.startY),maxHeight);
+      panel.style.width=`${width}px`;
+      panel.style.height=`${height}px`;
+    }
+
+    function stopCodexPanelResize(event){
+      if(!codexPanelResizeState||event.pointerId!==codexPanelResizeState.pointerId)return;
+      const panel=byId("codexPanel");
+      codexPanelResizeState.handle?.releasePointerCapture?.(event.pointerId);
+      codexPanelResizeState=null;
+      panel?.classList.remove("is-resizing");
+      keepCodexPanelInViewport();
+    }
+
+    function closeCodexOnOutsidePointer(event){
+      const modal=byId("codexModal");
+      if(!modal?.classList.contains("open"))return;
+      const panel=byId("codexPanel");
+      if(panel?.contains(event.target)||event.target.closest?.("#openCodexButton"))return;
+      closeCodexMenu();
+    }
+
+    function initCodexWindowInteractions(){
+      document.addEventListener("pointermove",moveCodexPanel);
+      document.addEventListener("pointermove",resizeCodexPanel);
+      document.addEventListener("pointerup",stopCodexPanelDrag);
+      document.addEventListener("pointerup",stopCodexPanelResize);
+      document.addEventListener("pointercancel",stopCodexPanelDrag);
+      document.addEventListener("pointercancel",stopCodexPanelResize);
+      document.addEventListener("pointerdown",closeCodexOnOutsidePointer,true);
+      window.addEventListener("resize",keepCodexPanelInViewport);
     }
 
     function selectCodexSection(sectionId){
@@ -3533,6 +3799,7 @@ function importCharacterJSON(event){
       renderCodexSection();
       modal.classList.add("open");
       modal.setAttribute("aria-hidden","false");
+      requestAnimationFrame(positionCodexPanel);
     }
 
     function closeCodexMenu(){
@@ -3540,6 +3807,7 @@ function importCharacterJSON(event){
       if(!modal)return;
       modal.classList.remove("open");
       modal.setAttribute("aria-hidden","true");
+      clearCodexDropHighlights();
     }
 
     function closeCodexMenuOnBackdrop(event){if(event.target.id==="codexModal")closeCodexMenu()}
@@ -3796,6 +4064,7 @@ function closeRulesHelpMenuOnBackdrop(event){
       attachParallax();
       attachStressHoverEffects();
       attachCharacterPortraitUpload();
+      initCodexWindowInteractions();
       if(saved)applyData(saved);
       else{
         updateRollMasteryButton();
